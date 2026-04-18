@@ -128,6 +128,7 @@ class DockerRunner(BaseRunner):
         self._setup_user_accounts()
         if not self.spec.skip_display_audio_bootstrap:
             self._bootstrap_display_audio()
+            self._wait_for_desktop()
         self._launch_entrypoint()
         self._running = True
 
@@ -796,6 +797,48 @@ class DockerRunner(BaseRunner):
             time.sleep(1)
         print(f"Warning: X server may not be ready after {max_attempts} attempts")
 
+    def _wait_for_desktop(self) -> None:
+        """Wait for X server AND window manager/desktop to be fully ready.
+
+        Polls xdpyinfo (X server accepting connections) then wmctrl -l
+        (window manager running). This ensures screenshots show a rendered
+        desktop rather than a blank blue screen.
+
+        Modeled on QemuApptainerRunner._wait_for_desktop().
+        """
+        timeout = int(os.environ.get("GYM_ANYTHING_DESKTOP_TIMEOUT", "60"))
+        start_time = time.time()
+
+        # Phase 1: wait for X server
+        print(f"Waiting for desktop on {self.display} (timeout={timeout}s)...")
+        while time.time() - start_time < timeout:
+            try:
+                self.exec_capture(f"DISPLAY={self.display} xdpyinfo -display {self.display} 2>/dev/null | head -1")
+                print(f"  X server ready ({time.time() - start_time:.1f}s)")
+                break
+            except Exception:
+                time.sleep(2)
+        else:
+            raise RuntimeError(
+                f"X server on {self.display} not ready after {timeout}s. "
+                f"Check container logs: docker logs {self.container_name}"
+            )
+
+        # Phase 2: wait for window manager
+        while time.time() - start_time < timeout:
+            try:
+                self.exec_capture(f"DISPLAY={self.display} wmctrl -m 2>/dev/null")
+                elapsed = time.time() - start_time
+                print(f"  Window manager ready ({elapsed:.1f}s)")
+                # Small settle time for desktop to fully render
+                time.sleep(2)
+                return
+            except Exception:
+                time.sleep(2)
+
+        elapsed = time.time() - start_time
+        print(f"  Warning: window manager not detected after {elapsed:.1f}s, proceeding anyway")
+
     def _bootstrap_display_audio(self) -> None:
         # Start X server and PulseAudio depending on systemd mode
         screen_spec = next((o for o in self.spec.observation if o.type == "rgb_screen"), None)
@@ -1186,6 +1229,7 @@ class DockerRunner(BaseRunner):
 
             if not self.spec.skip_display_audio_bootstrap:
                 self._bootstrap_display_audio()
+                self._wait_for_desktop()
             self._launch_entrypoint()
 
             # Mark that we loaded from checkpoint
