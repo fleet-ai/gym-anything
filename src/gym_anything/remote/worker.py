@@ -245,6 +245,11 @@ class EnvironmentManager:
         try:
             if env_dir:
                 env = from_config(env_dir, task_id=task_id)
+                # Enable inline screenshots so png_b64 is included in HTTP
+                # responses. Without this, remote clients only get metadata.
+                for obs_spec in env.env_spec.observation:
+                    if obs_spec.type == "rgb_screen":
+                        obs_spec.inline = True
             else:
                 env_spec = EnvSpec.from_dict(env_spec_dict) if env_spec_dict else None
                 task_spec = TaskSpec.from_dict(task_spec_dict) if task_spec_dict else None
