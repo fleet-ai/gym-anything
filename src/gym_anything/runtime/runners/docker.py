@@ -871,9 +871,9 @@ class DockerRunner(BaseRunner):
         self.exec(f"bash -lc 'python3 /workspace/env_api.py {shlex.quote(name)} {argv}'")
 
     # Public utility for recorders
-    def exec(self, cmd: str, env: Optional[Dict[str, str]] = None, user: Optional[str] = None, use_pty: bool = True) -> int:
-        # Note: use_pty is accepted for API compatibility with QemuApptainerRunner but is
-        # ignored here. Docker exec doesn't have the same PTY/SIGHUP behavior as SSH.
+    def exec(self, cmd: str, env: Optional[Dict[str, str]] = None, user: Optional[str] = None, use_pty: bool = True, timeout: Optional[int] = None) -> int:
+        # Note: use_pty and timeout are accepted for API compatibility with
+        # QemuApptainerRunner but are ignored here.
         env = self.merge_exec_env(env)
         full_cmd = ["docker", "exec"]
         if env:
