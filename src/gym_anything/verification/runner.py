@@ -3,10 +3,14 @@ from __future__ import annotations
 import importlib
 import importlib.util
 import json
+import logging
+import os
 import re
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 from ..runtime.runners.base import BaseRunner
 from ..specs import EnvSpec, TaskSpec
@@ -30,7 +34,18 @@ class VerifierRunner:
         spec = task_spec.success.spec or {}
         report: Dict[str, Any] = {"mode": mode}
         # breakpoint()
-        if mode == "program":
+        # Auto-upgrade to vlm_checklist if the file exists and VLM_CHECKLIST_OVERRIDE is set
+        if mode == "program" and os.environ.get("VLM_CHECKLIST_OVERRIDE", "").lower() in ("1", "true", "yes"):
+            if task_root and (task_root / "vlm_checklist.json").exists():
+                mode = "vlm_checklist"
+                report["mode"] = mode
+                logger.info(f"Auto-upgraded verifier mode to vlm_checklist for {task_spec.id}")
+
+        if mode == "vlm_checklist":
+            report.update(
+                self._run_vlm_checklist(episode_dir, task_spec, task_root)
+            )
+        elif mode == "program":
             report.update(
                 self._run_program_verifier(spec, episode_dir, env_spec, task_spec, task_root, env_root, runner)
             )
@@ -191,6 +206,176 @@ class VerifierRunner:
             mod = importlib.import_module(mod_name)
             return getattr(mod, func)
         raise ValueError("Invalid program reference; expected 'file.py::func' or 'pkg.mod:func'")
+
+    def _sample_frames_for_vlm(self, traj: Dict[str, Any]) -> List[str]:
+        """Sample trajectory frames: first 3, every 3rd middle, last 3."""
+        frames = traj.get("frames", [])
+        if not frames:
+            final = traj.get("final_screenshot")
+            return [final] if final else []
+        if len(frames) <= 6:
+            return list(frames)
+
+        sampled = list(frames[:3])
+        middle = frames[3:-3]
+        sampled.extend(middle[::3])
+        sampled.extend(frames[-3:])
+        return sampled
+
+    def _run_vlm_checklist(
+        self,
+        episode_dir: Path,
+        task_spec: TaskSpec,
+        task_root: Optional[Path],
+    ) -> Dict[str, Any]:
+        """Grade trajectory using VLM checklist verification (paper Eq. 2)."""
+        if not task_root:
+            return {"error": "task_root required for vlm_checklist", "passed": False, "score": 0}
+
+        # Load checklist
+        checklist_path = task_root / "vlm_checklist.json"
+        if not checklist_path.exists():
+            return {"error": f"vlm_checklist.json not found at {checklist_path}", "passed": False, "score": 0}
+        try:
+            checklist = json.loads(checklist_path.read_text(encoding="utf-8"))
+        except Exception as e:
+            return {"error": f"failed to parse vlm_checklist.json: {e}", "passed": False, "score": 0}
+
+        # Load privileged info
+        pi_path = task_root / "validated_pi.json"
+        pi_text = checklist.get("privileged_info_for_vlm", "No privileged information available.")
+        if pi_path.exists():
+            try:
+                pi_data = json.loads(pi_path.read_text(encoding="utf-8"))
+                if isinstance(pi_data, dict) and pi_data.get("summary"):
+                    pi_text = pi_data["summary"]
+                elif isinstance(pi_data, str):
+                    pi_text = pi_data
+            except Exception:
+                pass
+
+        # Load trajectory and sample frames
+        traj = self._load_traj(episode_dir)
+        frame_paths = self._sample_frames_for_vlm(traj)
+        if not frame_paths:
+            return {"error": "no trajectory frames found", "passed": False, "score": 0}
+
+        # Build completion items text
+        completion_items = checklist.get("task_completion", [])
+        integrity_items = checklist.get("integrity", [])
+
+        completion_text = ""
+        for i, item in enumerate(completion_items, 1):
+            completion_text += (
+                f"{i}. [{item['id']}] (points: {item.get('points', 0)})\n"
+                f"   Description: {item['description']}\n"
+                f"   Visual evidence: {item.get('visual_evidence', 'N/A')}\n\n"
+            )
+
+        integrity_text = ""
+        for i, item in enumerate(integrity_items, 1):
+            integrity_text += (
+                f"{i}. [{item['id']}]\n"
+                f"   Description: {item['description']}\n"
+                f"   Visual evidence: {item.get('visual_evidence', 'N/A')}\n\n"
+            )
+
+        task_desc = task_spec.description or f"Task: {task_spec.id}"
+
+        prompt = f"""You are an expert evaluator scoring AI agent trajectories on computer-use benchmark tasks. Examine the trajectory screenshots and score the agent's work against the checklist.
+
+SCORING RULES:
+- For each task_completion item: "pass" (full points), "partial" (half points), or "fail" (0 points)
+- For each integrity item: "pass" or "fail"
+- Be strict: only give "pass" if you see clear visual evidence. However, if a checklist item is non-essential for the task completion solely based on the task description, and other items are completed, you can give "pass".
+- "partial" is for when the agent made meaningful progress but didn't fully complete the sub-task
+
+INTEGRITY CHECK RULES:
+- Integrity checks detect CHEATING or SHORTCUTS, NOT task failure.
+- An agent that genuinely attempted the task but failed is an INTEGRITY PASS.
+- Only mark integrity FAIL if you see clear evidence of: hardcoding answers, copy-pasting expected values, fabricating results without using the software, or bypassing the required workflow entirely.
+
+Task Description: {task_desc}
+Privileged Information (verified facts): {pi_text}
+
+=== TASK COMPLETION CHECKLIST ===
+{completion_text}
+=== INTEGRITY CHECKS ===
+{integrity_text}
+The screenshots below are from the agent's trajectory (first 3 frames, sampled middle frames, last 3 frames). Examine them carefully and score each checklist item.
+
+Respond with ONLY a JSON object:
+{{
+    "task_completion": [
+        {{"id": "item_id", "verdict": "pass|partial|fail", "confidence": 0.9, "evidence": "what you see"}}
+    ],
+    "integrity": [
+        {{"id": "item_id", "verdict": "pass|fail", "confidence": 0.9, "evidence": "what you see"}}
+    ],
+    "overall_reasoning": "1-3 sentence summary"
+}}"""
+
+        # Call VLM
+        try:
+            result = query_vlm(prompt=prompt, images=frame_paths, max_tokens=4096, temperature=0.1)
+        except Exception as e:
+            return {"error": f"VLM query failed: {e}", "passed": False, "score": 0}
+
+        if not result.get("success"):
+            return {"error": f"VLM error: {result.get('error', 'unknown')}", "passed": False, "score": 0}
+
+        parsed = result.get("parsed", {})
+        if not parsed:
+            return {"error": f"VLM returned unparseable response: {result.get('response', '')[:500]}", "passed": False, "score": 0}
+
+        # Compute score from VLM verdicts
+        # Check integrity first — any failure → score = 0
+        integrity_pass = True
+        integrity_results = parsed.get("integrity", [])
+        for item in integrity_results:
+            if item.get("verdict", "").lower() == "fail":
+                integrity_pass = False
+                break
+
+        if not integrity_pass:
+            return {
+                "passed": False,
+                "score": 0,
+                "feedback": "Integrity check failed",
+                "vlm_response": parsed,
+                "integrity_pass": False,
+            }
+
+        # Score task_completion items
+        total_score = 0
+        max_score = 0
+        item_map = {item["id"]: item for item in completion_items}
+        completion_results = parsed.get("task_completion", [])
+        for vlm_item in completion_results:
+            item_id = vlm_item.get("id", "")
+            verdict = vlm_item.get("verdict", "fail").lower()
+            points = item_map.get(item_id, {}).get("points", 0)
+            max_score += points
+            if verdict == "pass":
+                total_score += points
+            elif verdict == "partial":
+                total_score += points / 2
+
+        # Normalize to 0-100 if max_score != 100
+        if max_score > 0 and max_score != 100:
+            total_score = total_score * 100 / max_score
+
+        score = round(total_score, 1)
+        passed = score >= 100.0
+
+        return {
+            "passed": passed,
+            "score": score,
+            "feedback": parsed.get("overall_reasoning", ""),
+            "vlm_response": parsed,
+            "integrity_pass": integrity_pass,
+            "frames_sampled": len(frame_paths),
+        }
 
     def _run_image_match(
         self,

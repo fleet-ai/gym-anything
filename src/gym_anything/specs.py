@@ -436,7 +436,7 @@ class EnvSpec:
 
 @dataclass
 class TaskSuccessSpec:
-    mode: Literal["program", "image_match", "multi"] = "program"
+    mode: Literal["program", "image_match", "multi", "vlm_checklist"] = "program"
     spec: Dict[str, Any] = field(default_factory=dict)
 
 
