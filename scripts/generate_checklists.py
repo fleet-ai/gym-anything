@@ -27,7 +27,7 @@ from pathlib import Path
 import requests
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-MODEL = "google/gemini-2.5-flash-preview"  # cheapest capable model for generation
+MODEL = "google/gemini-3-flash-preview"  # Gemini 3 Flash for checklist generation
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 CHECKLIST_PROMPT = """You are generating a verification checklist for an AI agent benchmark task. This checklist will be used by a VLM (vision-language model) to score agent trajectories by examining screenshots.
