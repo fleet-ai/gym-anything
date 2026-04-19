@@ -798,19 +798,23 @@ class DockerRunner(BaseRunner):
         print(f"Warning: X server may not be ready after {max_attempts} attempts")
 
     def _wait_for_desktop(self) -> None:
-        """Wait for X server AND window manager/desktop to be fully ready.
+        """Wait for desktop to be fully rendered and visible.
 
-        Polls xdpyinfo (X server accepting connections) then wmctrl -l
-        (window manager running). This ensures screenshots show a rendered
-        desktop rather than a blank blue screen.
+        Three-phase check:
+        1. X server accepting connections (xdpyinfo)
+        2. Window manager running (wmctrl)
+        3. Screenshot is non-blank (file size > 15KB)
 
-        Modeled on QemuApptainerRunner._wait_for_desktop().
+        Phase 3 is the critical addition — wmctrl returns success before
+        GNOME shell finishes rendering, producing blank blue screenshots.
+        Polling the actual screenshot content catches this.
         """
-        timeout = int(os.environ.get("GYM_ANYTHING_DESKTOP_TIMEOUT", "60"))
+        timeout = int(os.environ.get("GYM_ANYTHING_DESKTOP_TIMEOUT", "90"))
         start_time = time.time()
 
-        # Phase 1: wait for X server
         print(f"Waiting for desktop on {self.display} (timeout={timeout}s)...")
+
+        # Phase 1: wait for X server
         while time.time() - start_time < timeout:
             try:
                 self.exec_capture(f"DISPLAY={self.display} xdpyinfo -display {self.display} 2>/dev/null | head -1")
@@ -828,16 +832,36 @@ class DockerRunner(BaseRunner):
         while time.time() - start_time < timeout:
             try:
                 self.exec_capture(f"DISPLAY={self.display} wmctrl -m 2>/dev/null")
-                elapsed = time.time() - start_time
-                print(f"  Window manager ready ({elapsed:.1f}s)")
-                # Small settle time for desktop to fully render
-                time.sleep(2)
-                return
+                print(f"  Window manager ready ({time.time() - start_time:.1f}s)")
+                break
             except Exception:
                 time.sleep(2)
 
+        # Phase 3: wait for non-blank screenshot
+        # Blank blue desktop compresses to ~11KB PNG. Real desktop with
+        # taskbar/dock/wallpaper is >15KB. Poll until we see real content.
+        min_size = 15000
+        while time.time() - start_time < timeout:
+            tmp_path = Path(f"/tmp/_desktop_check_{self.container_name}.png")
+            try:
+                if self.capture_screenshot(tmp_path):
+                    size = tmp_path.stat().st_size
+                    if size > min_size:
+                        elapsed = time.time() - start_time
+                        print(f"  Desktop rendered ({size} bytes, {elapsed:.1f}s)")
+                        return
+                    print(f"  Screenshot {size} bytes (blank), retrying...")
+            except Exception:
+                pass
+            finally:
+                try:
+                    tmp_path.unlink(missing_ok=True)
+                except Exception:
+                    pass
+            time.sleep(3)
+
         elapsed = time.time() - start_time
-        print(f"  Warning: window manager not detected after {elapsed:.1f}s, proceeding anyway")
+        print(f"  Warning: desktop may not be fully rendered after {elapsed:.1f}s (screenshot still small)")
 
     def _bootstrap_display_audio(self) -> None:
         # Start X server and PulseAudio depending on systemd mode
