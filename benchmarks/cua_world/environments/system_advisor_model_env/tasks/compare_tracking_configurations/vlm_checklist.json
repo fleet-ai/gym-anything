@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_tracking_configurations@1",
+    "task_completion": [
+        {
+            "id": "pysam_import_and_setup",
+            "description": "Agent imports PySAM's Pvwattsv8 module in a script or terminal.",
+            "points": 10,
+            "visual_evidence": "Code showing 'import PySAM.Pvwattsv8' or 'from PySAM.Pvwattsv8 import new' in a text editor or terminal."
+        },
+        {
+            "id": "configure_base_parameters",
+            "description": "Agent sets the required system parameters: 1000 kW capacity, module type 0, DC-to-AC ratio 1.2, 14.08% losses, and 96% inverter efficiency.",
+            "points": 15,
+            "visual_evidence": "Code snippets showing system_capacity=1000, module_type=0, dc_ac_ratio=1.2, losses=14.08, and inv_eff=96."
+        },
+        {
+            "id": "simulate_fixed_rack",
+            "description": "Agent runs simulation for Fixed Open Rack (array_type 0, tilt 30).",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing array_type=0 and tilt=30 being executed within the Pvwattsv8 model."
+        },
+        {
+            "id": "simulate_tracking_modes",
+            "description": "Agent runs simulations for Single-Axis (array_type 2) and Dual-Axis (array_type 4) tracking.",
+            "points": 25,
+            "visual_evidence": "Code or terminal output showing array_type=2 and array_type=4 with tilt=0 being executed."
+        },
+        {
+            "id": "calculate_capacity_factors",
+            "description": "Agent calculates the capacity factor for the different configurations.",
+            "points": 15,
+            "visual_evidence": "Code logic dividing annual energy by (capacity * 8760) or terminal output displaying capacity factor percentages."
+        },
+        {
+            "id": "export_results_json",
+            "description": "Agent saves the comparison results to 'tracking_comparison.json'.",
+            "points": 15,
+            "visual_evidence": "Terminal command 'ls' showing tracking_comparison.json or code showing the file being written."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_sam_gui",
+            "description": "Agent must use PySAM code, not the SAM Graphical User Interface.",
+            "visual_evidence": "Absence of the SAM desktop application window; presence of terminal, IDE, or text editor."
+        },
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Agent should not hardcode the final energy values without running the simulation.",
+            "visual_evidence": "Terminal logs showing the execution of a Python script or interactive python session rather than just a 'cat' command to create a file with pre-known values."
+        },
+        {
+            "id": "correct_location_usage",
+            "description": "Agent must use Phoenix, AZ weather data.",
+            "visual_evidence": "Code showing a path to a Phoenix TMY file or a fetch command for Phoenix weather data."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using PySAM's Pvwattsv8 for a 1000 kW DC system in Phoenix, AZ. Expected annual energy for Fixed (array_type 0, tilt 30) is approx 1,773,344 kWh (range 1.5M-2.1M). Single-Axis (array_type 2, tilt 0) is approx 2,071,506 kWh (range 2.0M-2.7M). The final output must be named 'tracking_comparison.json'. Parameters: module_type=0, dc_ac_ratio=1.2, losses=14.08, inv_eff=96."
+}

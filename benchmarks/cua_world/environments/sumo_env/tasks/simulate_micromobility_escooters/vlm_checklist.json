@@ -1,0 +1,59 @@
+{
+    "task_id": "simulate_micromobility_escooters@1",
+    "task_completion": [
+        {
+            "id": "create_escooter_vtype",
+            "description": "Create the escooter vehicle type definition in escooter.add.xml with specified parameters.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/SUMO_Output/escooter.add.xml containing <vType id=\"escooter\" vClass=\"bicycle\" maxSpeed=\"5.56\" width=\"0.6\" length=\"1.5\" guiShape=\"scooter\"/>."
+        },
+        {
+            "id": "generate_demand",
+            "description": "Generate approximately 150 e-scooter trips over 3600 seconds in escooter_demand.rou.xml.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing /home/ga/SUMO_Output/escooter_demand.rou.xml with multiple <trip> or <vehicle> entries using type=\"escooter\" and depart times ranging up to 3600."
+        },
+        {
+            "id": "configure_sumocfg",
+            "description": "Create mixed_mobility.sumocfg integrating the baseline network, routes, and new escooter files.",
+            "points": 15,
+            "visual_evidence": "A text editor showing mixed_mobility.sumocfg referencing the Bologna Pasubio .net.xml file and the newly created .add.xml and .rou.xml files."
+        },
+        {
+            "id": "output_configuration",
+            "description": "Configure the simulation to output tripinfos.xml and collisions.xml.",
+            "points": 10,
+            "visual_evidence": "The .sumocfg file or command line arguments showing <tripinfo-output value=\"/home/ga/SUMO_Output/tripinfos.xml\"/> and <collision-output value=\"/home/ga/SUMO_Output/collisions.xml\"/>."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation using the created configuration.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the execution of 'sumo' or 'sumo-gui' with the mixed_mobility.sumocfg file, or the SUMO GUI interface running the simulation."
+        },
+        {
+            "id": "generate_report",
+            "description": "Calculate average trip duration and save the micromobility_report.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/SUMO_Output/micromobility_report.txt with a comparison of average durations between escooters and standard vehicles."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the simulation actually ran and wasn't just faked.",
+            "visual_evidence": "Terminal output showing SUMO simulation statistics (e.g., 'Simulation ended at time...') or the SUMO GUI showing vehicles moving on the Bologna Pasubio network."
+        },
+        {
+            "id": "file_path_consistency",
+            "description": "Ensure the agent is using the correct absolute paths as specified.",
+            "visual_evidence": "Screenshots showing commands or file paths explicitly using /home/ga/SUMO_Scenarios/bologna_pasubio/ and /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Ensure the report was generated from data, not just typed out.",
+            "visual_evidence": "Evidence of the agent processing tripinfos.xml (e.g., using a python script, grep, or awk) before the report file is created."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline scenario is in /home/ga/SUMO_Scenarios/bologna_pasubio/. All outputs must be in /home/ga/SUMO_Output/. The escooter must have vClass='bicycle' and guiShape='scooter'. The simulation must generate tripinfos.xml and collisions.xml to be valid."
+}

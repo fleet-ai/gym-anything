@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_pv_summer_peak_capacity_value@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at the specified path with the correct PySAM module (Pvwattsv8) and system parameters.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the file /home/ga/Documents/SAM_Projects/calc_capacity_value.py containing 'import PySAM.Pvwattsv8' and the specified system parameters (100000 kW, 225 azimuth, 25 tilt)."
+        },
+        {
+            "id": "weather_file_selection",
+            "description": "The script identifies and uses the bundled Phoenix TMY weather file.",
+            "points": 10,
+            "visual_evidence": "Code in the script or terminal output showing a path to a Phoenix weather file (typically ending in .csv or .tm2) being assigned to the data.WeatherReader."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the Python script to run the PVWatts simulation.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the command 'python3 /home/ga/Documents/SAM_Projects/calc_capacity_value.py' being executed without errors."
+        },
+        {
+            "id": "peak_hour_filtering",
+            "description": "The script logic correctly filters for June-August between 4:00 PM and 8:00 PM (hours 16-19).",
+            "points": 25,
+            "visual_evidence": "Code showing logic to filter the 8760 array for months 6, 7, 8 and hours >= 16 and < 20 (or 16, 17, 18, 19)."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the results to the specified JSON file path with all required keys.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing the existence of /home/ga/Documents/SAM_Projects/capacity_value_report.json."
+        },
+        {
+            "id": "accuracy_of_results",
+            "description": "The JSON file contains the correct calculated values for capacity value percentage and average AC power.",
+            "points": 20,
+            "visual_evidence": "The content of the JSON file showing 'capacity_value_percent' and 'summer_peak_average_kw_ac' values that align with the simulation output."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final capacity value without running a simulation.",
+            "visual_evidence": "The Python script should show logic for calculating the average from the 'ac' output array rather than just printing a static number."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent used the PySAM library rather than estimating values manually.",
+            "visual_evidence": "The script must contain 'import PySAM' and calls to 'Pvwattsv8.new()' or 'Pvwattsv8.default()'."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "The terminal or file manager shows the files in /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Max AC Capacity should be 83,333.33 kW (100,000 / 1.2). For a Southwest-facing (225 deg) system in Phoenix, the summer peak (4-8 PM) capacity value is typically between 35% and 45% because solar production drops significantly after 6 PM even in summer. The Phoenix TMY3 file is usually named 'phoenix_az_33.45_-111.98_psnv3_60_tmy.csv' or similar in the SAM data folder."
+}

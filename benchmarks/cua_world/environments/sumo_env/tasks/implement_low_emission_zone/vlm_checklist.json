@@ -1,0 +1,53 @@
+{
+    "task_id": "implement_low_emission_zone@1",
+    "task_completion": [
+        {
+            "id": "baseline_analysis",
+            "description": "Agent runs the baseline simulation or uses tools to identify the most utilized edge.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'sumo' execution on the baseline config or a script/command analyzing edge data output."
+        },
+        {
+            "id": "modified_network_creation",
+            "description": "Agent creates a modified network file with restricted access for custom1 vehicles.",
+            "points": 20,
+            "visual_evidence": "A file editor or terminal command showing the creation of '/home/ga/SUMO_Output/pasubio_lez.net.xml' with 'disallow=\"custom1\"' on the identified edge."
+        },
+        {
+            "id": "route_file_generation",
+            "description": "Agent generates a route file with 70/30 split between clean_car and polluting_car.",
+            "points": 20,
+            "visual_evidence": "Code or file content for '/home/ga/SUMO_Output/pasubio_lez.rou.xml' showing vClass definitions for 'passenger' and 'custom1' and their respective counts/probabilities."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent configures and runs the LEZ simulation with rerouting enabled.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'sumo' running '/home/ga/SUMO_Output/run_lez.sumocfg' and the presence of '<device.rerouting.probability value=\"1\"/>' or similar in the config."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the final 5-line text report with specific metrics.",
+            "points": 20,
+            "visual_evidence": "A file editor or 'cat' command displaying the contents of '/home/ga/SUMO_Output/lez_report.txt' following the exact 5-line format."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran the SUMO simulation rather than just writing a report.",
+            "visual_evidence": "Screenshots showing the SUMO command line execution or the SUMO-GUI interface processing the scenario."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check if the values in the report match the generated tripinfo XML.",
+            "visual_evidence": "Comparison between the numbers in 'lez_report.txt' and the raw data visible in 'lez_tripinfo.xml'."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Ensure the agent calculated the most utilized edge from the baseline rather than guessing.",
+            "visual_evidence": "Commands like 'grep', 'awk', or python scripts used to parse the baseline edge-data output."
+        }
+    ],
+    "privileged_info_for_vlm": "The most utilized non-internal edge in the baseline Bologna Pasubio scenario is '1[1]' or 'a1[1]'. The agent must create five specific files in /home/ga/SUMO_Output/: pasubio_lez.net.xml, pasubio_lez.rou.xml, run_lez.sumocfg, lez_tripinfo.xml, and lez_report.txt. The report must contain exactly 5 lines. The 'custom1' vClass must be disallowed on the restricted edge in the network file, while 'passenger' remains allowed."
+}

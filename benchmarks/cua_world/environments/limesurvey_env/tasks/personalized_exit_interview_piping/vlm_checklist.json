@@ -1,0 +1,53 @@
+{
+    "task_id": "personalized_exit_interview_piping@1",
+    "task_completion": [
+        {
+            "id": "survey_creation",
+            "description": "Create a survey titled 'Employee Exit Interview 2024'.",
+            "points": 10,
+            "visual_evidence": "The survey title 'Employee Exit Interview 2024' is visible in the LimeSurvey header or survey list."
+        },
+        {
+            "id": "empname_question",
+            "description": "Create a mandatory Short Free Text question with code 'EMPNAME' and text 'What is your full name?'.",
+            "points": 15,
+            "visual_evidence": "Question editor or preview showing code 'EMPNAME', type 'Short free text', the specific question text, and the 'Mandatory' toggle set to 'On'."
+        },
+        {
+            "id": "reason_question",
+            "description": "Create a List (Radio) question with code 'REASON' and the four specified answer options.",
+            "points": 20,
+            "visual_evidence": "Question editor showing code 'REASON', type 'List (radio)', and answer options: 'Found a better opportunity', 'Salary/Benefits', 'Relocation', and 'Career Change'."
+        },
+        {
+            "id": "piping_question",
+            "description": "Create a Long Free Text question using Expression Script piping for both REASON and EMPNAME.",
+            "points": 35,
+            "visual_evidence": "Question text field showing the exact string: 'Can you provide more details about why \"{REASON.shown}\" was the primary factor, {EMPNAME}?'"
+        },
+        {
+            "id": "survey_activation",
+            "description": "Activate the completed survey.",
+            "points": 20,
+            "visual_evidence": "A success message indicating 'Survey has been activated' or the survey status icon changing to a green 'Active' state."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey buttons, form fields being filled, and standard browser navigation."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply display a text file with the answers but actually configured the survey settings.",
+            "visual_evidence": "The VLM should see the 'Question Summary' or 'Structure' tabs in LimeSurvey reflecting the specific codes and types requested."
+        },
+        {
+            "id": "authentic_piping_syntax",
+            "description": "The agent correctly typed the Expression Script syntax manually in the editor.",
+            "visual_evidence": "The piping syntax {REASON.shown} and {EMPNAME} is visible within the LimeSurvey question text editor box."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey must be titled 'Employee Exit Interview 2024'. The question codes 'EMPNAME' and 'REASON' are case-sensitive and mandatory for the piping to work. The piping question must use the '.shown' suffix for the REASON variable: {REASON.shown}. The EMPNAME question must be marked as mandatory. The final state must show the survey as 'Active'."
+}

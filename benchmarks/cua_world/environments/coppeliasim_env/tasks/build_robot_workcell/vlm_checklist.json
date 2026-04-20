@@ -1,0 +1,62 @@
+{
+    "task_id": "navigate_arm_around_obstacles@1",
+    "task_completion": [
+        {
+            "id": "coppelia_sim_launched",
+            "description": "CoppeliaSim is open with the obstacleAvoidanceAndIk scene loaded.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim application window is visible, showing a robot arm and spherical obstacles in the 3D viewport."
+        },
+        {
+            "id": "simulation_running",
+            "description": "The simulation is active to allow for IK and movement.",
+            "points": 10,
+            "visual_evidence": "The 'Play' button in the CoppeliaSim toolbar appears pressed or the simulation time counter is incrementing."
+        },
+        {
+            "id": "first_target_reached",
+            "description": "The robot's IK target dummy is moved to the first coordinate [0.3, 0.3, 0.4].",
+            "points": 25,
+            "visual_evidence": "The robot arm is seen extended towards the positive X and Y quadrant. The coordinate input fields or the dummy's position in the scene reflect these values."
+        },
+        {
+            "id": "second_target_reached",
+            "description": "The robot's IK target dummy is moved to the second coordinate [-0.3, 0.2, 0.3].",
+            "points": 30,
+            "visual_evidence": "The robot arm has shifted to the negative X quadrant. The end-effector is positioned near the specified coordinates."
+        },
+        {
+            "id": "collision_avoidance",
+            "description": "The robot reaches targets without colliding with the obstacle spheres.",
+            "points": 15,
+            "visual_evidence": "The robot links do not intersect with the red/colored spherical obstacles in the scene during the trajectory."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the final pose is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or terminal output confirms the creation of '/home/ga/Documents/CoppeliaSim/exports/obstacle_nav_done.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI to move the target.",
+            "points": 33,
+            "visual_evidence": "Mouse cursor movement over the object manipulation handles or the coordinate dialog boxes in the CoppeliaSim interface."
+        },
+        {
+            "id": "no_script_bypass",
+            "description": "The agent did not simply teleport the robot via a background script without showing the process.",
+            "points": 33,
+            "visual_evidence": "Intermediate frames show the robot arm moving through space rather than snapping instantly between poses."
+        },
+        {
+            "id": "authentic_scene",
+            "description": "The agent is using the actual obstacleAvoidanceAndIk scene, not a blank or simplified environment.",
+            "points": 34,
+            "visual_evidence": "The scene contains the specific robot model and the arrangement of spherical obstacles characteristic of the built-in CoppeliaSim example."
+        }
+    ],
+    "privileged_info_for_vlm": "The target coordinates are [0.3, 0.3, 0.4] followed by [-0.3, 0.2, 0.3]. The final screenshot must be saved specifically to /home/ga/Documents/CoppeliaSim/exports/obstacle_nav_done.png. The scene is the standard 'obstacleAvoidanceAndIk.ttt' from CoppeliaSim."
+}

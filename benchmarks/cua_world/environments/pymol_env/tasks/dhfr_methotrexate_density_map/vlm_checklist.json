@@ -1,0 +1,59 @@
+{
+    "task_id": "dhfr_methotrexate_density_map@1",
+    "task_completion": [
+        {
+            "id": "fetch_pdb_1rx2",
+            "description": "Fetch the crystal structure of PDB ID 1RX2 into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1RX2' and the 3D viewer displays a protein structure."
+        },
+        {
+            "id": "load_density_map",
+            "description": "Load the 2Fo-Fc electron density map corresponding to 1RX2.",
+            "points": 15,
+            "visual_evidence": "A new object representing the map (often appearing as a 'brick' or volume) appears in the PyMOL object list."
+        },
+        {
+            "id": "generate_isomesh_contour",
+            "description": "Generate an isomesh contoured at 1.5 sigma.",
+            "points": 20,
+            "visual_evidence": "A mesh object is visible in the object list; the command history may show 'isomesh' with a level of 1.5."
+        },
+        {
+            "id": "carve_density_around_ligand",
+            "description": "Carve the density mesh to a 2.0 Å radius around the ligand.",
+            "points": 25,
+            "visual_evidence": "The 3D viewer shows the mesh restricted to a small bubble around the ligand rather than covering the whole protein or unit cell."
+        },
+        {
+            "id": "render_ligand_sticks",
+            "description": "Represent the ligand as sticks and hide unnecessary solvent/global density.",
+            "points": 15,
+            "visual_evidence": "The central ligand is clearly visible as a stick model; water molecules (red dots) and the global uncarved map are hidden."
+        },
+        {
+            "id": "save_outputs",
+            "description": "Save the visualization to mtx_density.png and create the density_report.txt.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or file browser screenshots show the creation of ~/PyMOL_Data/images/mtx_density.png and ~/PyMOL_Data/density_report.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_software_interaction",
+            "description": "The agent used the PyMOL interface or command line to manipulate the 3D data.",
+            "visual_evidence": "Screenshots show the PyMOL GUI, command input, and real-time rendering of the mesh, not just a static image viewer."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent generated the report based on the session rather than pre-existing text.",
+            "visual_evidence": "The agent is seen typing or echoing the specific values (1RX2, 1.5) into a file within the environment."
+        },
+        {
+            "id": "ligand_identification_check",
+            "description": "The agent identifies the ligand present in 1RX2.",
+            "visual_evidence": "The agent may notice or interact with the ligand 'FOL' (Folate) which is the actual ligand in 1RX2, despite the prompt's mention of MTX."
+        }
+    ],
+    "privileged_info_for_vlm": "PDB ID 1RX2 contains Folate (residue code FOL), not Methotrexate (MTX). The agent should ideally use the ligand present in the structure (FOL) to fulfill the carving requirement. The required contour level is 1.5 sigma and the carve radius is 2.0 Å. The final image must be saved to ~/PyMOL_Data/images/mtx_density.png and the report to ~/PyMOL_Data/density_report.txt."
+}

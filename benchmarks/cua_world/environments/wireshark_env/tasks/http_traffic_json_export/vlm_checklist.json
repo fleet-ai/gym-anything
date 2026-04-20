@@ -1,0 +1,59 @@
+{
+    "task_id": "http_traffic_json_export@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Open the specified packet capture file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'http.cap' in the title bar or file path."
+        },
+        {
+            "id": "filter_http_requests",
+            "description": "Apply a display filter to isolate HTTP Request packets only.",
+            "points": 15,
+            "visual_evidence": "The filter bar contains 'http.request' and the packet list shows only request packets (e.g., GET or POST)."
+        },
+        {
+            "id": "configure_export_fields",
+            "description": "Select or specify the required fields for export: frame.number, frame.time_epoch, ip.src, http.host, http.request.method, and http.request.uri.",
+            "points": 25,
+            "visual_evidence": "Export dialog, TShark command construction, or column configuration showing these specific field names."
+        },
+        {
+            "id": "export_as_json",
+            "description": "Export the filtered packet data specifically in JSON format.",
+            "points": 20,
+            "visual_evidence": "File export dialog showing 'JSON' as the selected format or a command-line flag like '-T json'."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Save the exported JSON file to the specified destination path.",
+            "points": 10,
+            "visual_evidence": "Save dialog or terminal command showing the path '/home/ga/Documents/captures/http_requests.json'."
+        },
+        {
+            "id": "verify_json_content",
+            "description": "The final JSON file contains an array of objects representing the HTTP requests.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the content of 'http_requests.json' as a JSON array with the requested keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type out the packet metadata into the JSON file.",
+            "visual_evidence": "The agent uses Wireshark's export features or tshark/capinfos commands rather than opening a blank file and typing values like 'frame.time_epoch'."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the actual http.cap file provided.",
+            "visual_evidence": "The file manager or Wireshark shows the file size (approx 26KB) or the specific packets from the capture."
+        },
+        {
+            "id": "correct_request_count",
+            "description": "The agent exported exactly the number of HTTP requests present in the file.",
+            "visual_evidence": "The final JSON or the filtered Wireshark view shows exactly 2 HTTP request entries."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file 'http.cap' contains exactly 2 HTTP request packets. The required fields are: frame.number, frame.time_epoch, ip.src, http.host, http.request.method, and http.request.uri. The output must be a JSON array saved to /home/ga/Documents/captures/http_requests.json. Responses must be excluded (only packets matching the 'http.request' filter should be present)."
+}

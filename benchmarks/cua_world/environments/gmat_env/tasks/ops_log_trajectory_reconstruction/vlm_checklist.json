@@ -1,0 +1,59 @@
+{
+    "task_id": "ops_log_trajectory_reconstruction@1",
+    "task_completion": [
+        {
+            "id": "read_ops_log",
+            "description": "The agent opens and reads the operations log file on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of '~/Desktop/ops_log_satnav42.txt'."
+        },
+        {
+            "id": "create_gmat_script",
+            "description": "The agent creates the GMAT script file in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal showing the creation of '~/Documents/missions/trajectory_reconstruction.script'."
+        },
+        {
+            "id": "configure_maneuvers",
+            "description": "The GMAT script or GUI shows the configuration of three impulsive maneuvers in the VNB frame.",
+            "points": 25,
+            "visual_evidence": "Code in the script editor or fields in the GMAT GUI showing 'ImpulsiveBurn' objects with VNB coordinate systems and three distinct burn definitions."
+        },
+        {
+            "id": "set_final_epoch",
+            "description": "The mission propagation is set to stop at 16 Jun 2025 00:00:00.000 UTCG.",
+            "points": 15,
+            "visual_evidence": "The GMAT script or 'Propagate' command settings showing the stop condition 'Spacecraft.ElapsedDays' or 'Spacecraft.UTCGregorian' matching the target date."
+        },
+        {
+            "id": "run_gmat_simulation",
+            "description": "The agent executes the GMAT script to perform the reconstruction.",
+            "points": 20,
+            "visual_evidence": "The GMAT console output showing a successful run or the GMAT GUI showing the 'Run' button pressed and the simulation completing."
+        },
+        {
+            "id": "output_final_state",
+            "description": "The final Keplerian state is written to the specified output file in the correct order.",
+            "points": 20,
+            "visual_evidence": "The file '~/GMAT_output/reconstructed_state.txt' exists and contains six numerical values (SMA, ECC, INC, RAAN, AOP, TA)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_usage",
+            "description": "The agent used the GMAT software (GUI or GmatConsole) rather than manually calculating values.",
+            "visual_evidence": "Screenshots show the GMAT application window or the execution of the GmatConsole binary."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the final state into the file without running a simulation.",
+            "visual_evidence": "The command history or script execution shows a call to GMAT, not just a 'cat' or 'echo' command to create the final output file with pre-known values."
+        },
+        {
+            "id": "log_data_dependency",
+            "description": "The script parameters (burn magnitudes/times) match the data found in the ops log.",
+            "visual_evidence": "The values entered into the GMAT script correspond to the text visible in the 'ops_log_satnav42.txt' file."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct final Keplerian state for the SATNAV-42 spacecraft at the target epoch (16 Jun 2025 00:00:00.000 UTCG) is: SMA: 7367.781 km, ECC: 0.00998, INC: 51.921 deg, RAAN: 51.599 deg. The agent must use the VNB (Velocity, Normal, Bi-normal) frame for the three maneuvers as specified in the log."
+}

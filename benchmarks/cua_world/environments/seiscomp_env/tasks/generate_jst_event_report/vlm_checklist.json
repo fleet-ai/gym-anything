@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_jst_event_report@1",
+    "task_completion": [
+        {
+            "id": "database_query_execution",
+            "description": "The agent queries the SeisComP database or uses SeisComP tools to find an earthquake with Magnitude > 7.0.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a MySQL query (mysql -u sysop -psysop) or SeisComP command-line tool output displaying earthquake parameters."
+        },
+        {
+            "id": "data_extraction_accuracy",
+            "description": "The agent identifies the correct earthquake data (Event ID, UTC Time, Mag, Lat, Lon) from the query results.",
+            "points": 15,
+            "visual_evidence": "The agent's terminal or text editor shows the extracted values for the Noto Peninsula earthquake (Magnitude > 7.0)."
+        },
+        {
+            "id": "jst_time_calculation",
+            "description": "The agent calculates the Japan Standard Time (JST) by adding 9 hours to the UTC Origin Time.",
+            "points": 20,
+            "visual_evidence": "A command, script, or manual calculation visible in the trajectory showing the addition of 9 hours to the UTC timestamp."
+        },
+        {
+            "id": "html_report_creation",
+            "description": "The agent creates an HTML file at the specified path /home/ga/Documents/noto_report.html.",
+            "points": 20,
+            "visual_evidence": "A text editor (like VS Code or nano) or a 'cat' command showing the HTML structure being saved to the correct file path."
+        },
+        {
+            "id": "report_content_completeness",
+            "description": "The report includes all required fields: Event ID, UTC Time, JST Time, Magnitude, Lat, Lon, and the Google Maps link.",
+            "points": 30,
+            "visual_evidence": "A screenshot of the final HTML file content or the file opened in a browser showing all 7 required data points and the correctly formatted Google Maps URL."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply write the report from memory but actually queried the database.",
+            "visual_evidence": "The trajectory must show a database query or SeisComP tool execution before the HTML file is created."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the exact path requested, not a temporary directory.",
+            "visual_evidence": "The save command or file explorer shows the path /home/ga/Documents/noto_report.html."
+        },
+        {
+            "id": "genuine_jst_conversion",
+            "description": "The agent performed the +9 hour conversion rather than guessing the time.",
+            "visual_evidence": "Evidence of the agent noting the UTC time and explicitly adding 9 hours to reach the JST value."
+        }
+    ],
+    "privileged_info_for_vlm": "The target earthquake is the 2024 Noto Peninsula earthquake with a Magnitude > 7.0. The JST time must be exactly UTC + 9 hours. The output must be a file at /home/ga/Documents/noto_report.html. The Google Maps link must follow the format: https://maps.google.com/?q=<lat>,<lon>."
+}

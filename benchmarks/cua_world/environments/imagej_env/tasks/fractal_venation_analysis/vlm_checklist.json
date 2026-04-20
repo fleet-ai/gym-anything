@@ -1,0 +1,59 @@
+{
+    "task_id": "fractal_venation_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_sample_leaf",
+            "description": "Open the 'Leaf (36K)' sample image in Fiji.",
+            "points": 10,
+            "visual_evidence": "An image window titled 'Leaf (36K)' is visible within the Fiji/ImageJ interface."
+        },
+        {
+            "id": "grayscale_conversion",
+            "description": "Convert the image to 8-bit grayscale.",
+            "points": 10,
+            "visual_evidence": "The image window header shows '(8-bit)' instead of '(RGB)' and the image appears in shades of gray."
+        },
+        {
+            "id": "threshold_application",
+            "description": "Apply a threshold to isolate the venation network.",
+            "points": 15,
+            "visual_evidence": "The 'Threshold' dialog box is open, and the image displays red or black/white binary masking where veins are distinct from the background."
+        },
+        {
+            "id": "fractal_box_count_execution",
+            "description": "Run the Fractal Box Count tool on the thresholded image.",
+            "points": 25,
+            "visual_evidence": "The 'Fractal Box Count' dialog is seen, followed by a 'Plot' window showing a log-log graph and a 'Results' or 'Log' window containing 'D' (Fractal Dimension) and box size data."
+        },
+        {
+            "id": "area_fraction_measurement",
+            "description": "Measure the Area Fraction of the network.",
+            "points": 15,
+            "visual_evidence": "The 'Results' table window is visible and contains a column labeled '%Area' or 'Area Fraction'."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the summary data to the specified CSV file path.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' file dialog or a terminal confirmation shows the file being saved to '~/ImageJ_Data/results/fractal_venation_results.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI menus rather than just executing shell scripts to generate the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus (File, Image, Analyze) and dialog boxes appearing."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The Fractal Dimension and Area Fraction values are derived from the image, not hardcoded.",
+            "visual_evidence": "The 'Results' table and 'Plot' window values match the content of the final CSV file."
+        },
+        {
+            "id": "correct_sample_usage",
+            "description": "The agent used the specific 'Leaf (36K)' sample as requested.",
+            "visual_evidence": "The image window title explicitly mentions 'Leaf (36K)' during the processing steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Leaf (36K)' sample is a standard Fiji built-in. The expected Fractal Dimension (D) for this leaf venation should typically fall between 1.2 and 1.9. The Fractal Box Count tool in ImageJ generates a log-log plot and outputs the slope as 'D'. The Area Fraction is found in the 'Results' table after running 'Analyze > Measure' (provided 'Area Fraction' is checked in 'Analyze > Set Measurements'). The final output must be a CSV at /home/ga/ImageJ_Data/results/fractal_venation_results.csv."
+}

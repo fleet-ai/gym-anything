@@ -1,0 +1,65 @@
+{
+    "task_id": "multimodal_person_trip_analysis@1",
+    "task_completion": [
+        {
+            "id": "generate_stop_output",
+            "description": "Generate the initial simulation data including stop_output.xml by running the SUMO simulation.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/SUMO_Scenarios/bologna_acosta/stop_output.xml after a simulation run."
+        },
+        {
+            "id": "modal_performance_csv",
+            "description": "Compute and export modal performance metrics (travel time, speed, etc.) for buses and cars to CSV.",
+            "points": 15,
+            "visual_evidence": "A CSV viewer or text editor showing /home/ga/SUMO_Output/modal_performance.csv with columns for vehicle type, speed, and travel time."
+        },
+        {
+            "id": "bus_stop_analysis_csv",
+            "description": "Calculate bus stop metrics (visits, dwell time, headway) and save to bus_stop_analysis.csv.",
+            "points": 15,
+            "visual_evidence": "A CSV viewer or text editor showing /home/ga/SUMO_Output/bus_stop_analysis.csv containing stop IDs and calculated headway/dwell values."
+        },
+        {
+            "id": "identify_underserved_stops",
+            "description": "Identify and document underserved stops (visits < 3 or headway > 1200s) in underserved_stops.csv.",
+            "points": 15,
+            "visual_evidence": "File content of /home/ga/SUMO_Output/underserved_stops.csv listing specific stop IDs that meet the failure criteria."
+        },
+        {
+            "id": "create_new_route_file",
+            "description": "Create a new bus route XML file with at least 2 new vehicles serving at least 3 underserved stops.",
+            "points": 20,
+            "visual_evidence": "Text editor showing /home/ga/SUMO_Scenarios/bologna_acosta/acosta_new_bus_route.rou.xml with <vehicle> tags and <route> tags containing underserved stop IDs."
+        },
+        {
+            "id": "configure_improved_sim",
+            "description": "Configure and run the modified simulation using a new .sumocfg file.",
+            "points": 10,
+            "visual_evidence": "Text editor showing /home/ga/SUMO_Scenarios/bologna_acosta/run_improved_transit.sumocfg referencing the new route file, or the SUMO GUI running this specific config."
+        },
+        {
+            "id": "final_transit_report",
+            "description": "Document the complete assessment, including modal split and proposed impacts, in a final text report.",
+            "points": 15,
+            "visual_evidence": "Text editor showing the content of /home/ga/SUMO_Output/transit_assessment_report.txt with sections for modal split, gaps, and impacts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_processing",
+            "description": "Verify the agent didn't just create empty files or placeholder text.",
+            "visual_evidence": "Screenshots must show actual data values in the CSVs (e.g., specific stop IDs like those found in the scenario) rather than generic 'stop1, stop2' labels."
+        },
+        {
+            "id": "simulation_interaction",
+            "description": "Verify the agent actually ran the SUMO simulation tools.",
+            "visual_evidence": "Terminal logs showing 'sumo' or 'sumo-gui' commands being executed, or the SUMO GUI window active during the process."
+        },
+        {
+            "id": "logic_consistency",
+            "description": "Check that the underserved stops identified in the CSV match the stops included in the new route file.",
+            "visual_evidence": "Cross-referencing the IDs in underserved_stops.csv with the 'busStop' references in acosta_new_bus_route.rou.xml."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario contains 35 bus stops and 157 initial bus vehicles. Underserved stops are strictly defined as those with < 3 visits OR average headway > 1200 seconds. The new route file must include at least 2 new vehicles and cover at least 3 of the identified underserved stops. The final report must be located at /home/ga/SUMO_Output/transit_assessment_report.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_formatted_label_field@1",
+    "task_completion": [
+        {
+            "id": "layer_loaded",
+            "description": "The 'ne_110m_admin_0_countries' layer is loaded into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer name 'ne_110m_admin_0_countries' is visible in the Table of Contents or Layer Manager."
+        },
+        {
+            "id": "attribute_table_open",
+            "description": "The attribute table for the countries layer is opened.",
+            "points": 10,
+            "visual_evidence": "A table window is visible showing columns like 'NAME' and 'ADM0_A3'."
+        },
+        {
+            "id": "field_creation_dialog",
+            "description": "The agent initiates the creation of a new field named 'FULL_LABEL' with String/Text type.",
+            "points": 20,
+            "visual_evidence": "A 'New Field' or 'Add Field' dialog box is visible with 'FULL_LABEL' typed into the name field and 'String' or 'Text' selected as the type."
+        },
+        {
+            "id": "expression_builder",
+            "description": "The agent uses a field calculator or expression builder to concatenate the fields in the specified format.",
+            "points": 30,
+            "visual_evidence": "An expression editor shows a formula similar to [NAME] + ' (' + [ADM0_A3] + ')' or concat(\"NAME\", ' (', \"ADM0_A3\", ')') being applied to the 'FULL_LABEL' field."
+        },
+        {
+            "id": "verify_populated_data",
+            "description": "The 'FULL_LABEL' column is populated with the correctly formatted strings.",
+            "points": 20,
+            "visual_evidence": "The attribute table shows the 'FULL_LABEL' column containing values like 'Argentina (ARG)' or 'Brazil (BRA)'."
+        },
+        {
+            "id": "save_changes",
+            "description": "The changes to the layer/table are saved.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' icon, 'Commit' button, or exits 'Editing Mode' and confirms saving changes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GIS software GUI rather than executing background scripts or terminal commands to modify the DBF.",
+            "visual_evidence": "Screenshots show interactions with the GIS application menus, buttons, and attribute table windows."
+        },
+        {
+            "id": "no_manual_typing",
+            "description": "The agent did not manually type out the concatenated values for each row.",
+            "visual_evidence": "The use of a Field Calculator or Expression dialog is visible, rather than individual cell editing for multiple rows."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the specific dataset located at the verified path.",
+            "visual_evidence": "The layer properties or file open dialog shows the path /home/ga/gvsig_data/countries/ne_110m_admin_0_countries.shp."
+        }
+    ],
+    "privileged_info_for_vlm": "The target dataset is a shapefile located at /home/ga/gvsig_data/countries/ne_110m_admin_0_countries.shp. The source fields for concatenation are 'NAME' (e.g., 'Aruba') and 'ADM0_A3' (e.g., 'ABW'). The resulting 'FULL_LABEL' field must follow the exact pattern: 'Name (ISO)' including the space and parentheses."
+}

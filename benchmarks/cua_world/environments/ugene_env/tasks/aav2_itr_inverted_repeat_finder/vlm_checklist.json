@@ -1,0 +1,59 @@
+{
+    "task_id": "aav2_itr_inverted_repeat_finder@1",
+    "task_completion": [
+        {
+            "id": "load_aav2_fasta",
+            "description": "The agent loads the aav2_genome.fasta file into the UGENE interface.",
+            "points": 10,
+            "visual_evidence": "UGENE window showing 'aav2_genome.fasta' open in the Sequence View or Project View."
+        },
+        {
+            "id": "configure_repeat_finder",
+            "description": "The agent opens the 'Find Inverted Repeats' dialog and sets the window size to 50 and minimum identity to 85%.",
+            "points": 15,
+            "visual_evidence": "The 'Find Inverted Repeats' dialog box with 'Window size' set to 50 and 'Min identity' set to 85%."
+        },
+        {
+            "id": "apply_nested_filter",
+            "description": "The agent selects the 'disjoint repeats nested filter' algorithm in the repeat finder settings.",
+            "points": 15,
+            "visual_evidence": "The 'Find Inverted Repeats' dialog showing the 'Disjoint repeats (nested)' filter selected."
+        },
+        {
+            "id": "export_annotated_gb",
+            "description": "The agent exports the sequence with found repeats to a GenBank (.gb) file in the specified directory.",
+            "points": 20,
+            "visual_evidence": "The 'Export as Document' or 'Save' dialog showing the file path ~/UGENE_Data/gene_therapy/results/aav2_annotated.gb."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates a text report containing the genome length and repeat count.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation of 'itr_report.txt' with a genome length of 4679 and the number of repeats found."
+        },
+        {
+            "id": "report_itr_coordinates",
+            "description": "The report includes the start and end coordinates for both the 5' and 3' ITRs.",
+            "points": 20,
+            "visual_evidence": "The content of 'itr_report.txt' showing coordinates for the 5' ITR (approx 1-145) and 3' ITR (approx 4535-4679)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI to perform the analysis rather than just writing the report via terminal.",
+            "visual_evidence": "Screenshots showing the UGENE application window, dialog boxes, and mouse interactions with the software."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "The agent did not simply echo the privileged information into the report without running the tool.",
+            "visual_evidence": "Screenshots showing the 'Find Inverted Repeats' process running or the results appearing in the UGENE 'Annotations' pane."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "File paths in UGENE or terminal commands matching '~/UGENE_Data/gene_therapy/results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The AAV2 genome (NC_001401.2) has a total length of 4679 bp. The 5' ITR is located at coordinates 1 to 145. The 3' ITR is located at coordinates 4535 to 4679. The agent should find at least these two major inverted repeats using the specified parameters (Window: 50, Identity: 85%)."
+}

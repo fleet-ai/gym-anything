@@ -1,0 +1,53 @@
+{
+    "task_id": "edit_dive_suit_divemaster@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "Open the Subsurface dive log application.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible on the desktop."
+        },
+        {
+            "id": "select_correct_dive",
+            "description": "Locate and select the dive at 'Yellow House'. Note: The prompt specifies Sept 20, but the actual data is Sept 29, 2011.",
+            "points": 20,
+            "visual_evidence": "A dive entry for 'Yellow House' dated late September 2011 (likely 2011-09-29) is highlighted in the dive list."
+        },
+        {
+            "id": "update_suit_field",
+            "description": "Update the 'Suit' field to '5mm wetsuit'.",
+            "points": 25,
+            "visual_evidence": "The text '5mm wetsuit' is typed into the Suit input field in the dive details pane."
+        },
+        {
+            "id": "update_divemaster_field",
+            "description": "Update the 'Divemaster' field to 'Brian Harper'.",
+            "points": 25,
+            "visual_evidence": "The text 'Brian Harper' is typed into the Divemaster input field in the dive details pane."
+        },
+        {
+            "id": "save_as_file",
+            "description": "Save or Export the updated log to the specific path /home/ga/Documents/dives.ssrf.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' or 'Export' dialog is shown with the file path /home/ga/Documents/dives.ssrf entered, followed by a confirmation of the save."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to edit the fields rather than editing the XML/SSRF file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Subsurface UI elements and text being typed into the application fields."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or 'echo' in the terminal to pass the check.",
+            "visual_evidence": "The terminal is not used to bypass the application logic; the file saving process is visible within the Subsurface interface."
+        },
+        {
+            "id": "genuine_data_handling",
+            "description": "The agent correctly identified the Yellow House dive despite the date discrepancy in the prompt.",
+            "visual_evidence": "The agent is seen clicking on the Yellow House entry in the list, even if the date shown is Sept 29 instead of Sept 20."
+        }
+    ],
+    "privileged_info_for_vlm": "The task prompt contains a date error: it asks for September 20, 2011, but the actual dive at 'Yellow House' in the dataset occurred on September 29, 2011. The agent should be rewarded for editing the 'Yellow House' dive found on the 29th. The required values are Suit: '5mm wetsuit' and Divemaster: 'Brian Harper'. The final file must be saved to /home/ga/Documents/dives.ssrf."
+}

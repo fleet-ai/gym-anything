@@ -1,0 +1,53 @@
+{
+    "task_id": "reconcile_country_hotel_governance@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Log in to OrientDB Studio using the provided credentials and connect to demodb.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio dashboard or 'demodb' database interface after successful login."
+        },
+        {
+            "id": "normalize_country_records",
+            "description": "Restore canonical names for the corrupted country records (United Kingdom and Netherlands).",
+            "points": 20,
+            "visual_evidence": "SQL command execution or record editor showing 'United Kingdom' and 'Netherlands' as the Name values in the Countries class."
+        },
+        {
+            "id": "normalize_hotel_records",
+            "description": "Update flagship hotel records (The Savoy and Intercontinental Amsterdam) to link to the correct normalized country names.",
+            "points": 20,
+            "visual_evidence": "SQL update results or record views showing 'The Savoy' associated with 'United Kingdom' and 'Intercontinental Amsterdam' associated with 'Netherlands'."
+        },
+        {
+            "id": "establish_unique_constraint",
+            "description": "Re-establish a UNIQUE constraint on the Name property of the Countries class.",
+            "points": 25,
+            "visual_evidence": "Command output showing 'CREATE INDEX ... UNIQUE' or the Schema tab in OrientDB showing a UNIQUE index on Countries.Name."
+        },
+        {
+            "id": "remediation_audit_trail",
+            "description": "Create an entry in the GovernanceFixLog with the required issue keys and ownership details.",
+            "points": 25,
+            "visual_evidence": "A new record in the GovernanceFixLog class visible in the 'Browse' or 'Query' tab containing remediation details."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than direct terminal/CLI manipulation of the database files.",
+            "visual_evidence": "Screenshots show the browser-based OrientDB Studio (port 2480) being used for queries and schema changes."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent actually executed SQL commands in the Studio console to perform updates.",
+            "visual_evidence": "The 'Query' or 'Command' tab in OrientDB Studio shows the SQL syntax used (e.g., UPDATE, CREATE INDEX) and the 'Success' message."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated the database schema to identify the corrupted records rather than guessing IDs.",
+            "visual_evidence": "Screenshots show the agent browsing the 'Countries' or 'Hotels' classes to find the records needing normalization."
+        }
+    ],
+    "privileged_info_for_vlm": "The canonical country names are 'United Kingdom' and 'Netherlands'. Both are of type 'European'. The Savoy is located in the United Kingdom and is a 5-star hotel. Intercontinental Amsterdam (InterContinental Amstel Amsterdam) is located in the Netherlands and is a 5-star hotel. The database is 'demodb' and the server credentials are root / GymAnything123!."
+}

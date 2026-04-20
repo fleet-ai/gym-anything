@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_custom_message_group@1",
+    "task_completion": [
+        {
+            "id": "locate_config_file",
+            "description": "The agent locates and opens the scmaster configuration file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the contents of /home/ga/seiscomp/etc/scmaster.cfg."
+        },
+        {
+            "id": "identify_production_queue",
+            "description": "The agent identifies the 'queues.production.groups' parameter within the configuration file.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the line starting with 'queues.production.groups' in the configuration file."
+        },
+        {
+            "id": "add_risk_group",
+            "description": "The agent appends 'RISK' to the list of groups in the production queue.",
+            "points": 25,
+            "visual_evidence": "The configuration file showing 'queues.production.groups' updated to include 'RISK' (e.g., 'queues.production.groups = ..., RISK')."
+        },
+        {
+            "id": "save_configuration",
+            "description": "The agent saves the changes to scmaster.cfg.",
+            "points": 10,
+            "visual_evidence": "Evidence of a save command in a text editor (e.g., ':w' in vim) or a 'cat' command showing the updated file on disk."
+        },
+        {
+            "id": "restart_scmaster",
+            "description": "The agent restarts the scmaster service to apply changes.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a command like 'seiscomp restart scmaster' or 'scmaster restart' being executed."
+        },
+        {
+            "id": "verify_active_group",
+            "description": "The agent verifies that the RISK group is active in the running system.",
+            "points": 15,
+            "visual_evidence": "Terminal output from a command like 'seiscomp status' or a configuration dump showing 'RISK' is now part of the active production queue."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_echo",
+            "description": "The agent did not simply echo the final state without editing the file.",
+            "visual_evidence": "The VLM should see the process of opening the file and editing the specific line, rather than just a single command that overwrites the file with the answer."
+        },
+        {
+            "id": "genuine_service_interaction",
+            "description": "The agent interacted with the SeisComP management tools.",
+            "visual_evidence": "The use of 'seiscomp' CLI tools or direct manipulation of the known config path /home/ga/seiscomp/etc/scmaster.cfg."
+        },
+        {
+            "id": "actual_restart_execution",
+            "description": "The agent actually executed a restart command rather than just claiming it was done.",
+            "visual_evidence": "Terminal logs showing the service stopping and starting successfully."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration file is located at /home/ga/seiscomp/etc/scmaster.cfg. The specific parameter to modify is 'queues.production.groups'. The agent must add 'RISK' to this comma-separated list and then restart the 'scmaster' service using SeisComP administration commands (typically 'seiscomp restart scmaster') for the changes to be 'active in the running system'."
+}

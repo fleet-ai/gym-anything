@@ -1,0 +1,65 @@
+{
+    "task_id": "log_phone_conversation@1",
+    "task_completion": [
+        {
+            "id": "login_freescout",
+            "description": "Agent successfully logs into FreeScout using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The FreeScout dashboard or mailbox list is visible, showing the user is logged in as 'admin@helpdesk.local'."
+        },
+        {
+            "id": "select_it_support_mailbox",
+            "description": "Agent navigates to the 'IT Support' mailbox.",
+            "points": 10,
+            "visual_evidence": "The 'IT Support' mailbox is selected in the sidebar or the header indicates the current mailbox is 'IT Support'."
+        },
+        {
+            "id": "initiate_phone_conversation",
+            "description": "Agent selects the option to create a 'Phone' conversation specifically, not an email.",
+            "points": 15,
+            "visual_evidence": "The 'New Conversation' modal or screen shows the 'Phone' icon/tab selected, or the 'Type' field is set to 'Phone'."
+        },
+        {
+            "id": "correct_customer_details",
+            "description": "Agent enters the correct customer name and email address.",
+            "points": 15,
+            "visual_evidence": "The 'To' or 'Customer' field contains 'David Chen' and 'david.chen@acmecorp.com'."
+        },
+        {
+            "id": "correct_subject_line",
+            "description": "Agent enters the exact subject line required.",
+            "points": 15,
+            "visual_evidence": "The Subject field contains 'Network Printer Not Detected - HP LaserJet Pro M404n'."
+        },
+        {
+            "id": "detailed_body_content",
+            "description": "Agent enters the full interaction details including the printer model, IP address, and resolution steps.",
+            "points": 25,
+            "visual_evidence": "The body text contains 'HP LaserJet Pro M404n', '192.168.1.45', 'print spooler', and 'test page printed'."
+        },
+        {
+            "id": "conversation_created",
+            "description": "Agent submits the form and the conversation is successfully logged.",
+            "points": 10,
+            "visual_evidence": "A success message appears (e.g., 'Conversation has been created') or the new phone log is visible in the IT Support mailbox list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the FreeScout web interface rather than manipulating the database via terminal.",
+            "visual_evidence": "Screenshots show the browser being used, clicking buttons, and typing into form fields."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "The agent did not leave default or placeholder text in the subject or body.",
+            "visual_evidence": "The final submitted text matches the specific details provided in the task description without 'Lorem Ipsum' or 'Test' strings."
+        },
+        {
+            "id": "correct_conversation_type",
+            "description": "The agent did not accidentally create an Email conversation (the default).",
+            "visual_evidence": "The conversation view shows a phone icon or a 'Phone Call' label rather than an 'Email' label."
+        }
+    ],
+    "privileged_info_for_vlm": "The conversation must be logged in the 'IT Support' mailbox. Customer: David Chen (david.chen@acmecorp.com). Subject: 'Network Printer Not Detected - HP LaserJet Pro M404n'. Body must include: 'HP LaserJet Pro M404n', '192.168.1.45', and 'print spooler'. The conversation type MUST be 'Phone', which is a specific toggle/tab in FreeScout."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "style_point_clustering@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the GeoServer web admin interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer 'Welcome' page or dashboard is visible, showing 'Logged in as admin' in the top right corner."
+        },
+        {
+            "id": "create_style_named",
+            "description": "Create a new SLD style named 'clustered_places'.",
+            "points": 10,
+            "visual_evidence": "The 'Styles' editor page is open with the name field containing 'clustered_places'."
+        },
+        {
+            "id": "configure_point_stacker",
+            "description": "Implement the gs:PointStacker transformation with a cellSize of 60.",
+            "points": 25,
+            "visual_evidence": "The SLD editor shows XML code containing '<ogc:Function name=\"gs:PointStacker\">' and a parameter named 'cellSize' with the value '60'."
+        },
+        {
+            "id": "style_cluster_rules",
+            "description": "Define rules for clusters (count > 1): Blue Circle (size 22) with White label.",
+            "points": 20,
+            "visual_evidence": "The SLD code shows a Rule with a Filter for 'count > 1', a WellKnownName of 'circle', a Fill color of '#0000FF', a size of '22', and a TextSymbolizer with a white fill."
+        },
+        {
+            "id": "style_single_point_rules",
+            "description": "Define rules for single points (count = 1): Red Star (size 12).",
+            "points": 15,
+            "visual_evidence": "The SLD code shows a Rule with a Filter for 'count = 1', a WellKnownName of 'star', a Fill color of '#FF0000', and a size of '12'."
+        },
+        {
+            "id": "assign_layer_style",
+            "description": "Configure the 'ne:ne_populated_places' layer to use 'clustered_places' as the default style.",
+            "points": 20,
+            "visual_evidence": "The 'Publishing' tab of the 'ne:ne_populated_places' layer settings shows 'clustered_places' selected as the 'Default Style'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than executing background scripts to modify the catalog.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the GeoServer web forms, style editor, and layer configuration pages."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the terminal to manually edit GeoServer configuration files or use CURL to bypass the UI.",
+            "visual_evidence": "The agent's actions are primarily within the browser; the terminal is not used to navigate to the GeoServer data directory."
+        },
+        {
+            "id": "genuine_style_entry",
+            "description": "The SLD style was typed or constructed in the editor, not just instantly appearing via a script.",
+            "visual_evidence": "Sequential screenshots show the SLD editor being populated or the 'Validate' button being clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "The style must be named 'clustered_places'. The rendering transformation is 'gs:PointStacker' with 'cellSize' set to 60. For clusters (count > 1), the color must be Blue (#0000FF), shape 'circle', size 22, with a white label. For single points (count = 1), the color must be Red (#FF0000), shape 'star', size 12. The target layer is 'ne:ne_populated_places'."
+}

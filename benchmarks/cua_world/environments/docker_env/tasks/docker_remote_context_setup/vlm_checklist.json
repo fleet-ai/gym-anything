@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_remote_context_setup@1",
+    "task_completion": [
+        {
+            "id": "create_docker_context",
+            "description": "Create a Docker context named 'prod' pointing to the remote host.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker context create prod' with the correct host 'tcp://prod-node:2376'."
+        },
+        {
+            "id": "configure_tls_certs",
+            "description": "Configure the 'prod' context with the required TLS certificates from ~/credentials/.",
+            "points": 20,
+            "visual_evidence": "Terminal output or command showing the context configuration including --docker \"ca=~/credentials/ca.pem,cert=~/credentials/cert.pem,key=~/credentials/key.pem\"."
+        },
+        {
+            "id": "verify_context_list",
+            "description": "Verify the 'prod' context exists in the Docker context list.",
+            "points": 15,
+            "visual_evidence": "Output of 'docker context ls' showing 'prod' in the list of contexts."
+        },
+        {
+            "id": "switch_to_prod_context",
+            "description": "Switch the active Docker context to 'prod'.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker context use prod' or an asterisk (*) next to 'prod' in 'docker context ls'."
+        },
+        {
+            "id": "deploy_nginx_container",
+            "description": "Deploy the 'prod-web' container using the 'nginx:1.24-alpine' image to the remote daemon.",
+            "points": 35,
+            "visual_evidence": "Terminal output showing 'docker run' or 'docker ps' confirming a container named 'prod-web' is running with image 'nginx:1.24-alpine' while the 'prod' context is active."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_mocking",
+            "description": "The agent did not manually echo or print fake success messages.",
+            "visual_evidence": "The terminal shows actual command execution and standard Docker CLI output formatting, not just 'echo' statements of success."
+        },
+        {
+            "id": "genuine_credential_usage",
+            "description": "The agent used the actual files in ~/credentials/ rather than creating dummy files.",
+            "visual_evidence": "Commands show paths to ~/credentials/ca.pem, cert.pem, and key.pem as specified in the task."
+        },
+        {
+            "id": "remote_daemon_interaction",
+            "description": "The agent interacted with the remote daemon via the context, not the local daemon.",
+            "visual_evidence": "The 'docker ps' output should be preceded by 'docker context use prod' or include '--context prod' to ensure it's querying the remote node."
+        }
+    ],
+    "privileged_info_for_vlm": "The Docker context must be named 'prod'. The remote host is 'prod-node' on port 2376. Certificates are located in '/home/ga/credentials/' (ca.pem, cert.pem, key.pem). The workload container must be named 'prod-web' using the 'nginx:1.24-alpine' image. The remote node 'prod-node' is reachable on the 'prod-net' network."
+}

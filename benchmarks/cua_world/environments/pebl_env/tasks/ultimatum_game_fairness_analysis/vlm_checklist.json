@@ -1,0 +1,59 @@
+{
+    "task_id": "ultimatum_game_fairness_analysis@1",
+    "task_completion": [
+        {
+            "id": "access_dataset",
+            "description": "Agent opens or reads the dataset file at ~/pebl/data/ultimatum_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas.read_csv) or a text editor showing the contents of ultimatum_data.csv."
+        },
+        {
+            "id": "calculate_tier_rates",
+            "description": "Agent performs calculations for acceptance rates across unfair (1-3), fair (4-5), and hyper_fair (6-9) tiers.",
+            "points": 20,
+            "visual_evidence": "Code snippets, scripts, or terminal output showing the grouping of offers into the three specified tiers and calculating means."
+        },
+        {
+            "id": "determine_mao",
+            "description": "Agent calculates the Minimum Acceptable Offer (MAO) for participants based on the 0.5 threshold rule.",
+            "points": 20,
+            "visual_evidence": "Logic in a script or output showing the identification of the lowest offer with >= 0.5 acceptance, or assigning 10 if none meet the criteria."
+        },
+        {
+            "id": "apply_exclusion_criteria",
+            "description": "Agent identifies and excludes participants with a hyper_fair acceptance rate strictly less than 0.8 (specifically sub-99).",
+            "points": 20,
+            "visual_evidence": "Code or logs showing a filtering step where hyper_fair < 0.8 results in exclusion or the 'excluded' flag in the JSON structure."
+        },
+        {
+            "id": "calculate_group_means",
+            "description": "Agent calculates the final group means for the three tiers and the mean MAO using only valid participants.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code showing the final aggregation of means for the valid subset of the data."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent saves the final analysis to ~/pebl/analysis/ultimatum_report.json in the specified format.",
+            "points": 15,
+            "visual_evidence": "A terminal command showing the creation of the file or a 'cat' command displaying the final JSON content in the correct directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_processing",
+            "description": "Agent actually processes the CSV data rather than hardcoding the results from the task prompt examples.",
+            "visual_evidence": "Screenshots showing the agent writing or running code (Python, R, etc.) that references the CSV columns and performs logic, rather than just writing a JSON file with static values."
+        },
+        {
+            "id": "no_hallucinated_exclusion",
+            "description": "Agent correctly identifies sub-99 as the excluded participant based on data, not just guessing.",
+            "visual_evidence": "The agent's code or intermediate output specifically flags sub-99 for having a hyper_fair rate < 0.8."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent uses the specific file paths provided in the instructions for both input and output.",
+            "visual_evidence": "Commands or code explicitly referencing ~/pebl/data/ultimatum_data.csv and ~/pebl/analysis/ultimatum_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The participant 'sub-99' is a known contaminated participant who must be excluded because their hyper_fair acceptance rate is strictly less than 0.8. The MAO (Minimum Acceptable Offer) must be 10 if no offer (1-9) reaches a 0.5 acceptance rate. The final output must be a JSON file located at /home/ga/pebl/analysis/ultimatum_report.json."
+}

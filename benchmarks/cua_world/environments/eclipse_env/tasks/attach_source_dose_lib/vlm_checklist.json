@@ -1,0 +1,59 @@
+{
+    "task_id": "attach_source_dose_lib@1",
+    "task_completion": [
+        {
+            "id": "open_project_and_lib",
+            "description": "The 'TreatmentPlanner' project is open and the 'lib' folder or 'Referenced Libraries' section is visible in the Project Explorer.",
+            "points": 10,
+            "visual_evidence": "The IDE (likely Eclipse or VS Code) shows the 'TreatmentPlanner' project structure with 'dose-engine.jar' visible."
+        },
+        {
+            "id": "open_class_without_source",
+            "description": "The agent attempts to open 'com.dosimetry.engine.DoseCalculator' and sees a 'Source not found' or 'Class File Editor' view.",
+            "points": 15,
+            "visual_evidence": "An editor tab showing 'DoseCalculator.class' with a message like 'Source not found' and an 'Attach Source' button."
+        },
+        {
+            "id": "source_attachment_dialog",
+            "description": "The agent opens the source attachment configuration dialog for 'dose-engine.jar'.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Source Attachment Configuration' or 'Properties for dose-engine.jar' is visible."
+        },
+        {
+            "id": "select_source_archive",
+            "description": "The agent selects the external archive path for the source code.",
+            "points": 20,
+            "visual_evidence": "The file path '/home/ga/Downloads/dose-engine-src.zip' is entered into the 'Location path' or 'External File' field in the dialog."
+        },
+        {
+            "id": "confirm_attachment",
+            "description": "The agent applies the changes to the library configuration.",
+            "points": 10,
+            "visual_evidence": "The agent clicks 'OK' or 'Apply and Close' on the source attachment or properties dialog."
+        },
+        {
+            "id": "verify_source_visible",
+            "description": "The source code for 'DoseCalculator.java' is now visible in the editor instead of the decompiled class file.",
+            "points": 30,
+            "visual_evidence": "The editor displays the Java source code for 'DoseCalculator', including the package 'com.dosimetry.engine' and readable method implementations (not just bytecode)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the IDE's GUI to attach the source rather than manually editing configuration files via terminal.",
+            "visual_evidence": "Screenshots show mouse cursors, dialog boxes, and menu navigation within the IDE rather than just terminal commands like 'sed' or 'vim' on .classpath files."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific source archive provided in the instructions.",
+            "visual_evidence": "The path '/home/ga/Downloads/dose-engine-src.zip' is explicitly seen in the file selection dialog."
+        },
+        {
+            "id": "no_manual_code_creation",
+            "description": "The agent did not manually create a new Java file to mimic the source code.",
+            "visual_evidence": "The editor tab should indicate it is showing the source attached to the JAR, typically indicated by the file path or the 'Referenced Libraries' hierarchy."
+        }
+    ],
+    "privileged_info_for_vlm": "The project name is 'TreatmentPlanner'. The target library is 'lib/dose-engine.jar'. The source archive is located at '/home/ga/Downloads/dose-engine-src.zip'. The specific class to verify is 'com.dosimetry.engine.DoseCalculator'. Success is defined by the IDE displaying the actual Java source code (comments, variable names, logic) of DoseCalculator after the zip is attached."
+}

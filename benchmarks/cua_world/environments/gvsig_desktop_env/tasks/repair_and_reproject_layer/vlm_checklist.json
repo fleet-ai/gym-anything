@@ -1,0 +1,59 @@
+{
+    "task_id": "repair_and_reproject_layer@1",
+    "task_completion": [
+        {
+            "id": "load_broken_shapefile",
+            "description": "The agent loads the shapefile 'cities_missing_prj.shp' into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'cities_missing_prj' is visible in the layer list/table of contents of the GIS application."
+        },
+        {
+            "id": "assign_source_crs",
+            "description": "The agent manually assigns WGS 84 (EPSG:4326) as the source coordinate system to the broken layer.",
+            "points": 20,
+            "visual_evidence": "A CRS selection dialog or layer properties window showing 'EPSG:4326' or 'WGS 84' being applied to the 'cities_missing_prj' layer."
+        },
+        {
+            "id": "initiate_reprojection",
+            "description": "The agent opens the tool to reproject or export the layer to a new coordinate system.",
+            "points": 15,
+            "visual_evidence": "A 'Reproject', 'Save Vector Layer as', or 'Export' dialog box is open."
+        },
+        {
+            "id": "select_target_crs",
+            "description": "The agent selects EPSG:3857 (Web Mercator) as the target coordinate system.",
+            "points": 25,
+            "visual_evidence": "The export/reproject dialog shows 'EPSG:3857' or 'WGS 84 / Pseudo-Mercator' selected as the destination CRS."
+        },
+        {
+            "id": "set_output_path",
+            "description": "The agent specifies the correct output file path for the transformed data.",
+            "points": 10,
+            "visual_evidence": "The file path '/home/ga/gvsig_data/exports/cities_web_mercator.shp' is typed into the output file field."
+        },
+        {
+            "id": "successful_export_confirmation",
+            "description": "The agent executes the transformation and a new file is created/added to the map.",
+            "points": 20,
+            "visual_evidence": "A progress bar completes, a success message appears, or the new layer 'cities_web_mercator' appears in the project with coordinates in meters (large values like 10^6, not 0-180)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GIS software GUI rather than just running 'ogr2ogr' or 'sh' commands in a terminal.",
+            "visual_evidence": "Screenshots show interaction with menus, dialog boxes, and toolbars within the GIS application (e.g., gvSIG or QGIS)."
+        },
+        {
+            "id": "no_manual_prj_creation",
+            "description": "The agent did not simply create a text file with the PRJ content manually via a text editor.",
+            "visual_evidence": "The agent is seen using the GIS software's internal projection tools rather than a text editor like Gedit or Vim to write a .prj file."
+        },
+        {
+            "id": "genuine_transformation",
+            "description": "The agent performed a coordinate transformation, not just a file rename.",
+            "visual_evidence": "The coordinate display in the GIS software changes from decimal degrees (e.g., 45.0, -73.0) to meters (e.g., 5621521, -8126632) when viewing the exported layer."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is 'cities_missing_prj.shp' located at /home/ga/gvsig_data/projects/broken_data/. It is missing its .prj file but the data is natively in WGS 84 (EPSG:4326). The target CRS is EPSG:3857 (often labeled 'WGS 84 / Pseudo-Mercator' or 'Web Mercator'). The final output must be saved to /home/ga/gvsig_data/exports/cities_web_mercator.shp."
+}

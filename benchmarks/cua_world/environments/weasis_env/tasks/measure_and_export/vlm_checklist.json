@@ -1,0 +1,59 @@
+{
+    "task_id": "measure_and_export@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis medical viewer application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window, including its toolbar and workspace, is visible in the screenshot."
+        },
+        {
+            "id": "dicom_loaded",
+            "description": "A DICOM image (X-Ray Angiography) is loaded into the main viewing area.",
+            "points": 15,
+            "visual_evidence": "A medical X-ray image is displayed in the central viewport of the Weasis application."
+        },
+        {
+            "id": "measurement_tool_selected",
+            "description": "The distance measurement tool is activated from the toolbar.",
+            "points": 15,
+            "visual_evidence": "The distance/ruler icon in the Weasis toolbar is highlighted or selected, or the cursor changes to a crosshair/measurement icon."
+        },
+        {
+            "id": "measurement_drawn",
+            "description": "A measurement line with numerical distance values is drawn across a structure in the image.",
+            "points": 30,
+            "visual_evidence": "A line or graphic overlay is visible on the DICOM image, accompanied by a text label showing a distance (e.g., in mm or pixels)."
+        },
+        {
+            "id": "export_dialog_configured",
+            "description": "The export dialog is opened and configured to save as a JPEG to the specific path.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' dialog box is visible, with the file format set to JPEG and the destination path showing /home/ga/DICOM/exports/annotated_measurement.jpg."
+        },
+        {
+            "id": "export_confirmed",
+            "description": "The agent completes the export process.",
+            "points": 15,
+            "visual_evidence": "The export dialog closes, or a success notification appears, or the file manager shows the new file 'annotated_measurement.jpg' in the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to perform the measurement and export, rather than using terminal commands to move or rename files.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on toolbar icons, and interaction with the Weasis export menu rather than just terminal output."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement is manually placed on a relevant structure, not just a random click.",
+            "visual_evidence": "The measurement line endpoints align with visible anatomical or medical structures in the X-ray."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply find an existing file and claim it was the result.",
+            "visual_evidence": "The export process is visible in the GUI, showing the file being named and saved during the session."
+        }
+    ],
+    "privileged_info_for_vlm": "The exported file must be a JPEG located at /home/ga/DICOM/exports/annotated_measurement.jpg. The file size must be at least 10,240 bytes. The image used is a multi-frame X-Ray Angiography (0002.DCM or 0003.DCM). The verifier specifically checks for the JPEG magic bytes (ffd8ff) at the start of the file."
+}

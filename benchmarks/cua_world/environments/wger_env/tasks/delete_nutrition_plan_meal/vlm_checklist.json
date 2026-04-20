@@ -1,0 +1,59 @@
+{
+    "task_id": "delete_nutrition_plan_meal@1",
+    "task_completion": [
+        {
+            "id": "open_wger_nutrition",
+            "description": "The agent navigates to the nutrition section of the wger application.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger application, specifically the nutrition plans list or dashboard."
+        },
+        {
+            "id": "select_target_plan",
+            "description": "The agent selects the 'Cafeteria Daily Plan' from the list of nutrition plans.",
+            "points": 15,
+            "visual_evidence": "The screen shows the details page for 'Cafeteria Daily Plan' with its associated meals (Breakfast, Lunch, Dinner)."
+        },
+        {
+            "id": "initiate_lunch_deletion",
+            "description": "The agent locates the 'Lunch' meal and initiates the deletion process (e.g., clicking a trash icon or delete button next to 'Lunch').",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog appears or the 'Lunch' entry is being interacted with via a delete action."
+        },
+        {
+            "id": "confirm_deletion",
+            "description": "The agent confirms the deletion of the 'Lunch' meal.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Delete' or 'Confirm' on a pop-up modal or confirmation prompt."
+        },
+        {
+            "id": "verify_lunch_removed",
+            "description": "The 'Lunch' meal is no longer visible in the 'Cafeteria Daily Plan'.",
+            "points": 15,
+            "visual_evidence": "The 'Cafeteria Daily Plan' page is displayed, and 'Lunch' is absent from the list of meals."
+        },
+        {
+            "id": "verify_remaining_meals",
+            "description": "The 'Breakfast' and 'Dinner' meals remain intact within the plan.",
+            "points": 15,
+            "visual_evidence": "The 'Cafeteria Daily Plan' page clearly shows 'Breakfast' and 'Dinner' are still present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than terminal commands to modify the database.",
+            "visual_evidence": "The screenshots show mouse movements and clicks within the browser, not commands typed into a terminal."
+        },
+        {
+            "id": "no_plan_deletion",
+            "description": "The agent did not delete the entire 'Cafeteria Daily Plan' to achieve the goal.",
+            "visual_evidence": "The 'Cafeteria Daily Plan' header and other meals are still visible at the end of the trajectory."
+        },
+        {
+            "id": "genuine_app_navigation",
+            "description": "The agent navigated through the application menus rather than jumping directly to a final state URL if not provided.",
+            "visual_evidence": "The trajectory shows the sequence of clicks from the dashboard to the specific plan."
+        }
+    ],
+    "privileged_info_for_vlm": "The target plan is named 'Cafeteria Daily Plan'. It initially contains three meals: 'Breakfast', 'Lunch', and 'Dinner'. The goal is to delete ONLY 'Lunch'. After the task, the plan must still exist and contain exactly two meals: 'Breakfast' and 'Dinner'."
+}

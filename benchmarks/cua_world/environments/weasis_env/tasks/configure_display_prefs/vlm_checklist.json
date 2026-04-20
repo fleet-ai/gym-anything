@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_display_prefs@1",
+    "task_completion": [
+        {
+            "id": "open_preferences_dialog",
+            "description": "Open the Weasis Preferences/Settings dialog to access display configurations.",
+            "points": 10,
+            "visual_evidence": "A preferences or settings window is visible over the main Weasis interface."
+        },
+        {
+            "id": "set_interpolation_nearest",
+            "description": "Set the image interpolation method to 'Nearest Neighbor'.",
+            "points": 15,
+            "visual_evidence": "The interpolation dropdown or radio button in the settings shows 'Nearest Neighbor' selected."
+        },
+        {
+            "id": "set_zoom_best_fit",
+            "description": "Set the default zoom mode to 'Best Fit'.",
+            "points": 15,
+            "visual_evidence": "The zoom mode selection in the settings shows 'Best Fit' selected."
+        },
+        {
+            "id": "set_font_size",
+            "description": "Set the overlay font size to at least 16pt.",
+            "points": 20,
+            "visual_evidence": "A font size input field or slider in the preferences shows a value of 16 or higher."
+        },
+        {
+            "id": "save_screenshot_file",
+            "description": "Save a screenshot of the viewer to the specified path.",
+            "points": 20,
+            "visual_evidence": "The agent is seen using the 'Export' or 'Save' menu to save a PNG, or a file manager shows 'prefs_verification.png' in /home/ga/DICOM/exports/."
+        },
+        {
+            "id": "create_text_file",
+            "description": "Create a text file with the specific configuration lines and the chosen font size.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows a file named 'prefs_changes.txt' containing: interpolation=nearest, zoom=bestfit, and font_size=16 (or higher)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_settings",
+            "description": "The agent used the Weasis GUI to change preferences rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Weasis Preferences menu and dialog boxes."
+        },
+        {
+            "id": "genuine_viewer_screenshot",
+            "description": "The saved screenshot is a capture of the Weasis viewer with the CT scan, not a placeholder.",
+            "visual_evidence": "The file 'prefs_verification.png' (if previewed) or the active window shows a CT scan image with visible overlays."
+        },
+        {
+            "id": "manual_text_entry",
+            "description": "The agent manually typed or generated the text file based on the settings applied.",
+            "visual_evidence": "The agent is seen opening a text editor or using 'echo' to create the file with the specific required content."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific persistent settings in Weasis: Interpolation must be 'Nearest Neighbor', Zoom must be 'Best Fit', and Font Size must be >= 16. The output files must be exactly /home/ga/DICOM/exports/prefs_verification.png and /home/ga/DICOM/exports/prefs_changes.txt. The text file must contain the three specific lines: interpolation=nearest, zoom=bestfit, and font_size=[value used]."
+}

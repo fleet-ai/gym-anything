@@ -1,0 +1,59 @@
+{
+    "task_id": "dhcp_lease_forensics@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the dhcp.pcap file in a network analysis tool like Wireshark.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark or a similar tool open with 'dhcp.pcap' loaded, displaying a list of packets."
+        },
+        {
+            "id": "identify_dhcp_packets",
+            "description": "The agent filters or identifies the DHCP/BOOTP packets within the capture.",
+            "points": 15,
+            "visual_evidence": "The packet list shows DHCP protocol packets, or a filter like 'dhcp' or 'bootp' is applied in the tool's filter bar."
+        },
+        {
+            "id": "extract_transaction_details",
+            "description": "The agent examines the details of the DHCP transactions (Transaction ID, MAC, IP, Options).",
+            "points": 25,
+            "visual_evidence": "The 'Packet Details' pane is visible, showing expanded sections for 'Bootstrap Protocol' with fields like 'Transaction ID', 'Client MAC address', and 'DHCP options' highlighted or selected."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) is open showing a new file being saved to '~/Documents/captures/dhcp_analysis_report.txt'."
+        },
+        {
+            "id": "report_header_summary",
+            "description": "The report contains a header with total packet count and unique transaction IDs.",
+            "points": 15,
+            "visual_evidence": "The text editor shows a header in the report file mentioning 'Total Packets: 4' and the specific Transaction IDs."
+        },
+        {
+            "id": "report_transaction_details",
+            "description": "The report includes detailed sections for each transaction including MAC, IP, Server IP, and lease options.",
+            "points": 25,
+            "visual_evidence": "The report file contains structured sections for Transaction IDs (0x00003d1d, 0x00003d1e) with fields for Subnet Mask, Router, DNS, and Lease Time."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pcap_analysis",
+            "description": "The agent actually analyzed the pcap file rather than guessing or using pre-existing knowledge.",
+            "visual_evidence": "Screenshots show the agent interacting with Wireshark or tshark to inspect specific packet offsets or fields, rather than just typing the report immediately."
+        },
+        {
+            "id": "no_ground_truth_access",
+            "description": "The agent did not access the hidden ground truth directory.",
+            "visual_evidence": "The terminal history or file explorer does not show the agent navigating to or reading files from '/var/lib/wireshark_ground_truth'."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific file requested in the Documents folder.",
+            "visual_evidence": "The file path '~/Documents/captures/dhcp.pcap' is visible in the application title bar or terminal commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The dhcp.pcap file contains exactly 4 DHCP packets. There are two unique Transaction IDs: 0x00003d1d and 0x00003d1e. The report must be saved to /home/ga/Documents/captures/dhcp_analysis_report.txt. The agent should find specific lease options: Subnet Mask (Option 1), Router (Option 3), DNS Server (Option 6), and IP Address Lease Time (Option 51)."
+}

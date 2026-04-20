@@ -1,0 +1,53 @@
+{
+    "task_id": "roi_signal_background_ratio@1",
+    "task_completion": [
+        {
+            "id": "open_fluorescent_cells",
+            "description": "Open the 'Fluorescent Cells' sample image in Fiji.",
+            "points": 10,
+            "visual_evidence": "The Fiji application window showing the 'Fluorescent Cells' image (multi-channel or grayscale cell image)."
+        },
+        {
+            "id": "define_rois",
+            "description": "Define at least four ROIs: two for bright structures, one for dim cytoplasm, and one for background.",
+            "points": 25,
+            "visual_evidence": "The ROI Manager window showing at least 4 entries with names containing 'signal'/'cell', 'cytoplasm'/'dim', and 'background'/'bg'."
+        },
+        {
+            "id": "measure_rois",
+            "description": "Measure Mean, Standard Deviation, and Area for the defined ROIs.",
+            "points": 20,
+            "visual_evidence": "A 'Results' table window in Fiji containing columns for 'Mean', 'StdDev', and 'Area' for each ROI."
+        },
+        {
+            "id": "calculate_sbr",
+            "description": "Calculate the Signal-to-Background Ratio (SBR) using the specified formula.",
+            "points": 25,
+            "visual_evidence": "A results table or a spreadsheet view showing a calculated value labeled 'SBR' or 'Ratio'."
+        },
+        {
+            "id": "save_files",
+            "description": "Save the ROI set as a .zip and the measurements as a .csv to the specified directory.",
+            "points": 20,
+            "visual_evidence": "File saving dialogs or a file explorer showing 'roi_set.zip' and 'roi_measurements.csv' in the ~/ImageJ_Data/results/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform analysis rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Fiji menus, the ROI Manager, and the Results table."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the CSV match the visual ROIs drawn on the image.",
+            "visual_evidence": "The ROI overlays on the image correspond to the areas and mean values reported in the Fiji Results window."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The SBR value is derived from the measurements, not just typed in.",
+            "visual_evidence": "The SBR value in the table is consistent with the Mean values shown for the signal and background ROIs."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a minimum of 4 ROIs. The SBR calculation must be (Average Mean of Signal ROIs) / (Mean of Background ROI). The SBR value should be greater than 1.0. Required CSV columns are 'Label', 'Mean', and 'Area'. Files must be saved specifically to /home/ga/ImageJ_Data/results/."
+}

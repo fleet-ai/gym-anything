@@ -1,0 +1,59 @@
+{
+    "task_id": "export_dicom_secondary_capture@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched_and_loaded",
+            "description": "Weasis medical viewer is open with a CT image loaded in the main viewport.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible showing a cross-sectional medical CT scan."
+        },
+        {
+            "id": "annotation_added",
+            "description": "A visible annotation (e.g., arrow, circle, text, or measurement) has been placed on the CT image.",
+            "points": 20,
+            "visual_evidence": "A graphical overlay or markup (like a yellow circle or arrow) is visible on top of the medical image in the viewer."
+        },
+        {
+            "id": "export_dialog_opened",
+            "description": "The agent has opened the export or 'Save As' dialog specifically for DICOM Secondary Capture.",
+            "points": 15,
+            "visual_evidence": "An export dialog box is visible, likely showing options for 'DICOM' or 'Secondary Capture'."
+        },
+        {
+            "id": "export_path_configured",
+            "description": "The export destination is set to ~/DICOM/exports/surgical_plan.dcm.",
+            "points": 20,
+            "visual_evidence": "The file path field in the export dialog shows '~/DICOM/exports/surgical_plan.dcm' or the equivalent absolute path '/home/ga/DICOM/exports/surgical_plan.dcm'."
+        },
+        {
+            "id": "secondary_capture_selected",
+            "description": "The agent selected the 'Secondary Capture' (current view) option rather than a standard DICOM export.",
+            "points": 25,
+            "visual_evidence": "In the export settings, a checkbox or radio button for 'Secondary Capture' or 'Current View' is selected."
+        },
+        {
+            "id": "export_confirmation",
+            "description": "The agent completes the export process.",
+            "points": 10,
+            "visual_evidence": "A progress bar for exporting appears, or the export dialog closes after clicking 'Export' or 'Save'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to perform the task rather than just using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis menus and toolbars, not just a terminal window."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use 'touch' or 'cp' in the terminal to create a dummy file.",
+            "visual_evidence": "The terminal history (if visible) does not show commands creating the target .dcm file manually."
+        },
+        {
+            "id": "genuine_annotation",
+            "description": "The annotation is a result of using the Weasis drawing tools.",
+            "visual_evidence": "The Weasis toolbar shows an active drawing tool (like the 'Draw' icon highlighted) while the annotation is being placed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exporting a DICOM Secondary Capture (SOP Class UID 1.2.840.10008.5.1.4.1.1.7). The agent must use the Weasis GUI to add a visible markup to the CT image and save it specifically to /home/ga/DICOM/exports/surgical_plan.dcm. Ensure the agent selects the 'Secondary Capture' or 'Current View' option in the export menu to capture the annotation."
+}

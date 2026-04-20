@@ -1,0 +1,53 @@
+{
+    "task_id": "supply_chain_model_simulation@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the Oracle database using the specified credentials (logistics/logistics123) and PDB (XEPDB1).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a successful login to an Oracle SQL tool (like SQL Developer, DBeaver, or SQL*Plus) with the username 'logistics' and connection string 'XEPDB1'."
+        },
+        {
+            "id": "sql_model_clause_usage",
+            "description": "Write a SQL query utilizing the MODEL clause to define the 10-week simulation logic.",
+            "points": 25,
+            "visual_evidence": "A code editor or terminal showing a SQL statement containing the keywords 'MODEL', 'PARTITION BY PRODUCT_ID', 'DIMENSION BY WEEK_NO', and 'MEASURES'."
+        },
+        {
+            "id": "simulation_logic_implementation",
+            "description": "Implement the specific formulas for Opening Stock, Arrivals, Closing Stock, and Order Quantity within the SQL script.",
+            "points": 25,
+            "visual_evidence": "SQL code showing logic for: ARRIVALS[CV()] = ORDER_QTY[CV()-1], CLOSING_STOCK[CV()] = OPENING_STOCK[CV()] + ARRIVALS[CV()] - DEMAND_QTY[CV()], and ORDER_QTY based on safety stock."
+        },
+        {
+            "id": "view_creation",
+            "description": "Create the view named 'INVENTORY_FORECAST' with the required seven columns.",
+            "points": 15,
+            "visual_evidence": "A 'CREATE VIEW INVENTORY_FORECAST AS' statement followed by a SELECT list containing PRODUCT_ID, WEEK_NO, OPENING_STOCK, ARRIVALS, DEMAND_QTY, CLOSING_STOCK, and ORDER_QTY."
+        },
+        {
+            "id": "export_results_csv",
+            "description": "Export the view results to /home/ga/Desktop/forecast_results.csv with headers.",
+            "points": 25,
+            "visual_evidence": "An export wizard dialog, a spool command, or a python/bash script execution that targets '/home/ga/Desktop/forecast_results.csv' and shows the 'include headers' option selected."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type data into a CSV file or use a text editor to fake the results.",
+            "visual_evidence": "The CSV file should be generated via a database export tool or SQL execution output, not by opening a blank file in Gedit/VS Code and typing numbers."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually queried the INVENTORY_PARAMS and WEEKLY_DEMAND tables.",
+            "visual_evidence": "SQL logs or editor screenshots showing SELECT statements or JOINs involving the 'INVENTORY_PARAMS' and 'WEEKLY_DEMAND' tables."
+        },
+        {
+            "id": "model_clause_requirement",
+            "description": "The agent used the SQL MODEL clause as requested rather than simple arithmetic or procedural loops.",
+            "visual_evidence": "The final SQL script must contain the 'MODEL' keyword; verify the agent didn't just use a basic SELECT statement with hardcoded values."
+        }
+    ],
+    "privileged_info_for_vlm": "The database user is 'logistics', password is 'logistics123', and PDB is 'XEPDB1'. The view must be named 'INVENTORY_FORECAST'. The output file must be exactly '/home/ga/Desktop/forecast_results.csv'. The simulation must use the SQL MODEL clause to calculate 10 weeks of data. Required columns: PRODUCT_ID, WEEK_NO, OPENING_STOCK, ARRIVALS, DEMAND_QTY, CLOSING_STOCK, ORDER_QTY."
+}

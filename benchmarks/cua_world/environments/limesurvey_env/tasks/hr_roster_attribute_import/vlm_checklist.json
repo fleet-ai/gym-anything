@@ -1,0 +1,53 @@
+{
+    "task_id": "hr_roster_attribute_import@1",
+    "task_completion": [
+        {
+            "id": "survey_creation",
+            "description": "Create a survey titled 'Q4 Employee Engagement'.",
+            "points": 10,
+            "visual_evidence": "A survey list or survey settings page showing the title 'Q4 Employee Engagement'."
+        },
+        {
+            "id": "roster_import",
+            "description": "Import the employee roster from the specified CSV file into the participant table.",
+            "points": 20,
+            "visual_evidence": "The 'Import participants' screen showing the file path '/home/ga/Documents/employee_roster.csv' or a success message indicating records were imported."
+        },
+        {
+            "id": "attribute_mapping",
+            "description": "Map CSV columns 'department' to Attribute_1, 'location' to Attribute_2, and 'manager_name' to Attribute_3.",
+            "points": 30,
+            "visual_evidence": "The mapping configuration screen showing 'department' linked to 'Attribute_1', 'location' to 'Attribute_2', and 'manager_name' to 'Attribute_3'."
+        },
+        {
+            "id": "text_display_question",
+            "description": "Add a Text Display question to the survey.",
+            "points": 15,
+            "visual_evidence": "The question editor showing a question type of 'Text Display' or 'Text content'."
+        },
+        {
+            "id": "piping_syntax_implementation",
+            "description": "Include the specific piping text: 'Our records show you are in the {TOKEN:ATTRIBUTE_1} department.'",
+            "points": 25,
+            "visual_evidence": "The question text field containing the exact string 'Our records show you are in the {TOKEN:ATTRIBUTE_1} department.' (case sensitive)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the survey software GUI rather than direct database manipulation or terminal scripts to create the survey.",
+            "visual_evidence": "Screenshots show the browser interacting with the LimeSurvey interface (clicking buttons, filling forms)."
+        },
+        {
+            "id": "genuine_file_upload",
+            "description": "The agent navigated to the correct local file path for the CSV.",
+            "visual_evidence": "The file picker or text input field shows '/home/ga/Documents/employee_roster.csv'."
+        },
+        {
+            "id": "no_hardcoding_values",
+            "description": "The agent used the piping syntax {TOKEN:ATTRIBUTE_1} instead of hardcoding a specific department name like 'R&D'.",
+            "visual_evidence": "The question text editor shows the placeholder syntax, not a static department name."
+        }
+    ],
+    "privileged_info_for_vlm": "The CSV file is located at /home/ga/Documents/employee_roster.csv. The correct mapping is: department -> Attribute_1, location -> Attribute_2, manager_name -> Attribute_3. The required piping syntax for LimeSurvey to display Attribute_1 is exactly {TOKEN:ATTRIBUTE_1}. For verification, a sample record in the CSV is Sarah Connor (s.connor@cyberdyne.com) who belongs to the 'R&D' department."
+}

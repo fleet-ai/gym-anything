@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_private_sales_pipeline_sharing@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_sharing_settings",
+            "description": "Navigate to the Data Sharing Settings or Security Control section of the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Sharing Settings' or 'Data Sharing' page header and a list of modules including 'Potentials' or 'Opportunities'."
+        },
+        {
+            "id": "set_module_to_private",
+            "description": "Set the default organization-wide sharing access for the 'Potentials' (Opportunities) module to 'Private'.",
+            "points": 20,
+            "visual_evidence": "The 'Default Access' or 'Organization-Wide Default' column for the 'Potentials' module should be set to 'Private' in the settings table."
+        },
+        {
+            "id": "initiate_custom_sharing_rule",
+            "description": "Open the interface to create a new sharing rule for the Potentials module.",
+            "points": 10,
+            "visual_evidence": "A 'New Sharing Rule' dialog or form specifically for the 'Potentials' module is visible."
+        },
+        {
+            "id": "configure_rule_source_and_target",
+            "description": "Configure the rule to share records from the 'Sales Person' role to the 'Sales Manager' role.",
+            "points": 30,
+            "visual_evidence": "The sharing rule form shows 'Records Shared From: Role: Sales Person' and 'Shared To: Role: Sales Manager'."
+        },
+        {
+            "id": "set_read_write_permissions",
+            "description": "Set the access level for the sharing rule to 'Read/Write'.",
+            "points": 20,
+            "visual_evidence": "The 'Access Level' or 'Permission' dropdown/radio button in the rule configuration is set to 'Read/Write'."
+        },
+        {
+            "id": "save_and_verify_rule",
+            "description": "Save the rule and verify it appears in the sharing rules list for Potentials.",
+            "points": 10,
+            "visual_evidence": "A summary table shows a rule for Potentials: Sales Person -> Sales Manager with Read/Write access."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface rather than executing database commands via terminal.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and form filling in the browser, not SQL queries in a terminal."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the settings menu rather than jumping directly to a final success URL.",
+            "visual_evidence": "Sequential screenshots show the agent clicking through 'Setup', 'Security/Users', and then 'Sharing Settings'."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent did not manually edit the URL to bypass the UI flow.",
+            "visual_evidence": "The address bar changes as a result of clicks on UI elements, not manual typing of deep-link parameters."
+        }
+    ],
+    "privileged_info_for_vlm": "The module name in the database and UI is 'Potentials' (which corresponds to Opportunities). The required sharing access for the module is 'Private'. The custom sharing rule must be from the 'Sales Person' role to the 'Sales Manager' role with 'Read/Write' permissions. Note: Permission level 3 in the backend corresponds to 'Private'."
+}

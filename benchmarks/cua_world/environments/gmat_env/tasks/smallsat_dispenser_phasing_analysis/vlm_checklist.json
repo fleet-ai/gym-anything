@@ -1,0 +1,59 @@
+{
+    "task_id": "smallsat_dispenser_phasing_analysis@1",
+    "task_completion": [
+        {
+            "id": "read_deployment_spec",
+            "description": "Agent opens and reads the deployment specification file from the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/dispenser_deployment_spec.txt."
+        },
+        {
+            "id": "gmat_setup_spacecraft",
+            "description": "Agent configures four spacecraft (SatA, SatB, SatC, SatD) in GMAT with the specified masses and ejection velocities.",
+            "points": 20,
+            "visual_evidence": "GMAT GUI showing the resource tree with four spacecraft objects or the script editor showing spacecraft property definitions."
+        },
+        {
+            "id": "gmat_force_model_config",
+            "description": "Agent configures the propagator to use Earth 8x8 gravity and disables atmospheric drag.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagator' configuration dialog showing 'Gravity Field: Earth: JGM-2' (or similar) with degree/order 8x8 and 'Drag: None'."
+        },
+        {
+            "id": "gmat_propagation_30_days",
+            "description": "Agent sets the propagation duration to 30 days.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagate' command settings showing a duration of 2592000 seconds or 30 days."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the simulation script to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the file ~/Documents/missions/dispenser_mission.script exists."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Agent creates the final report file with the required SMA and angular separation values.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the contents of ~/GMAT_output/dispenser_separation_report.txt with the specific keys (sat_A_sma_km, angle_A_to_B_deg, etc.) and calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply echo the expected values into a file without running a simulation.",
+            "visual_evidence": "Screenshots must show the GMAT application being actively used (GUI or script execution) rather than just terminal commands creating the report."
+        },
+        {
+            "id": "genuine_gmat_interaction",
+            "description": "Agent interacted with the GMAT software interface.",
+            "visual_evidence": "Screenshots show the GMAT window active, menu selections, or the GMAT console output during a run."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent used the specific file paths requested in the task description.",
+            "visual_evidence": "The file paths in the GMAT 'ReportFile' resource or terminal commands match ~/Documents/missions/ and ~/GMAT_output/."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected Semi-Major Axis (SMA) values are approximately: SatA: 6872.04 km, SatB: 6872.95 km, SatC: 6873.85 km, SatD: 6874.75 km. The simulation must run for 30 days using an 8x8 Earth gravity model and no drag. The report must be saved to ~/GMAT_output/dispenser_separation_report.txt."
+}

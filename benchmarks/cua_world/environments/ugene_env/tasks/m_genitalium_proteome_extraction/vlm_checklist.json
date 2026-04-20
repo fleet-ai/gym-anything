@@ -1,0 +1,59 @@
+{
+    "task_id": "m_genitalium_proteome_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the M. genitalium genome file in UGENE",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows 'm_genitalium_genome.gb' loaded in the Project View or as an active tab in the Sequence View."
+        },
+        {
+            "id": "filter_cds_annotations",
+            "description": "Filter annotations to show only CDS features",
+            "points": 15,
+            "visual_evidence": "The Annotations Editor or Object View shows a filter applied for 'CDS', or only CDS features are highlighted/selected in the list."
+        },
+        {
+            "id": "export_sequences_dialog",
+            "description": "Open the 'Export sequence of annotations' dialog",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Export sequence of annotations' or similar is visible over the main UGENE interface."
+        },
+        {
+            "id": "configure_translation_table_4",
+            "description": "Configure export settings to translate sequences using the correct genetic code",
+            "points": 25,
+            "visual_evidence": "In the export dialog, the 'Translate to amino acids' option is checked. The translation table should be set to '4' or 'Mold, Protozoan, and Coelenterate Mitochondrial; Mycoplasma/Spiroplasma'."
+        },
+        {
+            "id": "save_fasta_output",
+            "description": "Save the translated sequences to the specified FASTA file path",
+            "points": 20,
+            "visual_evidence": "The export dialog shows the output path set to '~/UGENE_Data/results/m_genitalium_proteome.fasta' and the process is initiated/completed."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Create a text summary report with specific details",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) shows a file named 'extraction_report.txt' containing the organism name, a count of ~476 sequences, and mention of Translation Table 4."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "Verify the agent used the UGENE GUI rather than just terminal commands to generate files",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu interactions (Export > Export sequence of annotations), and UGENE dialog boxes rather than just a terminal window."
+        },
+        {
+            "id": "genuine_translation_process",
+            "description": "Ensure the agent didn't manually type the FASTA content",
+            "visual_evidence": "The VLM should see the UGENE progress bar or the 'Export' button being clicked, indicating the software is generating the file."
+        },
+        {
+            "id": "correct_file_path_interaction",
+            "description": "Verify the agent interacted with the specific local directory structure",
+            "visual_evidence": "The file browser or path input field in UGENE shows the directory '/home/user/UGENE_Data/results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "M. genitalium (NC_000908.2) has exactly 476-485 CDS features depending on the specific GenBank version; 476 is the standard expected count for this task. Translation Table 4 is critical because UGA encodes Tryptophan (W) instead of a Stop (*). If Table 1 (Standard) is used, the proteins will be prematurely truncated. The VLM should confirm the 'Translate' checkbox is active in the UGENE export dialog."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "optical_setup_diagram@1",
+    "task_completion": [
+        {
+            "id": "layer_setup",
+            "description": "Create three layers: 'COMPONENTS' (Cyan), 'BEAM' (Red), and 'LABELS' (White).",
+            "points": 10,
+            "visual_evidence": "The Layer List widget in LibreCAD shows three distinct layers with the specified names and color icons (Cyan, Red, White/Black)."
+        },
+        {
+            "id": "components_geometry",
+            "description": "Draw the Laser (50x20 rectangle), Mirror 1 (40mm line), Mirror 2 (40mm line), Lens (Ellipse), and Detector (20x20 square) on the COMPONENTS layer.",
+            "points": 25,
+            "visual_evidence": "The drawing area shows a rectangle at the origin, two diagonal lines at the corners, an ellipse between the mirrors, and a square at the end of the path."
+        },
+        {
+            "id": "beam_polyline",
+            "description": "Draw a polyline on the BEAM layer connecting (0,0) to (300,0) to (300,200) to (0,200).",
+            "points": 20,
+            "visual_evidence": "A red line is visible forming a 'Z' or 'U' shape, perfectly intersecting the centers of the mirrors and the faces of the laser/detector."
+        },
+        {
+            "id": "labels_and_annotations",
+            "description": "Add text labels 'LASER', 'M1', 'M2', 'DETECTOR' and the total path length note on the LABELS layer.",
+            "points": 15,
+            "visual_evidence": "White text labels are visible near each component. A text block starting with 'Total Path:' is present in the drawing."
+        },
+        {
+            "id": "path_length_calculation",
+            "description": "Calculate and display the correct total path length (800 mm).",
+            "points": 15,
+            "visual_evidence": "The text on the LABELS layer specifically reads 'Total Path: 800 mm' (300mm + 200mm + 300mm)."
+        },
+        {
+            "id": "save_file",
+            "description": "Save the drawing as /home/ga/Documents/LibreCAD/optical_setup.dxf.",
+            "points": 15,
+            "visual_evidence": "The LibreCAD title bar or the 'Save As' dialog shows the correct file path and filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just writing a DXF file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (Line, Circle, Layer tools) and the command line within LibreCAD."
+        },
+        {
+            "id": "no_scripted_generation",
+            "description": "The agent did not use a python script to generate the DXF file directly.",
+            "visual_evidence": "The terminal history does not show the execution of a script that writes to the target DXF path; instead, it shows the launch of 'librecad'."
+        },
+        {
+            "id": "manual_coordinate_entry",
+            "description": "The agent manually entered coordinates or used the grid to place components accurately.",
+            "visual_evidence": "The LibreCAD command line history (at the bottom of the app) shows coordinate inputs like '0,0' or '300,200'."
+        }
+    ],
+    "privileged_info_for_vlm": "The total path length is exactly 800 mm (Segment 1: 0,0 to 300,0 = 300; Segment 2: 300,0 to 300,200 = 200; Segment 3: 300,200 to 0,200 = 300). Mirror 1 must be at (300,0) and Mirror 2 at (300,200). The Lens is an ellipse at (150,200). Layer colors: Cyan is ACI 4, Red is ACI 1, White is ACI 7."
+}

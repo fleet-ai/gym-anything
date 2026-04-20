@@ -1,0 +1,59 @@
+{
+    "task_id": "estimate_sediment_competence@1",
+    "task_completion": [
+        {
+            "id": "open_hdf_file",
+            "description": "Agent opens the HDF5 viewer or HEC-RAS to access the simulation results in 'Muncie.p04.tmp.hdf'.",
+            "points": 10,
+            "visual_evidence": "A file explorer, HDF viewer, or HEC-RAS interface showing the file path '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.tmp.hdf' being accessed."
+        },
+        {
+            "id": "extract_shear_stress",
+            "description": "Agent locates and extracts the Shear Stress values for the River Stations from the simulation results.",
+            "points": 20,
+            "visual_evidence": "A table or data grid showing 'River Station' and 'Shear Stress' (or 'Tau') values within an HDF viewer or HEC-RAS output window."
+        },
+        {
+            "id": "calculate_critical_diameter",
+            "description": "Agent performs the calculation for Critical Diameter (Dc) using the provided formula and constants.",
+            "points": 25,
+            "visual_evidence": "A script (Python/R), calculator, or spreadsheet showing the formula [Shear_Stress / (0.047 * (165.36 - 62.4))] * 12 being applied to the extracted data."
+        },
+        {
+            "id": "determine_stability",
+            "description": "Agent assigns 'UNSTABLE' or 'STABLE' status based on whether Dc is greater than 2.0 inches.",
+            "points": 15,
+            "visual_evidence": "A data table or code output showing a 'Stability_Status' column with values 'UNSTABLE' where Dc > 2.0 and 'STABLE' where Dc <= 2.0."
+        },
+        {
+            "id": "save_csv_output",
+            "description": "Agent saves the results to the specified CSV file path with the required columns.",
+            "points": 15,
+            "visual_evidence": "A terminal command, file explorer view, or code execution showing the creation of '/home/ga/Documents/hec_ras_results/sediment_competence.csv' containing the four required columns."
+        },
+        {
+            "id": "save_text_summary",
+            "description": "Agent saves a text summary identifying the River Station with the highest critical diameter.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the content of '/home/ga/Documents/hec_ras_results/competence_summary.txt' identifying the max Dc station."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_extraction",
+            "description": "Verify the agent actually read the HDF file rather than using placeholder values.",
+            "visual_evidence": "Screenshots must show the agent interacting with the HDF5 file structure or using a library like h5py to load the specific file path mentioned."
+        },
+        {
+            "id": "formula_application",
+            "description": "Verify the agent used the specific constants provided in the task (0.047, 165.36, 62.4).",
+            "visual_evidence": "Code snippets or calculator inputs showing these exact numerical constants being used in the calculation."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Verify the agent did not simply write the final files without showing the intermediate data processing.",
+            "visual_evidence": "The trajectory must show the steps of data extraction and calculation, not just the final 'save' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the following constants: Shields parameter = 0.047, Sediment specific weight = 165.36, Water specific weight = 62.4. The stability threshold is exactly 2.0 inches. The output CSV must be at '/home/ga/Documents/hec_ras_results/sediment_competence.csv' and the summary at '/home/ga/Documents/hec_ras_results/competence_summary.txt'. The calculation is Dc = [Shear_Stress / (0.047 * 102.96)] * 12."
+}

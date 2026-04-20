@@ -1,0 +1,53 @@
+{
+    "task_id": "save_log_as_sqlite_database@1",
+    "task_completion": [
+        {
+            "id": "subsurface_open",
+            "description": "The Subsurface application is open and displaying dive data.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible, showing a list of dives or a dive profile."
+        },
+        {
+            "id": "save_as_dialog_opened",
+            "description": "The agent initiates the 'Save As' or 'Export' process to save the database.",
+            "points": 15,
+            "visual_evidence": "A 'Save file' or 'Save as' dialog box is visible over the Subsurface main window."
+        },
+        {
+            "id": "select_sqlite_format",
+            "description": "The agent selects the SQLite database format in the file dialog.",
+            "points": 25,
+            "visual_evidence": "The file type dropdown or filter in the save dialog is set to 'Subsurface SQLite database' or shows a '.sqlite' extension."
+        },
+        {
+            "id": "set_correct_filename_and_path",
+            "description": "The agent enters the specific filename and navigates to the correct directory.",
+            "points": 30,
+            "visual_evidence": "The file path/name field in the dialog shows '/home/ga/Documents/dives_database.sqlite'."
+        },
+        {
+            "id": "confirmation_of_save",
+            "description": "The agent confirms the save action and the dialog closes.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Save' or 'OK', and the dialog disappears, returning focus to the main application or showing a success message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Subsurface GUI to perform the task rather than just using the terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with Subsurface menu items and dialog boxes."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply use 'touch' or a text editor to create an empty file named dives_database.sqlite.",
+            "visual_evidence": "The file creation is seen happening through the Subsurface 'Save As' interface, not a terminal command line."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual dive log data.",
+            "visual_evidence": "The Subsurface window shows the loaded dive log (containing 29 dives) before and during the save process."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file SampleDivesV2.ssrf contains exactly 29 dives. The agent must save the file specifically as 'dives_database.sqlite' in the '/home/ga/Documents/' directory using the Subsurface SQLite format. Ignore any metadata claims of 8 dives; the actual data count is 29."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "harden_security_and_backups@1",
+    "task_completion": [
+        {
+            "id": "create_sec_admin",
+            "description": "Create a new administrator account with username 'sec_admin' and email 'security@example.com'.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the WordPress 'Users' list showing 'sec_admin' with the 'Administrator' role and the correct email address."
+        },
+        {
+            "id": "delete_original_admin",
+            "description": "Delete the original 'admin' user and reassign content to 'sec_admin'.",
+            "points": 20,
+            "visual_evidence": "Screenshot showing the deletion confirmation page where 'Attribute all content to: sec_admin' is selected, or the 'Users' list showing 'admin' is no longer present."
+        },
+        {
+            "id": "disable_file_editor",
+            "description": "Disable the built-in theme and plugin file editor via wp-config.php.",
+            "points": 20,
+            "visual_evidence": "Screenshot of a terminal or text editor showing 'define( 'DISALLOW_FILE_EDIT', true );' added to /var/www/html/wordpress/wp-config.php, or the 'Theme File Editor' menu item missing from the WordPress Appearance sidebar."
+        },
+        {
+            "id": "install_updraftplus",
+            "description": "Install and activate the 'UpdraftPlus WordPress Backup Plugin'.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the 'Plugins' page showing 'UpdraftPlus - Backup/Restore' as 'Active'."
+        },
+        {
+            "id": "configure_backup_schedule",
+            "description": "Set both file and database backup schedules to 'Weekly'.",
+            "points": 15,
+            "visual_evidence": "Screenshot of UpdraftPlus 'Settings' tab showing 'Files backup schedule' and 'Database backup schedule' both set to 'Weekly'."
+        },
+        {
+            "id": "configure_backup_retention",
+            "description": "Set the backup retention limit to '4'.",
+            "points": 15,
+            "visual_evidence": "Screenshot of UpdraftPlus 'Settings' tab showing the retention setting (number of scheduled backups to keep) set to '4' for both files and database."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress dashboard GUI for user management and plugin configuration.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the WordPress admin panel menus and forms rather than only using WP-CLI or SQL commands."
+        },
+        {
+            "id": "genuine_plugin_installation",
+            "description": "The agent searched for and installed the plugin from the official repository or uploaded the genuine file.",
+            "visual_evidence": "Screenshots showing the 'Add Plugins' search results for 'UpdraftPlus' and the subsequent installation process."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'Success' or create dummy files to mimic completion.",
+            "visual_evidence": "The agent's trajectory shows the actual navigation through the WordPress settings pages and the editing of the real wp-config.php file."
+        }
+    ],
+    "privileged_info_for_vlm": "The new administrator must be 'sec_admin' with email 'security@example.com'. The original 'admin' user must be deleted. The file /var/www/html/wordpress/wp-config.php must contain 'define( 'DISALLOW_FILE_EDIT', true );'. UpdraftPlus must be configured for 'Weekly' backups with a retention count of '4'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "remote_debug_attach_inspect@1",
+    "task_completion": [
+        {
+            "id": "open_payment_gateway_project",
+            "description": "The agent opens the 'PaymentGateway' project in the IDE.",
+            "points": 10,
+            "visual_evidence": "The IDE (e.g., IntelliJ IDEA) is visible with the project 'PaymentGateway' loaded in the project explorer."
+        },
+        {
+            "id": "configure_remote_debug",
+            "description": "The agent configures a Remote JVM Debug configuration targeting port 5005.",
+            "points": 15,
+            "visual_evidence": "A 'Run/Debug Configurations' dialog or panel showing a 'Remote JVM Debug' setup with 'Host: localhost' and 'Port: 5005'."
+        },
+        {
+            "id": "attach_debugger",
+            "description": "The agent successfully attaches the debugger to the running process.",
+            "points": 15,
+            "visual_evidence": "The Debug console shows a message like 'Connected to the target VM' or the debug tool window becomes active with thread information."
+        },
+        {
+            "id": "set_breakpoint_process_transaction",
+            "description": "The agent sets a breakpoint in the 'processTransaction' method.",
+            "points": 20,
+            "visual_evidence": "A red breakpoint dot is visible in the gutter of the source code file (likely TransactionProcessor.java) inside the processTransaction method."
+        },
+        {
+            "id": "inspect_transaction_token",
+            "description": "The agent hits the breakpoint and inspects the 'transactionToken' variable.",
+            "points": 25,
+            "visual_evidence": "The IDE is in a suspended state at the breakpoint; the 'Variables' or 'Debug' pane shows the variable 'transactionToken' with an assigned string value."
+        },
+        {
+            "id": "save_token_to_file",
+            "description": "The agent saves the identified token to the specified text file.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., echo or redirect) or a text editor showing the token being saved to /home/ga/IdeaProjects/PaymentGateway/token_found.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_direct_file_read",
+            "description": "The agent did not try to read the ground truth file directly from /tmp.",
+            "visual_evidence": "The terminal history or file explorer does not show the agent accessing /tmp/.ground_truth_token."
+        },
+        {
+            "id": "genuine_debugger_usage",
+            "description": "The agent used the IDE's debugging interface rather than just searching logs or guessing.",
+            "visual_evidence": "Screenshots show the IDE's Debug tool window, variable inspection panels, and breakpoint markers."
+        },
+        {
+            "id": "correct_port_usage",
+            "description": "The agent specifically targeted port 5005 as instructed.",
+            "visual_evidence": "The debug configuration or terminal commands explicitly mention port 5005."
+        }
+    ],
+    "privileged_info_for_vlm": "The Java process is running on port 5005. The source code is located in /home/ga/IdeaProjects/PaymentGateway. The main class is com.example.gateway.TransactionProcessor. The agent must find the value of 'transactionToken' by attaching a debugger to this process and stopping in the 'processTransaction' method. The final value must be written to /home/ga/IdeaProjects/PaymentGateway/token_found.txt."
+}

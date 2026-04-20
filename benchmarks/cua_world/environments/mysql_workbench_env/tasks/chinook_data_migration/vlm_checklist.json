@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_data_migration@1",
+    "task_completion": [
+        {
+            "id": "update_invoice_billing_address",
+            "description": "Update Invoice records with NULL BillingAddress using the Address from the Customer table.",
+            "points": 15,
+            "visual_evidence": "SQL command execution in terminal or DB client showing an UPDATE statement joining Invoice and Customer tables, or a SELECT query showing 0 rows with NULL BillingAddress in the Invoice table."
+        },
+        {
+            "id": "update_invoiceline_unitprice",
+            "description": "Update InvoiceLine records where UnitPrice is inconsistent with the Track table's UnitPrice.",
+            "points": 15,
+            "visual_evidence": "SQL command execution showing an UPDATE statement joining InvoiceLine and Track tables to sync UnitPrice, or a confirmation message of rows affected."
+        },
+        {
+            "id": "create_sales_by_genre_view",
+            "description": "Create a database view named v_sales_by_genre joining Genre, Track, InvoiceLine, and Invoice.",
+            "points": 20,
+            "visual_evidence": "SQL command 'CREATE VIEW v_sales_by_genre' visible in the terminal or database tool, including the SUM(UnitPrice * Quantity) calculation."
+        },
+        {
+            "id": "create_trackid_index",
+            "description": "Add a non-unique index named idx_invoiceline_trackid on InvoiceLine(TrackId).",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE INDEX idx_invoiceline_trackid ON InvoiceLine(TrackId)' or a database schema view showing the new index."
+        },
+        {
+            "id": "export_genre_sales_csv",
+            "description": "Export the v_sales_by_genre results to /home/ga/Documents/exports/chinook_genre_sales.csv sorted by total_sales descending.",
+            "points": 35,
+            "visual_evidence": "Terminal command (e.g., SELECT ... INTO OUTFILE or redirection) or GUI export dialog showing the specific file path and the 'ORDER BY total_sales DESC' clause."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the MySQL server directly rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots show terminal prompts (mysql>), database client interfaces, or logs of SQL execution against the 'chinook' database."
+        },
+        {
+            "id": "no_hardcoded_csv_content",
+            "description": "The agent did not manually type the CSV content or echo a pre-calculated string into the file.",
+            "visual_evidence": "The agent uses SQL export commands or scripts that query the database to generate the file, rather than 'echo' or 'cat' with the final data values."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the exact file path specified in the task.",
+            "visual_evidence": "The file path /home/ga/Documents/exports/chinook_genre_sales.csv is visible in the export command or file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'chinook' database is on localhost (user: ga, password: password123). There are exactly 15 Invoice records with NULL BillingAddress and 3 InvoiceLine records with an incorrect UnitPrice (99.99) that need fixing. The view must be named 'v_sales_by_genre' and the index 'idx_invoiceline_trackid'. The final CSV should contain 25 genres, sorted by total_sales in descending order."
+}

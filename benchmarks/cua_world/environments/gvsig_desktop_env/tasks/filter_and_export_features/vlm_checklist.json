@@ -1,0 +1,59 @@
+{
+    "task_id": "filter_and_export_features@1",
+    "task_completion": [
+        {
+            "id": "open_selection_tool",
+            "description": "Open the 'Select by Attributes' or 'Filter' dialog for the Natural Earth layer.",
+            "points": 10,
+            "visual_evidence": "A dialog box titled 'Select by attributes', 'Query builder', or similar is visible over the gvSIG workspace."
+        },
+        {
+            "id": "input_query_expression",
+            "description": "Enter the correct SQL/Filter expression for POP_EST > 100,000,000.",
+            "points": 20,
+            "visual_evidence": "The text field in the selection dialog contains an expression like \"POP_EST\" > 100000000."
+        },
+        {
+            "id": "features_selected",
+            "description": "Execute the selection so that the populous countries are highlighted in the map or table.",
+            "points": 20,
+            "visual_evidence": "Several countries on the map (e.g., China, India, USA, Brazil) are highlighted in the selection color (usually yellow), or the attribute table shows selected rows."
+        },
+        {
+            "id": "export_dialog_configuration",
+            "description": "Open the 'Export to' or 'Save as' dialog and select 'Shapefile' format.",
+            "points": 15,
+            "visual_evidence": "An export wizard or 'Save as' window is visible with 'shp' or 'Shapefile' selected as the output format."
+        },
+        {
+            "id": "set_output_path",
+            "description": "Specify the exact output path and filename as required by the task.",
+            "points": 15,
+            "visual_evidence": "The file path /home/ga/gvsig_data/exports/populous_countries.shp is typed into the file selection or output path field."
+        },
+        {
+            "id": "export_selected_only",
+            "description": "Ensure the export is configured to save only the selected features.",
+            "points": 20,
+            "visual_evidence": "A checkbox or radio button labeled 'Export selected features', 'Selected shapes', or similar is checked in the export dialog."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gvSIG menus, dialogs, and buttons; no terminal window is used to bypass the GIS software."
+        },
+        {
+            "id": "genuine_selection_process",
+            "description": "The agent actually performed a query rather than manually clicking countries.",
+            "visual_evidence": "The 'Select by Attributes' dialog is seen with the correct numeric threshold (100,000,000) entered."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply rename an existing file to match the target path.",
+            "visual_evidence": "The agent is seen navigating the gvSIG export wizard and clicking 'Finish' or 'OK' to generate the file."
+        }
+    ],
+    "privileged_info_for_vlm": "The Natural Earth 110m countries dataset contains exactly 14 countries with a POP_EST greater than 100,000,000. The VLM should verify the agent uses the path /home/ga/gvsig_data/exports/populous_countries.shp and that the 'Selected features' option is active during the export process."
+}

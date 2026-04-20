@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_missing_crs_sf_landmarks@1",
+    "task_completion": [
+        {
+            "id": "open_gis_software",
+            "description": "Agent opens a GIS application (e.g., QGIS) to process the shapefile.",
+            "points": 10,
+            "visual_evidence": "The QGIS interface or a similar GIS software window is visible on the screen."
+        },
+        {
+            "id": "load_missing_prj_layer",
+            "description": "Agent loads 'sf_landmarks_missing_prj.shp' into the software.",
+            "points": 10,
+            "visual_evidence": "The layer 'sf_landmarks_missing_prj' appears in the Layers panel, likely with a '?' or warning icon indicating a missing CRS."
+        },
+        {
+            "id": "assign_input_crs",
+            "description": "Agent assigns the correct source CRS (EPSG:2227) based on the surveyor notes.",
+            "points": 25,
+            "visual_evidence": "The 'Set Layer CRS' or 'Assign Projection' dialog is shown with 'EPSG:2227' or 'NAD83 / California zone 3 (ftUS)' selected."
+        },
+        {
+            "id": "export_reproject_dialog",
+            "description": "Agent initiates the export/save-as process to change the format and CRS.",
+            "points": 20,
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog is visible, showing the format set to 'GeoJSON' and the CRS set to 'EPSG:4326 - WGS 84'."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Agent specifies the correct output path and filename.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/GIS_Data/exports/sf_landmarks_wgs84.geojson' is typed into the file name field of the export dialog."
+        },
+        {
+            "id": "verify_output_coordinates",
+            "description": "Agent verifies the exported data has geographic coordinates (longitude/latitude).",
+            "points": 20,
+            "visual_evidence": "The attribute table or a coordinate display shows values around -122.4 and 37.8 (e.g., Coit Tower at approx -122.405, 37.802)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GIS GUI rather than just running a single terminal command like ogr2ogr.",
+            "visual_evidence": "Screenshots show interaction with menus, layer panels, and dialog boxes within a GIS application."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create a text file and rename it to .geojson.",
+            "visual_evidence": "The export process is visible through the GIS software's export/save interface."
+        },
+        {
+            "id": "genuine_crs_selection",
+            "description": "The agent actively searched for or selected EPSG:2227 based on the notes, not just guessing.",
+            "visual_evidence": "The CRS selector dialog is seen with '2227' typed into the filter/search box."
+        }
+    ],
+    "privileged_info_for_vlm": "The source CRS for the shapefile is EPSG:2227 (NAD83 / California zone 3 ftUS). The target CRS for the GeoJSON export is EPSG:4326 (WGS 84). Correct geographic coordinates for verification: Coit Tower should be near (-122.4058, 37.8024) and the Golden Gate Bridge south end should be near (-122.4783, 37.8199). The output must be a GeoJSON file at /home/ga/GIS_Data/exports/sf_landmarks_wgs84.geojson."
+}

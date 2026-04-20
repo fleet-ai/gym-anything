@@ -1,0 +1,53 @@
+{
+    "task_id": "multi_ring_buffer_evacuation_zones@1",
+    "task_completion": [
+        {
+            "id": "load_source_data",
+            "description": "Load the source GeoJSON file from the specified path into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The file 'sample_points.geojson' is visible in the Layers panel or the map canvas shows three distinct points in the San Francisco Bay Area."
+        },
+        {
+            "id": "reproject_to_metric",
+            "description": "Reproject the layer or set the project CRS to EPSG:32610 (UTM Zone 10N) for accurate metric buffering.",
+            "points": 15,
+            "visual_evidence": "The CRS status bar or layer properties dialog shows 'EPSG:32610' or 'WGS 84 / UTM zone 10N'."
+        },
+        {
+            "id": "configure_multi_ring_buffer",
+            "description": "Open the Multi-ring buffer tool and configure it with 3 rings at 500-meter intervals.",
+            "points": 25,
+            "visual_evidence": "A tool dialog (like 'Multi-ring buffer (constant distance)') is visible with 'Number of rings' set to 3 and 'Distance between rings' set to 500."
+        },
+        {
+            "id": "generate_buffer_layer",
+            "description": "Execute the buffer tool to create the concentric evacuation zones.",
+            "points": 20,
+            "visual_evidence": "A new layer appears in the Layers panel (often named 'Multi-ring buffer' or 'Buffered') and the map shows concentric circles around the three points."
+        },
+        {
+            "id": "export_to_wgs84",
+            "description": "Export/Save the resulting layer as a GeoJSON in EPSG:4326 to the specified export path.",
+            "points": 30,
+            "visual_evidence": "The 'Save Vector Layer as' or 'Export' dialog shows the format as 'GeoJSON', the CRS as 'EPSG:4326', and the file path as '/home/ga/GIS_Data/exports/evacuation_zones.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the GIS software GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show interactions with QGIS or a similar GIS application interface, including menu selections and tool dialogs."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "Ensure the agent didn't just rename the input file or create a dummy file.",
+            "visual_evidence": "The map canvas must show the geometry change from points to concentric polygons (rings)."
+        },
+        {
+            "id": "path_accuracy",
+            "description": "Verify the agent used the specific export path requested in the task.",
+            "visual_evidence": "The file explorer or export dialog explicitly shows the path '/home/ga/GIS_Data/exports/evacuation_zones.geojson'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/GIS_Data/sample_points.geojson containing 3 points. The required CRS for processing is EPSG:32610 (UTM 10N) to ensure the 500m intervals are accurate. The final output must be a GeoJSON file at /home/ga/GIS_Data/exports/evacuation_zones.geojson in EPSG:4326 (WGS84) containing exactly 9 polygon features (3 points x 3 rings)."
+}

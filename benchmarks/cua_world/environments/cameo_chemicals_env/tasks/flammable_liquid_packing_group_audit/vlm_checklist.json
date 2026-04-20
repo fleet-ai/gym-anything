@@ -1,0 +1,53 @@
+{
+    "task_id": "flammable_liquid_packing_group_audit@1",
+    "task_completion": [
+        {
+            "id": "search_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website and searches for the specified chemicals.",
+            "points": 10,
+            "visual_evidence": "Browser showing the CAMEO Chemicals search page or search results for Propylene Oxide, Toluene, Cyclohexanone, or Acetonitrile."
+        },
+        {
+            "id": "extract_physical_properties",
+            "description": "Agent identifies the Boiling Point and Flash Point for each chemical from the CAMEO data sheets.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the 'Physical Properties' section of the CAMEO Chemicals pages for the four chemicals."
+        },
+        {
+            "id": "apply_classification_logic",
+            "description": "Agent applies the 49 CFR 173.121 rules to determine the Packing Group for each chemical.",
+            "points": 25,
+            "visual_evidence": "Notes in a text editor, terminal, or draft file showing the calculation/logic matching the BP and FP to the correct Packing Group (I, II, or III)."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Agent creates the CSV file at the specified path with the correct header.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing the existence of '/home/ga/Documents/packing_group_audit.csv' or a text editor saving this file."
+        },
+        {
+            "id": "verify_csv_content",
+            "description": "The CSV contains the correct data for all four chemicals including BP, FP, and Packing Group.",
+            "points": 20,
+            "visual_evidence": "The content of the CSV file displayed in a viewer or editor showing: Propylene Oxide (34, -37, I), Toluene (110, 4, II), Cyclohexanone (155, 44, III), and Acetonitrile (82, 2, II)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually visited the CAMEO Chemicals website rather than using pre-existing knowledge.",
+            "visual_evidence": "Browser history or active tabs showing the NOAA.gov domain and specific chemical search queries."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply paste the final CSV content without visiting the source website.",
+            "visual_evidence": "Sequential screenshots showing the transition from the browser (data source) to the document creation (output)."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent saved the file in the specific directory requested, not a default location.",
+            "visual_evidence": "The file path '/home/ga/Documents/packing_group_audit.csv' is visible in the 'Save As' dialog or terminal output."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified values from CAMEO Chemicals: 1. Propylene Oxide: BP 34°C, FP -37°C -> PG I (BP <= 35). 2. Toluene: BP 110°C, FP 4°C -> PG II (BP > 35, FP < 23). 3. Cyclohexanone: BP 155°C, FP 44°C -> PG III (BP > 35, FP >= 23). 4. Acetonitrile: BP 82°C, FP 2°C -> PG II (BP > 35, FP < 23). The CSV header must be 'Chemical,Boiling_Point_C,Flash_Point_C,Packing_Group'."
+}

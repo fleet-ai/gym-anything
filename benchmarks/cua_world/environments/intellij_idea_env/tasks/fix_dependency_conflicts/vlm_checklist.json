@@ -1,0 +1,62 @@
+{
+    "task_id": "fix_dependency_conflicts@1",
+    "task_completion": [
+        {
+            "id": "open_pom_xml",
+            "description": "The agent opens the pom.xml file in the data-pipeline project.",
+            "points": 10,
+            "visual_evidence": "A text editor or IDE window showing the contents of ~/IdeaProjects/data-pipeline/pom.xml."
+        },
+        {
+            "id": "identify_conflicts",
+            "description": "The agent identifies the incorrect versions for jackson-core and commons-lang3 in the pom.xml.",
+            "points": 15,
+            "visual_evidence": "The cursor or selection highlighting the jackson-core (version 2.9.0) or commons-lang3 (version 3.1) dependency blocks."
+        },
+        {
+            "id": "update_jackson_version",
+            "description": "The agent updates the jackson-core version to 2.16 or higher.",
+            "points": 25,
+            "visual_evidence": "The pom.xml file showing <version>2.16</version> (or higher) for the jackson-core dependency."
+        },
+        {
+            "id": "update_lang3_version",
+            "description": "The agent updates the commons-lang3 version to 3.5 or higher.",
+            "points": 20,
+            "visual_evidence": "The pom.xml file showing <version>3.5</version> (or higher) for the commons-lang3 dependency."
+        },
+        {
+            "id": "trigger_maven_build",
+            "description": "The agent runs a Maven build (e.g., mvn clean install or mvn compile).",
+            "points": 15,
+            "visual_evidence": "A terminal window or IDE console showing the execution of a Maven build command."
+        },
+        {
+            "id": "verify_build_success",
+            "description": "The project compiles successfully and tests pass.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'BUILD SUCCESS' and 'Tests run: [X], Failures: 0, Errors: 0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_source_code_changes",
+            "description": "The agent did not modify Java source files to bypass the dependency issue.",
+            "points": 0,
+            "visual_evidence": "The agent should only be seen editing pom.xml; no edits to .java files should be visible in the file explorer or editor tabs."
+        },
+        {
+            "id": "genuine_maven_interaction",
+            "description": "The agent uses Maven to verify the fix rather than just claiming it works.",
+            "points": 0,
+            "visual_evidence": "Actual terminal output from the 'mvn' command showing the build process, not just a text file or echo statement."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the provided IDE or text editor GUI to perform edits.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor or IDE menus being used to navigate and edit files."
+        }
+    ],
+    "privileged_info_for_vlm": "The project requires jackson-core version 2.16 or higher to support 'StreamWriteConstraints' and commons-lang3 version 3.5 or higher to support 'StringUtils.truncate()'. The initial pom.xml incorrectly uses jackson-core 2.9.0 and commons-lang3 3.1. The agent must update these specific versions in the pom.xml and run 'mvn clean install' to confirm the fix. Modifying Java source code is strictly forbidden."
+}

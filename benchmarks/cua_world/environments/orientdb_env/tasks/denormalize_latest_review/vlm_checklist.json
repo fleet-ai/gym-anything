@@ -1,0 +1,53 @@
+{
+    "task_id": "denormalize_latest_review@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_schema",
+            "description": "Navigate to the OrientDB Schema management section for the 'Hotels' class.",
+            "points": 10,
+            "visual_evidence": "The OrientDB Studio interface showing the 'Schema' tab or the 'Hotels' class configuration page."
+        },
+        {
+            "id": "create_latest_review_property",
+            "description": "Add a new property named 'LatestReview' with type 'EMBEDDED' to the 'Hotels' class.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the 'LatestReview' property listed in the 'Hotels' class schema with the type 'EMBEDDED'."
+        },
+        {
+            "id": "query_latest_reviews",
+            "description": "Execute a query to select the most recent review (sorted by Date descending) for hotels via the 'HasReview' edge.",
+            "points": 25,
+            "visual_evidence": "The 'Query' or 'Command' editor showing SQL/Gremlin code that selects from 'Reviews', orders by 'Date DESC', and filters by the 'HasReview' relationship."
+        },
+        {
+            "id": "update_hotels_data",
+            "description": "Perform an UPDATE operation to populate the 'LatestReview' field for hotel records.",
+            "points": 25,
+            "visual_evidence": "A successful execution message of an UPDATE command or a script running in the OrientDB Studio console."
+        },
+        {
+            "id": "verify_embedded_data",
+            "description": "Verify that 'LatestReview' contains 'stars', 'text', and 'date' for a hotel (e.g., Hotel Artemide).",
+            "points": 20,
+            "visual_evidence": "A 'Browse' or 'Query' result table showing a record for a hotel where the 'LatestReview' column contains a JSON object or embedded record with 'stars', 'text', and 'date' fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing background scripts.",
+            "visual_evidence": "Screenshots showing the browser, OrientDB Studio tabs (Schema, Query, Browse), and button clicks."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type in the review text for a specific hotel but used a query to fetch it.",
+            "visual_evidence": "The command editor showing a dynamic UPDATE or INSERT statement using subqueries or JOINs rather than a static string for a single hotel."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The data shown in the final verification matches the expected schema and content of the 'demodb' dataset.",
+            "visual_evidence": "The 'Hotels' class records showing actual hotel names like 'Hotel Artemide' and corresponding review data."
+        }
+    ],
+    "privileged_info_for_vlm": "The target class is 'Hotels'. The new property must be exactly 'LatestReview' (Type: EMBEDDED). It must contain 'stars', 'text', and 'date' from the 'Reviews' class. The 'Reviews' are linked to 'Hotels' via 'HasReview' edges. To find the 'latest', the agent must sort by the 'Date' field in descending order. A key test case is 'Hotel Artemide', which is a 4-star boutique hotel in Rome."
+}

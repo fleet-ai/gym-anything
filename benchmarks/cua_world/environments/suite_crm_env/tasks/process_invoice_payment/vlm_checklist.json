@@ -1,0 +1,59 @@
+{
+    "task_id": "process_invoice_payment@1",
+    "task_completion": [
+        {
+            "id": "locate_invoice",
+            "description": "Locate and open the specific invoice 'INV-90950: Meridian Quarterly Supplies' in the CRM.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the invoice detail view for 'INV-90950: Meridian Quarterly Supplies' on the screen."
+        },
+        {
+            "id": "update_status_to_paid",
+            "description": "Change the invoice status field to 'Paid'.",
+            "points": 25,
+            "visual_evidence": "The 'Status' dropdown or field on the invoice record should clearly display the value 'Paid'."
+        },
+        {
+            "id": "save_invoice_changes",
+            "description": "Save the changes made to the invoice status.",
+            "points": 10,
+            "visual_evidence": "The UI should show a 'Saved' confirmation message or the record should transition from edit mode back to detail view with the updated status."
+        },
+        {
+            "id": "create_related_note",
+            "description": "Initiate the creation of a new note linked to the invoice.",
+            "points": 15,
+            "visual_evidence": "A 'Create Note' or 'Compose Note' window/form is visible, ideally within the 'History' or 'Notes' subpanel of the invoice."
+        },
+        {
+            "id": "set_note_subject",
+            "description": "Set the note subject to 'Wire Transfer Confirmed'.",
+            "points": 15,
+            "visual_evidence": "The text 'Wire Transfer Confirmed' is typed into the Subject field of the note creation form."
+        },
+        {
+            "id": "set_note_body",
+            "description": "Set the note body with the specific payment details including the transaction reference TXN-44892A.",
+            "points": 20,
+            "visual_evidence": "The note body field contains the text: 'Payment of $14,500 received via wire transfer on March 8. Transaction Ref: TXN-44892A. Cleared by Accounting.'"
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface rather than executing database commands via a terminal.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and typing within the browser/CRM UI; no terminal windows showing SQL queries or direct DB manipulation are present."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the CRM menus or search bar to find the invoice rather than jumping to a direct database ID URL if not provided.",
+            "visual_evidence": "The agent is seen using the search bar or the Invoices module list to find the record."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or pasted the note details into the UI fields.",
+            "visual_evidence": "The VLM should see the text being populated into the CRM's form fields in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The target invoice is 'INV-90950: Meridian Quarterly Supplies'. The required status is 'Paid'. The note must have the subject 'Wire Transfer Confirmed' and the body must contain the amount '$14,500', the date 'March 8', and the reference 'TXN-44892A'. The note must be linked to the invoice record (AOS_Invoices module)."
+}

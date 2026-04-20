@@ -1,0 +1,65 @@
+{
+    "task_id": "stream_playback_udp_json@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI application window is open on the desktop."
+        },
+        {
+            "id": "playback_file_selected",
+            "description": "The specific EEG recording file is selected for playback.",
+            "points": 15,
+            "visual_evidence": "The file path or name 'OpenBCI-EEG-S001-MotorImagery.txt' is visible in the GUI's file selection or playback source field."
+        },
+        {
+            "id": "networking_widget_active",
+            "description": "The Networking widget is opened and active within the GUI.",
+            "points": 10,
+            "visual_evidence": "The 'Networking' widget panel is visible, typically showing protocol and port settings."
+        },
+        {
+            "id": "udp_json_config",
+            "description": "The networking protocol is set to UDP and the data format is set to JSON.",
+            "points": 20,
+            "visual_evidence": "In the Networking widget, the Protocol dropdown shows 'UDP' and the Type/Format dropdown shows 'JSON'."
+        },
+        {
+            "id": "port_config_12345",
+            "description": "The target port is correctly set to 12345.",
+            "points": 15,
+            "visual_evidence": "The Port input field in the Networking widget displays '12345'."
+        },
+        {
+            "id": "stream_started",
+            "description": "The data stream is initiated and the playback is running.",
+            "points": 15,
+            "visual_evidence": "The 'Start Streaming' button in the Networking widget is toggled on (often turns blue/green) and the main GUI 'Start Data Stream' button is active with moving EEG waveforms."
+        },
+        {
+            "id": "data_received_confirmation",
+            "description": "Evidence that data packets are being successfully sent/received.",
+            "points": 15,
+            "visual_evidence": "The Networking widget shows an incrementing packet count or a 'Sent' status, or a terminal window shows a server receiving JSON formatted EEG data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the OpenBCI GUI to configure the stream rather than just running a background script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI elements like the Networking widget dropdowns and the Start button."
+        },
+        {
+            "id": "genuine_file_source",
+            "description": "The agent loaded the specific file requested, not a default or dummy file.",
+            "visual_evidence": "The file path '~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-MotorImagery.txt' is visible in the GUI."
+        },
+        {
+            "id": "no_manual_packet_spoofing",
+            "description": "The agent did not manually print JSON to a terminal to fake success.",
+            "visual_evidence": "The JSON data in the terminal (if visible) matches the timing and structure of live EEG streaming from the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using OpenBCI GUI to stream 'OpenBCI-EEG-S001-MotorImagery.txt'. The networking settings must be: Protocol=UDP, Port=12345, Format=JSON. Success is defined by at least 5 packets being received by the local server. The file is a real PhysioNet recording (S001R04) containing 30,000 rows of data."
+}

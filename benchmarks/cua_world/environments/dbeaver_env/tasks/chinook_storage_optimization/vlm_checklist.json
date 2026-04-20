@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_storage_optimization@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Connect to the 'ChinookBloated' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver, DB Browser for SQLite, or similar) showing a connection to 'ChinookBloated' or the file path '/home/ga/Documents/databases/chinook_bloated.db'."
+        },
+        {
+            "id": "export_audit_logs_csv",
+            "description": "Export audit_logs records dated before 2024-01-01 to a CSV file with headers.",
+            "points": 25,
+            "visual_evidence": "An export wizard or dialog box showing the destination '/home/ga/Documents/exports/audit_archive.csv', the selection of the 'audit_logs' table, and a filter/query for dates before '2024-01-01'."
+        },
+        {
+            "id": "delete_archived_records",
+            "description": "Delete the exported records from the 'audit_logs' table.",
+            "points": 25,
+            "visual_evidence": "An SQL editor showing a 'DELETE FROM audit_logs WHERE ... < '2024-01-01'' command being executed, or a confirmation message of rows deleted."
+        },
+        {
+            "id": "vacuum_operation",
+            "description": "Perform a VACUUM or optimization operation to reclaim disk space.",
+            "points": 25,
+            "visual_evidence": "The execution of the 'VACUUM;' command in an SQL console or the selection of a 'Compact' or 'Optimize' tool within the database GUI."
+        },
+        {
+            "id": "verify_file_shrinkage",
+            "description": "Verify the database file size has decreased.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal window showing the file size of 'chinook_bloated.db' significantly lower than the initial ~53MB (expected final size is approx 17.6MB)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a graphical database management tool rather than just executing a single script in the terminal.",
+            "visual_evidence": "Screenshots showing a GUI application like DBeaver, SQLiteBrowser, or a similar database IDE being used."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The CSV file was generated through the database tool's export function, not manually created.",
+            "visual_evidence": "Visual steps of an export wizard or a 'Save As' dialog originating from the database software."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply delete the database and recreate it to save space.",
+            "visual_evidence": "The agent specifically interacting with the 'audit_logs' table and executing the VACUUM command."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook_bloated.db. The initial size is approximately 53.4 MB. After deleting records before 2024-01-01 (roughly 26,831 records) and running VACUUM, the file size should drop to approximately 17.6 MB. The export must include a header row and be saved to /home/ga/Documents/exports/audit_archive.csv."
+}

@@ -1,0 +1,62 @@
+{
+    "task_id": "configure_audio_deterrence@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logged into the Nx Witness Web Admin interface.",
+            "points": 10,
+            "visual_evidence": "The browser shows the Nx Witness Web Admin dashboard or settings page instead of the login screen."
+        },
+        {
+            "id": "navigate_to_event_rules",
+            "description": "Agent navigated to the Event Rules configuration section.",
+            "points": 10,
+            "visual_evidence": "The UI displays a list of rules or an 'Add' button specifically for Event Rules/Engine."
+        },
+        {
+            "id": "configure_event_trigger",
+            "description": "The rule is set to trigger on 'Motion' for the 'Loading Dock Camera'.",
+            "points": 25,
+            "visual_evidence": "In the rule settings, the Event/When field shows 'Motion' or 'cameraMotionEvent' and the Source/At field selects 'Loading Dock Camera'."
+        },
+        {
+            "id": "configure_action_type",
+            "description": "The rule action is set to 'Play Sound' on the 'Loading Dock Camera'.",
+            "points": 25,
+            "visual_evidence": "In the rule settings, the Action/Do field shows 'Play Sound' or 'playSoundAction' and the target device is 'Loading Dock Camera'."
+        },
+        {
+            "id": "set_interval",
+            "description": "The interval between actions is set to 1 minute.",
+            "points": 20,
+            "visual_evidence": "The 'Interval at most' or 'Minimum interval' setting is configured to '1 min' or '60 sec'."
+        },
+        {
+            "id": "rule_enabled_and_saved",
+            "description": "The rule is enabled and the configuration is saved.",
+            "points": 10,
+            "visual_evidence": "The 'Enabled' checkbox is checked and the agent clicked 'Save' or 'Apply', or the rule appears in the active rules list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Web Admin GUI rather than executing API scripts via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser interface, not just a terminal window."
+        },
+        {
+            "id": "target_camera_match",
+            "description": "The agent interacted with the specific camera mentioned in the task.",
+            "points": 0,
+            "visual_evidence": "The text 'Loading Dock Camera' is visible in the selection dropdowns or rule summary."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not bypass the UI by manually editing local config files or database entries.",
+            "points": 0,
+            "visual_evidence": "The agent navigates through the standard web menus (Settings > Event Rules) to reach the destination."
+        }
+    ],
+    "privileged_info_for_vlm": "The target camera is 'Loading Dock Camera'. The internal API name for the motion event is 'cameraMotionEvent' and for the play sound action is 'playSoundAction'. The required interval is exactly 60 seconds (1 minute). The agent must use the web interface at https://localhost:7001."
+}

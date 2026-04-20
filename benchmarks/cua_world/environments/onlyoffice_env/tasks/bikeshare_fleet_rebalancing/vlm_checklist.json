@@ -1,0 +1,59 @@
+{
+    "task_id": "bikeshare_fleet_rebalancing@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source CSV files (cabi_weekend_trips.csv and station_directory.csv) in a spreadsheet application or text editor.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the CSV files open in LibreOffice Calc, Excel, or a similar GUI application."
+        },
+        {
+            "id": "calculate_station_metrics",
+            "description": "Agent calculates Departures, Arrivals, and Net Fleet Change for each station in a new workbook.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet showing columns for 'Departures', 'Arrivals', and 'Net Fleet Change' populated with data or formulas."
+        },
+        {
+            "id": "dynamic_formulas_pivot",
+            "description": "Agent uses dynamic formulas (e.g., SUMIF, VLOOKUP) or a Pivot Table to aggregate the trip data.",
+            "points": 20,
+            "visual_evidence": "The formula bar showing a calculation like '=SUMIF(...)' or the presence of a Pivot Table interface/layout."
+        },
+        {
+            "id": "create_executive_summary",
+            "description": "Agent creates a specific sheet or section titled 'Executive Summary'.",
+            "points": 15,
+            "visual_evidence": "A tab labeled 'Executive Summary' or a clearly headered section within the workbook."
+        },
+        {
+            "id": "identify_top_5_surplus_deficit",
+            "description": "The Executive Summary lists the Top 5 Surplus Stations and Top 5 Deficit Stations based on Net Fleet Change.",
+            "points": 20,
+            "visual_evidence": "Two distinct lists or tables in the Executive Summary showing the top 5 highest and lowest net change values."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "The final workbook is saved as 'cabi_rebalancing_plan.xlsx' in the correct directory.",
+            "points": 10,
+            "visual_evidence": "The file manager or spreadsheet title bar showing the path '~/Documents/Spreadsheets/cabi_rebalancing_plan.xlsx'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a spreadsheet GUI to perform the analysis rather than just running a python script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with LibreOffice Calc or a similar GUI tool."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type in the final numbers but used the data from the provided CSVs.",
+            "visual_evidence": "Formula bar showing cell references or range selections that point to the source data."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The output file was created during the session and not pre-existing.",
+            "visual_evidence": "The 'Save As' dialog or the process of naming the file 'cabi_rebalancing_plan.xlsx' is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains exactly 5000 trips. 'Lincoln Memorial' is a known surplus station (expected net change around +204) and '14th & V St NW' is a known deficit station (expected net change around -130). The final file must be an .xlsx file located at ~/Documents/Spreadsheets/cabi_rebalancing_plan.xlsx."
+}

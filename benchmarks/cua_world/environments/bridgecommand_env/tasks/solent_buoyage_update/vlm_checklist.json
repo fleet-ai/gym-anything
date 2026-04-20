@@ -1,0 +1,56 @@
+{
+    "task_id": "solent_buoyage_update@1",
+    "task_completion": [
+        {
+            "id": "read_ntm_document",
+            "description": "The agent opens and reads the Notice to Mariners file /home/ga/Documents/NTM_12_26.txt to obtain the new coordinates.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of NTM_12_26.txt."
+        },
+        {
+            "id": "create_world_directory",
+            "description": "The agent creates the new world directory /opt/bridgecommand/World/Solent_v2026 and copies the base 'Solent' files into it.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing the creation of the Solent_v2026 directory and its contents."
+        },
+        {
+            "id": "update_world_description",
+            "description": "The agent updates the world configuration file (e.g., world.ini or description file) to name the world 'Solent v2026 (Updated)'.",
+            "points": 15,
+            "visual_evidence": "A text editor showing the world name string 'Solent v2026 (Updated)' inside a configuration file in the new directory."
+        },
+        {
+            "id": "relocate_horse_sand_buoy",
+            "description": "The agent updates the coordinates for the 'Horse Sand' buoy and its associated light to the new decimal degree positions specified in the NTM.",
+            "points": 30,
+            "visual_evidence": "A text editor showing the buoy and light configuration files (e.g., objects.ini or lights.ini) with updated decimal latitude and longitude values for Horse Sand."
+        },
+        {
+            "id": "add_wreck_buoy",
+            "description": "The agent adds a new entry for the 'Wreck' buoy at the specified coordinates in the configuration files.",
+            "points": 30,
+            "visual_evidence": "A text editor showing a new buoy entry named 'Wreck' with the correct decimal coordinates in the objects.ini file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited the configuration files rather than just creating a dummy file.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the agent interacting with a text editor (like gedit, nano, or vim) to modify specific lines in the .ini files."
+        },
+        {
+            "id": "coordinate_conversion",
+            "description": "The agent performs or shows the result of converting DMS coordinates to decimal degrees as required by the task.",
+            "points": 0,
+            "visual_evidence": "The presence of decimal values (e.g., 50.xxxx) in the configuration files instead of DMS strings (50° 45')."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a pre-made script to solve the task instantly.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows step-by-step navigation of the file system and manual editing of files."
+        }
+    ],
+    "privileged_info_for_vlm": "The target directory is /opt/bridgecommand/World/Solent_v2026. The world name must be 'Solent v2026 (Updated)'. The Horse Sand buoy and its light must be moved to the same new coordinates. All coordinates must be in decimal degrees (e.g., 50.7588). The 'Wreck' buoy is a new addition. The coordinate tolerance for verification is 0.001 degrees."
+}

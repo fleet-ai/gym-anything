@@ -1,0 +1,59 @@
+{
+    "task_id": "simulate_emergency_vehicle@1",
+    "task_completion": [
+        {
+            "id": "create_ambulance_route_file",
+            "description": "The agent creates or modifies ambulance.rou.xml with the correct vehicle type 'rescue' and parameters (vClass='emergency', guiShape='emergency', speedFactor='1.5', has.bluelight.device='true').",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the XML content of /home/ga/SUMO_Scenarios/bologna_pasubio/ambulance.rou.xml with the specified attributes."
+        },
+        {
+            "id": "define_vehicle_instance",
+            "description": "The agent defines vehicle 'amb_1' with depart time 300 and a route of at least 5 edges.",
+            "points": 15,
+            "visual_evidence": "The XML content showing <vehicle id=\"amb_1\" depart=\"300\" ...> and a <route edges=\"...\"> containing at least 5 space-separated edge IDs."
+        },
+        {
+            "id": "configure_sumo_run",
+            "description": "The agent configures run_emergency.sumocfg to include the new route file and set the tripinfo-output path.",
+            "points": 15,
+            "visual_evidence": "The content of run_emergency.sumocfg showing references to ambulance.rou.xml and the output path /home/ga/SUMO_Output/tripinfos.xml."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "The agent runs the SUMO simulation using the configured .sumocfg file.",
+            "points": 25,
+            "visual_evidence": "A terminal showing the execution of 'sumo' or 'sumo-gui' with the config file, or the SUMO GUI interface running the simulation past time 300."
+        },
+        {
+            "id": "extract_tripinfo_metrics",
+            "description": "The agent accesses the generated tripinfos.xml to find the results for 'amb_1'.",
+            "points": 15,
+            "visual_evidence": "A terminal command (cat, grep, tail) or editor showing the XML content of /home/ga/SUMO_Output/tripinfos.xml with an entry for id=\"amb_1\"."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent creates the final JSON report with duration, routeLength, and timeLoss.",
+            "points": 15,
+            "visual_evidence": "The content of /home/ga/SUMO_Output/ambulance_report.json displayed in the terminal or an editor containing the three required keys and their numeric values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent didn't just hardcode the JSON report without running the simulation.",
+            "visual_evidence": "Screenshots must show the SUMO simulation process running or the creation/modification of the .sumocfg and .rou.xml files before the JSON report appears."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the specific file paths requested in the task.",
+            "visual_evidence": "The terminal commands or editor titles should explicitly show the paths /home/ga/SUMO_Scenarios/bologna_pasubio/ and /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Verify the values in the JSON report match the values found in the tripinfos.xml file.",
+            "visual_evidence": "The VLM should compare the numbers in the final JSON report screenshot with the numbers visible in the tripinfos.xml screenshot."
+        }
+    ],
+    "privileged_info_for_vlm": "The vehicle must be named 'amb_1'. The type must be 'rescue' with vClass 'emergency' and guiShape 'emergency'. The speedFactor must be 1.5 and the parameter 'has.bluelight.device' must be 'true'. The departure time is 300. The route must contain at least 5 edges. The final output is a JSON file at /home/ga/SUMO_Output/ambulance_report.json."
+}

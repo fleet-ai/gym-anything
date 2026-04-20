@@ -1,0 +1,59 @@
+{
+    "task_id": "zstack_depth_profiling@1",
+    "task_completion": [
+        {
+            "id": "open_fly_brain_sample",
+            "description": "Open the 'Fly Brain' sample image from the Fiji/ImageJ samples menu.",
+            "points": 10,
+            "visual_evidence": "The Fiji application window is open showing an image titled 'Fly Brain' with a z-stack slider at the bottom."
+        },
+        {
+            "id": "create_mip_projection",
+            "description": "Generate a Maximum Intensity Projection (MIP) and save it as fly_brain_MIP.tif.",
+            "points": 20,
+            "visual_evidence": "A new image window titled 'MAX_Fly Brain' (or similar) is visible, and a file saving dialog or a file manager view shows 'fly_brain_MIP.tif' in the results folder."
+        },
+        {
+            "id": "create_avg_projection",
+            "description": "Generate an Average Intensity Projection (AVG) and save it as fly_brain_AVG.tif.",
+            "points": 20,
+            "visual_evidence": "A new image window titled 'AVG_Fly Brain' (or similar) is visible, and a file saving dialog or a file manager view shows 'fly_brain_AVG.tif' in the results folder."
+        },
+        {
+            "id": "orthogonal_reslice_xz",
+            "description": "Perform an Orthogonal Reslice to create an XZ view and save it as fly_brain_reslice_XZ.tif.",
+            "points": 20,
+            "visual_evidence": "An 'Orthogonal Views' window or a 'Reslice' output window showing a cross-section of the brain is visible, and the file 'fly_brain_reslice_XZ.tif' is saved."
+        },
+        {
+            "id": "create_montage",
+            "description": "Create a Montage of the z-stack slices and save it as fly_brain_montage.tif.",
+            "points": 15,
+            "visual_evidence": "A window showing a grid of multiple brain slices (a montage) is visible, and the file 'fly_brain_montage.tif' is saved."
+        },
+        {
+            "id": "z_profile_csv",
+            "description": "Measure the mean intensity of each slice and save the results as fly_brain_z_profile.csv.",
+            "points": 15,
+            "visual_evidence": "A 'Results' table or 'Plot Profile' window is visible showing values for each slice, and 'fly_brain_z_profile.csv' exists in the results folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI menus (Image > Stacks, etc.) rather than just command-line file manipulation.",
+            "visual_evidence": "Screenshots show the Fiji menu bar being navigated or Fiji-specific dialog boxes (like 'Z Project' or 'Make Montage') active."
+        },
+        {
+            "id": "genuine_sample_source",
+            "description": "The agent accessed the sample through the File > Open Samples menu.",
+            "visual_evidence": "The mouse cursor or menu highlighting is seen over 'File' then 'Open Samples' then 'Fly Brain'."
+        },
+        {
+            "id": "actual_data_processing",
+            "description": "The saved images match the visual characteristics of the Fly Brain sample (nc82/GAL4 staining).",
+            "visual_evidence": "The generated projections and montages show the distinct morphology of a Drosophila brain (lobes, central complex) in red and green channels."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Fly Brain' sample is a standard Fiji sample image (flybrain.zip) with dimensions approximately 256x256x57. It features two channels: nc82 antibody staining (green) and GAL4 driver line 78y expression (red). Correct outputs for MIP and AVG should show the full brain structure, while the Z-profile CSV must contain approximately 57 rows of intensity data corresponding to the slices."
+}

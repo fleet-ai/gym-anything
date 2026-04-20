@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_airgap_deployment@1",
+    "task_completion": [
+        {
+            "id": "build_image_locally",
+            "description": "Build the 'inventory-tracker:v1' image from the source directory.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker build -t inventory-tracker:v1' or a similar command being executed in '~/projects/inventory-tracker/'."
+        },
+        {
+            "id": "save_image_tar",
+            "description": "Export the built image to a tarball for transfer (required for air-gap deployment).",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker save -o' or similar command to create a .tar file of the image."
+        },
+        {
+            "id": "load_image_remote",
+            "description": "Load the image onto the 'prod-secure' host (localhost:2375).",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'docker -H tcp://localhost:2375 load -i' or setting DOCKER_HOST before loading the image."
+        },
+        {
+            "id": "run_container_config",
+            "description": "Run the container named 'tracker-app' with port mapping 8080:5000 and restart policy 'always'.",
+            "points": 30,
+            "visual_evidence": "Terminal command showing 'docker -H tcp://localhost:2375 run' with flags '--name tracker-app', '-p 8080:5000', and '--restart always'."
+        },
+        {
+            "id": "verify_responsiveness",
+            "description": "Verify the application is responsive on the target host.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing a 'curl http://localhost:8080' command returning an HTML response or a browser window showing the inventory tracker UI."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_external_pull",
+            "description": "Verify the agent did not attempt to pull the image from a registry on the remote host.",
+            "visual_evidence": "The agent should use 'docker load' on the remote host rather than 'docker pull', as the remote host is air-gapped."
+        },
+        {
+            "id": "correct_host_context",
+            "description": "Verify the agent correctly targeted the remote Docker daemon.",
+            "visual_evidence": "Commands should explicitly use '-H tcp://localhost:2375' or show the 'DOCKER_HOST' environment variable being exported."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Verify the agent didn't just echo the expected output.",
+            "visual_evidence": "The VLM should see the actual command execution and the standard Docker CLI output, not just a manual print/echo of 'Success'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source code is in /home/ga/projects/inventory-tracker. The target Docker host is at tcp://localhost:2375. The required image name is 'inventory-tracker:v1' and the container name must be 'tracker-app'. The container must map host port 8080 to container port 5000 and have a restart policy of 'always'. Because the target is air-gapped, the agent must build the image locally and then load it into the remote daemon (usually via docker save/load)."
+}

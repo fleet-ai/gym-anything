@@ -1,0 +1,59 @@
+{
+    "task_id": "clean_layer_schema@1",
+    "task_completion": [
+        {
+            "id": "open_table_manager",
+            "description": "Open the Table Manager or Schema modification tool for the 'ne_110m_admin_0_countries' layer.",
+            "points": 10,
+            "visual_evidence": "A dialog box or window showing the attribute table structure or 'Table Manager' interface for the specific layer."
+        },
+        {
+            "id": "remove_economy_field",
+            "description": "Remove the 'ECONOMY' field from the attribute schema.",
+            "points": 15,
+            "visual_evidence": "The 'ECONOMY' field is selected for deletion or is absent from the list of fields in the schema editor."
+        },
+        {
+            "id": "remove_mapcolor7_field",
+            "description": "Remove the 'MAPCOLOR7' field from the attribute schema.",
+            "points": 15,
+            "visual_evidence": "The 'MAPCOLOR7' field is selected for deletion or is absent from the list of fields in the schema editor."
+        },
+        {
+            "id": "add_license_field",
+            "description": "Add a new field named 'LICENSE' with String/Text type and length >= 20.",
+            "points": 25,
+            "visual_evidence": "A new field entry in the schema list with Name: 'LICENSE', Type: 'String' (or 'C'), and a Length/Size value of at least 20."
+        },
+        {
+            "id": "export_dialog_setup",
+            "description": "Configure the export/save-as dialog for the modified layer.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' window showing the format set to 'Shapefile' and the output path set to '/home/ga/gvsig_data/exports/countries_cleaned.shp'."
+        },
+        {
+            "id": "successful_export_confirmation",
+            "description": "Complete the export process and verify the file creation.",
+            "points": 20,
+            "visual_evidence": "A progress bar finishing, a success message, or the new layer 'countries_cleaned' appearing in the project's layer list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the gvSIG GUI to modify the schema rather than using terminal commands like 'ogr2ogr'.",
+            "visual_evidence": "Screenshots show mouse cursor movements and interactions with gvSIG menus and dialog buttons; no terminal windows are used for the primary task."
+        },
+        {
+            "id": "genuine_schema_editing",
+            "description": "The agent actually interacted with the schema editing tools rather than just renaming a file.",
+            "visual_evidence": "Visual confirmation of the 'Table Manager' or 'Modify Table' dialog being used to add/remove fields."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply move a pre-existing 'countries_cleaned.shp' file into the export folder.",
+            "visual_evidence": "The export process is seen happening within the gvSIG interface, including the selection of the destination path."
+        }
+    ],
+    "privileged_info_for_vlm": "The original dataset 'ne_110m_admin_0_countries' contains 177 records and includes fields 'ECONOMY' and 'MAPCOLOR7'. The 'LICENSE' field must be type 'C' (Character/String) with a length of 20 or more. The final output must be a Shapefile at /home/ga/gvsig_data/exports/countries_cleaned.shp, which will automatically generate a .dbf file containing the modified schema."
+}

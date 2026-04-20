@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_fullstack_containerization@1",
+    "task_completion": [
+        {
+            "id": "docker_artifacts_created",
+            "description": "Creation of Dockerfiles and docker-compose.yml in the project directory.",
+            "points": 10,
+            "visual_evidence": "Screenshots of a file explorer or terminal showing 'Dockerfile' in subdirectories and a 'docker-compose.yml' in the root project folder."
+        },
+        {
+            "id": "nginx_config_created",
+            "description": "Creation of Nginx configuration files to act as a reverse proxy.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the content of an nginx.conf or a file in an nginx/ directory containing 'proxy_pass' directives."
+        },
+        {
+            "id": "containers_running",
+            "description": "All 5 required services (API, DB, Redis, Worker, Nginx) are up and running.",
+            "points": 20,
+            "visual_evidence": "Terminal output of 'docker compose ps' or 'docker ps' showing 5 containers with 'Up' status."
+        },
+        {
+            "id": "api_product_listing",
+            "description": "The REST API successfully returns the product catalog at http://localhost:8080.",
+            "points": 20,
+            "visual_evidence": "A browser window or curl output showing a JSON response containing exactly 25 products (e.g., IDs 1-25, codes like ELEC-001)."
+        },
+        {
+            "id": "inventory_queries",
+            "description": "The system supports querying inventory across multiple warehouses.",
+            "points": 15,
+            "visual_evidence": "A browser or terminal showing a JSON response with inventory data linked to 3 distinct warehouses (West Coast, East Coast, Central)."
+        },
+        {
+            "id": "order_creation_and_background_processing",
+            "description": "Successful order creation and evidence of asynchronous background processing via the task queue.",
+            "points": 25,
+            "visual_evidence": "A POST request to an orders endpoint returning a success message, followed by logs from the 'worker' container showing the processing of that specific order ID."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_responses",
+            "description": "The agent did not simply echo the expected JSON but actually queried the running service.",
+            "visual_evidence": "The URL bar in the browser shows 'localhost:8080' or the terminal shows a 'curl' command to that address immediately preceding the output."
+        },
+        {
+            "id": "genuine_container_build",
+            "description": "The agent built the containers rather than using pre-existing ones.",
+            "visual_evidence": "Terminal logs showing the 'docker compose build' or 'docker compose up' process with step-by-step image layer creation."
+        },
+        {
+            "id": "source_code_interaction",
+            "description": "The agent opened and read the source files before writing the Dockerfiles.",
+            "visual_evidence": "Screenshots showing the agent opening files in ~/projects/acme-inventory/ (like api/app.py or config.py) in a text editor or using 'cat'."
+        }
+    ],
+    "privileged_info_for_vlm": "The system must consist of 5 services: Flask API, PostgreSQL, Redis, Celery Worker, and Nginx. There should be exactly 25 products in the database (IDs 1-25, categories: ELEC, OFFC, SUPP, TECH, ACCS). There are 3 warehouses: 'West Coast Distribution Center' (ID 1), 'East Coast Fulfillment Hub' (ID 2), and 'Central Processing Facility' (ID 3). The application is hosted at http://localhost:8080."
+}

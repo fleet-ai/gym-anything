@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_fraud_detection_forensics@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the sakila database on localhost using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "MySQL Workbench or a SQL editor showing a successful connection to 'localhost' and the 'sakila' schema visible in the sidebar."
+        },
+        {
+            "id": "view_creation_logic",
+            "description": "Write the SQL query to create the 'v_fraud_report' view with the three required anomaly types and UNION ALL.",
+            "points": 30,
+            "visual_evidence": "A SQL editor window containing code for 'CREATE VIEW v_fraud_report' with logic for 'Time Travel', 'Nepotism', and 'Hoarding'."
+        },
+        {
+            "id": "view_execution",
+            "description": "Execute the SQL command to successfully create the view in the database.",
+            "points": 15,
+            "visual_evidence": "An output log or action output area showing a green checkmark or success message for the 'CREATE VIEW' statement."
+        },
+        {
+            "id": "query_view_results",
+            "description": "Query the newly created view to verify it contains the expected columns: fraud_type, incident_id, and details.",
+            "points": 20,
+            "visual_evidence": "A result grid showing columns named 'fraud_type', 'incident_id', and 'details' with data populated."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the results of the view to the specific file path /home/ga/Documents/exports/fraud_report.csv.",
+            "points": 25,
+            "visual_evidence": "An export wizard dialog or a terminal command showing the destination path '/home/ga/Documents/exports/fraud_report.csv' and a confirmation of successful export."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the MySQL Workbench GUI for database interaction rather than just executing shell scripts.",
+            "visual_evidence": "Screenshots showing the MySQL Workbench application window, query tabs, and result grids."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the results by querying the database, not by manually typing the expected IDs into a CSV file.",
+            "visual_evidence": "SQL code showing the logic for date comparisons (return_date < rental_date) and name matching (staff.last_name = customer.last_name) rather than hardcoded IDs."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system through the application's export features or standard file paths.",
+            "visual_evidence": "The file explorer or export dialog showing the specific directory structure /home/ga/Documents/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if a view named 'v_fraud_report' is created in the 'sakila' database. The view must use UNION ALL to combine: 1. 'Time Travel' (return_date < rental_date), 2. 'Nepotism' (staff and customer share last_name AND amount = 0.00), 3. 'Hoarding' (customer has > 3 rentals where return_date IS NULL and rental_date < NOW() - INTERVAL 30 DAY). The final output must be a CSV at /home/ga/Documents/exports/fraud_report.csv with columns: fraud_type, incident_id, and details."
+}

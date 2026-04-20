@@ -1,0 +1,59 @@
+{
+    "task_id": "mle_normal_regression@1",
+    "task_completion": [
+        {
+            "id": "gretl_data_loaded",
+            "description": "The food.gdt dataset is loaded into the Gretl interface.",
+            "points": 10,
+            "visual_evidence": "The Gretl main window shows 'food.gdt' in the title bar or lists 'food_exp' and 'income' in the variable list."
+        },
+        {
+            "id": "script_editor_opened",
+            "description": "A Gretl script editor window is opened to write the MLE code.",
+            "points": 10,
+            "visual_evidence": "A 'gretl: hansl command file' or script editor window is visible."
+        },
+        {
+            "id": "mle_block_defined",
+            "description": "The script contains the correct MLE block with the normal log-likelihood formula and parameter initializations.",
+            "points": 25,
+            "visual_evidence": "The script shows 'mle logl = ...' with the formula '-0.5*log(2*$pi) - log(sigma) - 0.5*((food_exp - b0 - b1*income)/sigma)^2' and initial values for b0, b1, and sigma."
+        },
+        {
+            "id": "script_saved_correctly",
+            "description": "The script is saved to the specified path /home/ga/Documents/gretl_output/mle_food.inp.",
+            "points": 15,
+            "visual_evidence": "The save dialog or the script window title bar shows the path '/home/ga/Documents/gretl_output/mle_food.inp'."
+        },
+        {
+            "id": "mle_execution_output",
+            "description": "The MLE estimation is executed, and Gretl displays the model results window.",
+            "points": 20,
+            "visual_evidence": "A Gretl output window appears showing 'Model 1: MLE, using observations 1-40' with estimated coefficients for b0, b1, and sigma."
+        },
+        {
+            "id": "results_saved_to_file",
+            "description": "The resulting coefficients are saved to /home/ga/Documents/gretl_output/mle_results.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file /home/ga/Documents/gretl_output/mle_results.txt containing the estimated values for b0, b1, and sigma."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Gretl GUI to perform the task rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the Gretl application window, script editor, and output windows being interacted with."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the final coefficients into the results file without running the model.",
+            "visual_evidence": "The Gretl output window shows the calculated coefficients which match the values written to the text file."
+        },
+        {
+            "id": "genuine_estimation",
+            "description": "The agent used the 'mle' command block as requested rather than a standard OLS command.",
+            "visual_evidence": "The script and the output window header specifically mention 'MLE' or 'Maximum Likelihood', not 'OLS'."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected MLE results for the food.gdt dataset (40 observations) are: b0 ≈ 79.886, b1 ≈ 12.315, and sigma ≈ 28.379. The script must be saved to /home/ga/Documents/gretl_output/mle_food.inp and results to /home/ga/Documents/gretl_output/mle_results.txt. The log-likelihood formula must strictly follow the normal distribution form provided in the task."
+}

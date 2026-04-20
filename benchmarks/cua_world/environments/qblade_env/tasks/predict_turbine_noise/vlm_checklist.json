@@ -1,0 +1,53 @@
+{
+    "task_id": "predict_turbine_noise@1",
+    "task_completion": [
+        {
+            "id": "load_sample_project",
+            "description": "Load a sample HAWT project from the specified directory /home/ga/Documents/sample_projects/.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the QBlade file explorer or 'Open Project' dialog navigating to /home/ga/Documents/sample_projects/ and a project being loaded into the workspace."
+        },
+        {
+            "id": "bem_simulation_setup",
+            "description": "Configure and run a BEM (Blade Element Momentum) simulation with a Tip Speed Ratio (TSR) between 7 and 8.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the BEM simulation module in QBlade showing the TSR input field set to a value between 7 and 8, and the simulation being executed."
+        },
+        {
+            "id": "bpm_noise_configuration",
+            "description": "Configure the BPM noise simulation with an observer at 500m downwind and 2m height.",
+            "points": 25,
+            "visual_evidence": "Screenshot of the Acoustic/Noise module showing the BPM model selected and observer coordinates/parameters set to Distance: 500m and Height: 2m."
+        },
+        {
+            "id": "export_noise_spectrum",
+            "description": "Export the resulting noise spectrum (Frequency vs SPL) to /home/ga/Documents/noise_spectrum_output.txt.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the export dialog or a terminal confirmation of the file /home/ga/Documents/noise_spectrum_output.txt being saved, or the file content displayed showing columns for Frequency and SPL."
+        },
+        {
+            "id": "save_project_file",
+            "description": "Save the complete project to /home/ga/Documents/projects/turbine_noise_analysis.wpa.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the 'Save As' dialog or the application title bar showing the project saved at the path /home/ga/Documents/projects/turbine_noise_analysis.wpa."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to perform simulations rather than just creating dummy files via terminal.",
+            "visual_evidence": "Screenshots must show the QBlade application window, menus, and simulation progress bars, not just a terminal window."
+        },
+        {
+            "id": "genuine_data_generation",
+            "description": "The noise spectrum data is generated from the simulation results, not manually typed into a text editor.",
+            "visual_evidence": "The agent should be seen clicking 'Export' or 'Save' within the QBlade interface rather than opening a blank text file and typing numbers."
+        },
+        {
+            "id": "parameter_adherence",
+            "description": "The agent used the specific TSR and observer coordinates requested, not default values.",
+            "visual_evidence": "Input fields for TSR (7-8) and Observer (500m, 2m) must be explicitly modified in the screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The software used is QBlade. The BEM (Blade Element Momentum) simulation must precede the BPM (Brooks-Pope-Marcolini) noise simulation as the latter depends on the aerodynamic loads calculated by the former. The NREL 5MW is the standard reference turbine likely found in the sample projects. The output file .wpa is the native format for QBlade projects. Ensure the observer distance is exactly 500m and height is 2m as these are specific task constraints."
+}

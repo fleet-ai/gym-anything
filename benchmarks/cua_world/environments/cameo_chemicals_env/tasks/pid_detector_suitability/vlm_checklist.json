@@ -1,0 +1,60 @@
+{
+    "task_id": "pid_detector_suitability@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website in a web browser.",
+            "points": 10,
+            "visual_evidence": "Browser showing https://cameochemicals.noaa.gov/ or the CAMEO Chemicals search interface."
+        },
+        {
+            "id": "search_chemicals",
+            "description": "Agent searches for the specified chemicals (Benzene, Methane, Carbon tetrachloride, Trichloroethylene, Chloroform, and Styrene) on the website.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent typing chemical names into the search bar or viewing search result lists."
+        },
+        {
+            "id": "extract_chemical_data",
+            "description": "Agent views the chemical data sheets to find CAS numbers and Ionization Energies.",
+            "points": 25,
+            "visual_evidence": "Screenshots of individual chemical profile pages on CAMEO Chemicals showing CAS numbers and IE values."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates a text file at /home/ga/Documents/pid_assessment.txt with the required formatting.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the file path /home/ga/Documents/pid_assessment.txt being opened or saved."
+        },
+        {
+            "id": "correct_data_entry",
+            "description": "The report contains the correct CAS, IE, and Detectable status for all 6 chemicals based on the 10.6 eV threshold.",
+            "points": 25,
+            "visual_evidence": "The content of the text file showing the specific names, CAS numbers, IE values, and DETECTABLE/NOT DETECTABLE labels."
+        },
+        {
+            "id": "summary_section",
+            "description": "The report includes a SUMMARY section at the end with the total counts of detectable and not detectable chemicals.",
+            "points": 10,
+            "visual_evidence": "The bottom of the pid_assessment.txt file showing a 'SUMMARY' header and the final counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually browsed the NOAA website rather than generating the report from internal knowledge.",
+            "points": 10,
+            "visual_evidence": "Browser history or active tabs showing multiple pages from cameochemicals.noaa.gov being loaded."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "Agent did not find a pre-existing report and claim it as their own.",
+            "visual_evidence": "The agent is seen typing or programmatically writing the content into the file."
+        },
+        {
+            "id": "gui_usage",
+            "description": "Agent used the web browser GUI to find information rather than just using terminal commands to guess values.",
+            "visual_evidence": "Screenshots show the browser window being interacted with (clicking, scrolling, searching)."
+        }
+    ],
+    "privileged_info_for_vlm": "Threshold: <= 10.6 eV is DETECTABLE. \n1. Benzene: CAS 71-43-2, IE 9.24 eV (DETECTABLE).\n2. Methane: CAS 74-82-8, IE 12.61 eV (NOT DETECTABLE).\n3. Carbon tetrachloride: CAS 56-23-5, IE 11.47 eV (NOT DETECTABLE).\n4. Trichloroethylene: CAS 79-01-6, IE 9.47 eV (DETECTABLE).\n5. Chloroform: CAS 67-66-3, IE 11.37 eV (NOT DETECTABLE).\n6. Styrene: CAS 100-42-5, IE 8.43 eV (DETECTABLE).\nSummary: 3 Detectable, 3 Not Detectable."
+}

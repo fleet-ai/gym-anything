@@ -1,0 +1,59 @@
+{
+    "task_id": "import_csv_column_mapping@1",
+    "task_completion": [
+        {
+            "id": "open_import_dialog",
+            "description": "The agent opens the Subsurface import dialog and selects the correct CSV file.",
+            "points": 10,
+            "visual_evidence": "A file selection dialog or the 'Import Log Files' window showing '/home/ga/Documents/legacy_log.csv' selected."
+        },
+        {
+            "id": "configure_csv_settings",
+            "description": "The agent sets the import format to CSV, units to Metric, and separator to Comma.",
+            "points": 15,
+            "visual_evidence": "The import settings window showing 'CSV' selected, 'Metric' units toggled, and 'Comma' selected as the field separator."
+        },
+        {
+            "id": "map_columns_basic",
+            "description": "The agent maps the Date, Time, and Location columns correctly.",
+            "points": 20,
+            "visual_evidence": "The column mapping preview area showing headers assigned as 'Date', 'Time', and 'Location' above the respective data columns."
+        },
+        {
+            "id": "map_columns_technical",
+            "description": "The agent maps Max. Depth, Duration, Water Temp, and Notes columns correctly.",
+            "points": 25,
+            "visual_evidence": "The column mapping preview area showing headers assigned as 'Max. Depth', 'Duration', 'Water Temp', and 'Notes' above the respective data columns."
+        },
+        {
+            "id": "confirm_import",
+            "description": "The agent completes the import process, adding the new dives to the list.",
+            "points": 15,
+            "visual_evidence": "The main Subsurface dive list updating to show new entries; the total dive count should increase."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the updated dive log to ensure persistence.",
+            "points": 15,
+            "visual_evidence": "The agent clicking 'File' > 'Save' or the save icon, or a 'Saving...' progress indicator/status bar message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Subsurface GUI to perform the import rather than manipulating the .ssrf file via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements and clicks within the Subsurface application menus and dialogs."
+        },
+        {
+            "id": "genuine_mapping_process",
+            "description": "The agent manually configured the column headers in the import preview.",
+            "visual_evidence": "Sequential screenshots showing the dropdown menus for each column being clicked and the specific mapping labels being selected."
+        },
+        {
+            "id": "no_file_overwrite_shortcut",
+            "description": "The agent did not simply overwrite the target .ssrf file with a pre-made version using the terminal.",
+            "visual_evidence": "The terminal is not used to 'cp' or 'mv' files into the Documents folder during the task execution."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/legacy_log.csv. It contains exactly 3 new dives. The base file /home/ga/Documents/dives.ssrf starts with 29 dives. After a successful import, the total dive count in the Subsurface UI should be 32. The agent must specifically use Metric units and Comma separation in the import dialog."
+}

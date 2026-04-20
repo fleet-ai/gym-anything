@@ -1,0 +1,53 @@
+{
+    "task_id": "tracheal_shape_index@1",
+    "task_completion": [
+        {
+            "id": "locate_aortic_arch",
+            "description": "Navigate the CT scan to the level of the aortic arch.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer slice viewer shows a cross-section of the chest where the aortic arch is clearly visible as a curved vascular structure adjacent to the trachea."
+        },
+        {
+            "id": "measure_diameters",
+            "description": "Perform AP and transverse diameter measurements of the internal trachea using ruler or markup tools.",
+            "points": 25,
+            "visual_evidence": "Measurement lines (ruler or line markups) are visible across the tracheal lumen in both the anterior-posterior and transverse orientations on the axial slice."
+        },
+        {
+            "id": "save_markup_file",
+            "description": "Save the measurement markups to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save' dialog or file browser shows the file 'trachea_measurements.mrk.json' being saved to '~/Documents/SlicerData/LIDC/'."
+        },
+        {
+            "id": "calculate_index_and_classify",
+            "description": "Calculate the Tracheal Index (transverse/AP) and determine the shape classification.",
+            "points": 20,
+            "visual_evidence": "A text editor, terminal, or internal Slicer module shows the calculation logic or the resulting values for the index and classification."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Save the final report with all required fields (ap_diameter_mm, transverse_diameter_mm, tracheal_index, classification, slice_number) to the specified JSON path.",
+            "points": 25,
+            "visual_evidence": "A file explorer or text editor shows 'trachea_report.json' in '~/Documents/SlicerData/LIDC/' containing the five required data fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform measurements rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's 'Markups' or 'Ruler' tools and manual adjustment of the measurement lines."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements correspond to the visual anatomy shown in the viewer.",
+            "visual_evidence": "The measurement lines in the screenshot align with the internal borders of the tracheal wall at the correct anatomical level."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not create the report file without first performing the visual analysis.",
+            "visual_evidence": "The trajectory shows the CT scan being loaded and manipulated before the JSON report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The Tracheal Index is calculated as Transverse Diameter divided by AP Diameter. The aortic arch level is typically found in the upper mediastinum where the ascending aorta transitions to the descending aorta. The VLM should verify that the measurement lines in the screenshot actually span the tracheal lumen and that the saved JSON contains the specific keys: ap_diameter_mm, transverse_diameter_mm, tracheal_index, classification, and slice_number."
+}

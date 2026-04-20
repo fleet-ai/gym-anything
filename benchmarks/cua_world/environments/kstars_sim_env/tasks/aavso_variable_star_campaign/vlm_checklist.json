@@ -1,0 +1,59 @@
+{
+    "task_id": "aavso_variable_star_campaign@1",
+    "task_completion": [
+        {
+            "id": "target_coordinates_entered",
+            "description": "The agent entered the correct coordinates for SS Cygni into the telescope control software.",
+            "points": 10,
+            "visual_evidence": "Look for RA 21h 42m 42.8s and Dec +43d 35m 10s (or decimal equivalents 21.7119, 43.5861) entered in the KStars/Ekos or INDI control panel."
+        },
+        {
+            "id": "filter_selection_v",
+            "description": "The agent selected the correct filter (V filter) in the second slot.",
+            "points": 15,
+            "visual_evidence": "Look for the filter wheel setting showing 'Slot 2' or 'V' selected in the Ekos CCD/Filter wheel module."
+        },
+        {
+            "id": "exposure_settings_configured",
+            "description": "The agent set the exposure time to 45 seconds as required by the brief.",
+            "points": 15,
+            "visual_evidence": "Look for '45' in the exposure time field of the Ekos capture module."
+        },
+        {
+            "id": "sequence_capture_execution",
+            "description": "The agent initiated a sequence to capture at least 8 FITS images.",
+            "points": 25,
+            "visual_evidence": "Look for a sequence list showing a count of 8 or more images and a progress bar or log indicating images are being captured/saved to /home/ga/Images/sscyg/session1."
+        },
+        {
+            "id": "fits_files_generated",
+            "description": "The agent successfully generated the FITS files in the target directory.",
+            "points": 15,
+            "visual_evidence": "Look for a file manager window or terminal 'ls' output showing at least 8 .fits files in /home/ga/Images/sscyg/session1."
+        },
+        {
+            "id": "aavso_report_created",
+            "description": "The agent generated the final AAVSO-format observations report at the specified path.",
+            "points": 20,
+            "visual_evidence": "Look for a text editor or terminal output displaying a file at /home/ga/Documents/aavso_report.txt containing observation data for SS Cyg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_observed",
+            "description": "The agent used the astronomical software GUI (KStars/Ekos) rather than just script-based file creation.",
+            "visual_evidence": "Screenshots should show the KStars/Ekos windows being interacted with (mouse clicks, field entries) rather than just a terminal."
+        },
+        {
+            "id": "genuine_capture_process",
+            "description": "The agent waited for the actual exposure/capture process rather than instantly creating dummy files.",
+            "visual_evidence": "Timestamps in the trajectory should show a realistic delay consistent with 8 x 45-second exposures."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply echo a pre-made report into the document path.",
+            "visual_evidence": "The agent should be seen extracting data from the captured FITS headers or the capture log to populate the report."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: SS Cygni. Coordinates: RA 21h 42m 42.8s, Dec +43d 35m 10s. Required Filter: V (Slot 2). Required Exposure: 45 seconds. Minimum Image Count: 8. Image Directory: /home/ga/Images/sscyg/session1. Final Report Path: /home/ga/Documents/aavso_report.txt."
+}

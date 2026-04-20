@@ -1,0 +1,53 @@
+{
+    "task_id": "chemical_storage_segregation@1",
+    "task_completion": [
+        {
+            "id": "open_manifest",
+            "description": "Agent opens the shipment_manifest.txt file on the Desktop to identify the chemicals.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of '~/Desktop/shipment_manifest.txt'."
+        },
+        {
+            "id": "search_cameo",
+            "description": "Agent navigates to the CAMEO Chemicals website to search for the reactive groups of the listed chemicals.",
+            "points": 20,
+            "visual_evidence": "A web browser showing the CAMEO Chemicals search page or specific chemical profile pages (e.g., Hydrochloric Acid, Sodium Permanganate)."
+        },
+        {
+            "id": "identify_reactive_groups",
+            "description": "Agent correctly identifies the Reactive Groups for the chemicals based on the CAMEO database.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Reactive Group' section on the CAMEO website for the chemicals in the manifest."
+        },
+        {
+            "id": "apply_precedence_rules",
+            "description": "Agent assigns Storage Codes (A, B, O, F, G) based on the specific precedence rules provided in the task.",
+            "points": 25,
+            "visual_evidence": "Drafting of the data in a spreadsheet, text editor, or terminal showing the mapping of Reactive Groups to Codes (e.g., 'Oxidizing Agents' to 'O')."
+        },
+        {
+            "id": "save_csv_file",
+            "description": "Agent saves the final storage plan to '~/Documents/storage_plan.csv' with the required columns.",
+            "points": 20,
+            "visual_evidence": "A file explorer showing 'storage_plan.csv' in the Documents folder or a text editor/spreadsheet showing the saved CSV with columns 'Chemical Name', 'Reactive Group', and 'Storage Code'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually visited the CAMEO website rather than guessing or using internal knowledge.",
+            "visual_evidence": "Browser history or active tabs showing the NOAA CAMEO Chemicals URL and specific search queries for the chemicals."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo the final CSV content into a file without performing the research steps.",
+            "visual_evidence": "The trajectory shows a sequence of searching for each chemical individually rather than a single command creating the file instantly."
+        },
+        {
+            "id": "correct_precedence_logic",
+            "description": "Agent followed the specific precedence rules (e.g., Code B for Amines) rather than standard industry codes if they differ.",
+            "visual_evidence": "The final CSV content matches the specific logic: Oxidizing Agents=O, Acids=A, Bases/Amines=B, Ketones/Aldehydes/Esters/Hydrocarbons=F, Others=G."
+        }
+    ],
+    "privileged_info_for_vlm": "The manifest contains: Hydrochloric Acid (Reactive Group: 'Acids, Strong Non-oxidizing', Code: A), Sodium Permanganate (Reactive Group: 'Oxidizing Agents, Strong', Code: O), Triethylamine (Reactive Group: 'Amines, Phosphines, and Pyridines', Code: B), and Methyl Ethyl Ketone (Reactive Group: 'Ketones', Code: F). Ensure the agent uses the exact columns: 'Chemical Name', 'Reactive Group', and 'Storage Code'."
+}

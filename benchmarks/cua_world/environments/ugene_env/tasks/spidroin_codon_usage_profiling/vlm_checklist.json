@@ -1,0 +1,59 @@
+{
+    "task_id": "spidroin_codon_usage_profiling@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the masp1_sequence.gb file in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE interface shows 'masp1_sequence.gb' loaded in the Project View or Sequence View, displaying the DNA sequence and annotations."
+        },
+        {
+            "id": "translate_cds",
+            "description": "Isolate the CDS and translate it into a protein sequence.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the CDS region selected or highlighted, and a corresponding protein translation appearing in the sequence view or as a new object."
+        },
+        {
+            "id": "export_protein_fasta",
+            "description": "Export the translated protein sequence to masp1_protein.fasta.",
+            "points": 15,
+            "visual_evidence": "An export dialog box or a 'Save' confirmation showing the file path ~/UGENE_Data/spidroin/results/masp1_protein.fasta."
+        },
+        {
+            "id": "compute_codon_usage",
+            "description": "Compute the Codon Usage table for the CDS using UGENE tools.",
+            "points": 25,
+            "visual_evidence": "The 'Statistics' or 'Codon Usage' tool window is open in UGENE, showing a table of codons, counts, and frequencies for the selected sequence."
+        },
+        {
+            "id": "export_codon_csv",
+            "description": "Export the codon usage table to masp1_codon_usage.csv.",
+            "points": 15,
+            "visual_evidence": "A file saving dialog or a success message indicating the codon usage data was saved to the results directory as a CSV/text file."
+        },
+        {
+            "id": "final_report_content",
+            "description": "Create the final report with the specific four lines of data.",
+            "points": 20,
+            "visual_evidence": "A text editor or file preview showing masp1_analysis_report.txt with lines for Protein length, Most abundant amino acid, Most frequent Glycine codon, and Most frequent Alanine codon."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI rather than just command-line scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with UGENE menus, buttons, and sequence views."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent derived the report values from the UGENE interface, not from pre-existing knowledge.",
+            "visual_evidence": "The VLM should see the agent opening the codon usage statistics window and the translation window before writing the report."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file paths requested in the prompt.",
+            "visual_evidence": "The file paths in the export dialogs match ~/UGENE_Data/spidroin/results/."
+        }
+    ],
+    "privileged_info_for_vlm": "The MaSp1 sequence in the provided GenBank file has a CDS that translates to a protein of 735 amino acids. The most abundant amino acid is Glycine (G). The most frequent Glycine codon is GGT. The most frequent Alanine codon is GCT. The VLM should verify these specific values appear in the final report."
+}

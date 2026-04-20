@@ -1,0 +1,53 @@
+{
+    "task_id": "count_dns_queries@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark",
+            "description": "The agent opens the Wireshark application.",
+            "points": 10,
+            "visual_evidence": "The Wireshark application window is visible on the desktop."
+        },
+        {
+            "id": "load_pcap_file",
+            "description": "The agent loads the specific capture file /home/ga/Documents/captures/dns.cap into Wireshark.",
+            "points": 15,
+            "visual_evidence": "The Wireshark title bar or status bar shows 'dns.cap' is open, and a list of packets is displayed."
+        },
+        {
+            "id": "apply_dns_query_filter",
+            "description": "The agent applies a display filter to isolate DNS queries (excluding responses).",
+            "points": 25,
+            "visual_evidence": "The filter bar contains a string like 'dns.flags.response == 0' or 'dns and not dns.flags.response == 1', and the packet list updates."
+        },
+        {
+            "id": "identify_packet_count",
+            "description": "The agent identifies the correct number of filtered packets (19).",
+            "points": 30,
+            "visual_evidence": "The Wireshark status bar shows 'Displayed: 19' or the agent is seen manually counting/highlighting 19 packets."
+        },
+        {
+            "id": "save_count_to_file",
+            "description": "The agent saves the integer '19' to the specified text file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command shows the number '19' being saved to /home/ga/Documents/captures/dns_query_count.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the Wireshark GUI to analyze the packets rather than just using CLI tools like tshark.",
+            "visual_evidence": "Screenshots show the Wireshark graphical interface being interacted with (menus, filter bar, packet list)."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent does not simply write the answer without opening the capture file.",
+            "visual_evidence": "The agent is seen opening dns.cap before the output file is created."
+        },
+        {
+            "id": "correct_filter_logic",
+            "description": "The agent specifically filters for queries, not just all DNS packets.",
+            "visual_evidence": "The filter bar shows a specific exclusion of responses (e.g., response == 0), as the total DNS packet count is 38 but the query count is 19."
+        }
+    ],
+    "privileged_info_for_vlm": "The file dns.cap contains a total of 38 DNS packets. Exactly 19 of these are queries (dns.flags.response == 0) and 19 are responses. The agent must identify the count as 19. The final output file /home/ga/Documents/captures/dns_query_count.txt must contain only the integer 19."
+}

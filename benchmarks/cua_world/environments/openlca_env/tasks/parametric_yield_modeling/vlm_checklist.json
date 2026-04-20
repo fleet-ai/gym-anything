@@ -1,0 +1,59 @@
+{
+    "task_id": "parametric_yield_modeling@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database from the specified zip file into OpenLCA.",
+            "points": 10,
+            "visual_evidence": "The OpenLCA navigation pane shows a database named 'uslci_database' or similar, and the import wizard/progress bar is visible."
+        },
+        {
+            "id": "process_creation",
+            "description": "Create a new process named 'Dynamic Metal Stamping' with a 1 kg 'Stamped Part' output.",
+            "points": 15,
+            "visual_evidence": "A process editor tab is open with the name 'Dynamic Metal Stamping' and the 'Outputs' tab shows 'Stamped Part' with an amount of 1.0 kg."
+        },
+        {
+            "id": "parameter_configuration",
+            "description": "Define a local parameter 'scrap_rate' with a default value of 0.2.",
+            "points": 15,
+            "visual_evidence": "In the 'Parameters' tab of the process, a local parameter named 'scrap_rate' is listed with a default value of 0.2."
+        },
+        {
+            "id": "formula_application",
+            "description": "Apply the specific formulas to the Steel input and Steel Scrap output flows.",
+            "points": 25,
+            "visual_evidence": "In the 'Inputs/Outputs' tab, the 'Formula' column for Steel shows '1 / (1 - scrap_rate)' and for Steel Scrap shows 'scrap_rate / (1 - scrap_rate)'."
+        },
+        {
+            "id": "first_export_20",
+            "description": "Generate a product system and export results for the default scrap_rate (0.2) to yield_result_20.csv.",
+            "points": 15,
+            "visual_evidence": "The 'Calculation properties' or 'Export' dialog shows the destination path '~/LCA_Results/yield_result_20.csv' being saved."
+        },
+        {
+            "id": "second_export_10",
+            "description": "Update scrap_rate to 0.1 and export results to yield_result_10.csv.",
+            "points": 20,
+            "visual_evidence": "The parameter value is changed to 0.1 in the process or product system, and a second export dialog shows the path '~/LCA_Results/yield_result_10.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenLCA graphical user interface rather than just executing scripts in the terminal.",
+            "visual_evidence": "Screenshots show the OpenLCA application window, mouse cursor movements, and interaction with menus/tabs."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent actually ran the LCA calculation/product system generation rather than manually creating CSV files.",
+            "visual_evidence": "The 'Calculation' progress dialog or the 'Analysis' result view in OpenLCA is visible before the export."
+        },
+        {
+            "id": "no_manual_csv_edit",
+            "description": "The agent did not use a text editor to manually type the results into the CSV files.",
+            "visual_evidence": "The agent uses the 'Export' function within OpenLCA to save the files, not a terminal 'echo' command or a text editor like Gedit."
+        }
+    ],
+    "privileged_info_for_vlm": "The process must be named 'Dynamic Metal Stamping'. The local parameter is 'scrap_rate' (default 0.2). The Steel input formula is '1 / (1 - scrap_rate)' and the Steel Scrap output formula is 'scrap_rate / (1 - scrap_rate)'. The two required export files are yield_result_20.csv (for 0.2 rate) and yield_result_10.csv (for 0.1 rate) located in ~/LCA_Results/."
+}

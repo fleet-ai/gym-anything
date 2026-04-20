@@ -1,0 +1,53 @@
+{
+    "task_id": "wls_food_expenditure@1",
+    "task_completion": [
+        {
+            "id": "dataset_loaded",
+            "description": "The food.gdt dataset is loaded into gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window shows 'food.gdt' in the title bar or the variables 'food_exp' and 'income' in the variable list."
+        },
+        {
+            "id": "weight_variable_defined",
+            "description": "A new variable 'wt' is defined as 1/income.",
+            "points": 15,
+            "visual_evidence": "A command log or a 'Define new variable' dialog showing the formula 'wt = 1/income' or 'wt' appearing in the variable list."
+        },
+        {
+            "id": "wls_specification",
+            "description": "The Weighted Least Squares regression dialog is configured with the correct variables and weight.",
+            "points": 20,
+            "visual_evidence": "The 'Weighted Least Squares' dialog box showing 'food_exp' as the dependent variable, 'const' and 'income' as independent variables, and 'wt' selected as the weight variable."
+        },
+        {
+            "id": "regression_executed",
+            "description": "The WLS regression is executed and the output window appears.",
+            "points": 25,
+            "visual_evidence": "A gretl model output window titled 'Model [number]: WLS, using observations 1-40' showing coefficients for 'const' and 'income'."
+        },
+        {
+            "id": "output_saved_to_file",
+            "description": "The regression output is saved to the specified text file path.",
+            "points": 30,
+            "visual_evidence": "A file explorer window or a terminal 'cat' command showing the content of '/home/ga/Documents/gretl_output/wls_results.txt' containing the WLS regression results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI to perform the analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gretl menus (e.g., Model -> Other linear models -> Weighted Least Squares) and dialog boxes."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply create a text file with the expected values without running the software.",
+            "visual_evidence": "The gretl model output window is visible and matches the content of the saved text file."
+        },
+        {
+            "id": "genuine_data_usage",
+            "description": "The agent used the actual loaded dataset variables rather than manual input.",
+            "visual_evidence": "The variable list in gretl shows 40 observations and the regression output confirms 'n = 40'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset food.gdt has 40 observations. For the WLS regression with weight wt=1/income, the expected intercept (const) should be approximately between 76.0 and 82.0, and the slope (income) should be approximately 10.21. The final output must be saved specifically to /home/ga/Documents/gretl_output/wls_results.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "camera_coverage_gap_analysis@1",
+    "task_completion": [
+        {
+            "id": "access_vms_interface",
+            "description": "Agent successfully accesses the Nx Witness VMS login page or dashboard at https://localhost:7001.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the Nx Witness Web Admin login page or the main dashboard after logging in."
+        },
+        {
+            "id": "authenticate_system",
+            "description": "Agent authenticates using the provided credentials or token.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the user 'admin' logged in or a successful API response/session established in the browser console or UI."
+        },
+        {
+            "id": "identify_camera_recording_status",
+            "description": "Agent navigates to camera settings or uses the API to identify cameras with recording disabled.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the 'Camera Settings' menu with recording toggles off, or a list of cameras with 'Recording: Off' status."
+        },
+        {
+            "id": "identify_layout_gaps",
+            "description": "Agent identifies cameras not included in any layout and users with no layouts assigned.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Layouts' configuration page, a list of layouts, or API responses showing empty layout associations for specific cameras/users."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent compiles the gathered data into the specified JSON format.",
+            "points": 15,
+            "visual_evidence": "Screenshot shows a text editor or terminal displaying the JSON structure with 'report_timestamp', 'system_name', and 'gaps' keys."
+        },
+        {
+            "id": "save_report_to_path",
+            "description": "Agent saves the final report to /home/ga/coverage_gap_report.json.",
+            "points": 20,
+            "visual_evidence": "Screenshot shows a terminal command (e.g., 'cat' or 'ls') confirming the file exists at /home/ga/coverage_gap_report.json with the correct content."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the Nx Witness VMS interface or API rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots show the agent navigating the Nx Witness Web Admin UI or executing curl/API commands against localhost:7001."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo a pre-prepared JSON string without exploring the system.",
+            "visual_evidence": "The trajectory shows steps where the agent lists cameras, users, or layouts before generating the report."
+        },
+        {
+            "id": "correct_system_context",
+            "description": "The report contains the actual system name and counts derived from the live environment.",
+            "visual_evidence": "The 'system_name' and 'total_cameras' in the final JSON match the information visible in the Nx Witness Web Admin dashboard."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness VMS is accessible at https://localhost:7001. The agent must use the token in /home/ga/nx_token.txt or the credentials admin/Admin1234!. The environment contains synthetic data where specific cameras have recording disabled and specific users have no layouts. The final report must be a JSON file located at /home/ga/coverage_gap_report.json and must include the 'gaps' and 'summary' objects as defined in the task description."
+}

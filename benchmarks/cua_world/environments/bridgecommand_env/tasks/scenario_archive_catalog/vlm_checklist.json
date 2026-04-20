@@ -1,0 +1,53 @@
+{
+    "task_id": "scenario_archive_catalog@1",
+    "task_completion": [
+        {
+            "id": "directory_enumeration",
+            "description": "Agent explores the /opt/bridgecommand/Scenarios/ directory to identify scenario subdirectories and their contents.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file manager showing a list of directories in /opt/bridgecommand/Scenarios/ and the presence of .ini files within them."
+        },
+        {
+            "id": "data_extraction_parsing",
+            "description": "Agent reads and parses environment.ini, ownship.ini, and othership.ini files to extract specific keys (Setting, StartTime, ShipName, Type(x)).",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'cat' or 'grep' commands on .ini files, or a script processing these files to extract values like 'Setting' and 'Type(1)'."
+        },
+        {
+            "id": "json_catalog_creation",
+            "description": "Agent creates /home/ga/Documents/scenario_catalog.json with the required schema, including 'traffic_vessel_count' and 'is_complete'.",
+            "points": 25,
+            "visual_evidence": "Content of /home/ga/Documents/scenario_catalog.json displayed in a terminal or editor showing a JSON array of objects with all specified keys."
+        },
+        {
+            "id": "checksum_generation",
+            "description": "Agent generates SHA-256 checksums for every file in every scenario directory and saves them to /home/ga/Documents/scenario_checksums.sha256.",
+            "points": 20,
+            "visual_evidence": "Content of /home/ga/Documents/scenario_checksums.sha256 showing 64-character hex strings followed by absolute file paths."
+        },
+        {
+            "id": "preservation_report_generation",
+            "description": "Agent writes the 'Preservation Assessment Report' to /home/ga/Documents/preservation_report.txt with summary statistics.",
+            "points": 25,
+            "visual_evidence": "Content of /home/ga/Documents/preservation_report.txt showing total scenario count, complete vs incomplete counts, and a list of unique World Models."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_access",
+            "description": "Agent actually read the files rather than guessing based on the task description.",
+            "visual_evidence": "Commands like 'cat', 'find', or 'sha256sum' being executed on the specific paths in /opt/bridgecommand/Scenarios/."
+        },
+        {
+            "id": "checksum_authenticity",
+            "description": "The checksums provided are 64-character SHA-256 hashes, not placeholders.",
+            "visual_evidence": "The scenario_checksums.sha256 file contains valid SHA-256 format strings, not 'TBD' or 'checksum_here'."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the 'Portsmouth' world model without checking the files.",
+            "visual_evidence": "The agent's command history shows it opening environment.ini to find the 'Setting' value."
+        }
+    ],
+    "privileged_info_for_vlm": "Bridge Command INI files use a specific format: text values are enclosed in quotes (e.g., Setting=\"Portsmouth\", ShipName=\"Voyager\") while numerical values are not (e.g., StartTime=14.0). In othership.ini, traffic vessels are indexed as Type(1), Type(2), etc. A scenario is 'complete' only if environment.ini, ownship.ini, and othership.ini all exist in the directory. Checksums must use absolute paths as per the standard sha256sum format."
+}

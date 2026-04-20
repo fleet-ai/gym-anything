@@ -1,0 +1,53 @@
+{
+    "task_id": "auto_stats_analysis@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle HR database (localhost:1521/XEPDB1) using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "SQL Developer or a similar database tool showing a successful connection to 'hr@XEPDB1' or the 'VEHICLE_TESTS' table structure in the object browser."
+        },
+        {
+            "id": "stats_model_view_creation",
+            "description": "Agent executes SQL to create the STATS_MODEL view using Oracle's native statistical functions (CORR, REGR_SLOPE, REGR_INTERCEPT, STDDEV).",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the 'CREATE VIEW STATS_MODEL' statement with columns WEIGHT_MPG_CORR, SLOPE, INTERCEPT, and MPG_STDDEV."
+        },
+        {
+            "id": "stats_model_verification",
+            "description": "Agent queries the STATS_MODEL view to verify it returns a single row with the correct statistical columns.",
+            "points": 15,
+            "visual_evidence": "Query results table showing one row with four columns: WEIGHT_MPG_CORR, SLOPE, INTERCEPT, and MPG_STDDEV."
+        },
+        {
+            "id": "efficient_outliers_table_creation",
+            "description": "Agent creates the EFFICIENT_OUTLIERS table using the 1.5 standard deviation threshold logic.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing 'CREATE TABLE EFFICIENT_OUTLIERS' with the calculation 'actual_mpg > predicted_mpg + (1.5 * stddev)' and the required columns."
+        },
+        {
+            "id": "outliers_data_validation",
+            "description": "Agent queries the EFFICIENT_OUTLIERS table to confirm data is present and ordered by DIFF_FROM_MODEL descending.",
+            "points": 20,
+            "visual_evidence": "Query results showing columns MAKE, MODEL, CURB_WEIGHT_LBS, COMBINED_MPG, PREDICTED_MPG, and DIFF_FROM_MODEL, with the largest DIFF_FROM_MODEL values at the top."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_db_interaction",
+            "description": "The agent interacted with the Oracle database interface rather than just printing text to a terminal.",
+            "visual_evidence": "Screenshots show a database GUI (like SQL Developer) or a live SQL command-line interface with system-generated timestamps or connection headers."
+        },
+        {
+            "id": "no_hardcoded_stats",
+            "description": "The agent used SQL functions to calculate statistics rather than hardcoding the final values into the view/table creation.",
+            "visual_evidence": "SQL code contains functions like REGR_SLOPE, REGR_INTERCEPT, or CORR rather than fixed numeric constants for the model parameters."
+        },
+        {
+            "id": "data_source_consistency",
+            "description": "The agent used the VEHICLE_TESTS table as the source for the 2024 model year data.",
+            "visual_evidence": "SQL queries explicitly reference 'FROM VEHICLE_TESTS' and include a filter for 'MODEL_YEAR = 2024' or similar if applicable."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset consists of 36 vehicles from 2024 EPA data. The STATS_MODEL view must use REGR_SLOPE and REGR_INTERCEPT where COMBINED_MPG is Y and CURB_WEIGHT_LBS is X. The slope must be accurate to 0.0001 and correlation to 0.01. The EFFICIENT_OUTLIERS table must use a threshold of (Predicted MPG + 1.5 * Standard Deviation) to identify rows. The view STATS_MODEL and table EFFICIENT_OUTLIERS are mandatory names."
+}

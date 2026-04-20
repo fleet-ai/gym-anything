@@ -1,0 +1,59 @@
+{
+    "task_id": "redirect_chain_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Launch Screaming Frog SEO Spider and enter the target URL.",
+            "points": 10,
+            "visual_evidence": "Screaming Frog window is open with 'https://crawler-test.com/' entered in the 'Enter URL to spider' field."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Execute the crawl of the target website.",
+            "points": 15,
+            "visual_evidence": "The progress bar in Screaming Frog shows 100% completion and the internal tab is populated with URLs from crawler-test.com."
+        },
+        {
+            "id": "filter_redirects",
+            "description": "Access the 'Response Codes' tab and filter for 'Redirection (3xx)'.",
+            "points": 15,
+            "visual_evidence": "The 'Response Codes' tab is selected and the filter dropdown is set to 'Redirection (3xx)', showing a list of URLs with 301, 302, or 307 status codes."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the redirect data as a CSV to the specified directory.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer window shows a CSV file being saved to '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "identify_chains",
+            "description": "Identify redirect chains (specifically looking for 3+ hops).",
+            "points": 20,
+            "visual_evidence": "The agent accesses 'Reports' -> 'Redirects' -> 'Redirect Chains' in Screaming Frog or views the 'Chain Length' column in the exported data."
+        },
+        {
+            "id": "final_report_creation",
+            "description": "Create the final text report with required metrics and recommendations.",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or VS Code) is open showing '~/Documents/SEO/reports/redirect_report.txt' containing the total redirect count, chain count (3+ hops), status codes, and remediation advice."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the Screaming Frog GUI rather than just terminal commands.",
+            "visual_evidence": "Screenshots show active mouse interaction with the Screaming Frog interface, menus, and buttons."
+        },
+        {
+            "id": "genuine_crawl",
+            "description": "Verify the data in the report matches the actual crawl results of crawler-test.com.",
+            "visual_evidence": "The numbers in the final report (e.g., presence of 301/302 codes) correspond to the data visible in the Screaming Frog 'Response Codes' window."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the exact file paths specified in the task.",
+            "visual_evidence": "The file explorer or save dialogs explicitly show the paths '~/Documents/SEO/exports/' and '~/Documents/SEO/reports/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website https://crawler-test.com/ is a dedicated test site. A successful crawl should identify at least 28 redirect paths. Expected status codes include 301, 302, and 307. The site specifically contains 'Redirect Double' and 'Redirect Triple' paths which constitute the redirect chains (3+ hops) required for the report. The report must be a .txt file located at ~/Documents/SEO/reports/redirect_report.txt."
+}

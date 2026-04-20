@@ -1,0 +1,59 @@
+{
+    "task_id": "hostname_standardization_remediation@1",
+    "task_completion": [
+        {
+            "id": "access_asset_list",
+            "description": "Agent navigates to the asset management interface (Snipe-IT) to view the list of laptops.",
+            "points": 10,
+            "visual_evidence": "A browser window showing the Snipe-IT dashboard or 'All Assets' table with columns for Asset Name, Asset Tag, and Department."
+        },
+        {
+            "id": "identify_engineering_assets",
+            "description": "Agent identifies the specific assets belonging to the Engineering department and their respective locations.",
+            "points": 15,
+            "visual_evidence": "The screen shows the agent filtering by the 'Engineering' department or clicking on specific assets (ASSET-8001, 8002, 8003, 8004) to view their details."
+        },
+        {
+            "id": "rename_london_assets",
+            "description": "Rename Engineering assets in London (ASSET-8001, ASSET-8002) to the LON-ENG- prefix.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' page or a success message showing 'Asset Name' updated to 'LON-ENG-ASSET-8001' and 'LON-ENG-ASSET-8002'."
+        },
+        {
+            "id": "rename_berlin_asset",
+            "description": "Rename Engineering asset in Berlin (ASSET-8003) to the BER-ENG- prefix.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' page or a success message showing 'Asset Name' updated to 'BER-ENG-ASSET-8003'."
+        },
+        {
+            "id": "rename_tokyo_asset",
+            "description": "Rename Engineering asset in Tokyo (ASSET-8004) to the TYO-ENG- prefix.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' page or a success message showing 'Asset Name' updated to 'TYO-ENG-ASSET-8004'."
+        },
+        {
+            "id": "verify_non_target_preservation",
+            "description": "Ensure Marketing and unassigned assets remain unchanged.",
+            "points": 15,
+            "visual_evidence": "The final asset list view shows ASSET-8005, ASSET-8006 (Marketing) and ASSET-8007 (Ready to Deploy) with their original names/tags, not following the new convention."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than direct database manipulation or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicking 'Edit' buttons, and typing into web forms rather than a terminal window."
+        },
+        {
+            "id": "no_bulk_edit_shortcut",
+            "description": "The agent interacted with individual asset records to ensure accuracy per location.",
+            "visual_evidence": "Sequential screenshots showing the agent opening the edit page for different assets one by one."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the application menus rather than jumping directly to known URLs.",
+            "visual_evidence": "The agent is seen clicking on the 'Assets' sidebar or using the search bar within the Snipe-IT UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The target hostnames that must be present after remediation are: 'LON-ENG-ASSET-8001', 'LON-ENG-ASSET-8002', 'BER-ENG-ASSET-8003', and 'TYO-ENG-ASSET-8004'. Assets 'ASSET-8005' and 'ASSET-8006' belong to Marketing and must NOT be renamed. Asset 'ASSET-8007' is 'Ready to Deploy' (unassigned) and must NOT be renamed."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "simplify_app_menus@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_settings",
+            "description": "Agent navigates to the CRM Settings or Menu Editor page.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'CRM Settings' page or the 'Menu Editor' interface displayed in the browser."
+        },
+        {
+            "id": "select_marketing_app",
+            "description": "Agent selects the 'MARKETING' app within the Menu Editor to modify its contents.",
+            "points": 15,
+            "visual_evidence": "The 'MARKETING' app category is selected or expanded in the Menu Editor UI."
+        },
+        {
+            "id": "remove_campaigns_module",
+            "description": "Agent removes the 'Campaigns' module from the MARKETING app menu.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the agent clicking a delete/remove icon next to 'Campaigns' in the MARKETING list, or 'Campaigns' no longer appearing in that specific list after an action."
+        },
+        {
+            "id": "select_inventory_app",
+            "description": "Agent selects the 'INVENTORY' app within the Menu Editor.",
+            "points": 15,
+            "visual_evidence": "The 'INVENTORY' app category is selected or expanded in the Menu Editor UI."
+        },
+        {
+            "id": "remove_price_books_module",
+            "description": "Agent removes the 'Price Books' module from the INVENTORY app menu.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the agent clicking a delete/remove icon next to 'Price Books' in the INVENTORY list, or 'Price Books' no longer appearing in that list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The agent's actions are performed via mouse clicks and browser navigation in the screenshots, not via a command-line interface or MySQL prompt."
+        },
+        {
+            "id": "no_module_disabling",
+            "description": "The agent did not use the Module Manager to disable the modules entirely.",
+            "visual_evidence": "The agent stays within the Menu Editor/Layout settings and does not navigate to the 'Module Manager' to uncheck/deactivate the modules."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM menus to reach the settings.",
+            "visual_evidence": "Screenshots show the progression from the dashboard to settings, rather than jumping directly to a final success state without interaction."
+        }
+    ],
+    "privileged_info_for_vlm": "The target app names are 'MARKETING' and 'INVENTORY'. The specific modules to be removed from these menus are 'Campaigns' and 'Price Books' (internally 'PriceBooks'). The task specifically forbids using the Module Manager to disable them; the removal must happen via the Menu Editor interface."
+}

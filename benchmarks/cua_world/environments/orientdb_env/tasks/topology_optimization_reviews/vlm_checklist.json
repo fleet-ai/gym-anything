@@ -1,0 +1,59 @@
+{
+    "task_id": "topology_optimization_reviews@1",
+    "task_completion": [
+        {
+            "id": "create_posted_review_edge",
+            "description": "Create the new edge class 'PostedReview' in the database schema.",
+            "points": 10,
+            "visual_evidence": "The database schema view or a command output showing 'PostedReview' listed as a new edge class."
+        },
+        {
+            "id": "define_edge_properties",
+            "description": "Define the properties 'Rating' (Integer), 'Comment' (String), and 'ReviewDate' (Date) on the 'PostedReview' edge.",
+            "points": 15,
+            "visual_evidence": "Schema details for 'PostedReview' showing the three specific property names and their respective data types."
+        },
+        {
+            "id": "migrate_data_to_edge",
+            "description": "Migrate data from the 'Reviews' vertex to the 'PostedReview' edge, mapping Stars to Rating, Text to Comment, and Date to ReviewDate.",
+            "points": 35,
+            "visual_evidence": "A query result or data browser view showing 'PostedReview' edges populated with data (e.g., Rating: 4, Comment: 'Great location...', ReviewDate: '2023-01-15')."
+        },
+        {
+            "id": "verify_direct_connection",
+            "description": "Verify that 'PostedReview' edges directly connect 'Profiles' to 'Hotels'.",
+            "points": 15,
+            "visual_evidence": "A graph visualization or query showing an edge of type 'PostedReview' with an 'out' pointing to a Profile and an 'in' pointing to a Hotel."
+        },
+        {
+            "id": "delete_legacy_vertex",
+            "description": "Delete the legacy 'Reviews' vertex class.",
+            "points": 15,
+            "visual_evidence": "The database schema or class list showing that the 'Reviews' vertex class is no longer present."
+        },
+        {
+            "id": "delete_legacy_edges",
+            "description": "Delete the legacy 'MadeReview' and 'HasReview' edge classes.",
+            "points": 10,
+            "visual_evidence": "The database schema or class list showing that 'MadeReview' and 'HasReview' edge classes are no longer present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI (e.g., OrientDB Studio) rather than just executing background scripts.",
+            "visual_evidence": "Screenshots showing the browser-based database management interface being used to create classes or run queries."
+        },
+        {
+            "id": "genuine_data_migration",
+            "description": "The agent performed a migration query rather than manually creating a single dummy record.",
+            "visual_evidence": "SQL/Command history showing an 'INSERT INTO PostedReview...' or 'CREATE EDGE PostedReview...' statement that selects from existing classes."
+        },
+        {
+            "id": "correct_db_context",
+            "description": "The agent is connected to the 'demodb' database.",
+            "visual_evidence": "The database name 'demodb' is visible in the connection string or the GUI header."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb'. The new edge is 'PostedReview'. Mapping: Reviews.Stars -> PostedReview.Rating (Integer), Reviews.Text -> PostedReview.Comment (String), Reviews.Date -> PostedReview.ReviewDate (Date). A specific record to verify: John Smith (Profile) should have a PostedReview edge to Hotel Artemide with Rating: 4, Comment: 'Great location, small room', and ReviewDate: '2023-01-15'. Legacy classes to be deleted: Reviews (vertex), MadeReview (edge), HasReview (edge)."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "temporal_travel_anomaly@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a database management tool or terminal connected to 'demodb' with 'admin' user visible."
+        },
+        {
+            "id": "query_travel_data",
+            "description": "Agent executes queries to retrieve Profile data and associated 'HasStayed' edges, including CheckIn dates, Nights, and City information.",
+            "points": 20,
+            "visual_evidence": "SQL or Gremlin queries visible in the interface targeting Profile vertices and HasStayed edges/properties."
+        },
+        {
+            "id": "identify_overlaps",
+            "description": "Agent performs logic or queries to identify profiles with overlapping dates in different cities.",
+            "points": 25,
+            "visual_evidence": "Query results or scripts showing specific profiles (e.g., email addresses) that have been flagged for having stays in two different cities on the same date."
+        },
+        {
+            "id": "update_suspicious_property",
+            "description": "Agent updates the 'Suspicious' property to 'true' for the identified Profile vertices in the database.",
+            "points": 25,
+            "visual_evidence": "Execution of UPDATE commands or property edits in a GUI showing 'Suspicious = true' for specific records."
+        },
+        {
+            "id": "save_json_output",
+            "description": "Agent saves the list of suspicious email addresses to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'echo') or a text editor showing the creation of '/home/ga/suspicious_travelers.json' containing a list of emails."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_analysis",
+            "description": "The agent actually queried the database rather than guessing or hardcoding the 3 anomalies.",
+            "visual_evidence": "Screenshots must show the agent inspecting query results or data rows before generating the final list."
+        },
+        {
+            "id": "no_ground_truth_access",
+            "description": "The agent did not access the ground truth file directly to bypass the analysis.",
+            "visual_evidence": "The agent should not be seen opening or reading '/var/lib/orientdb/ground_truth_anomalies.json'."
+        },
+        {
+            "id": "correct_file_format",
+            "description": "The output file is a valid JSON list of strings.",
+            "visual_evidence": "The content of '/home/ga/suspicious_travelers.json' is formatted as [\"email1\", \"email2\"] and not just a plain text list."
+        }
+    ],
+    "privileged_info_for_vlm": "The database 'demodb' contains exactly 3 fraudulent profiles seeded with overlapping stays. These profiles are deterministically generated. The agent must set 'Suspicious=true' on these specific Profile vertices and output their emails to '/home/ga/suspicious_travelers.json'. The ground truth is stored at '/var/lib/orientdb/ground_truth_anomalies.json', which the agent should not access."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_velocity_distribution@1",
+    "task_completion": [
+        {
+            "id": "open_hdf5_file",
+            "description": "Agent opens the HDF5 file Muncie.p04.hdf or Muncie.p04.tmp.hdf in an HDF5 viewer or HEC-RAS results tool.",
+            "points": 10,
+            "visual_evidence": "A file explorer or HDF5 viewer showing the path /home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf being accessed."
+        },
+        {
+            "id": "locate_velocity_data",
+            "description": "Agent navigates to the velocity datasets within the HDF5 structure (typically under Results/Unsteady/Output/Output Blocks/Base Output/Unsteady Time Series/Cross Sections).",
+            "points": 20,
+            "visual_evidence": "The HDF5 tree structure expanded to show 'Velocity' or 'Velocity Total' datasets for cross-sections."
+        },
+        {
+            "id": "extract_cross_section_stats",
+            "description": "Agent extracts or calculates max, mean, and min velocity for the cross-sections.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing data tables, export dialogs, or scripts processing the velocity arrays to derive statistical values."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Agent generates the velocity_distribution.csv file with the required four columns.",
+            "points": 25,
+            "visual_evidence": "A file manager or text editor showing /home/ga/Documents/hec_ras_results/velocity_distribution.csv with headers: cross_section, max_velocity, mean_velocity, min_velocity."
+        },
+        {
+            "id": "generate_summary_txt",
+            "description": "Agent creates the velocity_summary.txt file with the peak velocity identifier and value.",
+            "points": 20,
+            "visual_evidence": "A text editor showing /home/ga/Documents/hec_ras_results/velocity_summary.txt with a cross-section ID on line 1 and a numerical velocity value on line 2."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_hdf5_interaction",
+            "description": "The agent actually interacted with the HDF5 data rather than generating dummy values.",
+            "visual_evidence": "Screenshots showing the HDF5 viewer (like HDFView) or HEC-RAS post-processor open with the Muncie project data visible."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply write the files using echo commands without first inspecting the data source.",
+            "visual_evidence": "The trajectory shows steps where the agent explores the HDF5 internal structure or uses a data processing library (like h5py) to read the specific file."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific absolute paths defined in the task for output.",
+            "visual_evidence": "The save dialogs or terminal commands show the exact paths /home/ga/Documents/hec_ras_results/velocity_distribution.csv and velocity_summary.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is located in /home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf. The agent must extract velocity time-series for all cross-sections. The output CSV must have exactly four columns: cross_section, max_velocity, mean_velocity, and min_velocity. The summary.txt must have the highest peak velocity identifier on line 1 and the numeric value on line 2. The results directory is /home/ga/Documents/hec_ras_results/."
+}

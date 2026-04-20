@@ -1,0 +1,59 @@
+{
+    "task_id": "enrich_dive_site_taxonomy@1",
+    "task_completion": [
+        {
+            "id": "open_dive_log",
+            "description": "The agent has opened the Subsurface dive log application and loaded the SampleDivesV2.ssrf file.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible with a list of dives displayed in the main pane."
+        },
+        {
+            "id": "select_sund_rock",
+            "description": "The agent has identified and selected the dive site 'Sund Rock' or 'Sund Rock, WA' from the list or site management view.",
+            "points": 15,
+            "visual_evidence": "The dive site 'Sund Rock' is highlighted or selected in the dive list or the 'Edit Dive Site' panel."
+        },
+        {
+            "id": "input_country",
+            "description": "The agent has entered 'USA' into the Country field for the Sund Rock dive site.",
+            "points": 20,
+            "visual_evidence": "The text 'USA' is visible in the Country input field of the dive site management or edit panel."
+        },
+        {
+            "id": "input_state",
+            "description": "The agent has entered 'Washington' into the State field for the Sund Rock dive site.",
+            "points": 20,
+            "visual_evidence": "The text 'Washington' is visible in the State input field of the dive site management or edit panel."
+        },
+        {
+            "id": "input_city",
+            "description": "The agent has entered 'Hoodsport' into the City field for the Sund Rock dive site.",
+            "points": 20,
+            "visual_evidence": "The text 'Hoodsport' is visible in the City input field of the dive site management or edit panel."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent has saved the changes to the dive log file.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Apply', or 'OK' button, or selects 'File > Save' from the menu, followed by a confirmation or the disappearance of the edit dialog."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to edit the taxonomy rather than editing the raw XML file via a text editor or terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Subsurface application fields and buttons."
+        },
+        {
+            "id": "no_manual_xml_edit",
+            "description": "The agent did not bypass the application by using 'sed' or 'echo' in the terminal to modify the .ssrf file directly.",
+            "visual_evidence": "The terminal is not used to execute string replacement commands on the data file."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual dive site management features of the software.",
+            "visual_evidence": "The 'Dive Sites' tab or 'Edit Dive' panel is visible during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The target dive site is 'Sund Rock' (sometimes listed as 'Sund Rock, WA'). The correct taxonomy to be entered is Country: USA, State: Washington, and City: Hoodsport. The application used is Subsurface. Note that the raw XML may already contain a combined string 'Sund Rock, Hoodsport, WA, USA', but the task requires explicitly updating/verifying the structured taxonomy fields (Country, State, City) within the application GUI."
+}

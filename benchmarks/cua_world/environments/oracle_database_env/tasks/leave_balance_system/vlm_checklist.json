@@ -1,0 +1,59 @@
+{
+    "task_id": "leave_balance_system@1",
+    "task_completion": [
+        {
+            "id": "tables_created",
+            "description": "Create LEAVE_POLICIES, LEAVE_BALANCES, and LEAVE_REQUESTS tables with specified constraints.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing CREATE TABLE statements or a database explorer tree showing the three new table names."
+        },
+        {
+            "id": "policies_populated",
+            "description": "Populate LEAVE_POLICIES for all 19 jobs with correct vacation/sick day logic.",
+            "points": 15,
+            "visual_evidence": "SQL output showing '19 rows inserted' or a SELECT * FROM LEAVE_POLICIES result grid showing different values for AD_PRES vs other roles."
+        },
+        {
+            "id": "accrual_procedure_created",
+            "description": "Create the PL/SQL procedure CALCULATE_LEAVE_ACCRUALS with seniority logic.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the procedure code including the LEAST function for seniority bonus and a 'Procedure CALCULATE_LEAVE_ACCRUALS compiled' message."
+        },
+        {
+            "id": "balances_populated",
+            "description": "Execute the procedure to populate the LEAVE_BALANCES table.",
+            "points": 15,
+            "visual_evidence": "SQL output showing 'PL/SQL procedure successfully completed' and a subsequent query of LEAVE_BALANCES showing data."
+        },
+        {
+            "id": "trigger_created",
+            "description": "Create the TRG_LEAVE_BALANCE_CHECK trigger to validate and deduct balances on approval.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the trigger code with 'BEFORE UPDATE' or 'AFTER INSERT' logic on LEAVE_REQUESTS and a 'Trigger TRG_LEAVE_BALANCE_CHECK compiled' message."
+        },
+        {
+            "id": "report_exported",
+            "description": "Export the summary report to the specified file path on the desktop.",
+            "points": 15,
+            "visual_evidence": "A file manager window or text editor showing 'leave_balance_report.txt' located at /home/ga/Desktop/ containing the query results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_database_interaction",
+            "description": "The agent used a database management GUI (like SQL Developer or DBeaver) rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing a graphical SQL editor, result grids, and connection trees."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The report file was generated via SQL execution/export, not by manually typing into a text editor.",
+            "visual_evidence": "The agent executing a SPOOL command or an 'Export' wizard in the GUI before the file appears."
+        },
+        {
+            "id": "genuine_schema_interaction",
+            "description": "The agent queried the existing JOBS and EMPLOYEES tables to perform the task.",
+            "visual_evidence": "SQL logs or editor history showing SELECT statements on the HR schema tables to verify JOB_IDs or employee counts."
+        }
+    ],
+    "privileged_info_for_vlm": "The Oracle HR schema contains 19 unique JOB_IDs. Executive roles start with 'AD' (AD_PRES, AD_VP). Manager roles contain 'MGR' or 'MAN'. The seniority bonus logic is: Base + LEAST(Years * 1, 10). The final report must be saved specifically to /home/ga/Desktop/leave_balance_report.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "implement_speed_zone@1",
+    "task_completion": [
+        {
+            "id": "export_plain_xml",
+            "description": "Export the original network to plain XML files with the prefix 'pasubio_plain' in the zona30 directory.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing the creation of pasubio_plain.edg.xml, pasubio_plain.nod.xml, etc., in /home/ga/SUMO_Scenarios/zona30/."
+        },
+        {
+            "id": "modify_edge_speeds",
+            "description": "Modify the edge XML file to update speeds from 13.89 or less to 8.33.",
+            "points": 25,
+            "visual_evidence": "A text editor (like gedit or nano) showing pasubio_plain.edg.xml or a new pasubio_zona30.edg.xml where speed values are changed to '8.33'."
+        },
+        {
+            "id": "reimport_network",
+            "description": "Reimport the modified XML files using netconvert to create pasubio_zona30.net.xml.",
+            "points": 20,
+            "visual_evidence": "Terminal command showing 'netconvert' with input files and output set to /home/ga/SUMO_Scenarios/zona30/pasubio_zona30.net.xml."
+        },
+        {
+            "id": "create_sumocfg",
+            "description": "Create a SUMO configuration file (zona30.sumocfg) referencing the new network and original route/additional files.",
+            "points": 20,
+            "visual_evidence": "Text editor showing zona30.sumocfg with <net-file value=\"pasubio_zona30.net.xml\"/> and references to the original .rou.xml and .add.xml files."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Run the simulation using the newly created configuration file.",
+            "points": 25,
+            "visual_evidence": "The SUMO-GUI or terminal showing the simulation running using zona30.sumocfg, with vehicles moving on the network."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_modification",
+            "description": "Verify the agent actually edited the files rather than just creating an empty file.",
+            "visual_evidence": "Screenshots showing the content of the XML or CFG files being typed or saved in an editor."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Ensure the agent is working in the /home/ga/SUMO_Scenarios/zona30 directory as instructed.",
+            "visual_evidence": "Terminal prompts or file manager address bars showing the specific 'zona30' subdirectory."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "Check that the agent didn't just echo 'Success' without running the netconvert or sumo commands.",
+            "visual_evidence": "Presence of actual command execution logs for 'netconvert' and 'sumo' or 'sumo-gui'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target speed for the 'Zona 30' policy is exactly 8.33 m/s. The threshold for modification is 13.89 m/s (representing 50 km/h). The new network file must be named pasubio_zona30.net.xml and located in /home/ga/SUMO_Scenarios/zona30/. The simulation must reference the original route files from /home/ga/SUMO_Scenarios/bologna_pasubio/."
+}

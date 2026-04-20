@@ -1,0 +1,59 @@
+{
+    "task_id": "delete_erroneous_ingredient@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the wger application using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the wger dashboard or a 'Logged in as admin' message after entering credentials."
+        },
+        {
+            "id": "navigate_to_ingredients",
+            "description": "Navigate to the ingredients or nutrition database section.",
+            "points": 15,
+            "visual_evidence": "The browser shows the ingredient list page, typically under a 'Nutrition' or 'Ingredients' menu item."
+        },
+        {
+            "id": "identify_duplicates",
+            "description": "Locate both entries for 'Gold Standard 100% Whey' to compare their values.",
+            "points": 20,
+            "visual_evidence": "A list view showing two separate entries with the name 'Gold Standard 100% Whey'."
+        },
+        {
+            "id": "verify_incorrect_protein",
+            "description": "Identify the specific entry with the incorrect protein value (7.95g).",
+            "points": 20,
+            "visual_evidence": "The agent clicks on or views the details of the ingredient showing approximately 7.95g of protein."
+        },
+        {
+            "id": "delete_incorrect_entry",
+            "description": "Initiate and confirm the deletion of the ingredient with the incorrect protein value.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion or a 'Successfully deleted' notification specifically for the 7.95g protein entry."
+        },
+        {
+            "id": "verify_remaining_entry",
+            "description": "Ensure the correct ingredient (79.5g protein) remains in the system.",
+            "points": 10,
+            "visual_evidence": "The ingredient list now shows only one 'Gold Standard 100% Whey' entry, or the details of the remaining entry show approximately 79.5g protein."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database or shell commands to delete the entry.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons, and browser navigation rather than terminal windows executing SQL or Django management commands."
+        },
+        {
+            "id": "no_indiscriminate_deletion",
+            "description": "The agent specifically checked the protein values before deleting, rather than deleting a random entry.",
+            "visual_evidence": "The agent must have opened the detail view or looked at the protein column in the list view for both entries before clicking delete."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the application menus to find the ingredients.",
+            "visual_evidence": "The sequence of screenshots shows the agent clicking through the wger navigation menu (e.g., Nutrition -> Ingredients)."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct protein value for 'Gold Standard 100% Whey' is 79.5g. The erroneous entry that must be deleted has a protein value of 7.95g. The agent must identify these specific values in the UI to distinguish between the two duplicates."
+}

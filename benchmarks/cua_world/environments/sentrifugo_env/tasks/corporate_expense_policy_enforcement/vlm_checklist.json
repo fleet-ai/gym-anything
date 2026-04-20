@@ -1,0 +1,59 @@
+{
+    "task_id": "corporate_expense_policy_enforcement@1",
+    "task_completion": [
+        {
+            "id": "read_austerity_memo",
+            "description": "Agent opens and reads the austerity memo file on the desktop to identify new policy limits.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of 'q3_austerity_memo.txt' with the $100 limit and discontinued telecom category."
+        },
+        {
+            "id": "update_client_entertainment_limit",
+            "description": "Agent updates the 'Client Entertainment' expense category limit in Sentrifugo to $100.",
+            "points": 20,
+            "visual_evidence": "The Sentrifugo 'Expense Categories' configuration page showing the 'Client Entertainment' limit field set to 100."
+        },
+        {
+            "id": "deactivate_telecom_category",
+            "description": "Agent sets the 'Telecom & Internet' category to inactive/discontinued status.",
+            "points": 20,
+            "visual_evidence": "The Sentrifugo 'Expense Categories' list showing 'Telecom & Internet' with a status of 'Inactive' or '0'."
+        },
+        {
+            "id": "process_approved_claim",
+            "description": "Agent approves the $85 Client Entertainment claim for David Kim.",
+            "points": 15,
+            "visual_evidence": "The expense claims list or detail view showing the $85 claim for David Kim with a status of 'Approved'."
+        },
+        {
+            "id": "process_rejected_entertainment_claim",
+            "description": "Agent rejects the $120 Client Entertainment claim for David Kim for exceeding the new limit.",
+            "points": 15,
+            "visual_evidence": "The expense claims list or detail view showing the $120 claim for David Kim with a status of 'Rejected'."
+        },
+        {
+            "id": "process_rejected_telecom_claim",
+            "description": "Agent rejects the $45 Telecom & Internet claim for David Kim because the category is discontinued.",
+            "points": 20,
+            "visual_evidence": "The expense claims list or detail view showing the $45 claim for David Kim with a status of 'Rejected'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Sentrifugo web interface to update categories and process claims rather than direct database manipulation.",
+            "visual_evidence": "Screenshots showing the browser interacting with the Sentrifugo dashboard and expense modules."
+        },
+        {
+            "id": "memo_source_verification",
+            "description": "The agent actually opened the memo file rather than guessing the policy changes.",
+            "visual_evidence": "A screenshot showing the content of ~/Desktop/q3_austerity_memo.txt being displayed."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the Sentrifugo menus (Expenses -> Configuration/Claims) to reach the target pages.",
+            "visual_evidence": "Sequential screenshots showing the mouse hovering over or clicking the Sentrifugo navigation sidebar/menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The austerity memo dictates: 1. 'Client Entertainment' limit is now $100. 2. 'Telecom & Internet' category is discontinued (Active=0). For David Kim (EMP005), there are three claims to process: an $85 Client Entertainment claim (should be Approved), a $120 Client Entertainment claim (should be Rejected), and a $45 Telecom & Internet claim (should be Rejected)."
+}

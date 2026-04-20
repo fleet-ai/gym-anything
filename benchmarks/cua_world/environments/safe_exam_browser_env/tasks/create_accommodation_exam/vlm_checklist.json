@@ -1,0 +1,59 @@
+{
+    "task_id": "create_accommodation_exam@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SEB Server dashboard or exam list after the login screen, indicating successful authentication as super-admin."
+        },
+        {
+            "id": "identify_original_exam_times",
+            "description": "Locate the 'Introduction to Psychology' exam to identify its start and end times.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the 'Introduction to Psychology' exam details or its row in the exam table, specifically displaying the start and end date/time values."
+        },
+        {
+            "id": "create_new_exam_form",
+            "description": "Open the 'Create Exam' or 'Add Exam' form and enter the correct name.",
+            "points": 15,
+            "visual_evidence": "A form field for 'Exam Name' containing the text 'Introduction to Psychology (Accommodations)'."
+        },
+        {
+            "id": "set_correct_times",
+            "description": "Set the start and end times to match the original 'Introduction to Psychology' exam.",
+            "points": 20,
+            "visual_evidence": "The date/time picker or input fields for the new exam showing the same values as the original exam identified in the previous step."
+        },
+        {
+            "id": "select_config_and_password",
+            "description": "Select the 'Accessibility_Profile_v2' configuration and set the connection password.",
+            "points": 25,
+            "visual_evidence": "A dropdown or selection menu showing 'Accessibility_Profile_v2' selected, and the 'Connection Password' field containing 'AccommodateMe!' (or masked characters in that field)."
+        },
+        {
+            "id": "verify_exam_creation",
+            "description": "Save the exam and verify it appears in the exam list.",
+            "points": 15,
+            "visual_evidence": "The exam list table showing a new entry for 'Introduction to Psychology (Accommodations)' with the correct configuration and status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots should show mouse movements, clicks on buttons like 'Save' or 'Create', and form filling in the browser, not just terminal commands."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually navigated to find the original exam times rather than guessing.",
+            "visual_evidence": "The trajectory must include a step where the agent views the details or the list entry of the original 'Introduction to Psychology' exam."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the actual SEB Server interface at localhost:8080.",
+            "visual_evidence": "The browser address bar should consistently show http://localhost:8080 during the exam creation process."
+        }
+    ],
+    "privileged_info_for_vlm": "The original exam is named 'Introduction to Psychology'. The new exam must be named 'Introduction to Psychology (Accommodations)'. The required configuration profile is 'Accessibility_Profile_v2'. The mandatory connection password is 'AccommodateMe!'. The start and end times for the new exam must be identical to those found on the 'Introduction to Psychology' exam page."
+}

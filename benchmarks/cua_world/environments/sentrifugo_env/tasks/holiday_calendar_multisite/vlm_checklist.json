@@ -1,0 +1,53 @@
+{
+    "task_id": "holiday_calendar_multisite@1",
+    "task_completion": [
+        {
+            "id": "login_sentrifugo",
+            "description": "Agent successfully logs into the Sentrifugo HRMS dashboard.",
+            "points": 10,
+            "visual_evidence": "The Sentrifugo dashboard is visible with the user 'Admin' or 'admin@sentrifugo.local' logged in."
+        },
+        {
+            "id": "create_holiday_groups",
+            "description": "Agent creates the three required holiday groups: Texas Plant Holidays, California Plant Holidays, and Pennsylvania Plant Holidays.",
+            "points": 20,
+            "visual_evidence": "A list or table view in the Holiday Management module showing all three group names exactly as specified."
+        },
+        {
+            "id": "populate_texas_holidays",
+            "description": "Agent adds the 7 specified holidays to the 'Texas Plant Holidays' group.",
+            "points": 20,
+            "visual_evidence": "The holiday list for the Texas group showing dates like 2026-01-01, 2026-05-25, 2026-06-19, 2026-07-03, 2026-09-07, 2026-11-26, and 2026-12-25."
+        },
+        {
+            "id": "populate_california_holidays",
+            "description": "Agent adds the specified holidays (including César Chávez Day) to the 'California Plant Holidays' group.",
+            "points": 25,
+            "visual_evidence": "The holiday list for the California group showing 2026-03-31 (César Chávez Day) and other 2026 dates."
+        },
+        {
+            "id": "populate_pennsylvania_holidays",
+            "description": "Agent adds the specified holidays to the 'Pennsylvania Plant Holidays' group.",
+            "points": 25,
+            "visual_evidence": "The holiday list for the Pennsylvania group showing the 2026 dates specified in the memo."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Sentrifugo web interface rather than manipulating the database via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, form filling, and button clicks within the browser, not SQL commands in a terminal."
+        },
+        {
+            "id": "memo_source_usage",
+            "description": "The agent accessed the text file on the desktop to retrieve the holiday dates.",
+            "visual_evidence": "A screenshot shows the agent opening or reading '2026_holiday_schedule.txt' on the Desktop."
+        },
+        {
+            "id": "authentic_configuration",
+            "description": "The agent did not use automated scripts to bypass the UI workflow.",
+            "visual_evidence": "Sequential screenshots show the step-by-step process of adding individual holidays through the 'Add Holiday' modal/form."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create three groups: 'Texas Plant Holidays', 'California Plant Holidays', and 'Pennsylvania Plant Holidays'. Texas holidays (7 total): Jan 1, May 25, Jun 19, Jul 3, Sep 7, Nov 26, Dec 25. California holidays include Mar 31 (César Chávez Day) in addition to standard dates. All dates must be in the year 2026. The agent must read the schedule from ~/Desktop/2026_holiday_schedule.txt before inputting."
+}

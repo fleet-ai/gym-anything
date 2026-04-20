@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_scmv_custom_map_layer@1",
+    "task_completion": [
+        {
+            "id": "bna_file_creation",
+            "description": "Create the BNA file with the specified polygon coordinates and name.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the file ~/.seiscomp/bna/noto_zone.bna containing 'Noto Aftershock Zone' and the coordinates (37.10, 136.60), (37.50, 136.60), (37.50, 137.50), and (37.10, 137.50)."
+        },
+        {
+            "id": "configure_scmv_cfg",
+            "description": "Enable station annotations in the scmv configuration file.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing ~/.seiscomp/scmv.cfg with a line like 'scheme.map.showStationNames = true' or similar annotation-enabling configuration."
+        },
+        {
+            "id": "launch_scmv",
+            "description": "Launch the SeisComP Map View (scmv) application.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scmv' or 'SeisComP Map View' is visible on the desktop."
+        },
+        {
+            "id": "verify_polygon_display",
+            "description": "The custom polygon for Noto Aftershock Zone is visible on the map.",
+            "points": 30,
+            "visual_evidence": "The scmv map displays a rectangular polygon in the region of Japan (specifically the Noto Peninsula area) corresponding to the defined coordinates."
+        },
+        {
+            "id": "verify_station_labels",
+            "description": "Station names/labels are displayed on the map.",
+            "points": 20,
+            "visual_evidence": "Text labels (station codes) are visible next to station icons on the scmv map."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "Save the final screenshot to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal command confirming the existence of /home/ga/scmv_layer_verification.png showing the scmv window with the polygon and labels."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_scmv_interface",
+            "description": "The agent interacted with the actual scmv GUI, not a static image.",
+            "visual_evidence": "The scmv window shows standard UI elements, map controls, and the specific polygon/labels requested, rather than a pre-existing image file opened in a viewer."
+        },
+        {
+            "id": "no_manual_drawing",
+            "description": "The polygon is rendered by the software based on the BNA file, not manually drawn using an image editor.",
+            "visual_evidence": "The polygon lines align perfectly with the map projection and zoom level in scmv."
+        },
+        {
+            "id": "config_file_modification",
+            "description": "The agent actually modified the configuration files rather than just opening the app.",
+            "visual_evidence": "Screenshots show the agent editing ~/.seiscomp/bna/noto_zone.bna and ~/.seiscomp/scmv.cfg before the final result is shown."
+        }
+    ],
+    "privileged_info_for_vlm": "The BNA file must be at /home/ga/.seiscomp/bna/noto_zone.bna and contain the name 'Noto Aftershock Zone'. The polygon is a rectangle defined by Lat 37.1 to 37.5 and Lon 136.6 to 137.5. The configuration file /home/ga/.seiscomp/scmv.cfg must have annotations enabled. The final verification image must be saved exactly at /home/ga/scmv_layer_verification.png."
+}

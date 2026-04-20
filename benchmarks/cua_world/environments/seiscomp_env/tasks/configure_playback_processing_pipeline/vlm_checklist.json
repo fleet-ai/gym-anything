@@ -1,0 +1,65 @@
+{
+    "task_id": "configure_playback_processing_pipeline@1",
+    "task_completion": [
+        {
+            "id": "scconfig_interface_open",
+            "description": "Open the SeisComP configuration GUI (scconfig) to manage station bindings and modules.",
+            "points": 10,
+            "visual_evidence": "A window titled 'SeisComP Configuration' or 'scconfig' is visible on the desktop."
+        },
+        {
+            "id": "configure_station_bindings",
+            "description": "Configure station bindings for GE.GSI, GE.BKB, and GE.SANI for the scautopick module.",
+            "points": 20,
+            "visual_evidence": "In scconfig, the 'Bindings' tab shows the stations GSI, BKB, and SANI associated with a profile for scautopick."
+        },
+        {
+            "id": "set_teleseismic_filter",
+            "description": "Configure appropriate filter parameters for teleseismic detection (e.g., bandpass filter) in the scautopick profile.",
+            "points": 15,
+            "visual_evidence": "The scconfig interface shows a filter string (e.g., 'BW(4, 0.5, 2.0)' or similar teleseismic range) entered in the scautopick configuration."
+        },
+        {
+            "id": "execute_playback_pipeline",
+            "description": "Execute the offline processing pipeline using the playback tool or command line for the specified day.",
+            "points": 20,
+            "visual_evidence": "A terminal window shows the execution of a playback command or script referencing the 2024-001 data or SDS archive."
+        },
+        {
+            "id": "verify_automatic_picks",
+            "description": "Verify that automatic phase picks were generated for the three stations in the database.",
+            "points": 15,
+            "visual_evidence": "A GUI (like scolv or scart) or a terminal query shows pick markers on waveforms for GSI, BKB, and SANI."
+        },
+        {
+            "id": "verify_origin_creation",
+            "description": "Verify that at least one automatic origin (location) was recorded in the database.",
+            "points": 10,
+            "visual_evidence": "An event list or origin list (e.g., in scolv or via 'scevtls') shows a new entry for the 2024-001 event."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "Create the summary file at /home/ga/Desktop/playback_results.txt with the required counts.",
+            "points": 10,
+            "visual_evidence": "A text editor or 'cat' command shows a file at the specified path containing the number of picks and origins."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_seiscomp_interaction",
+            "description": "The agent interacted with the SeisComP software suite rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots show the scconfig GUI, terminal logs of SeisComP modules running, or waveform displays."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The summary file results should reflect the actual processing output, not just the task description text.",
+            "visual_evidence": "The playback_results.txt file contains specific numbers (e.g., '3 picks', '1 origin') derived from the execution logs."
+        },
+        {
+            "id": "correct_station_usage",
+            "description": "The agent specifically targeted the GE network stations mentioned in the task.",
+            "visual_evidence": "The configuration screens or command arguments explicitly list GSI, BKB, and SANI."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves the 2024 Noto Peninsula earthquake (Day 2024-001). The required stations are GE.GSI, GE.BKB, and GE.SANI. The agent must use scconfig to set up bindings and scautopick/scautoloc for processing. A successful run must produce at least 3 automatic picks (one per station) and 1 origin. The final output must be a text file at /home/ga/Desktop/playback_results.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "measure_pulmonary_artery@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the chest CT scan into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan of the chest is visible in the application's slice viewers (axial, sagittal, coronal)."
+        },
+        {
+            "id": "locate_mpa_bifurcation",
+            "description": "The agent navigates to the axial slice showing the main pulmonary artery at the level of its bifurcation into left and right branches.",
+            "points": 20,
+            "visual_evidence": "The axial view shows the 'inverted Y' or 'T' shape where the main pulmonary artery splits."
+        },
+        {
+            "id": "perform_measurement",
+            "description": "The agent uses a ruler or markup tool to measure the diameter of the MPA.",
+            "points": 30,
+            "visual_evidence": "A measurement line or ruler graphic is overlaid on the MPA in the axial slice, with a numerical value displayed in the GUI."
+        },
+        {
+            "id": "format_json_results",
+            "description": "The agent prepares the measurement data in the required JSON format.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows a JSON structure with keys: diameter_mm, slice_number, and clinical_interpretation."
+        },
+        {
+            "id": "save_file_to_path",
+            "description": "The agent saves the results to the specific file path: /home/ga/Documents/SlicerData/Exports/pa_measurement.json.",
+            "points": 25,
+            "visual_evidence": "A file explorer window, a 'Save As' dialog, or a terminal command confirms the file was written to the exact specified directory and filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software's GUI tools to measure rather than just guessing.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement tools or markup modules within the software interface."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the JSON without performing the measurement steps first.",
+            "visual_evidence": "The trajectory shows the measurement being drawn on the scan before the JSON file is created."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual 3D Slicer (or equivalent) environment.",
+            "visual_evidence": "The application window title and layout match the expected medical imaging software environment."
+        }
+    ],
+    "privileged_info_for_vlm": "For case LIDC-IDRI-0001, a valid MPA diameter measurement should fall between 14.9 mm and 45 mm. The normal range for an MPA is 19.5 mm to 29 mm; any value above 29 mm should be interpreted as 'enlarged' or 'dilated' in the clinical_interpretation field."
+}

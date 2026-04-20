@@ -1,0 +1,59 @@
+{
+    "task_id": "spatial_join_summary_concatenation@1",
+    "task_completion": [
+        {
+            "id": "load_input_layers",
+            "description": "Load both precincts.geojson and polling_places.geojson into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The Layers panel shows 'precincts' and 'polling_places' (or similar names) as active layers in the project."
+        },
+        {
+            "id": "open_spatial_join_tool",
+            "description": "Open the Join Attributes by Location (Summary) or equivalent spatial join tool.",
+            "points": 15,
+            "visual_evidence": "A dialog box for 'Join Attributes by Location (Summary)' or 'Spatial Join' is visible on screen."
+        },
+        {
+            "id": "configure_join_parameters",
+            "description": "Set precincts as the base layer, polling places as the join layer, and select 'count' and 'concatenation' as summaries.",
+            "points": 25,
+            "visual_evidence": "The tool settings show 'precincts' as the input, 'polling_places' as the join layer, and summary fields for 'count' and 'place_name' (concatenation) selected."
+        },
+        {
+            "id": "execute_spatial_join",
+            "description": "Run the spatial join process to create the joined layer.",
+            "points": 20,
+            "visual_evidence": "A new layer (often named 'Joined layer' or 'output') appears in the Layers panel, and the tool processing bar completes."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "Open the attribute table of the joined layer to verify the count and concatenated names.",
+            "points": 15,
+            "visual_evidence": "The attribute table is open, showing a column for the count of polling places and a column containing concatenated strings like 'Lincoln Elementary, Central Library'."
+        },
+        {
+            "id": "export_final_result",
+            "description": "Export the resulting layer to the specified path: /home/ga/GIS_Data/exports/precinct_inventory.geojson.",
+            "points": 15,
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog is shown with the file path set to /home/ga/GIS_Data/exports/precinct_inventory.geojson and the format set to GeoJSON."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GIS software GUI to perform the join rather than just running a script in the terminal.",
+            "visual_evidence": "Screenshots show the agent clicking menus, filling out tool dialogs, and interacting with the map canvas/layers panel."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type the names of the polling places into the attribute table.",
+            "visual_evidence": "The agent is seen using the 'Join' or 'Summary' tool functions rather than the 'Field Calculator' with manual strings or manual cell editing."
+        },
+        {
+            "id": "genuine_file_export",
+            "description": "The agent actually performed the export through the software interface.",
+            "visual_evidence": "The export/save dialog is visible and confirmed, rather than just a terminal 'cp' or 'mv' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The input data contains 2 precincts (A and B). Precinct A should have a count of 2 polling places with the concatenated names 'Lincoln Elementary' and 'Central Library'. Precinct B should have its own respective count and names based on the spatial overlap. The final output must be saved specifically to /home/ga/GIS_Data/exports/precinct_inventory.geojson."
+}

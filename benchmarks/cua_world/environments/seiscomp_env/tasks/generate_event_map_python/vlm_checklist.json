@@ -1,0 +1,65 @@
+{
+    "task_id": "generate_event_map_python@1",
+    "task_completion": [
+        {
+            "id": "open_editor_or_terminal",
+            "description": "The agent opens a code editor or terminal to begin writing the Python script.",
+            "points": 10,
+            "visual_evidence": "A text editor (like VS Code or Vim) or a terminal window is visible on the screen."
+        },
+        {
+            "id": "script_content_seiscomp",
+            "description": "The script contains code to interface with SeisComP to fetch event and station data.",
+            "points": 20,
+            "visual_evidence": "Code snippets showing imports like 'fdsn' or 'obspy' and queries targeting SeisComP or the Noto Peninsula event coordinates."
+        },
+        {
+            "id": "script_plotting_logic",
+            "description": "The script includes plotting logic for a map with specific symbols for stations and the epicenter.",
+            "points": 20,
+            "visual_evidence": "Code showing plotting commands (e.g., matplotlib, cartopy) with markers like triangles for stations and a star for the epicenter."
+        },
+        {
+            "id": "save_script_correct_path",
+            "description": "The script is saved as /home/ga/plot_event_map.py.",
+            "points": 10,
+            "visual_evidence": "The file manager or editor title bar shows the filename 'plot_event_map.py' in the '/home/ga/' directory."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent executes the Python script to generate the map.",
+            "points": 15,
+            "visual_evidence": "A terminal command like 'python3 plot_event_map.py' is executed without errors."
+        },
+        {
+            "id": "verify_output_image_exists",
+            "description": "The output image /home/ga/noto_event_map.png is generated and visible in the file system.",
+            "points": 10,
+            "visual_evidence": "The file 'noto_event_map.png' appears in the file explorer or is listed in the terminal via 'ls'."
+        },
+        {
+            "id": "display_final_map",
+            "description": "The generated map is displayed, showing the Noto Peninsula, stations, and the epicenter.",
+            "points": 15,
+            "visual_evidence": "An image viewer or plot window opens showing a map of Japan/Noto Peninsula with triangles/dots (stations) and a prominent star/circle (epicenter)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent did not simply display a pre-existing image without running code.",
+            "visual_evidence": "The agent is seen writing and executing the script rather than just opening an image viewer immediately."
+        },
+        {
+            "id": "genuine_seiscomp_interaction",
+            "description": "The agent uses SeisComP data rather than hardcoding arbitrary coordinates for all stations.",
+            "visual_evidence": "The script contains API calls or database queries to SeisComP services."
+        },
+        {
+            "id": "script_creation_process",
+            "description": "The script was authored during the session, not just copy-pasted from a hidden source.",
+            "visual_evidence": "The agent is seen typing, editing, or incrementally building the script in the IDE/Terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires generating a map specifically for the 2024 Noto Peninsula earthquake. The script must be named /home/ga/plot_event_map.py and the output image must be /home/ga/noto_event_map.png. The map must include both recording stations (typically triangles) and the event epicenter (typically a star). The data must be sourced from SeisComP."
+}

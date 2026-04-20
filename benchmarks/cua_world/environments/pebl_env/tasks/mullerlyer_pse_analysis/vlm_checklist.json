@@ -1,0 +1,59 @@
+{
+    "task_id": "mullerlyer_pse_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_inspection",
+            "description": "Agent loads and inspects the dataset at ~/pebl/data/mullerlyer_data.csv.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening the CSV file in a terminal (e.g., cat, head, pandas) or a spreadsheet viewer."
+        },
+        {
+            "id": "identify_p99_corruption",
+            "description": "Agent identifies P99 as the corrupted participant with 100% 'comparison longer' responses.",
+            "points": 15,
+            "visual_evidence": "Code output or terminal text showing a check for response rates per participant where P99 has a mean response of 1.0."
+        },
+        {
+            "id": "logistic_regression_fitting",
+            "description": "Agent fits logistic psychometric functions to the valid 15 participants for both conditions.",
+            "points": 25,
+            "visual_evidence": "Code snippets showing the use of libraries like scipy.optimize.curve_fit, statsmodels, or sklearn to fit logistic models to the data."
+        },
+        {
+            "id": "pse_and_magnitude_calculation",
+            "description": "Agent calculates PSE for fins_in and fins_out and the resulting illusion magnitude for each participant.",
+            "points": 25,
+            "visual_evidence": "Terminal output or code variables showing calculated PSE values (where P=0.5) and the difference between conditions."
+        },
+        {
+            "id": "group_mean_calculation",
+            "description": "Agent computes the group means for PSEs and illusion magnitude across the 15 valid participants.",
+            "points": 10,
+            "visual_evidence": "Code output showing the calculation of 'group_mean_pse_fins_out', 'group_mean_pse_fins_in', and 'group_mean_illusion_magnitude'."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final results to ~/pebl/analysis/mullerlyer_report.json with the specified structure.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the content of the generated JSON file or a terminal command confirming the file was saved to the correct path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding_p99",
+            "description": "Agent identifies P99 through data analysis rather than just assuming it from the prompt.",
+            "visual_evidence": "Code showing a filtering or grouping operation that detects the 100% response rate for P99."
+        },
+        {
+            "id": "genuine_model_fitting",
+            "description": "Agent performs actual psychometric fitting rather than just averaging raw values.",
+            "visual_evidence": "Presence of logistic function definitions or statistical fitting library calls in the code."
+        },
+        {
+            "id": "valid_participant_count",
+            "description": "Agent correctly excludes P99 from the group mean calculations.",
+            "visual_evidence": "Code showing the exclusion of P99 or a calculation performed on exactly 15 participants."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 16 participants (P01-P15 and P99). P99 is the corrupted participant who always responded '1' (comparison longer). The standard stimulus length is 100. The agent must calculate the Point of Subjective Equality (PSE) using a logistic function for two conditions: 'fins_in' and 'fins_out'. The final output must be a JSON file at ~/pebl/analysis/mullerlyer_report.json containing individual PSEs, the exclusion of P99, and group means for the 15 valid participants."
+}

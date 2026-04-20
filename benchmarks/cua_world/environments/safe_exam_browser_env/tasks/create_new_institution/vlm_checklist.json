@@ -1,0 +1,53 @@
+{
+    "task_id": "create_new_institution@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the SEB Server as super-admin",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SEB Server dashboard or administration panel after the agent enters 'super-admin' and 'admin'."
+        },
+        {
+            "id": "navigate_to_institutions",
+            "description": "Navigate to the Institutions management section",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of institutions or an 'Institutions' menu item selected in the sidebar/navigation."
+        },
+        {
+            "id": "enter_institution_details",
+            "description": "Enter the correct name and URL suffix in the creation form",
+            "points": 25,
+            "visual_evidence": "The VLM should see 'Pacific Northwest Health Sciences Testing Center' in the Name field and 'pnhstc' in the URL suffix field."
+        },
+        {
+            "id": "activate_institution",
+            "description": "Set the institution status to active",
+            "points": 25,
+            "visual_evidence": "The VLM should see a checkbox or toggle for 'Active' or 'Enabled' being checked/selected during or after creation."
+        },
+        {
+            "id": "verify_creation_success",
+            "description": "Confirm the new institution appears in the list and is active",
+            "points": 30,
+            "visual_evidence": "The VLM should see a table row containing 'Pacific Northwest Health Sciences Testing Center', the suffix 'pnhstc', and a status indicator showing it is 'Active' or 'Enabled'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than terminal commands to create the institution",
+            "visual_evidence": "The VLM should see the mouse cursor interacting with form fields and buttons in the browser, not commands like 'curl' or 'sql' in a terminal."
+        },
+        {
+            "id": "no_hardcoded_url_skip",
+            "description": "The agent navigated through the UI rather than jumping directly to a success page",
+            "visual_evidence": "The VLM should see the sequence of clicks from the login page to the institution creation form."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent typed or pasted the specific values into the browser fields",
+            "visual_evidence": "The VLM should see the text 'Pacific Northwest Health Sciences Testing Center' appearing within the SEB Server's HTML input fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The institution name must be exactly 'Pacific Northwest Health Sciences Testing Center'. The URL suffix must be 'pnhstc'. The institution must be explicitly marked as 'Active' (usually a checkbox or status toggle in the SEB Server UI). Credentials for login are username 'super-admin' and password 'admin'."
+}

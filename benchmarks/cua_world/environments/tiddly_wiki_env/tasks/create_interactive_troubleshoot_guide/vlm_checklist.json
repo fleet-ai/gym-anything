@@ -1,0 +1,59 @@
+{
+    "task_id": "create_interactive_troubleshoot_guide@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation_metadata",
+            "description": "Create a tiddler with the correct title and tags.",
+            "points": 10,
+            "visual_evidence": "A TiddlyWiki tiddler titled 'Troubleshooting: Internet Connectivity' is open, showing tags 'Troubleshooting' and 'NetworkSupport'."
+        },
+        {
+            "id": "initial_question_setup",
+            "description": "The guide starts with the 'Can the user access any websites?' question and Yes/No buttons.",
+            "points": 15,
+            "visual_evidence": "The rendered tiddler displays the text 'Can the user access any websites?' with two clickable buttons labeled 'Yes' and 'No'."
+        },
+        {
+            "id": "no_branch_logic",
+            "description": "The 'No' branch correctly leads to a gateway ping check and subsequent physical/DNS/routing advice.",
+            "points": 25,
+            "visual_evidence": "Clicking 'No' reveals a question about gateway reachability. Further interaction shows advice for 'physical/cable checks' (if unreachable) or 'ping 8.8.8.8' (if reachable) to check DNS vs routing."
+        },
+        {
+            "id": "yes_branch_logic",
+            "description": "The 'Yes' branch correctly distinguishes between slow speeds and specific site issues.",
+            "points": 20,
+            "visual_evidence": "Clicking 'Yes' reveals options to choose between slow speeds (leading to 'speed test' advice) and specific site issues (leading to 'proxy/firewall' advice)."
+        },
+        {
+            "id": "widget_implementation",
+            "description": "Uses <$reveal> and <$button> widgets with the specific state tiddler.",
+            "points": 20,
+            "visual_evidence": "In the tiddler edit mode or via interaction, evidence shows the use of <$reveal> and <$button> widgets referencing '$:/state/troubleshoot-internet' to toggle visibility."
+        },
+        {
+            "id": "start_over_functionality",
+            "description": "Every resolution step includes a 'Start Over' button that resets the guide.",
+            "points": 10,
+            "visual_evidence": "Each final advice/resolution screen contains a 'Start Over' button. Clicking it returns the view to the initial 'Can the user access any websites?' question."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler rather than just modifying files via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking the '+' button in TiddlyWiki, typing in the tiddler editor, and clicking 'save' (checkmark icon)."
+        },
+        {
+            "id": "genuine_widget_usage",
+            "description": "The agent wrote actual TiddlyWiki widget code rather than static text.",
+            "visual_evidence": "The edit mode of the tiddler shows code containing <$reveal state='$:/state/troubleshoot-internet' ...> and <$button set='$:/state/troubleshoot-internet' ...>."
+        },
+        {
+            "id": "no_premade_content",
+            "description": "The agent did not simply import a pre-existing file but manually constructed the logic.",
+            "visual_evidence": "The trajectory shows the agent incrementally typing or pasting the logic into the tiddler body within the browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The tiddler must be titled 'Troubleshooting: Internet Connectivity' and tagged with 'Troubleshooting' and 'NetworkSupport'. It must use the state tiddler '$:/state/troubleshoot-internet'. The logic flow must be: [Start] -> Access websites? (Yes/No). If No -> Gateway reachable? (No: physical checks; Yes: Ping 8.8.8.8 -> Success: DNS issue, Failure: Routing/Firewall). If Yes -> Slow speed (speed test) vs Specific sites (proxy/firewall). Every end-node must have a 'Start Over' button."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "tmt_executive_cost_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_and_open_csv",
+            "description": "The agent locates and opens the source data file ~/pebl/data/tmt_click_log.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, ls) or a spreadsheet/text editor window showing the contents of tmt_click_log.csv with columns like 'participant_id' and 'rt_ms'."
+        },
+        {
+            "id": "identify_p99_artifact",
+            "description": "The agent identifies participant 'P99' as the automated UI testing artifact to be excluded.",
+            "points": 15,
+            "visual_evidence": "Code, terminal output, or notes showing the agent filtering out 'P99' or identifying it as an outlier/artifact."
+        },
+        {
+            "id": "calculate_individual_metrics",
+            "description": "The agent calculates Total Time (seconds), Total Errors, B-A Cost, and B/A Ratio for each valid participant.",
+            "points": 25,
+            "visual_evidence": "Python code execution, script output, or spreadsheet formulas showing the conversion of 'rt_ms' to seconds and the calculation of derived metrics (B-A and B/A)."
+        },
+        {
+            "id": "calculate_group_means",
+            "description": "The agent calculates the group mean for B-A Cost and B/A Ratio across all valid participants (excluding P99).",
+            "points": 20,
+            "visual_evidence": "Code output or a draft of the JSON structure showing 'group_mean_b_minus_a_cost_s' and 'group_mean_b_over_a_ratio' values."
+        },
+        {
+            "id": "generate_json_structure",
+            "description": "The agent formats the data into the required JSON structure including the 'participants' list and top-level group keys.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing a JSON object with keys like 'tmt_a_time_s', 'b_minus_a_cost_s', and 'excluded': true for P99."
+        },
+        {
+            "id": "export_final_report",
+            "description": "The agent saves the final JSON report to ~/pebl/analysis/tmt_report.json.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., 'cat', 'ls', or a save dialog) confirming the file exists at the specific path ~/pebl/analysis/tmt_report.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final mean values without performing calculations on the CSV data.",
+            "visual_evidence": "The agent's history should show data processing steps (e.g., pandas, awk, or python scripts) rather than just writing a JSON file with pre-determined numbers."
+        },
+        {
+            "id": "genuine_exclusion_logic",
+            "description": "The agent explicitly handles the exclusion of P99 based on the task instructions.",
+            "visual_evidence": "Code or commands showing a filter like `id != 'P99'` or a conditional check for the exclusion reason in the JSON generation."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent uses the specific file paths provided in the instructions rather than working in a temporary directory.",
+            "visual_evidence": "Commands or file explorer views showing activity within ~/pebl/data/ and ~/pebl/analysis/."
+        }
+    ],
+    "privileged_info_for_vlm": "Participant 'P99' is a synthetic artifact with a constant 40ms reaction time and 0 errors; it must be marked as 'excluded': true with a reason in the JSON and omitted from group means. The final output must be a JSON file located at /home/ga/pebl/analysis/tmt_report.json. Group means must be calculated only from the remaining valid participants."
+}

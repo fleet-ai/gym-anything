@@ -1,0 +1,53 @@
+{
+    "task_id": "stream_brainflow_udp_playback@1",
+    "task_completion": [
+        {
+            "id": "select_playback_mode",
+            "description": "Set the OpenBCI GUI to Playback mode in the Control Panel.",
+            "points": 10,
+            "visual_evidence": "The Control Panel shows 'PLAYBACK' selected as the data source."
+        },
+        {
+            "id": "load_correct_file",
+            "description": "Select the specific EEG recording file for playback.",
+            "points": 15,
+            "visual_evidence": "The file selection dialog or the playback status bar shows 'OpenBCI-EEG-S001-EyesOpen.txt' is loaded."
+        },
+        {
+            "id": "configure_brainflow_streamer",
+            "description": "Configure the BrainFlow Streamer settings in the Control Panel with the correct IP and Port.",
+            "points": 25,
+            "visual_evidence": "In the Control Panel (not Networking Widget), the BrainFlow Streamer settings show IP '127.0.0.1' and Port '9000'."
+        },
+        {
+            "id": "start_session",
+            "description": "Start the system and begin the data stream.",
+            "points": 20,
+            "visual_evidence": "The 'Start Session' button has been pressed and the GUI transitions to the data visualization dashboard."
+        },
+        {
+            "id": "stream_duration_check",
+            "description": "The session runs for at least 15 seconds.",
+            "points": 30,
+            "visual_evidence": "The elapsed time clock in the GUI or the difference between timestamps in consecutive screenshots shows at least 15 seconds of active data streaming."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OpenBCI GUI interface rather than executing CLI scripts to bypass the UI.",
+            "visual_evidence": "Screenshots show mouse cursor movements and button highlights within the OpenBCI GUI application."
+        },
+        {
+            "id": "no_networking_widget",
+            "description": "The agent followed the specific instruction to use BrainFlow Streamer settings in the Control Panel instead of the Networking Widget.",
+            "visual_evidence": "The Networking Widget (usually a separate tab/window) is not the source of the UDP configuration; settings are visible in the initial Control Panel setup."
+        },
+        {
+            "id": "genuine_playback",
+            "description": "The data being streamed is from the actual file, not a synthetic signal generator.",
+            "visual_evidence": "The source selection in the Control Panel explicitly shows 'Playback' and the file path, not 'Synthetic'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is 'OpenBCI-EEG-S001-EyesOpen.txt'. The BrainFlow Streamer must be configured with IP 127.0.0.1 and Port 9000. Note that BrainFlow Streamer settings are located within the 'Control Panel' (the initial setup screen) and send binary data, which is distinct from the 'Networking Widget' which typically sends JSON. The session must be observed running for a minimum of 15 seconds on the GUI timer."
+}

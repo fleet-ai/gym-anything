@@ -1,0 +1,53 @@
+{
+    "task_id": "logistics_timezone_normalization@1",
+    "task_completion": [
+        {
+            "id": "db_connection",
+            "description": "Connect to the Oracle HR database (localhost:1521/XEPDB1) using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or terminal) showing a successful connection to 'hr@XEPDB1' or similar."
+        },
+        {
+            "id": "view_creation_sql",
+            "description": "Write and execute the SQL script to create the V_FLIGHT_ANALYSIS view with the required columns and timezone logic.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing 'CREATE VIEW V_FLIGHT_ANALYSIS' with columns FLIGHT_ID, DEPART_UTC, ARRIVE_UTC, and DURATION_MINUTES, using FROM_TZ and AT TIME ZONE 'UTC'."
+        },
+        {
+            "id": "verify_view_structure",
+            "description": "Verify the view exists and contains the correct schema/columns.",
+            "points": 15,
+            "visual_evidence": "A 'DESCRIBE V_FLIGHT_ANALYSIS' command output or a database navigator tree showing the view name and the four required columns."
+        },
+        {
+            "id": "query_slow_flights",
+            "description": "Execute a query against the view to filter for flights with DURATION_MINUTES > 800.",
+            "points": 20,
+            "visual_evidence": "SQL results pane showing a query like 'SELECT * FROM V_FLIGHT_ANALYSIS WHERE DURATION_MINUTES > 800'."
+        },
+        {
+            "id": "export_csv_report",
+            "description": "Export the filtered results to /home/ga/Desktop/long_haul_report.csv with headers.",
+            "points": 30,
+            "visual_evidence": "An export wizard dialog or a terminal command showing the file being saved to the specific path, or the CSV file opened on the desktop showing headers and flight data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type the CSV content into a text editor.",
+            "visual_evidence": "The agent should be seen using database export tools or SQL 'SPOOL' commands rather than opening a blank file and typing flight IDs 100, 200, 800, 900."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the actual Oracle database schema.",
+            "visual_evidence": "Screenshots show the agent browsing tables FLIGHT_LOGS and AIRPORT_REF in a database tool, not just reading a local text file."
+        },
+        {
+            "id": "timezone_logic_application",
+            "description": "The agent used SQL timezone functions rather than hardcoding duration values.",
+            "visual_evidence": "The SQL code must contain 'FROM_TZ' and 'AT TIME ZONE' keywords, not just 'SELECT 100, 850 FROM DUAL'."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named V_FLIGHT_ANALYSIS. The output file must be /home/ga/Desktop/long_haul_report.csv. Key flight IDs that should appear in the final report (Duration > 800) include 100 (Date Line crossing), 200, 800, and 900 (Gap Week). Flight 100 (HND to SFO) and Flight 900 (JFK to LHR) are critical test cases for correct timezone normalization."
+}

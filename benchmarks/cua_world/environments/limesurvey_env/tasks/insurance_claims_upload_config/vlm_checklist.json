@@ -1,0 +1,59 @@
+{
+    "task_id": "insurance_claims_upload_config@1",
+    "task_completion": [
+        {
+            "id": "survey_creation",
+            "description": "Create a survey titled 'Auto Insurance Claim Portal 2025'",
+            "points": 10,
+            "visual_evidence": "The LimeSurvey interface showing a new survey with the title 'Auto Insurance Claim Portal 2025' in the survey list or header."
+        },
+        {
+            "id": "question_groups_setup",
+            "description": "Create two question groups: 'Incident Details' and 'Document Submission'",
+            "points": 15,
+            "visual_evidence": "The survey structure or group list showing both 'Incident Details' and 'Document Submission' as distinct groups."
+        },
+        {
+            "id": "yes_no_question_config",
+            "description": "Add a Yes/No question with code 'HAS_EVIDENCE' and text 'Do you have photographic evidence of the damage?' to the 'Incident Details' group",
+            "points": 15,
+            "visual_evidence": "Question settings showing Code: HAS_EVIDENCE, Type: Yes/No (Y), and the specific question text."
+        },
+        {
+            "id": "pdf_upload_config",
+            "description": "Add a File Upload question 'Upload Signed Claim Form (PDF Only)' with code 'FORM_PDF' restricted to 1 PDF",
+            "points": 20,
+            "visual_evidence": "Question settings for FORM_PDF showing File Upload type, 'pdf' in the allowed file types field, and '1' in the maximum number of files field."
+        },
+        {
+            "id": "photo_upload_config",
+            "description": "Add a File Upload question 'Upload Damage Photos' with code 'DMG_PHOTOS' restricted to 5 jpg/png files",
+            "points": 20,
+            "visual_evidence": "Question settings for DMG_PHOTOS showing File Upload type, 'jpg, png' in allowed file types, and '5' in the maximum number of files field."
+        },
+        {
+            "id": "conditional_logic_setup",
+            "description": "Set conditional logic for 'DMG_PHOTOS' to only appear if 'HAS_EVIDENCE' is 'Yes'",
+            "points": 20,
+            "visual_evidence": "The 'Condition designer' or 'Relevance equation' for DMG_PHOTOS showing a dependency on HAS_EVIDENCE == 'Y' or 'Yes'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey buttons, menus, and form fields."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "The agent entered the specific titles and codes required rather than using defaults",
+            "visual_evidence": "The text 'Auto Insurance Claim Portal 2025', 'HAS_EVIDENCE', and 'FORM_PDF' are typed into the respective input fields."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the LimeSurvey admin menus (Survey > Question Groups > Questions)",
+            "visual_evidence": "Sequential screenshots showing the progression from the admin dashboard to specific question configuration screens."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey title must be exactly 'Auto Insurance Claim Portal 2025'. The Yes/No question type in LimeSurvey is internally represented by the code 'Y'. The File Upload question type is represented by the code '|'. The conditional logic for DMG_PHOTOS must specifically check for the 'Yes' response of HAS_EVIDENCE."
+}

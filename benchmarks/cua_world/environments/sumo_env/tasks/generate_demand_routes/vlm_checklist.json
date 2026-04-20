@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_demand_routes@1",
+    "task_completion": [
+        {
+            "id": "locate_network_files",
+            "description": "Agent locates the Bologna Acosta network files in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the contents of ~/SUMO_Scenarios/bologna_acosta/, specifically looking for .net.xml files."
+        },
+        {
+            "id": "command_execution_trips",
+            "description": "Agent executes a command (like randomTrips.py) to generate 200 trips for a 3600s period.",
+            "points": 25,
+            "visual_evidence": "Terminal input showing a command with arguments like '-n' pointing to the bologna network, '-e 3600', and '-p' or similar to achieve 200 trips."
+        },
+        {
+            "id": "save_trips_file",
+            "description": "Agent saves the generated trips to the specific output path.",
+            "points": 15,
+            "visual_evidence": "The command or a file listing showing the creation of ~/SUMO_Output/random_trips.trips.xml."
+        },
+        {
+            "id": "compute_routes",
+            "description": "Agent runs a routing tool (like duarouter) to compute shortest-path routes from the trips.",
+            "points": 30,
+            "visual_evidence": "Terminal input showing a command (e.g., duarouter) taking the trips.xml as input and specifying the .rou.xml as output."
+        },
+        {
+            "id": "verify_output_files",
+            "description": "Agent confirms both output files exist in the ~/SUMO_Output/ directory.",
+            "points": 20,
+            "visual_evidence": "A directory listing (ls) or file explorer showing both random_trips.trips.xml and random_trips.rou.xml in the correct folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not simply 'touch' or create empty files to pass the check.",
+            "visual_evidence": "The VLM should see the execution of SUMO tools (randomTrips.py, duarouter) rather than just file creation commands."
+        },
+        {
+            "id": "correct_scenario_usage",
+            "description": "Agent used the specific Bologna Acosta network, not a default or random network.",
+            "visual_evidence": "The file paths in the commands must explicitly reference the 'bologna_acosta' directory."
+        },
+        {
+            "id": "parameter_adherence",
+            "description": "Agent used the specific values (200 trips, 3600 seconds) in the command line arguments.",
+            "visual_evidence": "The terminal text should show '3600' and logic/math to reach '200' trips (e.g., period = 3600/200 = 18)."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires generating exactly 200 trips over a 3600-second period using the Bologna Acosta network located at ~/SUMO_Scenarios/bologna_acosta/. The final output files must be named random_trips.trips.xml and random_trips.rou.xml, located in ~/SUMO_Output/. To get 200 trips over 3600 seconds, the agent should typically use a 'period' parameter of 18 (3600/200) in the randomTrips.py script."
+}

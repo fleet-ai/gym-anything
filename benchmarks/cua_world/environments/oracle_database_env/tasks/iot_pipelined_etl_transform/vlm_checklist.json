@@ -1,0 +1,59 @@
+{
+    "task_id": "iot_pipelined_etl_transform@1",
+    "task_completion": [
+        {
+            "id": "create_oracle_types",
+            "description": "Create the T_IOT_METRIC object type and T_IOT_METRIC_TAB collection type in the HR schema.",
+            "points": 10,
+            "visual_evidence": "SQL commands or success messages in a database tool (like SQL Developer or terminal) showing 'Type T_IOT_METRIC compiled' and 'Type T_IOT_METRIC_TAB compiled'."
+        },
+        {
+            "id": "define_pipelined_package",
+            "description": "Define the PKG_IOT_ETL package and the STREAM_METRICS pipelined function signature.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing the CREATE PACKAGE and CREATE PACKAGE BODY statements for PKG_IOT_ETL."
+        },
+        {
+            "id": "implement_transformation_logic",
+            "description": "Implement logic for Fahrenheit to Celsius conversion, ISO date parsing, and battery status check within the function.",
+            "points": 25,
+            "visual_evidence": "Code showing the formula ((F-32)*5/9), ROUND(..., 2), and the conditional logic for IS_LOW_BATTERY = 'Y' if battery < 20."
+        },
+        {
+            "id": "implement_error_handling",
+            "description": "Implement an EXCEPTION block that inserts failed rows into IOT_PARSE_ERRORS without stopping execution.",
+            "points": 20,
+            "visual_evidence": "Code showing an EXCEPTION WHEN OTHERS THEN INSERT INTO IOT_PARSE_ERRORS statement inside the loop."
+        },
+        {
+            "id": "execute_pipelined_query",
+            "description": "Execute a SELECT statement using the TABLE() operator on the pipelined function to process RAW_SENSOR_LOGS.",
+            "points": 15,
+            "visual_evidence": "SQL execution of 'SELECT * FROM TABLE(PKG_IOT_ETL.STREAM_METRICS(CURSOR(SELECT * FROM RAW_SENSOR_LOGS)))'."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the transformed data to /home/ga/Desktop/parsed_metrics.csv with headers.",
+            "points": 15,
+            "visual_evidence": "A file explorer showing parsed_metrics.csv on the Desktop or a terminal command showing the file content with headers (SENSOR_ID, READING_TIME, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle database directly rather than mocking results.",
+            "visual_evidence": "Screenshots of a SQL client (SQL*Plus, SQL Developer, or DBeaver) connected to localhost:1521/XEPDB1."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type the 480 expected rows into the CSV file.",
+            "visual_evidence": "The agent using an export tool or a script to generate the CSV from the database query results."
+        },
+        {
+            "id": "logical_flow",
+            "description": "The agent created the types before the package, as required by Oracle dependencies.",
+            "visual_evidence": "The chronological order of screenshots shows type creation preceding package compilation."
+        }
+    ],
+    "privileged_info_for_vlm": "The source table is RAW_SENSOR_LOGS. The expected output file /home/ga/Desktop/parsed_metrics.csv should contain approximately 480 valid rows and the IOT_PARSE_ERRORS table should contain approximately 20 rows. The Celsius conversion must use the formula (F-32)*5/9 rounded to 2 decimal places. IS_LOW_BATTERY must be 'Y' if battery < 20, otherwise 'N' or null depending on implementation, but 'Y' is the critical flag."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "microlensing_caustic_crossing@1",
+    "task_completion": [
+        {
+            "id": "read_alert_details",
+            "description": "Agent opens and reads the alert file ~/Documents/ogle_alert.txt to retrieve target coordinates and observation parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ogle_alert.txt with target OGLE-2026-BLG-0042."
+        },
+        {
+            "id": "set_target_coordinates",
+            "description": "Agent inputs the correct RA (17h 54m 32s) and Dec (-30d 12m 45s) into the telescope control software.",
+            "points": 15,
+            "visual_evidence": "The telescope GUI showing RA and Dec fields populated with values matching approximately 17.908h and -30.212 deg."
+        },
+        {
+            "id": "enable_tracking_and_slew",
+            "description": "Agent enables telescope tracking and slews to the target coordinates.",
+            "points": 15,
+            "visual_evidence": "The telescope GUI status changing from 'Parked' or 'Idle' to 'Tracking' or 'Slewing', and the sky map centering on the target."
+        },
+        {
+            "id": "configure_r_band_filter",
+            "description": "Agent selects the R-band filter (Slot 4) for the observation.",
+            "points": 15,
+            "visual_evidence": "The filter wheel control in the GUI showing 'R' or 'Slot 4' as the active selection."
+        },
+        {
+            "id": "execute_high_cadence_sequence",
+            "description": "Agent initiates a time-series sequence of at least 15 exposures of 15 seconds each.",
+            "points": 30,
+            "visual_evidence": "The sequence progress bar or log showing multiple exposures (at least 15) being captured with an exposure time of 15s."
+        },
+        {
+            "id": "capture_sky_view_and_log",
+            "description": "Agent captures a screenshot of the sky view and creates a summary log of the observation.",
+            "points": 15,
+            "visual_evidence": "A final report, log file, or image viewer showing the captured sky field and a summary of the observation parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the telescope control GUI rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with buttons/fields in the telescope software interface."
+        },
+        {
+            "id": "genuine_sequence_execution",
+            "description": "The agent waited for the sequence to complete rather than skipping to the end.",
+            "visual_evidence": "Sequential screenshots showing the progress of the exposure count (e.g., 1/15, 5/15, 15/15)."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent retrieved coordinates from the alert file rather than using pre-known values.",
+            "visual_evidence": "The agent is seen opening ogle_alert.txt before entering coordinates into the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: OGLE-2026-BLG-0042. Coordinates: RA 17h 54m 32s (17.90888h), Dec -30d 12m 45s (-30.2125 deg). Required Filter: R-band (Slot 4). Required Exposure: 15 seconds per frame. Minimum Frame Count: 15 consecutive frames. The telescope must be tracking during the observation."
+}

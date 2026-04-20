@@ -1,0 +1,59 @@
+{
+    "task_id": "deactivate_seb_client_machine@1",
+    "task_completion": [
+        {
+            "id": "login_seb_server",
+            "description": "Agent successfully logs into the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The SEB Server dashboard or main navigation menu is visible after entering 'super-admin' and 'admin'."
+        },
+        {
+            "id": "navigate_to_client_configs",
+            "description": "Agent navigates to the Client Configurations section of the SEB Server.",
+            "points": 10,
+            "visual_evidence": "A list or table of client configurations is displayed on the screen."
+        },
+        {
+            "id": "verify_or_create_client",
+            "description": "Agent identifies 'Loaner-Laptop-22' or creates it if missing.",
+            "points": 20,
+            "visual_evidence": "The name 'Loaner-Laptop-22' is visible in the configuration list, or a 'Create' form is filled out with this name."
+        },
+        {
+            "id": "open_client_edit_view",
+            "description": "Agent opens the specific settings or edit page for 'Loaner-Laptop-22'.",
+            "points": 20,
+            "visual_evidence": "An edit screen or detail modal for 'Loaner-Laptop-22' is active."
+        },
+        {
+            "id": "deactivate_client",
+            "description": "Agent toggles the status to inactive or unchecks the active box.",
+            "points": 25,
+            "visual_evidence": "The 'Active' checkbox is unchecked, or a status dropdown is set to 'Inactive'/'Deactivated' for 'Loaner-Laptop-22'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Agent saves the changes to the configuration.",
+            "points": 15,
+            "visual_evidence": "A 'Save', 'Update', or 'Submit' button is clicked, followed by a success message or the list view showing the updated status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web browser GUI to perform the task rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the browser at http://localhost:8080, not SQL commands in a terminal."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo a success message without performing the steps.",
+            "visual_evidence": "The trajectory shows the intermediate steps of navigation and form interaction, not just a final terminal output saying 'Done'."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the actual SEB Server instance.",
+            "visual_evidence": "The URL bar shows http://localhost:8080 and the SEB Server branding is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The target client is 'Loaner-Laptop-22'. It is initially active (status 1). The goal is to change its status to inactive (status 0). If the client is not found in the list, the agent must create it first before deactivating it."
+}

@@ -1,0 +1,56 @@
+{
+    "task_id": "pursuit_rotor_learning_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the pursuit_rotor_data.csv file in the ~/pebl/data/ directory.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, ls) or a file explorer window showing the CSV file content or its existence in the specified path."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "Agent performs calculations for TOT percentage and MLI (Block 4 - Block 1).",
+            "points": 20,
+            "visual_evidence": "Code snippets in a script or terminal showing the formula (time_on_target_ms / trial_duration_ms) * 100 and the subtraction for MLI."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent identifies and excludes sub-099 from group summary calculations due to high baseline performance.",
+            "points": 20,
+            "visual_evidence": "Code or logs showing a conditional statement or filter that removes 'sub-099' from the group mean calculations."
+        },
+        {
+            "id": "json_structure_creation",
+            "description": "Agent constructs the JSON object with 'participants' and 'group_summary' keys.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the structured JSON format with the required keys and rounding to 1 decimal place."
+        },
+        {
+            "id": "file_generation",
+            "description": "Agent saves the final report to ~/pebl/analysis/pursuit_rotor_report.json.",
+            "points": 30,
+            "visual_evidence": "A terminal command (e.g., 'ls ~/pebl/analysis/') or a 'save' operation in an IDE confirming the file exists at the target path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates values from the data rather than hardcoding the final report.",
+            "points": 0,
+            "visual_evidence": "The presence of data processing code (Python, R, or shell) rather than a single 'echo' command containing the entire finished JSON."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacts with the provided file path rather than creating dummy data.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the agent referencing '~/pebl/data/pursuit_rotor_data.csv' in its scripts or commands."
+        },
+        {
+            "id": "rounding_compliance",
+            "description": "Agent follows the specific rounding instruction for all floating-point values.",
+            "points": 0,
+            "visual_evidence": "The final JSON file content showing values like '12.3' instead of '12.3456'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 21 participants total. Participant 'sub-099' must be marked as excluded in the JSON. The 'group_summary' means must only be calculated from the other 20 participants. All numeric values in the final JSON must be rounded to exactly one decimal place."
+}

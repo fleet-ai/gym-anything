@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_ev_fleet_pv_offset@1",
+    "task_completion": [
+        {
+            "id": "directory_creation",
+            "description": "The agent creates the directory /home/ga/Documents/SAM_Projects/.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'mkdir' or a file explorer window showing the created folder path."
+        },
+        {
+            "id": "script_creation",
+            "description": "The agent writes the Python script 'ev_fleet_analysis.py' using PySAM with the specified PVWatts parameters (100kW, Phoenix TMY, 14.08% losses).",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal 'cat' command showing the script content with 'system_capacity': 100, 'array_type': 1, and 'losses': 14.08."
+        },
+        {
+            "id": "load_profile_logic",
+            "description": "The script contains logic for the 10kW daytime (06:00-17:59) and 50kW nighttime (18:00-05:59) load profile.",
+            "points": 20,
+            "visual_evidence": "Code snippet showing a loop or array generation where hours 6-17 are assigned 10 and other hours are assigned 50."
+        },
+        {
+            "id": "energy_balance_logic",
+            "description": "The script implements the financial logic: $0.15/kWh for imports and $0.04/kWh for exports.",
+            "points": 20,
+            "visual_evidence": "Code showing calculations using 0.15 and 0.04 rates applied to hourly net energy."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script successfully without errors.",
+            "points": 10,
+            "visual_evidence": "Terminal showing 'python3 ev_fleet_analysis.py' with no traceback or error messages."
+        },
+        {
+            "id": "json_output_verification",
+            "description": "The JSON file 'ev_fleet_pv_analysis.json' is generated with the required keys and correct values.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the JSON file content with 'load_annual_demand_kwh': 262800 and 'cost_without_pv_usd': 39420."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final energy balance results into the script without calculation.",
+            "visual_evidence": "The Python script should show logic for hourly loops or array math, not just a dictionary of final numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually uses the PySAM library to fetch solar data rather than mocking the production.",
+            "visual_evidence": "The script must contain 'import PySAM.Pvwattsv8' and 'pv.execute()'."
+        },
+        {
+            "id": "file_path_compliance",
+            "description": "The agent uses the exact file paths specified in the instructions.",
+            "visual_evidence": "Screenshots show the files saved specifically to /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The annual load must be exactly 262,800 kWh (calculated as [12h * 10kW + 12h * 50kW] * 365 days). The 'cost_without_pv_usd' must be exactly $39,420 (262,800 * 0.15). The script must use PySAM's Pvwattsv8 with array_type=1 and module_type=0. The JSON output must be located at /home/ga/Documents/SAM_Projects/ev_fleet_pv_analysis.json."
+}

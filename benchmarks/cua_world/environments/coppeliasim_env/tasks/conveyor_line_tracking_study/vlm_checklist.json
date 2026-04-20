@@ -1,0 +1,59 @@
+{
+    "task_id": "conveyor_line_tracking_study@1",
+    "task_completion": [
+        {
+            "id": "open_correct_scene",
+            "description": "Open the CoppeliaSim scene 'messaging/movementViaRemoteApi.ttt'.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim window title bar or scene hierarchy shows 'movementViaRemoteApi.ttt' is loaded."
+        },
+        {
+            "id": "script_creation_zmq",
+            "description": "Write a Python script that imports the ZMQ Remote API and defines the simulation parameters (100 steps, 0.05 m/s velocity).",
+            "points": 15,
+            "visual_evidence": "A code editor (e.g., VS Code or Gedit) showing Python code with 'from coppeliasim_zmqremoteapi_client import RemoteAPIClient' and logic for 100 steps."
+        },
+        {
+            "id": "object_creation_and_ik",
+            "description": "Create the 'conveyor_item' at (0.0, 0.4, 0.2) and command the robot's IK target to track it with a 0.05m Z-offset.",
+            "points": 20,
+            "visual_evidence": "The CoppeliaSim scene hierarchy shows a new object 'conveyor_item'. The robot's IK target (/target) is seen positioned above the item in the 3D view."
+        },
+        {
+            "id": "synchronous_simulation_run",
+            "description": "Run the simulation in synchronous mode for 100 steps, showing the item moving along the X-axis.",
+            "points": 25,
+            "visual_evidence": "The simulation play button is active. Screenshots show the 'conveyor_item' at different positions along the X-axis with the robot arm following it."
+        },
+        {
+            "id": "export_files_existence",
+            "description": "Save the final scene (.ttt), the tracking data (.csv), and the summary report (.json) to the specified export directory.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal 'ls' command showing 'line_tracking_final.ttt', 'tracking_data.csv', and 'tracking_report.json' in /home/ga/Documents/CoppeliaSim/exports/."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The summary report contains the required fields: total_steps, simulated_duration_s, mean_error_m, etc.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command displaying the content of 'tracking_report.json' with the correct keys and a 'total_steps' value of 100."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI and API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application active, the robot arm moving in the 3D viewport, and the simulation clock advancing."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The CSV and JSON data should reflect dynamic simulation values, not just the target constants.",
+            "visual_evidence": "The 'tracking_data.csv' shows varying 'error_m' values and incrementing 'time_s' values, indicating real-time calculation."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific absolute paths requested in the task for exports.",
+            "visual_evidence": "Code or terminal output shows the string '/home/ga/Documents/CoppeliaSim/exports/' being used for file saving."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must run for exactly 100 steps in synchronous mode. The item velocity is 0.05 m/s. Required output files: /home/ga/Documents/CoppeliaSim/exports/line_tracking_final.ttt, /home/ga/Documents/CoppeliaSim/exports/tracking_data.csv (9 columns: step, time_s, item_x, item_y, item_z, tip_x, tip_y, tip_z, error_m), and /home/ga/Documents/CoppeliaSim/exports/tracking_report.json (6 fields: total_steps, simulated_duration_s, mean_error_m, min_error_m, max_error_m, final_item_x)."
+}

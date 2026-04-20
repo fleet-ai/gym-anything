@@ -1,0 +1,56 @@
+{
+    "task_id": "build_dynamic_reading_tracker@1",
+    "task_completion": [
+        {
+            "id": "macro_tiddler_creation",
+            "description": "Create a tiddler titled 'ProgressMacro' with the tag '$:/tags/Macro'.",
+            "points": 15,
+            "visual_evidence": "A tiddler named 'ProgressMacro' is open, showing the tag '$:/tags/Macro' in the tiddler pill area."
+        },
+        {
+            "id": "macro_implementation",
+            "description": "Implement the 'reading-progress' macro using an HTML5 <progress> element with 'current' and 'total' parameters.",
+            "points": 20,
+            "visual_evidence": "The text content of 'ProgressMacro' contains '\\define reading-progress(current, total)' and a '<progress>' tag with value and max attributes."
+        },
+        {
+            "id": "dashboard_tiddler_creation",
+            "description": "Create a tiddler titled 'Reading Dashboard'.",
+            "points": 10,
+            "visual_evidence": "A tiddler titled 'Reading Dashboard' is visible in the TiddlyWiki story river."
+        },
+        {
+            "id": "dynamic_book_list",
+            "description": "The dashboard dynamically lists books tagged 'Book' with clickable links and author fields.",
+            "points": 25,
+            "visual_evidence": "The 'Reading Dashboard' displays a list of book titles (e.g., 'The Dispossessed', 'Dune') as blue clickable links, followed by 'by [Author Name]'."
+        },
+        {
+            "id": "macro_invocation_rendering",
+            "description": "The dashboard renders the progress bar for each book using the macro and tiddler fields.",
+            "points": 30,
+            "visual_evidence": "Visual progress bar elements (the browser's native <progress> UI) appear next to each book entry in the 'Reading Dashboard' tiddler."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit tiddlers.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'plus' button, edit fields, and 'save' checkmarks within the TiddlyWiki UI."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The dashboard uses dynamic filters rather than hardcoding the book list.",
+            "points": 0,
+            "visual_evidence": "In the edit mode of 'Reading Dashboard', code like '<$list filter=\"[tag[Book]]\">' is visible instead of a static list of titles."
+        },
+        {
+            "id": "genuine_field_usage",
+            "description": "The agent retrieves data from fields like 'pages_read' and 'total_pages'.",
+            "points": 0,
+            "visual_evidence": "The macro call in the dashboard tiddler uses variable syntax like '{{!!pages_read}}' or '<currentTiddler>' references."
+        }
+    ],
+    "privileged_info_for_vlm": "The macro must be named 'reading-progress' inside a tiddler named 'ProgressMacro' tagged '$:/tags/Macro'. The dashboard must be named 'Reading Dashboard'. Expected books to appear in the list are: 'The Dispossessed' (by Ursula K. Le Guin), 'Dune' (by Frank Herbert), 'Neuromancer' (by William Gibson), and 'Foundation' (by Isaac Asimov). The progress bars should reflect the specific page counts: 150/387, 412/896, 271/271, and 45/255 respectively."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "public_transit_service_redesign@1",
+    "task_completion": [
+        {
+            "id": "scenario_loading",
+            "description": "The agent opens the Bologna Pasubio SUMO scenario files from the correct directory.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent navigating to or opening files in /home/ga/SUMO_Scenarios/bologna_pasubio/ within a text editor or SUMO-netedit."
+        },
+        {
+            "id": "new_stops_creation",
+            "description": "At least 4 new bus stops are defined on edges that previously lacked them.",
+            "points": 20,
+            "visual_evidence": "Code or GUI view showing the definition of at least 4 new <busStop> elements with unique IDs/lanes."
+        },
+        {
+            "id": "express_line_configuration",
+            "description": "A new bus line 'Line_Express_N' is configured with at least 3 vehicles and a 600s headway.",
+            "points": 20,
+            "visual_evidence": "XML configuration or route file showing 'Line_Express_N' with 3 <vehicle> or <flow> entries having depart times spaced by ~600 seconds."
+        },
+        {
+            "id": "person_trips_generation",
+            "description": "At least 50 person trips are generated with mode='public'.",
+            "points": 15,
+            "visual_evidence": "A trip file or script showing at least 50 <person> elements with <walk> or <ride> tags specifying lines or public transit modes."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The SUMO simulation is executed to process the new transit configuration.",
+            "points": 15,
+            "visual_evidence": "The SUMO-GUI or command line showing the simulation running, often with a progress bar or vehicles moving on the map."
+        },
+        {
+            "id": "report_generation",
+            "description": "The service coverage report is generated at the specified path with correct columns.",
+            "points": 10,
+            "visual_evidence": "A file explorer or text editor showing /home/ga/SUMO_Output/transit_service_report.csv with columns: stop_id, stop_name_or_lane, is_new, line_served, boarding_count, alighting_count."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "A summary text file is created explaining the changes and impact.",
+            "points": 10,
+            "visual_evidence": "A text editor showing the content of /home/ga/SUMO_Output/transit_redesign_summary.txt mentioning 'Line_Express_N' and ridership impact."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited or scripted the XML/config files rather than just creating the final report.",
+            "visual_evidence": "Screenshots of a text editor (like VS Code or Vim) or Netedit showing the actual modification of .nod.xml, .edg.xml, or .rou.xml files."
+        },
+        {
+            "id": "simulation_interaction",
+            "description": "The agent interacted with the SUMO suite (GUI or CLI) to generate results.",
+            "visual_evidence": "Visuals of the SUMO-GUI interface or terminal output showing simulation steps being processed."
+        },
+        {
+            "id": "no_placeholder_data",
+            "description": "The CSV report contains actual data (boarding/alighting counts) rather than just headers or zeros.",
+            "visual_evidence": "The content of transit_service_report.csv showing non-zero integers in the boarding/alighting columns."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific file paths: Scenario in /home/ga/SUMO_Scenarios/bologna_pasubio/, CSV output in /home/ga/SUMO_Output/transit_service_report.csv, and summary in /home/ga/SUMO_Output/transit_redesign_summary.txt. Key constraints: Line name must be 'Line_Express_N', exactly 4+ new stops, 3+ vehicles, ~600s headway, and 50+ person trips using mode='public'."
+}

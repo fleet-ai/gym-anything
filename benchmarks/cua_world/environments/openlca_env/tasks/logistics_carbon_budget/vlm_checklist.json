@@ -1,0 +1,59 @@
+{
+    "task_id": "logistics_carbon_budget@1",
+    "task_completion": [
+        {
+            "id": "import_lca_data",
+            "description": "Import the USLCI database and TRACI 2.1 methods from the ~/LCA_Imports/ directory into the LCA software.",
+            "points": 10,
+            "visual_evidence": "LCA software (e.g., openLCA) showing the USLCI database and TRACI 2.1 methods in the navigation pane or an 'Import Successful' dialog."
+        },
+        {
+            "id": "create_global_parameter",
+            "description": "Create a global parameter named 'distance_km' within the software.",
+            "points": 15,
+            "visual_evidence": "A parameters tab or window showing 'distance_km' listed as a global parameter."
+        },
+        {
+            "id": "configure_process_exchange",
+            "description": "Create the 'Distribution Leg - 500kg Pallet' process using the 'Transport, combination truck, long-haul, diesel powered' exchange with the formula 'distance_km * 0.5'.",
+            "points": 20,
+            "visual_evidence": "The process editor for 'Distribution Leg - 500kg Pallet' showing the specific transport input and the formula 'distance_km * 0.5' in the amount/formula column."
+        },
+        {
+            "id": "perform_lcia_calculation",
+            "description": "Run the LCIA calculation using TRACI 2.1 to find the GWP result.",
+            "points": 15,
+            "visual_evidence": "A calculation setup or results screen showing TRACI 2.1 selected as the LCIA method and the 'Global warming' category."
+        },
+        {
+            "id": "optimize_distance",
+            "description": "Adjust the 'distance_km' parameter until the GWP result is 50.0 kg CO2 eq (± 1.0 kg).",
+            "points": 25,
+            "visual_evidence": "The LCIA results screen showing a GWP value between 49.0 and 51.0 kg CO2 eq, often alongside the parameter value used to achieve it."
+        },
+        {
+            "id": "save_results",
+            "description": "Export the LCIA results to optimized_result.csv and the distance value to max_distance.txt in ~/LCA_Results/.",
+            "points": 15,
+            "visual_evidence": "File explorer showing the two files in the ~/LCA_Results/ directory or export dialogs confirming the file paths."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LCA software GUI rather than just executing scripts to generate files.",
+            "visual_evidence": "Screenshots showing the LCA software interface (e.g., openLCA) being actively used (menus, parameter tabs, calculation buttons)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The GWP result was derived from the software's calculation engine, not hardcoded.",
+            "visual_evidence": "The LCIA results tab showing the breakdown of impacts for the 'Distribution Leg' process."
+        },
+        {
+            "id": "parameter_linkage",
+            "description": "The distance value in the final text file matches the parameter value seen in the software GUI.",
+            "visual_evidence": "Consistency between the 'distance_km' value in the software and the value written in the final max_distance.txt file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target GWP is 50.0 kg CO2 eq. The acceptable range for the final result is 49.0 to 51.0 kg CO2 eq. The required parameter name is 'distance_km' and the formula for the transport exchange must be 'distance_km * 0.5' (representing the 0.5 ton pallet). The final files must be saved in ~/LCA_Results/."
+}

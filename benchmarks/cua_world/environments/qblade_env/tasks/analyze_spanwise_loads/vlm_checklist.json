@@ -1,0 +1,59 @@
+{
+    "task_id": "analyze_spanwise_loads@1",
+    "task_completion": [
+        {
+            "id": "open_sample_project",
+            "description": "Open the 'Turbine Simulation' project from the specified directory.",
+            "points": 10,
+            "visual_evidence": "The QBlade application window shows 'Turbine Simulation' in the title bar or project explorer, and the 3D view displays a wind turbine model."
+        },
+        {
+            "id": "configure_simulation_parameters",
+            "description": "Set simulation to 'Single Point' with Wind Speed 12 m/s and TSR 7.",
+            "points": 20,
+            "visual_evidence": "The simulation setup panel shows 'Single Point' selected, 'Wind Speed' input box containing '12', and 'TSR' input box containing '7'."
+        },
+        {
+            "id": "enable_loss_corrections",
+            "description": "Enable Tip Loss and Hub Loss corrections in the simulation settings.",
+            "points": 15,
+            "visual_evidence": "Checkboxes or dropdowns for 'Tip Loss' and 'Hub Loss' are marked as active/checked in the simulation configuration menu."
+        },
+        {
+            "id": "run_bem_simulation",
+            "description": "Execute the steady-state BEM simulation.",
+            "points": 20,
+            "visual_evidence": "A progress bar completes, or a results graph/table appears showing spanwise data (Normal and Tangential forces) after clicking 'Start' or 'Simulate'."
+        },
+        {
+            "id": "export_spanwise_data",
+            "description": "Export the spanwise load data to /home/ga/Documents/spanwise_loads.txt.",
+            "points": 15,
+            "visual_evidence": "An export dialog box is visible with the file path '/home/ga/Documents/spanwise_loads.txt' entered, or a confirmation message of successful export is shown."
+        },
+        {
+            "id": "generate_max_load_report",
+            "description": "Identify the maximum Normal Force and save it to /home/ga/Documents/max_load_report.txt in the correct format.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file /home/ga/Documents/max_load_report.txt containing the string 'Max_Fn = <value>'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the QBlade GUI to perform the simulation rather than script-injecting results.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QBlade menus, buttons, and input fields rather than just terminal commands."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The maximum load value is derived from the simulation results, not hardcoded.",
+            "visual_evidence": "The value in the final report matches the peak value visible in the QBlade results graph or data table shown in previous steps."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific file paths requested in the task.",
+            "visual_evidence": "The file manager or save dialogs explicitly show the /home/ga/Documents/ directory and the specific filenames requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The project file is 'Turbine Simulation.wpa'. The simulation must be 'Single Point' BEM. Wind Speed = 12, TSR = 7. Tip and Hub loss must be enabled. The output file 'spanwise_loads.txt' should contain columns for Position, Normal Force (Fn), and Tangential Force (Ft). The report 'max_load_report.txt' must strictly follow the format 'Max_Fn = <value>'. Note that Normal Force (Fn) in QBlade is typically measured in N/m."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_cobot_safety_limits@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the Webots simulation environment containing the 'DEF COBOT Robot'.",
+            "points": 10,
+            "visual_evidence": "The Webots application is visible with a robot model in the 3D view and a scene tree on the left."
+        },
+        {
+            "id": "configure_base_joint_limits",
+            "description": "Set the 'minStop' and 'maxStop' for 'DEF BASE_JOINT HingeJoint' to -1.5708 and 1.5708 respectively.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a field editor shows 'DEF BASE_JOINT' with minStop: -1.5708 and maxStop: 1.5708."
+        },
+        {
+            "id": "configure_base_motor_velocity",
+            "description": "Set the 'maxVelocity' for 'base_motor' to 1.57.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the 'device' list under BASE_JOINT containing a RotationalMotor with maxVelocity set to 1.57."
+        },
+        {
+            "id": "configure_shoulder_joint_limits",
+            "description": "Set the 'minStop' and 'maxStop' for 'DEF SHOULDER_JOINT HingeJoint' to -0.7854 and 1.5708 respectively.",
+            "points": 20,
+            "visual_evidence": "The scene tree or field editor shows 'DEF SHOULDER_JOINT' with minStop: -0.7854 and maxStop: 1.5708."
+        },
+        {
+            "id": "configure_shoulder_motor_velocity",
+            "description": "Set the 'maxVelocity' for 'shoulder_motor' to 1.57.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the 'device' list under SHOULDER_JOINT containing a RotationalMotor with maxVelocity set to 1.57."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specific path /home/ga/Desktop/safe_cobot.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog box or a file manager window shows the file 'safe_cobot.wbt' being saved to /home/ga/Desktop/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not use a python script to automate the property changes instantly.",
+            "visual_evidence": "Sequential screenshots show the manual entry of values into the Webots interface."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent used the 'File > Save World As' menu or shortcut within the application.",
+            "visual_evidence": "The Webots menu or save dialog is visible during the final steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The required values are: BASE_JOINT (minStop: -1.5708, maxStop: 1.5708, motor maxVelocity: 1.57) and SHOULDER_JOINT (minStop: -0.7854, maxStop: 1.5708, motor maxVelocity: 1.57). The final file must be named 'safe_cobot.wbt' on the Desktop. A tolerance of 0.01 is acceptable for numerical values."
+}

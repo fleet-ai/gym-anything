@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_revenue_quintile_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the chinook.db database and view the schema.",
+            "points": 10,
+            "visual_evidence": "DBeaver or a similar SQL editor open showing the 'chinook.db' connection and tables like 'Invoice' or 'Customer' in the sidebar."
+        },
+        {
+            "id": "sql_query_window_function",
+            "description": "Write a SQL query using NTILE(5) and window functions to calculate revenue quintiles.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing code containing 'NTILE(5) OVER (ORDER BY ... DESC)' and aggregations like SUM() and COUNT()."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "Execute the query and display the aggregated results with 5 rows.",
+            "points": 20,
+            "visual_evidence": "A results grid showing exactly 5 rows with columns for Quintile, CustomerCount, TotalRevenue, and AvgRevenue."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL analysis script to the specified path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a file explorer showing 'quintile_analysis.sql' in /home/ga/Documents/scripts/."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the query results to a CSV file with the correct headers.",
+            "points": 30,
+            "visual_evidence": "An export wizard or a file explorer showing 'revenue_quintiles.csv' in /home/ga/Documents/exports/ with 5 data rows and a header."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GUI-based SQL editor (like DBeaver) rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show the DBeaver application window and interaction with its UI elements."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the results from the database rather than typing them manually into a file.",
+            "visual_evidence": "The SQL query is visible and executed against the database to generate the result set."
+        },
+        {
+            "id": "authentic_export_process",
+            "description": "The agent used the software's export feature or file saving mechanism.",
+            "visual_evidence": "Export dialogs or 'Save' confirmation messages are visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The Chinook database contains 59 unique customers. The final CSV must have exactly 5 data rows (plus 1 header). The columns must be named: Quintile, CustomerCount, TotalRevenue, and AvgRevenue. Quintile 1 must show the highest TotalRevenue. The database is located at /home/ga/Documents/databases/chinook.db."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_coloring_rules@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Open the specified pcapng file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "configure_rst_rule",
+            "description": "Create the 'Alert_High_RST' coloring rule with correct filter and colors.",
+            "points": 20,
+            "visual_evidence": "Coloring Rules dialog showing a rule named 'Alert_High_RST' with filter 'tcp.flags.reset == 1', background Red (255,0,0), and foreground White (255,255,255)."
+        },
+        {
+            "id": "configure_syn_rule",
+            "description": "Create the 'Alert_Medium_SYN' coloring rule with correct filter and colors.",
+            "points": 20,
+            "visual_evidence": "Coloring Rules dialog showing a rule named 'Alert_Medium_SYN' with filter 'tcp.flags.syn == 1 && tcp.flags.ack == 0', background Yellow (255,255,0), and foreground Black (0,0,0)."
+        },
+        {
+            "id": "rules_prioritized",
+            "description": "Ensure the new rules are at the top of the coloring rules list and enabled.",
+            "points": 15,
+            "visual_evidence": "Coloring Rules dialog showing 'Alert_High_RST' and 'Alert_Medium_SYN' at the very top of the list with their checkboxes checked."
+        },
+        {
+            "id": "identify_rst_frame",
+            "description": "Identify the frame number for the first RST packet and save to rst_frame_number.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing 'rst_frame_number.txt' containing a value. Note: Per privileged info, no RST packets exist, so the file may be empty or contain a message/0."
+        },
+        {
+            "id": "export_screenshot",
+            "description": "Export a screenshot of the colored packet list.",
+            "points": 15,
+            "visual_evidence": "An image file 'colored_packets.png' showing the Wireshark packet list with Yellow highlighting on SYN packets (like Frame 1)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI to configure rules rather than just editing configuration files via terminal.",
+            "visual_evidence": "Screenshots showing the 'Coloring Rules' dialog box open and being edited."
+        },
+        {
+            "id": "genuine_pcap_analysis",
+            "description": "The agent actually opened the file to check for RST packets rather than guessing a frame number.",
+            "visual_evidence": "Wireshark packet list pane visible showing the actual packets from the 200722_tcp_anon.pcapng file."
+        },
+        {
+            "id": "no_hallucinated_rst",
+            "description": "The agent correctly identifies that no packets match the RST rule if they report the result honestly.",
+            "visual_evidence": "The packet list should show no Red rows, as the pcap contains zero RST packets."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture file '200722_tcp_anon.pcapng' contains 35 packets. Crucially, there are ZERO packets that match the 'tcp.flags.reset == 1' filter. Therefore, no packets should be highlighted Red, and the 'rst_frame_number.txt' file should reflect that no such frame exists (it might be empty or contain 'None'). However, packets 1 and 9 DO match the SYN filter ('tcp.flags.syn == 1 && tcp.flags.ack == 0') and should be highlighted Yellow."
+}

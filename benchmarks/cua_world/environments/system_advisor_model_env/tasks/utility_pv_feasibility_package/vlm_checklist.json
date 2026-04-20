@@ -1,0 +1,65 @@
+{
+    "task_id": "utility_pv_feasibility_package@1",
+    "task_completion": [
+        {
+            "id": "pysam_initialization",
+            "description": "Agent initializes PySAM (nrel-pysam) and loads the PVWatts/Single Owner modules for the Phoenix location.",
+            "points": 10,
+            "visual_evidence": "Code editor or terminal showing 'import pysam' and the configuration of a PVWatts8 or similar system model with Phoenix weather data."
+        },
+        {
+            "id": "dc_ac_ratio_sweep",
+            "description": "Agent performs a sweep of DC-to-AC ratios (1.1 to 1.5) to find the optimal specific yield.",
+            "points": 15,
+            "visual_evidence": "Code or output logs showing a loop or parametric run iterating through ratios 1.1, 1.2, 1.3, 1.4, and 1.5."
+        },
+        {
+            "id": "p50_p90_calculation",
+            "description": "Agent calculates P50 and P90 yields using the RSS of the four specified uncertainty components.",
+            "points": 15,
+            "visual_evidence": "Mathematical formulas in code showing sqrt(4.5^2 + 3.2^2 + 2.0^2 + 1.5^2) and the resulting P90 value calculation."
+        },
+        {
+            "id": "financial_model_config",
+            "description": "Agent configures the Single Owner model with specific inputs: $950/kW, 30% ITC, 60% debt, and 10% target IRR.",
+            "points": 20,
+            "visual_evidence": "Code snippets or variable assignments showing 'itc_fed_percent = 30', 'debt_fraction = 60', and 'target_irr = 10'."
+        },
+        {
+            "id": "ppa_price_solve",
+            "description": "Agent solves for the PPA price and reports NPV, LCOE, and DSCR.",
+            "points": 15,
+            "visual_evidence": "Execution of a solver (e.g., 'model.execute()') and printed output showing the PPA price in $/kWh and the minimum DSCR."
+        },
+        {
+            "id": "sensitivity_matrix",
+            "description": "Agent runs the 3x3 sensitivity matrix (Installed Cost vs PPA Price) and identifies the break-even cost.",
+            "points": 15,
+            "visual_evidence": "A table, list, or loop output showing 9 distinct IRR/NPV results and a determination of the break-even cost at $0.035/kWh."
+        },
+        {
+            "id": "json_file_export",
+            "description": "Agent saves the final results to the specified JSON path with the required top-level keys.",
+            "points": 10,
+            "visual_evidence": "Terminal command or code showing the creation of '/home/ga/Documents/SAM_Projects/phoenix_feasibility_package.json' containing 'system_design', 'financial_analysis', and 'sensitivity_analysis'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding or guessing values.",
+            "visual_evidence": "Screenshots must show active Python code interacting with 'pysam.PySSC' or 'pysam.Pvwattsv8' objects, not just print statements of final numbers."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "Check if the agent copy-pasted the P90 or PPA price from an external source.",
+            "visual_evidence": "The agent should be seen writing the logic for the RSS uncertainty calculation (approx 6.04% total uncertainty) and the financial solver."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Verify the agent actually saved the file to the specific directory.",
+            "visual_evidence": "A terminal 'ls' command or a file explorer view showing the existence of the JSON file in the SAM_Projects folder."
+        }
+    ],
+    "privileged_info_for_vlm": "The combined uncertainty (RSS) of 4.5%, 3.2%, 2.0%, and 1.5% is approximately 6.04%. P90 is typically calculated as P50 * (1 - 1.282 * sigma) for a normal distribution, or simply P50 * (1 - 0.0604) depending on the specific statistical method used by the agent. At $950/kW and 10% IRR, the PPA price should be in the range of $0.03-$0.05/kWh. The break-even installed cost at $0.035/kWh PPA price is the cost where NPV is 0."
+}

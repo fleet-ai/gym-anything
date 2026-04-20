@@ -1,0 +1,53 @@
+{
+    "task_id": "supply_chain_hub_lines@1",
+    "task_completion": [
+        {
+            "id": "load_layers",
+            "description": "Load the warehouse and retail store GeoJSON layers into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layers 'warehouses' and 'retail_stores' are visible in the Layers panel of the GIS application."
+        },
+        {
+            "id": "open_hub_tool",
+            "description": "Open the 'Distance to nearest hub (line to hub)' processing tool.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Distance to nearest hub (line to hub)' or similar is open on the screen."
+        },
+        {
+            "id": "configure_tool_parameters",
+            "description": "Configure the tool with retail_stores as source, warehouses as destination, 'name' as the hub layer attribute, and measurement in meters.",
+            "points": 25,
+            "visual_evidence": "The tool dialog shows 'retail_stores' selected as the source layer, 'warehouses' as the destination hub layer, 'name' selected for the hub layer name attribute, and 'Meters' selected for measurement unit."
+        },
+        {
+            "id": "generate_hub_lines",
+            "description": "Execute the tool to generate the line layer connecting stores to hubs.",
+            "points": 25,
+            "visual_evidence": "A new layer (often named 'Hub distance' or 'Output') appears in the Layers panel, and lines connecting points are visible on the map canvas."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the generated line layer to the specified GeoJSON file path.",
+            "points": 25,
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog shows the format as GeoJSON and the file path as '/home/ga/GIS_Data/exports/hub_connections.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS GUI to perform the analysis rather than just executing scripts in the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, processing toolboxes, and dialog windows."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not manually draw lines but used the automated processing tool.",
+            "visual_evidence": "The 'Distance to nearest hub' tool dialog is visible and configured before the lines appear on the map."
+        },
+        {
+            "id": "no_premade_output",
+            "description": "The agent did not simply rename an existing file to the target output name.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step creation of the layer within the GIS software environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data consists of 6 retail stores (SF Downtown, Berkeley, San Mateo, Daly City, Hayward, Redwood City). The resulting GeoJSON file must contain exactly 6 features of type 'LineString'. The hub layer attribute to be used is 'name'. The final output path must be /home/ga/GIS_Data/exports/hub_connections.geojson."
+}

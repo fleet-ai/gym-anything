@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_indexeddb_data_recovery@1",
+    "task_completion": [
+        {
+            "id": "open_dev_tools",
+            "description": "Firefox Developer Tools are opened within the browser window.",
+            "points": 10,
+            "visual_evidence": "The Developer Tools pane (usually at the bottom or side) is visible, showing tabs like Inspector, Console, or Storage."
+        },
+        {
+            "id": "navigate_storage_tab",
+            "description": "The 'Storage' tab in Developer Tools is selected and active.",
+            "points": 10,
+            "visual_evidence": "The 'Storage' tab is highlighted or underlined in the DevTools header, and the storage sidebar is visible."
+        },
+        {
+            "id": "expand_indexeddb_medwatch",
+            "description": "The IndexedDB section is expanded to show 'MedWatchDB' for http://localhost:8080.",
+            "points": 15,
+            "visual_evidence": "The sidebar under 'IndexedDB' shows 'http://localhost:8080' and the database name 'MedWatchDB'."
+        },
+        {
+            "id": "select_object_store",
+            "description": "The 'adverse_events' object store is selected, displaying a list of records.",
+            "points": 15,
+            "visual_evidence": "The 'adverse_events' item is highlighted in the sidebar, and a table or list of data entries appears in the main storage view."
+        },
+        {
+            "id": "locate_specific_record",
+            "description": "The record with report_number 'MDR-3042119' is located and its details are expanded/viewed.",
+            "points": 25,
+            "visual_evidence": "The string 'MDR-3042119' is visible in the data grid or the expanded JSON preview pane within the Storage tab."
+        },
+        {
+            "id": "save_json_file",
+            "description": "The extracted data is saved to the specified file path.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal window shows the content of '~/Documents/MDR-3042119_report.json' containing the JSON data for the specific report."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Firefox GUI to access the data rather than guessing or using external scripts.",
+            "visual_evidence": "Screenshots must show the mouse cursor or focus indicators interacting with the Firefox Storage tab elements."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply create the file with pre-known data without opening the browser tools.",
+            "visual_evidence": "There must be a sequence of screenshots showing the DevTools open and the specific record being inspected before the file is created."
+        },
+        {
+            "id": "actual_storage_access",
+            "description": "The agent interacted with the localhost:8080 storage specifically.",
+            "visual_evidence": "The URL 'http://localhost:8080' must be visible in the IndexedDB hierarchy within the Storage tab."
+        }
+    ],
+    "privileged_info_for_vlm": "The target record is stored in IndexedDB -> MedWatchDB -> adverse_events. The primary key or a field in the object will match 'MDR-3042119'. The final file must be a valid JSON object, not just a raw string, and must be located in the ~/Documents directory."
+}

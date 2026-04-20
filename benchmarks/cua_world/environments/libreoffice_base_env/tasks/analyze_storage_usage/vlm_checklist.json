@@ -1,0 +1,59 @@
+{
+    "task_id": "analyze_storage_usage@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "The agent has opened the Chinook database file in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base window is visible showing the 'chinook.odb' filename in the title bar or main interface."
+        },
+        {
+            "id": "query_design_view",
+            "description": "The agent has initiated a new query and added the 'Genre' and 'Track' tables.",
+            "points": 15,
+            "visual_evidence": "The Query Design window or SQL view is open showing both 'Genre' and 'Track' tables or a JOIN statement between them."
+        },
+        {
+            "id": "column_aliasing",
+            "description": "The query defines the specific columns and aliases: GenreName, TrackCount, and TotalMB.",
+            "points": 20,
+            "visual_evidence": "The query design grid or SQL text shows 'Name' aliased as 'GenreName', a count function as 'TrackCount', and a calculation (Bytes/1048576) as 'TotalMB'."
+        },
+        {
+            "id": "grouping_and_sorting",
+            "description": "The query is configured to group by Genre Name and sort by TotalMB in descending order.",
+            "points": 20,
+            "visual_evidence": "The 'Group' row in the design grid is set for Genre Name, and the 'Sort' row for TotalMB is set to 'Descending' (or 'ORDER BY TotalMB DESC' in SQL)."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "The query is executed, showing the correct data results (Drama at the top, Rock with 1297 tracks).",
+            "points": 25,
+            "visual_evidence": "A result table is visible. The top row should be 'Drama'. The row for 'Rock' should show a TrackCount of 1297 and a TotalMB of approximately 11141."
+        },
+        {
+            "id": "save_query_and_db",
+            "description": "The query is saved with the name 'GenreStorageStats' and the database is saved.",
+            "points": 10,
+            "visual_evidence": "A save dialog or the Queries list shows the name 'GenreStorageStats'. The 'Save' icon for the database is clicked or greyed out after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just executing a shell script to modify the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, the Query Design window, or the SQL input field within the app."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply type the results into a text document or spreadsheet.",
+            "visual_evidence": "The results are displayed within the LibreOffice Base query result sub-pane or window, not a separate text editor."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent is interacting with the actual chinook.odb file provided.",
+            "visual_evidence": "The table names (Genre, Track) and field names (Bytes, GenreId) match the Chinook schema visible in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The query must be named 'GenreStorageStats'. The correct columns are GenreName, TrackCount, and TotalMB. Calculation for TotalMB is (Bytes / 1048576.0). Verified data: The largest genre by TotalMB is 'Drama' (approx 30,941 MB). The 'Rock' genre must have exactly 1297 tracks and approximately 11,141.36 MB. The results must be sorted descending by TotalMB."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_prosthetic_tactile_sensors@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the initial Webots simulation file prosthetic_hand_test.wbt.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible showing a robotic hand and an egg object."
+        },
+        {
+            "id": "configure_world_timestep",
+            "description": "Set the WorldInfo basicTimeStep to 16 or lower.",
+            "points": 15,
+            "visual_evidence": "The Scene Tree shows WorldInfo selected with basicTimeStep set to a value <= 16 in the field editor."
+        },
+        {
+            "id": "configure_egg_physics",
+            "description": "Enable physics for the 'TEST_EGG' Solid and set mass to 0.05 kg.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows the 'TEST_EGG' node with a Physics child node expanded, showing mass set to 0.05."
+        },
+        {
+            "id": "configure_index_sensor",
+            "description": "Configure 'INDEX_TIP' as a TouchSensor with type 'force-3d' and resolution 0.001.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows 'INDEX_TIP' node changed to or containing a TouchSensor with 'type' set to 'force-3d' and 'resolution' set to 0.001."
+        },
+        {
+            "id": "configure_thumb_sensor",
+            "description": "Configure 'THUMB_TIP' as a TouchSensor with type 'force-3d' and resolution 0.001.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows 'THUMB_TIP' node changed to or containing a TouchSensor with 'type' set to 'force-3d' and 'resolution' set to 0.001."
+        },
+        {
+            "id": "save_upgraded_world",
+            "description": "Save the modified world to the specific path /home/ga/Desktop/prosthetic_grasp_test.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box or the Webots title bar shows the file path /home/ga/Desktop/prosthetic_grasp_test.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not simply rename an existing file but actively changed the parameters in the editor.",
+            "visual_evidence": "Sequential screenshots show the values (16, 0.05, force-3d) being typed or selected in the Webots interface."
+        },
+        {
+            "id": "correct_target_path",
+            "description": "The agent saved the file to the Desktop as requested, not the original source directory.",
+            "visual_evidence": "The file explorer or save dialog confirms the destination is /home/ga/Desktop/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values in the Webots Scene Tree: WorldInfo.basicTimeStep <= 16; TEST_EGG.physics.mass = 0.05; INDEX_TIP and THUMB_TIP must be TouchSensors with type 'force-3d' and resolution 0.001. The final file must be saved as /home/ga/Desktop/prosthetic_grasp_test.wbt."
+}

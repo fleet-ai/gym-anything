@@ -1,0 +1,65 @@
+{
+    "task_id": "sre_incident_timeline_visualization@1",
+    "task_completion": [
+        {
+            "id": "open_incident_log",
+            "description": "The agent opens the incident log file on the desktop to read the events.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window displaying the contents of '~/Desktop/incident_log.txt' containing GitLab incident timestamps."
+        },
+        {
+            "id": "diagrams_net_interface",
+            "description": "The agent opens diagrams.net (draw.io) and begins constructing a diagram.",
+            "points": 10,
+            "visual_evidence": "The diagrams.net/draw.io application interface is visible on the screen."
+        },
+        {
+            "id": "timeline_structure_and_events",
+            "description": "The diagram contains at least 6 events arranged chronologically from left to right with arrows and timestamps.",
+            "points": 25,
+            "visual_evidence": "A horizontal flow of at least 6 shapes connected by arrows. Each shape contains text describing an event and a corresponding timestamp (e.g., 18:00, 23:27)."
+        },
+        {
+            "id": "highlight_rm_rf_event",
+            "description": "The 'rm -rf' event is highlighted in red using a distinctive shape (Callout, Star, or Cloud).",
+            "points": 20,
+            "visual_evidence": "A red-colored shape that is NOT a standard rectangle (e.g., a star or cloud) containing the text 'rm -rf'."
+        },
+        {
+            "id": "highlight_service_restored",
+            "description": "The 'Service Restored' event is highlighted in green.",
+            "points": 15,
+            "visual_evidence": "A green-colored shape containing the text 'Service Restored' or similar wording indicating the end of the incident."
+        },
+        {
+            "id": "save_drawio_file",
+            "description": "The editable diagram is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "The diagrams.net save dialog or title bar showing the file path '~/Diagrams/incident_timeline.drawio'."
+        },
+        {
+            "id": "export_pdf_file",
+            "description": "The diagram is exported as a PDF to the specified exports folder.",
+            "points": 10,
+            "visual_evidence": "An export dialog or a file manager window showing 'incident_timeline.pdf' inside '~/Diagrams/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the diagrams.net GUI to create the diagram rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the draw.io canvas, dragging shapes, or using the color picker."
+        },
+        {
+            "id": "genuine_content_creation",
+            "description": "The agent did not simply rename an existing file or copy a pre-made image.",
+            "visual_evidence": "Sequential screenshots show the diagram being built step-by-step (adding shapes, typing text, connecting arrows)."
+        },
+        {
+            "id": "correct_source_usage",
+            "description": "The timestamps and event descriptions match the provided incident_log.txt.",
+            "visual_evidence": "The text inside the diagram shapes matches the specific timestamps found in the log (e.g., 23:27 for rm -rf, 18:14 for restoration)."
+        }
+    ],
+    "privileged_info_for_vlm": "The incident log contains 8 events. Key events for verification: [23:27] is the 'rm -rf' event (must be red and a special shape like a star/cloud/callout); [18:14] (next day) is 'Service Restored' (must be green). The timeline must flow left-to-right. Files must be saved to /home/ga/Diagrams/incident_timeline.drawio and exported to /home/ga/Diagrams/exports/incident_timeline.pdf."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "reflection_nebula_polarimetry@1",
+    "task_completion": [
+        {
+            "id": "telescope_slew_m78",
+            "description": "Telescope is slewed to M78 coordinates (RA 05h 46m 46.7s, Dec +00d 00m 50s).",
+            "points": 10,
+            "visual_evidence": "The telescope control software (e.g., KStars/Ekos or Stellarium) shows the mount pointing at M78 or the specific RA/Dec coordinates."
+        },
+        {
+            "id": "polarization_sequence_execution",
+            "description": "Capture sequence initiated for four polarization angles (0°, 45°, 90°, 135°) using correct filter slots.",
+            "points": 30,
+            "visual_evidence": "The imaging sequence table or capture logs show 120s exposures being taken with filter slots 2, 3, 4, and 5."
+        },
+        {
+            "id": "image_file_organization",
+            "description": "Images are saved into the specific directory structure for each angle.",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal window shows .fits or image files located in /home/ga/Images/polarimetry/M78/angle_000/, /angle_045/, /angle_090/, and /angle_135/."
+        },
+        {
+            "id": "context_image_capture",
+            "description": "A wide-field context image (1.0° FOV) is saved to the specified path with a cool palette.",
+            "points": 20,
+            "visual_evidence": "An image viewer showing m78_context.png with a blue/cool color stretch, or a file manager showing the file at /home/ga/Images/polarimetry/M78/m78_context.png."
+        },
+        {
+            "id": "observation_log_creation",
+            "description": "A summary text file is created at ~/Documents/stokes_observation_log.txt with the required details.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command output showing the file content: Target M78, the 4 angles, and the count of 3+ frames per angle."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI to control the telescope and camera.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Ekos, KStars, or similar imaging suite buttons rather than just script execution."
+        },
+        {
+            "id": "genuine_capture_process",
+            "description": "The agent waited for exposures to complete rather than instantly creating dummy files.",
+            "visual_evidence": "Timestamps in the sequence progress bar or logs show a realistic passage of time for 120s exposures."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use 'touch' or 'echo' to fake the image files.",
+            "visual_evidence": "The file manager shows realistic file sizes for FITS/PNG images rather than 0-byte files."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: M78. Coordinates: RA 05:46:46.7, Dec +00:00:50. Filter Slot Mappings: Angle 000 = Slot 2, Angle 045 = Slot 3, Angle 090 = Slot 4, Angle 135 = Slot 5. Required: 3 frames per angle at 120s each. Context image must be 1.0 degree FOV. Log file must be at ~/Documents/stokes_observation_log.txt."
+}

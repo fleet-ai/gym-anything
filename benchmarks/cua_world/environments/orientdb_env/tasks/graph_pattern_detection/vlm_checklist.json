@@ -1,0 +1,56 @@
+{
+    "task_id": "graph_pattern_detection@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Agent successfully logs into OrientDB Studio 'demodb' database.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio dashboard or schema view for the 'demodb' database."
+        },
+        {
+            "id": "create_edge_class",
+            "description": "Agent creates the 'TravelBuddy' edge class extending 'E' with an 'INTEGER' property 'SharedHotels'.",
+            "points": 15,
+            "visual_evidence": "SQL command execution in the Studio console or the Schema tab showing the 'TravelBuddy' class with the 'SharedHotels' property."
+        },
+        {
+            "id": "execute_graph_logic",
+            "description": "Agent executes logic/SQL to find pairs of Profiles with common Hotels and create TravelBuddy edges.",
+            "points": 25,
+            "visual_evidence": "SQL queries in the Studio console involving 'HasStayed', 'Profile', and 'INSERT INTO TravelBuddy' or similar batch logic."
+        },
+        {
+            "id": "verify_edge_creation",
+            "description": "Agent verifies that TravelBuddy edges were created with the correct 'SharedHotels' counts.",
+            "points": 15,
+            "visual_evidence": "A 'SELECT' query result table in OrientDB Studio showing TravelBuddy edges with non-zero SharedHotels values."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Agent creates the report file at '/home/ga/travel_buddy_report.txt' with the required format.",
+            "points": 35,
+            "visual_evidence": "A terminal window or text editor showing the content of '/home/ga/travel_buddy_report.txt' with the specific 'Total TravelBuddy pairs', 'Top traveler', and sorted list format."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface for database operations.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the browser with http://localhost:2480/studio/index.html and active interaction with the Studio UI."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Agent derived the results from database queries rather than hardcoding the privileged information.",
+            "points": 0,
+            "visual_evidence": "The agent is seen executing complex SQL queries (e.g., JOINs or subqueries) in the Studio console to calculate counts and scores."
+        },
+        {
+            "id": "actual_file_creation",
+            "description": "The report file was generated via command line or editor, not just printed to the console.",
+            "points": 0,
+            "visual_evidence": "Screenshot showing a 'cat', 'save', or 'tee' command directed at the specific path /home/ga/travel_buddy_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' contains 14 unique TravelBuddy pairs. The total sum of all SharedHotels values across these edges is 18. The top traveler is David Jones (david.jones@example.com) with a connectivity score of 8. Specific pair examples: John Smith and David Jones share 2 hotels; Maria Garcia and Luca Rossi share 1 hotel. The report must be sorted by SharedHotels descending."
+}

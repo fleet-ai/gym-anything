@@ -1,0 +1,53 @@
+{
+    "task_id": "restrict_wfs_transactions@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the GeoServer admin interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer web interface is visible with the 'admin' user logged in (usually shown in the top right corner)."
+        },
+        {
+            "id": "navigate_to_service_security",
+            "description": "Agent navigates to the Service Access Control section under Security.",
+            "points": 15,
+            "visual_evidence": "The sidebar shows 'Security' -> 'Services' selected, and the main panel displays a list of service security rules."
+        },
+        {
+            "id": "configure_wfs_get_feature",
+            "description": "Agent ensures WFS.GetFeature is accessible to the Anonymous role.",
+            "points": 25,
+            "visual_evidence": "A rule for 'wfs.GetFeature' is visible in the list or edit screen, with the role 'ANYONE' or 'ROLE_ANONYMOUS' (or equivalent open access) assigned."
+        },
+        {
+            "id": "configure_wfs_transaction",
+            "description": "Agent restricts WFS.Transaction to the ADMIN role.",
+            "points": 35,
+            "visual_evidence": "A rule for 'wfs.Transaction' is visible in the list or edit screen, with the role 'ADMIN' (or 'ROLE_ADMINISTRATOR') assigned to it."
+        },
+        {
+            "id": "save_security_configuration",
+            "description": "Agent saves the security rule changes.",
+            "points": 15,
+            "visual_evidence": "The agent clicks the 'Save' button, and a success message (e.g., 'Rules saved successfully') or the updated rules table is displayed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than modifying configuration files via a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form entries within the browser, not just terminal commands."
+        },
+        {
+            "id": "actual_service_selection",
+            "description": "The agent specifically selected WFS and the correct methods (Transaction/GetFeature) from the GeoServer UI.",
+            "visual_evidence": "Screenshots show the dropdown menus or text fields for 'Service' and 'Method' being populated with 'wfs', 'Transaction', and 'GetFeature'."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a script to automate the configuration via the REST API or filesystem.",
+            "visual_evidence": "The trajectory shows manual navigation through the Security menu items in the GeoServer sidebar."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires configuring GeoServer Service Security. The target service is 'wfs'. The read operation is 'GetFeature' (should be open to all/anonymous). The write/modification operation is 'Transaction' (must be restricted to the 'ADMIN' role). Note that in this specific environment, the role name is expected to be 'ADMIN' as per the task instructions, though standard GeoServer often uses 'ROLE_ADMINISTRATOR'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_csp_cooling_systems@1",
+    "task_completion": [
+        {
+            "id": "sam_initialization",
+            "description": "Agent opens System Advisor Model (SAM) and selects 'Molten Salt Power Tower' for a 'Single Owner' or 'Utility Scale' project.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the SAM start screen with 'Molten Salt Power Tower' selected and the main configuration interface open."
+        },
+        {
+            "id": "location_weather_setup",
+            "description": "Agent sets the location to Phoenix, AZ and downloads/selects the appropriate weather file.",
+            "points": 10,
+            "visual_evidence": "The 'Location and Resource' page in SAM showing 'Phoenix, AZ' selected in the library or map."
+        },
+        {
+            "id": "wet_cooling_simulation",
+            "description": "Agent configures the system for 'Evaporative' (wet) cooling and runs the simulation to obtain annual energy and water data.",
+            "points": 20,
+            "visual_evidence": "The 'Condenser' or 'System Design' page showing 'Evaporative' selected, followed by a 'Results' page showing annual energy production and water usage."
+        },
+        {
+            "id": "dry_cooling_simulation",
+            "description": "Agent switches the cooling configuration to 'Air-cooled' (dry) and re-runs the simulation.",
+            "points": 20,
+            "visual_evidence": "The 'Condenser' page showing 'Air-cooled' selected and a new set of results generated in the SAM interface."
+        },
+        {
+            "id": "comparative_calculations",
+            "description": "Agent calculates the energy penalty percentage and water savings based on the two simulation runs.",
+            "points": 20,
+            "visual_evidence": "A calculator, scratchpad, or terminal window where the agent performs (Wet Energy - Dry Energy) / Wet Energy and (Wet Water - Dry Water)."
+        },
+        {
+            "id": "json_file_creation",
+            "description": "Agent saves the comparative analysis to /home/ga/Documents/SAM_Projects/cooling_comparison.json with all required keys.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the final JSON file with the correct path, keys, and values matching the SAM results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Verify the agent used the SAM GUI to perform simulations rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the agent clicking buttons, navigating tabs, and viewing the 'Results' summary within the SAM application."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "Ensure the energy and water values in the JSON match the values displayed in the SAM results UI.",
+            "visual_evidence": "Side-by-side comparison of the SAM 'Results' dashboard values and the final JSON content."
+        },
+        {
+            "id": "no_precomputed_shortcuts",
+            "description": "Check that the agent didn't simply create the JSON file immediately without opening the SAM software.",
+            "visual_evidence": "The trajectory must show the progression of opening SAM, configuring parameters, and running simulations before the file is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must be for a Molten Salt Power Tower in Phoenix, AZ. Expected physical trends: Wet cooling annual energy must be higher than dry cooling annual energy (typically > 10 GWh difference for 100MW). Wet cooling water usage must be significantly higher (often > 5x) than dry cooling water usage. The energy_penalty_percent is calculated as ((Wet_Energy - Dry_Energy) / Wet_Energy) * 100. The water_savings_m3 is (Wet_Water - Dry_Water). The output file must be exactly /home/ga/Documents/SAM_Projects/cooling_comparison.json."
+}

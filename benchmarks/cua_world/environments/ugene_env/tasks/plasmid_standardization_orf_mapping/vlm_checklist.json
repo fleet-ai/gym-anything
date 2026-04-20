@@ -1,0 +1,59 @@
+{
+    "task_id": "plasmid_standardization_orf_mapping@1",
+    "task_completion": [
+        {
+            "id": "load_raw_fasta",
+            "description": "Load the raw plasmid sequence from ~/UGENE_Data/plasmid/raw_psynbio.fasta into UGENE.",
+            "points": 10,
+            "visual_evidence": "UGENE interface showing 'raw_psynbio.fasta' open in the sequence viewer."
+        },
+        {
+            "id": "locate_ecori_site",
+            "description": "Identify the unique EcoRI (GAATTC) restriction site in the raw sequence.",
+            "points": 15,
+            "visual_evidence": "The EcoRI site highlighted or selected in the UGENE sequence view, or visible in the 'Annotations' or 'Restriction Analysis' panel."
+        },
+        {
+            "id": "rotate_plasmid",
+            "description": "Standardize/rotate the plasmid so that position 1 is the first nucleotide of the EcoRI site.",
+            "points": 25,
+            "visual_evidence": "The sequence viewer showing the sequence starting with 'GAATTC' at index 1, or the 'Set Sequence Origin' dialog being used."
+        },
+        {
+            "id": "export_standardized_fasta",
+            "description": "Export the re-oriented sequence to ~/UGENE_Data/plasmid/results/standardized_plasmid.fasta.",
+            "points": 15,
+            "visual_evidence": "The 'Export as Sequence' or 'Save As' dialog box showing the correct file path and filename."
+        },
+        {
+            "id": "identify_longest_orf",
+            "description": "Identify the longest ORF (at least 500 bp) in the standardized sequence.",
+            "points": 20,
+            "visual_evidence": "The ORF finder results or an annotation table showing an ORF of approximately 900bp (specifically 1206 to 2105 on the complement strand)."
+        },
+        {
+            "id": "create_final_report",
+            "description": "Create the report at ~/UGENE_Data/plasmid/results/standardization_report.txt with all required metrics.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal view showing the report containing the original EcoRI coordinate, total length, ORF coordinates, strand, and first 10 amino acids."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the UGENE GUI for sequence manipulation rather than just command-line scripts.",
+            "visual_evidence": "Screenshots showing the UGENE application window, menus, and sequence visualization being interacted with."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the final report values without performing the analysis in UGENE.",
+            "visual_evidence": "Screenshots showing the intermediate steps of finding the EcoRI site and running the ORF finder tool within the GUI."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Save/Export dialogs or terminal commands showing the exact paths in ~/UGENE_Data/plasmid/results/."
+        }
+    ],
+    "privileged_info_for_vlm": "The original EcoRI site is at position 2232. The total plasmid length is 2686 bp. After rotation to the EcoRI site (GAATTC), the longest ORF is on the Complement strand, located at coordinates 1206 to 2105. The first 10 amino acids of this ORF are MSIQHFRVAL."
+}

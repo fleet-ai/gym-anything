@@ -1,0 +1,53 @@
+{
+    "task_id": "customer_value_segmentation@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio or console connected to 'demodb' with the 'Profiles' class visible."
+        },
+        {
+            "id": "schema_update",
+            "description": "Agent adds the 'CustomerTier' property of type STRING to the 'Profiles' class.",
+            "points": 15,
+            "visual_evidence": "Schema view or command output showing 'CustomerTier' added to the 'Profiles' class properties."
+        },
+        {
+            "id": "spending_calculation",
+            "description": "Agent executes a query to calculate total spending by summing 'Price' from 'Orders' via 'HasOrder' edges.",
+            "points": 25,
+            "visual_evidence": "SQL query visible in the editor or terminal involving 'SUM(out(\"HasOrder\").Price)' or similar logic."
+        },
+        {
+            "id": "tier_assignment",
+            "description": "Agent updates the 'CustomerTier' property for profiles based on the specified spending thresholds (Platinum > 3000, Gold 1000-3000, Silver < 1000).",
+            "points": 25,
+            "visual_evidence": "UPDATE commands or script execution results showing records being modified with 'Platinum', 'Gold', or 'Silver' values."
+        },
+        {
+            "id": "json_export",
+            "description": "Agent exports the list of Platinum customers to the specified JSON file path.",
+            "points": 25,
+            "visual_evidence": "Terminal command (e.g., cat, ls) or file explorer showing /home/ga/platinum_customers.json exists and contains Name, Surname, Email, and CustomerTier."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the OrientDB database rather than manually creating a file with dummy data.",
+            "visual_evidence": "Screenshots must show the OrientDB Studio interface or the 'orientdb>' command-line prompt being used to run queries."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the tracer email into a file but derived the list from database queries.",
+            "visual_evidence": "The agent's command history should show logic for filtering by spending or tier, not just a direct write of 'vip_tracer@example.com'."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the exact file path specified in the task rather than a temporary or default location.",
+            "visual_evidence": "The export command or file verification must explicitly show the path /home/ga/platinum_customers.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains a tracer account 'vip_tracer@example.com' with a total spend of 3500 (orders of 2000 and 1500), which MUST be labeled as 'Platinum' and included in the final JSON. Another tracer 'mid_tracer@example.com' has a spend of 1500 and MUST be labeled 'Gold' (and thus excluded from the JSON). The final JSON file at /home/ga/platinum_customers.json must contain the fields: Name, Surname, Email, and CustomerTier."
+}

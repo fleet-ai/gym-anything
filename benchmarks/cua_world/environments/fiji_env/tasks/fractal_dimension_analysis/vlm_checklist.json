@@ -1,0 +1,59 @@
+{
+    "task_id": "fractal_dimension_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_blobs_image",
+            "description": "The 'blobs.gif' sample image is opened within the Fiji/ImageJ interface.",
+            "points": 10,
+            "visual_evidence": "A window titled 'blobs.gif' is visible within the Fiji application."
+        },
+        {
+            "id": "outline_conversion",
+            "description": "The image has been processed to show single-pixel outlines of the objects.",
+            "points": 20,
+            "visual_evidence": "The blobs in the image appear as thin, white (or black) single-pixel boundaries rather than solid shapes. This is typically achieved via 'Process > Binary > Outline'."
+        },
+        {
+            "id": "fractal_box_count_config",
+            "description": "The Fractal Box Count tool is opened and configured.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Fractal Box Count' or similar is visible, showing box sizes (e.g., 2, 3, 4, 6, 8, 12, 16, 32, 64)."
+        },
+        {
+            "id": "generate_plot_and_results",
+            "description": "The box-counting analysis is executed, generating a log-log plot and a results table.",
+            "points": 25,
+            "visual_evidence": "A plot window showing a log-log graph with a linear fit and a 'Results' table containing 'D' (slope) values are visible on screen."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "The results table is saved to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window shows the path '~/Fiji_Data/results/fractal/fractal_results.csv' being targeted or confirmed."
+        },
+        {
+            "id": "save_plot_image",
+            "description": "The log-log plot is saved as a PNG to the specified path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or file explorer window shows the path '~/Fiji_Data/results/fractal/fractal_plot.png' being targeted or confirmed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform the analysis rather than just writing a script or using terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus (File, Process, Analyze) and dialog boxes."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The Fractal Dimension (D) value is derived from the actual image analysis, not hardcoded.",
+            "visual_evidence": "The 'D' value in the results table or plot should be approximately 1.39 (based on standard Otsu thresholding) or within the range of 1.34 to 1.65, rather than exactly 1.15 which was the incorrect metadata value."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor to manually create the CSV or PNG files.",
+            "visual_evidence": "The files are saved directly from the Fiji/ImageJ interface windows."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected Fractal Dimension (D) for the outlines of 'blobs.gif' using standard Fiji box-counting is approximately 1.39. Valid values typically range between 1.34 and 1.65 depending on the thresholding method used. The agent must use the 'Outline' function before box-counting to satisfy the 'single-pixel outlines' requirement. The output paths must strictly be ~/Fiji_Data/results/fractal/fractal_results.csv and ~/Fiji_Data/results/fractal/fractal_plot.png."
+}

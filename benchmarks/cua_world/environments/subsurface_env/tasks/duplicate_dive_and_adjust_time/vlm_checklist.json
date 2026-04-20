@@ -1,0 +1,53 @@
+{
+    "task_id": "duplicate_dive_and_adjust_time@1",
+    "task_completion": [
+        {
+            "id": "locate_yellow_house",
+            "description": "Locate and select a 'Yellow House' dive entry from September 2011 in the dive list.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a dive entry with the location 'Yellow House' and a date in September 2011 highlighted or selected in the Subsurface dive list."
+        },
+        {
+            "id": "initiate_duplicate",
+            "description": "Trigger the duplication of the selected 'Yellow House' dive.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a context menu with 'Duplicate dive' selected or a new dive entry appearing in the list that is a copy of the original."
+        },
+        {
+            "id": "edit_start_time",
+            "description": "Modify the start time of the newly created dive entry to 13:35.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the time input field in the 'Edit Dive' or 'Main Tab' area being changed to '13:35'."
+        },
+        {
+            "id": "verify_data_integrity",
+            "description": "Ensure other data (location, date, depth) remains unchanged from the original 'Yellow House' entry.",
+            "points": 20,
+            "visual_evidence": "The VLM should see that the location still says 'Yellow House' and the date is still in September 2011 for the new entry."
+        },
+        {
+            "id": "save_dive_log",
+            "description": "Save the changes to the dive log.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the 'Accept' button clicked in the edit panel or the 'File > Save' menu action being performed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to perform the task rather than command-line manipulation of the XML file.",
+            "visual_evidence": "The screenshots should show mouse cursor movements, menu clicks, and text entry within the Subsurface application window."
+        },
+        {
+            "id": "genuine_duplication",
+            "description": "The agent actually used the duplicate function rather than manually creating a new dive and typing all details.",
+            "visual_evidence": "The VLM should see the 'Duplicate dive' option selected from a right-click context menu or the 'Log' menu."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated the dive list to find the specific 2011 entry rather than assuming it was the first item.",
+            "visual_evidence": "The VLM should see the agent scrolling or searching through the dive list, as the 2011 dives are not at the top of the list."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial logbook contains 29 dives. After a successful duplication, the total dive count should be 30. The 'Yellow House' dives from September 2011 are located in the middle of the logbook, not at the top (the most recent dive is actually from 2014). The target start time must be exactly 13:35."
+}

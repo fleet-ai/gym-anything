@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_registry_setup@1",
+    "task_completion": [
+        {
+            "id": "tls_and_auth_files_creation",
+            "description": "Creation of the self-signed TLS certificate for registry.acme.local and the htpasswd file with required users.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing files in ~/projects/registry-setup/certs/ (domain.crt, domain.key) and ~/projects/registry-setup/auth/ (htpasswd)."
+        },
+        {
+            "id": "registry_container_deployment",
+            "description": "Deployment of the 'acme-registry' container using registry:2 on port 5443:443 with volume and environment variables for TLS/Auth.",
+            "points": 20,
+            "visual_evidence": "Output of 'docker ps' showing container 'acme-registry' running, image 'registry:2', and port mapping '0.0.0.0:5443->443/tcp'."
+        },
+        {
+            "id": "docker_trust_configuration",
+            "description": "Configuring the local Docker daemon to trust the self-signed certificate for registry.acme.local:5443.",
+            "points": 15,
+            "visual_evidence": "Commands showing the certificate being copied to /etc/docker/certs.d/registry.acme.local:5443/ca.crt or a successful 'docker login registry.acme.local:5443'."
+        },
+        {
+            "id": "image_migration_tagging",
+            "description": "Tagging the three local images (api, frontend, proxy) with the new registry path and specific versions.",
+            "points": 15,
+            "visual_evidence": "Output of 'docker images' showing registry.acme.local:5443/acme/api-service:v1.2.0, web-frontend:v3.0.1, and reverse-proxy:v1.0.0."
+        },
+        {
+            "id": "image_push_and_pull_verification",
+            "description": "Pushing the images to the private registry and successfully pulling the api-service image back.",
+            "points": 20,
+            "visual_evidence": "Terminal logs showing 'docker push' commands succeeding and a 'docker pull registry.acme.local:5443/acme/api-service:v1.2.0' completing without error."
+        },
+        {
+            "id": "catalog_script_functionality",
+            "description": "Creation and execution of catalog.sh that authenticates as 'admin' to list repositories.",
+            "points": 15,
+            "visual_evidence": "Content of ~/projects/registry-setup/catalog.sh showing a curl command with '-u admin:RegistryAdmin2024' and the script output listing the migrated repositories."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_registry_interaction",
+            "description": "Verifies the agent didn't just echo text but actually interacted with the Docker API.",
+            "visual_evidence": "Screenshots should show actual Docker CLI progress bars during push/pull and real JSON responses from the registry API catalog."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "Checks that the agent didn't use --insecure-registry to bypass TLS requirements.",
+            "visual_evidence": "Absence of '--insecure-registry' in docker daemon config or commands; presence of certificate file operations."
+        },
+        {
+            "id": "actual_auth_usage",
+            "description": "Ensures the agent used the specified credentials rather than an unauthenticated registry.",
+            "visual_evidence": "Commands like 'docker login' or 'curl -u' showing the use of 'admin' or 'ci-bot' credentials."
+        }
+    ],
+    "privileged_info_for_vlm": "The registry must run on port 5443 (host) mapped to 443 (container). Domain: registry.acme.local. Admin credentials: admin / RegistryAdmin2024. CI-Bot credentials: ci-bot / PipelineToken99. Required image tags: api-service:v1.2.0, web-frontend:v3.0.1, reverse-proxy:v1.0.0. The catalog script must use the admin user. The registry storage volume must be named 'registry-data' and mount to '/var/lib/registry'."
+}

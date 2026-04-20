@@ -1,0 +1,59 @@
+{
+    "task_id": "anonymize_dicom_export@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_viewer",
+            "description": "The agent opens a DICOM viewer or medical imaging application to load the study.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer application (e.g., Horos, Weasis, or a generic viewer) is visible on the screen."
+        },
+        {
+            "id": "load_original_study",
+            "description": "The agent loads the synthetic CT study from ~/DICOM/samples/.",
+            "points": 15,
+            "visual_evidence": "The application shows a loaded CT scan with Patient Name 'Test^Patient' and Patient ID 'TEST001' visible in the metadata or browser panel."
+        },
+        {
+            "id": "initiate_export_anonymize",
+            "description": "The agent opens the export or anonymization dialog within the application.",
+            "points": 15,
+            "visual_evidence": "An 'Export', 'DICOM Send/Export', or 'Anonymize' dialog box is active over the main application window."
+        },
+        {
+            "id": "modify_patient_tags",
+            "description": "The agent modifies the PatientName and PatientID fields to anonymize them.",
+            "points": 25,
+            "visual_evidence": "In the export/anonymization settings, the fields for Patient Name and Patient ID are changed from 'Test^Patient' and 'TEST001' to something else (e.g., 'Anonymized', 'Patient 1', or empty)."
+        },
+        {
+            "id": "set_output_directory",
+            "description": "The agent selects ~/DICOM/anonymized/ as the destination for the exported files.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/DICOM/anonymized' is visible in the export destination or 'Save As' field."
+        },
+        {
+            "id": "confirm_export_success",
+            "description": "The agent completes the export process and verifies the files exist in the target directory.",
+            "points": 20,
+            "visual_evidence": "A progress bar completes, a 'Success' message appears, or a file manager window shows new .dcm files in the /home/ga/DICOM/anonymized folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the graphical user interface rather than just executing terminal commands to move files.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and dialog interactions within a DICOM viewer application."
+        },
+        {
+            "id": "genuine_anonymization",
+            "description": "The agent manually or via tool settings changed the metadata tags rather than just renaming files.",
+            "visual_evidence": "The export dialog shows specific fields for 'Patient Name' or 'Patient ID' being edited or checked for anonymization."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create empty files or copy the original files without modification.",
+            "visual_evidence": "The exported files are shown to have different metadata than the source files, or the export process is seen processing multiple image slices."
+        }
+    ],
+    "privileged_info_for_vlm": "The original synthetic DICOM files have PatientName 'Test^Patient' and PatientID 'TEST001'. The images are CT scans with dimensions 256x256. The agent must change these specific metadata strings and save the resulting DICOM files to /home/ga/DICOM/anonymized. Verification should confirm that the 'anonymized' directory contains files where the PatientName and PatientID no longer match the original values."
+}

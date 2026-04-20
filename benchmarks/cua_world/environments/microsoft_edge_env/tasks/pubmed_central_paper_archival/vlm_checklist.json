@@ -1,0 +1,59 @@
+{
+    "task_id": "pubmed_central_paper_archival@1",
+    "task_completion": [
+        {
+            "id": "pubmed_search_executed",
+            "description": "Search for 'Circadian Rhythm' on PubMed",
+            "points": 10,
+            "visual_evidence": "A browser window showing pubmed.ncbi.nlm.nih.gov with 'Circadian Rhythm' in the search bar and a list of results."
+        },
+        {
+            "id": "filter_free_full_text",
+            "description": "Apply 'Free full text' filter to ensure articles are accessible",
+            "points": 10,
+            "visual_evidence": "The 'Free full text' filter checkbox is selected in the PubMed sidebar or results are labeled as 'Free PMC article'."
+        },
+        {
+            "id": "access_pmc_articles",
+            "description": "Navigate to the PubMed Central (PMC) or PDF view for three distinct articles",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent clicking through to PMC pages or opening PDF viewers for three different papers."
+        },
+        {
+            "id": "download_three_pdfs",
+            "description": "Download three distinct PDF files",
+            "points": 20,
+            "visual_evidence": "Browser download manager showing three PDF files being saved or a file explorer showing three new PDFs in a downloads folder."
+        },
+        {
+            "id": "create_target_directory",
+            "description": "Create the directory ~/Documents/JournalClub/",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the creation or existence of the 'JournalClub' folder inside 'Documents'."
+        },
+        {
+            "id": "rename_and_move_files",
+            "description": "Rename files to 'FirstAuthor_Year.pdf' and move them to the target folder",
+            "points": 30,
+            "visual_evidence": "File explorer showing ~/Documents/JournalClub/ containing exactly three files named according to the pattern (e.g., Smith_2023.pdf). The VLM should cross-reference the names with the metadata seen in earlier search screenshots."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to find and download articles",
+            "visual_evidence": "Screenshots show mouse cursor movement, clicking buttons on the PubMed website, and manual navigation rather than just terminal-based downloads (like wget/curl)."
+        },
+        {
+            "id": "genuine_metadata_extraction",
+            "description": "The filenames match the actual authors and years of the downloaded papers",
+            "visual_evidence": "The VLM should compare the final filenames in the file explorer to the titles/authors visible on the PubMed search result pages."
+        },
+        {
+            "id": "no_placeholder_files",
+            "description": "The files are actual PDFs with content, not empty files created via 'touch'",
+            "visual_evidence": "File explorer showing non-zero file sizes or a PDF viewer showing the actual content of the papers."
+        }
+    ],
+    "privileged_info_for_vlm": "The target directory is /home/ga/Documents/JournalClub. The search term is 'Circadian Rhythm'. Exactly 3 articles must be downloaded. Filenames must strictly follow the 'FirstAuthor_Year.pdf' format (e.g., Zhang_2024.pdf). Note that PubMed Central recently transitioned to the pmc.ncbi.nlm.nih.gov domain."
+}

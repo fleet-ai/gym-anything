@@ -1,0 +1,53 @@
+{
+    "task_id": "tcp_retransmission_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Open the specified PCAP file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "apply_retransmission_filter",
+            "description": "Apply the 'tcp.analysis.retransmission' display filter.",
+            "points": 15,
+            "visual_evidence": "The filter bar in Wireshark contains the text 'tcp.analysis.retransmission' and is highlighted green."
+        },
+        {
+            "id": "export_filtered_packets",
+            "description": "Export the filtered packets to the specified path.",
+            "points": 25,
+            "visual_evidence": "The 'Export Specified Packets' dialog box open with the filename 'tcp_retransmissions.pcapng' and the 'All packets' or 'Filtered' radio button selected."
+        },
+        {
+            "id": "verify_retransmission_count",
+            "description": "Identify the number of retransmissions (which is 0 for this specific file).",
+            "points": 20,
+            "visual_evidence": "The Wireshark status bar showing 'Packets: 35 Displayed: 0' or the packet list pane appearing empty after the filter is applied."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the retransmission_report.txt with the required format.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the file '/home/ga/Documents/captures/retransmission_report.txt' containing 'Total Retransmissions: 0' and 'Top Source IP: ' (or N/A)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI for analysis rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the Wireshark application window being interacted with (menus, filter bar, export dialogs)."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not create the report immediately without opening the capture file.",
+            "visual_evidence": "The trajectory shows the agent opening the file and applying the filter before the report is generated."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent used the Wireshark export functionality rather than manually creating an empty file via touch.",
+            "visual_evidence": "Screenshots show the 'File -> Export Specified Packets' menu flow."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file '200722_tcp_anon.pcapng' contains exactly 35 packets, but 0 packets match the 'tcp.analysis.retransmission' filter. Therefore, the exported PCAP should be empty (0 packets), the 'Total Retransmissions' count in the report must be 0, and there will be no 'Top Source IP'. Any report claiming a non-zero number of retransmissions is incorrect."
+}

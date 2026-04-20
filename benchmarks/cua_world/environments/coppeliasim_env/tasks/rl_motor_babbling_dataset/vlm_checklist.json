@@ -1,0 +1,59 @@
+{
+    "task_id": "rl_motor_babbling_dataset@1",
+    "task_completion": [
+        {
+            "id": "open_coppeliasim_scene",
+            "description": "Open CoppeliaSim and load the 'messaging/movementViaRemoteApi.ttt' scene.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible with the specific scene name in the title bar or the scene hierarchy showing a robot arm."
+        },
+        {
+            "id": "add_vision_sensor",
+            "description": "Add a Vision Sensor to the scene to observe the robot.",
+            "points": 10,
+            "visual_evidence": "A 'Vision_sensor' object is visible in the Scene Hierarchy tree on the left side of the CoppeliaSim interface."
+        },
+        {
+            "id": "script_zmq_api",
+            "description": "Write and execute a Python script using the ZMQ Remote API to control the robot.",
+            "points": 25,
+            "visual_evidence": "An IDE or text editor (like VS Code or Mousepad) showing Python code importing 'coppelia_zmqremoteapi_client' and commanding random joint positions."
+        },
+        {
+            "id": "motor_babbling_execution",
+            "description": "Run the simulation for at least 50 steps with the robot moving to random positions.",
+            "points": 20,
+            "visual_evidence": "The CoppeliaSim simulation is running (play button active) and the robot arm is seen in different poses across multiple screenshots."
+        },
+        {
+            "id": "image_export_verification",
+            "description": "Save camera images to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer window showing the directory '/home/ga/Documents/CoppeliaSim/exports/images/' populated with multiple image files."
+        },
+        {
+            "id": "dataset_files_creation",
+            "description": "Generate the rl_dataset.csv and dataset_metadata.json files with correct columns and fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing 'rl_dataset.csv' with headers (step_id, j0-j5, ee_x-z, image_filename) and 'dataset_metadata.json' with fields (total_samples, camera_resolution, robot_moved)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the simulation was actually running during data collection.",
+            "visual_evidence": "The simulation time counter in the CoppeliaSim toolbar is non-zero and changing between screenshots."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Ensure the CSV/JSON files were generated via script, not manually typed.",
+            "visual_evidence": "The script execution in the terminal or IDE precedes the appearance of the files in the file explorer."
+        },
+        {
+            "id": "actual_robot_movement",
+            "description": "Check that the robot actually moved and wasn't just static.",
+            "visual_evidence": "The joint values in the CSV or the visual pose of the robot in the 'images' folder vary significantly."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must generate at least 50 samples. The CSV must contain exactly these columns: step_id, j0, j1, j2, j3, j4, j5, ee_x, ee_y, ee_z, and image_filename. The metadata.json must include total_samples (>=50), camera_resolution (e.g., [512, 512]), and robot_moved (true). All files must be located in /home/ga/Documents/CoppeliaSim/exports/."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "traffic_calming_zone_design@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "Run the baseline simulation and generate the initial tripinfo XML file.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or GUI interaction showing SUMO running the bologna_acosta scenario, followed by the existence of /home/ga/SUMO_Output/baseline_tripinfos.xml in a file explorer or terminal 'ls' command."
+        },
+        {
+            "id": "modify_network_speed_limits",
+            "description": "Modify at least 8 residential edges to a speed limit of 30 km/h (8.33 m/s).",
+            "points": 25,
+            "visual_evidence": "Screenshots of Netedit or XML editing showing speed attributes being changed to 8.33 for multiple edge IDs within the Acosta corridor."
+        },
+        {
+            "id": "implement_traffic_calming_features",
+            "description": "Implement additional traffic calming such as 20 km/h speed bumps on at least 2 edges or turn restrictions.",
+            "points": 15,
+            "visual_evidence": "Netedit or XML code showing at least two edges with speed limits reduced to 5.56 m/s (20 km/h) or specific connection/prohibition changes."
+        },
+        {
+            "id": "calming_simulation_run",
+            "description": "Run the simulation with the modified network and generate the calming tripinfo XML file.",
+            "points": 15,
+            "visual_evidence": "SUMO GUI or command line execution showing the modified network being simulated, resulting in the creation of /home/ga/SUMO_Output/calming_tripinfos.xml."
+        },
+        {
+            "id": "generate_comparison_report",
+            "description": "Create a CSV report comparing baseline and calming metrics with specific required columns.",
+            "points": 20,
+            "visual_evidence": "A view of /home/ga/SUMO_Output/traffic_calming_report.csv containing columns: metric, baseline_value, calming_value, and change_pct."
+        },
+        {
+            "id": "engineering_summary_document",
+            "description": "Produce a professional engineering summary text file documenting the design and impacts.",
+            "points": 10,
+            "visual_evidence": "A text editor or 'cat' command showing the content of /home/ga/SUMO_Output/traffic_calming_summary.txt describing the zone design."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sumo_interaction",
+            "description": "Verify the agent actually used SUMO tools (Netedit/SUMO GUI/sumo-tools) rather than just creating text files manually.",
+            "visual_evidence": "Screenshots showing the SUMO-GUI or Netedit interface active during the network modification or simulation phases."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Ensure the values in the CSV report match the data seen in the XML output files.",
+            "visual_evidence": "Cross-referencing values shown in the terminal/editor for the XML tripinfos with the values typed into the CSV report."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Check that the agent used the specific file paths mandated by the city (City of Bologna requirements).",
+            "visual_evidence": "File paths in the terminal or save dialogs matching /home/ga/SUMO_Output/ exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The target speed limit for the 8 residential edges is 8.33 m/s (equivalent to 30 km/h). Speed bumps should be set to 5.56 m/s (20 km/h). The required metrics for the CSV report are: zone_avg_speed, corridor_avg_travel_time, total_throughput, zone_85th_percentile_speed, and corridor_avg_speed. The scenario is located at /home/ga/SUMO_Scenarios/bologna_acosta/."
+}

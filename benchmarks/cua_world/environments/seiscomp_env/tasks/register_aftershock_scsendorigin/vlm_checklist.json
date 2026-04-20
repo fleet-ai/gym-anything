@@ -1,0 +1,54 @@
+{
+    "task_id": "register_aftershock_scsendorigin@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_interface",
+            "description": "Agent opens the SeisComP GUI or a terminal to interact with the SeisComP system.",
+            "points": 10,
+            "visual_evidence": "A terminal window or SeisComP application (like scolv or scmv) is visible on the desktop."
+        },
+        {
+            "id": "input_aftershock_parameters",
+            "description": "Agent enters the specific origin parameters (Time, Lat, Lon, Depth) into a command or GUI form.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the typing or execution of a command (e.g., scsendorigin) containing '2024-01-01 16:18:47', '37.29', '136.78', and '12.0'."
+        },
+        {
+            "id": "successful_registration_confirmation",
+            "description": "The system provides feedback that the new origin has been created or registered in the database.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing a 'sent origin' message or a new entry appearing in a SeisComP event list with a unique PublicID."
+        },
+        {
+            "id": "query_database_for_report",
+            "description": "Agent queries the database or system to retrieve the stored values for the report.",
+            "points": 20,
+            "visual_evidence": "A terminal showing a SQL query to the mysql database or a SeisComP command (like scquery) being executed to fetch the newly created origin details."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the report file at the specified path with the required 5 lines of data.",
+            "points": 25,
+            "visual_evidence": "A terminal showing 'cat', 'echo', or a text editor displaying the file /home/ga/aftershock_report.txt containing a PublicID, 37.29, 136.78, 12.0, and the timestamp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent retrieved the Public ID from the system rather than inventing one.",
+            "points": 33,
+            "visual_evidence": "The Public ID in the report matches the ID generated in the terminal output during the registration step."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create the report file without first registering the origin in SeisComP.",
+            "visual_evidence": "The trajectory shows the registration command (scsendorigin or similar) occurring before the file creation."
+        },
+        {
+            "id": "correct_file_format",
+            "description": "The report file contains exactly 5 lines as requested.",
+            "visual_evidence": "The final view of /home/ga/aftershock_report.txt shows exactly five distinct lines of data."
+        }
+    ],
+    "privileged_info_for_vlm": "The required parameters to be registered are: Time: 2024-01-01 16:18:47.00, Lat: 37.29, Lon: 136.78, Depth: 12.0. The report must be at /home/ga/aftershock_report.txt. Line 1 must be a system-generated PublicID (usually a string like '20240101.161847.00'), followed by the lat, lon, depth, and time in that specific order."
+}

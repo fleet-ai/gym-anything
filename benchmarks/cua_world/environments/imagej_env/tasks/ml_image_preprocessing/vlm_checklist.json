@@ -1,0 +1,53 @@
+{
+    "task_id": "ml_image_preprocessing@1",
+    "task_completion": [
+        {
+            "id": "open_blobs_sample",
+            "description": "Open the 'Blobs (25K)' sample image in ImageJ.",
+            "points": 10,
+            "visual_evidence": "ImageJ window showing the 'blobs.gif' or 'Blobs (25K)' image with its characteristic black blobs on a light background."
+        },
+        {
+            "id": "invert_contrast",
+            "description": "Invert the image contrast so objects are bright on a dark background.",
+            "points": 15,
+            "visual_evidence": "The image display changes from dark blobs on a light background to light (white/grey) blobs on a dark (black) background."
+        },
+        {
+            "id": "resize_width_128",
+            "description": "Resize the image to 128 pixels wide while maintaining aspect ratio.",
+            "points": 20,
+            "visual_evidence": "The ImageJ 'Size' dialog showing 'Width: 128' with 'Constrain aspect ratio' checked, or the image info bar showing a width of 128 pixels."
+        },
+        {
+            "id": "pad_canvas_256",
+            "description": "Pad the canvas to exactly 256x256 pixels, centered with a black background.",
+            "points": 25,
+            "visual_evidence": "The 'Canvas Size' dialog showing Width and Height as 256, 'Center' checked, and the resulting image showing the 128-wide content centered within a larger 256x256 black square."
+        },
+        {
+            "id": "save_tiff_path",
+            "description": "Save the processed image as a TIFF file to the specified directory.",
+            "points": 30,
+            "visual_evidence": "The 'Save As' file dialog or a file explorer window showing the file 'blobs_ml_ready.tif' being saved to '/home/ga/ImageJ_Data/processed/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI menus and dialogs rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (File, Edit, Image) and specific dialog boxes (Size, Canvas Size)."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply move a pre-existing 'blobs_ml_ready.tif' file to the destination.",
+            "visual_evidence": "The trajectory shows the step-by-step transformation of the image (inverting, resizing, padding) within the ImageJ workspace."
+        },
+        {
+            "id": "authentic_login",
+            "description": "The agent logged into the system using the provided credentials if required by the environment.",
+            "visual_evidence": "Screenshots show the login screen with 'ga' entered as the username."
+        }
+    ],
+    "privileged_info_for_vlm": "The final image must be a 256x256 TIFF. The content (blobs) should be light-colored on a black background, resized to 128 pixels wide (maintaining aspect ratio), and centered. The specific output path is /home/ga/ImageJ_Data/processed/blobs_ml_ready.tif. Padding must be black (pixel value 0)."
+}

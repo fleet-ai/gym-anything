@@ -1,0 +1,53 @@
+{
+    "task_id": "waste_treatment_linkage_setup@1",
+    "task_completion": [
+        {
+            "id": "create_waste_flow",
+            "description": "Create a waste flow named 'Hazardous Sludge' with flow type 'Waste' and reference property 'Mass'.",
+            "points": 15,
+            "visual_evidence": "A flow editor tab or navigation tree entry showing 'Hazardous Sludge' with 'Flow type: Waste' and 'Reference flow property: Mass' selected."
+        },
+        {
+            "id": "create_generator_process",
+            "description": "Create a process named 'Chemical Plant Operation' with 'Hazardous Sludge' as an output.",
+            "points": 15,
+            "visual_evidence": "The 'Inputs/Outputs' tab of the 'Chemical Plant Operation' process showing 'Hazardous Sludge' listed in the Outputs section."
+        },
+        {
+            "id": "create_treatment_process",
+            "description": "Create a process named 'Sludge Incineration Service' with 'Hazardous Sludge' as an input.",
+            "points": 15,
+            "visual_evidence": "The 'Inputs/Outputs' tab of the 'Sludge Incineration Service' process showing 'Hazardous Sludge' listed in the Inputs section."
+        },
+        {
+            "id": "set_quantitative_reference",
+            "description": "Set the 'Hazardous Sludge' input as the Quantitative Reference in the treatment process.",
+            "points": 25,
+            "visual_evidence": "In the 'General information' or 'Inputs/Outputs' tab of 'Sludge Incineration Service', the Quantitative reference field must explicitly show the 'Hazardous Sludge' input flow."
+        },
+        {
+            "id": "create_product_system",
+            "description": "Create a product system named 'Plant_Waste_System' that links the generator to the treatment service.",
+            "points": 30,
+            "visual_evidence": "The 'Model graph' tab of 'Plant_Waste_System' showing a connecting line (link) between 'Chemical Plant Operation' and 'Sludge Incineration Service' via the 'Hazardous Sludge' flow."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA graphical user interface rather than command-line scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with openLCA menus, wizards, and editor tabs."
+        },
+        {
+            "id": "no_manual_labeling",
+            "description": "The names of the entities are typed into the software fields, not just overlaid as text on the image.",
+            "visual_evidence": "The text 'Hazardous Sludge', 'Chemical Plant Operation', etc., appears within the standard openLCA text input boxes and tab headers."
+        },
+        {
+            "id": "genuine_linkage",
+            "description": "The product system link is a functional software connection, not a drawing tool overlay.",
+            "visual_evidence": "The connection line in the Model Graph follows the standard openLCA visual style (usually a green or grey arrow connecting process boxes)."
+        }
+    ],
+    "privileged_info_for_vlm": "The flow must be named 'Hazardous Sludge' (Waste/Mass). The generator process is 'Chemical Plant Operation' (outputs the waste). The treatment process is 'Sludge Incineration Service' (inputs the waste). Crucially, in the treatment process, 'Hazardous Sludge' must be selected as the Quantitative Reference. The final product system must be named 'Plant_Waste_System' and show a valid link between the two processes in the graph view."
+}

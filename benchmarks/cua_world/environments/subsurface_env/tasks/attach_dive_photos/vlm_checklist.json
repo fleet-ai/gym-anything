@@ -1,0 +1,59 @@
+{
+    "task_id": "attach_dive_photos@1",
+    "task_completion": [
+        {
+            "id": "open_logbook_app",
+            "description": "The agent opens the dive logbook application.",
+            "points": 10,
+            "visual_evidence": "A dive logbook software interface (e.g., Subsurface) is visible on the screen."
+        },
+        {
+            "id": "locate_correct_dive",
+            "description": "The agent identifies and selects the dive at 'Yellow House' in Hoodsport, WA.",
+            "points": 20,
+            "visual_evidence": "The dive list shows a selection or focus on a dive entry with the location 'Yellow House' and site 'Hoodsport, WA'."
+        },
+        {
+            "id": "open_image_selection",
+            "description": "The agent initiates the process to add or import a photo to the selected dive.",
+            "points": 15,
+            "visual_evidence": "A file picker dialog or an 'Add Photo' menu option is visible within the logbook application."
+        },
+        {
+            "id": "navigate_to_image_path",
+            "description": "The agent navigates to /home/ga/Pictures/ to find the starfish image.",
+            "points": 15,
+            "visual_evidence": "The file explorer or file picker dialog shows the directory /home/ga/Pictures/ with 'starfish.jpg' visible."
+        },
+        {
+            "id": "attach_starfish_image",
+            "description": "The agent selects and attaches starfish.jpg to the dive record.",
+            "points": 25,
+            "visual_evidence": "The 'starfish.jpg' file is selected in the file picker, or a thumbnail of a starfish appears in the dive's media/photos section."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the changes to the logbook.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Apply', or 'OK' button, or the application indicates the dive record has been updated."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface of the logbook app rather than command-line database manipulation.",
+            "visual_evidence": "Screenshots show mouse cursor movements and clicks on GUI elements like buttons and menus rather than just terminal commands."
+        },
+        {
+            "id": "actual_file_selection",
+            "description": "The agent actually browsed to the file path rather than typing it into a script.",
+            "visual_evidence": "The file picker dialog is seen navigating through the folder hierarchy."
+        },
+        {
+            "id": "no_manual_metadata_edit",
+            "description": "The agent did not manually edit the dive date or number to match the prompt's incorrect info.",
+            "visual_evidence": "The agent interacts with the existing dive entry (Dive #87 on 2011-09-29) without attempting to change its date to 2011-09-04."
+        }
+    ],
+    "privileged_info_for_vlm": "The task description contains inaccuracies: there is no Dive #7 or a dive on 2011-09-04. The correct target is the 7th sequential dive in the logbook, which is actually Dive #87, dated 2011-09-29 at 'Yellow House'. The agent is successful if it attaches '/home/ga/Pictures/starfish.jpg' to this specific dive entry."
+}

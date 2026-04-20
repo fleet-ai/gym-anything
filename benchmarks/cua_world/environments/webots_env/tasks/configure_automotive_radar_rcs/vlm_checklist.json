@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_automotive_radar_rcs@1",
+    "task_completion": [
+        {
+            "id": "locate_ego_radar",
+            "description": "Locate and select the 'front_radar' (Radar node) under the 'EGO_VEHICLE' in the Webots scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots scene tree shows 'EGO_VEHICLE' expanded, with 'front_radar' highlighted or selected."
+        },
+        {
+            "id": "set_radar_max_range",
+            "description": "Update the 'maxRange' field of the front_radar to 250.0.",
+            "points": 20,
+            "visual_evidence": "The field 'maxRange' in the Radar node's attribute panel is visible with the value 250.0."
+        },
+        {
+            "id": "set_radar_fov",
+            "description": "Update the 'horizontalFieldOfView' field of the front_radar to 0.314.",
+            "points": 20,
+            "visual_evidence": "The field 'horizontalFieldOfView' in the Radar node's attribute panel is visible with the value 0.314."
+        },
+        {
+            "id": "set_radar_noise",
+            "description": "Update the 'rangeNoise' field of the front_radar to 0.1.",
+            "points": 15,
+            "visual_evidence": "The field 'rangeNoise' in the Radar node's attribute panel is visible with the value 0.1."
+        },
+        {
+            "id": "set_lead_vehicle_rcs",
+            "description": "Locate the 'LEAD_VEHICLE' in the scene tree and set its 'radarCrossSection' to 100.0.",
+            "points": 20,
+            "visual_evidence": "The 'LEAD_VEHICLE' node is selected in the scene tree and the 'radarCrossSection' field is shown as 100.0."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specific path /home/ga/Desktop/acc_highway_configured.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box or a file explorer window shows the file being saved to /home/ga/Desktop/acc_highway_configured.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_terminal_shortcut",
+            "description": "The agent did not simply use 'sed' or 'echo' in the terminal to create the file without opening Webots.",
+            "visual_evidence": "The Webots application window is active and visible during the parameter changes."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent used the File menu or Save icon within Webots to export the world.",
+            "visual_evidence": "The Webots 'File' menu is open or the 'Save As' dialog is visible with the correct path typed in."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific numerical updates in Webots: EGO_VEHICLE > front_radar (maxRange: 250.0, horizontalFieldOfView: 0.314, rangeNoise: 0.1) and LEAD_VEHICLE (radarCrossSection: 100.0). The starting values were maxRange: 50.0, FOV: 1.57, noise: 0.0, and RCS: 0.0. The final file must be saved exactly to /home/ga/Desktop/acc_highway_configured.wbt."
+}

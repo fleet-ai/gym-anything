@@ -1,0 +1,53 @@
+{
+    "task_id": "forensic_traffic_annotation@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Open the specified pcapng file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "identify_highest_transfer",
+            "description": "Identify the TCP conversation with the highest data transfer.",
+            "points": 20,
+            "visual_evidence": "The 'Conversations' window (Statistics > Conversations) open with the TCP tab selected, showing a stream sorted by Bytes."
+        },
+        {
+            "id": "annotate_start_packet",
+            "description": "Annotate the first packet of the identified conversation with 'Evidence Start'.",
+            "points": 20,
+            "visual_evidence": "The 'Packet Comment' dialog or the 'Packet Details' pane showing the text 'Evidence Start' for the first packet of the stream."
+        },
+        {
+            "id": "annotate_end_packet",
+            "description": "Annotate the last packet of the identified conversation with 'Evidence End'.",
+            "points": 20,
+            "visual_evidence": "The 'Packet Comment' dialog or the 'Packet Details' pane showing the text 'Evidence End' for the last packet of the stream."
+        },
+        {
+            "id": "export_specified_packets",
+            "description": "Export only the annotated conversation packets.",
+            "points": 30,
+            "visual_evidence": "The 'Export Specified Packets' dialog showing the 'Selected packets' or a specific 'Display filter' (e.g., tcp.stream eq X) being used to save the file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI to perform the analysis and annotation.",
+            "visual_evidence": "Screenshots show the Wireshark application window, menus, and dialog boxes being interacted with, rather than just a terminal."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "The agent actually calculated or looked up the conversation statistics.",
+            "visual_evidence": "The presence of the Wireshark Conversations window or a display filter applied to isolate the specific stream."
+        },
+        {
+            "id": "correct_output_path",
+            "description": "The agent saved the file to the exact path specified in the instructions.",
+            "visual_evidence": "The 'Save As' or 'Export' dialog showing the file path '/home/ga/Documents/captures/evidence_annotated.pcapng'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target conversation is TCP stream index 1, which contains 27 packets and transfers 11,043 bytes. The VLM should verify that the agent identifies this specific stream. The first packet of this stream must have a comment 'Evidence Start' and the last packet must have 'Evidence End'. The final export must be in pcapng format at the path /home/ga/Documents/captures/evidence_annotated.pcapng."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "analyze_histogram@1",
+    "task_completion": [
+        {
+            "id": "dicom_viewer_opened",
+            "description": "The DICOM viewer application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "A window showing a DICOM viewer interface (e.g., Horos, Weasis, or a similar medical imaging tool) is active."
+        },
+        {
+            "id": "image_loaded",
+            "description": "A DICOM image is successfully loaded into the viewer.",
+            "points": 15,
+            "visual_evidence": "A medical scan (CT, MRI, or X-ray) is displayed in the main viewport of the application."
+        },
+        {
+            "id": "histogram_tool_accessed",
+            "description": "The agent has opened the histogram or pixel statistics tool within the application.",
+            "points": 20,
+            "visual_evidence": "A histogram window, statistics panel, or 'Image Info' dialog is visible, showing numerical data for pixel intensities."
+        },
+        {
+            "id": "statistics_identified",
+            "description": "The agent has identified the specific min, max, and mean values from the GUI.",
+            "points": 25,
+            "visual_evidence": "The cursor is hovering over or highlighting the statistics panel, or the agent is interacting with the text containing min, max, and mean values."
+        },
+        {
+            "id": "report_file_created",
+            "description": "A text editor or terminal is used to create the report file at the specified path.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or VS Code) or a terminal window shows the file '~/DICOM/exports/histogram_report.txt' being saved with the required min, max, and mean labels."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the GUI to find the statistics rather than just searching for a hidden ground truth file.",
+            "visual_evidence": "Screenshots show the DICOM viewer's statistics/histogram window open; the agent did not simply 'cat' a hidden file in the terminal to get the values."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not copy-paste values from the task prompt or external sources without viewing the image.",
+            "visual_evidence": "The values in the final report match the values visible in the DICOM viewer's UI statistics panel."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the exact path specified in the instructions.",
+            "visual_evidence": "The file path '/home/ga/DICOM/exports/histogram_report.txt' is visible in the save dialog or terminal command."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth values are stored in /tmp/ground_truth/pixel_stats.json. The agent's reported values are considered correct if they are within the following tolerances: +/- 50 HU for 'min', +/- 50 HU for 'max', and +/- 100 HU for 'mean'. The final report must be at /home/ga/DICOM/exports/histogram_report.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "ellipsoid_volume_estimation@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully opens the medical imaging software and loads the CT scan showing the elliptical mass.",
+            "points": 10,
+            "visual_evidence": "A medical imaging interface (DICOM viewer) is visible with a CT scan loaded, showing a bright circular or elliptical mass in the center."
+        },
+        {
+            "id": "measure_dimensions",
+            "description": "The agent uses measurement tools to define three distinct orthogonal dimensions (Length, Width, Height) on the mass.",
+            "points": 30,
+            "visual_evidence": "Measurement lines or calipers are visible overlaid on the elliptical mass in the viewer, showing at least three distinct axes."
+        },
+        {
+            "id": "verify_dimension_threshold",
+            "description": "Each of the three measured dimensions is greater than 5.0 mm.",
+            "points": 10,
+            "visual_evidence": "The numerical labels on the measurement lines in the GUI show values greater than 5.0 mm."
+        },
+        {
+            "id": "save_measurement_screenshot",
+            "description": "The agent saves a screenshot of the measurements to the specific export path.",
+            "points": 20,
+            "visual_evidence": "The agent is seen navigating a 'Save' or 'Export' dialog, or a terminal command confirms the creation of '~/DICOM/exports/volume_measurements.png'."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent creates a JSON report with the required keys and calculated volume using the 0.52 multiplier.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows a JSON file at '~/DICOM/exports/volume_report.json' containing 'axis_1_mm', 'axis_2_mm', 'axis_3_mm', and 'volume_mm3'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software's GUI tools to perform measurements rather than just writing a script to generate the output.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement icons, dragging calipers, or using the viewer's interface."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The volume in the JSON report is derived from the measurements shown in the GUI, not hardcoded from privileged info.",
+            "visual_evidence": "The values in the JSON report match the numerical values visible on the measurement lines in the software screenshots."
+        },
+        {
+            "id": "no_manual_json_bypass",
+            "description": "The agent did not simply create the JSON file without first performing the visual analysis in the DICOM viewer.",
+            "visual_evidence": "The trajectory shows the DICOM viewer being used before the final report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected volume formula is Volume = Length * Width * Height * 0.52. Each dimension must be > 5.0 mm. The synthetic mass is approximately 120x80 mm in 2D; the third dimension must also be measured/estimated. The final volume in the JSON must be within a 5% tolerance of (axis_1 * axis_2 * axis_3 * 0.52). Files must be saved to /home/ga/DICOM/exports/."
+}

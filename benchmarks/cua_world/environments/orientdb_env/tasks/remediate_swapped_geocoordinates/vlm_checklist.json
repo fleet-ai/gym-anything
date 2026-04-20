@@ -1,0 +1,53 @@
+{
+    "task_id": "remediate_swapped_geocoordinates@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Agent successfully logs into OrientDB Studio at localhost:2480 using provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio dashboard or the 'demodb' database selected after entering credentials."
+        },
+        {
+            "id": "identify_swapped_coordinates",
+            "description": "Agent queries the Hotels table and identifies records where latitude and longitude are swapped.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing a SELECT query on the Hotels class and a result grid displaying coordinate values."
+        },
+        {
+            "id": "update_hotel_coordinates",
+            "description": "Agent executes UPDATE commands to swap the latitude and longitude values back to their correct positions for the affected hotels.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing UPDATE statements (e.g., UPDATE Hotels SET latitude = ..., longitude = ...) and a 'success' message or updated record count."
+        },
+        {
+            "id": "create_geofixaudit_class",
+            "description": "Agent creates the 'GeoFixAudit' class in the database schema to store audit records.",
+            "points": 15,
+            "visual_evidence": "Schema tab showing 'GeoFixAudit' in the list of classes or a 'CREATE CLASS GeoFixAudit' command execution."
+        },
+        {
+            "id": "populate_audit_records",
+            "description": "Agent inserts records into GeoFixAudit containing the before and after states of the corrected coordinates.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing INSERT INTO GeoFixAudit or a BROWSE view of the GeoFixAudit table showing rows with 'before' and 'after' coordinate data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent must use the OrientDB Studio web interface, not the terminal/console.",
+            "visual_evidence": "The browser address bar should show localhost:2480/studio and interactions should occur within the web UI elements."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent should query the database to find the records rather than just typing the final coordinates from memory.",
+            "visual_evidence": "Screenshots showing initial SELECT queries to inspect the data before running UPDATE commands."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent must manually type or construct the SQL queries in the Studio Query tab.",
+            "visual_evidence": "Sequential screenshots showing the query editor being populated and executed within the OrientDB Studio interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The corrected coordinates for the three flagship hotels should be: 1. The Plaza Hotel: Latitude 40.7647, Longitude -73.9746. 2. Park Hyatt Tokyo: Latitude 35.68568, Longitude 139.690994. 3. Four Seasons Sydney: Latitude -33.86168, Longitude 151.20766. The agent must swap the values found in the database and ensure a new class 'GeoFixAudit' exists with records documenting these specific changes."
+}

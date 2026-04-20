@@ -1,0 +1,59 @@
+{
+    "task_id": "follow_tcp_stream@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "The agent opens the Wireshark application and loads the specified pcap file.",
+            "points": 10,
+            "visual_evidence": "Wireshark window visible showing 'smtp.pcap' in the title bar or file path."
+        },
+        {
+            "id": "identify_smtp_traffic",
+            "description": "The agent identifies or filters for SMTP protocol packets within the capture.",
+            "points": 10,
+            "visual_evidence": "The packet list pane shows packets with 'SMTP' listed in the Protocol column."
+        },
+        {
+            "id": "initiate_follow_tcp_stream",
+            "description": "The agent uses the 'Follow TCP Stream' feature on an SMTP packet.",
+            "points": 15,
+            "visual_evidence": "Right-click context menu visible with 'Follow' -> 'TCP Stream' selected, or the 'Follow TCP Stream' dialog window appearing."
+        },
+        {
+            "id": "verify_stream_content",
+            "description": "The Follow TCP Stream window displays the full SMTP conversation text.",
+            "points": 25,
+            "visual_evidence": "A window titled 'Follow TCP Stream' showing text starting with '220' (SMTP banner) and containing 'EHLO', 'MAIL FROM', and 'RCPT TO'."
+        },
+        {
+            "id": "save_stream_output",
+            "description": "The agent saves the stream content to the specific text file requested.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' dialog or file explorer window showing the destination path '/home/ga/Documents/captures/smtp_stream.txt'."
+        },
+        {
+            "id": "confirm_file_creation",
+            "description": "The agent verifies the output file exists in the file system.",
+            "points": 10,
+            "visual_evidence": "A terminal showing 'ls' output or a file manager showing 'smtp_stream.txt' in the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI rather than just running CLI scripts to extract data.",
+            "visual_evidence": "Screenshots show the Wireshark application window and mouse cursor interactions with menus."
+        },
+        {
+            "id": "genuine_stream_window",
+            "description": "The content was captured from the Wireshark Follow Stream dialog, not manually typed.",
+            "visual_evidence": "The 'Follow TCP Stream' window is visible with its characteristic blue/red text highlighting for client/server traffic."
+        },
+        {
+            "id": "no_premade_answers",
+            "description": "The agent did not simply echo a pre-existing string into the output file.",
+            "visual_evidence": "The agent is seen navigating the Wireshark interface to find the data before the file is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The file 'smtp.pcap' contains 60 packets total, 32 of which are SMTP protocol. The TCP stream should contain standard SMTP commands including EHLO, AUTH LOGIN, MAIL FROM, and RCPT TO, along with server response codes 220, 250, 334, and 235. The final output must be saved exactly to /home/ga/Documents/captures/smtp_stream.txt."
+}

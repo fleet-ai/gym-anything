@@ -1,0 +1,53 @@
+{
+    "task_id": "fulltext_search_setup@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using admin credentials.",
+            "points": 10,
+            "visual_evidence": "OrientDB Studio or console showing 'demodb' as the active database and 'admin' as the user."
+        },
+        {
+            "id": "lucene_index_hotels",
+            "description": "Configure a Lucene FULLTEXT index on the 'Name' property for the 'Hotels' class.",
+            "points": 20,
+            "visual_evidence": "Schema or Index management view showing a FULLTEXT index on Hotels(Name) with the engine/algorithm set to 'LUCENE'."
+        },
+        {
+            "id": "lucene_index_restaurants",
+            "description": "Configure a Lucene FULLTEXT index on the 'Name' property for the 'Restaurants' class.",
+            "points": 20,
+            "visual_evidence": "Schema or Index management view showing a FULLTEXT index on Restaurants(Name) with the engine/algorithm set to 'LUCENE'."
+        },
+        {
+            "id": "search_queries_execution",
+            "description": "Execute search queries for 'Palace OR Plaza', 'Trattoria', and 'Hyatt OR Four Seasons'.",
+            "points": 25,
+            "visual_evidence": "Query editor or console showing SQL commands using 'LUCENE' or 'SEARCH_CLASS' syntax with the specific keywords mentioned."
+        },
+        {
+            "id": "json_export_file",
+            "description": "Export the results to /home/ga/Documents/fulltext_search_results.json with the required keys.",
+            "points": 25,
+            "visual_evidence": "A file explorer showing the created JSON file at the specified path, or a text editor showing the JSON content with keys: 'palace_plaza_hotels', 'trattoria_restaurants', and 'luxury_chain_hotels'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface for configuration and querying.",
+            "visual_evidence": "Screenshots show the browser-based OrientDB Studio UI (Schema, Browse, or Functions tabs) rather than just a terminal."
+        },
+        {
+            "id": "genuine_query_results",
+            "description": "The agent did not manually type the JSON file without running queries.",
+            "visual_evidence": "Screenshots show the output of the queries in the OrientDB interface before the file is saved."
+        },
+        {
+            "id": "correct_index_type",
+            "description": "The agent specifically selected Lucene as the engine, not the default OrientDB index.",
+            "visual_evidence": "The index creation dialog or the resulting index metadata explicitly displays 'LUCENE' as the algorithm/engine."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires OrientDB Lucene indexes. The database is 'demodb'. Required JSON keys are 'palace_plaza_hotels' (Hotels with Palace/Plaza), 'trattoria_restaurants' (Restaurants with Trattoria), and 'luxury_chain_hotels' (Hotels with Hyatt/Four Seasons). The export path is /home/ga/Documents/fulltext_search_results.json. Verify that the index engine is 'LUCENE' and the type is 'FULLTEXT' for both 'Hotels' and 'Restaurants' on the 'Name' property."
+}

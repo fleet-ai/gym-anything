@@ -1,0 +1,59 @@
+{
+    "task_id": "resample_isotropic_volume@1",
+    "task_completion": [
+        {
+            "id": "volume_loaded",
+            "description": "The abdominal CT volume (amos_0001) is loaded into the medical imaging software.",
+            "points": 10,
+            "visual_evidence": "A CT scan of an abdomen is visible in the slice viewers (axial, sagittal, or coronal)."
+        },
+        {
+            "id": "resample_tool_opened",
+            "description": "The agent has opened the resampling or spacing adjustment module/tool.",
+            "points": 15,
+            "visual_evidence": "A dialog box or sidebar panel titled 'Resample', 'Spacing', or 'Image Spacing' is visible."
+        },
+        {
+            "id": "spacing_parameters_set",
+            "description": "The agent has entered 1.0mm for X, Y, and Z spacing dimensions.",
+            "points": 25,
+            "visual_evidence": "Input fields for 'Spacing' or 'Voxel Size' show values of 1.0, 1.0, and 1.0."
+        },
+        {
+            "id": "output_name_set",
+            "description": "The agent has specified 'CT_Isotropic' as the name for the new volume.",
+            "points": 20,
+            "visual_evidence": "An input field for 'Output Volume' or 'Result Name' contains the text 'CT_Isotropic'."
+        },
+        {
+            "id": "resampling_executed",
+            "description": "The resampling process is initiated and completed.",
+            "points": 15,
+            "visual_evidence": "A progress bar appears and finishes, or a new volume entry appears in the data tree/subject list."
+        },
+        {
+            "id": "verification_of_output",
+            "description": "The final volume 'CT_Isotropic' exists and has the correct 1.0mm isotropic spacing.",
+            "points": 15,
+            "visual_evidence": "The volume properties or metadata for 'CT_Isotropic' show spacing as (1.0, 1.0, 1.0) mm."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the software GUI rather than executing background scripts or terminal commands to process the volume.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with menus, buttons, and input fields within the medical imaging application."
+        },
+        {
+            "id": "no_manual_metadata_edit",
+            "description": "The agent performed a resampling operation rather than just manually renaming a label or spoofing metadata.",
+            "visual_evidence": "The 'Resample' module interface is seen being configured and executed, rather than just a 'Rename' dialog."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not use pre-existing files with the target name.",
+            "visual_evidence": "The 'CT_Isotropic' volume only appears in the data list after the resampling tool is applied to the original 'amos_0001' volume."
+        }
+    ],
+    "privileged_info_for_vlm": "The target spacing for all three dimensions (X, Y, Z) must be exactly 1.0mm. The input volume is amos_0001. The output volume must be named 'CT_Isotropic'. The Z-axis dimension of the image grid is expected to increase by approximately a factor of 2.0 during this operation."
+}

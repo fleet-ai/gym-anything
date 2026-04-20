@@ -1,0 +1,59 @@
+{
+    "task_id": "post_probation_leave_allocation@1",
+    "task_completion": [
+        {
+            "id": "read_memo",
+            "description": "Agent opens and reads the leave allocation memo on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of 'leave_allocation_memo.txt' on the desktop."
+        },
+        {
+            "id": "navigate_to_leave_allocations",
+            "description": "Agent navigates to the Leave Management or Leave Allocations section in Sentrifugo.",
+            "points": 10,
+            "visual_evidence": "Sentrifugo dashboard showing the 'Leave' menu selected and the 'Leave Management' or 'Leave Allocations' page loaded."
+        },
+        {
+            "id": "allocate_emp012",
+            "description": "Agent updates leave for EMP012 (Annual: 10 days, Sick: 5 days) for the year 2026.",
+            "points": 25,
+            "visual_evidence": "Form submission or list view in Sentrifugo showing EMP012 with 10 days of Annual Leave and 5 days of Sick Leave for 2026."
+        },
+        {
+            "id": "allocate_emp017",
+            "description": "Agent updates leave for EMP017 (Annual: 8 days, Sick: 4 days) for the year 2026.",
+            "points": 25,
+            "visual_evidence": "Form submission or list view in Sentrifugo showing EMP017 with 8 days of Annual Leave and 4 days of Sick Leave for 2026."
+        },
+        {
+            "id": "allocate_emp019",
+            "description": "Agent updates leave for EMP019 (Annual: 12 days, Sick: 6 days) for the year 2026.",
+            "points": 25,
+            "visual_evidence": "Form submission or list view in Sentrifugo showing EMP019 with 12 days of Annual Leave and 6 days of Sick Leave for 2026."
+        },
+        {
+            "id": "skip_emp013",
+            "description": "Agent correctly skips EMP013 as per the memo instructions regarding extended probation.",
+            "points": 5,
+            "visual_evidence": "The agent does not enter leave allocations for EMP013, or the final list of updated employees excludes EMP013."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses the Sentrifugo web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the browser interacting with the Sentrifugo UI elements (buttons, text fields, dropdowns)."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates days from hours based on the memo rather than entering values without reading the file.",
+            "visual_evidence": "The agent is seen opening the memo file before performing the data entry in the browser."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "Agent navigates through the application menus to reach the allocation page.",
+            "visual_evidence": "Sequential screenshots show the progression from the login/dashboard through the Leave module menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The memo specifies 4 employees, but EMP013 (Sarah Jenkins) must be skipped because her probation was extended. For the others, convert hours to days (8 hours = 1 day). Correct allocations for 2026: EMP012 (Annual: 10, Sick: 5); EMP017 (Annual: 8, Sick: 4); EMP019 (Annual: 12, Sick: 6)."
+}

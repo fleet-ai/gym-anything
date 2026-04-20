@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_ncap_pedestrian_aeb@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the Webots simulation environment and select the NCAP_TARGET pedestrian node.",
+            "points": 10,
+            "visual_evidence": "The Webots application is visible with a 3D scene and a scene tree on the left showing 'NCAP_TARGET'."
+        },
+        {
+            "id": "set_pedestrian_speed",
+            "description": "Set the NCAP_TARGET pedestrian's speed to 1.5 m/s.",
+            "points": 15,
+            "visual_evidence": "The 'speed' field in the NCAP_TARGET node properties is set to 1.5."
+        },
+        {
+            "id": "set_shirt_color",
+            "description": "Configure the pedestrian's shirt color to orange (RGB: 1, 0.5, 0).",
+            "points": 20,
+            "visual_evidence": "The 'shirtColor' field (or equivalent appearance field) for the pedestrian shows values [1 0.5 0] or the pedestrian model in the 3D view is wearing an orange shirt."
+        },
+        {
+            "id": "configure_waypoints",
+            "description": "Set the trajectory waypoints to [0 0 0] and [0 -6 0].",
+            "points": 20,
+            "visual_evidence": "The 'waypoints' field in the NCAP_TARGET node shows two entries: [0 0 0] and [0 -6 0]."
+        },
+        {
+            "id": "enable_camera_recognition",
+            "description": "Enable recognition on the 'front_camera' of the 'EGO_VEHICLE' to output bounding boxes.",
+            "points": 20,
+            "visual_evidence": "The 'front_camera' node properties show 'recognition' is enabled (checked/True) and 'recognitionColors' or bounding box overlays are visible in the camera view."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specific path /home/ga/Desktop/ncap_aeb_configured.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog box or the terminal shows the file being saved to /home/ga/Desktop/ncap_aeb_configured.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI to change parameters rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots scene tree and property editor."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not simply rename an existing file without making changes.",
+            "visual_evidence": "Sequential screenshots show the values (speed, color, waypoints) being typed or adjusted in the GUI."
+        },
+        {
+            "id": "no_script_cheating",
+            "description": "The agent did not run a pre-made script to solve the task instantly.",
+            "visual_evidence": "The trajectory shows manual navigation through the Webots node tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The target pedestrian is named 'NCAP_TARGET'. Required values: Speed = 1.5; Shirt Color = [1, 0.5, 0]; Waypoints = [0 0 0] and [0 -6 0]. The camera is 'front_camera' on 'EGO_VEHICLE' and must have 'recognition' enabled. The final file must be saved exactly to /home/ga/Desktop/ncap_aeb_configured.wbt."
+}

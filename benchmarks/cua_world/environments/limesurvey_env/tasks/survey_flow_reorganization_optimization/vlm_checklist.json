@@ -1,0 +1,53 @@
+{
+    "task_id": "survey_flow_reorganization_optimization@1",
+    "task_completion": [
+        {
+            "id": "access_survey_structure",
+            "description": "The agent navigates to the 'Consumer Shopping Habits 2025' survey structure or question group management page.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the LimeSurvey interface showing the survey title 'Consumer Shopping Habits 2025' and a list of question groups."
+        },
+        {
+            "id": "reorder_groups",
+            "description": "The question groups are reordered to the sequence: Informed Consent, Shopping Habits, and Demographics.",
+            "points": 30,
+            "visual_evidence": "A screenshot of the survey structure or 'Question groups' list showing the groups in the exact top-to-bottom order: 1. Informed Consent, 2. Shopping Habits, 3. Demographics."
+        },
+        {
+            "id": "set_consent_mandatory",
+            "description": "The 'Consent Agreement' question (Code: CONSENT1) is set to mandatory.",
+            "points": 25,
+            "visual_evidence": "The question settings for CONSENT1 show the 'Mandatory' toggle or dropdown set to 'On' or 'Yes'."
+        },
+        {
+            "id": "set_income_optional",
+            "description": "The 'Annual Household Income' question (Code: DEMO_INC) is set to optional.",
+            "points": 25,
+            "visual_evidence": "The question settings for DEMO_INC show the 'Mandatory' toggle or dropdown set to 'Off' or 'No'."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the changes to the survey structure and question settings.",
+            "points": 10,
+            "visual_evidence": "A success message (e.g., 'Question group order saved' or 'Question saved') or the final state of the survey structure reflecting all changes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than executing database or API scripts via the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser, dragging groups, or clicking toggles in the LimeSurvey GUI."
+        },
+        {
+            "id": "correct_target_survey",
+            "description": "The agent modified the specific 'Consumer Shopping Habits 2025' survey and not a template or different survey.",
+            "visual_evidence": "The survey title 'Consumer Shopping Habits 2025' is visible in the header or breadcrumbs during the edits."
+        },
+        {
+            "id": "no_group_deletion",
+            "description": "The agent reordered the groups rather than deleting and recreating them (which might lose existing data).",
+            "visual_evidence": "The group IDs or the process of dragging/reordering is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey title is 'Consumer Shopping Habits 2025'. The required group order is: 'Informed Consent' first, 'Shopping Habits' second, and 'Demographics' third. The question with code 'CONSENT1' must have its mandatory setting enabled. The question with code 'DEMO_INC' must have its mandatory setting disabled."
+}

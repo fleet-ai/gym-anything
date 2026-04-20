@@ -1,0 +1,53 @@
+{
+    "task_id": "polymerization_hazard_assessment@1",
+    "task_completion": [
+        {
+            "id": "cameo_website_access",
+            "description": "The agent successfully navigated to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search interface (cameochemicals.noaa.gov)."
+        },
+        {
+            "id": "chemical_search_activity",
+            "description": "The agent searched for the specific chemicals listed in the task (e.g., Styrene, Acrylic Acid).",
+            "points": 15,
+            "visual_evidence": "Screenshots show the agent typing chemical names into the CAMEO search bar or viewing search results."
+        },
+        {
+            "id": "hazard_data_extraction",
+            "description": "The agent accessed the 'Hazards' or 'Reactive Groups' section for the chemicals to identify polymerization risks.",
+            "points": 25,
+            "visual_evidence": "The VLM sees the agent viewing the 'Chemical Datasheet' pages, specifically sections mentioning 'Polymerization' or 'Reactivity Alert'."
+        },
+        {
+            "id": "csv_file_creation",
+            "description": "The agent created a CSV file at the specified path '~/Documents/polymerization_assessment.csv'.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., touch, echo) or a file explorer view showing the creation of the file in the Documents folder."
+        },
+        {
+            "id": "csv_content_accuracy",
+            "description": "The CSV contains the correct columns and data for all six chemicals, including CAS numbers and polymerization details.",
+            "points": 30,
+            "visual_evidence": "The final screenshot shows the content of the CSV file (via 'cat' in terminal or an editor) with columns: Chemical Name, CAS Number, Polymerization Hazard, and Triggering Conditions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent actually navigated the CAMEO website rather than generating data from internal knowledge.",
+            "visual_evidence": "Screenshots must show the browser rendering the NOAA CAMEO interface for multiple chemicals, not just a single search."
+        },
+        {
+            "id": "no_precomputed_copy_paste",
+            "description": "The agent did not copy the entire table from a pre-existing local file or the prompt's privileged info section.",
+            "visual_evidence": "The agent is seen typing or incrementally building the CSV based on information found in the browser tabs."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific path requested in the task description.",
+            "visual_evidence": "The file path '~/Documents/polymerization_assessment.csv' is visible in terminal commands or file save dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified Data: 1. Styrene (CAS 100-42-5): YES, triggers: heat, peroxides, catalysts. 2. Acrylic Acid (CAS 79-10-7): YES, triggers: heat, peroxides, light, loss of inhibitor. 3. Vinyl Acetate (CAS 108-05-4): YES, triggers: heat, light, peroxides. 4. Acetone (CAS 67-64-1): NO, triggers: N/A. 5. Methyl Methacrylate (CAS 80-62-6): YES, triggers: heat, light, peroxides. 6. Toluene (CAS 108-88-3): NO, triggers: N/A. Note: Inhibitors prevent polymerization; their absence or depletion is a trigger for chemicals like Acrylic Acid."
+}

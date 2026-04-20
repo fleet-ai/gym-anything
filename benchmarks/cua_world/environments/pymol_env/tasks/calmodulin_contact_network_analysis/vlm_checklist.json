@@ -1,0 +1,59 @@
+{
+    "task_id": "calmodulin_contact_network_analysis@1",
+    "task_completion": [
+        {
+            "id": "pdb_load_1cll",
+            "description": "Fetch and load the PDB structure 1CLL into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1CLL' or '1cll' and the 3D viewer displays a protein structure (calmodulin)."
+        },
+        {
+            "id": "contact_calculation_script",
+            "description": "Execute Python code to calculate Cα–Cα distances and filter contacts based on the specified criteria (< 8.0 Å and |i-j| > 12).",
+            "points": 25,
+            "visual_evidence": "Terminal or PyMOL log showing Python script execution involving 'cmd.get_model', 'iterate', or distance calculations with the specific thresholds (8.0 and 12)."
+        },
+        {
+            "id": "export_contact_list",
+            "description": "Export the filtered contact list to /home/ga/PyMOL_Data/calmodulin_contacts.txt.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., 'cat', 'ls', or 'save') or a text editor showing the file 'calmodulin_contacts.txt' containing columns of residue numbers and distances."
+        },
+        {
+            "id": "domain_analysis_report",
+            "description": "Write a domain analysis report to /home/ga/PyMOL_Data/calmodulin_domain_report.txt identifying boundaries and architecture.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing 'calmodulin_domain_report.txt' with content describing N-terminal, Linker, and C-terminal domains."
+        },
+        {
+            "id": "domain_coloring",
+            "description": "Color the protein in PyMOL using three distinct colors representing the N-terminal domain, central linker, and C-terminal domain.",
+            "points": 15,
+            "visual_evidence": "The PyMOL 3D viewer shows the calmodulin structure divided into three distinct color segments (e.g., blue, green, red)."
+        },
+        {
+            "id": "save_final_image",
+            "description": "Ray-trace and save the domain-colored figure to /home/ga/PyMOL_Data/images/calmodulin_domains.png.",
+            "points": 15,
+            "visual_evidence": "PyMOL command log showing 'ray' and 'png' commands, or a file browser showing the saved image file at the specified path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Verify the agent interacted with the PyMOL software and Python environment rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the PyMOL GUI active, commands being typed into the PyMOL prompt or a script editor, and the 3D viewport updating."
+        },
+        {
+            "id": "no_hardcoded_contacts",
+            "description": "Ensure the contact list was generated via calculation, not copy-pasted from external sources.",
+            "visual_evidence": "Python code visible in the trajectory that performs the math (distance formula or PyMOL's internal distance functions) and loops through residues."
+        },
+        {
+            "id": "correct_pdb_id",
+            "description": "Verify the agent used the correct PDB ID (1CLL) as specified.",
+            "visual_evidence": "The PyMOL command history or object name explicitly mentions '1CLL'."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 1CLL. The contact list must be saved to /home/ga/PyMOL_Data/calmodulin_contacts.txt and should contain at least 58 contacts based on the criteria (distance < 8.0 Å and |i-j| > 12). The domain report must be at /home/ga/PyMOL_Data/calmodulin_domain_report.txt. Calmodulin (1CLL) typically shows two globular domains (approx residues 1-75 and 82-148) connected by a flexible linker (approx 76-81). The final image must be at /home/ga/PyMOL_Data/images/calmodulin_domains.png and should show three distinct colors."
+}

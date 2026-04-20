@@ -1,0 +1,59 @@
+{
+    "task_id": "concurrent_job_queue_skip_locked@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or a terminal) showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "procedure_declaration",
+            "description": "Define the stored procedure CLAIM_NEXT_JOB with correct input (p_worker_id) and output parameters (o_job_id, o_payload).",
+            "points": 15,
+            "visual_evidence": "SQL editor showing 'CREATE OR REPLACE PROCEDURE CLAIM_NEXT_JOB' with parameters 'p_worker_id IN VARCHAR2', 'o_job_id OUT NUMBER', and 'o_payload OUT VARCHAR2'."
+        },
+        {
+            "id": "select_logic_implementation",
+            "description": "Implement the SELECT statement targeting PENDING jobs ordered by PRIORITY and JOB_ID/CREATED_AT.",
+            "points": 20,
+            "visual_evidence": "SQL code showing a SELECT statement from PAYMENT_JOBS where STATUS = 'PENDING' ordered by PRIORITY DESC and either JOB_ID ASC or CREATED_AT ASC."
+        },
+        {
+            "id": "concurrency_keywords",
+            "description": "Use the FOR UPDATE SKIP LOCKED clause to prevent blocking.",
+            "points": 25,
+            "visual_evidence": "The SQL code explicitly contains the keywords 'FOR UPDATE' and 'SKIP LOCKED' within the cursor or select statement."
+        },
+        {
+            "id": "update_and_commit",
+            "description": "Update the job status to 'PROCESSING', assign the worker ID, and commit the transaction.",
+            "points": 20,
+            "visual_evidence": "SQL code showing an UPDATE statement setting STATUS = 'PROCESSING' and WORKER_ID = p_worker_id, followed by a 'COMMIT;' statement."
+        },
+        {
+            "id": "procedure_compilation",
+            "description": "Successfully compile the procedure in the database.",
+            "points": 10,
+            "visual_evidence": "A log or status message in the SQL tool indicating 'Procedure CLAIM_NEXT_JOB compiled' or 'Procedure created'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent must not hardcode the job IDs or payloads in the procedure return statements.",
+            "visual_evidence": "The procedure code should show variables being assigned from a SELECT statement, not static values like o_job_id := 1."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with a database management tool or terminal to execute SQL.",
+            "visual_evidence": "Screenshots show a real SQL editor (e.g., SQL Developer, VS Code with Oracle extension) or a command-line interface (SQL*Plus) with active typing and execution."
+        },
+        {
+            "id": "schema_context",
+            "description": "The agent operates within the HR schema as requested.",
+            "visual_evidence": "The connection profile or the SQL commands (e.g., 'ALTER SESSION SET CURRENT_SCHEMA = HR' or the connection string) confirm the user is 'hr'."
+        }
+    ],
+    "privileged_info_for_vlm": "The procedure must be named CLAIM_NEXT_JOB. It must use 'FOR UPDATE SKIP LOCKED' on the PAYMENT_JOBS table. It must filter for STATUS = 'PENDING'. It must order by PRIORITY (highest first) and use JOB_ID or CREATED_AT as a tie-breaker. It must update the row to STATUS = 'PROCESSING' and WORKER_ID = p_worker_id before committing. Connection: hr/hr123 @ localhost:1521/XEPDB1."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "sequence_invoice_system@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "OrientDB Studio interface showing 'demodb' as the active database and the user logged in."
+        },
+        {
+            "id": "sequence_creation",
+            "description": "Create the 'invoiceIdSeq' (ORDERED, start 1000) and 'receiptSeq' (CACHED, start 5000, cache 10) sequences.",
+            "points": 15,
+            "visual_evidence": "SQL command execution or the 'Sequences' tab in OrientDB showing both sequences with their respective start values and types."
+        },
+        {
+            "id": "class_and_properties_definition",
+            "description": "Define the 'Invoices' vertex class with the 7 specified properties and types.",
+            "points": 20,
+            "visual_evidence": "The 'Schema' or 'Classes' tab showing 'Invoices' extending 'V' with properties: InvoiceId (INTEGER), CustomerEmail (STRING), Amount (DOUBLE), Currency (STRING), IssuedDate (DATE), Description (STRING), and Status (STRING)."
+        },
+        {
+            "id": "unique_index_application",
+            "description": "Apply a UNIQUE index to the Invoices.InvoiceId property.",
+            "points": 15,
+            "visual_evidence": "The 'Indexes' tab or class schema showing a UNIQUE index on the 'InvoiceId' property of the 'Invoices' class."
+        },
+        {
+            "id": "record_insertion",
+            "description": "Insert the five specified invoice records using the sequence for InvoiceId.",
+            "points": 25,
+            "visual_evidence": "SQL 'INSERT' commands or a 'Browse' view of the Invoices class showing 5 records with the correct emails and descriptions."
+        },
+        {
+            "id": "data_verification",
+            "description": "Verify the inserted data matches the requirements, specifically the InvoiceId range.",
+            "points": 15,
+            "visual_evidence": "A query result (e.g., 'SELECT FROM Invoices') showing InvoiceId values 1000, 1001, 1002, 1003, and 1004 associated with the correct customer emails."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just terminal scripts.",
+            "visual_evidence": "Screenshots show the browser, OrientDB Studio tabs (Schema, SQL, etc.), and button clicks."
+        },
+        {
+            "id": "genuine_sequence_usage",
+            "description": "The agent used the sequence.next() function rather than hardcoding the IDs 1000-1004.",
+            "visual_evidence": "SQL command history or editor showing the use of 'sequence(\"invoiceIdSeq\").next()' in the INSERT statements."
+        },
+        {
+            "id": "no_prefilled_data",
+            "description": "The agent actually created the class and sequences rather than querying pre-existing ones.",
+            "visual_evidence": "Sequential screenshots showing the 'Invoices' class being created and initially being empty before insertions."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires creating two sequences: 'invoiceIdSeq' (start 1000, increment 1, ORDERED) and 'receiptSeq' (start 5000, increment 1, cache 10). The 'Invoices' class must extend 'V'. The five records must have InvoiceIds 1000, 1001, 1002, 1003, and 1004. Key emails to look for: john.smith@example.com (ID 1000) and luca.rossi@example.com (ID 1004). A UNIQUE index on InvoiceId is mandatory."
+}

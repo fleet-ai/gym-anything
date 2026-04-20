@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_superclass@1",
+    "task_completion": [
+        {
+            "id": "create_abstract_class",
+            "description": "Create the AbstractNotificationService.java file in the correct package.",
+            "points": 15,
+            "visual_evidence": "The Eclipse Project Explorer shows 'AbstractNotificationService.java' inside the 'src/main/java/com/acme/notify' folder."
+        },
+        {
+            "id": "define_shared_members",
+            "description": "Move the 3 fields and 7 methods into AbstractNotificationService.",
+            "points": 25,
+            "visual_evidence": "The editor for AbstractNotificationService.java shows the class defined as 'public abstract class AbstractNotificationService' containing fields 'serviceName', 'enabled', 'maxRetries' and the specified getter/setter/helper methods."
+        },
+        {
+            "id": "update_subclasses_inheritance",
+            "description": "Modify EmailNotificationService and SMSNotificationService to extend the new superclass.",
+            "points": 15,
+            "visual_evidence": "The editor shows 'public class EmailNotificationService extends AbstractNotificationService' and 'public class SMSNotificationService extends AbstractNotificationService'."
+        },
+        {
+            "id": "clean_subclasses",
+            "description": "Remove duplicated fields and methods from the subclasses.",
+            "points": 20,
+            "visual_evidence": "The editor for EmailNotificationService.java and SMSNotificationService.java shows that the shared fields (e.g., serviceName) and methods (e.g., isEnabled) have been deleted from the subclass bodies."
+        },
+        {
+            "id": "update_constructors",
+            "description": "Ensure subclass constructors properly initialize inherited fields (e.g., using super() or setters).",
+            "points": 10,
+            "visual_evidence": "The editor shows the constructors in the subclasses calling super(...) or setting the inherited fields without compilation errors."
+        },
+        {
+            "id": "successful_build_and_test",
+            "description": "The project builds successfully and all tests in NotificationServiceTest pass.",
+            "points": 15,
+            "visual_evidence": "The JUnit view in Eclipse shows a green bar for 'NotificationServiceTest' or the Console shows a 'BUILD SUCCESS' message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "eclipse_gui_usage",
+            "description": "The agent used Eclipse IDE features (Refactoring menu or Java Editor) rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the Eclipse IDE window, right-click context menus (e.g., Refactor > Extract Superclass), or the Java editor being used."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent did not simply delete the files and recreate them with static content.",
+            "visual_evidence": "The trajectory shows incremental steps of opening files, selecting code, or using the 'Extract Superclass' wizard."
+        },
+        {
+            "id": "test_execution_verification",
+            "description": "The agent actually ran the tests to verify the fix.",
+            "visual_evidence": "The JUnit tab is visible and active, showing the results of the test run."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/notification-system. The package is com.acme.notify. The superclass must be named AbstractNotificationService. Shared fields: serviceName (String), enabled (boolean), maxRetries (int). Shared methods: isEnabled, setEnabled, getServiceName, getMaxRetries, setMaxRetries, validateRecipient, createFailureResult. Subclasses are EmailNotificationService and SMSNotificationService. The final verification must show NotificationServiceTest passing."
+}

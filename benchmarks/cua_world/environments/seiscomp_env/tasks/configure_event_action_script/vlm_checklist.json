@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_event_action_script@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The bash script is created at /home/ga/scripts/log_event.sh with the correct logic.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the script content with 'echo \"Event $1 processed at $(date)\" >> /home/ga/event_activity.log'."
+        },
+        {
+            "id": "script_executable",
+            "description": "The script is made executable using chmod.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'chmod +x' or 'ls -l' displaying executable permissions (x) for the script."
+        },
+        {
+            "id": "scevent_configuration",
+            "description": "The SeisComP Event Processor (scevent) is configured to use the script.",
+            "points": 25,
+            "visual_evidence": "A configuration file (e.g., scevent.cfg) or a SeisComP configuration GUI showing 'scripts.script = /home/ga/scripts/log_event.sh'."
+        },
+        {
+            "id": "trigger_event_update",
+            "description": "The agent interacts with the SeisComP GUI (scvgm or scolv) to update the Noto earthquake event (us6000m0xl).",
+            "points": 20,
+            "visual_evidence": "Screenshots of the SeisComP event list or event editor showing the Noto earthquake event being modified or re-processed."
+        },
+        {
+            "id": "verify_log_output",
+            "description": "The log file /home/ga/event_activity.log contains the expected entry.",
+            "points": 30,
+            "visual_evidence": "Terminal output showing 'cat /home/ga/event_activity.log' with a line matching 'Event us6000m0xl processed at [Timestamp]'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_log_entry",
+            "description": "The agent did not manually echo the final string into the log file to fake success.",
+            "visual_evidence": "The command history should not show the agent typing the exact 'Event us6000m0xl processed at...' string into the log file manually."
+        },
+        {
+            "id": "genuine_seiscomp_interaction",
+            "description": "The agent used SeisComP tools or configuration files rather than just simulating the environment.",
+            "visual_evidence": "Presence of SeisComP specific windows (scconfig, scolv) or editing of standard SeisComP .cfg files."
+        },
+        {
+            "id": "script_logic_check",
+            "description": "The script uses variables for the Event ID and Timestamp rather than hardcoded values.",
+            "visual_evidence": "The script content shows '$1' for the argument and a command like 'date' for the timestamp."
+        }
+    ],
+    "privileged_info_for_vlm": "The target Event ID for the Noto earthquake is 'us6000m0xl'. The required configuration key in SeisComP is 'scripts.script'. The script must be located at '/home/ga/scripts/log_event.sh' and the log must be written to '/home/ga/event_activity.log'. The log format must strictly follow: 'Event [EventID] processed at [Timestamp]'."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "segmentation_validation_ground_truth@1",
+    "task_completion": [
+        {
+            "id": "load_raw_image",
+            "description": "Load the raw synthetic cell image SIMCEPImages_A01_C1_F1_s01_w1.TIF into ImageJ.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 'SIMCEPImages_A01_C1_F1_s01_w1.TIF' is visible."
+        },
+        {
+            "id": "apply_gaussian_blur",
+            "description": "Apply a Gaussian Blur with sigma=2 to the raw image.",
+            "points": 15,
+            "visual_evidence": "The Gaussian Blur dialog box with 'Sigma (Radius): 2' is shown, or the image appears visibly blurred in subsequent steps."
+        },
+        {
+            "id": "apply_otsu_threshold",
+            "description": "Apply an Otsu threshold to create a binary mask.",
+            "points": 15,
+            "visual_evidence": "The Threshold dialog showing 'Otsu' selected, and the image converted to a black and white binary mask."
+        },
+        {
+            "id": "load_ground_truth",
+            "description": "Load the ground truth image from the BBBC005_ground_truth directory.",
+            "points": 10,
+            "visual_evidence": "A second ImageJ window titled 'SIMCEPImages_A01_C1_F1_s01_w1.TIF' (likely with a different path or suffix) or the ground truth mask is visible."
+        },
+        {
+            "id": "calculate_difference",
+            "description": "Perform an image calculator operation (e.g., Subtract or Difference) between the processed image and the ground truth.",
+            "points": 25,
+            "visual_evidence": "The 'Image Calculator' dialog box showing the two images being compared, resulting in a 'Result' or 'Difference' image window."
+        },
+        {
+            "id": "save_difference_image",
+            "description": "Save the resulting difference image to the results folder.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog or file explorer showing 'segmentation_difference.tif' being saved to '~/ImageJ_Data/results/'."
+        },
+        {
+            "id": "export_metrics",
+            "description": "Measure the mean intensity of the difference image and export to validation_metrics.csv.",
+            "points": 15,
+            "visual_evidence": "A 'Results' table window showing a 'Mean' value and the 'Save As' dialog for 'validation_metrics.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI rather than just executing shell scripts to generate files.",
+            "visual_evidence": "Screenshots show the ImageJ application window, menus (Process > Filters, Image > Adjust > Threshold), and dialog boxes."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The difference image was generated via the Image Calculator, not by simply opening an existing file.",
+            "visual_evidence": "The Image Calculator dialog box is visible and configured with the correct source images."
+        },
+        {
+            "id": "no_hardcoded_metrics",
+            "description": "The metrics were exported from the ImageJ Results table.",
+            "visual_evidence": "The ImageJ 'Results' window is visible containing the mean intensity value before or during the export to CSV."
+        }
+    ],
+    "privileged_info_for_vlm": "The raw image is SIMCEPImages_A01_C1_F1_s01_w1.TIF. The ground truth is in the BBBC005_ground_truth folder. The Gaussian Blur must use sigma=2. The threshold method must be Otsu. The final validation_metrics.csv must contain a mean intensity value. Based on the verifier logic, the mean intensity of the difference image is expected to be between 0.1 and 60.0."
+}

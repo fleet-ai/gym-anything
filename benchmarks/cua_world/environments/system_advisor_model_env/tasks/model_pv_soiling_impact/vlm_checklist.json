@@ -1,0 +1,59 @@
+{
+    "task_id": "model_pv_soiling_impact@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Locate an Arizona-based .csv weather file in the specified SAM directories.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing a path to an Arizona weather file (e.g., Tucson or Phoenix) found in /opt/SAM or via /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "pysam_initialization",
+            "description": "Initialize the PySAM Pvwattsv8 module with the correct system parameters (2000 kW, 30° tilt, 180° azimuth).",
+            "points": 15,
+            "visual_evidence": "Code in an editor or terminal showing 'system_capacity': 2000, 'tilt': 30, 'azimuth': 180, and 'module_type': 0."
+        },
+        {
+            "id": "baseline_simulation",
+            "description": "Run the simulation for the clean baseline (0% soiling) to obtain annual energy.",
+            "points": 20,
+            "visual_evidence": "Code execution or logs showing the model running with soiling set to 0 or an empty array, resulting in a 'gen' or 'annual_energy' value."
+        },
+        {
+            "id": "soiled_simulation",
+            "description": "Run the simulation with the specific monthly soiling profile [2, 3, 4, 5, 5, 5, 2, 2, 3, 4, 3, 2].",
+            "points": 25,
+            "visual_evidence": "Code showing the input of the specific 12-month array [2, 3, 4, 5, 5, 5, 2, 2, 3, 4, 3, 2] into the PySAM soiling parameter and execution."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "Calculate the required metrics: soiling loss (kWh and %), and capacity factors for both scenarios.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the math for (annual_energy / (2000 * 8760)) * 100 and the difference between clean and soiled energy."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Save the final results to /home/ga/Documents/SAM_Projects/soiling_analysis.json with all required fields.",
+            "points": 15,
+            "visual_evidence": "Terminal command 'cat' or a text editor showing the content of the JSON file at the correct path with all specified keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library and didn't just hardcode the output.",
+            "visual_evidence": "Screenshots must show 'import PySAM.Pvwattsv8' or 'import nrel.pysam.Pvwattsv8' and actual method calls like '.execute()'."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the energy values were derived from the simulation, not copied from the task description or privileged info.",
+            "visual_evidence": "The agent should be seen extracting results from the PySAM object (e.g., 'model.Outputs.annual_energy') before writing to JSON."
+        },
+        {
+            "id": "correct_weather_source",
+            "description": "Verify the agent used a real weather file from the system path rather than a placeholder.",
+            "visual_evidence": "The code should show a string path pointing to a .csv file within /opt/SAM or the directory listed in solar_resource_dir.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The system capacity is 2000 kW DC. The monthly soiling profile is [2, 3, 4, 5, 5, 5, 2, 2, 3, 4, 3, 2]. For an Arizona weather file (like Tucson), the annual clean energy should be between 2,500,000 kWh and 6,000,000 kWh. The capacity factor formula is (annual_energy_kwh / (2000 * 8760)) * 100. The output must be saved to /home/ga/Documents/SAM_Projects/soiling_analysis.json."
+}

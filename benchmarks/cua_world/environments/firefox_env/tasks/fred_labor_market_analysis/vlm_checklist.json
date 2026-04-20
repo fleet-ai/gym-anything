@@ -1,0 +1,59 @@
+{
+    "task_id": "fred_labor_market_analysis@1",
+    "task_completion": [
+        {
+            "id": "fred_website_access",
+            "description": "Navigate to the FRED website (fred.stlouisfed.org).",
+            "points": 10,
+            "visual_evidence": "The browser shows the FRED homepage or a specific FRED series page with the St. Louis Fed logo."
+        },
+        {
+            "id": "combined_series_graph",
+            "description": "Create a single chart containing both UNRATE and CIVPART series.",
+            "points": 25,
+            "visual_evidence": "A FRED graph showing two distinct data lines. The legend or 'Edit Graph' panel must list both 'Unemployment Rate' (UNRATE) and 'Labor Force Participation Rate' (CIVPART)."
+        },
+        {
+            "id": "date_range_setting",
+            "description": "Set the graph time period from 2019-01-01 to the present.",
+            "points": 15,
+            "visual_evidence": "The date range boxes above the graph or the X-axis labels show a start date of 2019-01-01 and an end date representing the current date/latest available data."
+        },
+        {
+            "id": "export_graph_image",
+            "description": "Export the graph as an image to the specified local directory.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Download' button on FRED, selects 'Image (PNG)', and a file manager or terminal view confirms 'labor_market_chart.png' exists in '~/Documents/'."
+        },
+        {
+            "id": "export_data_csv",
+            "description": "Export the underlying data as a CSV to the specified local directory.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Download', selects 'CSV (data)', and a file manager or terminal view confirms 'labor_market_data.csv' exists in '~/Documents/'."
+        },
+        {
+            "id": "bookmark_page",
+            "description": "Bookmark the resulting FRED page as 'Labor Market Dashboard'.",
+            "points": 10,
+            "visual_evidence": "The browser's bookmark menu or bookmark bar shows an entry titled 'Labor Market Dashboard' pointing to the FRED graph URL."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the FRED website interface rather than just generating files via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with FRED's 'Add Data Series', 'Edit Graph', and 'Download' buttons."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The data and images originate from the official FRED website.",
+            "visual_evidence": "The URL bar shows fred.stlouisfed.org during the graph creation and export process."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create a dummy CSV or image file using a text editor or drawing tool.",
+            "visual_evidence": "The export process is visible through the browser's download dialogs or the FRED download menu."
+        }
+    ],
+    "privileged_info_for_vlm": "The FRED series IDs are UNRATE (Unemployment Rate) and CIVPART (Labor Force Participation Rate). Both series have data available from 1948 through the present. To combine them, the agent must use the 'Edit Graph' -> 'Add Line' feature on the FRED website. The export path must be exactly '~/Documents/labor_market_chart.png' and '~/Documents/labor_market_data.csv'."
+}

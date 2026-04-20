@@ -1,0 +1,53 @@
+{
+    "task_id": "externalize_config_values@1",
+    "task_completion": [
+        {
+            "id": "create_config_properties",
+            "description": "Create a new configuration file at src/main/resources/config.properties containing the externalized values.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the IDE project explorer showing 'src/main/resources/config.properties' and the file content containing keys like db.url, api.key, and file.input.dir."
+        },
+        {
+            "id": "implement_loading_mechanism",
+            "description": "Implement a properties loading mechanism (e.g., using java.util.Properties) to read the config file.",
+            "points": 20,
+            "visual_evidence": "Code in the IDE showing a Properties object loading the config.properties file via an InputStream or similar mechanism."
+        },
+        {
+            "id": "refactor_database_service",
+            "description": "Update DatabaseService.java to use loaded properties instead of hardcoded strings.",
+            "points": 20,
+            "visual_evidence": "DatabaseService.java source code showing variables like DB_URL or DB_USER being assigned values from the properties object rather than literal strings."
+        },
+        {
+            "id": "refactor_api_and_file_services",
+            "description": "Update ApiClient.java and FileProcessor.java to use loaded properties for API keys and file paths.",
+            "points": 25,
+            "visual_evidence": "Source code for ApiClient.java and FileProcessor.java showing the removal of hardcoded strings (e.g., 'https://api...', '/home/ga/...') in favor of property lookups."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project compiles successfully after the refactoring.",
+            "points": 20,
+            "visual_evidence": "A terminal or IDE build output window showing a 'BUILD SUCCESS' message or a lack of red error underlines in the project structure."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_fallbacks",
+            "description": "Verify the agent didn't just move the hardcoded strings to a different part of the Java code as constants.",
+            "visual_evidence": "The VLM should check that the Java files do not contain the original literal values (e.g., 'jdbc:postgresql...') as default values in the code."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent used the IDE or file system tools to create the properties file rather than just simulating it in a text block.",
+            "visual_evidence": "Screenshots showing the file creation dialog or the file appearing in the actual IDE file tree."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed the refactoring using the IDE's editor and tools rather than just running a single 'sed' command in the terminal to swap strings.",
+            "visual_evidence": "Screenshots showing the agent navigating through the Java files and manually editing or using IDE refactor tools."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/config-app. There are 10 specific values to externalize. Key values to look for in config.properties: db.url=jdbc:postgresql://prod-db.internal:5432/appworks, db.username=app_user, db.password=s3cureP@ss!, db.pool.size=10, api.base.url=https://api.external-service.com/v1, and file.input.dir should be present. The agent must create src/main/resources/config.properties if it doesn't exist."
+}

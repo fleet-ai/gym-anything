@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_pv_lcoe_lifetime_sensitivity@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "Create the Python script at /home/ga/Documents/SAM_Projects/lcoe_calculator.py",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation or existence of the file at the specified path."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "Configure PySAM Pvwattsv8 with 50MW capacity, 1.2 DC:AC ratio, and 1-axis tracking for Phoenix, AZ.",
+            "points": 20,
+            "visual_evidence": "Code in the script setting system_capacity=50000, dc_ac_ratio=1.2, array_type=2, and loading a Phoenix weather file."
+        },
+        {
+            "id": "dcf_math_implementation",
+            "description": "Implement explicit DCF logic for LCOE including 2% O&M escalation and 0.5% degradation.",
+            "points": 25,
+            "visual_evidence": "Code showing loops or formulas for Cost_t and Energy_t using the specified escalation (1.02) and degradation (0.995) factors."
+        },
+        {
+            "id": "sensitivity_calculation",
+            "description": "Calculate LCOE for 25, 30, and 35-year lifetimes.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the script iterating through or calculating values for N=25, N=30, and N=35."
+        },
+        {
+            "id": "json_export",
+            "description": "Export results to /home/ga/Documents/SAM_Projects/lcoe_lifetime_sensitivity.json with correct keys.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the JSON file content containing 'year1_energy_kwh', 'lcoe_25_year', 'lcoe_30_year', and 'lcoe_35_year'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding results.",
+            "visual_evidence": "The script must contain 'import PySAM.Pvwattsv8' or similar and calls to the simulation engine."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the agent used the specific Phoenix weather data path provided.",
+            "visual_evidence": "The script should reference /home/ga/.SAM/solar_resource_dir.txt or /home/ga/SAM_Weather_Data/."
+        },
+        {
+            "id": "logical_lcoe_trend",
+            "description": "Ensure the LCOE values decrease as the lifetime increases.",
+            "visual_evidence": "In the final JSON, lcoe_25_year > lcoe_30_year > lcoe_35_year."
+        }
+    ],
+    "privileged_info_for_vlm": "The Year 1 energy production for a 50MW tracking system in Phoenix should be approximately 105,950,000 kWh (acceptable range: 95M to 130M kWh). The LCOE must be calculated using the explicit DCF formula provided, not the built-in SAM financial modules. The final JSON must be located at /home/ga/Documents/SAM_Projects/lcoe_lifetime_sensitivity.json."
+}

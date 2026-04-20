@@ -1,0 +1,53 @@
+{
+    "task_id": "bulk_user_provisioning@1",
+    "task_completion": [
+        {
+            "id": "open_roster_file",
+            "description": "Agent opens the security_roster.csv file to read user data.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal cat/type command showing the contents of ~/Documents/security_roster.csv."
+        },
+        {
+            "id": "access_vms_web_interface",
+            "description": "Agent navigates to the Nx Witness VMS login page and authenticates.",
+            "points": 10,
+            "visual_evidence": "Browser showing https://localhost:7001 with the login screen or the main dashboard after logging in as 'admin'."
+        },
+        {
+            "id": "navigate_to_user_management",
+            "description": "Agent navigates to the Users or Settings section where new accounts are created.",
+            "points": 10,
+            "visual_evidence": "The VMS interface showing a list of existing users or an 'Add User' button/dialog."
+        },
+        {
+            "id": "create_user_b_wayne",
+            "description": "Agent creates the user 'b.wayne' with the correct details from the CSV.",
+            "points": 35,
+            "visual_evidence": "Form fields filled with Username: b.wayne, Full Name: Bruce Wayne, Email: b.wayne@gotham.sec, and Role: Shift Supervisor (or the corresponding ID)."
+        },
+        {
+            "id": "create_user_d_prince",
+            "description": "Agent creates the user 'd.prince' with the correct details from the CSV.",
+            "points": 35,
+            "visual_evidence": "Form fields filled with Username: d.prince, Full Name: Diana Prince, and the assigned role from the CSV."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the VMS web interface to create users rather than direct database manipulation or API scripts.",
+            "visual_evidence": "Screenshots show the agent clicking buttons and typing into the VMS web forms."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or pasted data from the CSV into the VMS, not just simulating a success message.",
+            "visual_evidence": "Sequential screenshots showing the 'Add User' dialogs being filled and submitted for each user."
+        },
+        {
+            "id": "idempotency_check",
+            "description": "The agent checks for existing users before attempting creation to ensure idempotency.",
+            "visual_evidence": "The agent viewing the user list or receiving a 'user already exists' prompt and proceeding correctly."
+        }
+    ],
+    "privileged_info_for_vlm": "The roster file is located at /home/ga/Documents/security_roster.csv. It contains at least two users: 1) Username: b.wayne, Full Name: Bruce Wayne, Email: b.wayne@gotham.sec, Role: Shift Supervisor. 2) Username: d.prince, Full Name: Diana Prince. The VMS is at https://localhost:7001 (admin/Admin1234!). The agent must map 'Shift Supervisor' to the correct role in the system and ensure no leading/trailing whitespace is included in the fields."
+}

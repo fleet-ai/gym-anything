@@ -1,0 +1,53 @@
+{
+    "task_id": "correct_timestamp_offset@1",
+    "task_completion": [
+        {
+            "id": "open_source_file",
+            "description": "The agent opens the original capture file 'http.cap' in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'http.cap' in the title bar or file path."
+        },
+        {
+            "id": "access_time_shift_tool",
+            "description": "The agent accesses the 'Edit' -> 'Time Shift' menu or uses the 'editcap' command-line tool.",
+            "points": 15,
+            "visual_evidence": "The 'Time Shift' dialog box appearing in Wireshark or a terminal command containing 'editcap' or 'tshark' with time-shifting flags."
+        },
+        {
+            "id": "apply_one_hour_shift",
+            "description": "The agent configures a time shift of exactly 1 hour (3600 seconds) forward.",
+            "points": 25,
+            "visual_evidence": "The Time Shift dialog showing '1' in the hours field (or 3600 seconds) with 'Shift all packets' selected, or a command line showing '-t 3600' or similar."
+        },
+        {
+            "id": "verify_shifted_timestamps",
+            "description": "The agent verifies that the packet timestamps have updated correctly in the UI.",
+            "points": 20,
+            "visual_evidence": "The 'Time' column in Wireshark showing values exactly one hour later than the original (e.g., changing from 18:03 to 19:03)."
+        },
+        {
+            "id": "save_corrected_file",
+            "description": "The agent saves the modified capture to the specified path and format.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' dialog or terminal command showing the output path '~/Documents/captures/http_corrected.pcapng'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_timestamp_editing",
+            "description": "The agent did not manually edit text fields to fake the result.",
+            "visual_evidence": "The agent uses built-in Wireshark tools (Time Shift) or standard CLI utilities (editcap) rather than a text editor on the pcap file."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacts with the actual file system and application.",
+            "visual_evidence": "Screenshots show the Wireshark interface or terminal output reflecting the 43 packets present in the source file."
+        },
+        {
+            "id": "correct_output_format",
+            "description": "The agent saves in the requested .pcapng format.",
+            "visual_evidence": "The file extension in the save dialog or the command line argument is '.pcapng'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file 'http.cap' contains 43 packets. The first packet's original UTC timestamp is 18:03:47 (Epoch: 1084443427). After the 3600-second (1 hour) forward shift, the first packet's timestamp must be 19:03:47 UTC. The final file must be named 'http_corrected.pcapng' and located in '~/Documents/captures/'."
+}

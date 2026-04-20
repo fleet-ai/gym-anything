@@ -1,0 +1,59 @@
+{
+    "task_id": "optimize_database_bloat_and_autoload@1",
+    "task_completion": [
+        {
+            "id": "delete_orphaned_postmeta",
+            "description": "Remove orphaned post metadata from wp_postmeta that lacks a corresponding ID in wp_posts.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing a SQL DELETE command or wp-cli command targeting wp_postmeta where post_id NOT IN wp_posts, followed by a success message indicating rows were deleted."
+        },
+        {
+            "id": "clear_transients",
+            "description": "Clear all transient options from the wp_options table.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'wp transient delete --all' or a SQL command deleting options where option_name LIKE '_transient_%' or '_site_transient_%'."
+        },
+        {
+            "id": "delete_post_revisions",
+            "description": "Delete all post revisions from the wp_posts table.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'wp post delete' with a filter for post_type='revision' or a SQL command deleting from wp_posts where post_type='revision'."
+        },
+        {
+            "id": "update_autoload_status",
+            "description": "Change the autoload value of '_legacy_theme_cache_data' to 'no' or 'off'.",
+            "points": 25,
+            "visual_evidence": "Terminal output or database GUI showing an UPDATE command on wp_options setting autoload='no' for the specific option '_legacy_theme_cache_data', or a 'wp option update' command."
+        },
+        {
+            "id": "drop_abandoned_table",
+            "description": "Drop the unused 'wp_abandoned_plugin_logs' table.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'DROP TABLE wp_abandoned_plugin_logs;' or a database management tool showing the table being deleted/dropped."
+        },
+        {
+            "id": "verify_frontend_functionality",
+            "description": "Ensure the front-end website remains fully functional after optimizations.",
+            "points": 10,
+            "visual_evidence": "A screenshot of the website's homepage or a front-end post loading successfully without database connection errors or broken layouts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the terminal or database tools rather than just stating the task was done.",
+            "visual_evidence": "Screenshots must show active typing of commands in the terminal (mysql or wp-cli) or navigation through a database management plugin/interface."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'Success' without running the actual logic.",
+            "visual_evidence": "The VLM should check that the row counts or success messages returned by the system match the context of the commands executed."
+        },
+        {
+            "id": "target_specific_option",
+            "description": "The agent specifically targeted the '_legacy_theme_cache_data' option rather than a generic cleanup.",
+            "visual_evidence": "The command or SQL query must explicitly name '_legacy_theme_cache_data' in the WHERE clause or update parameters."
+        }
+    ],
+    "privileged_info_for_vlm": "The target table to be dropped is 'wp_abandoned_plugin_logs'. The specific option to modify is '_legacy_theme_cache_data', and its 'autoload' value must be changed to 'no', 'off', or '0'. The agent should use 'wp-cli' or 'mysql' commands to perform these actions."
+}

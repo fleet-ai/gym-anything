@@ -1,0 +1,53 @@
+{
+    "task_id": "narrowband_sho_nebula@1",
+    "task_completion": [
+        {
+            "id": "target_selection",
+            "description": "The agent selects NGC 7000 (North America Nebula) as the imaging target.",
+            "points": 10,
+            "visual_evidence": "The target name 'NGC 7000' or coordinates (RA 20:58:47, Dec +44:19:48) are entered into the telescope control or sequencing software."
+        },
+        {
+            "id": "filter_configuration",
+            "description": "The agent configures the sequence to use Ha, OIII, and SII filters.",
+            "points": 15,
+            "visual_evidence": "The sequence table or filter wheel settings show 'Ha', 'OIII', and 'SII' (or slots 5, 6, and 4 respectively) as active for the session."
+        },
+        {
+            "id": "image_acquisition_execution",
+            "description": "The agent executes the capture sequence for all three narrowband filters.",
+            "points": 30,
+            "visual_evidence": "Progress bars, status logs, or a file explorer showing at least 5 FITS files being generated for each filter (Ha, OIII, SII)."
+        },
+        {
+            "id": "sho_composition",
+            "description": "The agent processes the captured frames into a SHO (Hubble Palette) composite image.",
+            "points": 25,
+            "visual_evidence": "An image processing window (e.g., Siril, PixInsight, or similar) showing the mapping of SII to Red, Ha to Green, and OIII to Blue."
+        },
+        {
+            "id": "final_output_generation",
+            "description": "The agent saves the final composite image as specified in the imaging plan.",
+            "points": 20,
+            "visual_evidence": "A file explorer or 'Save As' dialog showing the final composite image file saved in the designated output directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI rather than just terminal commands to simulate image creation.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and active windows of imaging software (e.g., KStars/Ekos, NINA, or Siril)."
+        },
+        {
+            "id": "genuine_capture_sequence",
+            "description": "The agent did not simply rename existing files to match the required filter names.",
+            "visual_evidence": "The sequence logs or camera status window show active exposure countdowns and hardware communication (INDI/ASCOM)."
+        },
+        {
+            "id": "no_manual_metadata_injection",
+            "description": "The agent did not manually edit the imaging_plan.txt to change requirements.",
+            "visual_evidence": "The content of ~/Documents/imaging_plan.txt remains consistent with the initial task parameters when viewed in a text editor."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: NGC 7000 (North America Nebula) at RA 20.979, Dec 44.334. Required filters and slots: Ha (Slot 5), OIII (Slot 6), SII (Slot 4). Minimum of 5 FITS files per filter are required. The final image must be an SHO composite (SII=Red, Ha=Green, OIII=Blue)."
+}

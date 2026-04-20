@@ -1,0 +1,53 @@
+{
+    "task_id": "monte_carlo_pose_uncertainty@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "Launch CoppeliaSim and ensure the ZMQ Remote API is active on port 23000.",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim GUI is visible; terminal output or status bar may indicate ZMQ plugin loaded or listening on port 23000."
+        },
+        {
+            "id": "robot_scene_setup",
+            "description": "Load a 6-DOF robot arm (e.g., UR5) into the scene.",
+            "points": 10,
+            "visual_evidence": "A 6-DOF robot arm model is visible in the CoppeliaSim 3D viewport."
+        },
+        {
+            "id": "simulation_script_execution",
+            "description": "Execute a script that iterates through 5 configurations and 100 samples per configuration.",
+            "points": 25,
+            "visual_evidence": "Terminal output or an IDE (like VS Code) showing a script running with loops for 5 configurations and 100 samples, or the robot arm visibly jumping to different poses in the GUI."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Generate the mc_samples.csv file with the required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal 'ls' command showing /home/ga/Documents/CoppeliaSim/exports/mc_samples.csv exists; a 'head' or 'cat' command showing columns: config_id, sample_id, nom_j1-6, noisy_j1-6, ee_x, ee_y, ee_z, deviation_mm."
+        },
+        {
+            "id": "json_report_verification",
+            "description": "Generate the uncertainty_report.json file with the correct aggregate structure.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing uncertainty_report.json with keys: end_effector_name, joint_names, total_configurations (5), samples_per_config (100), and noise_sigma_rad (0.005)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually interacted with CoppeliaSim rather than hardcoding a static JSON/CSV.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application window active or the robot model changing poses during the script execution."
+        },
+        {
+            "id": "no_premade_data",
+            "description": "Ensure the agent did not simply copy a pre-existing result file from a different directory.",
+            "visual_evidence": "The script used to generate the data is visible in an editor, and the timestamps of the exported files match the session time."
+        },
+        {
+            "id": "correct_noise_application",
+            "description": "Check that the noise sigma used in the script matches the requirement.",
+            "visual_evidence": "The Python/Lua code visible in screenshots shows a variable for sigma or a Gaussian noise function set to 0.005."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use 5 configurations and 100 samples per configuration (500 total samples). The noise sigma must be exactly 0.005 radians. The output files must be located in /home/ga/Documents/CoppeliaSim/exports/. The JSON report must list 5 results objects and the end-effector name should be '/UR5/connection'."
+}

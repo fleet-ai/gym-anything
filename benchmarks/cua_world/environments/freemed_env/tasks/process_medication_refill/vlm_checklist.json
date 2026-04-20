@@ -1,0 +1,53 @@
+{
+    "task_id": "process_medication_refill@1",
+    "task_completion": [
+        {
+            "id": "login_freemed",
+            "description": "Log in to the FreeMED application using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the FreeMED dashboard or main menu after the login screen."
+        },
+        {
+            "id": "locate_patient_jenkins",
+            "description": "Search for and select the patient Robert Jenkins.",
+            "points": 15,
+            "visual_evidence": "The VLM should see 'Robert Jenkins' selected or his specific patient record/demographics page open."
+        },
+        {
+            "id": "access_medication_list",
+            "description": "Navigate to the patient's medication or prescription (Rx) list.",
+            "points": 15,
+            "visual_evidence": "A list of medications including Atorvastatin, Metformin, and Lisinopril is visible on the screen."
+        },
+        {
+            "id": "update_atorvastatin_refills",
+            "description": "Edit the Atorvastatin 40mg prescription to set the refills to 3.",
+            "points": 30,
+            "visual_evidence": "An edit form or input field for Atorvastatin showing the number '3' being entered or saved in the refills column."
+        },
+        {
+            "id": "verify_final_refill_counts",
+            "description": "Ensure Atorvastatin is at 3 refills while Metformin and Lisinopril remain at 0.",
+            "points": 30,
+            "visual_evidence": "A summary table or prescription list showing: Atorvastatin (Refills: 3), Metformin (Refills: 0), and Lisinopril (Refills: 0)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the FreeMED web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "The agent clicks buttons and types in the browser; no SQL 'UPDATE' commands are seen in a terminal window."
+        },
+        {
+            "id": "no_manual_url_skipping",
+            "description": "The agent navigated through the application menus rather than guessing direct URLs to bypass the search process.",
+            "visual_evidence": "The VLM sees the agent using the search bar or patient selection menus."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered the refill value rather than just viewing a pre-existing correct state.",
+            "visual_evidence": "Screenshots show the transition from the original refill state to the updated state of 3."
+        }
+    ],
+    "privileged_info_for_vlm": "Patient Name: Robert Jenkins. Target Medication: Atorvastatin 40mg (must be set to 3 refills). Control Medications: Metformin and Lisinopril (must remain at 0 refills). Application: FreeMED. Credentials: admin/admin."
+}

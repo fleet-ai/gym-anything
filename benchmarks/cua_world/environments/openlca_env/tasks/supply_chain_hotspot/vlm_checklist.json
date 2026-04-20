@@ -1,0 +1,59 @@
+{
+    "task_id": "supply_chain_hotspot@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database and LCIA methods into openLCA.",
+            "points": 10,
+            "visual_evidence": "The openLCA navigation pane shows the USLCI database (e.g., 'uslci_database') and LCIA methods folder as active/imported."
+        },
+        {
+            "id": "process_selection",
+            "description": "Select a cement or concrete production process from the USLCI database.",
+            "points": 10,
+            "visual_evidence": "A process tab is open in openLCA showing a cement-related process (e.g., 'Portland cement, at plant')."
+        },
+        {
+            "id": "product_system_creation",
+            "description": "Create a product system with at least 4 linked upstream processes.",
+            "points": 25,
+            "visual_evidence": "The 'Model graph' tab of the product system shows a network diagram with at least 4 distinct upstream process nodes connected to the main process."
+        },
+        {
+            "id": "lcia_calculation",
+            "description": "Calculate the LCIA results using a GWP-related method.",
+            "points": 20,
+            "visual_evidence": "The 'Analysis' or 'Results' tab is visible, showing a calculation for 'Global Warming Potential' or 'Climate Change'."
+        },
+        {
+            "id": "contribution_analysis",
+            "description": "Identify upstream process contributions to GWP.",
+            "points": 20,
+            "visual_evidence": "The 'Process contribution' tab is open, showing a list or chart of upstream processes and their percentage impact on GWP."
+        },
+        {
+            "id": "csv_export",
+            "description": "Export the hotspot analysis to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "An export dialog or a terminal command shows the file being saved to '~/LCA_Results/hotspot_analysis.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA graphical interface for modeling and analysis.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with openLCA menus, tabs (Model graph, Analysis), and buttons rather than just executing scripts."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Results are derived from the software's calculation engine, not manual entry.",
+            "visual_evidence": "The LCIA results screen shows the progress bar or the specific openLCA results viewer with dynamically generated data."
+        },
+        {
+            "id": "file_system_integrity",
+            "description": "The agent used the provided database files from the specified paths.",
+            "visual_evidence": "The import dialog shows the agent navigating to '~/LCA_Imports/' to select the zip files."
+        }
+    ],
+    "privileged_info_for_vlm": "The target process in the USLCI database is typically 'Portland cement, at plant'. This process contains at least 8 upstream providers (e.g., Diesel, Coal, Electricity, Natural Gas). The GWP calculation must use an LCIA method like TRACI or IPCC. The final CSV must be in /home/ga/LCA_Results/hotspot_analysis.csv and must group processes <1% as 'Other'."
+}

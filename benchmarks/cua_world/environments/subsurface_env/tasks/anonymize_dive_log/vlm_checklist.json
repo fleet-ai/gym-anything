@@ -1,0 +1,53 @@
+{
+    "task_id": "anonymize_dive_log@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent successfully opens the Subsurface logbook application and loads the dive data.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible, showing a list of dive entries in the main pane."
+        },
+        {
+            "id": "locate_target_fields",
+            "description": "The agent navigates to the 'Notes' or 'Information' tab where 'Buddy' and 'Divemaster' fields are visible.",
+            "points": 10,
+            "visual_evidence": "The UI shows the 'Buddy' and 'Divemaster' text input fields for a selected dive."
+        },
+        {
+            "id": "clear_first_dive",
+            "description": "The agent clears the 'Buddy' and 'Divemaster' fields for the first dive in the list.",
+            "points": 15,
+            "visual_evidence": "The 'Buddy' and 'Divemaster' fields for the first dive are empty/blank in the UI."
+        },
+        {
+            "id": "iterate_all_dives",
+            "description": "The agent iterates through all dives in the logbook to clear the specified fields.",
+            "points": 40,
+            "visual_evidence": "Screenshots show the agent selecting different dive entries (scrolling through the list) and clearing the fields for multiple records."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the modified logbook to persist the anonymization.",
+            "points": 25,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or 'Save As', or a save confirmation dialog appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to perform the task rather than editing the XML file via terminal.",
+            "visual_evidence": "The cursor is seen interacting with the Subsurface application window; no terminal commands like 'sed' or 'vim' are used to modify the .ssrf file directly."
+        },
+        {
+            "id": "manual_field_clearing",
+            "description": "The agent manually clears the fields or uses GUI-based batch editing if available.",
+            "visual_evidence": "The VLM should see the text being deleted or the fields becoming empty within the application's input boxes."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacts with the actual Subsurface software interface.",
+            "visual_evidence": "Standard Subsurface UI elements (dive profile graphs, equipment lists, etc.) are visible and responsive to agent actions."
+        }
+    ],
+    "privileged_info_for_vlm": "The task description claims there are 8 dives, but the actual file (SampleDivesV2.ssrf) contains 29 dives. To successfully complete the task, the agent must clear the 'Buddy' and 'Divemaster' fields for all 29 dives present in the application. The VLM should verify that the agent didn't stop after 8 dives if more are visible in the list."
+}

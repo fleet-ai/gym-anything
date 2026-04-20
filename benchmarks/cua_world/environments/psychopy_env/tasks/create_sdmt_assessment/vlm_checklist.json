@@ -1,0 +1,59 @@
+{
+    "task_id": "create_sdmt_assessment@1",
+    "task_completion": [
+        {
+            "id": "create_conditions_csv",
+            "description": "Create the conditions file with the specific symbol-to-digit mappings.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing a file at /home/ga/PsychoPyExperiments/conditions/sdmt_conditions.csv with columns for symbols (@, #, $, %, &, *, (, ), !) and their corresponding digits (1-9)."
+        },
+        {
+            "id": "instruction_routine",
+            "description": "Create an instruction routine in the PsychoPy Builder timeline.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder interface showing a routine (e.g., 'instr') containing a Text component with instructions for the participant."
+        },
+        {
+            "id": "trial_routine_setup",
+            "description": "Set up the trial routine with the reference key, target symbol, and keyboard component.",
+            "points": 25,
+            "visual_evidence": "The PsychoPy Builder interface showing a 'trial' routine containing Text components for the reference key (displaying the mapping) and the target symbol, plus a Keyboard component set to accept keys '1'-'9'."
+        },
+        {
+            "id": "loop_and_randomization",
+            "description": "Wrap the trial routine in a loop that uses the conditions file and is set to random.",
+            "points": 20,
+            "visual_evidence": "A Loop properties dialog in PsychoPy showing the conditions file path and 'loopType' set to 'random'."
+        },
+        {
+            "id": "timer_implementation",
+            "description": "Configure the experiment to terminate after exactly 90 seconds.",
+            "points": 20,
+            "visual_evidence": "A Code component or Routine/Loop property showing a duration or condition set to 90 seconds (e.g., '$t >= 90' or a 90s duration on a routine/loop)."
+        },
+        {
+            "id": "save_experiment",
+            "description": "Save the PsychoPy experiment file to the specified location.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file saved as /home/ga/PsychoPyExperiments/sdmt_task.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing raw Python code.",
+            "visual_evidence": "Screenshots showing the agent interacting with the PsychoPy Builder interface (routines, components, flow) rather than just a text editor."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent manually entered the symbol mappings and component settings.",
+            "visual_evidence": "Sequential screenshots showing the agent typing into component property boxes or the conditions file."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The experiment uses the conditions file for trials rather than hardcoding a single trial.",
+            "visual_evidence": "The PsychoPy Flow showing a loop surrounding the trial routine, linked to the CSV file."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/sdmt_task.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/conditions/sdmt_conditions.csv and contain exactly these mappings: @=1, #=2, $=3, %=4, &=5, *=6, (=7, )=8, !=9. The total duration of the trial phase must be 90 seconds. Keyboard responses must be limited to keys 1-9."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_inventory_queries@1",
+    "task_completion": [
+        {
+            "id": "locate_target_file",
+            "description": "Locate and open the target file inventory/report.py in the PyCharm editor.",
+            "points": 10,
+            "visual_evidence": "The file '/home/ga/PycharmProjects/inventory_system/inventory/report.py' is visible in the editor tabs or project explorer."
+        },
+        {
+            "id": "identify_n_plus_one",
+            "description": "Identify the unoptimized generate_valuation_report function containing loops that trigger multiple SQL queries.",
+            "points": 15,
+            "visual_evidence": "The editor shows the original code of generate_valuation_report, likely iterating over products and accessing related attributes like 'stocks' or 'movements' within a loop."
+        },
+        {
+            "id": "implement_eager_loading",
+            "description": "Refactor the SQLAlchemy query to use eager loading (e.g., joinedload, subqueryload, or selectinload) or a single bulk query.",
+            "points": 30,
+            "visual_evidence": "The code in report.py is modified to include SQLAlchemy loading options like 'joinedload' or 'selectinload' for relationships, or a complex join/group_by query."
+        },
+        {
+            "id": "maintain_output_format",
+            "description": "Ensure the refactored function still returns a list of dictionaries as required.",
+            "points": 15,
+            "visual_evidence": "The return statement of generate_valuation_report shows a list comprehension or loop constructing dictionaries with keys like 'product_name', 'total_value', etc."
+        },
+        {
+            "id": "verify_query_reduction",
+            "description": "Run a performance test or script to verify the query count is 10 or fewer.",
+            "points": 30,
+            "visual_evidence": "A terminal or test runner output shows a message indicating the query count is <= 10 (e.g., output from test_performance.py or a custom print statement showing the count)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the report output values to bypass the database logic.",
+            "visual_evidence": "The code in report.py still performs database queries using SQLAlchemy and does not contain large blocks of static data matching the report format."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PyCharm IDE features (editor, project tree) rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the PyCharm window active with code being edited in the main pane."
+        },
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the existing test files to lower the bar for passing.",
+            "visual_evidence": "The file 'test_performance.py' or other test files are not seen being edited to change the '10' query limit."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/inventory_system. The initial unoptimized state executes 1006 queries. The target for success is 10 or fewer queries. The function to modify is generate_valuation_report in inventory/report.py. A passing score for the automated verifier is 70."
+}

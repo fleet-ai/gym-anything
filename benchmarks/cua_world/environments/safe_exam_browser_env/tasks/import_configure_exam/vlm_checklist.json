@@ -1,0 +1,53 @@
+{
+    "task_id": "import_configure_exam@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SEB Server dashboard or navigation menu after the login screen, indicating a successful session for 'super-admin'."
+        },
+        {
+            "id": "import_exam_action",
+            "description": "Initiate the import process from the Testing assessment tool.",
+            "points": 20,
+            "visual_evidence": "A dialog or page showing the 'Testing' LMS being selected and a list of available exams to import."
+        },
+        {
+            "id": "configure_exam_details",
+            "description": "Set the exam name and description.",
+            "points": 20,
+            "visual_evidence": "Input fields for 'Name' and 'Description' filled with text in the exam configuration view."
+        },
+        {
+            "id": "add_monitoring_indicator",
+            "description": "Add a monitoring indicator named 'Network Latency' of type 'Last Ping Time'.",
+            "points": 30,
+            "visual_evidence": "A new indicator entry in the exam settings with the name 'Network Latency' and the type dropdown/label showing 'Last Ping Time'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the imported and configured exam.",
+            "points": 20,
+            "visual_evidence": "The agent clicking a 'Save' or 'Create' button, followed by a success message or the exam appearing in the exam list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands or scripts.",
+            "visual_evidence": "Screenshots show mouse cursor movements, clicking buttons, and typing into web forms rather than just terminal output."
+        },
+        {
+            "id": "no_hardcoded_url_skip",
+            "description": "The agent navigated through the UI rather than jumping directly to a final 'success' URL.",
+            "visual_evidence": "Sequential screenshots showing the progression from login to import to configuration."
+        },
+        {
+            "id": "authentic_lms_interaction",
+            "description": "The agent interacted with the 'Testing' LMS integration specifically.",
+            "visual_evidence": "The 'Testing' assessment tool option is visible and selected during the import workflow."
+        }
+    ],
+    "privileged_info_for_vlm": "The SEB Server is running at http://localhost:8080. The 'Testing' LMS is a pre-configured mock tool available within the server's import menu. The specific indicator type required is 'Last Ping Time', which must be manually renamed to 'Network Latency' during the configuration step."
+}

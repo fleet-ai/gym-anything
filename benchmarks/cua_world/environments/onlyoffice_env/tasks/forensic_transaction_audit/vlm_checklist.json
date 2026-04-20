@@ -1,0 +1,59 @@
+{
+    "task_id": "forensic_transaction_audit@1",
+    "task_completion": [
+        {
+            "id": "open_source_data",
+            "description": "Agent opens the source file chicago_vendor_payments.xlsx in a spreadsheet application.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (e.g., LibreOffice Calc or Excel) is visible showing columns like 'voucher_number', 'amount', and 'vendor_name'."
+        },
+        {
+            "id": "benford_analysis",
+            "description": "Agent performs Benford's Law digit distribution analysis on the payment amounts.",
+            "points": 20,
+            "visual_evidence": "A table or chart showing the frequency of first digits (1-9) compared to Benford's expected percentages."
+        },
+        {
+            "id": "duplicate_and_concentration",
+            "description": "Agent identifies duplicate payments and vendor concentration (top vendors by spend).",
+            "points": 15,
+            "visual_evidence": "Spreadsheet formulas or pivot tables filtering for identical amounts/vendors or summing totals by vendor name."
+        },
+        {
+            "id": "pattern_structuring_analysis",
+            "description": "Agent analyzes amount patterns for round numbers and threshold structuring.",
+            "points": 20,
+            "visual_evidence": "Evidence of filtering or highlighting amounts ending in '.00' or amounts just below common procurement thresholds (e.g., $4,999)."
+        },
+        {
+            "id": "temporal_clustering",
+            "description": "Agent analyzes temporal patterns including weekend/holiday and month-end clustering.",
+            "points": 15,
+            "visual_evidence": "Calculations or charts showing payment volume by day of the week or specific dates at the end of the month."
+        },
+        {
+            "id": "save_final_report",
+            "description": "Agent saves the forensic_audit_report.xlsx containing findings, risk ratings, and recommendations.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or file explorer showing forensic_audit_report.xlsx in ~/Documents/Spreadsheets, and a sheet containing text-based risk ratings and recommendations."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the spreadsheet GUI to perform analysis rather than just running a single opaque script.",
+            "visual_evidence": "Screenshots show the agent interacting with spreadsheet menus, formulas, or pivot table interfaces."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The analysis reflects the actual 200 records in the source file.",
+            "visual_evidence": "Row counts in the spreadsheet or chart data points align with a dataset of approximately 200 records."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The agent did not simply rename the source file or copy a pre-existing report.",
+            "visual_evidence": "The final report contains new tabs, charts, or calculated columns not present in the original raw data file."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file 'chicago_vendor_payments.xlsx' contains 200 records (8 real, 192 synthetic). Key columns are voucher_number, amount, check_date, department_name, contract_number, and vendor_name. The agent must produce a new file 'forensic_audit_report.xlsx' that includes specific forensic tests: Benford's Law, duplicates, vendor concentration, round numbers/thresholds, and weekend/month-end timing. The final report must explicitly include risk ratings and recommendations."
+}

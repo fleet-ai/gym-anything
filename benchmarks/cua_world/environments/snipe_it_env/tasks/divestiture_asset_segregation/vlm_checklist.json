@@ -1,0 +1,53 @@
+{
+    "task_id": "divestiture_asset_segregation@1",
+    "task_completion": [
+        {
+            "id": "create_aura_health",
+            "description": "Create the new company 'Aura Health' in the system.",
+            "points": 10,
+            "visual_evidence": "A 'Company Created' success message or 'Aura Health' appearing in the list of companies/organizations."
+        },
+        {
+            "id": "update_department_company",
+            "description": "Update the 'Consumer Wearables' department to be assigned to 'Aura Health'.",
+            "points": 15,
+            "visual_evidence": "The department details page for 'Consumer Wearables' showing 'Aura Health' as the parent company."
+        },
+        {
+            "id": "update_users_company",
+            "description": "Update all users belonging to the 'Consumer Wearables' department to the company 'Aura Health'.",
+            "points": 25,
+            "visual_evidence": "User profile pages or a bulk-edit confirmation showing users from the 'Consumer Wearables' department now assigned to 'Aura Health'."
+        },
+        {
+            "id": "update_checked_out_assets",
+            "description": "Update all hardware assets checked out to 'Consumer Wearables' users to the company 'Aura Health'.",
+            "points": 25,
+            "visual_evidence": "Asset detail pages for hardware assigned to target users showing the company field updated to 'Aura Health'."
+        },
+        {
+            "id": "update_unassigned_wearable_assets",
+            "description": "Locate unassigned assets with 'Wearable' in the name and update their company to 'Aura Health'.",
+            "points": 25,
+            "visual_evidence": "A search result for 'Wearable' showing assets with no 'Checked Out To' value being edited to the company 'Aura Health'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task using the web interface rather than the terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons, and form filling in the browser; no SQL queries or CLI commands used to bypass the UI."
+        },
+        {
+            "id": "no_parent_modification",
+            "description": "The agent did not modify the company of the 'Enterprise Health' department or its users.",
+            "visual_evidence": "The agent avoids selecting or editing records associated with 'Enterprise Health' or 'MedTech Corporation' during bulk actions."
+        },
+        {
+            "id": "no_unrelated_asset_modification",
+            "description": "The agent did not update unassigned assets that do not contain 'Wearable' in the name.",
+            "visual_evidence": "Search filters or selection checkboxes show only assets containing 'Wearable' were targeted for the company update."
+        }
+    ],
+    "privileged_info_for_vlm": "The target new company is 'Aura Health'. The department to be moved is 'Consumer Wearables'. The control group that must remain unchanged is the 'Enterprise Health' department and the parent company 'MedTech Corporation'. Only unassigned assets containing the string 'Wearable' should be updated; other unassigned assets must be ignored."
+}

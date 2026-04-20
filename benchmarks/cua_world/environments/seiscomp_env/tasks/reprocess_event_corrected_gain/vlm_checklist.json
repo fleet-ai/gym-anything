@@ -1,0 +1,53 @@
+{
+    "task_id": "reprocess_event_corrected_gain@1",
+    "task_completion": [
+        {
+            "id": "import_inventory",
+            "description": "Import the corrected inventory file (GSI_corrected.scml) into the SeisComP database.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'scdb -i /home/ga/Documents/GSI_corrected.scml' or a SeisComP GUI window showing the successful import/update of station GE.GSI."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "Locate and select the Noto earthquake event within the SeisComP GUI (scolv).",
+            "points": 10,
+            "visual_evidence": "The SeisComP Origin Locator (scolv) window open with the Noto earthquake event highlighted in the event list."
+        },
+        {
+            "id": "recompute_amplitudes",
+            "description": "Trigger the recomputation of amplitudes for the event using the waveform archive.",
+            "points": 25,
+            "visual_evidence": "The 'Amplitudes' tab in scolv showing processing bars or the agent clicking 'Compute Amplitudes' with the correct archive path specified."
+        },
+        {
+            "id": "recompute_magnitudes",
+            "description": "Trigger the recomputation of magnitudes based on the new amplitudes.",
+            "points": 25,
+            "visual_evidence": "The 'Magnitudes' tab in scolv showing a recalculation process or the agent clicking 'Compute Magnitudes'."
+        },
+        {
+            "id": "verify_magnitude_shift",
+            "description": "Confirm the new magnitude is lower than the original and commit the change to the database.",
+            "points": 25,
+            "visual_evidence": "The scolv 'Magnitude' tab showing a lower value than the initial estimate and the agent clicking 'Commit' or 'Update' to save to mysql://sysop:sysop@localhost/seiscomp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SeisComP GUI (scolv) for the reprocessing rather than just script execution.",
+            "visual_evidence": "Screenshots showing the scolv window active and being interacted with (mouse clicks on tabs/buttons)."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The agent did not manually type in a magnitude value but allowed the software to calculate it.",
+            "visual_evidence": "The magnitude value appearing in the software's native UI fields after a processing delay, not in a text editor or manual input box."
+        },
+        {
+            "id": "correct_inventory_source",
+            "description": "The agent used the specific file provided in the task description.",
+            "visual_evidence": "The file path '/home/ga/Documents/GSI_corrected.scml' visible in a command or file selection dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The corrected inventory for station GE.GSI has a higher gain than the erroneous one. Because ground motion is calculated as counts divided by gain, the recomputed magnitude for the Noto earthquake MUST be lower than the initial estimate. Look for a decrease in the Mw or ML value in the SeisComP Magnitude tab before the agent commits the solution."
+}

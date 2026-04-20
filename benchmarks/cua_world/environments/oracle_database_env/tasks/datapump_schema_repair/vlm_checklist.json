@@ -1,0 +1,59 @@
+{
+    "task_id": "datapump_schema_repair@1",
+    "task_completion": [
+        {
+            "id": "export_with_exclude",
+            "description": "Export of HR schema initiated with EXCLUDE=TABLE:\"='REGIONS'\" parameter.",
+            "points": 15,
+            "visual_evidence": "Terminal command or log file showing 'expdp' with the EXCLUDE parameter or a GUI export wizard with the REGIONS table unchecked."
+        },
+        {
+            "id": "hr_app_user_creation",
+            "description": "Creation of the HR_APP user/schema in the database.",
+            "points": 10,
+            "visual_evidence": "SQL command 'CREATE USER HR_APP...' or the HR_APP user appearing in the connection tree of a database tool."
+        },
+        {
+            "id": "import_to_hr_app",
+            "description": "Import of the dump file into the HR_APP schema using REMAP_SCHEMA.",
+            "points": 20,
+            "visual_evidence": "Terminal command or log showing 'impdp' with REMAP_SCHEMA=HR:HR_APP or a GUI import success message."
+        },
+        {
+            "id": "verify_regions_missing",
+            "description": "Verification that the REGIONS table does not exist in the HR_APP schema.",
+            "points": 15,
+            "visual_evidence": "A query like 'SELECT * FROM HR_APP.REGIONS' returning an 'ORA-00942: table or view does not exist' error or an empty table list in the GUI."
+        },
+        {
+            "id": "modify_view_definition",
+            "description": "Modification of EMP_DETAILS_VIEW to remove REGIONS join and REGION_NAME column.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing 'CREATE OR REPLACE VIEW HR_APP.EMP_DETAILS_VIEW' without the string 'REGIONS' or 'REGION_NAME' in the SELECT statement."
+        },
+        {
+            "id": "verify_view_valid",
+            "description": "Verification that the modified view is VALID and returns data.",
+            "points": 15,
+            "visual_evidence": "A successful 'SELECT * FROM HR_APP.EMP_DETAILS_VIEW' result grid or the view status showing 'VALID' in the object browser."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_pump_usage",
+            "description": "The agent used actual Oracle Data Pump utilities (expdp/impdp) rather than manual table copies.",
+            "visual_evidence": "Presence of terminal windows running expdp/impdp or Oracle Enterprise Manager Data Pump wizards."
+        },
+        {
+            "id": "no_manual_schema_recreation",
+            "description": "The agent did not manually run DDL scripts to recreate the entire HR schema structure.",
+            "visual_evidence": "Absence of long SQL scripts containing CREATE TABLE statements for all HR tables; focus remains on Data Pump logs."
+        },
+        {
+            "id": "actual_database_interaction",
+            "description": "The agent interacted with the Oracle XE instance, not just mock text files.",
+            "visual_evidence": "Screenshots showing SQL Developer, DBeaver, or SQL*Plus connected to localhost:1521/XEPDB1."
+        }
+    ],
+    "privileged_info_for_vlm": "The HR schema contains tables like EMPLOYEES, DEPARTMENTS, JOBS, LOCATIONS, COUNTRIES, and REGIONS. The EMP_DETAILS_VIEW normally joins all these. To fix the view in HR_APP, the agent must remove the join to the REGIONS table and the REGION_NAME column because the REGIONS table was excluded during export/import. The database service name is XEPDB1."
+}

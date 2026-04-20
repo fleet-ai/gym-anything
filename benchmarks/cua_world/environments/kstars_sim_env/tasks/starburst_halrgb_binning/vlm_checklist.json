@@ -1,0 +1,59 @@
+{
+    "task_id": "starburst_halrgb_binning@1",
+    "task_completion": [
+        {
+            "id": "read_imaging_plan",
+            "description": "Agent opens and reads the imaging plan file at ~/Documents/m82_imaging_plan.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of m82_imaging_plan.txt."
+        },
+        {
+            "id": "target_slewing",
+            "description": "Telescope is slewed to the coordinates for M82 (RA 09:55:50, Dec +69:40:47) as specified in the plan.",
+            "points": 15,
+            "visual_evidence": "The astronomy software (e.g., KStars/Ekos or Stellarium) showing the mount pointing at M82 or the coordinate fields matching the plan."
+        },
+        {
+            "id": "filter_and_binning_config",
+            "description": "Agent configures the capture sequence with the correct filters (Ha, L, R, G, B) and binning requirements.",
+            "points": 20,
+            "visual_evidence": "The camera control or sequencer panel showing a list of exposures with L, R, G, B, and Ha filters and their respective binning settings (e.g., 1x1 or 2x2)."
+        },
+        {
+            "id": "image_capture_execution",
+            "description": "Agent executes the capture sequence, showing active exposures for the HaLRGB frames.",
+            "points": 25,
+            "visual_evidence": "Progress bars, 'Capturing' status indicators, or new image previews appearing in the FITS viewer for the different filters."
+        },
+        {
+            "id": "sky_view_capture",
+            "description": "Agent captures a wide-field sky view or star map of the target area.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing a sky map, planetarium view, or a wide-field image of the Ursa Major region around M82."
+        },
+        {
+            "id": "observation_log_and_files",
+            "description": "Agent produces an observation log and saves frames to the correct subdirectories.",
+            "points": 15,
+            "visual_evidence": "A file manager window showing saved .fits files in filter-specific folders and a final observation log text file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI rather than just manipulating files via CLI.",
+            "visual_evidence": "Mouse cursor movements and clicks within the Ekos/KStars or similar imaging suite interfaces."
+        },
+        {
+            "id": "genuine_capture_sequence",
+            "description": "The agent actually ran the capture sequence rather than manually creating empty files.",
+            "visual_evidence": "The 'Capture' tab showing active countdowns for exposures and the CCD status changing from 'Idle' to 'Exposing'."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent derived coordinates and settings from the provided text file, not from memory.",
+            "visual_evidence": "The agent opening the m82_imaging_plan.txt file before inputting coordinates into the mount control."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is M82 (Cigar Galaxy). Coordinates: RA 9.9311h (approx 09h 55m 52s), Dec +69.6797° (approx +69° 40' 47\"). Required filters and slots: L (Slot 1), G (Slot 2), B (Slot 3), R (Slot 4), and Ha. The agent must follow the specific binning and exposure times listed in ~/Documents/m82_imaging_plan.txt. A coordinate tolerance of 15 arcminutes is acceptable."
+}

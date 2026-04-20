@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_telnet_credentials@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark",
+            "description": "The agent opens the Wireshark application.",
+            "points": 10,
+            "visual_evidence": "The Wireshark GUI window is visible on the screen."
+        },
+        {
+            "id": "load_pcap_file",
+            "description": "The agent loads the specific pcap file into Wireshark.",
+            "points": 15,
+            "visual_evidence": "The Wireshark title bar or file path indicates 'telnet-cooked.pcap' is open, and a list of packets is displayed."
+        },
+        {
+            "id": "follow_tcp_stream",
+            "description": "The agent uses the 'Follow TCP Stream' or 'Follow Telnet Stream' feature to view the conversation.",
+            "points": 25,
+            "visual_evidence": "A 'Follow TCP Stream' window is open, showing the ASCII text of the telnet session including 'login:' and 'Password:' prompts."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit, Mousepad, or VS Code) is open with the file path '/home/ga/Documents/telnet_report.txt' visible."
+        },
+        {
+            "id": "correct_content_and_format",
+            "description": "The agent enters the correct credentials in the exact required format.",
+            "points": 40,
+            "visual_evidence": "The text editor shows exactly two lines: 'username: fake' and 'password: user' with no quotes and lowercase labels."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the Wireshark GUI to find the information rather than just using terminal commands like grep or strings.",
+            "visual_evidence": "Screenshots show the agent interacting with the Wireshark packet list or stream analysis windows."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent does not simply echo the final answer into the file without opening the source pcap.",
+            "visual_evidence": "The agent is seen navigating the file system to open the pcap and performing analysis within Wireshark."
+        },
+        {
+            "id": "exact_path_verification",
+            "description": "The agent saves the file to the specific directory requested, not a default location.",
+            "visual_evidence": "The save dialog or the text editor title bar confirms the path /home/ga/Documents/telnet_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct credentials inside 'telnet-cooked.pcap' are username 'fake' and password 'user'. The agent must format the output file exactly as: 'username: fake' on the first line and 'password: user' on the second line. Ensure no capital letters are used in the labels 'username' and 'password'."
+}

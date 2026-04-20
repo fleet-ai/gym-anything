@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_cloud_backup_rotator@1",
+    "task_completion": [
+        {
+            "id": "locate_project_and_tests",
+            "description": "Agent locates the project directory and identifies the failing tests in tests/test_policy.py.",
+            "points": 10,
+            "visual_evidence": "A terminal or IDE showing the directory /home/ga/PycharmProjects/cloud_rotator and the execution of pytest showing failed tests."
+        },
+        {
+            "id": "fix_retention_logic",
+            "description": "Agent modifies rotator/policy.py to fix the retention logic so old backups are deleted instead of recent ones.",
+            "points": 30,
+            "visual_evidence": "Code editor showing changes in rotator/policy.py, specifically reversing the sort order or selection logic for deletion (e.g., sorting by date ascending vs descending)."
+        },
+        {
+            "id": "fix_pagination_logic",
+            "description": "Agent modifies the script to handle buckets with over 1000 files (S3 pagination).",
+            "points": 30,
+            "visual_evidence": "Code editor showing the implementation of a paginator or a loop checking 'IsTruncated' or 'NextContinuationToken' in the S3 list_objects call."
+        },
+        {
+            "id": "protect_glacier_data",
+            "description": "Agent adds logic to exclude objects with the GLACIER storage class from deletion.",
+            "points": 20,
+            "visual_evidence": "Code editor showing a conditional check (e.g., if StorageClass == 'GLACIER') to skip deletion of archival data."
+        },
+        {
+            "id": "verify_test_pass",
+            "description": "Agent runs the tests again to ensure all tests in tests/test_policy.py pass.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'pytest' command resulting in 'passed' status for all tests in tests/test_policy.py."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "visual_evidence": "The file tests/test_policy.py should not show unsaved changes or edits in the IDE that remove assertions."
+        },
+        {
+            "id": "genuine_code_editing",
+            "description": "The agent used an editor or sed/echo commands to actually change the source code rather than just simulating output.",
+            "visual_evidence": "Screenshots show the agent interacting with rotator/policy.py via a text editor (like VS Code/PyCharm) or terminal editors."
+        },
+        {
+            "id": "verified_test_execution",
+            "description": "The agent actually executed the pytest command in the terminal to verify the fix.",
+            "visual_evidence": "Terminal logs showing the command 'pytest tests/test_policy.py' being typed and run."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/cloud_rotator. The core logic to fix is in rotator/policy.py. There are three specific bugs: 1) Retention logic (sorting/selection), 2) Pagination (handling >1000 files), and 3) Glacier protection (skipping GLACIER storage class). Success is defined by all tests in tests/test_policy.py passing without the agent modifying the test file itself."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "export_protocol_hierarchy@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark",
+            "description": "Wireshark application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The Wireshark GUI window is open on the desktop."
+        },
+        {
+            "id": "load_pcap_file",
+            "description": "The specific capture file 'http.cap' is opened in Wireshark.",
+            "points": 15,
+            "visual_evidence": "The Wireshark title bar or status bar shows 'http.cap' as the active file, and the packet list pane is populated."
+        },
+        {
+            "id": "open_protocol_hierarchy",
+            "description": "The Protocol Hierarchy Statistics window is opened.",
+            "points": 20,
+            "visual_evidence": "A window titled 'Protocol Hierarchy Statistics' or similar is visible over the main Wireshark interface."
+        },
+        {
+            "id": "verify_hierarchy_data",
+            "description": "The hierarchy window displays the correct protocol distribution (Ethernet, IP, TCP, HTTP, UDP).",
+            "points": 25,
+            "visual_evidence": "The Protocol Hierarchy window shows a tree structure including 'Transmission Control Protocol' and 'Hypertext Transfer Protocol' with percentage values."
+        },
+        {
+            "id": "export_to_file",
+            "description": "The protocol hierarchy data is exported/saved to the specified text file path.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' or 'Export' dialog shows the path /home/ga/Documents/captures/protocol_hierarchy.txt, or a terminal/file manager view shows the file has been created with content matching the hierarchy window."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to analyze the file rather than just running tshark in a terminal.",
+            "visual_evidence": "Screenshots show the Wireshark application window and the Protocol Hierarchy dialog box being interacted with."
+        },
+        {
+            "id": "no_manual_typing",
+            "description": "The agent did not manually type out the protocol percentages into a text editor from memory.",
+            "visual_evidence": "The agent uses the 'Export' or 'Copy' button within the Wireshark Protocol Hierarchy window rather than manual transcription."
+        },
+        {
+            "id": "correct_source_file",
+            "description": "The agent used the specific file http.cap provided in the task.",
+            "visual_evidence": "The file path /home/ga/Documents/captures/http.cap is visible in the file selection or application header."
+        }
+    ],
+    "privileged_info_for_vlm": "The file 'http.cap' contains 43 total frames. The protocol hierarchy should show: Ethernet (100%), IPv4 (100%), TCP (approx 95.3% or 41 frames), HTTP (approx 9.3% or 4 frames), and UDP (approx 4.7% or 2 frames). The final output must be a text file at /home/ga/Documents/captures/protocol_hierarchy.txt containing these protocol names and their respective percentages."
+}

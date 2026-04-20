@@ -1,0 +1,59 @@
+{
+    "task_id": "utility_pv_module_technology_lcoe@1",
+    "task_completion": [
+        {
+            "id": "location_weather_setup",
+            "description": "Set the project location to Daggett, CA and select the appropriate NSRDB weather file.",
+            "points": 10,
+            "visual_evidence": "SAM 'Location and Resource' page showing Daggett, CA selected or the specific weather file 'daggett_ca_34.865371_-116.783023_psmv3_60_tmy.csv' highlighted."
+        },
+        {
+            "id": "system_design_parameters",
+            "description": "Configure the system capacity to 50,000 kW DC with single-axis tracking and a GCR of 0.4.",
+            "points": 15,
+            "visual_evidence": "SAM 'System Design' page showing 'Nameplate capacity' as 50,000 kW, 'Tracking' set to 1-axis, and 'Ground coverage ratio (GCR)' set to 0.4."
+        },
+        {
+            "id": "module_parameter_input",
+            "description": "Input the specific electrical parameters (Pmp, Vmp, Imp, Voc, Isc, and Temp Coeff) for Tech A, B, and C using the 'CEC Performance Model with User Entered Specifications' or similar manual entry.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the 'Module' page showing the manual entry of values like 440W/490W, temperature coefficients (-0.36, -0.26, -0.28), and voltage/current specs for the three different cases."
+        },
+        {
+            "id": "financial_parameter_setup",
+            "description": "Configure financial assumptions including BOS costs, O&M, ITC, and debt fraction.",
+            "points": 20,
+            "visual_evidence": "SAM 'System Costs' or 'Financial Parameters' pages showing $0.45/W BOS, $14/kW-yr O&M, 30% ITC, and 60% debt fraction."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Run the simulation for all three technology scenarios.",
+            "points": 10,
+            "visual_evidence": "The SAM 'Results' summary page or a comparison table showing that simulations have been calculated for the different module configurations."
+        },
+        {
+            "id": "final_results_comparison",
+            "description": "Extract and compare Year 1 Annual Energy, Capacity Factor, Total Installed Cost, and Real LCOE for all three technologies.",
+            "points": 20,
+            "visual_evidence": "A final summary table, report, or spreadsheet created by the agent showing the comparison of MWh, %, $, and $/MWh across Tech A, B, and C."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM graphical user interface to input data and run simulations.",
+            "visual_evidence": "Screenshots show the SAM application window, mouse cursor movements, and data entry into SAM-specific input fields rather than just terminal scripts."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not simply state the results from the prompt but actually navigated the SAM results tabs.",
+            "visual_evidence": "Screenshots of the SAM 'Summary' or 'Data Tables' tabs showing the calculated values for LCOE and Annual Energy."
+        },
+        {
+            "id": "parameter_consistency",
+            "description": "The agent used the specific Daggett weather file and didn't use a default location like Phoenix or Golden.",
+            "visual_evidence": "The 'Location and Resource' screen must explicitly show the Daggett, CA coordinates or file name."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must model 3 technologies. Expected results should fall within these ranges: Annual Energy Production (AEP) between 90,000 and 160,000 MWh; Capacity Factor (CF) between 22.0% and 35.0%; Real LCOE between $20.0/MWh and $80.0/MWh. The specific weather file to be used is daggett_ca_34.865371_-116.783023_psmv3_60_tmy.csv. Tech B (HJT) will likely have the highest energy yield due to the low temperature coefficient, while Tech C (CdTe) will likely have the lowest module cost."
+}

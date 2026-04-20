@@ -1,0 +1,53 @@
+{
+    "task_id": "build_financial_summary_dashboard@1",
+    "task_completion": [
+        {
+            "id": "create_tiddler_title",
+            "description": "Create a new tiddler with the exact title 'Financial Summary Report'.",
+            "points": 10,
+            "visual_evidence": "A tiddler window is open with the title 'Financial Summary Report' visible in the title field or the sidebar."
+        },
+        {
+            "id": "calculate_total_contributions",
+            "description": "Display the sum of all 'Contribution' amounts using dynamic filters.",
+            "points": 25,
+            "visual_evidence": "The text 'Total Contributions' is visible in the tiddler, followed by the value 6150 (or 16150 if the dummy tiddler is already present)."
+        },
+        {
+            "id": "calculate_total_expenses",
+            "description": "Display the sum of all 'Expense' amounts using dynamic filters.",
+            "points": 25,
+            "visual_evidence": "The text 'Total Expenses' is visible in the tiddler, followed by the value 2450."
+        },
+        {
+            "id": "calculate_net_balance",
+            "description": "Display the Net Balance (Contributions minus Expenses) using dynamic filters.",
+            "points": 30,
+            "visual_evidence": "The text 'Net Balance' is visible in the tiddler, followed by the value 3700 (or 13700 if the dummy tiddler is present)."
+        },
+        {
+            "id": "save_tiddler",
+            "description": "Save the 'Financial Summary Report' tiddler.",
+            "points": 10,
+            "visual_evidence": "The tiddler is shown in 'view' mode (no input fields) or the 'save' (checkmark) button has been clicked, and the tiddler appears in the 'Recent' tab of the sidebar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent used dynamic wikitext filters rather than typing the numbers manually.",
+            "visual_evidence": "In edit mode, the tiddler body should contain filter syntax like '[tag[Contribution]get[amount]sum[]]' or similar macro/variable calls, not just the raw numbers 6150 or 2450."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit the report.",
+            "visual_evidence": "Screenshots show the browser interacting with the TiddlyWiki buttons (plus icon, edit icon, save icon) rather than just terminal commands."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The values displayed match the underlying data provided in the wiki.",
+            "visual_evidence": "The displayed totals match the verified sums: Contributions = 6150, Expenses = 2450, Net = 3700."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial data state is: Total Contributions = 6150 (from tiddlers tagged 'Contribution'), Total Expenses = 2450 (from tiddlers tagged 'Expense'), and Net Balance = 3700. If a dummy contribution of 10000 is added during the process, the totals will shift to 16150 and 13700 respectively. The agent MUST use TiddlyWiki filter operators (e.g., [tag[...]sum[]]) to achieve this, not hardcoded text."
+}

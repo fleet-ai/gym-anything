@@ -1,0 +1,56 @@
+{
+    "task_id": "posner_cueing_ior_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw CSV data at ~/pebl/data/posner_cueing_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the contents of posner_cueing_data.csv."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participants with mean RT under 50ms (specifically sub-99).",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a filtering step for RT < 50ms or a specific mention of excluding sub-99 due to low RT."
+        },
+        {
+            "id": "condition_calculation",
+            "description": "Agent calculates mean RTs for the four conditions (Short/Valid, Short/Invalid, Long/Valid, Long/Invalid) for correct trials.",
+            "points": 25,
+            "visual_evidence": "Code execution or output showing grouping by 'soa_ms' and 'cue_validity' while filtering for accuracy."
+        },
+        {
+            "id": "validity_effect_calculation",
+            "description": "Agent calculates the Validity Effect (Invalid RT - Valid RT) for both SOAs.",
+            "points": 20,
+            "visual_evidence": "Mathematical operations in code or output showing the subtraction of Valid means from Invalid means."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final analysis to ~/pebl/analysis/posner_ior_report.json with the required structure.",
+            "points": 30,
+            "visual_evidence": "A terminal command or file explorer view showing the creation/content of the JSON file containing 'participants' and 'group_means'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent performs actual data processing rather than hardcoding the final values.",
+            "points": 0,
+            "visual_evidence": "The presence of data processing code (Python/Pandas) rather than a single print statement or echo command containing the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacts with the specified file paths rather than creating dummy data.",
+            "points": 0,
+            "visual_evidence": "Commands or code referencing the specific paths ~/pebl/data/posner_cueing_data.csv and ~/pebl/analysis/posner_ior_report.json."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "The exclusion of sub-99 is based on the 50ms threshold rule, not manual deletion.",
+            "points": 0,
+            "visual_evidence": "Code showing a conditional check (e.g., if mean_rt < 50) applied to the dataset."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a contaminated participant 'sub-99' with impossibly fast reaction times between 15-35ms (hardware bounce). This participant must be excluded from the group means with a reason provided in the JSON. The final output must be a JSON file at /home/ga/pebl/analysis/posner_ior_report.json. The validity effect is calculated as (Mean RT Invalid - Mean RT Valid)."
+}

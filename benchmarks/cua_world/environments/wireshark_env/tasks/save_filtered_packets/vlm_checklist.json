@@ -1,0 +1,53 @@
+{
+    "task_id": "save_filtered_packets@1",
+    "task_completion": [
+        {
+            "id": "wireshark_open_file",
+            "description": "Wireshark is open with the correct source file loaded.",
+            "points": 10,
+            "visual_evidence": "The Wireshark title bar or status bar shows '200722_tcp_anon.pcapng' as the active file."
+        },
+        {
+            "id": "apply_syn_filter",
+            "description": "The agent applies a display filter to isolate TCP SYN packets (excluding SYN-ACK).",
+            "points": 25,
+            "visual_evidence": "The display filter bar contains 'tcp.flags.syn == 1 && tcp.flags.ack == 0' or 'tcp.flags == 0x002' and the background is green."
+        },
+        {
+            "id": "verify_filtered_results",
+            "description": "The packet list pane shows only packets matching the SYN criteria.",
+            "points": 15,
+            "visual_evidence": "The 'Info' column in the packet list shows '[SYN]' and NOT '[SYN, ACK]' for the visible packets."
+        },
+        {
+            "id": "export_specified_packets",
+            "description": "The agent initiates the export of specified (filtered) packets.",
+            "points": 20,
+            "visual_evidence": "The 'Export Specified Packets' or 'Save As' dialog box is open, with the 'All packets' / 'Displayed' radio button selected."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "The agent saves the file to the exact path and filename specified.",
+            "points": 30,
+            "visual_evidence": "The file dialog shows the path '/home/ga/Documents/captures/' and the filename 'syn_packets.pcapng' before the agent clicks Save."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI rather than just executing a tshark command in the terminal.",
+            "visual_evidence": "Screenshots show the Wireshark application window, menu navigation (File > Export Specified Packets), and the filter bar being used."
+        },
+        {
+            "id": "genuine_filtering",
+            "description": "The agent did not manually select packets but used the filter engine.",
+            "visual_evidence": "The display filter bar is populated with a valid syntax and the packet count in the status bar reflects a subset of the original 35 packets."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename an existing file or move a file without opening Wireshark.",
+            "visual_evidence": "The sequence of screenshots shows the progression from the original pcapng file to the filtered view and then the export dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file '200722_tcp_anon.pcapng' contains 35 packets. The correct Wireshark filter for TCP SYN packets (excluding SYN-ACK) is 'tcp.flags.syn == 1 && tcp.flags.ack == 0'. The output must be saved specifically to '/home/ga/Documents/captures/syn_packets.pcapng' using the 'Export Specified Packets' feature to ensure only the filtered results are saved."
+}

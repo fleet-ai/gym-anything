@@ -1,0 +1,59 @@
+{
+    "task_id": "split_layer_by_attribute@1",
+    "task_completion": [
+        {
+            "id": "load_source_layer",
+            "description": "The agent loads the 'ne_110m_admin_0_countries.geojson' file into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer name 'ne_110m_admin_0_countries' appears in the Layers panel or Table of Contents."
+        },
+        {
+            "id": "open_split_tool",
+            "description": "The agent opens a tool capable of splitting a vector layer by attribute (e.g., 'Split Vector Layer' in QGIS).",
+            "points": 15,
+            "visual_evidence": "A dialog box for 'Split Vector Layer' or a similar processing tool is visible on screen."
+        },
+        {
+            "id": "configure_split_parameters",
+            "description": "The agent selects 'CONTINENT' as the unique ID field or split field in the tool settings.",
+            "points": 20,
+            "visual_evidence": "The 'CONTINENT' field is selected in the dropdown menu for 'Unique ID field' or 'Split field' within the tool dialog."
+        },
+        {
+            "id": "set_output_directory",
+            "description": "The agent sets the output directory to '/home/ga/GIS_Data/exports/countries_by_continent/'.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/GIS_Data/exports/countries_by_continent/' is typed or selected in the 'Output directory' field of the tool."
+        },
+        {
+            "id": "execute_split_process",
+            "description": "The agent runs the tool and a progress bar or success message appears.",
+            "points": 20,
+            "visual_evidence": "A progress bar completes, or a log entry shows 'Algorithm finished' or 'Task complete'."
+        },
+        {
+            "id": "verify_output_files",
+            "description": "The agent verifies that multiple GeoJSON files (one for each continent) have been created in the target directory.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal window shows multiple .geojson files (e.g., Africa.geojson, Asia.geojson) in the /exports/countries_by_continent/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the GIS software GUI rather than just executing a single python script in the terminal to perform the entire task.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and dialog box interactions within the GIS application (e.g., QGIS)."
+        },
+        {
+            "id": "actual_data_processing",
+            "description": "The agent does not manually create empty files or mock the output.",
+            "visual_evidence": "The processing tool log shows actual feature counts being processed (177 features total)."
+        },
+        {
+            "id": "correct_continent_count",
+            "description": "The agent identifies the correct number of unique values including the 'Seven seas' category.",
+            "visual_evidence": "The output directory or the tool log reflects 8 distinct output files/categories, not just the standard 7 continents."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file contains 177 features. There are exactly 8 unique values in the 'CONTINENT' field: 'Africa', 'Antarctica', 'Asia', 'Europe', 'North America', 'Oceania', 'Seven seas (open ocean)', and 'South America'. The agent must generate 8 separate GeoJSON files in the specified export directory. The 'Seven seas' value is a common point of failure if the agent assumes only 7 continents exist."
+}

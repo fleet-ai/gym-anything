@@ -1,0 +1,59 @@
+{
+    "task_id": "lunar_orbit_stability_mascons@1",
+    "task_completion": [
+        {
+            "id": "read_keplerian_elements",
+            "description": "Agent opens and reads the Keplerian elements from ~/Desktop/lunar_orbits.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of lunar_orbits.txt on the desktop."
+        },
+        {
+            "id": "gmat_force_model_config",
+            "description": "Agent configures the GMAT ForceModel to use the LP165P lunar gravity model at Degree 20 and Order 20.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Gravity Field' configuration window showing 'Model: LP165P', 'Degree: 20', and 'Order: 20'."
+        },
+        {
+            "id": "gmat_spacecraft_setup",
+            "description": "Agent creates Sat_Circular and Sat_Frozen with the provided Keplerian elements in a Moon-centered system.",
+            "points": 15,
+            "visual_evidence": "GMAT Spacecraft resource tree showing Sat_Circular and Sat_Frozen; coordinate system set to 'Luna' or 'Moon'."
+        },
+        {
+            "id": "gmat_propagation_logic",
+            "description": "Agent sets up propagation sequences: Sat_Circular with a stop condition for Altitude <= 0 or 60 days, and Sat_Frozen for 60 days.",
+            "points": 20,
+            "visual_evidence": "GMAT Mission Sequence tree showing 'Propagate' commands with 'Sat_Circular.ElapsedDays = 60' or 'Sat_Circular.Luna.Altitude = 0' stop conditions."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output path.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Save As' dialog or file explorer showing lunar_stability.script in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent generates the final analysis report with the four required metrics.",
+            "points": 20,
+            "visual_evidence": "A text editor showing ~/GMAT_output/lunar_stability_report.txt containing circular_lifetime_days, circular_min_altitude_km, frozen_lifetime_days, and frozen_min_altitude_km."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical user interface to configure the mission rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots show the GMAT application window, resource tree, and mission sequence editor being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not simply echo the expected values into a text file without running a simulation.",
+            "visual_evidence": "Screenshots show the GMAT 'Run' button being pressed and the message window showing propagation progress/completion."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "File paths in GMAT or terminal match ~/GMAT_output/ exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The LP165P model at 20x20 degree/order is mandatory. For Sat_Circular, the expected lifetime is approximately 16 days (must be < 59 days) and minimum altitude should be near 0 or negative (crash). For Sat_Frozen, the propagation must last 60 days; the minimum altitude is expected to be significantly lower than the starting altitude due to mascons, potentially reaching negative values (approx -61 km) if the simulation doesn't stop on contact."
+}

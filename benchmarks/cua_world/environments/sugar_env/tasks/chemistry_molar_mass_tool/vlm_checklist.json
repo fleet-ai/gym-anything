@@ -1,0 +1,53 @@
+{
+    "task_id": "chemistry_molar_mass_tool@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named molar_mass.py at the specified path /home/ga/Documents/.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation/saving of /home/ga/Documents/molar_mass.py."
+        },
+        {
+            "id": "iupac_weights_implementation",
+            "description": "The script contains the specific IUPAC atomic weights required (H: 1.01, C: 12.01, N: 14.01, O: 16.00, Na: 22.99, S: 32.06, Cl: 35.45).",
+            "points": 20,
+            "visual_evidence": "Code visible in a text editor or 'cat' command output showing a dictionary or variables with these exact float values."
+        },
+        {
+            "id": "parsing_logic",
+            "description": "The script includes logic to handle single-letter elements, two-letter elements, and numeric quantities.",
+            "points": 25,
+            "visual_evidence": "Code showing regex or string parsing logic that iterates through the formula to identify elements like 'Na' vs 'N' and multipliers like '2' in 'H2'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script via command line for the five required compounds.",
+            "points": 15,
+            "visual_evidence": "Terminal screenshots showing commands like 'python3 molar_mass.py H2O' being run."
+        },
+        {
+            "id": "results_file_creation",
+            "description": "A file named results.txt is created in /home/ga/Documents/ with the correct format and values.",
+            "points": 30,
+            "visual_evidence": "The content of /home/ga/Documents/results.txt displayed in a terminal or editor showing: H2O: 18.02, NaCl: 58.44, C6H12O6: 180.18, NaOH: 40.00, H2SO4: 98.08."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write the results.txt file manually without running the script.",
+            "visual_evidence": "The trajectory should show the script being executed for each compound before the results file is finalized."
+        },
+        {
+            "id": "correct_output_format",
+            "description": "The script output must be strictly numeric (2 decimal places) without extra text.",
+            "visual_evidence": "Terminal output showing only '18.02' and not 'The molar mass is 18.02'."
+        },
+        {
+            "id": "no_internet_usage",
+            "description": "The agent should not use a web browser to find molar masses.",
+            "visual_evidence": "The agent should stay within the terminal and text editor; no browser windows should be active."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct molar masses using the provided weights are: H2O (1.01*2 + 16.00) = 18.02; NaCl (22.99 + 35.45) = 58.44; C6H12O6 (12.01*6 + 1.01*12 + 16.00*6) = 180.18; NaOH (22.99 + 16.00 + 1.01) = 40.00; H2SO4 (1.01*2 + 32.06 + 16.00*4) = 98.08. The script must use sys.argv[1] for input."
+}

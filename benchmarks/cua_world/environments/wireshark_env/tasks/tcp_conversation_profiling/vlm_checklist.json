@@ -1,0 +1,53 @@
+{
+    "task_id": "tcp_conversation_profiling@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Agent opens the specified pcapng file in a network analysis tool (e.g., Wireshark).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing Wireshark or a similar tool open with '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "analyze_tcp_conversations",
+            "description": "Agent accesses the TCP conversations statistics or performs a filter to identify individual streams.",
+            "points": 20,
+            "visual_evidence": "The 'Conversations' window in Wireshark with the 'TCP' tab selected, showing a list of conversations."
+        },
+        {
+            "id": "generate_csv_file",
+            "description": "Agent creates the CSV file with the required columns and data at the specified path.",
+            "points": 25,
+            "visual_evidence": "A terminal window or text editor showing '~/Documents/captures/tcp_conversations.csv' containing columns like address_a, port_a, total_bytes, and duration_seconds."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "Agent creates the text report with the exact required header and formatting.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command output showing '~/Documents/captures/tcp_conversation_report.txt' with the header 'TCP Conversation Analysis Report' and the '=====' underline."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains the correct calculated values for total conversations, longest duration, and highest volume.",
+            "points": 20,
+            "visual_evidence": "The content of the report showing 'Total TCP Conversations: 2' and the specific IP/Port pairs and metrics matching the ground truth."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "Agent performed actual analysis rather than just creating files with hardcoded values.",
+            "visual_evidence": "Screenshots showing the agent interacting with Wireshark's 'Statistics' menu or using 'tshark' commands to extract data before writing the files."
+        },
+        {
+            "id": "no_manual_copy_paste",
+            "description": "Agent did not simply copy the ground truth from a hidden file or the task prompt.",
+            "visual_evidence": "The agent's workflow shows data extraction steps (e.g., exporting from Wireshark or parsing tshark output) rather than immediate file creation with final values."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Commands or file explorer views showing files located exactly at ~/Documents/captures/."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture file '200722_tcp_anon.pcapng' contains exactly 2 TCP conversations. Conversation 1: 192.168.200.135:7876 <-> 192.168.200.21:2000 (Duration: 18.63s). Conversation 2: 192.168.200.135:7875 <-> 192.168.200.21:2000 (Duration: 0.10s). The longest duration is 18.63s (Conversation 1). The highest volume is also Conversation 1 (approx 1958 bytes total). The CSV must contain 11 columns including 'duration_seconds' and 'total_bytes'."
+}

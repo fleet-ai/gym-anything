@@ -1,0 +1,59 @@
+{
+    "task_id": "ez_diffusion_modeling_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the LDT data file from the specified path.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the agent opening ~/pebl/data/ldt_data.csv in a text editor, spreadsheet viewer, or via a data processing script."
+        },
+        {
+            "id": "data_filtering",
+            "description": "Agent filters the dataset to exclude sub-999 and NonWord trials.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing filtering logic for 'participant_id != sub-999' and 'condition != NonWord'."
+        },
+        {
+            "id": "descriptive_stats_calculation",
+            "description": "Agent calculates Pc, MRT, and VRT for Word_HighFreq and Word_LowFreq conditions.",
+            "points": 20,
+            "visual_evidence": "Intermediate output or code showing the calculation of accuracy, mean RT (in seconds), and variance of RT (in seconds squared) for the two word conditions."
+        },
+        {
+            "id": "edge_correction_application",
+            "description": "Agent applies the edge correction formula for participants with 100% accuracy.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing the application of Pc = 1 - 1/(2N) for sub-01 in the Word_HighFreq condition."
+        },
+        {
+            "id": "ez_parameter_computation",
+            "description": "Agent computes drift rate (v), boundary separation (a), and non-decision time (Ter) using the provided formulas.",
+            "points": 25,
+            "visual_evidence": "Code execution or output showing the mathematical implementation of the EZ-diffusion formulas for each valid participant."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent saves the final results to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the creation or content of /home/ga/pebl/analysis/ez_diffusion_report.json containing the calculated parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent calculates values from the data rather than hardcoding expected results.",
+            "visual_evidence": "The script should show dynamic calculation logic (e.g., using pandas or math libraries) rather than a dictionary of pre-filled results."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent interacts with the provided CSV file.",
+            "visual_evidence": "Screenshots must show the agent actively opening or loading the file ~/pebl/data/ldt_data.csv."
+        },
+        {
+            "id": "correct_unit_conversion",
+            "description": "Agent converts RT from milliseconds to seconds as required by the formulas.",
+            "visual_evidence": "Code or logs showing RT values being divided by 1000 before or during parameter calculation."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a contaminated participant 'sub-999' with zero variance that must be excluded. Participant 'sub-01' has 100% accuracy in the Word_HighFreq condition and requires the edge correction Pc = 1 - 1/(2N). The final output must be a JSON file located at /home/ga/pebl/analysis/ez_diffusion_report.json. Calculations must use RT in seconds (ms/1000) and s=0.1."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "contractor_audit_and_isolation@1",
+    "task_completion": [
+        {
+            "id": "open_contractor_roster",
+            "description": "The agent opens the contractor_roster.csv file on the desktop to read the data.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet viewer or text editor window showing the contents of 'contractor_roster.csv' with columns like EmployeeID and ContractEndDate."
+        },
+        {
+            "id": "create_department",
+            "description": "The agent creates a new department named exactly 'External Contractors' in the HRMS.",
+            "points": 15,
+            "visual_evidence": "A 'New Department' form or a list of departments showing 'External Contractors' successfully added."
+        },
+        {
+            "id": "deactivate_expired_contractors",
+            "description": "The agent deactivates contractors whose contracts expired before March 11, 2026 (EMP031, EMP032, EMP034, EMP037).",
+            "points": 30,
+            "visual_evidence": "The HRMS employee profiles or list view showing the status of EMP031, EMP032, EMP034, and EMP037 changed to 'Inactive' or 'Deactivated'."
+        },
+        {
+            "id": "assign_active_contractors_to_dept",
+            "description": "The agent assigns active contractors (EMP033, EMP035, EMP036, EMP038) to the 'External Contractors' department.",
+            "points": 30,
+            "visual_evidence": "The HRMS employee profiles or list view showing EMP033, EMP035, EMP036, and EMP038 with the department field set to 'External Contractors'."
+        },
+        {
+            "id": "verify_active_status_retention",
+            "description": "The agent ensures that active contractors remain in an 'Active' status after the department change.",
+            "points": 15,
+            "visual_evidence": "The HRMS showing EMP033, EMP035, EMP036, and EMP038 still marked as 'Active' while assigned to the new department."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the HRMS graphical user interface rather than just executing database scripts or terminal commands to modify records.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with HRMS buttons, forms, and dropdown menus."
+        },
+        {
+            "id": "no_record_deletion",
+            "description": "The agent does not delete the records of expired contractors, only deactivates them.",
+            "visual_evidence": "The expired contractors (EMP031, EMP032, EMP034, EMP037) are still visible in the system list, even if their status is inactive."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually enters or selects the correct department name and status rather than using placeholder text.",
+            "visual_evidence": "The text 'External Contractors' being typed or selected in the department field of the HRMS."
+        }
+    ],
+    "privileged_info_for_vlm": "The target audit date is March 11, 2026. Based on the roster: Contractors EMP031, EMP032, EMP034, and EMP037 have expired contracts (dates: 2026-02-15, 2026-02-28, 2026-03-01, 2025-12-31) and must be deactivated. Contractors EMP033, EMP035, EMP036, and EMP038 are active (dates: 2026-12-31, 2026-08-15, 2026-09-01, 2027-01-15) and must be assigned to the 'External Contractors' department while remaining active."
+}

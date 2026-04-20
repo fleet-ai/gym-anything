@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_layer_extraction@1",
+    "task_completion": [
+        {
+            "id": "inspect_docker_history",
+            "description": "Agent inspects the history of the acme/credit-score:v1 image to identify the layer containing the deleted file.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker history acme/credit-score:v1' or a similar command listing image layers."
+        },
+        {
+            "id": "extract_layer_contents",
+            "description": "Agent uses a method (e.g., docker save, docker export, or a tool like 'dive') to access the filesystem of the specific layer where the file existed.",
+            "points": 25,
+            "visual_evidence": "Commands like 'docker save', 'docker create', or 'docker cp' targeting the specific layer ID or a temporary container instance."
+        },
+        {
+            "id": "locate_risk_model_file",
+            "description": "Agent successfully locates the 'risk_model.py' file within the extracted layer data.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'ls' or a file explorer showing 'risk_model.py' inside an extracted directory."
+        },
+        {
+            "id": "save_to_desktop",
+            "description": "Agent saves the recovered 'risk_model.py' to the ~/Desktop directory.",
+            "points": 15,
+            "visual_evidence": "A command like 'cp' or 'mv' moving the file to /home/ga/Desktop/risk_model.py, or the file appearing on the Desktop GUI."
+        },
+        {
+            "id": "verify_file_content",
+            "description": "The recovered file contains the required Python class and specific logic.",
+            "points": 30,
+            "visual_evidence": "A 'cat' or text editor view of ~/Desktop/risk_model.py showing 'class CreditRiskScorer', 'self._income_weight = 0.85', and 'CONFIDENTIAL'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_creation",
+            "description": "The agent did not simply create a new file and type the code from memory/prompt.",
+            "visual_evidence": "The trajectory should show interaction with Docker commands or image layers, not just 'echo' or 'nano' to create the file from scratch without extraction steps."
+        },
+        {
+            "id": "genuine_layer_extraction",
+            "description": "The agent actually interacted with the Docker daemon or image archives.",
+            "visual_evidence": "Presence of docker-related commands or the extraction of .tar files associated with docker layers."
+        },
+        {
+            "id": "correct_source_image",
+            "description": "The agent used the specific image 'acme/credit-score:v1' as the source.",
+            "visual_evidence": "The image name 'acme/credit-score:v1' appearing in terminal commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The target image is 'acme/credit-score:v1'. The file to recover is 'risk_model.py'. The recovered file must be placed at '/home/ga/Desktop/risk_model.py'. Essential content that must be in the recovered file: 1) 'class CreditRiskScorer', 2) 'self._income_weight = 0.85', and 3) the word 'CONFIDENTIAL' (likely in a docstring)."
+}

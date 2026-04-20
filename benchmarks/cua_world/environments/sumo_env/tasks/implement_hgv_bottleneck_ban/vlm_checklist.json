@@ -1,0 +1,59 @@
+{
+    "task_id": "implement_hgv_bottleneck_ban@1",
+    "task_completion": [
+        {
+            "id": "identify_bottleneck_edge",
+            "description": "Identify the non-internal edge with the highest truck volume in the baseline scenario.",
+            "points": 15,
+            "visual_evidence": "Terminal output or script execution showing the calculation of vehicle counts per edge for 'truck_type' and identifying the top edge ID."
+        },
+        {
+            "id": "modify_network_ban",
+            "description": "Modify the network to ban trucks on the identified edge and save as acosta_hgv_ban.net.xml.",
+            "points": 20,
+            "visual_evidence": "Command line execution of netedit or a script (like xmlstarlet or python) modifying the edge permissions, and the presence of the new .net.xml file in the file explorer or terminal."
+        },
+        {
+            "id": "create_ban_sumocfg",
+            "description": "Create a new SUMO configuration file (ban.sumocfg) referencing the modified network and enabling dynamic rerouting.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command showing ban.sumocfg with <net-file value=\"acosta_hgv_ban.net.xml\"/> and <device.rerouting.explicit value=\"truck_type\"/> or similar rerouting parameters."
+        },
+        {
+            "id": "execute_simulations",
+            "description": "Execute the baseline and ban simulations to generate trip information.",
+            "points": 20,
+            "visual_evidence": "Terminal showing the execution of 'sumo' or 'sumo-gui' for both baseline.sumocfg and ban.sumocfg, specifically showing the generation of ban_tripinfo.xml."
+        },
+        {
+            "id": "calculate_average_durations",
+            "description": "Calculate the average trip duration for trucks in both scenarios.",
+            "points": 20,
+            "visual_evidence": "Terminal output or script logs showing the parsing of tripinfo.xml files and the calculation of mean duration for truck_type."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Write the results to /home/ga/SUMO_Output/hgv_report.txt in the specified format.",
+            "points": 10,
+            "visual_evidence": "A 'cat' or text editor view of /home/ga/SUMO_Output/hgv_report.txt showing the banned_edge, baseline_truck_avg_duration, and ban_truck_avg_duration."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran the SUMO simulation rather than guessing values.",
+            "visual_evidence": "Screenshots must show the SUMO CLI progress bars or the SUMO-GUI interface during simulation execution."
+        },
+        {
+            "id": "file_path_consistency",
+            "description": "Verify the agent used the specific paths requested in the task.",
+            "visual_evidence": "Commands or file explorer views showing paths like ~/SUMO_Scenarios/bologna_acosta/acosta_hgv_ban.net.xml and /home/ga/SUMO_Output/hgv_report.txt."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't just echo the final report without performing the analysis.",
+            "visual_evidence": "Evidence of data processing (e.g., python scripts, grep/awk commands on XML files) prior to the creation of the final report."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario is located at /home/ga/SUMO_Scenarios/bologna_acosta. The truck vehicle type is 'truck_type' and its vehicle class is 'truck'. The agent must use these specific identifiers when filtering edge volumes and calculating durations. The final report must be at /home/ga/SUMO_Output/hgv_report.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_receptionist_workspace@1",
+    "task_completion": [
+        {
+            "id": "create_role_permissions",
+            "description": "Create 'Front Desk Role' with 'View Live Video' and 'Use Soft Triggers' permissions for Lobby and Entrance cameras only.",
+            "points": 20,
+            "visual_evidence": "User Roles dialog showing 'Front Desk Role' with checkboxes for 'View Live' and 'Use Soft Triggers' selected for 'Lobby Camera' and 'Entrance Camera', while 'Server Room Camera' is unchecked."
+        },
+        {
+            "id": "create_user_account",
+            "description": "Create user 'receptionist' with specific details and assign to 'Front Desk Role'.",
+            "points": 15,
+            "visual_evidence": "User Settings dialog showing Login: 'receptionist', Name: 'Alex Reception', Email: 'alex.r@gymanything.com', and Role: 'Front Desk Role' selected."
+        },
+        {
+            "id": "soft_trigger_unlock_door",
+            "description": "Configure 'Unlock Door' soft trigger on Entrance Camera with HTTP GET action.",
+            "points": 20,
+            "visual_evidence": "Camera Rules dialog for 'Entrance Camera' showing Event: 'Soft Trigger', Name: 'Unlock Door', and Action: 'Do HTTP request' to 'http://door-controller.local/api/open'."
+        },
+        {
+            "id": "soft_trigger_panic_alert",
+            "description": "Configure 'Panic Alert' soft trigger on Lobby Camera with Bookmark action.",
+            "points": 20,
+            "visual_evidence": "Camera Rules dialog for 'Lobby Camera' showing Event: 'Soft Trigger', Name: 'Panic Alert', and Action: 'Create Bookmark' with tag 'Security Alert'."
+        },
+        {
+            "id": "create_shared_layout",
+            "description": "Create a shared layout named 'Reception Desk View' with the two allowed cameras.",
+            "points": 25,
+            "visual_evidence": "The layout tab named 'Reception Desk View' is visible in the resource tree or main view, containing video feeds for 'Lobby Camera' and 'Entrance Camera' only."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Nx Witness Desktop Client GUI rather than command-line database manipulation.",
+            "visual_evidence": "Screenshots show the Nx Witness application window, mouse cursor movements over menus, and dialog boxes (User Management, Camera Rules)."
+        },
+        {
+            "id": "no_server_room_access",
+            "description": "The agent did not grant access to the Server Room Camera to the new role.",
+            "visual_evidence": "The permissions tab for 'Front Desk Role' shows the 'Server Room Camera' explicitly unchecked or excluded from the selection list."
+        },
+        {
+            "id": "authentic_configuration",
+            "description": "The agent manually typed or pasted the specific URLs and tags required.",
+            "visual_evidence": "The HTTP URL and Bookmark tag fields in the Camera Rules dialog contain the exact strings specified in the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The system contains five cameras: Parking Lot Camera, Entrance Camera, Server Room Camera, Lobby Camera, and Loading Dock Camera. The 'Front Desk Role' must strictly only have access to 'Lobby Camera' and 'Entrance Camera'. The 'Server Room Camera' must be excluded. The soft triggers are camera-specific: 'Unlock Door' belongs to 'Entrance Camera' and 'Panic Alert' belongs to 'Lobby Camera'."
+}

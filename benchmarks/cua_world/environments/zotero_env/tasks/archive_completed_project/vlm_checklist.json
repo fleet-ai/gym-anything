@@ -1,0 +1,53 @@
+{
+    "task_id": "archive_completed_project@1",
+    "task_completion": [
+        {
+            "id": "select_collection",
+            "description": "The agent selects the 'NeurIPS 2023 Draft' collection in the Zotero sidebar.",
+            "points": 10,
+            "visual_evidence": "The 'NeurIPS 2023 Draft' folder is highlighted in the left-hand pane of the Zotero interface."
+        },
+        {
+            "id": "apply_tag",
+            "description": "The agent applies the 'submitted-2023' tag to all items in the collection.",
+            "points": 25,
+            "visual_evidence": "The 'Tags' selector or the item details pane shows the tag 'submitted-2023' being added or present for the selected items (e.g., 'Attention Is All You Need')."
+        },
+        {
+            "id": "initiate_export",
+            "description": "The agent opens the export dialog for the collection and selects the RIS format.",
+            "points": 15,
+            "visual_evidence": "An 'Export...' dialog box is visible with 'RIS' selected in the format dropdown menu."
+        },
+        {
+            "id": "save_ris_file",
+            "description": "The agent saves the RIS file to the specific path /home/ga/Documents/neurips_archive.ris.",
+            "points": 20,
+            "visual_evidence": "A file picker or save dialog shows the path '/home/ga/Documents/' and the filename 'neurips_archive.ris' being entered or confirmed."
+        },
+        {
+            "id": "delete_collection_only",
+            "description": "The agent deletes the collection while choosing the option to keep the items in the library.",
+            "points": 30,
+            "visual_evidence": "A confirmation dialog appears for 'Delete Collection'. The agent must select 'Delete Collection' (which preserves items) rather than 'Delete Collection and Items'. Subsequently, the 'NeurIPS 2023 Draft' folder disappears from the sidebar, but the papers remain visible in 'My Library'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI rather than executing CLI commands to manipulate the database.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Zotero menus, right-click context menus, and dialog boxes."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent actually went through the export wizard rather than manually creating a text file.",
+            "visual_evidence": "The Zotero 'Export' progress bar or specific RIS configuration options are visible."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use the terminal to move or rename files to simulate an export.",
+            "visual_evidence": "The terminal is either not used or only used for navigation/verification, not for generating the .ris file via scripts."
+        }
+    ],
+    "privileged_info_for_vlm": "The target collection is 'NeurIPS 2023 Draft'. The required tag is 'submitted-2023'. The export destination is '/home/ga/Documents/neurips_archive.ris' in RIS format. Key papers that should be present in the collection include 'Attention Is All You Need', 'BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding', and 'Language Models are Few-Shot Learners'. When deleting the collection, Zotero offers two options; the agent must select the one that does NOT delete the items from the main library."
+}

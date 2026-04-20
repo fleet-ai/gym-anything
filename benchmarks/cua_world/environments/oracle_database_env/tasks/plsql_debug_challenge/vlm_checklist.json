@@ -1,0 +1,53 @@
+{
+    "task_id": "plsql_debug_challenge@1",
+    "task_completion": [
+        {
+            "id": "access_buggy_source",
+            "description": "Agent opens and reads the buggy_source.sql file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of '/home/ga/Desktop/buggy_source.sql'."
+        },
+        {
+            "id": "connect_to_oracle",
+            "description": "Agent connects to the Oracle database using the provided HR credentials.",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection to the HR schema (e.g., 'Connected to: Oracle Database...')."
+        },
+        {
+            "id": "fix_plsql_objects",
+            "description": "Agent executes CREATE OR REPLACE statements for all 5 specified PL/SQL objects.",
+            "points": 40,
+            "visual_evidence": "SQL execution logs or script output showing 'Function/Procedure created' or 'compiled' for CALC_ANNUAL_COMPENSATION, BUILD_DEPT_SALARY_RANKINGS, FIND_DEPT_TOP_EARNER, GET_SALARY_PERCENTILE, and ADJUST_SALARY."
+        },
+        {
+            "id": "execute_rankings_procedure",
+            "description": "Agent runs the BUILD_DEPT_SALARY_RANKINGS procedure to repopulate the ranking table.",
+            "points": 20,
+            "visual_evidence": "Command 'EXEC BUILD_DEPT_SALARY_RANKINGS;' or similar being executed in a SQL prompt with a success message."
+        },
+        {
+            "id": "create_bug_report",
+            "description": "Agent documents findings and corrections in the bug_report.txt file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of '/home/ga/Desktop/bug_report.txt' containing a summary of the fixes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacted with the actual Oracle database rather than just simulating output.",
+            "visual_evidence": "Screenshots show the SQL*Plus or SQLcl prompt, or a database GUI, with real-time execution feedback."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The bug report is created after the fixes are attempted, not at the start of the session.",
+            "visual_evidence": "Timestamp or sequence of screenshots shows the bug_report.txt being saved after SQL commands are executed."
+        },
+        {
+            "id": "correct_logic_application",
+            "description": "The agent actually modifies the code logic (e.g., handling NULLs in compensation) rather than just re-running the buggy code.",
+            "visual_evidence": "The CREATE OR REPLACE code visible in screenshots contains logic changes (like NVL or COALESCE for commission) compared to the buggy source."
+        }
+    ],
+    "privileged_info_for_vlm": "The HR database is accessible via user 'hr' password 'hr123' on service 'XEPDB1'. Key logic errors to look for in the fixes: 1. CALC_ANNUAL_COMPENSATION must handle NULL commission_pct (Employee 100 has NULL commission, expected annual comp is 288000). 2. BUILD_DEPT_SALARY_RANKINGS must correctly populate the ranking table. The agent must use 'CREATE OR REPLACE' to apply fixes. The final report must be saved to '/home/ga/Desktop/bug_report.txt'."
+}

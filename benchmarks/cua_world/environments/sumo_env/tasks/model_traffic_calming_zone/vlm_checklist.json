@@ -1,0 +1,53 @@
+{
+    "task_id": "model_traffic_calming_zone@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "Run the baseline simulation using the provided network and generate baseline_tripinfo.xml.",
+            "points": 15,
+            "visual_evidence": "Terminal command or SUMO GUI showing the execution of a simulation and the creation of /home/ga/SUMO_Output/baseline_tripinfo.xml."
+        },
+        {
+            "id": "vss_xml_creation",
+            "description": "Create the speed_zone.add.xml file defining a Variable Speed Sign (VSS) at 8.33 m/s.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of /home/ga/SUMO_Output/speed_zone.add.xml with speed='8.33' and a valid lane/edge ID."
+        },
+        {
+            "id": "modified_config_setup",
+            "description": "Create the run_modified.sumocfg file incorporating the additional speed zone file.",
+            "points": 15,
+            "visual_evidence": "A text editor showing /home/ga/SUMO_Output/run_modified.sumocfg including a reference to 'speed_zone.add.xml' in the <additional-files> section."
+        },
+        {
+            "id": "modified_simulation_run",
+            "description": "Run the modified simulation to generate modified_tripinfo.xml.",
+            "points": 20,
+            "visual_evidence": "Terminal output or SUMO GUI showing the execution of run_modified.sumocfg and the generation of /home/ga/SUMO_Output/modified_tripinfo.xml."
+        },
+        {
+            "id": "impact_report_generation",
+            "description": "Generate the final impact_report.txt with all required metrics.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output showing /home/ga/SUMO_Output/impact_report.txt containing: Edge/Lane ID, average durations for both scenarios, percentage change, and trip counts for both."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_interaction",
+            "description": "Verify the agent actually edited/created files rather than just printing text to the console.",
+            "visual_evidence": "Screenshots showing file saving dialogues, 'vi/nano/gedit' sessions, or 'ls -l' showing updated timestamps in /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Verify the agent actually ran the SUMO binary and didn't fabricate results.",
+            "visual_evidence": "SUMO log output in the terminal showing 'Simulation ended at time...' or the SUMO-GUI window active during the run."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check that the values in the impact report match the data seen in the XML tripinfo files.",
+            "visual_evidence": "Comparison between the numerical values shown in the 'cat' output of tripinfo.xml files and the final impact_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The network file is located at /home/ga/SUMO_Scenarios/bologna_acosta/acosta_buslanes.net.xml. The speed limit for the traffic calming zone must be 8.33 m/s (equivalent to 30 km/h). All output files must be stored in /home/ga/SUMO_Output/. The impact report must specifically compare baseline_tripinfo.xml and modified_tripinfo.xml."
+}

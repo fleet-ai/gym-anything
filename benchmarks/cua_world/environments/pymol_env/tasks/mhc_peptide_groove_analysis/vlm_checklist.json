@@ -1,0 +1,59 @@
+{
+    "task_id": "mhc_peptide_groove_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1akj",
+            "description": "Load the crystal structure PDB:1AKJ from the specified local path into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1AKJ' (or the filename) and the 3D viewer displays the MHC-peptide complex."
+        },
+        {
+            "id": "identify_contacts",
+            "description": "Identify and select Chain A residues within 4.0 Å of the peptide (Chain C).",
+            "points": 20,
+            "visual_evidence": "PyMOL command history or selection indicators (pink dots/squares) showing a subset of Chain A residues surrounding the central peptide."
+        },
+        {
+            "id": "visualize_peptide_sticks",
+            "description": "Represent the peptide (Chain C) as sticks within the HLA groove.",
+            "points": 15,
+            "visual_evidence": "The central peptide (Chain C) is clearly rendered in 'sticks' mode, while the rest of the protein may be in cartoon or surface mode."
+        },
+        {
+            "id": "highlight_groove_residues",
+            "description": "Highlight the contacting groove residues in the 3D viewer.",
+            "points": 15,
+            "visual_evidence": "Specific residues on Chain A (the groove) are rendered differently (e.g., as sticks or a different color) to distinguish them from the rest of the protein."
+        },
+        {
+            "id": "save_figure",
+            "description": "Save the publication-quality figure to the specified path.",
+            "points": 15,
+            "visual_evidence": "PyMOL command log showing 'png /home/ga/PyMOL_Data/images/mhc_peptide.png' or a file browser showing the created image."
+        },
+        {
+            "id": "generate_report",
+            "description": "Write the interaction report with sequence, anchor identification, and contact counts to the text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of /home/ga/PyMOL_Data/mhc_groove_report.txt, including the peptide sequence and residue list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent used the PyMOL GUI or command line interface rather than just creating files via shell scripts.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the structure loaded and manipulated."
+        },
+        {
+            "id": "sequence_accuracy",
+            "description": "The agent reports the actual sequence found in the PDB file, not the placeholder sequence from the prompt.",
+            "visual_evidence": "The report file or PyMOL 'get_fastastr' output shows the sequence 'ILKEPVHGV' (actual) rather than 'LLFGYPVYV' (prompt placeholder)."
+        },
+        {
+            "id": "contact_calculation",
+            "description": "The agent performed a distance-based selection to find contacts.",
+            "visual_evidence": "PyMOL command log shows a command like 'select contacts, (chain A and (chain C around 4.0))' or similar logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The task description contains a deliberate error: it claims the peptide is HTLV-1 Tax (LLFGYPVYV), but PDB 1AKJ actually contains the HIV-1 RT peptide (sequence: ILKEPVHGV). A correct report must reflect the actual sequence found in the file (ILKEPVHGV). Key anchor residues for HLA-A2 in this structure are at positions 2 (Isoleucine/Leu-like) and 9 (Valine). Known contacting residues in Chain A include 7, 9, 45, 63, 66, 77, 84, 146, 147, and 159."
+}

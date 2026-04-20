@@ -1,0 +1,53 @@
+{
+    "task_id": "export_viewport_clipboard@1",
+    "task_completion": [
+        {
+            "id": "open_weasis",
+            "description": "The Weasis medical viewer application is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open, showing the DICOM viewer interface."
+        },
+        {
+            "id": "load_dicom_image",
+            "description": "The DICOM image (0002.DCM) is loaded into the main viewport.",
+            "points": 15,
+            "visual_evidence": "A medical image (X-Ray Angiography/CT) is displayed in the central viewing area of Weasis."
+        },
+        {
+            "id": "zoom_magnification",
+            "description": "The image is zoomed in to at least 2x magnification.",
+            "points": 25,
+            "visual_evidence": "The image appears significantly enlarged. The zoom level indicator in the corner of the viewport or the status bar shows a value of 200% (2.0x) or higher."
+        },
+        {
+            "id": "copy_to_clipboard",
+            "description": "The agent uses the Weasis menu or context menu to copy the viewport image to the system clipboard.",
+            "points": 20,
+            "visual_evidence": "The agent is seen clicking 'Copy to clipboard' or 'Copy Viewport' within the Weasis 'Edit' or right-click context menu."
+        },
+        {
+            "id": "export_clipboard_file",
+            "description": "The clipboard content is exported/saved as a PNG file to the specific path /home/ga/DICOM/exports/clipboard_dump.png.",
+            "points": 30,
+            "visual_evidence": "An image manipulation tool (like GIMP or Paint) or a file save dialog is visible where the agent saves the clipboard content to the exact path '/home/ga/DICOM/exports/clipboard_dump.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Weasis GUI to manipulate the image rather than just moving files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis zoom tools and menu items."
+        },
+        {
+            "id": "genuine_clipboard_usage",
+            "description": "The agent actually performed a copy-paste operation rather than a direct 'Save As' of the original file.",
+            "visual_evidence": "The 'Copy to clipboard' menu option is highlighted or selected in the trajectory."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use 'cp' or 'mv' commands in the terminal to create the final image file.",
+            "visual_evidence": "The terminal history (if visible) does not show commands that bypass the GUI for file creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The image to be loaded is 0002.DCM (an X-Ray Angiography image, though the prompt refers to it as CT). The zoom level must be verified as 2x (200%) or greater via the UI overlays. The final file must be saved specifically to /home/ga/DICOM/exports/clipboard_dump.png."
+}

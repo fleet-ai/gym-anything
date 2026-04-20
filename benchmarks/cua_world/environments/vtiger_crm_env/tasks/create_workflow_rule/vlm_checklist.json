@@ -1,0 +1,59 @@
+{
+    "task_id": "create_workflow_rule@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_workflows",
+            "description": "Navigate to the Workflows configuration section in Vtiger CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Workflows' list view or the 'Add Workflow' creation screen within the CRM settings."
+        },
+        {
+            "id": "workflow_basic_info",
+            "description": "Set the workflow name to 'Auto-Update Next Step on Closed Won' and the target module to 'Potentials'.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the 'Workflow Name' field populated with 'Auto-Update Next Step on Closed Won' and the 'Target Module' dropdown set to 'Potentials'."
+        },
+        {
+            "id": "workflow_trigger_condition",
+            "description": "Set the workflow to trigger on 'Every time the record is saved' and add a condition where 'Sales Stage' is 'Closed Won'.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the trigger radio button for 'Every time the record is saved' selected, and a condition row showing 'Sales Stage', 'is', and 'Closed Won'."
+        },
+        {
+            "id": "add_update_fields_action",
+            "description": "Add a workflow action of type 'Update Fields' titled 'Set Next Step to Generate Invoice'.",
+            "points": 20,
+            "visual_evidence": "An 'Add Action' modal or screen showing 'Update Fields' selected as the action type and the 'Action Title' field containing 'Set Next Step to Generate Invoice'."
+        },
+        {
+            "id": "configure_field_update",
+            "description": "Configure the action to set the 'Next Step' field to 'Generate Invoice'.",
+            "points": 20,
+            "visual_evidence": "The action configuration screen showing the field 'Next Step' being assigned the value 'Generate Invoice'."
+        },
+        {
+            "id": "save_and_active",
+            "description": "Save the workflow and ensure it appears as 'Active' in the list.",
+            "points": 10,
+            "visual_evidence": "The final workflow list view showing the new rule 'Auto-Update Next Step on Closed Won' with a status toggle or icon indicating it is 'Active'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the CRM web interface rather than executing database queries or scripts via a terminal.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and typing within the Vtiger browser window."
+        },
+        {
+            "id": "no_shortcut_urls",
+            "description": "The agent navigated through the menu system rather than jumping directly to a deep-linked configuration URL if not provided.",
+            "visual_evidence": "Screenshots show the agent clicking on 'Settings' or 'Menu' to find the Workflow section."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered the specific strings required by the task.",
+            "visual_evidence": "The VLM should see the text being typed or pasted into the specific CRM input fields in the sequence of the workflow creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The workflow must be created for the 'Potentials' module. The exact name is 'Auto-Update Next Step on Closed Won'. The trigger condition is 'Sales Stage' (internal field: sales_stage) equals 'Closed Won'. The action is an 'Update Fields' (UpdateFields) task titled 'Set Next Step to Generate Invoice' which modifies the 'Next Step' (internal field: nextstep) to the value 'Generate Invoice'."
+}

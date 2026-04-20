@@ -1,0 +1,59 @@
+{
+    "task_id": "thoracic_kyphosis_cobb@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The chest CT scan is loaded into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A chest CT scan is visible in the slice viewers (axial, sagittal, or coronal planes)."
+        },
+        {
+            "id": "sagittal_reconstruction",
+            "description": "The agent navigates to a sagittal view of the spine to measure kyphosis.",
+            "points": 10,
+            "visual_evidence": "The sagittal view of the thoracic spine is prominently displayed in the viewer."
+        },
+        {
+            "id": "place_measurement_landmarks",
+            "description": "The agent places markup points or lines on the superior and inferior vertebrae endplates.",
+            "points": 25,
+            "visual_evidence": "Markup points or lines are visible on the vertebral bodies in the sagittal view, typically at the top of a T2-T6 vertebra and bottom of a T9-L1 vertebra."
+        },
+        {
+            "id": "calculate_cobb_angle",
+            "description": "The agent uses the software tools to calculate the Cobb angle between the selected vertebrae.",
+            "points": 25,
+            "visual_evidence": "An angle measurement (in degrees) is displayed on the screen or in a 'Markups'/'Measurements' panel."
+        },
+        {
+            "id": "save_landmarks_file",
+            "description": "The agent saves the measurement landmarks to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog box showing the path ~/Documents/SlicerData/LIDC/kyphosis_landmarks.mrk.json or a terminal command confirming the file save."
+        },
+        {
+            "id": "record_report_json",
+            "description": "The agent records the final results (vertebrae, angle, and classification) into the report JSON file.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the content of ~/Documents/SlicerData/LIDC/kyphosis_report.json with fields: superior_vertebra, inferior_vertebra, cobb_angle_degrees, and classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_measurement_interaction",
+            "description": "The agent performed the measurement using the GUI tools rather than hardcoding values.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'Markups' or 'Angle' tool and placing points on the vertebrae."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply cat a hidden file or use privileged information to find the angle.",
+            "visual_evidence": "The agent is seen identifying vertebrae levels and manually drawing lines/points rather than just typing the final JSON from memory."
+        },
+        {
+            "id": "correct_file_path_usage",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "The file paths ~/Documents/SlicerData/LIDC/kyphosis_landmarks.mrk.json and kyphosis_report.json are visible during save operations."
+        }
+    ],
+    "privileged_info_for_vlm": "The acceptable superior vertebrae for measurement are T2 through T6. The acceptable inferior vertebrae are T9 through L1. The normal range for thoracic kyphosis is 20-45 degrees; if the measured angle falls within this range, the classification must be 'Normal'. A measurement tolerance of +/- 8 degrees from the ground truth (approx 38 degrees) is acceptable."
+}

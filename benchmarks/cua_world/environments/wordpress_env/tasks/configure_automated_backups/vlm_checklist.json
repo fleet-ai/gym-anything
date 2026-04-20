@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_automated_backups@1",
+    "task_completion": [
+        {
+            "id": "plugin_installed_activated",
+            "description": "UpdraftPlus plugin is installed and active in the WordPress dashboard.",
+            "points": 10,
+            "visual_evidence": "The WordPress 'Plugins' page shows 'UpdraftPlus - Backup/Restore' as active (blue background or 'Deactivate' link visible), or the UpdraftPlus settings menu is accessible."
+        },
+        {
+            "id": "schedule_configured",
+            "description": "File and database backup schedules are set to daily.",
+            "points": 15,
+            "visual_evidence": "In UpdraftPlus Settings, both 'Files backup schedule' and 'Database backup schedule' dropdowns are set to 'Daily'."
+        },
+        {
+            "id": "retention_configured",
+            "description": "Backup retention is set to 4 copies for both files and database.",
+            "points": 15,
+            "visual_evidence": "In UpdraftPlus Settings, the retention count boxes next to the daily schedules both contain the number '4'."
+        },
+        {
+            "id": "exclude_directory",
+            "description": "The 'temp-video-renders' directory is excluded from the uploads backup.",
+            "points": 25,
+            "visual_evidence": "In the 'Include in files backup' section under 'Uploads', the exclusion list contains the string 'temp-video-renders'."
+        },
+        {
+            "id": "manual_backup_initiated",
+            "description": "A manual backup of both files and database is triggered.",
+            "points": 15,
+            "visual_evidence": "The 'Backup Now' modal is shown with both 'Include your database' and 'Include your files' checked, followed by a progress bar."
+        },
+        {
+            "id": "backup_success_history",
+            "description": "The backup completes successfully and appears in the 'Existing backups' list with a size indicating the exclusion worked.",
+            "points": 20,
+            "visual_evidence": "A new entry appears in the 'Existing backups' tab. The backup size should be significantly smaller than 50MB (around 10-20MB) because the large video file was excluded."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress web interface rather than CLI commands to configure the plugin.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the WordPress dashboard and settings pages."
+        },
+        {
+            "id": "genuine_backup_process",
+            "description": "The backup was actually executed and not just simulated.",
+            "visual_evidence": "A real-time progress bar and a log of the backup process are visible during the backup execution."
+        },
+        {
+            "id": "no_manual_file_deletion",
+            "description": "The agent did not manually delete the large file to pass the size check.",
+            "visual_evidence": "The agent did not open a terminal or file manager to delete files in the wp-content/uploads directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 'daily' schedule with '4' retained copies. A 50MB file named 'huge-video.mkv' exists in the 'temp-video-renders' directory; if the exclusion of 'temp-video-renders' is successful, the resulting backup size must be less than 20MB (20,971,520 bytes). Verify the exclusion string 'temp-video-renders' is typed exactly in the UpdraftPlus settings."
+}

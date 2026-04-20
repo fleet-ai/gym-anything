@@ -1,0 +1,59 @@
+{
+    "task_id": "optimize_pv_om_strategy@1",
+    "task_completion": [
+        {
+            "id": "pysam_import_and_setup",
+            "description": "Agent imports PySAM (Pvwattsv8) and initializes the model with the specified 50 MW system parameters.",
+            "points": 10,
+            "visual_evidence": "Code in an IDE or terminal showing 'import PySAM.Pvwattsv8', 'system_capacity = 50000', and other parameters like tilt=20 and azimuth=180."
+        },
+        {
+            "id": "weather_file_loading",
+            "description": "Agent locates and loads the Phoenix TMY weather file from the SAM solar_resource directory.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing the path to a Phoenix TMY file (e.g., phoenix_az_33.450495_-111.983046_tmy3.csv) being assigned to the model's solar_resource_file."
+        },
+        {
+            "id": "optimization_loop_implementation",
+            "description": "Agent implements a loop to iterate through O&M rates from $15 to $25 and calculates the variable downtime/losses.",
+            "points": 20,
+            "visual_evidence": "Code showing a loop 'for om_rate in range(15, 26)' and the formula 'downtime_pct = 5.0 * (0.8 ** (om_rate - 15))' and 'losses = 10.0 + downtime_pct'."
+        },
+        {
+            "id": "financial_calculation_logic",
+            "description": "Agent calculates lifetime revenue, lifetime O&M cost, and gross margin for each scenario over 25 years.",
+            "points": 20,
+            "visual_evidence": "Code showing 'revenue = annual_energy * 0.08 * 25' and 'om_cost = 50000 * om_rate * 25' and the subtraction to find margin."
+        },
+        {
+            "id": "execution_and_results",
+            "description": "Agent executes the simulation for all 11 scenarios and identifies the optimal O&M rate.",
+            "points": 20,
+            "visual_evidence": "Terminal output or variable explorer showing a list of 11 results and the identification of the maximum gross margin."
+        },
+        {
+            "id": "json_export",
+            "description": "Agent exports the full results list and optimal values to the specified file path.",
+            "points": 20,
+            "visual_evidence": "Code or terminal confirmation showing the creation of '/home/ga/Documents/SAM_Projects/om_optimization.json' containing the required keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually ran PySAM simulations rather than hardcoding a result table.",
+            "visual_evidence": "Screenshots must show the execution of a Python script that calls 'model.execute()' within a loop, not just a print statement of a pre-made dictionary."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Verify the agent interacted with the actual file system for the weather data and output.",
+            "visual_evidence": "The file manager or terminal showing the existence of the exported JSON file in the specific directory /home/ga/Documents/SAM_Projects/."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Verify the agent used the Phoenix weather data and not default SAM values.",
+            "visual_evidence": "The code must explicitly reference the Phoenix TMY file path; annual energy values should be in the range of 80M to 120M kWh."
+        }
+    ],
+    "privileged_info_for_vlm": "The optimal O&M rate is $18/kW-yr (based on PySAM simulation for Phoenix). The JSON output must contain exactly 11 scenarios (rates 15-25). The annual energy for a 50MW plant in Phoenix with these parameters should be approximately 100,000,000 kWh (give or take 20% based on specific TMY version). The formula for losses is 10.0 + (5.0 * (0.8 ^ (om_rate - 15)))."
+}

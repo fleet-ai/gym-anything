@@ -1,0 +1,59 @@
+{
+    "task_id": "add_custom_student_field@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_student_fields",
+            "description": "Navigate to the Student Fields configuration section in OpenSIS.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Students' menu expanded and the 'Student Fields' or 'Custom Fields' page active in the main content area."
+        },
+        {
+            "id": "create_category",
+            "description": "Create a new field category named 'Transportation'.",
+            "points": 20,
+            "visual_evidence": "A form or modal showing the text 'Transportation' being entered into a category name field, or 'Transportation' appearing in the list of field categories."
+        },
+        {
+            "id": "add_field_to_category",
+            "description": "Initiate the creation of a new field within the 'Transportation' category.",
+            "points": 15,
+            "visual_evidence": "The agent clicking an 'Add' or '+' button specifically associated with the 'Transportation' category section."
+        },
+        {
+            "id": "set_field_name",
+            "description": "Set the field name to 'Bus Route Number'.",
+            "points": 25,
+            "visual_evidence": "The text 'Bus Route Number' typed into the field label or name input box."
+        },
+        {
+            "id": "set_field_type",
+            "description": "Set the field type to 'Text Box' (Text).",
+            "points": 20,
+            "visual_evidence": "A dropdown or radio button selection showing 'Text' or 'Text Box' selected for the 'Bus Route Number' field."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the new field configuration.",
+            "points": 10,
+            "visual_evidence": "The agent clicking a 'Save', 'Submit', or 'Update' button, followed by a success message or the new field appearing in the saved list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OpenSIS web interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The trajectory shows mouse movements and typing within the browser; no terminal windows with database connection strings (opensis_user) are used to bypass the UI."
+        },
+        {
+            "id": "no_hardcoded_url_skip",
+            "description": "The agent navigated through the menu system rather than jumping directly to a deep-link URL if not previously known.",
+            "visual_evidence": "The VLM should see the agent interacting with the sidebar or top navigation menus to find the Student Fields section."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered the required strings rather than them appearing instantly via script injection.",
+            "visual_evidence": "Screenshots show the cursor inside the input fields with the text 'Transportation' and 'Bus Route Number' being typed or pasted into the UI elements."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenSIS database uses the 'custom_fields' table. The 'Text Box' type corresponds to type '0' or 'text' in the backend. The required category name is 'Transportation' and the field name is 'Bus Route Number'. Database credentials (opensis_user/opensis_password_123) exist but the agent should ideally use the GUI to perform these tasks."
+}

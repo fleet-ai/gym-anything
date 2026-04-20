@@ -1,0 +1,54 @@
+{
+    "task_id": "fix_failing_tests@1",
+    "task_completion": [
+        {
+            "id": "open_intellij_project",
+            "description": "IntelliJ IDEA is open with the 'fix-failing-tests' project loaded.",
+            "points": 10,
+            "visual_evidence": "The IntelliJ window title or Project tool window shows 'fix-failing-tests' and the file tree includes BubbleSortTest.java."
+        },
+        {
+            "id": "identify_test_failures",
+            "description": "The agent runs the tests and identifies the initial failures in BubbleSortTest.",
+            "points": 15,
+            "visual_evidence": "The 'Run' or 'Test' tool window in IntelliJ shows red icons/bars indicating failing tests (specifically testEmptyArray, testSingleElement, and testUnsortedArray)."
+        },
+        {
+            "id": "fix_test_logic_errors",
+            "description": "The agent corrects the assertions and logic in BubbleSortTest.java (e.g., changing assertEquals to assertArrayEquals, fixing expected values, and capturing return values).",
+            "points": 30,
+            "visual_evidence": "Screenshots of the editor for BubbleSortTest.java show code changes such as 'assertArrayEquals', updating the array value in testSingleElement to {42}, and assigning the result of sort() to a variable."
+        },
+        {
+            "id": "add_missing_annotation",
+            "description": "The agent adds the missing @Test annotation to the testAlreadySorted method.",
+            "points": 15,
+            "visual_evidence": "The editor shows '@Test' added above the 'public void testAlreadySorted()' method signature."
+        },
+        {
+            "id": "verify_all_tests_pass",
+            "description": "The agent runs the tests again, and all four tests pass successfully.",
+            "points": 30,
+            "visual_evidence": "The IntelliJ 'Run' or 'Test' tool window shows a green bar and 'Tests passed: 4' (or 4/4 tests passed)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_modification_of_bubblesort",
+            "description": "The agent did not modify the BubbleSort.java file.",
+            "points": 0,
+            "visual_evidence": "The agent does not open BubbleSort.java to edit it, or the file remains unchanged in the editor tabs."
+        },
+        {
+            "id": "used_intellij_gui",
+            "description": "The agent used the IntelliJ IDEA interface to run tests and edit code rather than just using the terminal.",
+            "visual_evidence": "Screenshots show interactions with the IntelliJ editor, project tree, and built-in test runner buttons."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The test results are shown in the IntelliJ UI, not just printed to a terminal via a custom script.",
+            "visual_evidence": "The standard IntelliJ 'Run' tool window with the tree view of test methods is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/fix-failing-tests. BubbleSortTest.java has 4 bugs: 1) testEmptyArray uses assertEquals instead of assertArrayEquals. 2) testSingleElement expects {99} but the code produces {42}. 3) testUnsortedArray calls sort() but doesn't capture/check the returned array. 4) testAlreadySorted is missing the @Test annotation. BubbleSort.java must not be modified. Success is defined by the IntelliJ test runner showing 4/4 tests passed."
+}

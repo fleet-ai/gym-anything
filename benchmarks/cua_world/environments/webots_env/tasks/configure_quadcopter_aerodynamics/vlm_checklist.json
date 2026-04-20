@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_quadcopter_aerodynamics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots application and loads the drone world.",
+            "points": 10,
+            "visual_evidence": "The Webots interface is visible, showing a 3D view of a quadcopter and a scene tree on the left."
+        },
+        {
+            "id": "locate_propeller_nodes",
+            "description": "The agent expands the DELIVERY_DRONE node and locates the four Propeller nodes (FRONT_RIGHT, FRONT_LEFT, REAR_RIGHT, REAR_LEFT).",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the DELIVERY_DRONE node expanded with the four specific propeller names visible."
+        },
+        {
+            "id": "update_thrust_constants",
+            "description": "The agent sets the first value of 'thrustConstants' to 0.00015 for all four propellers.",
+            "points": 25,
+            "visual_evidence": "The field editor or scene tree shows 'thrustConstants' set to 0.00015 (or 1.5e-04) for the selected propeller nodes."
+        },
+        {
+            "id": "update_torque_constants",
+            "description": "The agent sets the first value of 'torqueConstants' to 0.000006 for all four propellers.",
+            "points": 25,
+            "visual_evidence": "The field editor or scene tree shows 'torqueConstants' set to 0.000006 (or 6e-06) for the selected propeller nodes."
+        },
+        {
+            "id": "update_helix_threshold",
+            "description": "The agent sets the 'fastHelixThreshold' to 75.0 for all four propellers.",
+            "points": 15,
+            "visual_evidence": "The field editor or scene tree shows 'fastHelixThreshold' set to 75 for the selected propeller nodes."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The agent saves the modified world to the specific path /home/ga/Desktop/tuned_quadcopter.wbt.",
+            "points": 10,
+            "visual_evidence": "The 'Save World As...' dialog box is visible with the path /home/ga/Desktop/tuned_quadcopter.wbt entered, or a terminal command confirms the file exists at that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify the parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor values."
+        },
+        {
+            "id": "no_hardcoding_script",
+            "description": "The agent did not simply run a python/bash script to overwrite the file without opening the application.",
+            "visual_evidence": "The Webots application is the primary window in focus during the parameter modification steps."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent used the 'File' menu or shortcut to save the world within the application.",
+            "visual_evidence": "The Webots 'File' menu is seen open or the 'Save As' dialog is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure 4 propellers: FRONT_RIGHT, FRONT_LEFT, REAR_RIGHT, and REAR_LEFT. Required values: thrustConstants[0] = 0.00015, torqueConstants[0] = 0.000006 (6e-06), and fastHelixThreshold = 75.0. The final file must be saved as /home/ga/Desktop/tuned_quadcopter.wbt. A 5% tolerance is acceptable for numerical values (e.g., 0.0001425 to 0.0001575)."
+}

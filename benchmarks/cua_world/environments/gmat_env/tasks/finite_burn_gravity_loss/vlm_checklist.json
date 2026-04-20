@@ -1,0 +1,59 @@
+{
+    "task_id": "finite_burn_gravity_loss@1",
+    "task_completion": [
+        {
+            "id": "read_specs_file",
+            "description": "Agent opens and reads the spacecraft and thruster specifications from ~/Desktop/orbit_raise_specs.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of orbit_raise_specs.txt on the desktop."
+        },
+        {
+            "id": "gmat_setup_spacecraft",
+            "description": "Agent configures a spacecraft in GMAT with a 400 km circular orbit and attaches a ChemicalThruster with specified parameters (400 N, 316 s Isp).",
+            "points": 15,
+            "visual_evidence": "GMAT GUI showing the Spacecraft resource tree, Orbit tab (SMA ~6771 km), and Thruster configuration window with 400 N thrust and 316 s Isp."
+        },
+        {
+            "id": "gmat_mission_sequence",
+            "description": "Agent constructs a mission sequence in GMAT containing both Impulsive Burns (Hohmann) and Finite Burns.",
+            "points": 25,
+            "visual_evidence": "GMAT Mission Tree showing 'ImpulsiveBurn' commands and 'BeginFiniteBurn/EndFiniteBurn' commands or a 'Target' loop for the maneuvers."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Save As' dialog or a file explorer showing gravity_loss_mission.script in the ~/GMAT_output/ folder."
+        },
+        {
+            "id": "run_mission_and_report",
+            "description": "Agent runs the GMAT simulation to generate the required data.",
+            "points": 15,
+            "visual_evidence": "GMAT message window showing 'Mission Sequence Successfully Run' or the progress bar completing."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Agent creates the gravity_loss_report.txt with all 10 required lines and numerical values.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing gravity_loss_report.txt containing keys like impulsive_dv1_m_s, finite_total_dv_m_s, and gravity_loss_m_s with calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical interface to design the mission rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the GMAT application window, resource tree, and mission sequence editor being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The gravity loss values are derived from the simulation, not hardcoded or guessed.",
+            "visual_evidence": "The report values match the output seen in GMAT's message window or report file resources within the GUI."
+        },
+        {
+            "id": "no_premade_script",
+            "description": "The agent did not simply copy a pre-existing script from a hidden directory.",
+            "visual_evidence": "The agent is seen manually adding resources or commands to the GMAT Mission Tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial orbit is 400km altitude (SMA ~6771.14 km). The target orbit is 800km altitude (SMA ~7171.14 km). The impulsive total delta-V should be approximately 215-220 m/s. The finite burn will result in a higher total delta-V; the gravity_loss_m_s must be the positive difference (finite_total - impulsive_total). The script must be at /home/ga/GMAT_output/gravity_loss_mission.script and the report at /home/ga/GMAT_output/gravity_loss_report.txt."
+}

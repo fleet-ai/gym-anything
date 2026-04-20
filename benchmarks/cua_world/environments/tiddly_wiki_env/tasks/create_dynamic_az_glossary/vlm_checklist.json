@@ -1,0 +1,53 @@
+{
+    "task_id": "create_dynamic_az_glossary@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation",
+            "description": "A new tiddler titled 'A-Z Glossary' has been created and is open in the story river.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a tiddler with the exact title 'A-Z Glossary' in the TiddlyWiki interface."
+        },
+        {
+            "id": "dynamic_list_widget",
+            "description": "The tiddler content uses the <$list> widget and 'filter=' attribute to fetch terms.",
+            "points": 25,
+            "visual_evidence": "In the tiddler's edit mode or via the 'view source' preview, the code must contain '<$list' and 'filter=' syntax."
+        },
+        {
+            "id": "glossary_term_tag_usage",
+            "description": "The filter expression specifically targets the 'GlossaryTerm' tag.",
+            "points": 15,
+            "visual_evidence": "The filter code within the tiddler should contain the string '[tag[GlossaryTerm]]' or similar syntax referencing that specific tag."
+        },
+        {
+            "id": "alphabetical_grouping_logic",
+            "description": "The tiddler contains logic to group terms by their starting letter (e.g., using prefix, search, or uppercase filters).",
+            "points": 25,
+            "visual_evidence": "The code should show a nested list or a filter that extracts the first letter of titles (e.g., '[get[title]split[]first[]]') to create headers."
+        },
+        {
+            "id": "correct_rendering",
+            "description": "The rendered view shows terms (Algorithm, API, Bandwidth, etc.) grouped under letter headings (A, B, C, etc.).",
+            "points": 25,
+            "visual_evidence": "The 'A-Z Glossary' tiddler in view mode should show bold or large letter headings (A, B, C...) followed by the corresponding terms as links, with no empty letters (like 'Z') displayed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_links",
+            "description": "The agent did not manually type out the list of terms or hardcode links to the 10 terms.",
+            "visual_evidence": "The edit mode of the tiddler should not contain a static list of the 10 terms (e.g., [[Algorithm]]); it must only contain the dynamic filter code."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit the tiddler.",
+            "visual_evidence": "Screenshots should show the mouse cursor interacting with the 'plus' button, the tiddler editor, and the 'save' checkmark in the browser."
+        },
+        {
+            "id": "genuine_software_state",
+            "description": "The glossary reflects the actual terms present in the wiki (Algorithm, API, Bandwidth, etc.).",
+            "visual_evidence": "The rendered glossary must match the terms known to be in the wiki; if the list is empty or contains placeholder text, the interaction was not successful."
+        }
+    ],
+    "privileged_info_for_vlm": "The wiki contains 10 terms tagged 'GlossaryTerm': Algorithm, API, Bandwidth, Boolean, Cache, Compiler, Database, Encryption, Firewall, and Framework. The solution MUST use '<$list' and 'filter=' widgets. The final 'A-Z Glossary' tiddler should dynamically display these 10 terms grouped by their first letter. Hardcoded links are strictly forbidden."
+}

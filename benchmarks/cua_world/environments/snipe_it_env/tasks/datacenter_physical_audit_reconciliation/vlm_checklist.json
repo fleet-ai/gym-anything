@@ -1,0 +1,59 @@
+{
+    "task_id": "datacenter_physical_audit_reconciliation@1",
+    "task_completion": [
+        {
+            "id": "read_audit_notes",
+            "description": "Agent opens and reads the physical audit notes from /home/ga/Desktop/audit_notes_rack_a.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window displaying the contents of 'audit_notes_rack_a.txt'."
+        },
+        {
+            "id": "update_srv_rackb_99_location",
+            "description": "Agent updates the location of SRV-RACKB-99 to 'Datacenter - Rack A'.",
+            "points": 20,
+            "visual_evidence": "The asset record for SRV-RACKB-99 showing the location field being edited or saved as 'Datacenter - Rack A'."
+        },
+        {
+            "id": "log_four_audits",
+            "description": "Agent logs a formal audit for the four assets identified in the physical notes.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the audit logging interface or history for four distinct assets from the notes."
+        },
+        {
+            "id": "set_audit_metadata",
+            "description": "Agent sets 'Next Audit Date' to 2026-09-08 and adds note 'Q1 2026 Physical Audit' for the audited assets.",
+            "points": 20,
+            "visual_evidence": "The audit entry form or saved record showing '2026-09-08' and the specific note text."
+        },
+        {
+            "id": "update_missing_asset_status",
+            "description": "Agent updates SRV-RACKA-04 status to 'Lost/Stolen'.",
+            "points": 20,
+            "visual_evidence": "The asset record for SRV-RACKA-04 showing the status dropdown or field set to 'Lost/Stolen'."
+        },
+        {
+            "id": "add_missing_asset_note",
+            "description": "Agent appends 'Not found during Q1 2026 physical audit' to SRV-RACKA-04's record notes.",
+            "points": 10,
+            "visual_evidence": "The notes section of SRV-RACKA-04 showing the specific text 'Not found during Q1 2026 physical audit'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the inventory management system's GUI rather than just executing database scripts.",
+            "visual_evidence": "Screenshots showing the browser or application interface being navigated and clicked."
+        },
+        {
+            "id": "no_audit_on_missing_asset",
+            "description": "The agent must NOT perform a formal audit log for SRV-RACKA-04, only update its status and notes.",
+            "visual_evidence": "Absence of an audit log entry for SRV-RACKA-04 while other assets have them."
+        },
+        {
+            "id": "correct_date_format",
+            "description": "The agent enters the date exactly as 2026-09-08.",
+            "visual_evidence": "The date field in the GUI showing the exact string '2026-09-08'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must process 4 assets from the text file. For these 4: set Next Audit Date to '2026-09-08' and note to 'Q1 2026 Physical Audit'. Asset SRV-RACKB-99 must have its location changed to 'Datacenter - Rack A'. Asset SRV-RACKA-04 (missing from notes) must be set to 'Lost/Stolen' with the note 'Not found during Q1 2026 physical audit' but NO audit should be logged for it."
+}

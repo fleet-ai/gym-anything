@@ -1,0 +1,59 @@
+{
+    "task_id": "urologist_dicom_metadata_audit@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_viewer",
+            "description": "The agent opens the DICOM viewer application and loads the files from /home/ga/DICOM/studies/renal_audit/.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a DICOM viewer (e.g., Rubo Medical or similar) open with a list of files or a CT scan visible."
+        },
+        {
+            "id": "identify_metadata_errors",
+            "description": "The agent inspects the DICOM header/metadata and identifies the incorrect fields (Sex: F, Body Part: HEAD, Referring Physician: empty).",
+            "points": 20,
+            "visual_evidence": "A metadata panel or tag editor window showing 'Patient's Sex' as 'F' and 'Body Part Examined' as 'HEAD'."
+        },
+        {
+            "id": "correct_patient_sex",
+            "description": "The agent corrects the Patient Sex field from 'F' to 'M'.",
+            "points": 20,
+            "visual_evidence": "The DICOM editor window showing the 'Patient's Sex' tag being changed to 'M' or saved as 'M'."
+        },
+        {
+            "id": "correct_body_part",
+            "description": "The agent corrects the Body Part Examined field from 'HEAD' to 'ABDOMEN'.",
+            "points": 20,
+            "visual_evidence": "The DICOM editor window showing 'Body Part Examined' being changed to 'ABDOMEN'."
+        },
+        {
+            "id": "correct_referring_physician",
+            "description": "The agent corrects the Referring Physician's Name field to 'Dr. Smith'.",
+            "points": 15,
+            "visual_evidence": "The DICOM editor window showing 'Referring Physician's Name' (Tag 0008,0090) being updated to 'Dr. Smith'."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "The agent creates the audit report at /home/ga/DICOM/exports/metadata_audit_report.txt with all required details.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the report content including tag names, original/corrected values, and file counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DICOM viewer GUI to identify and modify metadata rather than just using command-line tools like exiftool.",
+            "visual_evidence": "Screenshots showing mouse cursor interaction with the DICOM viewer's menus or tag editing dialogs."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not create the report before actually inspecting the files.",
+            "visual_evidence": "The timeline of screenshots shows file inspection occurring before the final report is written."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the Rubo Medical DICOM viewer as specified in the environment.",
+            "visual_evidence": "The application window title or interface matches the Rubo Medical DICOM viewer software."
+        }
+    ],
+    "privileged_info_for_vlm": "The erroneous DICOM files are located in /home/ga/DICOM/studies/renal_audit/. The specific errors to find and fix are: Patient Sex (Tag 0010,0040) is 'F' but should be 'M'; Body Part Examined (Tag 0018,0015) is 'HEAD' but should be 'ABDOMEN'; Referring Physician's Name (Tag 0008,0090) is empty/blank but should be 'Dr. Smith'. The final report must be saved to /home/ga/DICOM/exports/metadata_audit_report.txt."
+}

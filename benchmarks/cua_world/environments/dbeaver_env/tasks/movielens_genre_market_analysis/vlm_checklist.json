@@ -1,0 +1,53 @@
+{
+    "task_id": "movielens_genre_market_analysis@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connection_setup",
+            "description": "Establish a DBeaver connection named 'MovieLens' pointing to the specified SQLite database.",
+            "points": 10,
+            "visual_evidence": "DBeaver Database Navigator showing a connection named 'MovieLens' with the SQLite driver icon."
+        },
+        {
+            "id": "genre_analysis_query",
+            "description": "Execute SQL to calculate average ratings per genre, filtering for at least 500 ratings.",
+            "points": 25,
+            "visual_evidence": "SQL Editor in DBeaver showing a query involving 'GROUP BY genre' (or unnesting logic) and 'HAVING count(*) >= 500'."
+        },
+        {
+            "id": "hidden_gems_query",
+            "description": "Execute SQL to identify top 10 movies with avg_rating >= 4.0 and count < 50.",
+            "points": 25,
+            "visual_evidence": "SQL Editor showing a query with 'WHERE avg_rating >= 4.0' and 'count < 50' ordered by rating DESC and movieId."
+        },
+        {
+            "id": "export_csv_files",
+            "description": "Export the results of both analyses to the specified CSV paths.",
+            "points": 25,
+            "visual_evidence": "DBeaver export wizard or file explorer showing 'genre_analysis.csv' and 'hidden_gems.csv' in /home/ga/Documents/exports/."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL queries to the specified script path.",
+            "points": 15,
+            "visual_evidence": "A text editor or DBeaver showing the file 'market_analysis.sql' saved at /home/ga/Documents/scripts/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "Verify the agent used the DBeaver GUI for database interaction rather than just terminal sqlite3 commands.",
+            "visual_evidence": "Screenshots showing the DBeaver application window, query editor, and export wizards being actively used."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Ensure the agent didn't manually type the CSV content but generated it from query results.",
+            "visual_evidence": "The DBeaver 'Export Data' dialog or 'Save results' workflow visible in the trajectory."
+        },
+        {
+            "id": "connection_naming_compliance",
+            "description": "Check that the connection name matches the requirement exactly.",
+            "visual_evidence": "The text 'MovieLens' (case sensitive) visible in the DBeaver connection properties or navigator tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/movielens.db. The connection in DBeaver must be named 'MovieLens'. For the genre analysis, the agent must handle the pipe-separated 'genres' column (e.g., using LIKE or a recursive CTE to split strings). The 'hidden gems' must be sorted by average rating descending, then movieId as a tie-breaker. Output paths: /home/ga/Documents/exports/genre_analysis.csv, /home/ga/Documents/exports/hidden_gems.csv, and /home/ga/Documents/scripts/market_analysis.sql."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_agricultural_rtk_gps@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulation environment.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D scene with a tractor and vineyard elements."
+        },
+        {
+            "id": "configure_worldinfo_gps_system",
+            "description": "Set the WorldInfo gpsCoordinateSystem to 'WGS84'.",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree, under the WorldInfo node, the 'gpsCoordinateSystem' field is set to 'WGS84'."
+        },
+        {
+            "id": "configure_worldinfo_gps_reference",
+            "description": "Set the WorldInfo gpsReference to 38.281, -122.278, 25.5.",
+            "points": 20,
+            "visual_evidence": "In the Scene Tree, under the WorldInfo node, the 'gpsReference' field shows the values 38.281, -122.278, 25.5."
+        },
+        {
+            "id": "configure_worldinfo_north_direction",
+            "description": "Set the WorldInfo northDirection to 0 1 0.",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree, under the WorldInfo node, the 'northDirection' field is set to 0 1 0."
+        },
+        {
+            "id": "configure_tractor_gps_accuracy",
+            "description": "Update the 'rtk_gps' sensor accuracy on the 'AG_TRACTOR' to 0.02.",
+            "points": 25,
+            "visual_evidence": "In the Scene Tree, under the AG_TRACTOR node, the GPS sensor named 'rtk_gps' has its 'accuracy' field set to 0.02."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog or a terminal command shows the file being saved as '/home/ga/Desktop/vineyard_georeferenced.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots Scene Tree GUI to modify parameters.",
+            "visual_evidence": "Screenshots show the mouse cursor or selection highlights within the Webots Scene Tree/Inspector panel rather than just editing a text file."
+        },
+        {
+            "id": "no_hardcoding_bypass",
+            "description": "The agent did not simply create an empty file with the target name.",
+            "visual_evidence": "The Webots 3D view shows a populated vineyard scene, confirming the actual simulation world was modified."
+        },
+        {
+            "id": "genuine_node_selection",
+            "description": "The agent correctly identified and expanded the AG_TRACTOR and WorldInfo nodes.",
+            "visual_evidence": "The Scene Tree shows the specific hierarchy expanded to reveal the 'rtk_gps' and 'WorldInfo' fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values in Webots: WorldInfo node must have gpsCoordinateSystem='WGS84', gpsReference=[38.281, -122.278, 25.5], and northDirection=[0, 1, 0]. The robot is named 'AG_TRACTOR' and its GPS sensor is named 'rtk_gps' with a required accuracy of 0.02. The final file must be saved to /home/ga/Desktop/vineyard_georeferenced.wbt."
+}

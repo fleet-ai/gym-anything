@@ -1,0 +1,59 @@
+{
+    "task_id": "upper_stage_gto_finite_burn@1",
+    "task_completion": [
+        {
+            "id": "read_spec_doc",
+            "description": "Agent opens and reads the specification document at ~/Desktop/upper_stage_specs.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of upper_stage_specs.txt on the desktop."
+        },
+        {
+            "id": "gmat_hardware_setup",
+            "description": "Agent configures ChemicalTank, ChemicalThruster, and FiniteBurn objects in the GMAT interface or script editor.",
+            "points": 20,
+            "visual_evidence": "GMAT resources tree showing 'ChemicalTank1', 'ChemicalThruster1', and 'FiniteBurn1' or equivalent script lines in the GMAT editor."
+        },
+        {
+            "id": "burn_logic_configuration",
+            "description": "Agent sets the burn to initiate at True Anomaly = 180.0 and propagate until Apoapsis = 42164.14 km.",
+            "points": 25,
+            "visual_evidence": "GMAT Mission sequence showing a 'Propagate' command with a 'Stop Condition' of TA = 180, followed by a 'Begin FiniteBurn' and a 'Propagate' to RMAG or RadApo = 42164.14."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to ~/GMAT_output/gto_injection.script.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Save As' dialog or a terminal 'ls' command showing the file exists in the GMAT_output directory."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the GMAT simulation to calculate the burn parameters.",
+            "points": 15,
+            "visual_evidence": "GMAT message window showing 'Simulation Completed' or the output trajectory plot updating."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent creates the report file ~/GMAT_output/gto_injection_report.txt with required values.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the report file containing burn_duration_seconds, final_apoapsis_km, and remaining_fuel_kg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "Agent uses the GMAT graphical interface or the GMAT script editor rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the GMAT application window active and being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The report values are derived from the simulation, not just copied from the prompt or specs.",
+            "visual_evidence": "The report values (e.g., duration ~298s) appear in the GMAT output windows or report files before being written to the final text file."
+        },
+        {
+            "id": "no_hardcoding_values",
+            "description": "The agent does not simply echo the target apoapsis into the report without running the script.",
+            "visual_evidence": "The agent is seen clicking 'Run' in GMAT and checking the 'ReportFile' output in the GMAT workspace."
+        }
+    ],
+    "privileged_info_for_vlm": "The target apoapsis radius is exactly 42164.14 km. The expected burn duration should be between 290.0 and 320.0 seconds (calculated value is approximately 298.7s). The burn must start at True Anomaly 180.0 (Descending Node) and must be strictly prograde (VNB coordinate system, Vector [1, 0, 0])."
+}

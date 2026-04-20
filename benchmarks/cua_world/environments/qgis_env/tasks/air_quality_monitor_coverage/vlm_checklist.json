@@ -1,0 +1,59 @@
+{
+    "task_id": "air_quality_monitor_coverage@1",
+    "task_completion": [
+        {
+            "id": "load_gis_layers",
+            "description": "Agent loads both the EPA PM2.5 monitors and California county boundary GeoJSON files into a GIS application (e.g., QGIS).",
+            "points": 10,
+            "visual_evidence": "The Layers panel shows 'epa_pm25_monitors_ca' and 'ca_counties' as active layers, and the map canvas displays the spatial data."
+        },
+        {
+            "id": "spatial_join_count",
+            "description": "Agent performs a spatial join or point-in-polygon analysis to calculate 'monitor_count' for each county.",
+            "points": 20,
+            "visual_evidence": "A tool dialog (like 'Join Attributes by Location' or 'Count Points in Polygon') is visible, or the attribute table shows a new column with integer counts."
+        },
+        {
+            "id": "distance_analysis",
+            "description": "Agent calculates the distance to the nearest monitor for each county to populate 'nearest_monitor_km'.",
+            "points": 25,
+            "visual_evidence": "Use of a 'Distance to nearest hub' or 'NNJoin' tool, or a field calculator expression involving geometry distance functions."
+        },
+        {
+            "id": "field_calculations",
+            "description": "Agent populates 'coverage_status' and 'monitoring_density' fields based on the required logic.",
+            "points": 20,
+            "visual_evidence": "The Field Calculator window is shown with expressions for 'coverage_status' (e.g., CASE WHEN... THEN...) and 'monitoring_density' (monitor_count / area)."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Agent exports the processed county layer to the specific GeoJSON path with all 58 counties.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save Vector Layer As' dialog showing the format as GeoJSON and the file path /home/ga/GIS_Data/exports/pm25_coverage_gaps.geojson."
+        },
+        {
+            "id": "export_csv_report",
+            "description": "Agent exports the attribute table as a CSV report to the specified path.",
+            "points": 10,
+            "visual_evidence": "An export dialog or file explorer showing the creation of /home/ga/GIS_Data/exports/monitoring_coverage_report.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GIS GUI (like QGIS) rather than just executing a single python script in the terminal to generate the files.",
+            "visual_evidence": "Screenshots show the QGIS interface, tool dialogs, and map rendering rather than just a terminal window."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not manually type in values for the 58 counties but used automated GIS tools.",
+            "visual_evidence": "The use of the 'Field Calculator' or 'Spatial Join' dialogs instead of manual attribute editing."
+        },
+        {
+            "id": "data_source_verification",
+            "description": "The agent accessed the specific files provided in the GIS_Data directory.",
+            "visual_evidence": "The file paths in the 'Add Layer' or 'Data Source Manager' dialog match /home/ga/GIS_Data/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing 58 California counties. The input files are /home/ga/GIS_Data/epa_pm25_monitors_ca.geojson and /home/ga/GIS_Data/ca_counties.geojson. The final GeoJSON must be saved to /home/ga/GIS_Data/exports/pm25_coverage_gaps.geojson and the CSV to /home/ga/GIS_Data/exports/monitoring_coverage_report.csv. Required fields in the output are: monitor_count, nearest_monitor_km, coverage_status, and monitoring_density. Coverage status logic: 'Optimal' (count > 3), 'Sufficient' (1-3), 'Gap' (0)."
+}

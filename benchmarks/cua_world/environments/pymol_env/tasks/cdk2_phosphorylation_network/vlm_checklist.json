@@ -1,0 +1,59 @@
+{
+    "task_id": "cdk2_phosphorylation_network@1",
+    "task_completion": [
+        {
+            "id": "fetch_pdb_1fin",
+            "description": "Fetch and load PDB 1FIN into the PyMOL workspace.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1FIN' and the 3D viewer displays the protein structure."
+        },
+        {
+            "id": "isolate_cdk2_chain_a",
+            "description": "Isolate or select Chain A (CDK2) and locate residue 160.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command line or selection menu shows actions related to 'chain A' or 'resi 160'. The 3D viewer may show a specific selection highlight on one chain."
+        },
+        {
+            "id": "identify_arginine_triad",
+            "description": "Identify and display Arginines 50, 126, and 150 as sticks.",
+            "points": 20,
+            "visual_evidence": "The 3D viewer shows three arginine residues (R50, R126, R150) rendered in 'sticks' representation surrounding residue 160."
+        },
+        {
+            "id": "measure_distances",
+            "description": "Measure at least three distances between the residue 160 phosphate/oxygen group and the arginine nitrogens.",
+            "points": 25,
+            "visual_evidence": "Yellow dashed lines (distance measurements) are visible between the side chains of the arginines and residue 160, with numerical labels in Angstroms."
+        },
+        {
+            "id": "save_high_res_figure",
+            "description": "Render and save a high-resolution PNG figure to the specified path.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command log shows a 'png' command with the path '~/PyMOL_Data/images/cdk2_activation.png' or a file explorer window confirms the file creation."
+        },
+        {
+            "id": "write_text_report",
+            "description": "Write a plain-text report documenting residues and distances to the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command shows a file at '~/PyMOL_Data/cdk2_phospho_report.txt' containing the residue names and measured distance values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent used the PyMOL GUI and command line interface rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the 1FIN structure loaded and manipulated in the viewport."
+        },
+        {
+            "id": "actual_measurement_execution",
+            "description": "The agent performed actual distance measurements in the software rather than hardcoding values.",
+            "visual_evidence": "The PyMOL wizard or 'dist' command output is visible in the PyMOL feedback console."
+        },
+        {
+            "id": "no_hallucinated_tpo",
+            "description": "The agent correctly identifies the residue at 160 even if the prompt's 'TPO' label conflicts with the actual PDB data.",
+            "visual_evidence": "The agent's report or PyMOL selection labels should reflect the actual residue found in 1FIN (which is THR 160, not TPO)."
+        }
+    ],
+    "privileged_info_for_vlm": "In PDB 1FIN, residue 160 in Chain A is actually a standard Threonine (THR), not a phosphorylated Threonine (TPO), despite the task description's claim. The Arginine triad (Arg 50, 126, 150) is present in Chain A. Distances measured should typically be in the range of 2.0 to 5.0 Angstroms. The final figure must be saved to ~/PyMOL_Data/images/cdk2_activation.png and the report to ~/PyMOL_Data/cdk2_phospho_report.txt."
+}

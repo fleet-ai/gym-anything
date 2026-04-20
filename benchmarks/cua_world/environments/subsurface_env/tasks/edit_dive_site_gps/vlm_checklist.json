@@ -1,0 +1,59 @@
+{
+    "task_id": "edit_dive_site_gps@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent opens the Subsurface dive log application and loads the dive log file.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible, showing a list of dives or dive sites."
+        },
+        {
+            "id": "identify_missing_gps_site",
+            "description": "The agent identifies a dive site that is missing GPS coordinates.",
+            "points": 15,
+            "visual_evidence": "The agent selects or highlights a dive site (e.g., Sund Rock, Zenobia, or Green Bay) where the GPS/Coordinates fields are empty."
+        },
+        {
+            "id": "enter_latitude",
+            "description": "The agent enters the correct latitude into the site management or edit field.",
+            "points": 25,
+            "visual_evidence": "The value '47.39170°N' (or 47.3917) is typed into the latitude input field of the dive site editor."
+        },
+        {
+            "id": "enter_longitude",
+            "description": "The agent enters the correct longitude into the site management or edit field.",
+            "points": 25,
+            "visual_evidence": "The value '122.57694°W' (or -122.5769) is typed into the longitude input field of the dive site editor."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the changes made to the dive site coordinates.",
+            "points": 15,
+            "visual_evidence": "The agent clicks an 'Apply', 'OK', or 'Save' button within the dive site edit dialog."
+        },
+        {
+            "id": "save_file",
+            "description": "The agent saves the dive log file to persist the changes to disk.",
+            "points": 10,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or a disk icon in the main toolbar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to edit the coordinates rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Subsurface application interface and text being entered into GUI fields."
+        },
+        {
+            "id": "no_manual_xml_edit",
+            "description": "The agent did not use a text editor (like nano or gedit) to manually modify the .ssrf file.",
+            "visual_evidence": "The trajectory does not show text editors open with the dive log source code."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the application menus to find the site management or dive list.",
+            "visual_evidence": "The agent is seen clicking on dive list items or the 'Dive Site' management tab/menu."
+        }
+    ],
+    "privileged_info_for_vlm": "The target coordinates are 47.39170°N and 122.57694°W. Note that in some software, West longitude is represented as a negative number (-122.57694). Due to a known issue in the environment setup, multiple sites (Sund Rock, Zenobia, Green Bay) may appear to be missing coordinates; the agent is successful if it updates any site missing coordinates with the specified values and saves the file."
+}

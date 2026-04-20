@@ -1,0 +1,62 @@
+{
+    "task_id": "docker_compose_merge@1",
+    "task_completion": [
+        {
+            "id": "merged_directory_created",
+            "description": "The agent created the target directory '~/projects/merged/' and populated it with a unified docker-compose.yaml file.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'ls ~/projects/merged/' containing a docker-compose.yaml file or a file explorer view of that path."
+        },
+        {
+            "id": "resolved_service_naming_conflicts",
+            "description": "The unified docker-compose.yaml shows unique names for the two 'db' services (e.g., 'auth-db' and 'catalog-db').",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command output showing the services section of the docker-compose.yaml with distinct names for the databases."
+        },
+        {
+            "id": "resolved_port_conflicts",
+            "description": "The host port mappings for 8080 and 5432 have been modified so that no two services attempt to bind to the same host port.",
+            "points": 20,
+            "visual_evidence": "The docker-compose.yaml file showing unique host-side port mappings (e.g., 8080:8080 and 8081:8080; 5432:5432 and 5433:5432)."
+        },
+        {
+            "id": "resolved_resource_conflicts",
+            "description": "The 'backend' network and 'db-data' volume names have been made unique or unified to prevent collision.",
+            "points": 15,
+            "visual_evidence": "The 'networks' and 'volumes' sections of the docker-compose.yaml showing unique identifiers or a single shared network/volume configuration."
+        },
+        {
+            "id": "updated_env_connectivity",
+            "description": "Environment variables (like DB_HOST) in the API services are updated to match the new renamed database service names.",
+            "points": 15,
+            "visual_evidence": "The 'environment' section of the API services in docker-compose.yaml showing hostnames that match the renamed DB services."
+        },
+        {
+            "id": "stack_running_and_healthy",
+            "description": "The agent successfully ran 'docker compose up' and verified that all 6 services are running.",
+            "points": 25,
+            "visual_evidence": "Terminal output from 'docker compose ps' or 'docker ps' showing 6 containers (auth-api, catalog-api, 2 DBs, redis, search) with a status of 'Up' or 'Healthy'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited the files rather than just echoing a pre-prepared final file.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the use of an editor (vim, nano, gedit) or multiple incremental 'sed'/'cat' commands rather than a single massive redirection."
+        },
+        {
+            "id": "live_status_check",
+            "description": "The agent verified the status using live commands, not just assuming success.",
+            "points": 0,
+            "visual_evidence": "Execution of 'docker compose ps' or 'docker compose logs' after starting the stack."
+        },
+        {
+            "id": "no_hardcoded_paths_bypass",
+            "description": "The agent used the specified user 'ga' and paths in the home directory.",
+            "points": 0,
+            "visual_evidence": "Terminal prompts showing 'ga@' and paths starting with '/home/ga/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires merging two projects. Team Alpha (Auth) has: auth-api, db, cache. Team Beta (Catalog) has: catalog-api, db, search. Total services must be 6. Conflicts to resolve: Service names ('db'), Host ports (8080, 5432), Network names ('backend'), and Volume names ('db-data'). The agent must update the API environment variables (e.g., DATABASE_URL or DB_HOST) to point to the new renamed database service names to ensure connectivity. The final working directory must be /home/ga/projects/merged/."
+}

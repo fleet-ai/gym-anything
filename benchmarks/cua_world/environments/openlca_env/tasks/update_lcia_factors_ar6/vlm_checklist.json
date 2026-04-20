@@ -1,0 +1,59 @@
+{
+    "task_id": "update_lcia_factors_ar6@1",
+    "task_completion": [
+        {
+            "id": "import_or_locate_traci",
+            "description": "Locate 'TRACI 2.1' in the LCIA methods list or import it from the specified zip file if missing.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing 'TRACI 2.1' in the software's method list or an import dialog pointing to '~/LCA_Imports/lcia_methods.zip'."
+        },
+        {
+            "id": "create_duplicate_method",
+            "description": "Create a new LCIA method named 'TRACI 2.1 (IPCC AR6 Modified)' by duplicating the original.",
+            "points": 15,
+            "visual_evidence": "A new entry in the LCIA methods list with the exact name 'TRACI 2.1 (IPCC AR6 Modified)'."
+        },
+        {
+            "id": "update_methane_factor",
+            "description": "Update the characterization factor for Methane (Emission to air) to 29.8.",
+            "points": 25,
+            "visual_evidence": "The characterization factor table for the new method showing 'Methane' (air) with a value of 29.8."
+        },
+        {
+            "id": "update_n2o_factor",
+            "description": "Update the characterization factor for Nitrous oxide (Emission to air) to 273.",
+            "points": 25,
+            "visual_evidence": "The characterization factor table for the new method showing 'Nitrous oxide' (air) with a value of 273."
+        },
+        {
+            "id": "save_method_changes",
+            "description": "Save the changes to the newly created LCIA method.",
+            "points": 10,
+            "visual_evidence": "A 'Save' button being clicked, a 'Saved successfully' notification, or the updated values persisting in the method view."
+        },
+        {
+            "id": "create_log_file",
+            "description": "Document the updates in a log file at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the file '~/LCA_Results/ar6_update_log.txt' containing text describing the Methane and Nitrous oxide updates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LCA software GUI to modify factors rather than just editing backend database files directly via terminal.",
+            "visual_evidence": "Screenshots showing the cursor interacting with the LCA software's tables and input fields."
+        },
+        {
+            "id": "no_hardcoded_log_only",
+            "description": "The agent actually performed the software updates before writing the log file.",
+            "visual_evidence": "The timestamp of the software interaction precedes the final log file creation/save."
+        },
+        {
+            "id": "genuine_method_duplication",
+            "description": "The agent duplicated the method rather than creating a blank one to ensure other TRACI factors remain intact.",
+            "visual_evidence": "The new method contains other TRACI 2.1 factors (e.g., Ozone depletion or Acidification) in addition to the modified ones."
+        }
+    ],
+    "privileged_info_for_vlm": "The target method name must be exactly 'TRACI 2.1 (IPCC AR6 Modified)'. The specific characterization factors to verify are Methane (air) = 29.8 and Nitrous oxide (air) = 273. The log file must be located at /home/ga/LCA_Results/ar6_update_log.txt. If TRACI 2.1 is not initially visible, the agent must use the file at /home/ga/LCA_Imports/lcia_methods.zip."
+}

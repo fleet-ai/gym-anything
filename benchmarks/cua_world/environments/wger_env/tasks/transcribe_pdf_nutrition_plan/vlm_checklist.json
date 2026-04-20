@@ -1,0 +1,62 @@
+{
+    "task_id": "transcribe_pdf_nutrition_plan@1",
+    "task_completion": [
+        {
+            "id": "open_pdf_document",
+            "description": "The agent opens the nutrition_protocol.pdf file to read the contents.",
+            "points": 10,
+            "visual_evidence": "A PDF viewer or document reader is visible showing the nutrition plan details."
+        },
+        {
+            "id": "login_wger",
+            "description": "The agent successfully logs into the wger application using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or user profile page is visible, indicating a logged-in state for 'admin'."
+        },
+        {
+            "id": "create_nutrition_plan",
+            "description": "A new nutrition plan named 'Nutritionist Protocol' is created.",
+            "points": 15,
+            "visual_evidence": "A nutrition plan with the exact name 'Nutritionist Protocol' is visible in the wger interface."
+        },
+        {
+            "id": "add_breakfast_items",
+            "description": "Rolled Oats (80g) and Whole Milk (250g) are added to the plan.",
+            "points": 20,
+            "visual_evidence": "The nutrition plan shows 'Rolled Oats' with 80g and 'Whole Milk' with 250g."
+        },
+        {
+            "id": "add_lunch_items",
+            "description": "Chicken Breast (Raw) (200g), Brown Rice (150g), and Broccoli (100g) are added to the plan.",
+            "points": 25,
+            "visual_evidence": "The nutrition plan shows 'Chicken Breast (Raw)' 200g, 'Brown Rice' 150g, and 'Broccoli' 100g."
+        },
+        {
+            "id": "add_dinner_items",
+            "description": "Beef Steak (250g) and Sweet Potato (200g) are added to the plan.",
+            "points": 20,
+            "visual_evidence": "The nutrition plan shows 'Beef Steak' 250g and 'Sweet Potato' 200g."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the wger web interface to add items rather than database manipulation via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent clicking buttons, typing in forms, and searching for ingredients within the browser."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent actually opened the PDF to retrieve the values instead of guessing or using external knowledge.",
+            "points": 0,
+            "visual_evidence": "The agent is seen opening and viewing 'nutrition_protocol.pdf' before or during the data entry process."
+        },
+        {
+            "id": "exact_value_matching",
+            "description": "The agent entered the exact weights specified in the PDF, not rounded or default values.",
+            "points": 0,
+            "visual_evidence": "The input fields in the wger UI match the specific gram values (e.g., 80, 250, 200, 150, 100) exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The nutrition plan must be named 'Nutritionist Protocol'. The required ingredients and weights are: Rolled Oats (80g), Whole Milk (250g), Chicken Breast (Raw) (200g), Brown Rice (150g), Broccoli (100g), Beef Steak (250g), and Sweet Potato (200g). These must be entered into the wger web application."
+}

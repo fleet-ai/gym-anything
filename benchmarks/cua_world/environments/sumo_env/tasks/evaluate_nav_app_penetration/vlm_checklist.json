@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_nav_app_penetration@1",
+    "task_completion": [
+        {
+            "id": "open_sumo_config",
+            "description": "Open the Bologna Pasubio network configuration file in SUMO or a text editor.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the file path /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg being accessed or loaded."
+        },
+        {
+            "id": "run_scenario_0",
+            "description": "Run the 0% penetration simulation and save tripinfo_0.xml.",
+            "points": 20,
+            "visual_evidence": "Terminal command or GUI execution showing SUMO running with output directed to /home/ga/SUMO_Output/tripinfo_0.xml."
+        },
+        {
+            "id": "run_scenario_25",
+            "description": "Run the 25% penetration simulation with rerouting probability 0.25 and period 30, saving tripinfo_25.xml.",
+            "points": 25,
+            "visual_evidence": "Command line arguments or configuration settings showing '--device.rerouting.probability 0.25' and '--device.rerouting.period 30' with output to tripinfo_25.xml."
+        },
+        {
+            "id": "run_scenario_75",
+            "description": "Run the 75% penetration simulation with rerouting probability 0.75 and period 30, saving tripinfo_75.xml.",
+            "points": 25,
+            "visual_evidence": "Command line arguments or configuration settings showing '--device.rerouting.probability 0.75' and '--device.rerouting.period 30' with output to tripinfo_75.xml."
+        },
+        {
+            "id": "generate_csv_report",
+            "description": "Create the penetration_report.csv with correct headers and calculated averages.",
+            "points": 20,
+            "visual_evidence": "A file viewer or terminal 'cat' command showing /home/ga/SUMO_Output/penetration_report.csv with headers 'Penetration,AvgDuration' and three rows of data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the SUMO simulations rather than just creating the CSV.",
+            "visual_evidence": "Screenshots showing SUMO progress bars, terminal output of simulation steps, or the creation of the large XML tripinfo files."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Check if the agent calculated the averages from the XML files instead of copy-pasting from the task prompt or privileged info.",
+            "visual_evidence": "Evidence of the agent using scripts (python/awk/grep) or a calculator to process the 'duration' attribute from the XML files."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Ensure the agent used the specific paths requested in the task.",
+            "visual_evidence": "File paths in commands or file explorers matching /home/ga/SUMO_Output/ exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected average trip durations for the Bologna Pasubio network are: 0% = 329.19, 25% = 304.05, and 75% = 297.93. The agent's CSV report should contain these values (rounded to two decimal places). The VLM should verify that the agent used the specific rerouting parameters (0.25/30 and 0.75/30) for the respective scenarios."
+}

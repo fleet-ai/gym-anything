@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_strict_capture_filter@1",
+    "task_completion": [
+        {
+            "id": "wireshark_interface_selection",
+            "description": "Wireshark is open and the 'eth0' interface is selected for capture.",
+            "points": 10,
+            "visual_evidence": "The Wireshark main window showing 'eth0' highlighted in the interface list or selected in the Capture Options dialog."
+        },
+        {
+            "id": "capture_filter_configuration",
+            "description": "A capture filter for 'icmp' is applied before starting the capture.",
+            "points": 25,
+            "visual_evidence": "The 'Capture Filter' input box (often green) containing the text 'icmp' or 'proto icmp' in the Capture Options or main start screen."
+        },
+        {
+            "id": "terminal_ping_execution",
+            "description": "The agent runs the ping command in a terminal to generate traffic.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the command 'ping -c 10 8.8.8.8' being executed."
+        },
+        {
+            "id": "live_capture_display",
+            "description": "Wireshark shows a live capture containing only ICMP packets.",
+            "points": 20,
+            "visual_evidence": "The Wireshark packet list pane showing 'ICMP' in the Protocol column, with no other protocols (like TCP, HTTP, or DNS) visible during the capture."
+        },
+        {
+            "id": "save_pcapng_file",
+            "description": "The capture is saved to the specific file path required.",
+            "points": 30,
+            "visual_evidence": "The 'Save As' or 'Export Specified Packets' dialog showing the path '/home/ga/Documents/captures/icmp_strict.pcapng' and the file format as pcapng."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the Wireshark GUI to configure filters and save the file rather than just using CLI tools like tshark.",
+            "visual_evidence": "Screenshots showing mouse cursor movement, menu clicks, and dialog interactions within the Wireshark graphical interface."
+        },
+        {
+            "id": "genuine_traffic_generation",
+            "description": "The packets in Wireshark correspond to the terminal ping activity.",
+            "visual_evidence": "The timestamps and sequence of ICMP packets in Wireshark appearing after the terminal command is initiated."
+        },
+        {
+            "id": "strict_filter_verification",
+            "description": "The agent did not simply use a display filter to hide noise, but used a capture filter to prevent noise from being recorded.",
+            "visual_evidence": "The 'Capture Filter' field in the Capture Options being populated, rather than just the 'Display Filter' bar at the top of the packet list."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the 'eth0' interface. The capture filter must be set to 'icmp' (Capture Filter is different from Display Filter). The final file must be saved at '/home/ga/Documents/captures/icmp_strict.pcapng'. The capture must contain at least 10 ICMP packets (ping -c 10 generates 20 packets: 10 requests and 10 replies) and exactly 0 non-ICMP packets. Background noise (HTTP/TCP) is active during the task, so a capture filter is mandatory to achieve zero noise packets."
+}

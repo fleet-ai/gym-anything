@@ -1,0 +1,53 @@
+{
+    "task_id": "optical_vignetting_characterization@1",
+    "task_completion": [
+        {
+            "id": "capture_bias_frames",
+            "description": "Capture 5 BIAS frames (0s exposure) to the specified directory.",
+            "points": 15,
+            "visual_evidence": "The CCD control window or file manager showing 5 FITS files in ~/Calibration/Bias/ with 0s exposure settings visible in the capture logs or file metadata."
+        },
+        {
+            "id": "capture_flat_frames",
+            "description": "Capture 5 FLAT frames (2s exposure, 'Luminance' filter) to the specified directory.",
+            "points": 20,
+            "visual_evidence": "The CCD control window showing 'Flat' frame type, 2s exposure, and Filter Slot 1 (Luminance) selected, with 5 files appearing in ~/Calibration/Flats/."
+        },
+        {
+            "id": "create_analysis_script",
+            "description": "Create the Python script ~/analyze_sensor.py with the required logic.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the script at ~/analyze_sensor.py using astropy.io.fits and numpy to calculate the Vignetting Ratio and RMS Noise."
+        },
+        {
+            "id": "script_output_format",
+            "description": "The script must print exactly two lines: 'Vignetting Ratio: <float>' and 'RMS Noise: <float>'.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the execution of 'python3 ~/analyze_sensor.py <path>' with the two specific lines of text formatted exactly as requested."
+        },
+        {
+            "id": "generate_sensor_report",
+            "description": "Save the combined analysis results from one Bias and one Flat frame to ~/Documents/sensor_report.txt.",
+            "points": 30,
+            "visual_evidence": "A file manager or terminal 'cat' command showing ~/Documents/sensor_report.txt containing the analysis results for both a Bias and a Flat frame."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the KStars/Ekos GUI to capture frames rather than simulating files via terminal.",
+            "visual_evidence": "Screenshots showing the Ekos Capture module active, progress bars for exposures, or the INDI control panel."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not hardcode the output values in the script or report.",
+            "visual_evidence": "The Python script contains actual numpy/astropy math (mean, std) rather than print statements with static numbers."
+        },
+        {
+            "id": "correct_filter_usage",
+            "description": "The agent physically changed the filter to Slot 1/Luminance for the flats.",
+            "visual_evidence": "The Ekos Filter Wheel module or Capture settings showing Slot 1 or 'Luminance' selected during the flat frame sequence."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is performed in a synthetic environment using KStars/INDI CCD Simulator. Verified paths: Bias frames in /home/ga/Calibration/Bias (5 count), Flat frames in /home/ga/Calibration/Flats (5 count, 2s, Luminance/Slot 1). The script must be at /home/ga/analyze_sensor.py and the final report at /home/ga/Documents/sensor_report.txt. The Vignetting Ratio formula is the mean of four 50x50 corners divided by the mean of the central 100x100 area. RMS Noise is the standard deviation of the full image."
+}

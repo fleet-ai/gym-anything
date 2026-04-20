@@ -1,0 +1,53 @@
+{
+    "task_id": "iat_dscore_bias_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "The agent accesses the raw IAT data file at ~/pebl/data/iat_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the CSV content with columns: participant, block, trial, rt_ms, and correct."
+        },
+        {
+            "id": "exclusion_logic_implementation",
+            "description": "The agent identifies and excludes participants with >10% of trials under 300ms in blocks 3, 4, 6, and 7.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the calculation of fast response percentages and the identification of 'sub-99' as a bot/excluded participant."
+        },
+        {
+            "id": "d_score_calculation",
+            "description": "The agent calculates D-scores using the Greenwald (2003) method (mean differences divided by pooled SD for blocks 3/6 and 4/7).",
+            "points": 30,
+            "visual_evidence": "Code snippets or intermediate logs showing the calculation of mean RTs, pooled standard deviations, and the final D-score formula being applied."
+        },
+        {
+            "id": "json_report_creation",
+            "description": "The agent saves the analysis results to ~/pebl/analysis/iat_report.json.",
+            "points": 15,
+            "visual_evidence": "A terminal command showing the creation of the file or a file explorer view showing the file exists in the specified directory."
+        },
+        {
+            "id": "report_content_verification",
+            "description": "The final JSON contains the required fields: 'participants' list (with id, d_score, or excluded status) and 'group_mean_d_score'.",
+            "points": 25,
+            "visual_evidence": "A 'cat' or 'jq' command displaying the content of iat_report.json, showing 'sub-99' as excluded and a group mean D-score near 0.563."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not hardcode the final group mean or the excluded participant ID without performing the analysis.",
+            "visual_evidence": "The agent's code or terminal history should show active processing of the CSV file rather than just echoing a pre-written JSON string."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The agent used appropriate tools (Python/Pandas/R) to perform the statistical calculations.",
+            "visual_evidence": "Screenshots showing the execution of a script or interactive environment (like a Jupyter notebook or Python REPL) to process the data."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The agent interacted with the actual file paths provided in the task.",
+            "visual_evidence": "Commands or file dialogs referencing /home/ga/pebl/data/iat_data.csv and /home/ga/pebl/analysis/iat_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 21 participants. Participant 'sub-99' is a bot and must be excluded because all its RTs are between 150-250ms (triggering the >10% under 300ms rule). The expected group mean D-score for the remaining 20 valid participants is approximately 0.563 (tolerance +/- 0.015). The output must be a JSON file at /home/ga/pebl/analysis/iat_report.json."
+}

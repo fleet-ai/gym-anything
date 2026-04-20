@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_surgical_ablation_sensors@1",
+    "task_completion": [
+        {
+            "id": "open_webots_interface",
+            "description": "The agent has the Webots simulation environment open and the scene tree is visible.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is active, showing the 3D view and the Scene Tree sidebar."
+        },
+        {
+            "id": "locate_ablation_tool",
+            "description": "The agent has located and expanded the 'ABLATION_TOOL' node in the Scene Tree.",
+            "points": 10,
+            "visual_evidence": "The 'ABLATION_TOOL' node is highlighted or expanded in the Scene Tree hierarchy."
+        },
+        {
+            "id": "add_pen_node",
+            "description": "A 'Pen' node named 'ablation_trace' is added to the children of ABLATION_TOOL with correct parameters.",
+            "points": 25,
+            "visual_evidence": "A 'Pen' node is visible under ABLATION_TOOL children. The field 'name' shows 'ablation_trace', 'inkColor' shows '0.8 0.1 0.1', 'leadSize' is '0.002', and 'maxDistance' is '0.01'."
+        },
+        {
+            "id": "add_touch_sensor_node",
+            "description": "A 'TouchSensor' node named 'tip_force_sensor' is added with correct type and translation.",
+            "points": 25,
+            "visual_evidence": "A 'TouchSensor' node is visible under ABLATION_TOOL children. The field 'name' shows 'tip_force_sensor', 'type' is set to 'force-3d', and 'translation' is '0 0 -0.05'."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The agent uses the 'Save World As...' function to save the simulation.",
+            "points": 15,
+            "visual_evidence": "A 'Save World As' dialog box or a file explorer window is visible, or the status bar indicates a save operation."
+        },
+        {
+            "id": "verify_output_path",
+            "description": "The file is saved to the specific path /home/ga/Desktop/validated_surgical_sim.wbt.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/Desktop/validated_surgical_sim.wbt' is typed into a save dialog or visible in a file manager after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent interacted with the Webots Scene Tree GUI rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree, right-clicking to add nodes, or typing into the field editor."
+        },
+        {
+            "id": "no_pre_existing_nodes",
+            "description": "The sensors were not already present in the initial state of the world.",
+            "visual_evidence": "Early screenshots show the ABLATION_TOOL children list without the 'ablation_trace' or 'tip_force_sensor' nodes."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent performed a real save operation in the software.",
+            "visual_evidence": "The Webots 'File' menu is opened or the 'Save' icon is clicked, followed by the appearance of the file on the Desktop."
+        }
+    ],
+    "privileged_info_for_vlm": "The target node is 'ABLATION_TOOL'. The Pen node must be named 'ablation_trace' (inkColor: 0.8 0.1 0.1, leadSize: 0.002, maxDistance: 0.01). The TouchSensor must be named 'tip_force_sensor' (type: 'force-3d', translation: 0 0 -0.05). The final file must be saved exactly to /home/ga/Desktop/validated_surgical_sim.wbt."
+}

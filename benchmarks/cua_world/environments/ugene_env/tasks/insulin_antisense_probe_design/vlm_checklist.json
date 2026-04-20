@@ -1,0 +1,59 @@
+{
+    "task_id": "insulin_antisense_probe_design@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "The agent opens the human_insulin_gene.gb file in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE interface shows 'human_insulin_gene.gb' loaded in the Project View or Sequence View."
+        },
+        {
+            "id": "extract_cds_sequence",
+            "description": "The agent identifies and extracts the Coding Sequence (CDS) from the GenBank file.",
+            "points": 15,
+            "visual_evidence": "The 'CDS' annotation is selected in the UGENE Object View or Sequence View, and the agent uses the 'Export' or 'Copy' sequence functionality."
+        },
+        {
+            "id": "export_sense_fasta",
+            "description": "The agent exports the sense CDS sequence to the specified FASTA file.",
+            "points": 15,
+            "visual_evidence": "A file save dialog or a terminal confirmation showing the creation of '~/UGENE_Data/results/antisense_probe/insulin_cds_sense.fasta'."
+        },
+        {
+            "id": "generate_antisense_sequence",
+            "description": "The agent generates the reverse complement of the CDS to create the antisense probe.",
+            "points": 20,
+            "visual_evidence": "The UGENE 'Reverse Complement' tool is used, or a sequence transformation window is visible showing the complementation process."
+        },
+        {
+            "id": "export_antisense_fasta",
+            "description": "The agent exports the antisense sequence to the specified FASTA file.",
+            "points": 15,
+            "visual_evidence": "A file save dialog or terminal confirmation showing the creation of '~/UGENE_Data/results/antisense_probe/insulin_cds_antisense.fasta'."
+        },
+        {
+            "id": "create_probe_report",
+            "description": "The agent creates a text report containing the CDS length, GC content, first 30 nucleotides of both strands, and a hybridization suitability note.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output displays 'probe_design_report.txt' with the required metrics (length, GC%, sequences, and suitability note)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the UGENE graphical interface for sequence analysis rather than just using command-line tools like 'grep' or 'sed'.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and sequence visualization tools being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The GC content and length are derived from the software's analysis tools, not hardcoded from memory.",
+            "visual_evidence": "The UGENE 'Statistics' panel or 'Sequence Information' dialog is visible showing the GC content calculation."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the specific file paths requested in the task description.",
+            "visual_evidence": "The file paths in the 'Save As' dialogs or terminal commands match '~/UGENE_Data/results/antisense_probe/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The human insulin CDS (from NM_000207.3 or J00265.1) is exactly 333 nucleotides long. The sense sequence begins with 'ATGGCCCTGTGGATGCGCCTCCTGCCCCTG'. The antisense sequence (reverse complement) must begin with the complement of the 3' end of the CDS. The GC content for this sequence is approximately 63-64%, which is slightly above the 'ideal' 40-60% range mentioned in the prompt, so the report should reflect this discrepancy."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "consolidate_departments_and_archive@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_employees",
+            "description": "Navigate to the Employees or Departments section in Odoo.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo dashboard with the 'Employees' app open, or a list view of employees/departments."
+        },
+        {
+            "id": "identify_source_employees",
+            "description": "Identify employees currently assigned to 'R&D USA'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a filtered list of employees where the 'Department' column shows 'R&D USA' (e.g., Robert Miller or Anita Oliver)."
+        },
+        {
+            "id": "transfer_employees",
+            "description": "Change the department of all 'R&D USA' employees to 'Research & Development'.",
+            "points": 35,
+            "visual_evidence": "The VLM should see the employee form view for 'R&D USA' staff being edited, with the 'Department' field updated to 'Research & Development', and the change being saved."
+        },
+        {
+            "id": "verify_empty_source_department",
+            "description": "Verify that no employees remain in 'R&D USA'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a search or filter for 'Department: R&D USA' returning no results or showing 0 employees."
+        },
+        {
+            "id": "archive_department",
+            "description": "Archive the 'R&D USA' department.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the 'R&D USA' department configuration page, the 'Action' menu being clicked, and the 'Archive' option selected, or an 'Archived' ribbon appearing on the record."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_usage",
+            "description": "The agent should not use the terminal to execute SQL queries or python scripts to bypass the UI.",
+            "visual_evidence": "The screenshots should show interactions with the Odoo web interface, not a command-line interface or code editor."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the dropdowns and buttons rather than just navigating to a final URL.",
+            "visual_evidence": "Screenshots show the cursor or focus on Odoo UI elements like the 'Department' dropdown and 'Action' menu."
+        },
+        {
+            "id": "no_manual_data_entry_shortcuts",
+            "description": "The agent should not simply delete the department; it must be archived as requested.",
+            "visual_evidence": "The VLM should see the 'Archive' action being selected, not the 'Delete' action."
+        }
+    ],
+    "privileged_info_for_vlm": "The source department is 'R&D USA' and the target department is 'Research & Development'. Key employees to look for in 'R&D USA' before the transfer include Robert Miller (synthetic) and Anita Oliver (demo data). To archive a department in Odoo 17, the agent must go to Employees -> Configuration -> Departments, select 'R&D USA', and use the 'Archive' option under the 'Action' gear/button."
+}

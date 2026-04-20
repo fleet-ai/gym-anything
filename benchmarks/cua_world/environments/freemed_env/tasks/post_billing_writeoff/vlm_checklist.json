@@ -1,0 +1,59 @@
+{
+    "task_id": "post_billing_writeoff@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the billing system with the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The login screen transitions to the main dashboard or patient search interface after entering 'admin'/'admin'."
+        },
+        {
+            "id": "patient_search",
+            "description": "Agent searches for and selects the patient Thomas Wright.",
+            "points": 15,
+            "visual_evidence": "The name 'Thomas Wright' is visible in a search bar, result list, or as the active patient header."
+        },
+        {
+            "id": "ledger_access",
+            "description": "Agent navigates to the financial ledger or billing section for Thomas Wright.",
+            "points": 15,
+            "visual_evidence": "A screen showing transaction history, outstanding balances, or 'Ledger' tab is visible for the patient."
+        },
+        {
+            "id": "adjustment_entry",
+            "description": "Agent initiates an adjustment or write-off transaction for the amount of $8.50.",
+            "points": 30,
+            "visual_evidence": "A form or modal is visible with the value '8.50' entered into an amount field, likely categorized as 'Adjustment' or 'Write-off'."
+        },
+        {
+            "id": "note_entry",
+            "description": "Agent enters the specific note 'Small balance write-off' for the transaction.",
+            "points": 10,
+            "visual_evidence": "The text 'Small balance write-off' is typed into a comments, notes, or description field within the transaction window."
+        },
+        {
+            "id": "transaction_confirmation",
+            "description": "Agent saves or posts the transaction, and it appears in the ledger history.",
+            "points": 20,
+            "visual_evidence": "A new line item appears in the ledger showing an $8.50 credit/adjustment, and the patient's outstanding balance is updated to $0.00."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the application's graphical user interface rather than executing database commands via a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons, and text entry into GUI form fields."
+        },
+        {
+            "id": "no_manual_url_skip",
+            "description": "The agent navigated through the application menus rather than jumping directly to a final success URL.",
+            "visual_evidence": "Sequential screenshots show the transition from search to ledger to the adjustment modal."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent typed the specific note and amount rather than the values appearing instantly via script injection.",
+            "visual_evidence": "Intermediate screenshots show the cursor in the text fields with the required strings being built or present before submission."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Thomas Wright. He has an initial outstanding balance of exactly $8.50. The agent must post a write-off for this exact amount ($8.50) with the note 'Small balance write-off' to result in a final balance of $0.00."
+}

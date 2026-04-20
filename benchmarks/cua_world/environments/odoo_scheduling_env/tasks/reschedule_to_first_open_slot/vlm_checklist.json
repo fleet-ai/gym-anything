@@ -1,0 +1,56 @@
+{
+    "task_id": "reschedule_to_first_open_slot@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the calendar application with 'admin' credentials.",
+            "points": 10,
+            "visual_evidence": "The calendar interface is visible, showing the user 'admin' or a dashboard view rather than a login screen."
+        },
+        {
+            "id": "identify_target_event",
+            "description": "Agent locates the 'Strategic Partnership Review' event on the calendar.",
+            "points": 10,
+            "visual_evidence": "The event 'Strategic Partnership Review' is highlighted, clicked, or its details are opened in a sidebar/modal."
+        },
+        {
+            "id": "identify_free_slot",
+            "description": "Agent identifies the first available 1-hour gap between 1:00 PM and 5:00 PM on Wednesday.",
+            "points": 25,
+            "visual_evidence": "The agent views the Wednesday schedule showing 'Lunch with Client' (13:00-14:00), 'HR Quick Sync' (14:00-14:30), and 'Q3 Project Review' (15:30-16:30), identifying the gap at 14:30."
+        },
+        {
+            "id": "edit_event_time",
+            "description": "Agent modifies the start and end time of the 'Strategic Partnership Review' event.",
+            "points": 25,
+            "visual_evidence": "The edit dialog for 'Strategic Partnership Review' shows the start time being changed to 2:30 PM (14:30) and end time to 3:30 PM (15:30)."
+        },
+        {
+            "id": "save_and_verify_reschedule",
+            "description": "Agent saves the changes and the event appears in the correct new slot.",
+            "points": 30,
+            "visual_evidence": "The calendar view shows 'Strategic Partnership Review' now positioned between 'HR Quick Sync' and 'Q3 Project Review' (specifically from 2:30 PM to 3:30 PM)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface to reschedule the event.",
+            "points": 0,
+            "visual_evidence": "Screenshots show mouse movements, clicks on calendar buttons, and typing into GUI form fields rather than executing SQL or shell commands."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the terminal to directly manipulate the database or calendar files.",
+            "points": 0,
+            "visual_evidence": "The terminal is not used to run scripts like 'setup_task.sh' or direct python commands to modify the calendar backend."
+        },
+        {
+            "id": "genuine_search",
+            "description": "The agent actually navigated to the Wednesday view to check for conflicts.",
+            "points": 0,
+            "visual_evidence": "The agent scrolls to or selects the upcoming Wednesday on the calendar to view existing appointments."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is 'Strategic Partnership Review'. On the upcoming Wednesday, the schedule is: 13:00-14:00 (Lunch with Client), 14:00-14:30 (HR Quick Sync), 15:30-16:30 (Q3 Project Review), and 16:30-17:00 (Email & Admin). The first available 1-hour slot between 13:00 and 17:00 is exactly 14:30 to 15:30 (2:30 PM to 3:30 PM). The agent must move the event to this specific time."
+}

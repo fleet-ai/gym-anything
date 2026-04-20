@@ -1,0 +1,53 @@
+{
+    "task_id": "stale_pipeline_cleanup@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_opportunities",
+            "description": "Agent navigates to the Opportunities module in SuiteCRM to view the pipeline.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the SuiteCRM dashboard and the subsequent 'Opportunities' list view."
+        },
+        {
+            "id": "fix_stale_deals",
+            "description": "Deals in active stages with close dates more than 60 days in the past (ExxonMobil and J&J) are updated to 'Closed Lost' with 0% probability.",
+            "points": 30,
+            "visual_evidence": "Edit screens or list view showing ExxonMobil and J&J records with Sales Stage 'Closed Lost' and Probability '0'."
+        },
+        {
+            "id": "align_probability_mismatches",
+            "description": "Probabilities for active deals (NVIDIA, AT&T, Goldman Sachs, and GE Aviation) are adjusted to align with standard CRM stage conventions.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the edit or detail view of these specific records where the probability field has been modified to match the stage (e.g., GE Aviation 'Needs Analysis' no longer at 100%)."
+        },
+        {
+            "id": "fix_future_closed_won",
+            "description": "The 'Closed Won' deal with a future date (Apple - ML Infrastructure Renewal) is updated to have a close date in the past.",
+            "points": 20,
+            "visual_evidence": "Edit screen for the Apple record showing the 'Expected Close Date' changed from 2027 to a date prior to the current system date."
+        },
+        {
+            "id": "verify_no_unnecessary_edits",
+            "description": "Agent does not modify records that were already internally consistent.",
+            "points": 10,
+            "visual_evidence": "The agent's activity log or navigation shows they bypassed records that already met the criteria (e.g., existing Closed Lost deals or correctly dated Closed Won deals)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SuiteCRM web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show the browser, clicking buttons, and typing into CRM form fields."
+        },
+        {
+            "id": "genuine_search",
+            "description": "The agent searched for or filtered the records within the CRM rather than navigating directly to hardcoded URLs.",
+            "visual_evidence": "Screenshots show the agent using the search bar or filter tool in the Opportunities module."
+        },
+        {
+            "id": "no_script_injection",
+            "description": "The agent did not use developer tools or console scripts to batch update records.",
+            "visual_evidence": "The cursor and interaction patterns show manual field updates or standard CRM bulk action usage."
+        }
+    ],
+    "privileged_info_for_vlm": "There are exactly 2 stale deals to fix: ExxonMobil and J&J (active stages but past dates). There are 4 probability mismatches: NVIDIA, AT&T, Goldman Sachs, and GE Aviation (Needs Analysis stage but 100% probability). There is exactly 1 Closed Won deal with a future date: 'Apple - ML Infrastructure Renewal' (dated 2027-06-15). Ensure the agent changes Apple's date to the past and sets ExxonMobil/J&J to 'Closed Lost' at 0%."
+}

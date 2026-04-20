@@ -1,0 +1,59 @@
+{
+    "task_id": "nfpa_rating_compilation@1",
+    "task_completion": [
+        {
+            "id": "search_cameo_chemicals",
+            "description": "The agent navigates to cameochemicals.noaa.gov and searches for the three specified chemicals.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the CAMEO Chemicals website with search queries for 'Acrolein', 'Sodium Chlorate', and 'Toluene'."
+        },
+        {
+            "id": "extract_acrolein_data",
+            "description": "The agent identifies the NFPA 704 ratings for Acrolein from the CAMEO database.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the Acrolein chemical datasheet on CAMEO showing the NFPA 704 diamond or text ratings (4, 3, 3, NONE)."
+        },
+        {
+            "id": "extract_sodium_chlorate_data",
+            "description": "The agent identifies the NFPA 704 ratings for Sodium Chlorate from the CAMEO database.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the Sodium Chlorate chemical datasheet on CAMEO showing the NFPA 704 section (Note: CAMEO may list 'data unavailable' or specific ratings for solutions; the agent must record what is found there)."
+        },
+        {
+            "id": "extract_toluene_data",
+            "description": "The agent identifies the NFPA 704 ratings for Toluene from the CAMEO database.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the Toluene chemical datasheet on CAMEO showing the NFPA 704 diamond or text ratings (2, 3, 0, NONE)."
+        },
+        {
+            "id": "calculate_area_maximums",
+            "description": "The agent correctly identifies the highest numerical value for each category and aggregates special hazards.",
+            "points": 20,
+            "visual_evidence": "A draft or final report showing Health: 4, Flammability: 3, Instability: 3, and the OX (Oxidizer) hazard from Sodium Chlorate."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "The agent creates the report at /home/ga/Desktop/nfpa_report.txt using the exact specified format.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the text editor or terminal showing the file content at the correct path with the required headers and structure."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to find information rather than just generating the file from internal knowledge.",
+            "visual_evidence": "Screenshots show the browser open to CAMEO Chemicals with active navigation and scrolling."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply 'echo' the final report into a file without visiting the source website.",
+            "visual_evidence": "The trajectory includes distinct steps for searching each chemical on the NOAA website before the file creation step."
+        },
+        {
+            "id": "source_fidelity",
+            "description": "The agent used CAMEO Chemicals as the primary source as instructed, even if other web sources differ.",
+            "visual_evidence": "The browser URL bar consistently shows cameochemicals.noaa.gov during the data gathering phase."
+        }
+    ],
+    "privileged_info_for_vlm": "Acrolein: Health 4, Flammability 3, Instability 3, Special NONE. Toluene: Health 2, Flammability 3, Instability 0, Special NONE. Sodium Chlorate: CAMEO often lists 'Data Unavailable' for the NFPA diamond, but the 'Hazards' section identifies it as a strong Oxidizer (OX). If the agent finds specific ratings on CAMEO for Sodium Chlorate, they are typically Health 1 or 2, Flammability 0, Instability 1, Special OX. Area Maximums: Health 4 (from Acrolein), Flammability 3 (from Acrolein/Toluene), Instability 3 (from Acrolein), Special OX (from Sodium Chlorate)."
+}

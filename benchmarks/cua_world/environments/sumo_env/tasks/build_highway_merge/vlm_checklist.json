@@ -1,0 +1,65 @@
+{
+    "task_id": "build_highway_merge@1",
+    "task_completion": [
+        {
+            "id": "xml_definition_files_created",
+            "description": "Creation of the core XML definition files (nod, edg, rou, det) in the target directory.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'ls' or a file explorer view in ~/SUMO_Output/highway_merge/ containing highway_merge.nod.xml, highway_merge.edg.xml, highway_merge.rou.xml, and highway_merge.det.xml."
+        },
+        {
+            "id": "edge_parameter_configuration",
+            "description": "Correct configuration of edge speeds and lane counts in the .edg.xml file.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command output showing highway-before-merge with 3 lanes/33.33m/s and on-ramp with 1 lane/22.22m/s."
+        },
+        {
+            "id": "network_generation",
+            "description": "Successful generation of the .net.xml file using netconvert.",
+            "points": 15,
+            "visual_evidence": "Terminal command 'netconvert' being executed or the presence of highway_merge.net.xml in the directory listing."
+        },
+        {
+            "id": "flow_and_detector_config",
+            "description": "Configuration of traffic flows (1200 and 400 veh/hr) and the E1 detector with freq='300'.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' output of highway_merge.rou.xml showing flow rates and highway_merge.det.xml showing the E1 detector attributes."
+        },
+        {
+            "id": "sumocfg_setup",
+            "description": "Creation of the .sumocfg file with the correct time range (0 to 1800).",
+            "points": 10,
+            "visual_evidence": "Text editor or 'cat' output of highway_merge.sumocfg showing <begin value=\"0\"/> and <end value=\"1800\"/>."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Running the SUMO simulation to generate results.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'sumo -c highway_merge.sumocfg' running or a SUMO GUI window showing the simulation in progress."
+        },
+        {
+            "id": "output_files_generated",
+            "description": "Verification that tripinfo.xml and detector_output.xml exist after simulation.",
+            "points": 15,
+            "visual_evidence": "Final directory listing showing tripinfo.xml and detector_output.xml in ~/SUMO_Output/highway_merge/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply 'touch' empty output files to fake completion.",
+            "visual_evidence": "The VLM should check that the 'sumo' command was actually executed and produced log output, and that output files have non-zero file sizes."
+        },
+        {
+            "id": "genuine_netconvert_usage",
+            "description": "The network file was generated from the node/edge files, not copied from elsewhere.",
+            "visual_evidence": "Terminal history showing the netconvert command with arguments pointing to the created .nod.xml and .edg.xml files."
+        },
+        {
+            "id": "directory_consistency",
+            "description": "The agent worked within the specified path /home/ga/SUMO_Output/highway_merge/.",
+            "visual_evidence": "The shell prompt or file paths in commands consistently show the /home/ga/SUMO_Output/highway_merge/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The working directory is /home/ga/SUMO_Output/highway_merge. The task requires manual creation of XML files followed by simulation. Key values to verify in file contents: 4 nodes minimum, 33.33 m/s for highway edges, 22.22 m/s for the ramp, 1200 veh/h mainline flow, 400 veh/h ramp flow, and a detector frequency of 300. The simulation must run for 1800 seconds."
+}

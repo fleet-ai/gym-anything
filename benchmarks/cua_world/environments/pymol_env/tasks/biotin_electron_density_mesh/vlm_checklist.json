@@ -1,0 +1,59 @@
+{
+    "task_id": "biotin_electron_density_mesh@1",
+    "task_completion": [
+        {
+            "id": "fetch_structure_and_map",
+            "description": "Fetch PDB 1STP and its 2mFo-DFc electron density map into PyMOL.",
+            "points": 15,
+            "visual_evidence": "The PyMOL object menu (right sidebar) shows '1stp' and '1stp_2fofc' (or similar map object name) loaded."
+        },
+        {
+            "id": "isolate_biotin_ligand",
+            "description": "Isolate the biotin ligand (BTN) and display it as sticks.",
+            "points": 15,
+            "visual_evidence": "A biotin molecule is visible in the center of the viewer, rendered in 'sticks' representation, distinct from the protein backbone."
+        },
+        {
+            "id": "create_isomesh_contour",
+            "description": "Create an isomesh object from the map at a 1.0 or 1.5 sigma level.",
+            "points": 20,
+            "visual_evidence": "A mesh object appears in the object list. The command history or a 'level' label in the GUI indicates a contour of 1.0 or 1.5."
+        },
+        {
+            "id": "carve_mesh_around_ligand",
+            "description": "Carve the mesh exclusively around the BTN ligand with a 1.5-2.0 Angstrom buffer.",
+            "points": 25,
+            "visual_evidence": "The electron density mesh is restricted to the immediate vicinity of the biotin ligand, not covering the entire protein structure."
+        },
+        {
+            "id": "save_session_and_image",
+            "description": "Save the PyMOL session (.pse) and render a high-resolution PNG image.",
+            "points": 15,
+            "visual_evidence": "The file explorer or PyMOL log shows 'save' commands to '/home/ga/PyMOL_Data/sessions/biotin_density.pse' and 'png' export to '/home/ga/PyMOL_Data/images/biotin_mesh.png'."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "Write a text report with the required metadata to the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command (e.g., 'cat' or 'echo') shows the creation of '/home/ga/PyMOL_Data/density_report.txt' containing 1STP, BTN, the sigma level, and the buffer distance."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent interacted with the PyMOL interface rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the PyMOL GUI active, with the 3D viewport displaying the specific 1STP structure and mesh."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report content matches the actual parameters used in the session.",
+            "visual_evidence": "The sigma level and buffer distance mentioned in the text report match the values seen in the PyMOL command history/GUI."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact absolute paths specified in the instructions.",
+            "visual_evidence": "The command log or file save dialogs show the full paths: /home/ga/PyMOL_Data/..."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 1STP (streptavidin). The ligand residue name is BTN (biotin). The electron density map must be fetched using 'type=2fofc'. The mesh must be carved (using the 'carve=' parameter in the isomesh command) around the BTN residue with a buffer of 1.5 to 2.0. The final outputs must exist at: /home/ga/PyMOL_Data/sessions/biotin_density.pse, /home/ga/PyMOL_Data/images/biotin_mesh.png, and /home/ga/PyMOL_Data/density_report.txt."
+}

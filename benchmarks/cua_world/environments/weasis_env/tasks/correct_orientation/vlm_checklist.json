@@ -1,0 +1,59 @@
+{
+    "task_id": "correct_orientation@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image (0002.DCM) is successfully loaded into the viewer.",
+            "points": 10,
+            "visual_evidence": "The Weasis medical viewer is open and displaying a medical image (X-ray/CT) in the main viewport."
+        },
+        {
+            "id": "rotate_90_cw",
+            "description": "The agent applies a 90-degree clockwise rotation to the image.",
+            "points": 25,
+            "visual_evidence": "The image orientation changes by 90 degrees clockwise; look for the rotation tool being selected or the image orientation labels (e.g., L/R, S/I) shifting."
+        },
+        {
+            "id": "horizontal_flip",
+            "description": "The agent applies a horizontal flip to the image.",
+            "points": 25,
+            "visual_evidence": "The image is mirrored horizontally; look for the flip/mirror tool being clicked or the anatomical markers swapping sides."
+        },
+        {
+            "id": "export_dialog_opened",
+            "description": "The agent opens the export or 'Save As' dialog to save the view.",
+            "points": 10,
+            "visual_evidence": "An export or 'Save As' window/dialog box is visible over the main application."
+        },
+        {
+            "id": "correct_format_and_path",
+            "description": "The agent sets the export format to PNG and the filename to corrected_orientation.png.",
+            "points": 15,
+            "visual_evidence": "The export dialog shows 'PNG' selected as the file type and 'corrected_orientation.png' typed into the filename field."
+        },
+        {
+            "id": "export_confirmed",
+            "description": "The agent completes the export process to the specified directory.",
+            "points": 15,
+            "visual_evidence": "The agent clicks 'Save' or 'Export' and a success message or the closing of the dialog is visible, with the path ~/DICOM/exports/ targeted."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to perform transformations rather than CLI tools.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Weasis toolbar, menus, or transformation icons."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create an empty file or move an existing file via terminal to bypass the task.",
+            "visual_evidence": "The export process is visible within the GUI, not just a 'touch' or 'mv' command in a terminal window."
+        },
+        {
+            "id": "genuine_transformation",
+            "description": "The image transformations (rotation and flip) are actually visible in the viewer before export.",
+            "visual_evidence": "The viewport shows the image in its final corrected state (rotated and flipped) before the export dialog is finalized."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing file 0002.DCM. The final output must be a PNG file located exactly at /home/ga/DICOM/exports/corrected_orientation.png. The required sequence is: 1. Rotate 90° Clockwise, 2. Horizontal Flip. Note: The environment lacks a programmatic verifier.py, so visual confirmation of the GUI export steps is the primary source of truth."
+}

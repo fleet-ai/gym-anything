@@ -1,0 +1,59 @@
+{
+    "task_id": "insulin_crystal_packing_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_4ins_structure",
+            "description": "Load the porcine insulin structure (4INS) into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '4INS' or a similar name, and a protein structure is visible in the viewer."
+        },
+        {
+            "id": "generate_symmetry_mates",
+            "description": "Generate symmetry mates to visualize the crystal lattice.",
+            "points": 25,
+            "visual_evidence": "The PyMOL viewer shows multiple copies of the insulin molecule arranged in a repeating lattice pattern, often indicated by many new objects in the object list (e.g., sym01, sym02)."
+        },
+        {
+            "id": "visual_differentiation",
+            "description": "Highlight the original molecule differently from its symmetry mates for a publication-quality figure.",
+            "points": 15,
+            "visual_evidence": "The central/original molecule is colored differently (e.g., green vs. grey) or rendered in a different style than the surrounding symmetry mates."
+        },
+        {
+            "id": "save_packing_figure",
+            "description": "Save the visualization as a PNG file to the specified path.",
+            "points": 20,
+            "visual_evidence": "The agent uses the 'save' or 'export' command/menu, or a file browser shows 'insulin_packing.png' in the ~/PyMOL_Data/images/ directory."
+        },
+        {
+            "id": "identify_crystal_contacts",
+            "description": "Identify at least 5 residues involved in crystal contacts.",
+            "points": 15,
+            "visual_evidence": "The agent uses selection commands (e.g., 'within') or visual inspection to identify residues at the interface of symmetry mates; these residues are listed in the terminal or report."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "Create a text report with space group, unit cell dimensions, and contact residues.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the file 'insulin_crystal_report.txt' containing the space group (R 3), unit cell (a=b≈82.5, c≈34.0), and a list of residues."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line directly.",
+            "visual_evidence": "Screenshots show the PyMOL interface, command history, or active manipulation of the 3D scene, not just a static image viewer."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report was generated based on the loaded data, not pre-written text.",
+            "visual_evidence": "The agent is seen querying the PDB header or using the 'symexp' command before writing the report."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent saved files to the specific requested paths.",
+            "visual_evidence": "Terminal commands or file dialogs show the paths ~/PyMOL_Data/images/ and ~/PyMOL_Data/."
+        }
+    ],
+    "privileged_info_for_vlm": "For PDB 4INS: The space group is 'R 3'. The unit cell dimensions are approximately a=82.5, b=82.5, c=34.0 (alpha=90, beta=90, gamma=120). The agent must save the image to ~/PyMOL_Data/images/insulin_packing.png and the report to ~/PyMOL_Data/insulin_crystal_report.txt. The report must list at least 5 residues involved in contacts between symmetry-related molecules."
+}

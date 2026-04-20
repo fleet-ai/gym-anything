@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_rov_underwater_physics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulation environment.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D scene with an underwater environment or ROV."
+        },
+        {
+            "id": "set_fluid_density",
+            "description": "The 'ocean' Fluid node density is set to 1025.0 kg/m³.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows the 'Fluid' node (named 'ocean') selected, and the 'density' field in the field editor is set to 1025."
+        },
+        {
+            "id": "set_rov_mass",
+            "description": "The 'ROV_VEHICLE' mass is set to 11.5 kg.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows the 'ROV_VEHICLE' node expanded to the 'physics' and 'mass' fields, with the value 11.5 visible in the editor."
+        },
+        {
+            "id": "set_damping_values",
+            "description": "The robot's physics include linear and angular damping of 0.5.",
+            "points": 20,
+            "visual_evidence": "In the physics properties of the ROV, the 'damping' field shows 'linear' and 'angular' sub-fields both set to 0.5."
+        },
+        {
+            "id": "verify_gravity",
+            "description": "The WorldInfo gravity remains at 9.81.",
+            "points": 10,
+            "visual_evidence": "The 'WorldInfo' node is selected in the Scene Tree, and the 'gravity' field shows a value of 9.81 (usually as part of a vector like [0 -9.81 0])."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world is saved to the specific path /home/ga/Desktop/rov_configured.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog box shows the path /home/ga/Desktop/rov_configured.wbt, or the terminal/status bar confirms the file was saved to that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots Scene Tree and field editor GUI rather than just using a script to overwrite the file.",
+            "visual_evidence": "Screenshots show the mouse cursor or selection highlights on the Webots Scene Tree nodes and property input fields."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not simply open a text editor to modify the .wbt file directly.",
+            "visual_evidence": "The agent is seen using the Webots interface for the majority of the task rather than a text editor like Gedit or Vim."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent used the 'File > Save World As' menu or equivalent GUI shortcut.",
+            "visual_evidence": "The Webots menu or file browser dialog is visible during the saving process."
+        }
+    ],
+    "privileged_info_for_vlm": "The starting fluid density was 1.0 and the starting robot mass was 150.0. The agent must change these to 1025.0 and 11.5 respectively. The target file path for saving is exactly /home/ga/Desktop/rov_configured.wbt. Gravity must remain 9.81."
+}

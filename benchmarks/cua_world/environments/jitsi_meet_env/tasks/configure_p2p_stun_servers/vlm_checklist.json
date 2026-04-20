@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_p2p_stun_servers@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "Open the configuration file /home/ga/.jitsi-meet-cfg/web/config.js in a text editor.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit, VS Code, or Vim) showing the contents of config.js."
+        },
+        {
+            "id": "modify_stun_servers",
+            "description": "Add the two Google STUN servers to the p2p.stunServers array in the config file.",
+            "points": 25,
+            "visual_evidence": "The text editor showing 'stun:stun.l.google.com:19302' and 'stun:stun1.l.google.com:19302' inside the p2p configuration block."
+        },
+        {
+            "id": "ensure_p2p_enabled",
+            "description": "Verify that p2p.enabled is set to true in the configuration file.",
+            "points": 15,
+            "visual_evidence": "The text editor showing 'enabled: true' within the p2p section of config.js."
+        },
+        {
+            "id": "restart_services",
+            "description": "Restart the Jitsi services in the /home/ga/jitsi directory.",
+            "points": 20,
+            "visual_evidence": "A terminal showing a command like 'docker-compose restart' or similar service management commands being executed in the /home/ga/jitsi directory."
+        },
+        {
+            "id": "verify_via_browser",
+            "description": "Access http://localhost:8080/config.js in a web browser to see the live configuration.",
+            "points": 15,
+            "visual_evidence": "A web browser window open to http://localhost:8080/config.js showing the updated JavaScript configuration."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "Save a screenshot of the browser configuration to /home/ga/Documents/jitsi_config.png.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal showing the file 'jitsi_config.png' exists in /home/ga/Documents."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_edit",
+            "description": "The agent actually edited the file rather than just creating a fake screenshot.",
+            "visual_evidence": "The agent should be seen typing or pasting the specific STUN server strings into a text editor, not just displaying a finished file immediately."
+        },
+        {
+            "id": "service_interaction",
+            "description": "The agent interacted with the service orchestration (Docker/Systemd) to apply changes.",
+            "visual_evidence": "Terminal output showing the process of stopping/starting or restarting containers/services."
+        },
+        {
+            "id": "live_url_access",
+            "description": "The agent accessed the configuration via the local web server URL as requested.",
+            "visual_evidence": "The browser's address bar must explicitly show http://localhost:8080/config.js."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration file is located at /home/ga/.jitsi-meet-cfg/web/config.js. The required STUN servers are 'stun:stun.l.google.com:19302' and 'stun:stun1.l.google.com:19302'. The P2P setting must have 'enabled: true'. The final verification must be done via a browser at http://localhost:8080/config.js and the resulting image saved specifically to /home/ga/Documents/jitsi_config.png."
+}

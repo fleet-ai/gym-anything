@@ -1,0 +1,59 @@
+{
+    "task_id": "limit_power_via_pitch_control@1",
+    "task_completion": [
+        {
+            "id": "airfoil_polar_generation",
+            "description": "Generate a 360-degree polar for the NACA 4412 airfoil at Re=1,000,000.",
+            "points": 15,
+            "visual_evidence": "QBlade or XFOIL interface showing a polar plot or table for NACA 4412 with Reynolds number set to 1,000,000 and an alpha range covering 360 degrees (or -180 to 180)."
+        },
+        {
+            "id": "rotor_design_setup",
+            "description": "Design a 3-bladed HAWT rotor with a radius of 10.5m using the NACA 4412 airfoil.",
+            "points": 15,
+            "visual_evidence": "Rotor design module showing 3 blades, a total radius of 10.5m, and the NACA 4412 airfoil assigned to the blade sections."
+        },
+        {
+            "id": "bem_simulation_execution",
+            "description": "Perform BEM simulations at a wind speed of 10 m/s to find the pitch angle for 50 kW power.",
+            "points": 25,
+            "visual_evidence": "BEM simulation interface showing wind speed set to 10 m/s and iterations or results for different pitch angles aiming for a power output near 50,000 W."
+        },
+        {
+            "id": "save_project_file",
+            "description": "Save the project to /home/ga/Documents/projects/derating_study.wpa.",
+            "points": 10,
+            "visual_evidence": "File explorer or application title bar/save dialog showing the project saved at the specific path: /home/ga/Documents/projects/derating_study.wpa."
+        },
+        {
+            "id": "export_simulation_results",
+            "description": "Export the simulation results for the successful pitch setting to target_power_result.txt.",
+            "points": 20,
+            "visual_evidence": "Export dialog or terminal command showing the export of simulation data to /home/ga/Documents/projects/target_power_result.txt, with power values within 48kW-52kW."
+        },
+        {
+            "id": "record_pitch_angle",
+            "description": "Record the final pitch angle in /home/ga/Documents/projects/pitch_setting.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the final pitch angle value saved in /home/ga/Documents/projects/pitch_setting.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade/simulation GUI rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the wind turbine design software and simulation parameters."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The power results are derived from simulation data, not hardcoded.",
+            "visual_evidence": "Graphs or data tables in the software showing a range of power values corresponding to different pitch angles before selecting the target."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "The file paths in the save/export dialogs match /home/ga/Documents/projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target mechanical power is 50,000 Watts (50 kW) with an acceptable range of 48,000 to 52,000 Watts. The rotor must have 3 blades and a 10.5m radius. The airfoil is NACA 4412 at Re=1,000,000. The wind speed for the simulation must be exactly 10 m/s. The final pitch angle recorded should result in a power value within the specified tolerance."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_orbital_docking_connectors@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment with the orbital docking scene.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D view with two satellites (CHASER and TARGET)."
+        },
+        {
+            "id": "select_chaser_connector",
+            "description": "The agent locates and selects the 'docking_port' Connector under the 'CHASER_SATELLITE' node in the scene tree.",
+            "points": 15,
+            "visual_evidence": "The scene tree on the left shows 'CHASER_SATELLITE' expanded, with the 'docking_port' (Connector) highlighted."
+        },
+        {
+            "id": "configure_chaser_parameters",
+            "description": "The agent sets the CHASER_SATELLITE connector to 'active', distanceTolerance to 0.05, and tensileStrength to -1.",
+            "points": 25,
+            "visual_evidence": "The field editor shows 'type' as 'active', 'distanceTolerance' as 0.05, and 'tensileStrength' as -1 for the Chaser's Connector."
+        },
+        {
+            "id": "select_target_connector",
+            "description": "The agent locates and selects the 'docking_port' Connector under the 'TARGET_SATELLITE' node.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows 'TARGET_SATELLITE' expanded, with its 'docking_port' (Connector) highlighted."
+        },
+        {
+            "id": "configure_target_parameters",
+            "description": "The agent sets the TARGET_SATELLITE connector to 'passive' and distanceTolerance to 0.05.",
+            "points": 20,
+            "visual_evidence": "The field editor shows 'type' as 'passive' and 'distanceTolerance' as 0.05 for the Target's Connector."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The agent saves the modified world to the specific path /home/ga/Desktop/orbital_docking.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box is visible with the path '/home/ga/Desktop/orbital_docking.wbt' entered, or a file manager shows the file at that location after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI rather than just using terminal commands to overwrite the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "manual_parameter_entry",
+            "description": "The agent manually typed or selected the specific values in the Webots property fields.",
+            "visual_evidence": "The field editor in Webots reflects the specific values (0.05, -1, active) being entered."
+        },
+        {
+            "id": "correct_target_path",
+            "description": "The agent saved the file to the Desktop as requested, not the default simulation directory.",
+            "visual_evidence": "The file path in the 'Save As' dialog or the final file location is /home/ga/Desktop/orbital_docking.wbt."
+        }
+    ],
+    "privileged_info_for_vlm": "The CHASER_SATELLITE must be changed from 'symmetric' to 'active'. Both satellites must have distanceTolerance set to exactly 0.05. The CHASER_SATELLITE tensileStrength must be -1 (infinity). The TARGET_SATELLITE must be 'passive'. The final file must be saved to /home/ga/Desktop/orbital_docking.wbt."
+}

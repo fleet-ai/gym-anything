@@ -1,0 +1,54 @@
+{
+    "task_id": "custom_dashboard_startpage@1",
+    "task_completion": [
+        {
+            "id": "html_file_creation",
+            "description": "The agent creates a file named travel_dashboard.html on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A file named 'travel_dashboard.html' is visible on the Desktop or within a file explorer at /home/ga/Desktop/."
+        },
+        {
+            "id": "mandatory_links_present",
+            "description": "The HTML file contains links to flightaware.com, xe.com, travel.state.gov, timeanddate.com, and weather.gov.",
+            "points": 30,
+            "visual_evidence": "The dashboard rendered in a browser or the source code shows clickable links or URLs for all five mandatory domains."
+        },
+        {
+            "id": "airline_links_present",
+            "description": "The HTML file contains links to at least two of the specified airlines (united.com, delta.com, aa.com, southwest.com, or jetblue.com).",
+            "points": 20,
+            "visual_evidence": "The dashboard rendered in a browser or the source code shows at least two distinct airline URLs from the approved list."
+        },
+        {
+            "id": "edge_startup_configuration",
+            "description": "Microsoft Edge is configured to open the specific local file on startup.",
+            "points": 25,
+            "visual_evidence": "The Edge 'Settings' page under 'Start, home, and new tabs' shows 'Open these pages' selected with 'file:///home/ga/Desktop/travel_dashboard.html' listed."
+        },
+        {
+            "id": "verification_on_launch",
+            "description": "Microsoft Edge is launched and automatically displays the custom dashboard.",
+            "points": 15,
+            "visual_evidence": "Microsoft Edge is opened and the address bar shows 'file:///home/ga/Desktop/travel_dashboard.html' as the active page without manual navigation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_browser_interaction",
+            "description": "The agent interacted with the Edge settings GUI to set the startup page.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent navigating the Edge settings menu rather than just using terminal commands to modify config files."
+        },
+        {
+            "id": "dashboard_content_validity",
+            "description": "The dashboard is a functional HTML page, not a blank file or a text file with just URLs.",
+            "visual_evidence": "The rendered page in Edge shows formatted text or buttons, indicating valid HTML structure."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply open the file manually to simulate a startup page.",
+            "visual_evidence": "The browser launch sequence shows the dashboard appearing immediately upon opening the application from the taskbar or menu."
+        }
+    ],
+    "privileged_info_for_vlm": "The dashboard must be located at /home/ga/Desktop/travel_dashboard.html. Required domains: flightaware.com, xe.com, travel.state.gov, timeanddate.com, weather.gov. Airline options (at least 2): united.com, delta.com, aa.com, southwest.com, jetblue.com. Edge must be configured via settings to open the file URL (file:///home/ga/Desktop/travel_dashboard.html) on startup."
+}

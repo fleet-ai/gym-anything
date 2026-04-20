@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_scolv_event_filter@1",
+    "task_completion": [
+        {
+            "id": "scolv_application_open",
+            "description": "The SeisComP Origin Locator View (scolv) application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scolv' or 'Origin Locator View' is present on the desktop."
+        },
+        {
+            "id": "event_list_panel_visible",
+            "description": "The Event List panel is active within the scolv application.",
+            "points": 10,
+            "visual_evidence": "The 'Event list' tab or panel is selected and visible in the main scolv interface."
+        },
+        {
+            "id": "significant_tab_exists",
+            "description": "A new tab labeled 'Significant' has been created in the Event List panel.",
+            "points": 25,
+            "visual_evidence": "A tab with the exact text 'Significant' is visible among the event list filter tabs (usually alongside 'Events', 'Latest', etc.)."
+        },
+        {
+            "id": "magnitude_filter_applied",
+            "description": "The 'Significant' tab is configured to filter for magnitudes of 5.0 or greater.",
+            "points": 30,
+            "visual_evidence": "The event list under the 'Significant' tab shows only events with a magnitude (M) >= 5.0, or a configuration dialog/filter bar shows a threshold of 5.0."
+        },
+        {
+            "id": "significant_tab_active",
+            "description": "The application is left open with the 'Significant' tab as the active view.",
+            "points": 25,
+            "visual_evidence": "The 'Significant' tab is highlighted/selected, and its corresponding list of events is displayed in the foreground."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the scolv GUI or configuration menus rather than just editing text files in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with scolv menus, settings windows, or the tab bar."
+        },
+        {
+            "id": "genuine_data_display",
+            "description": "The events displayed in the list correspond to the Noto Peninsula earthquake data (M7.5) and not placeholder text.",
+            "visual_evidence": "The event list shows real seismic data entries with timestamps and magnitudes consistent with the Noto Peninsula event."
+        },
+        {
+            "id": "no_manual_label_overlay",
+            "description": "The 'Significant' tab is a functional part of the UI, not a text box or image overlay drawn by the agent.",
+            "visual_evidence": "The tab matches the system's UI theme and font, and responds to clicks or selection highlighting."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a new tab named 'Significant' (case-sensitive) in scolv. The filter must be set to Magnitude >= 5.0. The configuration is stored in /home/ga/.seiscomp/scolv.cfg. The dataset includes a M7.5 Noto Peninsula earthquake (which should appear in the 'Significant' tab) and a synthetic M3.5 noise event (which should be filtered out)."
+}

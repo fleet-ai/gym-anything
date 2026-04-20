@@ -1,0 +1,59 @@
+{
+    "task_id": "process_delivery_order@1",
+    "task_completion": [
+        {
+            "id": "select_home_delivery",
+            "description": "The agent selected the 'Home Delivery' order type in the Floreant POS interface.",
+            "points": 10,
+            "visual_evidence": "Look for the 'HOME DELIVERY' button being clicked or the order type label showing 'HOME DELIVERY' in the ticket view."
+        },
+        {
+            "id": "enter_customer_details",
+            "description": "The agent entered the correct customer name, phone number, and address.",
+            "points": 20,
+            "visual_evidence": "Screenshots should show 'Maria Santos', '555-0147', and '742 Evergreen Terrace' typed into the customer information fields."
+        },
+        {
+            "id": "add_two_items",
+            "description": "The agent added at least two different menu items to the order ticket.",
+            "points": 25,
+            "visual_evidence": "The order ticket area on the screen should list at least two distinct line items (e.g., two different food or drink names)."
+        },
+        {
+            "id": "initiate_payment",
+            "description": "The agent proceeded to the settlement or payment screen.",
+            "points": 15,
+            "visual_evidence": "The screen should transition from the menu/ordering screen to a 'Settle' or 'Payment' screen showing the total amount due."
+        },
+        {
+            "id": "select_cash_payment",
+            "description": "The agent selected 'Cash' as the payment method.",
+            "points": 15,
+            "visual_evidence": "Look for the 'CASH' button being highlighted or clicked on the payment screen."
+        },
+        {
+            "id": "finalize_order",
+            "description": "The agent completed the transaction, resulting in a finished order or a cleared ticket.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a 'Success' message, a change back to the main dashboard, or a printed receipt preview indicating the transaction is closed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Floreant POS graphical user interface rather than executing database commands via terminal.",
+            "visual_evidence": "The agent's mouse cursor and clicks should be visible on the POS buttons; no SQL terminal or command line should be used to insert records."
+        },
+        {
+            "id": "no_manual_data_injection",
+            "description": "The agent did not bypass the customer info entry screen by editing configuration files.",
+            "visual_evidence": "The agent must be seen interacting with the 'Customer' or 'Delivery' input forms in the application."
+        },
+        {
+            "id": "genuine_item_selection",
+            "description": "The agent navigated the menu categories to find items rather than searching for specific internal IDs.",
+            "visual_evidence": "The agent should be seen clicking through menu categories (e.g., 'Beverages', 'Main Course') to select the two items."
+        }
+    ],
+    "privileged_info_for_vlm": "The order must be for Maria Santos (Phone: 555-0147, Address: 742 Evergreen Terrace). The order type must be 'HOME DELIVERY'. There must be at least two distinct items in the ticket. The final payment method must be 'Cash'. All actions must occur within the Floreant POS GUI."
+}

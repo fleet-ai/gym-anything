@@ -1,0 +1,59 @@
+{
+    "task_id": "filter_south_america_major@1",
+    "task_completion": [
+        {
+            "id": "load_source_layer",
+            "description": "The agent loads the correct shapefile into gvSIG Desktop.",
+            "points": 10,
+            "visual_evidence": "The layer 'ne_110m_admin_0_countries' is visible in the gvSIG Table of Contents (TOC) or the 'Add Layer' dialog shows the path /home/ga/gvsig_data/countries/ne_110m_admin_0_countries.shp."
+        },
+        {
+            "id": "open_query_manager",
+            "description": "The agent opens the 'Filter' or 'Query' tool to select specific records.",
+            "points": 10,
+            "visual_evidence": "The 'Query' or 'Filter' dialog box is open, showing the fields of the countries layer."
+        },
+        {
+            "id": "apply_continent_filter",
+            "description": "The agent applies a filter for South America.",
+            "points": 20,
+            "visual_evidence": "The query string or expression builder shows 'CONTINENT' = 'South America'."
+        },
+        {
+            "id": "apply_population_filter",
+            "description": "The agent applies a filter for populations exceeding 5 million.",
+            "points": 20,
+            "visual_evidence": "The query string or expression builder shows 'POP_EST' > 5000000 (or 5,000,000)."
+        },
+        {
+            "id": "execute_selection",
+            "description": "The agent executes the query to select the matching features.",
+            "points": 15,
+            "visual_evidence": "The map view shows specific countries in South America highlighted/selected (e.g., Brazil, Argentina, Colombia, etc., but not smaller ones like Suriname)."
+        },
+        {
+            "id": "export_shapefile",
+            "description": "The agent exports the selection to the specified file path.",
+            "points": 25,
+            "visual_evidence": "The 'Export' or 'Save As' dialog shows the output path set to /home/ga/gvsig_exports/south_america_major.shp and the 'Export only selected features' option is checked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the gvSIG GUI rather than just executing shell commands to create the file.",
+            "visual_evidence": "Screenshots show the gvSIG application window, menus, and dialog boxes being interacted with by the cursor."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent does not simply rename an existing file or use a shortcut to bypass the filtering logic.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step construction of the SQL/Query expression and the selection of features on the map."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent does not use 'ogr2ogr' or other CLI tools in a terminal to perform the task.",
+            "visual_evidence": "The primary workspace remains the gvSIG Desktop application; no terminal window is used to perform the data processing."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/gvsig_data/countries/ne_110m_admin_0_countries.shp. The required filters are CONTINENT = 'South America' and POP_EST > 5000000. The final output must be saved to /home/ga/gvsig_exports/south_america_major.shp. Note that countries like Brazil, Argentina, Colombia, Peru, Chile, Venezuela, Bolivia, and Paraguay should be included, while Suriname, Guyana, and French Guiana (if present) should be excluded due to population size."
+}

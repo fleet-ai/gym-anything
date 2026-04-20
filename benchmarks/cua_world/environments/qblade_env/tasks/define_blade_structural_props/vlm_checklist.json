@@ -1,0 +1,53 @@
+{
+    "task_id": "define_blade_structural_props@1",
+    "task_completion": [
+        {
+            "id": "airfoil_polar_generation",
+            "description": "Generate NACA 0012 airfoil with XFoil polar analysis (Re=1,000,000, NCrit=9, AoA -5 to 20).",
+            "points": 15,
+            "visual_evidence": "QBlade 'Airfoil Design' or 'XFoil Direct Analysis' window showing NACA 0012, Re 1e6, and the specified AoA range in the polar list or plot."
+        },
+        {
+            "id": "blade_geometry_definition",
+            "description": "Define blade 'StructBlade10' with three sections at 0m, 5m, and 10m with 1.0m chord.",
+            "points": 20,
+            "visual_evidence": "Blade design table showing positions [0, 5, 10], chord values of 1.0, and the name 'StructBlade10' in the object browser."
+        },
+        {
+            "id": "structural_property_assignment",
+            "description": "Assign mass and stiffness values at the three defined sections.",
+            "points": 25,
+            "visual_evidence": "Structural property table or 'Blade Structural' tab showing Mass [40, 20, 5] and Stiffness EI [1.0e7, 0.5e7, 0.1e7] corresponding to the radial positions."
+        },
+        {
+            "id": "project_saved",
+            "description": "Save the project to the specified path.",
+            "points": 15,
+            "visual_evidence": "Save dialog or window title bar showing the path /home/ga/Documents/projects/structural_design.wpa."
+        },
+        {
+            "id": "mass_report_creation",
+            "description": "Record the total blade mass (212.5 kg) in the specified text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the value 212.5 in /home/ga/Documents/blade_mass.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to define properties rather than just creating the text file.",
+            "visual_evidence": "Screenshots showing the QBlade interface, mouse cursor movements over the design tables, and data entry into the GUI fields."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The mass value recorded matches the software's calculated output.",
+            "visual_evidence": "The QBlade 'Blade Design' or 'Structural' summary window showing a total mass of approximately 212.5 kg before the text file is written."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not use pre-existing project files to bypass the design process.",
+            "visual_evidence": "The agent is seen manually entering the NACA 0012 parameters and the structural table values [40, 20, 5] and [1.0e7, 0.5e7, 0.1e7]."
+        }
+    ],
+    "privileged_info_for_vlm": "The blade name must be 'StructBlade10'. The structural properties are: 0m (Mass 40, EI 1e7), 5m (Mass 20, EI 5e6), 10m (Mass 5, EI 1e6). The mathematically expected total mass is 212.5 kg (calculated via trapezoidal integration: [(40+20)/2 * 5] + [(20+5)/2 * 5]). The project must be saved to /home/ga/Documents/projects/structural_design.wpa and the mass recorded in /home/ga/Documents/blade_mass.txt."
+}

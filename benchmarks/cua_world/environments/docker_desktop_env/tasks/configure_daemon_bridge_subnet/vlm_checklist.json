@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_daemon_bridge_subnet@1",
+    "task_completion": [
+        {
+            "id": "open_docker_settings",
+            "description": "Open the Docker Desktop Settings/Preferences window.",
+            "points": 10,
+            "visual_evidence": "The Docker Desktop application window is visible, specifically showing the 'Settings' or 'Preferences' interface (often indicated by a gear icon)."
+        },
+        {
+            "id": "navigate_to_docker_engine",
+            "description": "Navigate to the 'Docker Engine' tab within the settings.",
+            "points": 15,
+            "visual_evidence": "The 'Docker Engine' tab is selected in the sidebar, and a JSON configuration editor is visible on the screen."
+        },
+        {
+            "id": "edit_json_config",
+            "description": "Add or modify the 'bip' key in the Docker Engine JSON configuration.",
+            "points": 25,
+            "visual_evidence": "The text editor in the Docker Engine tab shows the key '\"bip\":' being typed or present within the JSON object."
+        },
+        {
+            "id": "set_correct_bip_value",
+            "description": "Set the 'bip' value specifically to '192.168.200.1/24'.",
+            "points": 30,
+            "visual_evidence": "The JSON configuration explicitly contains the line: \"bip\": \"192.168.200.1/24\"."
+        },
+        {
+            "id": "apply_and_restart",
+            "description": "Click the 'Apply & Restart' button to save the changes.",
+            "points": 20,
+            "visual_evidence": "The 'Apply & Restart' button is clicked, or a progress bar/loading state appears indicating the Docker daemon is restarting with the new configuration."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Docker Desktop GUI rather than just executing terminal commands to bypass the interface.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Docker Desktop settings window and the JSON editor."
+        },
+        {
+            "id": "no_mock_editor",
+            "description": "The agent interacted with the actual Docker Desktop application, not a simulated text file or mock UI.",
+            "visual_evidence": "The window decorations, system tray icons, and Docker logo confirm the authentic Docker Desktop environment."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent manually entered or pasted the configuration into the engine settings rather than just displaying a success message.",
+            "visual_evidence": "The 'bip' configuration is visible within the Docker Engine text area before the 'Apply' button is pressed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires setting the 'bip' (Bridge IP) property in the Docker Engine JSON configuration. The exact required value is '192.168.200.1/24'. Setting this value automatically configures the default bridge network to the subnet '192.168.200.0/24' with a gateway of '192.168.200.1'. The VLM should verify the presence of the 'bip' key and the specific IP/CIDR string in the Docker Desktop settings editor."
+}

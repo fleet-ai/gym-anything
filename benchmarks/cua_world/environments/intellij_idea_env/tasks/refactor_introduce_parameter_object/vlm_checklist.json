@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_introduce_parameter_object@1",
+    "task_completion": [
+        {
+            "id": "create_transaction_request_class",
+            "description": "Create a new class named 'TransactionRequest' with the seven required fields.",
+            "points": 15,
+            "visual_evidence": "A new file 'TransactionRequest.java' is visible in the IDE, containing fields for merchantId, amount, currency, cardNum, cvv, expiry, and note."
+        },
+        {
+            "id": "refactor_payment_processor_signature",
+            "description": "Update 'PaymentProcessor.processTransaction' to accept a single 'TransactionRequest' object instead of seven individual arguments.",
+            "points": 20,
+            "visual_evidence": "The method signature in 'PaymentProcessor.java' is seen as 'public void processTransaction(TransactionRequest request)' or similar."
+        },
+        {
+            "id": "update_app_callers",
+            "description": "Refactor callers in 'App.java' to instantiate 'TransactionRequest' and pass it to the method.",
+            "points": 20,
+            "visual_evidence": "Code in 'App.java' shows 'new TransactionRequest(...)' being instantiated and passed to 'processTransaction'."
+        },
+        {
+            "id": "update_test_callers",
+            "description": "Refactor callers in 'PaymentServiceTest.java' to use the new 'TransactionRequest' object.",
+            "points": 20,
+            "visual_evidence": "Test methods in 'PaymentServiceTest.java' are updated to pass a 'TransactionRequest' object to the processor."
+        },
+        {
+            "id": "verify_compilation_and_tests",
+            "description": "Ensure the project compiles and all tests pass after refactoring.",
+            "points": 25,
+            "visual_evidence": "A terminal or IDE tool window shows a successful build message (e.g., 'BUILD SUCCESS') or green checkmarks in the test runner."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's code editing and refactoring features rather than just executing shell scripts to overwrite files.",
+            "visual_evidence": "Screenshots show the agent typing in the editor, using IDE context menus, or using the IDE's built-in refactoring tools."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually ran the tests to verify the refactor, not just claimed they passed.",
+            "visual_evidence": "Screenshots show the execution of a test command (like mvn test) or the IDE test runner UI with results."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'Success' to the terminal without performing the work.",
+            "visual_evidence": "The file explorer and editor tabs show the actual creation and modification of the Java files mentioned in the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/legacy-payment-module. The target class to modify is src/main/java/com/example/payments/PaymentProcessor.java. The new class must be named TransactionRequest and must contain exactly these 7 fields: merchantId, amount, currency, cardNum, cvv, expiry, and note. Callers in App.java and PaymentServiceTest.java must be updated to match this new signature."
+}

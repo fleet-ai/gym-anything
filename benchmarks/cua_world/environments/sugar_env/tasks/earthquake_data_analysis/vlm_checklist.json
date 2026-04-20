@@ -1,0 +1,59 @@
+{
+    "task_id": "earthquake_data_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_csv_file",
+            "description": "Agent opens or accesses the earthquake.csv file in /home/ga/Documents/.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal showing the content or path of /home/ga/Documents/earthquakes.csv."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Agent creates the Python script at /home/ga/Documents/earthquake_analysis.py with logic to process the CSV.",
+            "points": 20,
+            "visual_evidence": "A code editor (like VS Code or Gedit) showing the file /home/ga/Documents/earthquake_analysis.py containing Python code for data analysis."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script includes logic for calculating total records, largest magnitude/place, average depth, and magnitude distribution ranges.",
+            "points": 25,
+            "visual_evidence": "Code visible in the screenshot showing calculations for 'mag >= 0', 'depth.mean()', and bins for distribution (0-1, 1-2, etc.)."
+        },
+        {
+            "id": "execute_script",
+            "description": "Agent executes the Python script in the environment.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the command 'python3 /home/ga/Documents/earthquake_analysis.py' or similar execution command."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "The script successfully generates the report file at /home/ga/Documents/earthquake_report.txt.",
+            "points": 10,
+            "visual_evidence": "A file explorer showing earthquake_report.txt exists or a terminal command 'ls' confirming the file's presence."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains the required keywords and the magnitude distribution section.",
+            "points": 20,
+            "visual_evidence": "The file earthquake_report.txt is opened, showing the keywords 'Total', 'Largest', 'Average Depth', and 'Magnitude Distribution' with numerical data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo hardcoded strings into the report file without running a script.",
+            "visual_evidence": "The Python script contains actual data processing logic (e.g., using pandas or csv module) rather than just print statements of final numbers."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the desktop environment's tools (editors, file managers) to perform the task.",
+            "visual_evidence": "Screenshots show interaction with GUI-based text editors or IDEs rather than only a full-screen terminal."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "The file paths /home/ga/Documents/earthquake_analysis.py and /home/ga/Documents/earthquake_report.txt are visible in the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing a real USGS CSV file. The script must be saved specifically to /home/ga/Documents/earthquake_analysis.py and the output to /home/ga/Documents/earthquake_report.txt. The magnitude distribution must follow specific inclusive/exclusive bounds: [lower, upper), except for 6+ which is >= 6.0. The keywords 'Total', 'Largest', 'Average Depth', and 'Magnitude Distribution' are mandatory in the final report."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "industrial_asset_inventory_digitization@1",
+    "task_completion": [
+        {
+            "id": "read_manifest",
+            "description": "Agent opens and reads the equipment manifest file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of 'new_equipment_manifest.txt' on the desktop."
+        },
+        {
+            "id": "create_asset_categories",
+            "description": "Agent configures the three required asset categories in the Sentrifugo Assets module.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Asset Categories' list or creation forms with 'Two-Way Radios', 'Gas Detectors', and 'Thermal Cameras' entered."
+        },
+        {
+            "id": "create_vendor",
+            "description": "Agent registers the specified vendor in the system.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'Vendors' section with 'Industrial Safety Supply Co.' successfully added."
+        },
+        {
+            "id": "register_asset_rad",
+            "description": "Agent registers the first asset (RAD-8821-A) into the inventory.",
+            "points": 15,
+            "visual_evidence": "Asset registration form or asset list showing serial number 'RAD-8821-A' associated with 'Two-Way Radios'."
+        },
+        {
+            "id": "register_asset_gas",
+            "description": "Agent registers the second asset (GAS-9910-B) into the inventory.",
+            "points": 20,
+            "visual_evidence": "Asset registration form or asset list showing serial number 'GAS-9910-B' associated with 'Gas Detectors'."
+        },
+        {
+            "id": "register_asset_thm",
+            "description": "Agent registers the third asset (THM-4450-C) into the inventory.",
+            "points": 20,
+            "visual_evidence": "Asset registration form or asset list showing serial number 'THM-4450-C' associated with 'Thermal Cameras'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Sentrifugo web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show navigation through the Sentrifugo browser UI; no SQL queries or backend scripts are used to bypass the UI."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or copy-pasted data from the manifest, not from an external cheat sheet.",
+            "visual_evidence": "The agent is seen switching between the manifest text file and the browser window."
+        },
+        {
+            "id": "no_terminal_shortcuts",
+            "description": "The agent did not use terminal commands to create the assets via API or script.",
+            "visual_evidence": "The terminal is only used for reading the manifest file, not for executing curl commands or python scripts to populate the database."
+        }
+    ],
+    "privileged_info_for_vlm": "The manifest contains the following required data: Categories: 'Two-Way Radios', 'Gas Detectors', 'Thermal Cameras'. Vendor: 'Industrial Safety Supply Co.'. Assets (Serial Numbers): 'RAD-8821-A', 'GAS-9910-B', and 'THM-4450-C'. The agent must use the Sentrifugo Assets module to register these specific values."
+}

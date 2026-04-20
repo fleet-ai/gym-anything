@@ -1,0 +1,56 @@
+{
+    "task_id": "delete_dive@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent opens the Subsurface dive log application.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible on the desktop."
+        },
+        {
+            "id": "load_dive_file",
+            "description": "The agent opens the specific file /home/ga/Documents/dives.ssrf within the application.",
+            "points": 15,
+            "visual_evidence": "The file path or filename 'dives.ssrf' is visible in the application title bar or open file dialog."
+        },
+        {
+            "id": "identify_bottom_dive",
+            "description": "The agent selects the most recent (bottom-most) dive in the list.",
+            "points": 20,
+            "visual_evidence": "The last entry in the dive list (dated 2014-10-10) is highlighted or selected."
+        },
+        {
+            "id": "delete_dive_action",
+            "description": "The agent triggers the deletion of the selected dive.",
+            "points": 30,
+            "visual_evidence": "A right-click menu showing 'Delete dive', a 'Delete' button press, or a confirmation dialog for deletion is visible."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the updated dive log file.",
+            "points": 25,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or the save icon, and no unsaved change indicators remain."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Subsurface GUI to perform the task rather than terminal commands.",
+            "points": 0,
+            "visual_evidence": "The agent interacts with the Subsurface window; no terminal window is used to edit the XML/SSRF file directly via sed/echo."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the dive list directly.",
+            "points": 0,
+            "visual_evidence": "Mouse cursor movements and clicks are seen over the dive list and menu items."
+        },
+        {
+            "id": "no_file_replacement",
+            "description": "The agent did not simply delete the file or replace it with a pre-prepared version.",
+            "points": 0,
+            "visual_evidence": "The agent is seen navigating the application interface to modify the existing file content."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is /home/ga/Documents/dives.ssrf. The dive to be deleted is the chronologically last dive in the list, which is dated '2014-10-10' at time '12:34:34' at the 'Divi Flamingo House Reef'. Although the prompt describes it as a pool session, the actual data shows it as a 119-minute dive. The agent must use the Subsurface GUI to delete this specific entry and save the file."
+}

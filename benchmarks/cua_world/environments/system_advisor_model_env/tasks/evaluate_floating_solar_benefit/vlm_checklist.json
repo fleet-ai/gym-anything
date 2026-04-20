@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_floating_solar_benefit@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent reads the solar resource directory path from /home/ga/.SAM/solar_resource_dir.txt to find the TMY file.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or the agent navigating to that path."
+        },
+        {
+            "id": "script_creation_pysam",
+            "description": "Agent creates a Python script importing 'PySAM.Pvwattsv8' and setting the required system parameters (5000 kW, 15 deg tilt, 180 deg azimuth).",
+            "points": 20,
+            "visual_evidence": "Code editor (e.g., VS Code or Vim) showing Python code with 'import PySAM.Pvwattsv8' and the specified numerical parameters."
+        },
+        {
+            "id": "inoct_parameter_config",
+            "description": "The script defines two simulation runs with 'inoct' set to 45.0 for ground and 40.0 for floating.",
+            "points": 20,
+            "visual_evidence": "Code showing two distinct assignments to the 'inoct' variable or parameter within the Pvwattsv8 module configuration."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent executes the Python script to run the PySAM simulations.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running without errors, or print statements displaying simulation progress."
+        },
+        {
+            "id": "json_output_generation",
+            "description": "The script calculates the energy gain and saves the results to /home/ga/Documents/SAM_Projects/floating_pv_analysis.json with the exact required keys.",
+            "points": 30,
+            "visual_evidence": "A file explorer or terminal 'cat' command showing the existence and content of 'floating_pv_analysis.json' containing keys like 'energy_gain_kwh' and 'gain_percent'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding the final energy values.",
+            "visual_evidence": "The script must contain functional PySAM method calls like '.execute()' or '.export()', not just a dictionary of pre-calculated numbers."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the agent used the specific weather file path provided in the text file, not a generic string.",
+            "visual_evidence": "The code should show a variable or path string derived from the content of /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The agent creates the directory and file in the specified path /home/ga/Documents/SAM_Projects/.",
+            "visual_evidence": "Terminal commands like 'mkdir' or Python 'os.makedirs' followed by the creation of the JSON file in that specific directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use PySAM Pvwattsv8. Required parameters: capacity=5000, tilt=15, azimuth=180, dc_ac_ratio=1.2, losses=14.0, inv_eff=96.0. The ground INOCT is 45.0 and floating INOCT is 40.0. The output file must be /home/ga/Documents/SAM_Projects/floating_pv_analysis.json. Expected annual energy for a 5MW system in a sunny location like Phoenix should be between 6,000,000 and 14,000,000 kWh; values outside this range are likely incorrect."
+}

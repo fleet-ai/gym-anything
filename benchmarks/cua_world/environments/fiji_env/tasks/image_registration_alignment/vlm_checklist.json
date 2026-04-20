@@ -1,0 +1,59 @@
+{
+    "task_id": "image_registration_alignment@1",
+    "task_completion": [
+        {
+            "id": "open_micrographs",
+            "description": "Open both the reference and shifted micrographs in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "Two image windows titled 'reference_micrograph.tif' and 'shifted_micrograph.tif' are visible on the Fiji workspace."
+        },
+        {
+            "id": "registration_execution",
+            "description": "Perform the image registration process using a Fiji plugin (e.g., Linear Stack Alignment with SIFT or Descriptor-based registration).",
+            "points": 25,
+            "visual_evidence": "A registration plugin dialog box is open, or a progress bar for 'Registration' or 'Feature Extraction' is visible."
+        },
+        {
+            "id": "save_registered_image",
+            "description": "Save the aligned result to the specified path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a terminal command shows the file being saved to ~/Fiji_Data/results/registration/registered_micrograph.tif."
+        },
+        {
+            "id": "create_difference_image",
+            "description": "Generate a difference image (Reference minus Registered) using Image Calculator.",
+            "points": 20,
+            "visual_evidence": "The 'Image Calculator' dialog is shown with 'Subtract' operation selected, or a new image window titled 'Result of...' or 'difference_image.tif' appears showing minimal residual features."
+        },
+        {
+            "id": "save_difference_image",
+            "description": "Save the difference image to the specified path.",
+            "points": 10,
+            "visual_evidence": "Evidence of saving the difference image to ~/Fiji_Data/results/registration/difference_image.tif."
+        },
+        {
+            "id": "create_alignment_report",
+            "description": "Create a text report containing Translation X, Translation Y, Rotation, and the method used.",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or Fiji's TextWindow) is open showing the report content at ~/Fiji_Data/results/registration/alignment_report.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform the registration rather than just moving files via terminal.",
+            "visual_evidence": "Screenshots show Fiji menus, plugin dialogs, or image windows being manipulated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The difference image is actually calculated from the images, not a blank file.",
+            "visual_evidence": "The difference image window shows some pixel data (even if faint) rather than a solid black or white square."
+        },
+        {
+            "id": "report_content_match",
+            "description": "The report contains parameters derived from the registration process.",
+            "visual_evidence": "The report text includes specific numbers for X/Y translation and rotation that match the output of the registration plugin used."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth misalignment is a rotation of 2.5 degrees and a translation of dx=23.0, dy=17.0. The agent's report should contain values close to these (e.g., Rotation ~2.5, X ~23, Y ~17). The final registration must achieve a Normalized Cross-Correlation (NCC) of at least 0.85 to be considered successful."
+}

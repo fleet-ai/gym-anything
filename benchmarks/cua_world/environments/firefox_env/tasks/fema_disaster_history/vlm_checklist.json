@@ -1,0 +1,53 @@
+{
+    "task_id": "fema_disaster_history@1",
+    "task_completion": [
+        {
+            "id": "fema_search_execution",
+            "description": "Agent navigated to fema.gov and performed a search for Fire incidents in California with Major Disaster declaration type.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the FEMA disaster search page with filters set to 'California', 'Fire', and 'Major Disaster Declaration'."
+        },
+        {
+            "id": "json_file_creation",
+            "description": "A JSON file named california_fire_history.json is created in ~/Documents containing the 3 most recent disasters.",
+            "points": 25,
+            "visual_evidence": "A text editor or file manager showing ~/Documents/california_fire_history.json with fields for disaster_number, title, declaration_date, and incident_period."
+        },
+        {
+            "id": "pdf_download",
+            "description": "An official PDF document from the most recent disaster's detail page is downloaded to ~/Downloads/.",
+            "points": 20,
+            "visual_evidence": "A file manager or browser download shelf showing a PDF file (e.g., a Fact Sheet or Public Notice) located in the ~/Downloads folder."
+        },
+        {
+            "id": "bookmark_folder_creation",
+            "description": "A Firefox bookmark folder named 'FEMA Research' is created.",
+            "points": 15,
+            "visual_evidence": "Firefox bookmark manager or sidebar showing a folder titled 'FEMA Research'."
+        },
+        {
+            "id": "bookmarks_saved",
+            "description": "The 'FEMA Research' folder contains the search results page and the specific detail page for the most recent disaster.",
+            "points": 25,
+            "visual_evidence": "Firefox bookmark menu expanded showing two bookmarks inside 'FEMA Research': one for the search results and one for the specific disaster detail page (e.g., DR-4856)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the browser GUI to find information rather than just generating the file via terminal scripts.",
+            "visual_evidence": "Screenshots show the agent clicking, typing in search bars, and navigating the FEMA website in Firefox."
+        },
+        {
+            "id": "genuine_pdf_source",
+            "description": "The PDF was downloaded from the FEMA website, not created locally.",
+            "visual_evidence": "Screenshots show the agent clicking a download link on a fema.gov disaster detail page."
+        },
+        {
+            "id": "no_hardcoded_json",
+            "description": "The agent extracted data from the website to build the JSON rather than using pre-existing knowledge.",
+            "visual_evidence": "The agent is seen highlighting or copying text from the FEMA search results or detail pages before the JSON file is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The three most recent Major Disaster declarations for Fire in California as of early 2026 are DR-4856 (declared 2025-01-08), DR-4619 (declared 2021-09-12), and DR-4610 (declared 2021-08-24). The most recent disaster detail page is for DR-4856. The JSON file must be in ~/Documents/california_fire_history.json and the bookmark folder must be exactly 'FEMA Research'."
+}

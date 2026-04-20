@@ -1,0 +1,59 @@
+{
+    "task_id": "visceral_fat_quantification@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT scan (amos_0001) is loaded into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "The CT volume is visible in the 2D slice viewers and the volume name is listed in the Data module/Data probe."
+        },
+        {
+            "id": "identify_l4_l5_level",
+            "description": "The agent navigates to the L4-L5 vertebral level for measurement.",
+            "points": 15,
+            "visual_evidence": "The slice viewer shows the lumbar spine at the L4-L5 intervertebral disc level; the slice index or coordinate is adjusted."
+        },
+        {
+            "id": "threshold_fat_hu",
+            "description": "The agent applies a threshold to isolate adipose tissue using the standard HU range (-190 to -30).",
+            "points": 15,
+            "visual_evidence": "The Segment Editor or Threshold tool is open with the range set approximately to -190 and -30, showing a highlighted mask over fat areas."
+        },
+        {
+            "id": "segment_sat_vat",
+            "description": "The agent separates the segmentation into Subcutaneous (SAT) and Visceral (VAT) adipose tissue compartments.",
+            "points": 25,
+            "visual_evidence": "Two distinct segment colors are visible: one for the outer fat layer (SAT) and one for the internal fat around organs (VAT)."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is saved to the specified file path: ~/Documents/SlicerData/AMOS/fat_segmentation.nii.gz.",
+            "points": 15,
+            "visual_evidence": "The 'Save' dialog or a terminal confirmation shows the file being written to the exact path and filename specified."
+        },
+        {
+            "id": "export_json_report",
+            "description": "A JSON report is generated containing the required fields: measurement_level, slice_index, sat_area_cm2, vat_area_cm2, vat_sat_ratio, and fat_distribution.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output displays the content of 'fat_analysis_report.json' with all six required keys present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the medical imaging GUI (e.g., Slicer) to perform segmentation rather than just writing a script to generate dummy files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor, Threshold sliders, or manual painting tools."
+        },
+        {
+            "id": "genuine_quantification",
+            "description": "The areas and ratios in the report are derived from the actual segmentation, not hardcoded placeholders.",
+            "visual_evidence": "The 'Segment Statistics' or 'Quantification' module is visible in the GUI showing calculated area/volume values that match the JSON report."
+        },
+        {
+            "id": "no_premade_results",
+            "description": "The agent did not simply copy a pre-existing JSON file from another directory.",
+            "visual_evidence": "The agent is seen actively typing the report values or using a 'Save' function within the quantification tool."
+        }
+    ],
+    "privileged_info_for_vlm": "The standard Hounsfield Unit (HU) range for adipose tissue quantification is -190 to -30. The L4-L5 level is the clinical standard for this measurement. The report must contain exactly these fields: measurement_level, slice_index, sat_area_cm2, vat_area_cm2, vat_sat_ratio, and fat_distribution."
+}

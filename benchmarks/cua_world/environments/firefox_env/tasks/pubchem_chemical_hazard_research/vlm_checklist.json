@@ -1,0 +1,59 @@
+{
+    "task_id": "pubchem_chemical_hazard_research@1",
+    "task_completion": [
+        {
+            "id": "pubchem_navigation",
+            "description": "Agent navigates to the PubChem website and searches for the specified chemicals.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the browser at pubchem.ncbi.nlm.nih.gov with search queries for Acetone, Sodium Hydroxide, and Toluene."
+        },
+        {
+            "id": "firefox_bookmarks_created",
+            "description": "A Firefox bookmark folder named 'Chemical Safety Research' is created containing the three chemical pages.",
+            "points": 15,
+            "visual_evidence": "The Firefox bookmark manager or sidebar showing a folder 'Chemical Safety Research' with three bookmarks inside."
+        },
+        {
+            "id": "data_extraction_acetone",
+            "description": "Agent locates CAS, GHS (Signal Word/H-codes), and NFPA data for Acetone on PubChem.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the Acetone PubChem page (CID 180) with the GHS Classification and NFPA 704 sections visible."
+        },
+        {
+            "id": "data_extraction_sodium_hydroxide",
+            "description": "Agent locates CAS, GHS (Signal Word/H-codes), and NFPA data for Sodium Hydroxide on PubChem.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the Sodium Hydroxide PubChem page (CID 14798) with the GHS Classification and NFPA 704 sections visible."
+        },
+        {
+            "id": "data_extraction_toluene",
+            "description": "Agent locates CAS, GHS (Signal Word/H-codes), and NFPA data for Toluene on PubChem.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the Toluene PubChem page (CID 1140) with the GHS Classification and NFPA 704 sections visible."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "A JSON file is created at '~/Documents/chemical_hazard_summary.json' with the correct structure and data.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of the JSON file with keys for acetone, sodium_hydroxide, and toluene."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent actually browsed the PubChem website rather than generating the report from internal knowledge.",
+            "visual_evidence": "Browser history or sequential screenshots showing the agent scrolling through the PubChem pages to find specific H-codes and NFPA values."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent used the Firefox GUI to create bookmarks as requested, not just command-line file manipulation.",
+            "visual_evidence": "Screenshots showing the agent interacting with the Firefox bookmarking menu or dialogs."
+        },
+        {
+            "id": "data_source_verification",
+            "description": "The data in the JSON matches the specific values found on the PubChem pages during the session.",
+            "visual_evidence": "The H-codes and NFPA ratings in the final JSON match the text visible in the browser screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "Acetone: CID 180, CAS 67-64-1, Signal: Danger, NFPA: Health 1, Fire 3, Reactivity 0. Sodium Hydroxide: CID 14798, CAS 1310-73-2, Signal: Danger, NFPA: Health 3, Fire 0, Reactivity 1. Toluene: CID 1140, CAS 108-88-3, Signal: Danger, NFPA: Health 2, Fire 3, Reactivity 0. Required H-codes: Acetone (H225, H319, H336), Sodium Hydroxide (H314, H290), Toluene (H225, H304, H315, H336, H361, H373)."
+}

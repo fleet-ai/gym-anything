@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_hostile_css_print_cleanup@1",
+    "task_completion": [
+        {
+            "id": "open_firefox_dev_tools",
+            "description": "Open Firefox Developer Tools to inspect the page structure.",
+            "points": 10,
+            "visual_evidence": "The Firefox Inspector/Developer Tools panel is visible at the bottom or side of the browser window."
+        },
+        {
+            "id": "delete_ad_overlay",
+            "description": "Delete the DOM node with ID 'overlay-ad'.",
+            "points": 15,
+            "visual_evidence": "The 'overlay-ad' element is selected in the Inspector and then disappears from the DOM tree and the page view."
+        },
+        {
+            "id": "delete_cookie_banner",
+            "description": "Delete the DOM node with ID 'cookie-banner'.",
+            "points": 15,
+            "visual_evidence": "The 'cookie-banner' element is selected in the Inspector and then disappears from the DOM tree and the page view."
+        },
+        {
+            "id": "disable_hostile_css",
+            "description": "Disable or delete the @media print CSS block that hides content.",
+            "points": 30,
+            "visual_evidence": "In the Style Editor or Inspector, the CSS rule containing '@media print' is either deleted, commented out, or the 'display: none' property for the content is unchecked/removed."
+        },
+        {
+            "id": "open_print_dialog",
+            "description": "Open the Firefox print preview/dialog to save as PDF.",
+            "points": 10,
+            "visual_evidence": "The Firefox Print overlay or system print dialog is visible, showing a preview of the document."
+        },
+        {
+            "id": "save_pdf_correct_path",
+            "description": "Save the PDF to the specific path: /home/ga/Documents/Research/Clean_Apollo_Report.pdf",
+            "points": 20,
+            "visual_evidence": "The 'Save As' or 'Print to File' dialog shows the file name 'Clean_Apollo_Report.pdf' and the directory '/home/ga/Documents/Research/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI and Developer Tools rather than terminal commands to edit the page.",
+            "visual_evidence": "Screenshots show mouse cursor movements and clicks within the Firefox Inspector and Style Editor, not just a terminal window."
+        },
+        {
+            "id": "genuine_css_modification",
+            "description": "The agent actually modified the CSS/DOM in the browser rather than just taking a screenshot of a different file.",
+            "visual_evidence": "The sequence of screenshots shows the live removal of elements and the change in the print preview appearance within the Firefox application."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use 'touch' or 'echo' in a terminal to create an empty PDF file.",
+            "visual_evidence": "The PDF creation is triggered through the Firefox Print interface, not a command line prompt."
+        }
+    ],
+    "privileged_info_for_vlm": "The hostile CSS block typically uses '@media print { body { display: none; } }' or similar to hide content; the agent must find this in the Style Editor or Inspector. The final PDF must be saved in the /home/ga/Documents/Research/ directory. Verification of the 'cleaned' state is best seen in the Print Preview window, where the Apollo 11 text should be visible instead of a warning message."
+}

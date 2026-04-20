@@ -1,0 +1,59 @@
+{
+    "task_id": "cytochrome_hmmer_profile_discovery@1",
+    "task_completion": [
+        {
+            "id": "msa_generation",
+            "description": "Generate a multiple sequence alignment of the training data in UGENE.",
+            "points": 15,
+            "visual_evidence": "UGENE window showing an alignment of sequences from 'cytochrome_c_multispecies.fasta' (e.g., in the Alignment Editor)."
+        },
+        {
+            "id": "save_msa_fasta",
+            "description": "Save the alignment to cytc_aligned.fasta.",
+            "points": 10,
+            "visual_evidence": "A 'Save' or 'Export' dialog in UGENE with the file path '~/UGENE_Data/hmmer_task/results/cytc_aligned.fasta' or the file appearing in the project tree."
+        },
+        {
+            "id": "build_hmm_profile",
+            "description": "Build an HMM profile from the alignment and save as cytc_domain.hmm.",
+            "points": 20,
+            "visual_evidence": "The 'HMMER Build' dialog or tool being used, with the output path set to 'cytc_domain.hmm'."
+        },
+        {
+            "id": "scan_proteome",
+            "description": "Use the HMM profile to scan the uncharacterized_proteome.fasta.",
+            "points": 20,
+            "visual_evidence": "The 'HMMER Search' tool active in UGENE, with 'cytc_domain.hmm' as the profile and 'uncharacterized_proteome.fasta' as the target."
+        },
+        {
+            "id": "export_gff",
+            "description": "Export identified sequence annotations to hmm_hits.gff.",
+            "points": 15,
+            "visual_evidence": "An export dialog or file browser showing 'hmm_hits.gff' being saved in the results directory."
+        },
+        {
+            "id": "final_report_creation",
+            "description": "Document findings in discovery_report.txt with HMM length, FASTA header, and coordinates.",
+            "points": 20,
+            "visual_evidence": "A text editor or UGENE note showing a report containing the HMM length, the header 'CYTC_ARATH' (or P00056), and start/end coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI rather than just executing command-line HMMER tools.",
+            "visual_evidence": "Screenshots show interaction with UGENE menus, buttons, and dialog boxes (e.g., HMMER Build/Search windows)."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply write the report without performing the analysis.",
+            "visual_evidence": "The trajectory shows the intermediate steps of alignment and HMM building before the report is generated."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system through the application interface.",
+            "visual_evidence": "File paths in UGENE dialogs match the required paths in the task description."
+        }
+    ],
+    "privileged_info_for_vlm": "The target homolog in 'uncharacterized_proteome.fasta' is identified by the FASTA header 'CYTC_ARATH' (Accession: P00056). The HMM profile length (consensus positions) should be derived from the alignment of the provided training sequences. The final report must contain this specific header and the amino acid coordinates found during the HMMER search."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "gdpr_row_level_security@1",
+    "task_completion": [
+        {
+            "id": "role_creation",
+            "description": "Create a role named 'us_analytics' inheriting from 'reader'.",
+            "points": 15,
+            "visual_evidence": "OrientDB Studio Security tab showing the 'us_analytics' role in the roles list, ideally with 'reader' as a parent role."
+        },
+        {
+            "id": "user_creation",
+            "description": "Create a user named 'us_partner' assigned to the 'us_analytics' role.",
+            "points": 15,
+            "visual_evidence": "OrientDB Studio Security tab showing the 'us_partner' user with the 'us_analytics' role assigned."
+        },
+        {
+            "id": "policy_creation",
+            "description": "Configure a security policy named 'us_only_policy'.",
+            "points": 20,
+            "visual_evidence": "OrientDB Studio Security/Security Policies tab showing a new policy named 'us_only_policy'."
+        },
+        {
+            "id": "policy_predicate_config",
+            "description": "Set the read predicate for the policy to filter for Nationality = 'American'.",
+            "points": 25,
+            "visual_evidence": "The 'us_only_policy' configuration screen showing the Read Predicate field containing \"Nationality = 'American'\"."
+        },
+        {
+            "id": "apply_policy_to_class",
+            "description": "Apply the 'us_only_policy' to the 'Profiles' class for the 'us_analytics' role.",
+            "points": 25,
+            "visual_evidence": "The Security Policies mapping interface showing 'Profiles' class associated with 'us_analytics' role using 'us_only_policy'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the browser navigating through OrientDB Studio (Security, Roles, Users, and Policies tabs)."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply edit the database files directly or use a script to bypass the UI.",
+            "visual_evidence": "Visual confirmation of the agent typing values into the OrientDB Studio forms."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent logged in with the provided root credentials to perform administrative tasks.",
+            "visual_evidence": "Login screen showing 'root' being entered or the Studio header showing the user as 'root'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains 17 total profiles. When the RLS policy is correctly applied (Nationality = 'American'), a user with the 'us_analytics' role should only be able to see exactly 2 records (john.smith@example.com and domi@nek.gov). The policy name must be 'us_only_policy' and the role 'us_analytics'."
+}

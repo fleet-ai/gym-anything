@@ -1,0 +1,53 @@
+{
+    "task_id": "advanced_workforce_analytics@1",
+    "task_completion": [
+        {
+            "id": "open_oracle_tool",
+            "description": "Agent opens an Oracle SQL interface or terminal to access the HR database.",
+            "points": 10,
+            "visual_evidence": "A SQL editor, terminal with SQL*Plus, or database management tool is visible on the screen."
+        },
+        {
+            "id": "execute_q1_query",
+            "description": "Agent executes a query to find the city with the highest average salary.",
+            "points": 20,
+            "visual_evidence": "SQL code involving 'AVG(salary)', 'GROUP BY city' (or joining LOCATIONS/DEPARTMENTS), and 'ORDER BY' is visible in the editor or terminal."
+        },
+        {
+            "id": "execute_q2_query",
+            "description": "Agent executes a query to find the manager with the widest reporting span.",
+            "points": 20,
+            "visual_evidence": "SQL code involving 'COUNT(*)' or 'COUNT(employee_id)', 'GROUP BY manager_id', and joining with EMPLOYEES for the full name is visible."
+        },
+        {
+            "id": "execute_q3_q4_queries",
+            "description": "Agent executes queries for the average salary increase percentage (Q3) and the most mobile job title (Q4).",
+            "points": 30,
+            "visual_evidence": "SQL code involving JOB_HISTORY joined with EMPLOYEES and calculations for percentage differences is visible."
+        },
+        {
+            "id": "save_report_file",
+            "description": "Agent saves the final results to /home/ga/Desktop/workforce_analytics_report.txt with Q1-Q4 labels.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file /home/ga/Desktop/workforce_analytics_report.txt containing four labeled answers (Q1, Q2, Q3, Q4)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the answers into a file without querying the database.",
+            "visual_evidence": "The trajectory must show the agent actively writing and executing SQL queries, not just typing the final answers directly into the text file."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacts with the Oracle HR schema tables (EMPLOYEES, DEPARTMENTS, LOCATIONS, JOB_HISTORY).",
+            "visual_evidence": "The SQL queries visible in the screenshots must reference the actual table names from the Oracle HR schema."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "Agent saves the file to the specific requested directory.",
+            "visual_evidence": "The file path /home/ga/Desktop/workforce_analytics_report.txt is visible in the save dialog or terminal command."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified values for the Oracle HR schema: Q1: The city with the highest average salary is Munich (10000.00). Q2: The manager with the widest span is Steven King with 14 direct reports. Q3: The average salary increase percentage is 114.38%. Q4: The most mobile job title (most frequent in JOB_HISTORY) is Public Accountant (or the title associated with the most transitions). The agent must label these Q1-Q4 in the final text file."
+}

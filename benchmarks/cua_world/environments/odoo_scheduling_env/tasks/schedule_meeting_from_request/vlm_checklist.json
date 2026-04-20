@@ -1,0 +1,68 @@
+{
+    "task_id": "schedule_meeting_from_request@1",
+    "task_completion": [
+        {
+            "id": "read_meeting_request",
+            "description": "The agent opens and reads the meeting request file at ~/Documents/meeting_request.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of 'meeting_request.txt' with details about the Systems Infrastructure Check."
+        },
+        {
+            "id": "open_odoo_calendar",
+            "description": "The agent navigates to the Odoo Calendar application.",
+            "points": 10,
+            "visual_evidence": "The Odoo interface is visible with the Calendar module active."
+        },
+        {
+            "id": "set_correct_subject_and_location",
+            "description": "The agent enters the correct Subject and Location in the meeting creation form.",
+            "points": 15,
+            "visual_evidence": "The 'Meeting Subject' field contains 'Systems Infrastructure Check' and the 'Location' field contains 'Server Room'."
+        },
+        {
+            "id": "set_correct_date_and_time",
+            "description": "The agent calculates and selects the correct date (next Friday relative to the system date) and time.",
+            "points": 25,
+            "visual_evidence": "The date picker or meeting form shows the date for the Friday following the current system date."
+        },
+        {
+            "id": "set_correct_duration",
+            "description": "The agent sets the meeting duration to 90 minutes (1.5 hours).",
+            "points": 15,
+            "visual_evidence": "The duration field shows '01:30' or the end time is set exactly 90 minutes after the start time."
+        },
+        {
+            "id": "add_correct_attendees",
+            "description": "The agent adds Luis Fernandez and David Chen to the meeting.",
+            "points": 15,
+            "visual_evidence": "The 'Attendees' field in the Odoo meeting form lists 'Luis Fernandez' and 'David Chen'."
+        },
+        {
+            "id": "save_meeting",
+            "description": "The agent saves the meeting entry in the calendar.",
+            "points": 10,
+            "visual_evidence": "The meeting appears as a block on the calendar grid or a 'Meeting Created' notification is shown."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface to schedule the meeting rather than direct database manipulation.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Odoo buttons and form fields."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually opened the text file to find the details instead of guessing.",
+            "points": 0,
+            "visual_evidence": "The trajectory includes a step where the file ~/Documents/meeting_request.txt is displayed."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the live Odoo environment, not just static mockups.",
+            "points": 0,
+            "visual_evidence": "The Odoo interface responds to clicks, such as opening the date picker or showing attendee dropdowns."
+        }
+    ],
+    "privileged_info_for_vlm": "The meeting details are: Subject: 'Systems Infrastructure Check'; Location: 'Server Room'; Duration: 90 minutes (1.5 hours); Attendees: 'Luis Fernandez' and 'David Chen'. The date must be the Friday immediately following the current system date shown in the task environment. The request is stored at /home/ga/Documents/meeting_request.txt."
+}

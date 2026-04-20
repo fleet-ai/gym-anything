@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_lesion_aspect_ratio@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_file",
+            "description": "The agent successfully opens the specified DICOM file (~/DICOM/samples/synthetic/CT_slice_001.dcm) in a DICOM viewer.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer (like Weasis) is open showing a medical image or a 'washed out' white/grey square."
+        },
+        {
+            "id": "adjust_window_level",
+            "description": "The agent adjusts the Window/Level (W/L) settings to make the central circular structure and background gradient visible.",
+            "points": 20,
+            "visual_evidence": "The image changes from a washed-out state to one where a distinct circular object and a gradient background are clearly visible."
+        },
+        {
+            "id": "measure_diameters",
+            "description": "The agent uses measurement tools to find the horizontal and vertical diameters of the central circle.",
+            "points": 30,
+            "visual_evidence": "Measurement lines (calipers) are visible on the image, one horizontal and one vertical, crossing the center of the circle."
+        },
+        {
+            "id": "calculate_aspect_ratio",
+            "description": "The agent calculates the aspect ratio based on the measurements.",
+            "points": 15,
+            "visual_evidence": "The agent is seen typing calculations or values into a text editor or calculator, or the final report contains the ratio."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the report at ~/DICOM/exports/aspect_ratio_report.txt with the required data.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the file 'aspect_ratio_report.txt' being saved with Horizontal, Vertical, and Aspect Ratio values."
+        },
+        {
+            "id": "export_viewport_image",
+            "description": "The agent exports the viewport showing the measurements to ~/DICOM/exports/aspect_ratio_view.jpg.",
+            "points": 10,
+            "visual_evidence": "The agent uses the 'Export' or 'Save as Image' feature in the viewer, or a file manager shows the .jpg file in the exports folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the GUI viewer to perform measurements rather than just using terminal scripts to extract metadata.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with viewer tools and measurement lines overlaid on the image."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the expected values (128.0) without performing the visual measurement steps.",
+            "visual_evidence": "The agent is seen placing measurement markers on the image before the report is generated."
+        },
+        {
+            "id": "genuine_windowing",
+            "description": "The agent manually adjusted the window/level settings using the viewer's tools.",
+            "visual_evidence": "The Window/Level values in the viewer's status bar change, or the 'W/L' tool icon is active."
+        }
+    ],
+    "privileged_info_for_vlm": "The synthetic DICOM image has a central circle with a radius of 64 pixels. The ground truth horizontal diameter is 128.0 and the vertical diameter is 128.0. The expected aspect ratio is 1.0. The agent's measurements should be close to 128 (within a tolerance of ~15 units). The report must be at /home/ga/DICOM/exports/aspect_ratio_report.txt and the image at /home/ga/DICOM/exports/aspect_ratio_view.jpg."
+}

@@ -1,0 +1,56 @@
+{
+    "task_id": "local_blast_outbreak_surveillance@1",
+    "task_completion": [
+        {
+            "id": "open_ugene_gui",
+            "description": "The UGENE graphical interface is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The UGENE application window is open on the desktop."
+        },
+        {
+            "id": "create_blast_db",
+            "description": "A local BLAST database is created using the environmental_swabs.fasta file.",
+            "points": 20,
+            "visual_evidence": "The 'FormatDB' or 'Build BLAST Database' dialog in UGENE showing the input file 'environmental_swabs.fasta' and the output name 'swabs_db' in the specified directory."
+        },
+        {
+            "id": "run_local_blast",
+            "description": "A local BLAST search is performed using mcr_1_reference.fasta against the created swabs_db.",
+            "points": 25,
+            "visual_evidence": "The 'Search with BLAST' dialog in UGENE with 'mcr_1_reference.fasta' as the query and 'swabs_db' selected as the local database."
+        },
+        {
+            "id": "export_gff_results",
+            "description": "The BLAST hits are exported as a GFF file to the results directory.",
+            "points": 20,
+            "visual_evidence": "The 'Export' or 'Save as' dialog in UGENE showing the file path '~/UGENE_Data/outbreak/results/mcr1_hits.gff' and the GFF format selected."
+        },
+        {
+            "id": "create_surveillance_report",
+            "description": "A text report is created identifying Hospital_Swab_A as the contaminated swab.",
+            "points": 25,
+            "visual_evidence": "A text editor or UGENE document viewer showing 'surveillance_report.txt' with text explicitly naming 'Hospital_Swab_A' (or Hospital_Swab_A_Isolate) as the source of the mcr-1 gene."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the UGENE GUI for BLAST operations rather than the terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show interactions with UGENE menus and dialog boxes; no terminal windows showing 'makeblastdb' or 'blastn' commands being executed."
+        },
+        {
+            "id": "genuine_blast_output",
+            "description": "The BLAST results shown in the GUI correspond to the actual sequence alignment.",
+            "points": 0,
+            "visual_evidence": "The UGENE 'Alignment' or 'Search Results' pane shows a high-identity hit between the reference and a sequence labeled 'Hospital_Swab_A_Isolate'."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The GFF file was generated via UGENE export, not manually typed.",
+            "points": 0,
+            "visual_evidence": "The UGENE 'Export' workflow is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The mcr-1 gene is synthetically placed within 'Hospital_Swab_A_Isolate'. The BLAST database must be named 'swabs_db' and located in '~/UGENE_Data/outbreak/blast_db/'. The final report must identify Hospital_Swab_A as the contaminated sample. Command-line BLAST execution is strictly forbidden for this task."
+}

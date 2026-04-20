@@ -1,0 +1,59 @@
+{
+    "task_id": "pto_date_calculation_logic@1",
+    "task_completion": [
+        {
+            "id": "survey_creation_activation",
+            "description": "Create and activate a survey titled 'PTO Request Form 2024'.",
+            "points": 10,
+            "visual_evidence": "A LimeSurvey screen showing the survey title 'PTO Request Form 2024' and a status indicating it is 'Active' (e.g., a green checkmark or 'Stop this survey' button)."
+        },
+        {
+            "id": "question_group_details",
+            "description": "Create a question group named 'Leave Details'.",
+            "points": 10,
+            "visual_evidence": "The survey structure or group list showing a group with the title 'Leave Details'."
+        },
+        {
+            "id": "date_questions_setup",
+            "description": "Create 'Start Date' (code: start) and 'Return Date' (code: return) questions.",
+            "points": 15,
+            "visual_evidence": "The question list showing two date-type questions with the specific codes 'start' and 'return'."
+        },
+        {
+            "id": "date_validation_logic",
+            "description": "Implement validation ensuring the return date is after the start date.",
+            "points": 20,
+            "visual_evidence": "The 'Logic' or 'Validation' settings for the 'return' question showing an ExpressionScript formula that compares 'return' and 'start' (e.g., return > start)."
+        },
+        {
+            "id": "duration_calculation_logic",
+            "description": "Create 'Duration Calculation' (code: calc_days) using ExpressionScript to calculate days.",
+            "points": 25,
+            "visual_evidence": "An equation-type question with code 'calc_days' containing a formula using 'strtotime', '86400', and subtraction '-' between the dates."
+        },
+        {
+            "id": "conditional_medical_cert",
+            "description": "Create 'Medical Certificate' (code: med_cert) file upload question with relevance logic for > 3 days.",
+            "points": 20,
+            "visual_evidence": "A file upload question with code 'med_cert' showing a relevance equation/condition like 'calc_days > 3'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey menus, buttons, and form fields."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent manually entered the ExpressionScript formulas rather than just viewing a pre-existing survey.",
+            "visual_evidence": "Sequential screenshots showing the 'Question Editor' or 'Logic' tabs being opened and text being typed into the equation fields."
+        },
+        {
+            "id": "active_session",
+            "description": "The agent is logged in as 'admin' and interacting with the live site.",
+            "visual_evidence": "The LimeSurvey top bar shows the 'admin' user logged in and the URL matches the local/provided environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey must be titled 'PTO Request Form 2024'. Required question codes are 'start', 'return', 'calc_days', and 'med_cert'. The validation for 'return' must involve the 'start' variable. The 'calc_days' formula must use 'strtotime' and divide by '86400'. The 'med_cert' question must have a relevance equation specifically checking if 'calc_days' is greater than 3."
+}

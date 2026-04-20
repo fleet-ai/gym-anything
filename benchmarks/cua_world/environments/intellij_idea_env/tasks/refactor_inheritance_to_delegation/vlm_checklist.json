@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_inheritance_to_delegation@1",
+    "task_completion": [
+        {
+            "id": "remove_inheritance",
+            "description": "Remove 'extends LegacySocket' from the SecureDataTransmitter class declaration.",
+            "points": 15,
+            "visual_evidence": "The class header in SecureDataTransmitter.java should show 'public class SecureDataTransmitter' without 'extends LegacySocket'."
+        },
+        {
+            "id": "add_delegate_field",
+            "description": "Implement a private field of type LegacySocket within SecureDataTransmitter.",
+            "points": 15,
+            "visual_evidence": "A field declaration like 'private final LegacySocket delegate;' or similar inside the SecureDataTransmitter class."
+        },
+        {
+            "id": "delegate_send_data",
+            "description": "Implement the sendData method by calling the delegate's sendData method.",
+            "points": 25,
+            "visual_evidence": "The sendData method in SecureDataTransmitter should contain a call like 'delegate.sendData(data);'."
+        },
+        {
+            "id": "delegate_close",
+            "description": "Implement the close method by calling the delegate's close method.",
+            "points": 25,
+            "visual_evidence": "The close method in SecureDataTransmitter should contain a call like 'delegate.close();'."
+        },
+        {
+            "id": "verify_method_exclusion",
+            "description": "Ensure 'connectInsecure' and 'getRawStream' are not present in SecureDataTransmitter.",
+            "points": 20,
+            "visual_evidence": "The source code of SecureDataTransmitter.java should not contain definitions for 'connectInsecure' or 'getRawStream' methods."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's code editor to perform the refactoring rather than just executing shell commands.",
+            "visual_evidence": "Screenshots showing the agent typing or using refactoring tools within the IntelliJ/IDE editor window."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply delete the file and recreate it with static content to bypass the refactoring process.",
+            "visual_evidence": "The file history or sequence of edits shows incremental changes to the existing SecureDataTransmitter.java file."
+        },
+        {
+            "id": "genuine_file_navigation",
+            "description": "The agent navigated the project structure to locate the correct files.",
+            "visual_evidence": "The Project tool window or 'Open File' dialog showing navigation to src/main/java/com/network/."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/network-module. The target file for refactoring is src/main/java/com/network/SecureDataTransmitter.java. The class it originally inherited from is LegacySocket.java. The methods to be delegated are sendData(String) and close(). The methods that must be removed/hidden (by stopping inheritance) are connectInsecure() and getRawStream()."
+}

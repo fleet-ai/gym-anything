@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_dcac_ratio_impact@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Locate the TMY CSV file path from the specified directory file.",
+            "points": 10,
+            "visual_evidence": "Terminal output or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or the directory listing of that path."
+        },
+        {
+            "id": "initialize_pysam_pvwattsv8",
+            "description": "Initialize the PySAM Pvwattsv8 module with the specified system parameters (100MW, Module 0, Array 2, Tilt 0, Azimuth 180).",
+            "points": 15,
+            "visual_evidence": "Python code in an IDE or terminal showing 'PySAM.Pvwattsv8.new()' and setting system_capacity to 100000, module_type to 0, and array_type to 2."
+        },
+        {
+            "id": "configure_system_losses_gcr",
+            "description": "Set system losses to 14.08%, GCR to 0.4, and inverter efficiency to 96%.",
+            "points": 15,
+            "visual_evidence": "Python code showing 'losses' set to 14.08, 'gcr' set to 0.4, and 'inv_eff' set to 96."
+        },
+        {
+            "id": "model_config_a",
+            "description": "Model Configuration A with a DC/AC ratio of 1.2 and execute simulation.",
+            "points": 20,
+            "visual_evidence": "Python code showing 'dc_ac_ratio' set to 1.2 and a call to the 'execute()' method for the first configuration."
+        },
+        {
+            "id": "model_config_b",
+            "description": "Model Configuration B with a DC/AC ratio of 1.4 and execute simulation.",
+            "points": 20,
+            "visual_evidence": "Python code showing 'dc_ac_ratio' updated to 1.4 and a second call to the 'execute()' method."
+        },
+        {
+            "id": "save_comparison_json",
+            "description": "Calculate energy gain and save the results to the specified JSON path with the correct structure.",
+            "points": 20,
+            "visual_evidence": "Terminal output or code showing the creation of /home/ga/Documents/SAM_Projects/dcac_ratio_comparison.json containing config_a, config_b, and energy_gain_percent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding values.",
+            "visual_evidence": "Presence of 'import PySAM.Pvwattsv8' and calls to simulation methods in the code history."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Check if the agent calculated the energy gain percent using the formula instead of typing a pre-known value.",
+            "visual_evidence": "Python code showing the mathematical formula ((config_b - config_a) / config_a) * 100."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Ensure the agent read the weather file path from the provided text file rather than guessing.",
+            "visual_evidence": "Code or terminal commands reading /home/ga/.SAM/solar_resource_dir.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected weather file is 'phoenix_az_33.450495_-111.983688_psmv3_60_tmy.csv'. For a fixed 100MW DC capacity, increasing the DC/AC ratio from 1.2 to 1.4 reduces the AC inverter capacity, leading to more clipping. Therefore, the annual energy for Config B will be slightly LOWER than Config A, resulting in a negative energy_gain_percent (approximately -0.33%). Annual energy should be between 150M and 300M kWh, and Capacity Factor between 17% and 35%."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "self_service_portal_catalog@1",
+    "task_completion": [
+        {
+            "id": "dell_monitor_requestable",
+            "description": "Set 'Dell U2723QE Monitor' model to be requestable.",
+            "points": 15,
+            "visual_evidence": "In the Asset Models list or specific model edit page, the 'Requestable' checkbox/toggle for 'Dell U2723QE Monitor' is checked/enabled."
+        },
+        {
+            "id": "logitech_mouse_requestable",
+            "description": "Set 'Logitech MX Master 3S' model to be requestable.",
+            "points": 15,
+            "visual_evidence": "In the Asset Models list or specific model edit page, the 'Requestable' checkbox/toggle for 'Logitech MX Master 3S' is checked/enabled."
+        },
+        {
+            "id": "macbook_not_requestable",
+            "description": "Ensure 'Apple MacBook Pro 16 M3 Max' model is NOT requestable.",
+            "points": 20,
+            "visual_evidence": "In the Asset Models list or specific model edit page, the 'Requestable' checkbox/toggle for 'Apple MacBook Pro 16 M3 Max' is unchecked/disabled."
+        },
+        {
+            "id": "loaner_assets_requestable",
+            "description": "Set assets 'LOANER-T14-01', 'LOANER-T14-02', and 'LOANER-T14-03' to be requestable.",
+            "points": 20,
+            "visual_evidence": "In the All Assets list or individual asset edit pages, the 'Requestable' status for these three specific tags is shown as 'Yes' or the checkbox is checked."
+        },
+        {
+            "id": "loaner_assets_location",
+            "description": "Change the location of the three LOANER-T14 assets to 'IT Helpdesk - Walk-up'.",
+            "points": 20,
+            "visual_evidence": "In the asset details or edit view for LOANER-T14-01, 02, and 03, the 'Location' or 'Default Location' field is set to 'IT Helpdesk - Walk-up'."
+        },
+        {
+            "id": "exec_assets_unchanged",
+            "description": "Ensure 'EXEC-T14-01' and 'EXEC-T14-02' remain not requestable.",
+            "points": 10,
+            "visual_evidence": "In the asset list or details view, the 'Requestable' status for EXEC-T14-01 and EXEC-T14-02 is 'No' or the checkbox is unchecked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "Verify the agent used the web interface and not the terminal to modify the database.",
+            "visual_evidence": "Screenshots show the browser navigating Snipe-IT pages, clicking 'Edit' buttons, and saving forms, rather than executing SQL or curl commands in a terminal."
+        },
+        {
+            "id": "no_bulk_edit_shortcuts",
+            "description": "Verify the agent correctly identified the specific asset tags rather than modifying all ThinkPads.",
+            "visual_evidence": "The agent is seen searching for or selecting the specific 'LOANER' tags, while 'EXEC' tags are visible but remain unselected or unchanged."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "Verify the agent navigated to the Asset Models and All Assets sections.",
+            "visual_evidence": "The sidebar navigation highlights or URL changes indicate movement between 'Models' and 'List All' assets."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires modifying a Snipe-IT inventory. Verified requirements: 1. Models 'Dell U2723QE Monitor' and 'Logitech MX Master 3S' must be Requestable=True. 2. Model 'Apple MacBook Pro 16 M3 Max' must be Requestable=False. 3. Assets with tags 'LOANER-T14-01', 'LOANER-T14-02', and 'LOANER-T14-03' must be Requestable=True AND Location='IT Helpdesk - Walk-up'. 4. Assets 'EXEC-T14-01' and 'EXEC-T14-02' must remain Requestable=False. Scoring is weighted toward the MacBook correction and the specific Loaner asset updates."
+}

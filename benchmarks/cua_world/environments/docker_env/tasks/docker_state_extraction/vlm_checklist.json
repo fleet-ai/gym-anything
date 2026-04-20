@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_state_extraction@1",
+    "task_completion": [
+        {
+            "id": "investigate_container",
+            "description": "Investigate the running 'acme-legacy-app' container to identify changes (packages, env vars, files).",
+            "points": 15,
+            "visual_evidence": "Terminal output showing commands like 'docker exec', 'pip list', 'env', or 'ls -R' targeting the acme-legacy-app container."
+        },
+        {
+            "id": "document_findings",
+            "description": "Create the documentation file 'container_changes.txt' on the Desktop.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '~/Desktop/container_changes.txt' containing details about the container state."
+        },
+        {
+            "id": "create_dockerfile",
+            "description": "Create a new Dockerfile in the specified project directory.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing a Dockerfile located at '~/projects/acme-legacy-app/Dockerfile' with instructions to install dependencies and copy app files."
+        },
+        {
+            "id": "build_restored_image",
+            "description": "Build the new Docker image with the tag 'acme-legacy-app:restored'.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'docker build -t acme-legacy-app:restored' finishing successfully."
+        },
+        {
+            "id": "verify_health_endpoint",
+            "description": "Run the restored image and verify the /health endpoint responds correctly.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a 'curl' command to 'http://localhost:8000/health' (or similar port) returning a successful response (e.g., 200 OK or JSON status)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_manifest",
+            "description": "The agent did not create the manifest without first running discovery commands.",
+            "visual_evidence": "The trajectory must show commands like 'docker exec' or 'docker inspect' occurring BEFORE the 'container_changes.txt' file is written."
+        },
+        {
+            "id": "genuine_build_process",
+            "description": "The agent actually built the image rather than just tagging the existing one.",
+            "visual_evidence": "The terminal should show the multi-step Docker build process (Step 1/X, etc.) rather than just a 'docker tag' command."
+        },
+        {
+            "id": "actual_health_check",
+            "description": "The health check was performed against a running instance of the new image.",
+            "visual_evidence": "A 'docker run' command for 'acme-legacy-app:restored' followed by a curl/browser request to the health endpoint."
+        }
+    ],
+    "privileged_info_for_vlm": "The target container is 'acme-legacy-app'. The base image used was 'python:3.11-slim'. The project directory is '/home/ga/projects/acme-legacy-app'. The documentation must be at '/home/ga/Desktop/container_changes.txt'. The final image must be tagged 'acme-legacy-app:restored'. The application is a Python API (inventory_api.py) that listens on port 8000 and has a '/health' endpoint."
+}

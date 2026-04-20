@@ -1,0 +1,59 @@
+{
+    "task_id": "sakila_schema_drift_remediation@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent connects to the MySQL server using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Terminal or GUI showing a successful connection to MySQL (user ga) or listing databases including 'sakila_gold' and 'sakila_prod'."
+        },
+        {
+            "id": "drift_identification",
+            "description": "Agent compares the schemas of 'sakila_gold' and 'sakila_prod' to identify differences.",
+            "points": 20,
+            "visual_evidence": "Terminal output or SQL editor showing DESCRIBE, SHOW CREATE TABLE, or schema comparison tool results highlighting differences in 'customer', 'address', 'store', or 'customer_list'."
+        },
+        {
+            "id": "script_generation",
+            "description": "Agent generates a SQL script to revert the identified drifts.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of a SQL script containing ALTER TABLE or CREATE OR REPLACE VIEW statements aimed at matching 'sakila_prod' to 'sakila_gold'."
+        },
+        {
+            "id": "save_script_file",
+            "description": "Agent saves the synchronization script to the specific required path.",
+            "points": 15,
+            "visual_evidence": "A file manager, terminal 'ls' command, or 'save as' dialog showing the file exists at '/home/ga/Documents/sql_scripts/revert_drift.sql'."
+        },
+        {
+            "id": "execute_remediation",
+            "description": "Agent executes the SQL script against the 'sakila_prod' database.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing the execution of the script (e.g., 'mysql < revert_drift.sql') or a 'Query OK' message in a SQL GUI after running the script."
+        },
+        {
+            "id": "verify_remediation",
+            "description": "Agent verifies that 'sakila_prod' now matches 'sakila_gold' and data is preserved.",
+            "points": 10,
+            "visual_evidence": "Terminal or GUI showing a final check of the schema or a SELECT query on the 'rental' table showing that existing records still exist."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_database_recreation",
+            "description": "Agent did not drop and recreate the 'sakila_prod' database.",
+            "visual_evidence": "The command history or SQL logs should not show 'DROP DATABASE sakila_prod' or 'CREATE DATABASE sakila_prod'. It should show ALTER commands."
+        },
+        {
+            "id": "genuine_comparison",
+            "description": "Agent actually performed a comparison rather than just writing the script from memory.",
+            "visual_evidence": "Screenshots should show the agent querying both 'sakila_gold' and 'sakila_prod' schemas before writing the remediation script."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent used the exact file path specified in the instructions.",
+            "visual_evidence": "The script must be saved at '/home/ga/Documents/sql_scripts/revert_drift.sql', not a temporary or home directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The specific drifts to be fixed in 'sakila_prod' are: 1. customer.last_name length (should match gold), 2. address.idx_fk_city_id index is missing, 3. store.internal_notes is an extra column that must be removed, 4. customer_list view is missing the 'country' column. The agent must NOT drop the database because a live tracer record exists in the 'rental' table that must be preserved. The final script must be saved to /home/ga/Documents/sql_scripts/revert_drift.sql."
+}

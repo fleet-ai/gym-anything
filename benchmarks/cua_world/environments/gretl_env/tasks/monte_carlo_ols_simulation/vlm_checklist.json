@@ -1,0 +1,59 @@
+{
+    "task_id": "monte_carlo_ols_simulation@1",
+    "task_completion": [
+        {
+            "id": "gretl_script_creation",
+            "description": "The agent opens the Gretl script editor and writes the hansl script with the specified parameters.",
+            "points": 15,
+            "visual_evidence": "A Gretl script editor window showing code that includes 'set seed 54321', 'loop 1000', and 'n = 50'."
+        },
+        {
+            "id": "dgp_implementation",
+            "description": "The script correctly implements the Data Generating Process (DGP) variables.",
+            "points": 15,
+            "visual_evidence": "Code showing 'x = uniform(0,10)', 'e = normal(0,2)' (or variance 4), and 'y = 2 + 3*x + e'."
+        },
+        {
+            "id": "ols_estimation_loop",
+            "description": "The script performs OLS regression (y on const, x) within a loop and captures the slope coefficient.",
+            "points": 20,
+            "visual_evidence": "Code showing 'ols y 0 x' (or 'ols y const x') and a command to store the coefficient, such as '$coeff(x)' or '$coeff[2]'."
+        },
+        {
+            "id": "script_saved_to_path",
+            "description": "The script is saved to the specific file path required.",
+            "points": 10,
+            "visual_evidence": "The Gretl script editor title bar or a file explorer showing 'monte_carlo.inp' in '/home/ga/Documents/gretl_output/'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script within Gretl.",
+            "points": 15,
+            "visual_evidence": "The Gretl console or output window showing the script running or the results of the simulation being printed."
+        },
+        {
+            "id": "results_file_content",
+            "description": "The results file is created with the correct format and values for mean and standard deviation.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing '/home/ga/Documents/gretl_output/monte_carlo_results.txt' with 'mean_b1', 'sd_b1', and 'true_b1 = 3.0'. The mean_b1 should be approximately 3.0."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gretl_usage",
+            "description": "The agent used the Gretl application rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the Gretl GUI, script editor, or Gretl console output."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the expected results into a file without running a simulation.",
+            "visual_evidence": "The script execution output showing 1000 iterations or the Gretl progress bar/logs."
+        },
+        {
+            "id": "seed_verification",
+            "description": "The agent used the specific seed 54321 to ensure reproducibility.",
+            "visual_evidence": "The command 'set seed 54321' is visible in the script or console history."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use seed 54321, 1000 replications, and n=50. The true slope (b1) is 3.0. Expected mean_b1 should be between 2.85 and 3.15. Expected sd_b1 should be between 0.05 and 0.25. The script must be at /home/ga/Documents/gretl_output/monte_carlo.inp and results at /home/ga/Documents/gretl_output/monte_carlo_results.txt."
+}

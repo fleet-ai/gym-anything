@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_columns_and_export_csv@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_and_file",
+            "description": "Open Wireshark and load the specified capture file (http.cap).",
+            "points": 10,
+            "visual_evidence": "Wireshark window is open showing 'http.cap' in the title bar or file path."
+        },
+        {
+            "id": "configure_time_format",
+            "description": "Set the Time Display Format to UTC Date and Time of Day.",
+            "points": 15,
+            "visual_evidence": "The 'Time' column in the packet list shows dates and times (e.g., YYYY-MM-DD HH:MM:SS) rather than seconds since beginning of capture."
+        },
+        {
+            "id": "add_custom_columns",
+            "description": "Add Host, Method, and URI as custom columns using the correct fields (http.host, http.request.method, http.request.uri).",
+            "points": 25,
+            "visual_evidence": "The Wireshark packet list pane shows new column headers labeled 'Host', 'Method', and 'URI' (or similar) with corresponding HTTP data visible."
+        },
+        {
+            "id": "reorder_and_remove_columns",
+            "description": "Ensure only the 6 specified columns are present in the exact order: Time, Source, Destination, Host, Method, URI.",
+            "points": 20,
+            "visual_evidence": "The packet list header shows exactly these six columns in the specified left-to-right order. No extra columns like 'Protocol' or 'Length' are visible."
+        },
+        {
+            "id": "export_to_csv",
+            "description": "Export the packet dissections to a CSV file at the specified path.",
+            "points": 30,
+            "visual_evidence": "The 'Export Packet Dissections' -> 'as CSV...' dialog is shown with the filename '/home/ga/Documents/captures/http_activity_log.csv' entered before saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the Wireshark GUI rather than command-line tools like tshark.",
+            "visual_evidence": "Screenshots show interaction with Wireshark menus, column headers, or preference dialogs."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Ensure the agent didn't simply create a text file and type the content manually.",
+            "visual_evidence": "The agent is seen using the 'Export' or 'Save As' functionality within the Wireshark interface."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Verify the agent interacted with the column preferences or right-clicked headers to customize the view.",
+            "visual_evidence": "Context menus for 'Column Preferences' or 'Apply as Column' are visible during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is http.cap. The final CSV must have 6 columns in this order: Time, Source, Destination, Host, Method, URI. For packet 4, the Host should be 'www.ethereal.com', the Method 'GET', and the URI '/download.html'. The Time format must be UTC Date and Time of Day. The output path must be /home/ga/Documents/captures/http_activity_log.csv."
+}

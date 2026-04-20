@@ -1,0 +1,62 @@
+{
+    "task_id": "assign_hotel_maintenance_priorities@1",
+    "task_completion": [
+        {
+            "id": "login_and_db_access",
+            "description": "Agent successfully logs into OrientDB Studio and accesses the 'demodb' database.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the OrientDB Studio dashboard or schema view for the 'demodb' database."
+        },
+        {
+            "id": "create_vertex_class",
+            "description": "Agent creates the 'HotelMaintenanceFlag' vertex class with a unique index.",
+            "points": 15,
+            "visual_evidence": "The 'Schema' tab showing 'HotelMaintenanceFlag' in the list of classes, or a SQL command execution creating the class and index."
+        },
+        {
+            "id": "create_edge_class",
+            "description": "Agent ensures the 'RequiresMaintenance' edge class exists to link hotels to flags.",
+            "points": 10,
+            "visual_evidence": "The 'Schema' tab showing 'RequiresMaintenance' as an E (Edge) class."
+        },
+        {
+            "id": "classify_critical_hotels",
+            "description": "Agent identifies and creates flags for the 6 CRITICAL priority hotels (5 Stars AND Type in ['Luxury', 'Palace']).",
+            "points": 25,
+            "visual_evidence": "SQL 'INSERT' or 'CREATE VERTEX' commands, or a 'Browse' view showing 6 records in HotelMaintenanceFlag with priority='CRITICAL'."
+        },
+        {
+            "id": "classify_high_hotels",
+            "description": "Agent identifies and creates flags for the 6 HIGH priority hotels (5 Stars AND Type NOT IN ['Luxury', 'Palace']).",
+            "points": 20,
+            "visual_evidence": "SQL commands or Browse view showing 6 records in HotelMaintenanceFlag with priority='HIGH'."
+        },
+        {
+            "id": "classify_standard_hotels",
+            "description": "Agent identifies and creates flags for the 3 STANDARD priority hotels (Stars < 5).",
+            "points": 20,
+            "visual_evidence": "SQL commands or Browse view showing 3 records in HotelMaintenanceFlag with priority='STANDARD'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface rather than just executing background scripts.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the browser with http://localhost:2480/studio/index.html and interaction with the Query or Schema tabs."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent queried the hotel data to determine attributes before assigning priorities.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a SELECT query on the 'Hotel' class to check Stars and Type values."
+        },
+        {
+            "id": "genuine_linkage",
+            "description": "Agent created actual 'RequiresMaintenance' edges between Hotel and HotelMaintenanceFlag.",
+            "points": 10,
+            "visual_evidence": "SQL 'CREATE EDGE' commands or the 'Graph' tab showing connections between the two vertex types."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires classifying 15 hotels. CRITICAL (6 hotels): Stars=5 and Type is 'Luxury' or 'Palace'. HIGH (6 hotels): Stars=5 and Type is NOT 'Luxury' or 'Palace'. STANDARD (3 hotels): Stars < 5. The agent must create a vertex class 'HotelMaintenanceFlag' and link it to 'Hotel' via a 'RequiresMaintenance' edge. Specific CRITICAL hotels include Hotel Adlon Kempinski, Hotel de Crillon, The Savoy, Park Hyatt Tokyo, Four Seasons Sydney, and Intercontinental Amsterdam."
+}

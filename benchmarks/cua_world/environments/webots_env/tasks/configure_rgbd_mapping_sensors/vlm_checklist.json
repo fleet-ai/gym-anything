@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_rgbd_mapping_sensors@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulation and located the MAPPING_ROBOT node in the scene tree.",
+            "points": 10,
+            "visual_evidence": "Webots application is visible with a robot named 'MAPPING_ROBOT' in the scene tree on the left."
+        },
+        {
+            "id": "configure_depth_camera",
+            "description": "The 'depth_camera' RangeFinder node is configured with width 640, height 480, maxRange 10.0, minRange 0.3, and fieldOfView 1.5184.",
+            "points": 25,
+            "visual_evidence": "The selection panel or scene tree shows the RangeFinder node with these specific numerical values entered into its fields."
+        },
+        {
+            "id": "configure_rgb_camera_specs",
+            "description": "The 'rgb_camera' Camera node is configured with width 640, height 480, and fieldOfView 1.2040.",
+            "points": 25,
+            "visual_evidence": "The selection panel or scene tree shows the Camera node with these specific numerical values entered into its fields."
+        },
+        {
+            "id": "set_rgb_translation",
+            "description": "The 'rgb_camera' translation is set to (0.0 0.065 0.0) for co-location.",
+            "points": 20,
+            "visual_evidence": "The translation field for the rgb_camera node shows the values 0, 0.065, and 0."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The configured world is saved to the specific path /home/ga/Desktop/rgbd_mapping_robot.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog box or the Webots title bar shows the file path /home/ga/Desktop/rgbd_mapping_robot.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_hardcoded_script_bypass",
+            "description": "The agent did not simply run a python script to generate the .wbt file without opening the editor.",
+            "visual_evidence": "The Webots application window is active and the scene tree reflects the changes made during the session."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered the specific D435 values into the Webots fields.",
+            "visual_evidence": "Sequential screenshots show the values being typed or changed in the Webots property editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The depth sensor is a RangeFinder (not a Camera) and must have: width=640, height=480, maxRange=10.0, minRange=0.3, fov=1.5184. The RGB sensor is a Camera and must have: width=640, height=480, fov=1.2040, and translation=[0, 0.065, 0]. The final file must be saved exactly as /home/ga/Desktop/rgbd_mapping_robot.wbt."
+}

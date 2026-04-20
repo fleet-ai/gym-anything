@@ -1,0 +1,59 @@
+{
+    "task_id": "compressed_log_ingestion_preprocessor@1",
+    "task_completion": [
+        {
+            "id": "directory_setup",
+            "description": "Create the directory /home/ga/log_warehouse and set permissions for the oracle user.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'mkdir' and 'chown' or 'chmod' commands targeting /home/ga/log_warehouse."
+        },
+        {
+            "id": "oracle_directory_object",
+            "description": "Create the Oracle DIRECTORY object LOG_DIR pointing to the warehouse path.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE OR REPLACE DIRECTORY LOG_DIR AS ...' executed in a database tool or terminal."
+        },
+        {
+            "id": "external_table_creation",
+            "description": "Create the FIREWALL_LOGS_EXT external table with the ORACLE_LOADER driver and a preprocessor for GZIP.",
+            "points": 25,
+            "visual_evidence": "SQL code showing 'CREATE TABLE FIREWALL_LOGS_EXT', 'ORGANIZATION EXTERNAL', 'TYPE ORACLE_LOADER', and a 'PREPROCESSOR' clause (usually pointing to /bin/zcat or /usr/bin/gunzip)."
+        },
+        {
+            "id": "view_creation",
+            "description": "Create the BLOCKED_TRAFFIC_SUMMARY view filtering for 'BLOCK' or 'DROP' actions.",
+            "points": 20,
+            "visual_evidence": "SQL command 'CREATE VIEW BLOCKED_TRAFFIC_SUMMARY' with a 'GROUP BY SOURCE_IP' and 'WHERE ACTION IN ('BLOCK', 'DROP')' clause."
+        },
+        {
+            "id": "query_execution",
+            "description": "Query the view to retrieve the top 5 blocked source IPs.",
+            "points": 15,
+            "visual_evidence": "SQL execution results showing a list of IP addresses and counts, likely ordered by count descending with a fetch first 5 rows limit."
+        },
+        {
+            "id": "report_export",
+            "description": "Export the top 5 blocked source IPs to /home/ga/Desktop/blocked_report.txt.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'cat /home/ga/Desktop/blocked_report.txt' or a file explorer showing the file exists with IP addresses and counts inside."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_extraction",
+            "description": "Verify the agent did not manually unzip the source file to disk before querying.",
+            "visual_evidence": "The external table definition must include the PREPROCESSOR clause; there should be no 'gunzip' or 'unzip' commands executed on the source file in the terminal history."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Verify the agent connected to the Oracle instance using the provided credentials.",
+            "visual_evidence": "Screenshots showing connection strings or login prompts using user 'hr', password 'hr123', and service 'XEPDB1'."
+        },
+        {
+            "id": "data_source_consistency",
+            "description": "Verify the report content matches the database query results.",
+            "visual_evidence": "The values (IPs and counts) shown in the SQL result grid must match the text content of /home/ga/Desktop/blocked_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is located at /workspace/data/firewall_trace.csv.gz and contains exactly 5000 records. The database user is 'hr' with password 'hr123' on service 'XEPDB1'. The external table must be named FIREWALL_LOGS_EXT and the view BLOCKED_TRAFFIC_SUMMARY. The final report must be at /home/ga/Desktop/blocked_report.txt and contain the top 5 source IPs for 'BLOCK' or 'DROP' actions."
+}

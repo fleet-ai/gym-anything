@@ -1,0 +1,56 @@
+{
+    "task_id": "evaluate_network_bottlenecks@1",
+    "task_completion": [
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the SUMO simulation using the specified configuration file.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'sumo -c /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg' or similar, or the SUMO GUI running with this config loaded."
+        },
+        {
+            "id": "output_generation",
+            "description": "The simulation generates the required XML output files in the specified directory.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal 'ls' command showing queues.xml and stats.xml present in /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "queue_data_analysis",
+            "description": "The agent opens and parses queues.xml to find the maximum queue length, lane, and time.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the agent viewing the contents of queues.xml (e.g., via cat, nano, or a text editor)."
+        },
+        {
+            "id": "stats_data_analysis",
+            "description": "The agent opens and parses stats.xml to find vehicle completion and speed statistics.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent viewing the contents of stats.xml (e.g., via cat, nano, or a text editor)."
+        },
+        {
+            "id": "report_creation",
+            "description": "The agent creates the bottleneck_report.txt with the specific required format and values.",
+            "points": 25,
+            "visual_evidence": "Terminal command 'cat /home/ga/SUMO_Output/bottleneck_report.txt' showing the 5 required keys and their corresponding values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_file_modification",
+            "description": "The agent did not modify the underlying network or route files.",
+            "points": 0,
+            "visual_evidence": "The agent should not be seen editing .net.xml or .rou.xml files in the scenario directory."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The agent actually ran the simulation rather than just creating a report with hardcoded values.",
+            "points": 0,
+            "visual_evidence": "Screenshots must show the simulation process or the creation of the XML output files before the report is generated."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the absolute paths specified in the instructions.",
+            "points": 0,
+            "visual_evidence": "Commands and file paths in screenshots should match /home/ga/SUMO_Scenarios/ and /home/ga/SUMO_Output/."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth values for the report are: max_queue_lane: 114_0, max_queue_length: 507.37, max_queue_time: 1189.0, total_vehicles_completed: 0 (this is expected for this SUMO version), and average_vehicle_speed: 6.47. The report must be located at /home/ga/SUMO_Output/bottleneck_report.txt."
+}

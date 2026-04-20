@@ -1,0 +1,53 @@
+{
+    "task_id": "vigilance_experiment_setup@1",
+    "task_completion": [
+        {
+            "id": "scenario_directory_creation",
+            "description": "Create the scenario directory at /opt/bridgecommand/Scenarios/Exp) Vigilance Study 4H/",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal window showing the creation or existence of the directory path '/opt/bridgecommand/Scenarios/Exp) Vigilance Study 4H/'."
+        },
+        {
+            "id": "environment_config",
+            "description": "Configure environment.ini with English Channel East, StartTime 0.0, Weather 1.0, and Visibility 12.0",
+            "points": 15,
+            "visual_evidence": "A text editor showing environment.ini with 'ScenarioName=English Channel East', 'StartTime=0.0', 'Weather=1.0', and 'VisibilityRange=12.0'."
+        },
+        {
+            "id": "ownship_config",
+            "description": "Configure ownship.ini with Name 'MV Subject', Lat 49.00, Long -2.50, Heading 000, and Speed 12.0",
+            "points": 20,
+            "visual_evidence": "A text editor showing ownship.ini with 'Name=MV Subject', 'Latitude=49.0', 'Longitude=-2.5', 'Heading=0', and 'Speed=12.0'."
+        },
+        {
+            "id": "othership_calculation_config",
+            "description": "Configure othership.ini with 'MV Stimulus' at calculated Latitude 51.00, Longitude -2.50, Heading 180, and Speed 18.0",
+            "points": 35,
+            "visual_evidence": "A text editor showing othership.ini with 'Name=MV Stimulus', 'Latitude=51.0' (calculated for 4h intercept), 'Longitude=-2.5', 'Heading=180', and 'Speed=18.0'."
+        },
+        {
+            "id": "briefing_file_creation",
+            "description": "Generate the participant briefing file at /home/ga/Documents/experiment_briefing.txt",
+            "points": 20,
+            "visual_evidence": "A file explorer or text editor showing the file 'experiment_briefing.txt' exists in the '/home/ga/Documents/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent actually typed or saved the configuration files rather than just displaying a mock output.",
+            "visual_evidence": "Screenshots showing a text editor (like Gedit, Nano, or Vim) open with the specific file paths and content being saved."
+        },
+        {
+            "id": "correct_math_derivation",
+            "description": "The agent calculated the starting latitude (51.0) correctly based on the 4-hour requirement.",
+            "visual_evidence": "Terminal or scratchpad showing the calculation: (12kts + 18kts) * 4h = 120nm; 120nm / 60nm per degree = 2 degrees; 49.0 + 2.0 = 51.0."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not use placeholders like '[insert latitude here]' in the final files.",
+            "visual_evidence": "The final view of the .ini files contains explicit numerical values for all coordinates and speeds."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario directory must be exactly '/opt/bridgecommand/Scenarios/Exp) Vigilance Study 4H/'. The critical calculation for the intercept is: Own ship speed (12) + Target speed (18) = 30 knots relative speed. Over 4 hours, they cover 120 nautical miles. At 60nm per degree of latitude, this is a 2.0-degree separation. Since Own Ship starts at 49.0N heading North (000) and Target is heading South (180) to meet it, the Target must start at 49.0 + 2.0 = 51.0N. The target longitude must be -2.50 to match the ownship for a head-on encounter."
+}

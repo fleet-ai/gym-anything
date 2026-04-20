@@ -1,0 +1,53 @@
+{
+    "task_id": "remove_camera@1",
+    "task_completion": [
+        {
+            "id": "login_vms",
+            "description": "Agent successfully logs into the Nx Witness VMS web interface.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the Nx Witness login page followed by the main dashboard or camera settings page at https://localhost:7001."
+        },
+        {
+            "id": "locate_server_room_camera",
+            "description": "Agent locates the 'Server Room Camera' in the device list.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing 'Server Room Camera' highlighted or selected in the camera list/settings menu."
+        },
+        {
+            "id": "identify_camera_uuid",
+            "description": "Agent identifies and records the Device ID (UUID) of the Server Room Camera.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the camera's settings or info panel where a UUID string (e.g., 8-4-4-4-12 format) is visible."
+        },
+        {
+            "id": "create_audit_log",
+            "description": "Agent documents the camera name and UUID in the specified audit log file.",
+            "points": 25,
+            "visual_evidence": "A terminal window or text editor showing the file /home/ga/audit/camera_removal.txt containing 'Server Room Camera' and its corresponding UUID."
+        },
+        {
+            "id": "delete_camera_from_vms",
+            "description": "Agent performs the deletion action for the Server Room Camera in the VMS.",
+            "points": 30,
+            "visual_evidence": "A confirmation dialog for deleting the camera, or the camera list showing 'Server Room Camera' is no longer present after a 'Delete' or 'Remove' action."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the VMS web interface for decommissioning rather than just CLI scripts.",
+            "visual_evidence": "Screenshots must show the browser interacting with the Nx Witness web UI elements (buttons, menus) to find and delete the camera."
+        },
+        {
+            "id": "genuine_uuid_retrieval",
+            "description": "The UUID in the audit log matches the UUID displayed in the VMS interface.",
+            "visual_evidence": "The UUID string visible in the VMS settings screenshot must match the text written into /home/ga/audit/camera_removal.txt."
+        },
+        {
+            "id": "no_preemptive_file_creation",
+            "description": "The audit log is created/updated after the camera information is found in the VMS.",
+            "visual_evidence": "The sequence of screenshots shows the VMS interface being explored before the terminal/editor is used to write the audit log."
+        }
+    ],
+    "privileged_info_for_vlm": "The target camera is named 'Server Room Camera'. The VMS is accessible at https://localhost:7001 (credentials: admin / Admin1234!). The agent must find the camera's UUID within the VMS interface and record both the name and UUID into a text file at /home/ga/audit/camera_removal.txt before deleting the camera from the system."
+}

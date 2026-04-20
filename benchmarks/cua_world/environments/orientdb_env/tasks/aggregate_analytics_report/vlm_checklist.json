@@ -1,0 +1,59 @@
+{
+    "task_id": "aggregate_analytics_report@1",
+    "task_completion": [
+        {
+            "id": "access_orientdb_studio",
+            "description": "Agent successfully navigates to the OrientDB Studio web interface at the specified URL.",
+            "points": 10,
+            "visual_evidence": "The browser shows http://localhost:2480/studio/index.html with the OrientDB login or dashboard visible."
+        },
+        {
+            "id": "query_nationality_distribution",
+            "description": "Agent executes a query for Nationality Distribution sorted by count descending.",
+            "points": 15,
+            "visual_evidence": "SQL query involving 'SELECT Nationality, count(*) ... GROUP BY Nationality ORDER BY count DESC' and the resulting data table in the Studio UI."
+        },
+        {
+            "id": "query_hotel_stars_avg",
+            "description": "Agent executes a query for Average Hotel Stars by Country rounded to 2 decimals.",
+            "points": 20,
+            "visual_evidence": "SQL query involving 'AVG(Stars)' and 'ROUND' or similar formatting, grouped by Country, with results visible."
+        },
+        {
+            "id": "query_five_star_hotels",
+            "description": "Agent executes a query for Name, City, and Country of 5-star hotels.",
+            "points": 15,
+            "visual_evidence": "SQL query filtering for 'Stars = 5' and selecting Name, City, and Country columns."
+        },
+        {
+            "id": "query_restaurant_order_analytics",
+            "description": "Agent executes queries for Restaurant counts per country and Order revenue/stats by status.",
+            "points": 20,
+            "visual_evidence": "SQL queries showing 'COUNT' for Restaurants and 'SUM(Price)', 'AVG(Price)' for Orders grouped by Status."
+        },
+        {
+            "id": "save_report_file",
+            "description": "Agent saves all aggregated results into the specified text file with clear labels.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file /home/ga/analytics_report.txt containing the labeled sections for Nationalities, Hotels, Restaurants, and Orders."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the OrientDB Studio web interface to perform queries rather than just querying via CLI.",
+            "visual_evidence": "Screenshots show the browser interacting with the OrientDB Studio query runner."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write a pre-known report without running queries.",
+            "visual_evidence": "The trajectory shows the agent actively typing or executing SQL commands and seeing results in the UI before writing the file."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the exact path specified in the instructions.",
+            "visual_evidence": "The file save dialog or terminal confirmation shows the path /home/ga/analytics_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The database 'demodb' is located at http://localhost:2480. The final report must be saved to /home/ga/analytics_report.txt and must be at least 50 bytes in size. The report must contain five distinct sections: Nationality Distribution (sorted), Average Hotel Stars (rounded to 2 decimals), 5-Star Hotel details, Restaurant counts, and Order Revenue (Sum, Avg, Count by Status)."
+}

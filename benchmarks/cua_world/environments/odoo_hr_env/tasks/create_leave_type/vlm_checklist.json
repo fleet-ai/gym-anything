@@ -1,0 +1,59 @@
+{
+    "task_id": "create_leave_type@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_time_off",
+            "description": "Navigate to the Time Off application in Odoo.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo dashboard and the user clicking on the 'Time Off' app icon or the 'Time Off' module being active."
+        },
+        {
+            "id": "open_configuration_menu",
+            "description": "Access the Configuration menu and select 'Time Off Types'.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Configuration' dropdown menu open and the selection of 'Time Off Types'."
+        },
+        {
+            "id": "click_new_button",
+            "description": "Initiate the creation of a new leave type.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the user clicking the 'New' or 'Create' button in the Time Off Types list view."
+        },
+        {
+            "id": "set_leave_name",
+            "description": "Enter 'Work From Home' as the Time Off Type name.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the text 'Work From Home' typed into the 'Time Off Type' name field."
+        },
+        {
+            "id": "set_approval_type",
+            "description": "Set the Approval field to 'By Employee's Approver'.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the 'Approval' dropdown selected with the value 'By Employee's Approver' visible."
+        },
+        {
+            "id": "set_requires_allocation",
+            "description": "Set 'Requires Allocation' to 'Yes'.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the 'Requires Allocation' field set to 'Yes' (often a radio button or dropdown selection)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than executing database commands via terminal.",
+            "visual_evidence": "The screenshots should show mouse movements, clicks, and typing within the browser window, not a terminal/shell prompt."
+        },
+        {
+            "id": "actual_instance_interaction",
+            "description": "The agent interacted with the local Odoo instance at http://localhost:8069.",
+            "visual_evidence": "The browser's address bar should show 'localhost:8069' or the Odoo interface elements consistent with that version."
+        },
+        {
+            "id": "no_prefilled_data",
+            "description": "The agent manually entered the configuration rather than finding it already created.",
+            "visual_evidence": "The VLM should see the process of filling out the form fields from an empty state."
+        }
+    ],
+    "privileged_info_for_vlm": "The target leave type name is 'Work From Home'. The 'Approval' field must be set to the specific label 'By Employee's Approver' (which corresponds to the internal value 'manager'). The 'Requires Allocation' field must be set to 'Yes' (internal value 'yes'). All other fields should remain at their default values as seen when the 'New' form is first opened."
+}

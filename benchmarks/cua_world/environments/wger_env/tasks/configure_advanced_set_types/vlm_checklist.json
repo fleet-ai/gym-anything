@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_advanced_set_types@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_routine",
+            "description": "Navigate to the 'Hypertrophy Block' routine and the 'Legs' training day.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger interface specifically for the 'Hypertrophy Block' routine and 'Legs' day view."
+        },
+        {
+            "id": "squat_warmup_sets",
+            "description": "Set the first two sets of 'Barbell Squat' to 'Warm-up'.",
+            "points": 25,
+            "visual_evidence": "In the Barbell Squat exercise table, the first and second rows show a 'Warm-up' icon or label (often a yellow/orange icon or the text 'Warm-up') in the set type column."
+        },
+        {
+            "id": "squat_normal_sets",
+            "description": "Set the remaining three sets of 'Barbell Squat' to 'Normal'.",
+            "points": 20,
+            "visual_evidence": "In the Barbell Squat exercise table, rows 3, 4, and 5 show the 'Normal' set type (usually the default icon or text)."
+        },
+        {
+            "id": "extension_normal_sets",
+            "description": "Set the first three sets of 'Leg Extension' to 'Normal'.",
+            "points": 20,
+            "visual_evidence": "In the Leg Extension exercise table, rows 1, 2, and 3 show the 'Normal' set type."
+        },
+        {
+            "id": "extension_drop_set",
+            "description": "Set the fourth (final) set of 'Leg Extension' to 'Drop set'.",
+            "points": 25,
+            "visual_evidence": "In the Leg Extension exercise table, the fourth row shows a 'Drop set' icon or label (often a red icon or the text 'Drop set')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface to change set types rather than database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the set type dropdowns or edit icons within the wger routine manager."
+        },
+        {
+            "id": "no_set_count_change",
+            "description": "The agent did not add or delete any sets.",
+            "visual_evidence": "The Barbell Squat still has exactly 5 sets and the Leg Extension still has exactly 4 sets as per the initial state."
+        },
+        {
+            "id": "correct_target_routine",
+            "description": "The agent modified the 'Hypertrophy Block' and not a different routine.",
+            "visual_evidence": "The page header or breadcrumbs consistently show 'Hypertrophy Block' during the edits."
+        }
+    ],
+    "privileged_info_for_vlm": "The Barbell Squat must have exactly 5 sets: sets 1-2 are 'warmup', sets 3-5 are 'normal'. The Leg Extension must have exactly 4 sets: sets 1-3 are 'normal', set 4 is 'dropset'. In wger, these are stored as string values ('warmup', 'normal', 'dropset') and are typically represented by specific icons or labels in the routine's 'Legs' day view."
+}

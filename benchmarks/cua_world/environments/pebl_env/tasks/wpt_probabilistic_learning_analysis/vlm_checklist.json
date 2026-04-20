@@ -1,0 +1,59 @@
+{
+    "task_id": "wpt_probabilistic_learning_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source data file at ~/pebl/data/wpt_data.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal command showing 'cat', 'head', or a python script opening '~/pebl/data/wpt_data.csv'."
+        },
+        {
+            "id": "data_processing_logic",
+            "description": "Agent implements logic to group trials into 5 blocks of 20 and calculate optimal response rates.",
+            "points": 20,
+            "visual_evidence": "Code snippets or script execution showing grouping by 20 trials and comparing 'response' to 'optimal_choice'."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent explicitly excludes 'sub-999' from group mean calculations and flags it in the report.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing a filter for 'sub-999' and the inclusion of 'excluded': true for that ID."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the structured analysis to ~/pebl/analysis/wpt_report.json.",
+            "points": 20,
+            "visual_evidence": "Terminal command showing the creation of the file or a 'cat' of the file showing the required JSON structure with 'participants' and 'group_learning_curve'."
+        },
+        {
+            "id": "plot_generation",
+            "description": "Agent generates a line plot of the group learning curve.",
+            "points": 20,
+            "visual_evidence": "Code using matplotlib/seaborn or a file explorer showing 'wpt_learning_curve.png' exists in ~/pebl/analysis/."
+        },
+        {
+            "id": "final_output_verification",
+            "description": "The final plot and JSON contain the correct block-wise data (5 blocks).",
+            "points": 15,
+            "visual_evidence": "A screenshot of the line plot showing 5 points on the X-axis (Blocks 1-5) and the JSON showing 5 block entries."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final group means without processing the CSV.",
+            "visual_evidence": "The script should show dynamic calculation (e.g., mean(), groupby()) rather than a dictionary of pre-written numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent actually reads the file from the specified path rather than assuming data content.",
+            "visual_evidence": "Terminal logs showing the agent checking the file path or previewing the CSV header."
+        },
+        {
+            "id": "proper_exclusion_handling",
+            "description": "Agent identifies sub-999 as the specific participant to exclude based on the task prompt instructions.",
+            "visual_evidence": "Code showing a conditional statement specifically targeting 'sub-999'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 100 trials per participant, which must be divided into 5 blocks of 20 trials each. Participant 'sub-999' is a synthetic outlier that must be excluded from the 'group_learning_curve' but included in the 'participants' list with an 'excluded': true flag. The learning_score is calculated as (Block 5 Rate - Block 1 Rate). The output files must be located exactly at ~/pebl/analysis/wpt_report.json and ~/pebl/analysis/wpt_learning_curve.png."
+}

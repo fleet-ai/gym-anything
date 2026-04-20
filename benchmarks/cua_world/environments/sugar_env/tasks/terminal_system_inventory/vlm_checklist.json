@@ -1,0 +1,59 @@
+{
+    "task_id": "terminal_system_inventory@1",
+    "task_completion": [
+        {
+            "id": "terminal_access",
+            "description": "Agent opens a terminal or console to gather system information.",
+            "points": 10,
+            "visual_evidence": "A terminal window (e.g., Terminal activity or console) is open and active on the screen."
+        },
+        {
+            "id": "gather_system_data",
+            "description": "Agent executes commands to retrieve hostname, kernel version, RAM, and disk usage.",
+            "points": 20,
+            "visual_evidence": "Commands like 'hostname', 'uname -a', 'free', or 'df -h' are visible in the terminal output."
+        },
+        {
+            "id": "gather_sugar_data",
+            "description": "Agent retrieves Sugar-specific info (activities, nickname, and icon color).",
+            "points": 20,
+            "visual_evidence": "Commands listing files in activity directories (e.g., /usr/share/sugar/activities) or reading Sugar config files are visible."
+        },
+        {
+            "id": "file_creation",
+            "description": "Agent creates the inventory file at the specified path.",
+            "points": 10,
+            "visual_evidence": "Commands like 'touch', 'nano', 'vi', or redirection ('>') to /home/ga/Documents/system_inventory.txt are seen."
+        },
+        {
+            "id": "content_formatting",
+            "description": "The file contains the four exact required section headings.",
+            "points": 20,
+            "visual_evidence": "The text '=== SYSTEM INFO ===', '=== SUGAR ACTIVITIES ===', '=== DISK USAGE ===', and '=== SUGAR USER CONFIG ===' is visible in a text editor or via 'cat' command."
+        },
+        {
+            "id": "final_verification",
+            "description": "The final report is saved and contains the 'Total' count for activities and human-readable disk usage.",
+            "points": 20,
+            "visual_evidence": "A 'cat' or 'less' command shows the final content of /home/ga/Documents/system_inventory.txt with the word 'Total' and disk sizes like 'G' or 'M'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_retrieval",
+            "description": "Agent did not hallucinate system values or hardcode them without checking.",
+            "visual_evidence": "The terminal must show the output of commands (like df -h or free) before those specific numbers appear in the text file."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent used the specific path requested rather than saving to a default directory.",
+            "visual_evidence": "The file path /home/ga/Documents/system_inventory.txt is explicitly typed in the terminal or file manager."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "Agent filled in actual system data rather than leaving template brackets.",
+            "visual_evidence": "The final file shows actual values (e.g., '4.15.0-generic') instead of descriptions like '[Insert Kernel Version Here]'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create a file at /home/ga/Documents/system_inventory.txt. The file must contain exactly four headers: === SYSTEM INFO ===, === SUGAR ACTIVITIES ===, === DISK USAGE ===, and === SUGAR USER CONFIG ===. The 'SUGAR ACTIVITIES' section must include a line with the word 'Total' followed by a number. Disk usage must be human-readable (e.g., 10G, 500M). The Sugar nickname and icon color are typically found in ~/.sugar/default/config or via Sugar control panel commands."
+}

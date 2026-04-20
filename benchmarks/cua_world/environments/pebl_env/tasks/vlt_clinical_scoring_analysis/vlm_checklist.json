@@ -1,0 +1,59 @@
+{
+    "task_id": "vlt_clinical_scoring_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access_verification",
+            "description": "Agent accesses the raw data files (vlt_raw_data.csv, demographics.csv, and norms.json) in the ~/pebl/data/ directory.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening, reading, or listing the files in the ~/pebl/data/ directory."
+        },
+        {
+            "id": "data_cleaning_processing",
+            "description": "Agent performs data cleaning, specifically trimming whitespaces and converting 'trial' strings to uppercase.",
+            "points": 15,
+            "visual_evidence": "Code snippets or terminal output showing string manipulation (strip, upper) applied to the trial data."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participants with missing age or invalid learning patterns (A2 - A1 >= 10).",
+            "points": 20,
+            "visual_evidence": "Code or logs showing filtering logic for 'age' and the specific condition 'A2 - A1 >= 10'."
+        },
+        {
+            "id": "metric_computation",
+            "description": "Agent computes the five required metrics: total_acquisition, learning_slope, retroactive_interference, delayed_retention, and total_acquisition_zscore.",
+            "points": 25,
+            "visual_evidence": "Code or intermediate output showing the formulas for these five metrics, including the use of norms.json for z-scores."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final report to ~/pebl/analysis/vlt_report.json with the correct structure (participants list and group_means).",
+            "points": 20,
+            "visual_evidence": "A screenshot of the saved vlt_report.json file or the command used to save it to the specific path."
+        },
+        {
+            "id": "accuracy_and_rounding",
+            "description": "The final report contains rounded values (2 decimals) for z-scores and group means.",
+            "points": 10,
+            "visual_evidence": "A view of the vlt_report.json content showing numerical values rounded to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final group means or excluded IDs without processing the files.",
+            "visual_evidence": "The agent's script should show logic for calculation and filtering rather than just printing a pre-made JSON string."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacts with the actual file system paths provided in the task.",
+            "visual_evidence": "Commands or code referencing ~/pebl/data/ and ~/pebl/analysis/ specifically."
+        },
+        {
+            "id": "logical_flow",
+            "description": "The agent follows a logical sequence: load, clean, filter, calculate, and save.",
+            "visual_evidence": "The chronological order of screenshots shows the progression from raw data to the final report."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected output path is /home/ga/pebl/analysis/vlt_report.json. Participants 'sub-888' and 'sub-999' must be excluded based on the criteria (missing age or invalid learning pattern). The report must include five specific metrics: total_acquisition, learning_slope, retroactive_interference, delayed_retention, and total_acquisition_zscore. All z-scores and group_means must be rounded to 2 decimal places."
+}

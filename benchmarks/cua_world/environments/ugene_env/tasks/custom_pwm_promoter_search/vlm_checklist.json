@@ -1,0 +1,53 @@
+{
+    "task_id": "custom_pwm_promoter_search@1",
+    "task_completion": [
+        {
+            "id": "load_alignment_data",
+            "description": "Load the 15-bp aligned sequences from sigmaA_promoters.fasta into UGENE.",
+            "points": 10,
+            "visual_evidence": "UGENE window showing the 'sigmaA_promoters.fasta' file opened, displaying multiple aligned 15-bp sequences."
+        },
+        {
+            "id": "generate_pwm_matrix",
+            "description": "Create a PWM model from the alignment and save it to sigmaA_matrix.pwm.",
+            "points": 20,
+            "visual_evidence": "The 'Build Weight Matrix' dialog or PWM editor in UGENE showing the matrix generated from the 15-bp alignment, and a save dialog or file explorer showing 'sigmaA_matrix.pwm' in the results folder."
+        },
+        {
+            "id": "configure_search_parameters",
+            "description": "Set the search to both strands with a minimum score threshold of 85% using the target genomic region.",
+            "points": 20,
+            "visual_evidence": "The 'SITECON' or 'Weight Matrix Search' dialog showing the threshold slider or input set to 85%, and both 'Direct' and 'Complementary' (or 'Both Strands') options selected."
+        },
+        {
+            "id": "export_gff_results",
+            "description": "Export the found promoter sites to predicted_promoters.gff.",
+            "points": 25,
+            "visual_evidence": "The 'Export as Annotations' or 'Save' dialog showing the file path '~/UGENE_Data/promoters/results/predicted_promoters.gff' and the GFF3 format selected."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Create a text report with the target region name, 85% threshold, and total site count.",
+            "points": 25,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing 'search_summary.txt' containing the target region name (AL009126.3 or B_subtilis_target_region), the '85%' string, and a count of the sites found."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE graphical interface rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with UGENE menus, dialog boxes, and sequence views."
+        },
+        {
+            "id": "genuine_pwm_generation",
+            "description": "The PWM was generated from the actual alignment data, not manually typed.",
+            "visual_evidence": "The UGENE PWM construction window showing the frequency matrix derived from the 15-bp input sequences."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename existing files to match the output requirements.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step creation of the .pwm, .gff, and .txt files through software menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The input sequences in sigmaA_promoters.fasta are exactly 15 bp long. The target genomic region is Bacillus subtilis (AL009126.3). The search must be performed on both strands. The final summary report must explicitly mention '85%' and the total number of sites found by the UGENE search tool."
+}

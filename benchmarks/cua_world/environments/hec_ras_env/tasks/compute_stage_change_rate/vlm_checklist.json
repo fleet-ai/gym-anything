@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_stage_change_rate@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the HEC-RAS project located at /home/ga/Documents/hec_ras_projects/Muncie.",
+            "points": 10,
+            "visual_evidence": "The HEC-RAS main window is open showing the 'Muncie' project path in the title bar or project text field."
+        },
+        {
+            "id": "access_output_data",
+            "description": "Access the simulation results (Muncie.p04.hdf) to retrieve stage/water surface elevation data for cross-sections.",
+            "points": 20,
+            "visual_evidence": "The agent is seen opening the 'Stage and Flow Hydrographs' window, the 'Profile Plot', or the 'Detailed Output Table' to view water surface elevations over time."
+        },
+        {
+            "id": "compute_rates_logic",
+            "description": "Perform calculations for the rate of change (ft/hr) for rise and fall across all cross-sections.",
+            "points": 30,
+            "visual_evidence": "The agent is seen using a calculator, spreadsheet, or script to divide the change in stage by the change in time for multiple time steps."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the computed rates for every cross-section to the specified CSV path with the required columns.",
+            "points": 25,
+            "visual_evidence": "A file manager or text editor shows 'stage_change_rates.csv' at /home/ga/Documents/hec_ras_results/ with columns: cross_section, max_rise_rate_ft_per_hr, max_fall_rate_ft_per_hr, time_of_max_rise_hr, and time_of_max_fall_hr."
+        },
+        {
+            "id": "create_summary_text",
+            "description": "Create the summary text file with the overall maximum rise and fall rates.",
+            "points": 15,
+            "visual_evidence": "A text editor shows 'stage_change_summary.txt' at /home/ga/Documents/hec_ras_results/ containing 'Overall_Max_Rise_Rate_ft_per_hr' and 'Overall_Max_Fall_Rate_ft_per_hr' with numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the HEC-RAS GUI to access model data rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the HEC-RAS main window and result windows (e.g., Hydrograph or Profile plots) being active."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not simply copy the values from the task prompt or privileged information without looking at the data.",
+            "visual_evidence": "The agent is observed extracting data points (elevations and timestamps) from the HEC-RAS interface before the files are created."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific absolute paths required by the task.",
+            "visual_evidence": "The save dialogs or terminal 'cat' commands show the exact paths: /home/ga/Documents/hec_ras_results/stage_change_rates.csv and stage_change_summary.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The HEC-RAS project is located at /home/ga/Documents/hec_ras_projects/Muncie. There are 61 cross-sections in total. The verified overall maximum rise rate is approximately 3.48 ft/hr and the overall maximum fall rate is approximately 0.54 ft/hr. The output must be saved to /home/ga/Documents/hec_ras_results/stage_change_rates.csv and /home/ga/Documents/hec_ras_results/stage_change_summary.txt."
+}

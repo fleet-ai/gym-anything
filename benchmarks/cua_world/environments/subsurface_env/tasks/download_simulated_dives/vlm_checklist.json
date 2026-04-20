@@ -1,0 +1,59 @@
+{
+    "task_id": "download_simulated_dives@1",
+    "task_completion": [
+        {
+            "id": "open_import_dialog",
+            "description": "Open the 'Import from Dive Computer' or 'Download from Dive Computer' dialog.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Import from Dive Computer' or similar is visible over the main application."
+        },
+        {
+            "id": "select_simulator_vendor",
+            "description": "Select 'Simulator' as the Vendor in the download dialog.",
+            "points": 15,
+            "visual_evidence": "The 'Vendor' dropdown menu in the import dialog shows 'Simulator' as the selected value."
+        },
+        {
+            "id": "select_simulator_computer",
+            "description": "Select 'Simulator' as the Dive Computer model.",
+            "points": 15,
+            "visual_evidence": "The 'Dive Computer' or 'Model' dropdown menu in the import dialog shows 'Simulator' as the selected value."
+        },
+        {
+            "id": "initiate_download",
+            "description": "Click the 'Download' or 'OK' button to fetch the simulated dives.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the download button; a progress bar or a list of new dives appearing in the import window is visible."
+        },
+        {
+            "id": "confirm_import",
+            "description": "Accept the downloaded dives into the main dive list.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'OK', 'Import', or 'Accept' on the dive selection screen, and the main dive list updates."
+        },
+        {
+            "id": "save_dive_log",
+            "description": "Save the changes to the dive log file to ensure they are written to disk.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or the Save icon; the 'Save' menu item may be momentarily highlighted or a 'Changes saved' message appears in the status bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to perform the download rather than editing XML files directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Subsurface application menus and dialog buttons."
+        },
+        {
+            "id": "genuine_simulator_use",
+            "description": "The agent actually selected the Simulator vendor rather than manually typing in a dive.",
+            "visual_evidence": "The 'Import from Dive Computer' dialog is visible with 'Simulator' selected in the dropdowns."
+        },
+        {
+            "id": "no_manual_xml_edit",
+            "description": "The agent did not use a text editor to modify the .ssrf file.",
+            "visual_evidence": "No text editors (like gedit, vim, or nano) are seen open with the dive log data."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial dive log (SampleDivesV2.ssrf) contains exactly 29 dives. After a successful download from the 'Simulator', the total dive count in the list should be at least 30. The vendor and dive computer model must both be set to 'Simulator' in the import dialog."
+}

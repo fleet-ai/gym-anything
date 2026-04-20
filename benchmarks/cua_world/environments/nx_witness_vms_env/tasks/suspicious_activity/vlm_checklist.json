@@ -1,0 +1,53 @@
+{
+    "task_id": "suspicious_activity@1",
+    "task_completion": [
+        {
+            "id": "open_vms_software",
+            "description": "The agent opens the Video Management System (VMS) software to access the camera feeds.",
+            "points": 10,
+            "visual_evidence": "A VMS interface (like Nx Witness or similar) is visible on the desktop."
+        },
+        {
+            "id": "access_campus_walkway_camera",
+            "description": "The agent selects and views the 'Campus Walkway Camera' feed.",
+            "points": 15,
+            "visual_evidence": "The camera feed labeled 'Campus Walkway Camera' is active in the main viewing pane."
+        },
+        {
+            "id": "identify_abnormal_behavior",
+            "description": "The agent reviews the footage to identify specific abnormal actions (e.g., running against traffic, throwing objects, or loitering).",
+            "points": 25,
+            "visual_evidence": "The agent is seen scrubbing through the timeline or playing back video where pedestrians are acting differently than the general flow of traffic."
+        },
+        {
+            "id": "create_bookmark",
+            "description": "The agent creates a bookmark named 'Suspicious Activity' covering the duration of the event.",
+            "points": 20,
+            "visual_evidence": "A bookmark dialog or a timeline entry is visible with the exact text 'Suspicious Activity' and start/end markers around the event."
+        },
+        {
+            "id": "write_incident_report",
+            "description": "The agent creates a text file at /home/ga/suspicious_report.txt containing the report.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal shows the file /home/ga/suspicious_report.txt being saved with content describing the timing and specific abnormal actions observed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the VMS GUI to find the footage and create the bookmark rather than just writing the report.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the VMS timeline and bookmarking menus."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply echo the report into the file without looking at the video.",
+            "visual_evidence": "The agent is seen playing the video and pausing at specific frames before or during the writing of the report."
+        },
+        {
+            "id": "authentic_bookmarking",
+            "description": "The bookmark was created via the VMS interface, not via a direct database edit or script.",
+            "visual_evidence": "The 'Add Bookmark' dialog box is visible on screen during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The camera name is 'Campus Walkway Camera'. The video source is from the CUHK Avenue dataset, which contains specific anomalies: a person running in the opposite direction, a person throwing papers/objects, and a person loitering/jumping. The bookmark must be named exactly 'Suspicious Activity'. The final report must be saved to /home/ga/suspicious_report.txt and must include timestamps and descriptions of these specific behaviors."
+}

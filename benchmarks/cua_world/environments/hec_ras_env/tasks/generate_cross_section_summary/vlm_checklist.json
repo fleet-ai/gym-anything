@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_cross_section_summary@1",
+    "task_completion": [
+        {
+            "id": "open_hdf5_file",
+            "description": "Agent locates and opens the HDF5 output file 'Muncie.p04.hdf' in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or HDF5 viewer (like HDFView) showing the path '~/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf' being accessed."
+        },
+        {
+            "id": "locate_geometry_data",
+            "description": "Agent identifies the geometry data (River Station and Minimum Channel Elevation) within the HDF5 structure.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent navigating to 'Geometry/Cross Sections' or similar groups within the HDF5 file."
+        },
+        {
+            "id": "locate_simulation_results",
+            "description": "Agent identifies the hydraulic simulation results (WSE, Flow, Velocity) for the 'p04' plan.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent navigating to 'Results/Unsteady' or 'Results/Steady' groups within the HDF5 file to find output variables."
+        },
+        {
+            "id": "calculate_max_depth",
+            "description": "Agent performs the calculation for Max_Depth_ft (Peak_WSE - Min_Ch_El).",
+            "points": 20,
+            "visual_evidence": "Evidence of data processing, such as a script, spreadsheet formula, or terminal command showing the subtraction of elevation from WSE."
+        },
+        {
+            "id": "format_summary_table",
+            "description": "Agent compiles all required columns into a table and sorts by River Station in descending order.",
+            "points": 20,
+            "visual_evidence": "A preview of the data table or CSV content showing columns: River_Station, Min_Ch_El_ft, Peak_WSE_ft, Max_Depth_ft, Peak_Flow_cfs, and Peak_Vel_fps, with River Station values decreasing."
+        },
+        {
+            "id": "save_csv_output",
+            "description": "Agent saves the final table to the specific path '~/Documents/hec_ras_results/cross_section_summary.csv'.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'ls') or file explorer showing the file 'cross_section_summary.csv' exists in the '~/Documents/hec_ras_results/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_extraction",
+            "description": "Verify the agent extracted data from the HDF5 file rather than using hardcoded values.",
+            "visual_evidence": "The agent must be seen opening or querying 'Muncie.p04.hdf' specifically, not just creating a CSV from thin air."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the CSV contains actual numerical data from the Muncie dataset, not 'N/A' or placeholder text.",
+            "visual_evidence": "The final CSV content or preview should show realistic hydraulic values (e.g., River Stations like 15000, 14500, etc.)."
+        },
+        {
+            "id": "correct_file_path_usage",
+            "description": "Ensure the agent used the exact file paths specified in the task.",
+            "visual_evidence": "The output path in the code or terminal must be '~/Documents/hec_ras_results/cross_section_summary.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf. The output must be a CSV at /home/ga/Documents/hec_ras_results/cross_section_summary.csv. Required columns are: River_Station, Min_Ch_El_ft, Peak_WSE_ft, Max_Depth_ft, Peak_Flow_cfs, and Peak_Vel_fps. Max_Depth_ft must be Peak_WSE_ft minus Min_Ch_El_ft. The table must be sorted by River_Station in descending order."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "thoracic_inlet_assessment@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the chest CT scan from the specified directory into 3D Slicer.",
+            "points": 10,
+            "visual_evidence": "3D Slicer interface showing a chest CT scan loaded in the axial, sagittal, and coronal viewers."
+        },
+        {
+            "id": "locate_t1_level",
+            "description": "The agent navigates to the T1 vertebral level to identify the thoracic inlet.",
+            "points": 15,
+            "visual_evidence": "The slice viewer shows the top of the thoracic cage where the first ribs meet the T1 vertebra."
+        },
+        {
+            "id": "measure_ap_diameter",
+            "description": "The agent uses a ruler or markup tool to measure the Anteroposterior (AP) diameter at the T1 level.",
+            "points": 20,
+            "visual_evidence": "A measurement line extending from the posterior aspect of the manubrium to the anterior aspect of the T1 vertebral body."
+        },
+        {
+            "id": "measure_transverse_diameter",
+            "description": "The agent uses a ruler or markup tool to measure the transverse diameter at the T1 level.",
+            "points": 20,
+            "visual_evidence": "A horizontal measurement line representing the widest distance between the inner margins of the first ribs."
+        },
+        {
+            "id": "save_markup_files",
+            "description": "The agent saves the AP and transverse measurements as .mrk.json files in the specified directory.",
+            "points": 15,
+            "visual_evidence": "The 'Save Data' dialog or a file explorer window showing thoracic_inlet_ap.mrk.json and thoracic_inlet_trans.mrk.json being saved."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent creates a JSON report containing all required fields including diameters, index, classification, and cervical rib status.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of thoracic_inlet_report.json with fields: ap_diameter_mm, transverse_diameter_mm, thoracic_inlet_index, classification, cervical_rib_present, and slice_number."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI tools for measurement rather than script-injecting values.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'Markups' or 'Ruler' tool icons and dragging lines on the CT slices."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The Thoracic Inlet Index matches the ratio of the visual measurements shown in the GUI.",
+            "visual_evidence": "The values in the final report (AP/Transverse) mathematically correspond to the labels visible on the 3D Slicer slice viewers."
+        },
+        {
+            "id": "no_preexisting_files",
+            "description": "The agent did not simply open an existing report file but generated it during the session.",
+            "visual_evidence": "The agent is seen typing the report or using a script to aggregate the specific measurements taken during the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The thoracic inlet is measured at the T1 level. The AP diameter is the distance from the manubrium to the T1 body. The transverse diameter is the maximum width between the first ribs. The Thoracic Inlet Index is calculated as (AP diameter / Transverse diameter). A cervical rib is an accessory rib arising from the C7 vertebra; its presence must be visually confirmed or ruled out at the level immediately above T1."
+}

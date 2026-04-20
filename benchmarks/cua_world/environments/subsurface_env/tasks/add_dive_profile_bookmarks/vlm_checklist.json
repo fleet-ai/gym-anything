@@ -1,0 +1,59 @@
+{
+    "task_id": "add_dive_profile_bookmarks@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The Subsurface application is opened and visible.",
+            "points": 10,
+            "visual_evidence": "The Subsurface dive log window is visible on the desktop."
+        },
+        {
+            "id": "select_dive_2",
+            "description": "Dive #2 (Sund Rock) is selected in the dive list.",
+            "points": 15,
+            "visual_evidence": "Dive #2 is highlighted in the dive list. Note: Per verified data, the date may appear as 2010-12-04 instead of the description's 2010-12-18."
+        },
+        {
+            "id": "add_first_bookmark",
+            "description": "A bookmark is added to the dive profile at approximately the 4-minute mark.",
+            "points": 25,
+            "visual_evidence": "A bookmark icon (usually a small flag or 'B' marker) is visible on the dive profile graph between the 2-minute and 6-minute marks on the X-axis."
+        },
+        {
+            "id": "add_second_bookmark",
+            "description": "A bookmark is added to the dive profile at approximately the 8-minute mark.",
+            "points": 25,
+            "visual_evidence": "A second bookmark icon is visible on the dive profile graph between the 6-minute and 10-minute marks on the X-axis."
+        },
+        {
+            "id": "save_file_dialog",
+            "description": "The agent initiates a 'Save As' or 'Save' action to the specified path.",
+            "points": 10,
+            "visual_evidence": "The 'Save' or 'Save As' dialog box is visible, or the File menu is used to trigger a save."
+        },
+        {
+            "id": "final_save_path",
+            "description": "The dive log is saved to /home/ga/Documents/dives.ssrf.",
+            "points": 15,
+            "visual_evidence": "The file save dialog shows the path /home/ga/Documents/dives.ssrf or a confirmation message/status bar indicates the file was saved to this location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to add bookmarks rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the dive profile graph or right-click menus within the Subsurface application."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual Subsurface software interface.",
+            "visual_evidence": "The Subsurface window decorations, menus, and profile rendering are consistent with the application's UI."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use 'sed' or other CLI tools to inject bookmarks into the .ssrf file.",
+            "visual_evidence": "The terminal history (if visible) does not show file manipulation commands for dives.ssrf."
+        }
+    ],
+    "privileged_info_for_vlm": "The task description contains a date discrepancy: Dive #2 is actually dated 2010-12-04 in the dataset, not 2010-12-18. The VLM should accept Dive #2 at 'Sund Rock' regardless of this date mismatch. Bookmark 1 is valid if placed between 120s and 360s (2-6 min). Bookmark 2 is valid if placed between 360s and 600s (6-10 min). The final file must be saved specifically to /home/ga/Documents/dives.ssrf."
+}

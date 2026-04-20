@@ -1,0 +1,59 @@
+{
+    "task_id": "agile_eo_target_accessibility@1",
+    "task_completion": [
+        {
+            "id": "read_target_coordinates",
+            "description": "Agent opens and reads the target coordinates from ~/Desktop/eo_targets.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of eo_targets.txt with coordinates for Washington DC, Beijing, and Moscow."
+        },
+        {
+            "id": "calculate_elevation_angle",
+            "description": "Agent calculates the Ground Station Minimum Elevation Angle based on the 30-degree off-nadir constraint.",
+            "points": 15,
+            "visual_evidence": "Calculations shown in a scratchpad, terminal, or script comments. The value should be approximately 57.37 degrees."
+        },
+        {
+            "id": "configure_gmat_simulation",
+            "description": "Agent configures the GMAT (General Mission Analysis Tool) environment with the satellite orbit, ground stations (cities), and sensors.",
+            "points": 25,
+            "visual_evidence": "GMAT GUI or script editor showing the definition of a 500km sun-synchronous orbit and the three target locations."
+        },
+        {
+            "id": "implement_accessibility_logic",
+            "description": "Agent sets up ContactLocators or scripts to identify valid imaging passes using the calculated elevation angle.",
+            "points": 20,
+            "visual_evidence": "GMAT script or GUI panel showing 'ContactLocator' or 'Contact' resources configured with the minimum elevation angle (~57.4 deg)."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the simulation script to the specified output path.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing agile_targeting.script exists in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent creates the final accessibility_summary.txt with the pass counts for each city.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of ~/GMAT_output/accessibility_summary.txt containing Washington DC, Beijing, Moscow, and their respective pass counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_usage",
+            "description": "The agent used the GMAT software or its scripting language rather than guessing results.",
+            "visual_evidence": "Screenshots showing the GMAT interface, GMAT execution logs, or the specific syntax of a .script file."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the final counts without running a simulation.",
+            "visual_evidence": "Evidence of the simulation running (progress bars, output logs) before the summary file is created."
+        },
+        {
+            "id": "correct_elevation_derivation",
+            "description": "The agent used the calculated elevation angle (~57.4) rather than a default value like 10 or 15 degrees.",
+            "visual_evidence": "The value 57.37 (or rounded equivalent) appearing in the GMAT script or GUI settings."
+        }
+    ],
+    "privileged_info_for_vlm": "The Ground Station Minimum Elevation Angle for a 500km orbit and 30-degree off-nadir angle is approximately 57.37 degrees. The agent must use this value (or a range between 56.0 and 58.5) to filter valid passes. The final report must be at ~/GMAT_output/accessibility_summary.txt and include counts for Washington DC, Beijing, and Moscow. The script must be saved at ~/GMAT_output/agile_targeting.script."
+}

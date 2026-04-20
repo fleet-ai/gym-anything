@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_sentiment_pipeline@1",
+    "task_completion": [
+        {
+            "id": "explore_project_structure",
+            "description": "Agent explores the project directory and identifies the pipeline components and test files.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the file explorer or terminal listing files in /home/ga/PycharmProjects/sentiment_pipeline, specifically identifying the 'tests/' directory and source files."
+        },
+        {
+            "id": "identify_regression_via_tests",
+            "description": "Agent runs the existing tests to confirm the performance degradation (failures or low scores).",
+            "points": 15,
+            "visual_evidence": "Terminal output or IDE test runner showing failed tests or low accuracy/F1 metrics when running scripts in the 'tests/' folder."
+        },
+        {
+            "id": "locate_bug_in_pipeline",
+            "description": "Agent opens and inspects the source code of the sentiment pipeline components to find the logic error affecting negative reviews.",
+            "points": 20,
+            "visual_evidence": "Screenshots of code editors (e.g., PyCharm, VS Code, or cat output) showing the logic responsible for classification or preprocessing."
+        },
+        {
+            "id": "apply_code_fix",
+            "description": "Agent modifies the pipeline code to correctly handle negative sentiment (e.g., fixing 'not good' or 'bad service' classification).",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the code diff or the updated source file where the classification logic or model parameters have been corrected."
+        },
+        {
+            "id": "verify_fix_with_tests",
+            "description": "Agent runs the tests again to ensure all tests in the tests/ directory now pass.",
+            "points": 30,
+            "visual_evidence": "Terminal output or IDE test runner showing 'PASSED' for all tests in the tests/ directory without any modifications to the test files themselves."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "visual_evidence": "The VLM should check that the agent did not save changes to files within the 'tests/' directory; only source files should be edited."
+        },
+        {
+            "id": "genuine_code_interaction",
+            "description": "The agent interacted with the scikit-learn pipeline rather than hardcoding outputs.",
+            "visual_evidence": "Screenshots should show edits to Python logic or model configuration, not simple 'if text == \"not good\": return \"Negative\"' hacks."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GUI (IDE or File Manager) for significant portions of the task.",
+            "visual_evidence": "Screenshots showing the use of PyCharm or a similar graphical text editor to navigate and edit the project."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is at /home/ga/PycharmProjects/sentiment_pipeline. The model must achieve an F1 score of at least 0.85 on the hidden test set located at /var/lib/sentiment_pipeline/hidden_test.csv. The agent must fix the pipeline components so that negative reviews are no longer misclassified as Positive or Neutral. All tests in the tests/ directory must pass without the agent modifying the test files."
+}

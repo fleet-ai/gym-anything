@@ -1,0 +1,53 @@
+{
+    "task_id": "toggle_lobby@1",
+    "task_completion": [
+        {
+            "id": "open_firefox_jitsi",
+            "description": "Firefox is open and navigated to the correct Jitsi room URL.",
+            "points": 10,
+            "visual_evidence": "The Firefox address bar shows 'http://localhost:8080/SecurityMeeting'."
+        },
+        {
+            "id": "access_security_options",
+            "description": "The agent opens the Security Options menu/dialog.",
+            "points": 20,
+            "visual_evidence": "A menu or dialog titled 'Security options' or similar is visible on the screen, usually triggered by clicking the shield icon or the '...' menu."
+        },
+        {
+            "id": "locate_lobby_toggle",
+            "description": "The 'Enable Lobby' toggle or checkbox is visible within the security settings.",
+            "points": 20,
+            "visual_evidence": "A UI element labeled 'Enable Lobby' or 'Lobby' is visible in the Security options dialog."
+        },
+        {
+            "id": "toggle_lobby_on",
+            "description": "The agent interacts with the toggle to enable the lobby.",
+            "points": 30,
+            "visual_evidence": "The 'Enable Lobby' switch/checkbox changes state to 'on', 'checked', or blue/active."
+        },
+        {
+            "id": "verify_lobby_active",
+            "description": "The UI confirms that the lobby is now active for the room.",
+            "points": 20,
+            "visual_evidence": "A notification might appear saying 'Lobby enabled', or the Security icon might change color/state, or the toggle remains in the 'on' position after the interaction."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Jitsi web interface rather than executing terminal commands to modify the server config.",
+            "visual_evidence": "The screenshots show mouse movements and clicks on the Jitsi web UI elements, not commands like 'docker exec' or 'sed' in a terminal."
+        },
+        {
+            "id": "correct_room_context",
+            "description": "The agent is interacting with the 'SecurityMeeting' room specifically.",
+            "visual_evidence": "The room name 'SecurityMeeting' is visible in the top left corner of the Jitsi interface or the URL bar."
+        },
+        {
+            "id": "no_shortcut_url",
+            "description": "The agent did not attempt to bypass the UI by guessing internal API calls.",
+            "visual_evidence": "The agent navigates through the standard Jitsi menu buttons (e.g., Security Options) to reach the lobby toggle."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi instance is hosted at http://localhost:8080. The specific room name is 'SecurityMeeting'. The Lobby feature is enabled at the server level (ENABLE_LOBBY=1), so the 'Enable Lobby' option will be visible and functional within the 'Security options' menu (often represented by a shield icon or found under the 'More actions' three-dot menu)."
+}

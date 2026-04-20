@@ -1,0 +1,53 @@
+{
+    "task_id": "thin_content_word_count_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_crawl",
+            "description": "Screaming Frog SEO Spider is open and has crawled https://books.toscrape.com/.",
+            "points": 15,
+            "visual_evidence": "The Screaming Frog GUI is visible with 'https://books.toscrape.com/' in the address bar and the progress bar showing 100% or a populated list of internal URLs."
+        },
+        {
+            "id": "export_html_data",
+            "description": "Crawl data including Word Count is exported to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or terminal output showing a CSV/XLSX file in /home/ga/Documents/SEO/exports/ containing columns like 'Address' and 'Word Count'."
+        },
+        {
+            "id": "word_count_analysis",
+            "description": "The agent processes the data to categorize pages by word count (<100, 100-300, >300).",
+            "points": 25,
+            "visual_evidence": "The agent is seen using a text editor, spreadsheet tool, or terminal to filter/calculate the specific word count buckets from the exported data."
+        },
+        {
+            "id": "report_generation",
+            "description": "A report file is created at ~/Documents/SEO/reports/thin_content_report.txt with the required statistics.",
+            "points": 25,
+            "visual_evidence": "A text editor (like Gedit or VS Code) showing the file 'thin_content_report.txt' containing the three word-count categories and their respective page counts."
+        },
+        {
+            "id": "report_content_details",
+            "description": "The report includes the 5 thinnest page URLs and remediation recommendations.",
+            "points": 20,
+            "visual_evidence": "The content of 'thin_content_report.txt' is visible and contains a list of 5 URLs and a section titled 'Remediation Recommendations' or similar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI rather than just simulating a crawl via CLI.",
+            "visual_evidence": "Screenshots show the Screaming Frog application window being interacted with (clicking 'Start', 'Export', etc.)."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The word counts in the report are derived from the actual crawl data, not placeholder values.",
+            "visual_evidence": "The numbers in the final report correspond to the data visible in the Screaming Frog 'Internal' tab or the exported CSV file."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "The save dialogs or terminal paths show /home/ga/Documents/SEO/exports/ and /home/ga/Documents/SEO/reports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL is https://books.toscrape.com/. The export directory must be /home/ga/Documents/SEO/exports/ and the report path must be /home/ga/Documents/SEO/reports/thin_content_report.txt. The report must contain three specific word count buckets (<100, 100-300, >300), a list of the 5 thinnest URLs, and remediation advice. Screaming Frog must be used for the audit, and the 'Word Count' column is the primary metric for analysis."
+}

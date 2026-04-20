@@ -1,0 +1,53 @@
+{
+    "task_id": "migrate_log_to_git_backup@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "Subsurface application is open and displaying dive log data.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible with a list of dives or a dive profile displayed."
+        },
+        {
+            "id": "initiate_save_as",
+            "description": "Agent opens the 'Save As' or 'Export' dialog to migrate the log.",
+            "points": 10,
+            "visual_evidence": "A file selection dialog window is open over the Subsurface main window."
+        },
+        {
+            "id": "create_backup_folder",
+            "description": "Agent navigates to ~/Documents and creates the 'SubsurfaceBackup' directory.",
+            "points": 20,
+            "visual_evidence": "The file dialog shows the path ~/Documents/SubsurfaceBackup or the creation of a new folder with that name."
+        },
+        {
+            "id": "enter_git_filename",
+            "description": "Agent enters 'dives.git' as the filename in the save dialog.",
+            "points": 20,
+            "visual_evidence": "The text 'dives.git' is typed into the 'File name' or 'Name' field of the save dialog."
+        },
+        {
+            "id": "attempt_git_storage",
+            "description": "Agent attempts to save the file, navigating the available format options.",
+            "points": 40,
+            "visual_evidence": "The agent clicks 'Save' or 'OK' after configuring the path to ~/Documents/SubsurfaceBackup/dives.git. Note: The UI may only show 'Subsurface files' as the filter, but the agent must proceed with the specified name."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Subsurface GUI to perform the migration rather than just using the terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with Subsurface menu items and dialog boxes."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply use 'mkdir' and 'touch' in a terminal to fake the result.",
+            "visual_evidence": "The file creation process is seen through the Subsurface 'Save As' interface."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual dive data provided in the environment.",
+            "visual_evidence": "The Subsurface window shows the 'SampleDivesV2.ssrf' data before the save operation."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires saving to a 'Local Git repository' named 'dives.git' in '~/Documents/SubsurfaceBackup/'. Note: Subsurface's UI may not explicitly show a 'Local Git repository' option in the file filter dropdown (it often only shows 'Subsurface files'). The agent is successful if it creates the directory and saves the file with the exact name 'dives.git' via the GUI, even if the underlying save format defaults to XML due to software limitations."
+}

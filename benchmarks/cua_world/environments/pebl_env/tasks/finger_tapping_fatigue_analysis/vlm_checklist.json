@@ -1,0 +1,62 @@
+{
+    "task_id": "finger_tapping_fatigue_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_dataset",
+            "description": "The agent locates and opens the dataset file at ~/pebl/data/ftt_tapping_data.csv.",
+            "points": 10,
+            "visual_evidence": "A file explorer, text editor, or terminal showing the content or path of ftt_tapping_data.csv."
+        },
+        {
+            "id": "calculate_hz_metrics",
+            "description": "The agent calculates the average tapping frequency (Hz) for Dominant and Non-Dominant hands (taps/10.0).",
+            "points": 20,
+            "visual_evidence": "Code snippets, spreadsheet formulas, or terminal output showing the calculation of Hz per hand per participant."
+        },
+        {
+            "id": "calculate_fatigue_index",
+            "description": "The agent calculates the Dominant Fatigue Index (ratio of taps after 5000ms vs at/before 5000ms).",
+            "points": 20,
+            "visual_evidence": "Code or logic showing a split at 5000ms (tap_time_ms) and a ratio calculation for the Dominant hand."
+        },
+        {
+            "id": "calculate_cv_metrics",
+            "description": "The agent calculates the Dominant Coefficient of Variation (SD/mean of iti_ms, excluding the first tap).",
+            "points": 20,
+            "visual_evidence": "Code or calculations showing the exclusion of the first tap and the SD/mean ratio for inter-tap intervals (iti_ms)."
+        },
+        {
+            "id": "exclude_p099",
+            "description": "The agent explicitly excludes participant P099 from group statistics and marks them as excluded in the report.",
+            "points": 15,
+            "visual_evidence": "Code showing a filter for 'P099' or the JSON report showing 'excluded': true for participant P099."
+        },
+        {
+            "id": "save_json_report",
+            "description": "The agent saves the final JSON report to ~/pebl/analysis/ftt_fatigue_report.json with the required structure.",
+            "points": 15,
+            "visual_evidence": "A file save operation or a view of the final JSON file containing 'participants' and 'group_statistics'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_stats",
+            "description": "The agent did not hardcode the final group statistics without performing calculations.",
+            "points": 0,
+            "visual_evidence": "The agent should be seen writing code or using a tool to process the CSV, rather than just typing the final numbers into a JSON file."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent interacted with the provided CSV file rather than generating dummy data.",
+            "points": 0,
+            "visual_evidence": "Screenshots should show the agent opening or reading the specific file path ~/pebl/data/ftt_tapping_data.csv."
+        },
+        {
+            "id": "correct_exclusion_reasoning",
+            "description": "The agent identifies P099 as corrupted based on the task instructions or data profile.",
+            "points": 0,
+            "visual_evidence": "The agent's code or notes should mention the exclusion of P099 specifically as requested in the prompt."
+        }
+    ],
+    "privileged_info_for_vlm": "The participant P099 must be excluded from group statistics; their entry in the JSON should have 'excluded': true and a reason (e.g., 'corrupted mechanical profile'). The group statistics (mean_dominant_hz, etc.) must only be calculated from the other participants. The output must be a JSON file located at ~/pebl/analysis/ftt_fatigue_report.json."
+}

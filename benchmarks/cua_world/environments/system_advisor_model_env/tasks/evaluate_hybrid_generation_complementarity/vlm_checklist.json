@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_hybrid_generation_complementarity@1",
+    "task_completion": [
+        {
+            "id": "pv_model_configuration",
+            "description": "Configure a PV plant with 50,000 kW DC capacity, 20 degree tilt, and 180 degree azimuth using a bundled TMY resource.",
+            "points": 15,
+            "visual_evidence": "SAM interface showing 'Photovoltaic' model with 'System Design' inputs: 50,000 kWdc, Tilt: 20, Azimuth: 180, and a TMY weather file selected."
+        },
+        {
+            "id": "wind_model_configuration",
+            "description": "Configure a Wind plant with 25 turbines of 2000 kW each, 80m hub height, and 100m rotor diameter using a bundled .srw resource.",
+            "points": 15,
+            "visual_evidence": "SAM interface showing 'Wind Power' model with 'Turbine' inputs: 2000 kW, 100m rotor diameter, and 'Farm' inputs: 25 turbines, 80m hub height, with an .srw file selected."
+        },
+        {
+            "id": "extract_hourly_profiles",
+            "description": "Extract hourly AC power profiles for both PV and Wind systems.",
+            "points": 20,
+            "visual_evidence": "SAM 'Results' tab or data tables showing hourly (8760) AC system power output for both the PV and Wind models."
+        },
+        {
+            "id": "calculate_hybrid_metrics",
+            "description": "Calculate the mean and Coefficient of Variation (CV) for 100 MW PV, 100 MW Wind, and 100 MW Hybrid scenarios.",
+            "points": 30,
+            "visual_evidence": "Code in a script (hybrid_analysis.py) or spreadsheet showing the calculation of CV (std dev / mean) for the three scenarios (2xPV, 2xWind, PV+Wind)."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Save the required metrics to /home/ga/Documents/SAM_Projects/hybrid_complementarity.json with the specified keys.",
+            "points": 20,
+            "visual_evidence": "A file explorer or text editor showing 'hybrid_complementarity.json' containing keys like 'cv_100mw_hybrid', 'mean_100mw_hybrid_kw', etc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to model the systems rather than just writing a script with hardcoded values.",
+            "visual_evidence": "Screenshots showing the System Advisor Model (SAM) application window being navigated and configured."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent used the bundled TMY and .srw files as required, not synthetic or placeholder data.",
+            "visual_evidence": "SAM 'Location and Resource' page showing a valid file path or selection for TMY and .srw meteorological data."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The final JSON metrics are derived from the simulation results, not copy-pasted from the task description.",
+            "visual_evidence": "The analysis script (hybrid_analysis.py) contains logic to read simulation data and perform calculations."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must produce a file named 'hybrid_complementarity.json' in /home/ga/Documents/SAM_Projects/. The expected keys are: 'pv_annual_energy_kwh', 'wind_annual_energy_kwh', 'mean_50mw_pv_kw', 'mean_50mw_wind_kw', 'mean_100mw_hybrid_kw', 'cv_100mw_pv', 'cv_100mw_wind', and 'cv_100mw_hybrid'. The annual energy for a 50MW plant should typically exceed 10,000,000 kWh. The CV is calculated as standard deviation divided by the mean of the hourly profiles."
+}

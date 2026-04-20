@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_wake_interaction_two_turbines@1",
+    "task_completion": [
+        {
+            "id": "turbine_positioning",
+            "description": "Two turbines are positioned at (0, 0, 0) and (50, 0, 0) in the simulation setup.",
+            "points": 15,
+            "visual_evidence": "The turbine configuration or object list window showing coordinates (0,0,0) for the first instance and (50,0,0) for the second instance."
+        },
+        {
+            "id": "simulation_parameters",
+            "description": "Wind speed, timestep, and total timesteps are correctly configured.",
+            "points": 15,
+            "visual_evidence": "The simulation settings panel showing Wind Speed: 12 m/s, Timestep: 0.1 s, and Number of Timesteps: 200."
+        },
+        {
+            "id": "llt_execution",
+            "description": "The Lifting Line Theory (LLT) simulation is executed.",
+            "points": 25,
+            "visual_evidence": "A progress bar for the LLT simulation or the simulation environment showing wake development behind the two turbines."
+        },
+        {
+            "id": "report_generation",
+            "description": "A text report is created at /home/ga/Documents/wake_loss_report.txt with the required power and loss values.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file content with 'Upstream Power', 'Downstream Power', and 'Wake Loss' values."
+        },
+        {
+            "id": "project_saved",
+            "description": "The project is saved to the specified path /home/ga/Documents/projects/wake_study.wpa.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog box with the correct path or the application title bar/status bar reflecting the saved filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade/Simulation GUI to configure the turbines and simulation.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the simulation software's menus and input fields rather than just terminal commands."
+        },
+        {
+            "id": "genuine_simulation_results",
+            "description": "The power values in the report are derived from the simulation results, not hardcoded.",
+            "visual_evidence": "Screenshots showing the agent extracting or reading values from the simulation's post-processing graphs or data tables before writing the report."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "The file explorer or save dialog showing the specific directory /home/ga/Documents/projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use Lifting Line Theory (LLT). Turbine 1 is at (0,0,0), Turbine 2 is at (50,0,0). Wind speed: 12m/s. Timestep: 0.1s. Total steps: 200. The report must be at /home/ga/Documents/wake_loss_report.txt and the project at /home/ga/Documents/projects/wake_study.wpa. Downstream power should be lower than upstream power due to wake shadowing."
+}

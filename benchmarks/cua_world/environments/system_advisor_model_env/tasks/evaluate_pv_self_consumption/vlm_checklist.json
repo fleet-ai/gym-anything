@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_pv_self_consumption@1",
+    "task_completion": [
+        {
+            "id": "load_weather_data",
+            "description": "Agent accesses the Phoenix weather CSV file and the commercial load CSV file.",
+            "points": 10,
+            "visual_evidence": "Terminal commands (e.g., cat, head) or Python code showing the paths /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv and /home/ga/Documents/SAM_Projects/commercial_load_8760.csv being read."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "Agent configures the PySAM Pvwattsv8 model with the specified system parameters (100kW, 10 deg tilt, 180 deg azimuth, etc.).",
+            "points": 20,
+            "visual_evidence": "Python code snippets in an editor or terminal showing the initialization of 'pvwattsv8' and setting system_design parameters like 'system_capacity': 100, 'tilt': 10, and 'azimuth': 180."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent executes the PV simulation to generate hourly AC generation data.",
+            "points": 20,
+            "visual_evidence": "Python code showing the execution of the model (e.g., .execute()) and the retrieval of hourly AC output (gen/ac)."
+        },
+        {
+            "id": "energy_balance_calculation",
+            "description": "Agent performs the hourly comparison between PV generation and load to calculate self-consumption and solar fraction.",
+            "points": 30,
+            "visual_evidence": "Python logic calculating exported/imported energy (e.g., using np.minimum or conditional logic on hourly arrays) and the resulting percentages."
+        },
+        {
+            "id": "save_results_json",
+            "description": "Agent saves the final metrics to the specified JSON file with all required keys.",
+            "points": 20,
+            "visual_evidence": "Terminal output or code showing the creation of /home/ga/Documents/SAM_Projects/self_consumption_results.json containing the 6 required numeric keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't just write the JSON file with pre-calculated values without running a simulation.",
+            "visual_evidence": "The trajectory must show the PySAM code execution and data processing steps, not just a single 'echo' or 'cat' command to create the final JSON."
+        },
+        {
+            "id": "correct_data_sources",
+            "description": "Verify the agent used the specific CSV files provided in the task description.",
+            "visual_evidence": "Code or terminal logs must explicitly reference the file paths /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv and /home/ga/Documents/SAM_Projects/commercial_load_8760.csv."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent used the PySAM library rather than a simplified manual calculation.",
+            "visual_evidence": "Screenshots should show 'import PySAM.Pvwattsv8' or similar library-specific syntax."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected annual energy generation (annual_energy_kwh) for a 100kW system in Phoenix with these specs should be between 150,000 and 190,000 kWh (specifically around 167,563 kWh). The output file must be /home/ga/Documents/SAM_Projects/self_consumption_results.json and must contain exactly these keys: annual_energy_kwh, annual_load_kwh, annual_energy_exported_kwh, annual_energy_imported_kwh, self_consumption_ratio_pct, and solar_fraction_pct."
+}

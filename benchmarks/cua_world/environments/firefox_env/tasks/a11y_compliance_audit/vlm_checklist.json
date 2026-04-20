@@ -1,0 +1,53 @@
+{
+    "task_id": "a11y_compliance_audit@1",
+    "task_completion": [
+        {
+            "id": "open_firefox_inspector",
+            "description": "Open Firefox and activate the Accessibility Inspector tool.",
+            "points": 10,
+            "visual_evidence": "Firefox browser is open with the 'Accessibility' tab visible in the Developer Tools pane."
+        },
+        {
+            "id": "audit_wikipedia",
+            "description": "Navigate to Wikipedia and identify at least two accessibility issues using the inspector.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the agent inspecting elements on en.wikipedia.org with the Accessibility Inspector highlighting specific nodes or contrast issues."
+        },
+        {
+            "id": "audit_craigslist",
+            "description": "Navigate to Craigslist and identify at least two accessibility issues using the inspector.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the agent inspecting elements on craigslist.org with the Accessibility Inspector active."
+        },
+        {
+            "id": "audit_archive",
+            "description": "Navigate to Internet Archive and identify at least two accessibility issues using the inspector.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the agent inspecting elements on archive.org with the Accessibility Inspector active."
+        },
+        {
+            "id": "save_json_file",
+            "description": "Save the findings to ~/Documents/accessibility_audit.json with the correct structure.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal shows the file /home/ga/Documents/accessibility_audit.json containing the 'audit_metadata' and 'sites' keys with at least 6 total issues (2 per site) and WCAG criteria."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_inspector_usage",
+            "description": "Verify the agent actually used the Firefox Accessibility Inspector rather than just browsing the sites.",
+            "visual_evidence": "The Accessibility panel in Firefox DevTools must be visible and populated with the accessibility tree or contrast warnings during the audit of each site."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "Ensure the agent didn't simply write the file without visiting the websites.",
+            "visual_evidence": "The browser history or active tabs must show navigation to all three required domains before the JSON file is created."
+        },
+        {
+            "id": "wcag_format_validity",
+            "description": "Check that WCAG criteria follow the standard numbering format.",
+            "visual_evidence": "The JSON file content shows 'wcag_criterion' values matching the pattern X.X.X (e.g., 1.4.3) and not placeholder text."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must audit three specific domains: en.wikipedia.org, craigslist.org, and archive.org. It must find at least 2 issues per site (6 total). The output must be a JSON file at /home/ga/Documents/accessibility_audit.json. Valid WCAG criteria follow the regex ^[1-4]\\.\\d+(\\.\\d+)?$. The tool used must be the Firefox Accessibility Inspector."
+}

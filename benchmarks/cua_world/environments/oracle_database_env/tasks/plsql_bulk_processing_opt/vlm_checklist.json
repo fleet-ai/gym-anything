@@ -1,0 +1,53 @@
+{
+    "task_id": "plsql_bulk_processing_opt@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Connect to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection to 'XEPDB1' as user 'hr'."
+        },
+        {
+            "id": "refactor_bulk_collect_limit",
+            "description": "Refactor the procedure to use BULK COLLECT with a LIMIT clause.",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal showing the procedure source code containing the keywords 'BULK COLLECT' and 'LIMIT'."
+        },
+        {
+            "id": "refactor_forall_updates",
+            "description": "Refactor the procedure to use FORALL for updates to MERCHANT_BALANCES and inserts into SETTLEMENT_LOG.",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal showing the procedure source code containing 'FORALL' used with 'UPDATE MERCHANT_BALANCES' and 'INSERT INTO SETTLEMENT_LOG'."
+        },
+        {
+            "id": "procedure_compilation",
+            "description": "Compile the refactored PROCESS_DAILY_SETTLEMENTS procedure without errors.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'Procedure created' or 'Procedure compiled' with no compilation errors."
+        },
+        {
+            "id": "successful_execution",
+            "description": "Execute the procedure and verify it processes the transactions.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'PL/SQL procedure successfully completed' after calling 'EXEC PROCESS_DAILY_SETTLEMENTS;' and ideally a count showing 50,000 records processed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sql_interaction",
+            "description": "The agent interacted with the Oracle database environment rather than just echoing text.",
+            "visual_evidence": "Screenshots showing the use of SQL*Plus, SQLcl, or a database IDE with live command execution and system responses."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually insert records into the log to fake success.",
+            "visual_evidence": "The agent's commands show the execution of the procedure logic rather than manual DML statements to 'SETTLEMENT_LOG' to mimic completion."
+        },
+        {
+            "id": "actual_code_editing",
+            "description": "The agent actively modified the procedure code.",
+            "visual_evidence": "Screenshots showing a text editor (vi, nano, VS Code) or a series of 'CREATE OR REPLACE' commands with the new bulk logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The procedure name must be 'PROCESS_DAILY_SETTLEMENTS'. It must process exactly 50,000 transactions from the 'DAILY_TRANSACTIONS' table. The implementation is required to use 'BULK COLLECT', 'LIMIT', and 'FORALL'. The target tables for updates/inserts are 'MERCHANT_BALANCES' and 'SETTLEMENT_LOG'. The database service is 'XEPDB1' and the user is 'hr'."
+}

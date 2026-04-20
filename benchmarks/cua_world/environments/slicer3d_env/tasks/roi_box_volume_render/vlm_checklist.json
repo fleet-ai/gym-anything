@@ -1,0 +1,53 @@
+{
+    "task_id": "roi_box_volume_render@1",
+    "task_completion": [
+        {
+            "id": "volume_rendering_enabled",
+            "description": "The Volume Rendering module is active and the CT scan is visible in the 3D view.",
+            "points": 15,
+            "visual_evidence": "The 'Volume Rendering' module is selected in the Slicer sidebar and a 3D reconstruction of the abdomen is visible in the 3D viewer."
+        },
+        {
+            "id": "roi_box_activated",
+            "description": "The ROI (Region of Interest) selection box is enabled and visible in the 3D or slice views.",
+            "points": 15,
+            "visual_evidence": "A bounding box with control handles (ROI box) is visible surrounding a portion of the 3D volume."
+        },
+        {
+            "id": "roi_positioned_on_right_kidney",
+            "description": "The ROI box is positioned and scaled to isolate the right kidney.",
+            "points": 30,
+            "visual_evidence": "The ROI box is centered on the anatomical right side of the patient (viewer's left) and encompasses the kidney structure while excluding most other organs."
+        },
+        {
+            "id": "cropping_applied",
+            "description": "The 'Display ROI' or 'Crop' feature is used to hide the rest of the volume, leaving only the kidney visible.",
+            "points": 20,
+            "visual_evidence": "The 3D view shows only the contents within the ROI box (the right kidney), with the rest of the abdominal volume hidden or clipped."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the isolated kidney is saved to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file browser window or terminal output confirms the creation of '/home/ga/Documents/SlicerData/Exports/roi_kidney_render.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to manipulate the ROI and volume rendering.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Volume Rendering module sliders, ROI handles, or menu buttons rather than just executing a single script."
+        },
+        {
+            "id": "authentic_rendering",
+            "description": "The rendered image is a genuine output of the Slicer 3D engine, not a pre-existing image.",
+            "visual_evidence": "The 3D view background color, coordinate axes (R-A-S), and Slicer UI elements are consistent with the application state."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not simply use 'cp' or 'mv' to place a dummy file at the destination path.",
+            "visual_evidence": "The trajectory shows the agent actively adjusting the ROI box in the GUI to frame the kidney before the file is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The right kidney is located at RAS coordinates [70, -10, 20]. In the 3D view, this is on the patient's right (viewer's left). The ROI center should be approximately within R: 30 to 110, A: -60 to 40, S: -60 to 80. The ROI box dimensions should be between 40mm and 160mm per axis to properly frame the organ. The final saved image must be at least 50KB."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "export_exam_config_file@1",
+    "task_completion": [
+        {
+            "id": "access_seb_server",
+            "description": "Agent navigates to the SEB Server login page at http://localhost:8080.",
+            "points": 10,
+            "visual_evidence": "Browser address bar showing http://localhost:8080 and the SEB Server login interface."
+        },
+        {
+            "id": "login_success",
+            "description": "Agent logs in using the provided credentials (super-admin / admin).",
+            "points": 15,
+            "visual_evidence": "The SEB Server dashboard or main menu is visible, indicating a successful session."
+        },
+        {
+            "id": "locate_exam_config",
+            "description": "Agent navigates to the configuration list and identifies 'Anatomy Midterm Config'.",
+            "points": 20,
+            "visual_evidence": "A list of exam configurations where 'Anatomy Midterm Config' is highlighted or selected."
+        },
+        {
+            "id": "initiate_export",
+            "description": "Agent triggers the export action for the specific configuration.",
+            "points": 25,
+            "visual_evidence": "An 'Export' button being clicked or a context menu showing an export option for the 'Anatomy Midterm Config'."
+        },
+        {
+            "id": "save_to_downloads",
+            "description": "Agent saves the file to the ~/Downloads/ directory with the correct extension.",
+            "points": 30,
+            "visual_evidence": "A file save dialog or a file manager view showing a file named 'Anatomy Midterm Config.seb' (or similar) located in the /home/ga/Downloads folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the browser; no terminal windows are used to bypass the UI."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the SEB Server menus rather than jumping to a direct download URL.",
+            "visual_evidence": "Sequential screenshots showing the transition from login to the configuration list."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor to manually create a .seb file.",
+            "visual_evidence": "The file is produced via the browser's download/export mechanism, not a 'Save As' from a text editor like Gedit or Vim."
+        }
+    ],
+    "privileged_info_for_vlm": "The target configuration name is 'Anatomy Midterm Config'. The file must be saved to /home/ga/Downloads with a .seb extension. The file must be non-empty (at least 100 bytes). The SEB Server is hosted at http://localhost:8080."
+}

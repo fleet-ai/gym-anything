@@ -1,0 +1,53 @@
+{
+    "task_id": "igt_learning_curve_analysis@1",
+    "task_completion": [
+        {
+            "id": "access_data_source",
+            "description": "Agent opens or reads the source data file at ~/pebl/data/igt_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the contents of igt_data.csv."
+        },
+        {
+            "id": "filter_perseverative_participants",
+            "description": "Agent identifies and excludes participants with 100% selection of one deck (e.g., sub-999).",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing logic to drop participants who only chose one deck type throughout the session."
+        },
+        {
+            "id": "calculate_block_net_scores",
+            "description": "Agent calculates net scores for five 20-trial blocks using the formula (C+D) - (A+B).",
+            "points": 25,
+            "visual_evidence": "Code snippets or intermediate execution outputs showing the math for 5 distinct blocks per participant."
+        },
+        {
+            "id": "calculate_learning_effect",
+            "description": "Agent calculates the learning effect as (mean of blocks 4 & 5) - (mean of blocks 1 & 2).",
+            "points": 20,
+            "visual_evidence": "Code or output showing the subtraction of the average of the first two blocks from the average of the last two blocks."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent saves the final analysis to ~/pebl/analysis/igt_report.json with the required structure.",
+            "points": 25,
+            "visual_evidence": "A terminal command showing the creation of the file or a 'cat' command displaying the JSON content containing 'participants', 'id', and the calculated metrics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_computation",
+            "description": "Agent performs actual data processing rather than hardcoding values.",
+            "visual_evidence": "Screenshots should show Python scripts or data processing commands, not just a manual creation of a JSON file with pre-filled numbers."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "Agent specifically excludes the contaminated participant based on data analysis.",
+            "visual_evidence": "The final JSON or intermediate logs should show that 'sub-999' is missing from the final report due to the perseverative strategy filter."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent uses the specific file paths requested in the task description.",
+            "visual_evidence": "The code or terminal commands must explicitly reference ~/pebl/data/igt_data.csv and ~/pebl/analysis/igt_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains a participant 'sub-999' who always chooses Deck A; this participant must be excluded from the final JSON report. The final report must be located at /home/ga/pebl/analysis/igt_report.json. The net score formula is (Decks C + D) minus (Decks A + B)."
+}

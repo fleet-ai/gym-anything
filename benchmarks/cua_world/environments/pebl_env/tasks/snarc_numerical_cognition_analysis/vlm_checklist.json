@@ -1,0 +1,53 @@
+{
+    "task_id": "snarc_numerical_cognition_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the raw data file at ~/pebl/data/snarc_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal window or code editor showing the content or loading of 'snarc_data.csv' with columns like participant_id, block, and rt_ms."
+        },
+        {
+            "id": "data_filtering_logic",
+            "description": "Agent implements code to exclude sub-99, block 1, and filter RTs between 200 and 1500ms for correct trials.",
+            "points": 20,
+            "visual_evidence": "Code snippets (Python/Pandas) showing filtering conditions: block != 1, participant_id != 'sub-99', correct == 1, and 200 <= rt_ms <= 1500."
+        },
+        {
+            "id": "snarc_calculation",
+            "description": "Agent calculates dRT (Right - Left) and performs linear regression against number magnitude (1-9) for each participant.",
+            "points": 25,
+            "visual_evidence": "Code or logs showing the calculation of mean RT per hand per number, the subtraction (Right - Left), and a regression/slope function call."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the JSON report with the required structure including 'participants' list and group means.",
+            "points": 20,
+            "visual_evidence": "A preview of the JSON structure containing 'id', 'snarc_slope', 'overall_accuracy', and 'group_mean_snarc_slope'."
+        },
+        {
+            "id": "file_output",
+            "description": "Agent saves the final report to the specific path ~/pebl/analysis/snarc_report.json.",
+            "points": 25,
+            "visual_evidence": "A terminal command (e.g., 'ls' or 'cat') or a file explorer view confirming the existence of 'snarc_report.json' in the 'analysis' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final group means or slopes without performing calculations.",
+            "visual_evidence": "The agent's code should show active data processing and mathematical operations rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually reads the provided CSV file rather than using dummy data.",
+            "visual_evidence": "The file path '~/pebl/data/snarc_data.csv' is explicitly referenced in the code."
+        },
+        {
+            "id": "correct_exclusion_handling",
+            "description": "Agent explicitly handles sub-99 as an excluded participant in the final JSON.",
+            "visual_evidence": "The final JSON report shows 'sub-99' with 'excluded': true and a reason, rather than omitting them entirely or including them in means."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a participant 'sub-99' who must be excluded from the group means; they have a constant RT of 600ms (zero variance). The CSV columns are: participant_id, block, trial, number, parity, response_hand, correct, and rt_ms. The SNARC slope is the unstandardized beta from regressing (mean_RT_Right - mean_RT_Left) on the number magnitude (1-9). Accuracy must be calculated using all trials from blocks 2 and 3 before any RT-based filtering."
+}

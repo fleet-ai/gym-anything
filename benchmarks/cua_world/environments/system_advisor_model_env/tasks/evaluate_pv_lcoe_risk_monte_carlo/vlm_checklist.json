@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_pv_lcoe_risk_monte_carlo@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at the specified path /home/ga/Documents/SAM_Projects/monte_carlo_lcoe.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation or content of 'monte_carlo_lcoe.py' at the correct path."
+        },
+        {
+            "id": "pysam_implementation",
+            "description": "The script imports PySAM (specifically pvwattsv8) and sets the random seed to 42.",
+            "points": 15,
+            "visual_evidence": "Code visible in the editor showing 'import PySAM.Pvwattsv8', 'import numpy' or 'random', and 'seed(42)'."
+        },
+        {
+            "id": "monte_carlo_logic",
+            "description": "The script implements a 500-iteration loop with the specified distributions: Uniform (10-20) for losses and Normal (mean 1100, std 150) for costs.",
+            "points": 25,
+            "visual_evidence": "Code showing a loop of 500 iterations and the sampling logic for 'System Losses' and 'Capital Cost'."
+        },
+        {
+            "id": "lcoe_calculation_formula",
+            "description": "The script uses the specific LCOE formula: (Capital Cost per kW * 10000 * 0.075 + 150000) / Annual_Energy_kWh.",
+            "points": 20,
+            "visual_evidence": "The exact mathematical formula visible in the Python script code."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script using the Python interpreter.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing the command 'python3 monte_carlo_lcoe.py' being run without errors."
+        },
+        {
+            "id": "results_json_generation",
+            "description": "The script generates a JSON file at /home/ga/Documents/SAM_Projects/monte_carlo_results.json with the required keys.",
+            "points": 20,
+            "visual_evidence": "The content of 'monte_carlo_results.json' displayed, showing keys 'iterations' (500), 'p50_lcoe_usd_per_kwh', and 'p90_lcoe_usd_per_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the P50/P90 values directly into the JSON file without running a simulation.",
+            "visual_evidence": "The Python script must contain the logic to calculate percentiles from a list of results, rather than just printing a pre-determined string."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually uses the PySAM library to fetch energy data rather than mocking the energy output.",
+            "visual_evidence": "Code showing the configuration of the pvwattsv8 module (system_capacity=10, tilt=20, etc.) and the call to .execute()."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent uses the specific weather directory provided in the environment.",
+            "visual_evidence": "Code showing the script reading from '/home/ga/.SAM/solar_resource_dir.txt' to set the weather file path."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must use a random seed of 42 and 500 iterations. The expected P50 LCOE should be between 0.04 and 0.065 USD/kWh. The expected P90 LCOE should be between 0.055 and 0.085 USD/kWh. The JSON file must contain the keys 'iterations', 'p50_lcoe_usd_per_kwh', and 'p90_lcoe_usd_per_kwh'."
+}

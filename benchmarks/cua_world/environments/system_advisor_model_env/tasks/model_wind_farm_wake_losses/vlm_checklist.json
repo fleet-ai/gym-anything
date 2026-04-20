@@ -1,0 +1,59 @@
+{
+    "task_id": "model_wind_farm_wake_losses@1",
+    "task_completion": [
+        {
+            "id": "locate_wind_resource",
+            "description": "Locate the Wyoming wind resource file (.srw) using the path provided in /opt/SAM/sam_dir.txt",
+            "points": 10,
+            "visual_evidence": "Terminal or file explorer showing the agent reading /opt/SAM/sam_dir.txt or listing .srw files in the SAM installation directory."
+        },
+        {
+            "id": "pysam_initialization",
+            "description": "Initialize a PySAM Windpower model and configure the turbine parameters (80m hub height, 110m rotor diameter, 2MW capacity).",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing Python code setting 'hub_ht' to 80, 'rotor_diameter' to 110, and defining a power curve for a 2000kW turbine."
+        },
+        {
+            "id": "layout_configuration",
+            "description": "Configure the 2x5 grid layout with specific x (0, 550, 1100, 1650, 2200) and y (0, 770) coordinates.",
+            "points": 20,
+            "visual_evidence": "Python code showing the definition of turbine X and Y coordinate arrays matching the 2x5 grid specified in the task."
+        },
+        {
+            "id": "wake_model_selection",
+            "description": "Set the wake model to the Simple (Park/Jensen) model.",
+            "points": 15,
+            "visual_evidence": "Python code showing the selection of the Park/Jensen wake model (often setting 'wind_resource_model_choice' or similar parameter to the Simple model index)."
+        },
+        {
+            "id": "model_execution",
+            "description": "Execute the PySAM simulation to calculate energy production and wake losses.",
+            "points": 20,
+            "visual_evidence": "Code showing the execution command (e.g., `wf.execute()`) and the retrieval of outputs like 'annual_energy' and 'wake_prox_loss'."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Save the required keys and results to /home/ga/Documents/SAM_Projects/wind_farm_wake_analysis.json.",
+            "points": 20,
+            "visual_evidence": "Terminal output or code showing the creation of the JSON file at the specified path containing keys like 'wake_loss_pct' and 'annual_energy_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library and didn't just hardcode a JSON file.",
+            "visual_evidence": "Screenshots must show Python code importing 'PySAM.Windpower' and interacting with its attributes, not just a script that writes a static string to a file."
+        },
+        {
+            "id": "path_discovery",
+            "description": "Verify the agent accessed the base path from the provided text file.",
+            "visual_evidence": "Evidence of the agent opening or 'cat'-ing /opt/SAM/sam_dir.txt to find the wind resource location."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the results in the JSON are calculated values, not placeholders.",
+            "visual_evidence": "The JSON file content should show non-zero, specific floating-point values for 'annual_energy_kwh' and 'wake_loss_pct'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use PySAM to model 10 turbines (2000 kW each, total 20,000 kW). Hub height: 80m. Rotor diameter: 110m. Layout: X coordinates [0, 550, 1100, 1650, 2200] and Y coordinates [0, 770]. The wake model must be 'Simple' (Park/Jensen). The output file /home/ga/Documents/SAM_Projects/wind_farm_wake_analysis.json must contain: farm_capacity_kw (20000), num_turbines (10), hub_height_m (80), rotor_diameter_m (110), and calculated values for annual_energy_kwh (expected > 15,000,000) and wake_loss_pct."
+}

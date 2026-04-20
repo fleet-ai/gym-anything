@@ -1,0 +1,53 @@
+{
+    "task_id": "repair_invalid_geometry_parcels@1",
+    "task_completion": [
+        {
+            "id": "load_input_dataset",
+            "description": "The agent loads the 'parcels_with_errors.geojson' file into a GIS application or script environment.",
+            "points": 10,
+            "visual_evidence": "The file path '/home/ga/GIS_Data/parcels_with_errors.geojson' is visible in an 'Open File' dialog, a layer panel, or a code snippet."
+        },
+        {
+            "id": "identify_invalid_geometry",
+            "description": "The agent identifies or validates the geometry errors (e.g., self-intersections).",
+            "points": 15,
+            "visual_evidence": "A 'Check Validity' tool output, an error log showing 'self-intersection', or a visual 'bowtie' polygon (Doe's parcel) is highlighted in the viewer."
+        },
+        {
+            "id": "apply_repair_tool",
+            "description": "The agent uses a repair tool (e.g., 'Fix Geometries', 'Buffer 0', or 'Make Valid') to correct the errors.",
+            "points": 30,
+            "visual_evidence": "A processing dialog for 'Fix Geometries' or a script command calling a repair function is visible."
+        },
+        {
+            "id": "verify_repaired_features",
+            "description": "The agent confirms that the repaired layer still contains the required features and attributes.",
+            "points": 15,
+            "visual_evidence": "An attribute table showing at least 3 features with columns 'id', 'owner', and 'type' is visible after the repair."
+        },
+        {
+            "id": "export_geojson",
+            "description": "The agent exports the repaired data to the specific destination path in GeoJSON format.",
+            "points": 30,
+            "visual_evidence": "An 'Export' or 'Save As' dialog showing the path '/home/ga/GIS_Data/exports/parcels_fixed.geojson' and format 'GeoJSON'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing a single terminal command to bypass the UI.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with menus, toolboxes, or map canvases."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the input file to the output name without performing a repair.",
+            "visual_evidence": "The VLM should see a 'Fixed' or 'Repaired' layer in the layer tree that is distinct from the original 'parcels_with_errors' layer."
+        },
+        {
+            "id": "no_manual_coordinate_entry",
+            "description": "The agent used automated tools to fix the geometry rather than manually typing in new coordinates for the 'Doe' parcel.",
+            "visual_evidence": "The use of a 'Fix Geometries' tool or similar algorithmic approach instead of the vertex editor tool."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file '/home/ga/GIS_Data/parcels_with_errors.geojson' contains 3 features. Feature 2 (owner: Doe) is a 'bowtie' polygon with coordinates [[0,0], [0,10], [10,0], [10,10], [0,0]], which is a self-intersection error. The repaired output must be saved to '/home/ga/GIS_Data/exports/parcels_fixed.geojson' and must retain the attributes 'id', 'owner', and 'type'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "externalize_strings_i18n@1",
+    "task_completion": [
+        {
+            "id": "open_library_app_java",
+            "description": "Open the target file LibraryApp.java in the Eclipse editor.",
+            "points": 10,
+            "visual_evidence": "The file 'LibraryApp.java' is visible in an editor tab within the Eclipse IDE, showing the source code in the com.library.app package."
+        },
+        {
+            "id": "create_messages_properties",
+            "description": "Create the messages.properties file in the com.library.app package.",
+            "points": 15,
+            "visual_evidence": "A file named 'messages.properties' appears in the Project Explorer under src/main/java/com/library/app."
+        },
+        {
+            "id": "create_messages_accessor",
+            "description": "Create the Messages.java accessor class in the com.library.app package.",
+            "points": 15,
+            "visual_evidence": "A file named 'Messages.java' appears in the Project Explorer and contains code for a resource bundle accessor class."
+        },
+        {
+            "id": "externalize_user_strings",
+            "description": "Externalize user-facing strings (menu, prompts, messages) from LibraryApp.java.",
+            "points": 30,
+            "visual_evidence": "LibraryApp.java shows calls to 'Messages.getString(...)' instead of hardcoded strings. The messages.properties file contains key-value pairs for these strings (at least 15 entries)."
+        },
+        {
+            "id": "mark_technical_strings",
+            "description": "Mark technical strings like '1' and '2' in switch cases as 'Never Externalize'.",
+            "points": 15,
+            "visual_evidence": "In LibraryApp.java, numeric strings used in switch/case statements are followed by the comment '//$NON-NLS-n$' or remain as literals while others are externalized."
+        },
+        {
+            "id": "compile_and_save",
+            "description": "Ensure all files are saved and the project compiles without errors.",
+            "points": 15,
+            "visual_evidence": "No red error markers (X) are visible on the files in the Project Explorer or the Problems view. The editor tabs do not show asterisks (indicating unsaved changes)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "eclipse_gui_usage",
+            "description": "The agent used the Eclipse IDE's built-in 'Externalize Strings' wizard or GUI tools rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the 'Externalize Strings' dialog box or Eclipse-specific context menus being used."
+        },
+        {
+            "id": "no_manual_bypass",
+            "description": "The agent did not simply delete the strings or replace them with empty values to pass checks.",
+            "visual_evidence": "The messages.properties file contains actual descriptive text corresponding to the original library application functionality."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system through the IDE interface.",
+            "visual_evidence": "The Project Explorer is refreshed and reflects the new files (Messages.java and messages.properties) within the correct package structure."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/eclipse-workspace/LibraryApp. The target file for externalization is src/main/java/com/library/app/LibraryApp.java. The resource bundle must be named messages.properties and the accessor class Messages.java, both located in the com.library.app package. There should be at least 15 externalized strings. Technical strings '1' and '2' must not be externalized."
+}

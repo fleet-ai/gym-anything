@@ -1,0 +1,59 @@
+{
+    "task_id": "apply_spatial_filter@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM CT image is loaded into the Weasis viewer.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open showing a CT scan (cross-sectional anatomy) in the main viewport."
+        },
+        {
+            "id": "spatial_filter_menu",
+            "description": "The agent accesses the spatial filter or image processing menu.",
+            "points": 15,
+            "visual_evidence": "A menu, dropdown, or tool panel related to 'Filters', 'Spatial Filter', or 'Image Processing' is visible."
+        },
+        {
+            "id": "sharpen_applied",
+            "description": "The 'Sharpen' filter is selected and applied to the image.",
+            "points": 25,
+            "visual_evidence": "The 'Sharpen' option is highlighted in a menu, or a dialog box for sharpening is visible, and the image in the viewport shows increased edge contrast/sharpness."
+        },
+        {
+            "id": "export_dialog_config",
+            "description": "The agent opens the export dialog and sets the format to TIFF and the correct path.",
+            "points": 20,
+            "visual_evidence": "An 'Export' or 'Save As' dialog is visible with the file format set to TIFF and the destination path showing '~/DICOM/exports/sharpened_ct.tiff'."
+        },
+        {
+            "id": "text_file_creation",
+            "description": "A text file is created with the required keyword.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) or a terminal command shows the file 'filter_applied.txt' containing the word 'sharpen'."
+        },
+        {
+            "id": "files_exist_in_directory",
+            "description": "The final files are present in the target directory.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal 'ls' output shows 'sharpened_ct.tiff' and 'filter_applied.txt' in the ~/DICOM/exports/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_for_filter",
+            "description": "The agent used the Weasis GUI to apply the filter rather than command-line image processing tools.",
+            "visual_evidence": "Screenshots show mouse interactions with Weasis menus and sliders rather than just terminal commands like 'convert' or 'mogrify'."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The TIFF file was generated via the Weasis export function.",
+            "visual_evidence": "The Weasis export progress bar or export confirmation dialog is visible."
+        },
+        {
+            "id": "no_preexisting_files",
+            "description": "The agent did not simply rename existing files to match the target names.",
+            "visual_evidence": "The trajectory shows the active process of configuring the export and typing the filename."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is a real DICOM file (0002.DCM). The agent must specifically use the 'Sharpen' filter within Weasis. The required output paths are exactly /home/ga/DICOM/exports/sharpened_ct.tiff and /home/ga/DICOM/exports/filter_applied.txt. The text file must contain the exact string 'sharpen'."
+}

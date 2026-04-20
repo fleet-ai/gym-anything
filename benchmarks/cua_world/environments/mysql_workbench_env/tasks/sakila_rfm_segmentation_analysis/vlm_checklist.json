@@ -1,0 +1,59 @@
+{
+    "task_id": "sakila_rfm_segmentation_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the Sakila database and access the schema.",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver, MySQL Workbench, or phpMyAdmin) open showing the 'sakila' database and its tables (customer, payment, rental)."
+        },
+        {
+            "id": "rfm_table_creation",
+            "description": "Create the 'customer_rfm_scores' table with the specified schema.",
+            "points": 15,
+            "visual_evidence": "SQL execution logs or a refreshed database tree showing the new table 'customer_rfm_scores' with columns: customer_id, recency_days, frequency_count, monetary_total, r_score, f_score, m_score."
+        },
+        {
+            "id": "rfm_calculation_logic",
+            "description": "Calculate RFM metrics using the reference date '2006-02-14 23:59:59'.",
+            "points": 25,
+            "visual_evidence": "SQL query text showing '2006-02-14 23:59:59' used for DATEDIFF/subtraction, COUNT for frequency, and SUM for monetary values."
+        },
+        {
+            "id": "ntile_scoring_implementation",
+            "description": "Apply NTILE(5) with customer_id ASC tie-breaker for R, F, and M scores.",
+            "points": 25,
+            "visual_evidence": "SQL query text showing 'NTILE(5) OVER (ORDER BY ... ASC)' for each score, specifically checking that R_Score 5 is for lowest recency days."
+        },
+        {
+            "id": "churn_risk_filtering",
+            "description": "Filter for High Value Churn Risks using the logic R <= 2 AND (F >= 4 OR M >= 4).",
+            "points": 15,
+            "visual_evidence": "A SELECT query or a filtered view showing the specific WHERE clause: R_score <= 2 AND (F_score >= 4 OR M_score >= 4)."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Export the filtered list to the specified CSV path.",
+            "points": 10,
+            "visual_evidence": "An export dialog or a file explorer window showing 'churn_risk_customers.csv' saved at '/home/ga/Documents/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used a GUI-based database tool rather than just terminal commands.",
+            "visual_evidence": "Screenshots show a database IDE (DBeaver, Workbench, etc.) rather than only a bash terminal."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "Verify the agent actually executed queries against the database rather than hardcoding values.",
+            "visual_evidence": "Query execution progress bars, result grids with 599 rows, or 'Query Successful' status messages in the GUI."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "Ensure the agent didn't manually type out the CSV content.",
+            "visual_evidence": "The use of an 'Export' wizard or 'INTO OUTFILE' command rather than a text editor being used to manually create the CSV."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sakila database has exactly 599 customers. The reference date for recency is '2006-02-14 23:59:59'. Scores must be 1-5 using NTILE(5). High Value Churn Risk logic: R_score <= 2 AND (F_score >= 4 OR M_score >= 4). The final export must be a CSV at /home/ga/Documents/exports/churn_risk_customers.csv containing customer_id, email, r_score, f_score, and m_score."
+}

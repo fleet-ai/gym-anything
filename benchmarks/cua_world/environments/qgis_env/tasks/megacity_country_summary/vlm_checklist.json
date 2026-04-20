@@ -1,0 +1,53 @@
+{
+    "task_id": "megacity_country_summary@1",
+    "task_completion": [
+        {
+            "id": "load_datasets",
+            "description": "Load both the countries and populated places GeoJSON files into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layers 'ne_110m_admin_0_countries' and 'ne_110m_populated_places' are visible in the layers panel or workspace."
+        },
+        {
+            "id": "filter_megacities",
+            "description": "Filter the populated places to include only those with a population (POP_MAX) greater than 5,000,000.",
+            "points": 20,
+            "visual_evidence": "A filter/query builder window showing 'POP_MAX > 5000000' or a reduced set of points on the map representing only large cities."
+        },
+        {
+            "id": "spatial_join_aggregation",
+            "description": "Perform a spatial join or intersection between the filtered cities and country boundaries to count cities and sum population per country.",
+            "points": 30,
+            "visual_evidence": "A tool dialog (e.g., 'Join Attributes by Location' or 'Aggregate') configured to calculate 'count' and 'sum' of POP_MAX."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "Check the resulting attribute table for the new columns containing the count and total population.",
+            "points": 20,
+            "visual_evidence": "An attribute table showing country names alongside columns for megacity counts and summed POP_MAX values."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the final summarized dataset to the specified file path.",
+            "points": 20,
+            "visual_evidence": "An export or 'Save Vector Layer' dialog showing the format as GeoJSON and the file path /home/ga/GIS_Data/exports/megacity_stats_by_country.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GIS menus, toolboxes, and map canvases."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type in summary statistics for countries like China or India from memory.",
+            "visual_evidence": "The agent is seen using the software's aggregation/join tools rather than manually editing an attribute table."
+        },
+        {
+            "id": "actual_file_path",
+            "description": "The agent used the specific file paths provided in the task description.",
+            "visual_evidence": "The file paths /home/ga/GIS_Data/... are visible in the file browser or save dialogs within the GIS software."
+        }
+    ],
+    "privileged_info_for_vlm": "The source countries file contains 177 features. The populated places file contains 243 features. The filter must use POP_MAX > 5,000,000. Key countries that should have megacities in this dataset include China, United States of America, Japan, India, and Brazil. The final output must be a GeoJSON located at /home/ga/GIS_Data/exports/megacity_stats_by_country.geojson."
+}

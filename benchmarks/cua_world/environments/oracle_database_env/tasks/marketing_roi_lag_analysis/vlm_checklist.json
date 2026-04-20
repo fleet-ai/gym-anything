@@ -1,0 +1,59 @@
+{
+    "task_id": "marketing_roi_lag_analysis@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the database using DBeaver or SQLPlus with the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a successful connection in DBeaver's Database Navigator or a 'Connected' message in a SQLPlus terminal."
+        },
+        {
+            "id": "sql_query_construction",
+            "description": "Agent writes a SQL script that aggregates RAW_AD_SPEND and RAW_SALES by month and region, including LAG functions for the 1-month delay.",
+            "points": 20,
+            "visual_evidence": "SQL editor window showing code with 'GROUP BY', 'LAG', and joins between HR.RAW_AD_SPEND and HR.RAW_SALES."
+        },
+        {
+            "id": "statistical_functions_usage",
+            "description": "Agent uses CORR and REGR_SLOPE functions for both Lag 0 and Lag 1 scenarios in the SQL script.",
+            "points": 20,
+            "visual_evidence": "SQL code visible in the editor containing 'CORR(', 'REGR_SLOPE(', and logic for comparing correlations."
+        },
+        {
+            "id": "view_creation_execution",
+            "description": "Agent executes the CREATE VIEW statement for 'CAMPAIGN_ROI_ANALYSIS'.",
+            "points": 15,
+            "visual_evidence": "A 'Task completed' or 'View CAMPAIGN_ROI_ANALYSIS created' message in the SQL execution log/console."
+        },
+        {
+            "id": "verify_view_columns",
+            "description": "The created view contains all 8 required columns: REGION_ID, TOTAL_SPEND, TOTAL_SALES, CORR_LAG0, SLOPE_LAG0, CORR_LAG1, SLOPE_LAG1, and BEST_STRATEGY.",
+            "points": 15,
+            "visual_evidence": "A 'SELECT * FROM CAMPAIGN_ROI_ANALYSIS' result grid or a table schema view showing these exact column names."
+        },
+        {
+            "id": "verify_data_rows",
+            "description": "The view returns exactly 5 rows, one for each REGION_ID (1-5), with the BEST_STRATEGY logic applied.",
+            "points": 20,
+            "visual_evidence": "A result set showing 5 rows with REGION_ID 1 through 5 and labels like 'IMMEDIATE', 'DELAYED', or 'INEFFECTIVE' in the BEST_STRATEGY column."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the database UI/CLI rather than just editing a text file or mocking the output.",
+            "visual_evidence": "Screenshots show the DBeaver interface or SQLPlus terminal with active query execution indicators."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final statistical values into the view but used SQL aggregate/statistical functions.",
+            "visual_evidence": "The SQL script shows functional calls like CORR() and REGR_SLOPE() rather than fixed numeric constants for the results."
+        },
+        {
+            "id": "proper_tool_usage",
+            "description": "The agent used the specified tools (DBeaver or SQLPlus) as requested in the task.",
+            "visual_evidence": "The application window title or interface matches DBeaver or a standard terminal running SQLPlus."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains 5 regions (IDs 1-5). The view must be named 'CAMPAIGN_ROI_ANALYSIS'. The 'BEST_STRATEGY' logic is: 'IMMEDIATE' if CORR_LAG0 > CORR_LAG1, 'DELAYED' if CORR_LAG1 > CORR_LAG0, and 'INEFFECTIVE' if both CORR values are < 0.3. Ground truth data is stored in /var/lib/oracle/roi_ground_truth.json if verification of specific values is needed."
+}

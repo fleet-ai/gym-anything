@@ -1,0 +1,59 @@
+{
+    "task_id": "pebl_ant_script_repair_and_run@1",
+    "task_completion": [
+        {
+            "id": "open_script_editor",
+            "description": "The agent opens the ant_task.pbl file in a text editor to identify bugs.",
+            "points": 10,
+            "visual_evidence": "A text editor (like gedit, nano, or VS Code) is visible showing the contents of ~/pebl/tasks/ant/ant_task.pbl."
+        },
+        {
+            "id": "fix_parameters",
+            "description": "The agent modifies the script to match the Fan et al. (2002) protocol (SOA 400ms, 4 cue types, 3 flanker types, 3 blocks).",
+            "points": 30,
+            "visual_evidence": "Screenshots of the text editor show changes to variables related to SOA (400), cue conditions, flanker conditions, or block counts."
+        },
+        {
+            "id": "create_bug_report",
+            "description": "The agent creates a bug report file at the specified location.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer shows the creation of ~/pebl/tasks/ant/bug_report.txt."
+        },
+        {
+            "id": "launch_pebl_task",
+            "description": "The agent executes the command to run the PEBL task.",
+            "points": 15,
+            "visual_evidence": "A terminal shows the command 'run-pebl ~/pebl/tasks/ant/ant_task.pbl' being executed."
+        },
+        {
+            "id": "input_participant_info",
+            "description": "The agent enters the required subject ID 'test01' in the PEBL launcher.",
+            "points": 10,
+            "visual_evidence": "The PEBL GUI window is visible with 'test01' typed into the Subject ID field."
+        },
+        {
+            "id": "successful_task_execution",
+            "description": "The ANT task runs successfully without crashing, showing the experiment interface.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the PEBL experiment window displaying the ANT task (e.g., fixation cross, cues, or arrows) rather than an error message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_script_editing",
+            "description": "The agent actually edited the file rather than just creating a new one with the correct content.",
+            "visual_evidence": "The agent is seen interacting with the existing file in a text editor, showing line-by-line changes or saves."
+        },
+        {
+            "id": "actual_execution",
+            "description": "The agent ran the task through the PEBL environment, not just simulating a success message in the terminal.",
+            "visual_evidence": "The PEBL graphical user interface (SDL window) is visible on the screen during the task execution phase."
+        },
+        {
+            "id": "correct_subject_id",
+            "description": "The agent used the specific subject ID 'test01' as instructed.",
+            "visual_evidence": "The string 'test01' is visible in the PEBL prompt or the terminal output logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The standard ANT protocol by Fan et al. (2002) requires: 1. SOA (Stimulus Onset Asynchrony) between cue and target of 400ms. 2. Four cue conditions: No Cue, Center Cue, Double Cue, Spatial Cue. 3. Three flanker conditions: Congruent, Incongruent, Neutral. 4. Three test blocks. The agent must use the command 'run-pebl' and the ID 'test01'. The bug report must be saved to ~/pebl/tasks/ant/bug_report.txt."
+}

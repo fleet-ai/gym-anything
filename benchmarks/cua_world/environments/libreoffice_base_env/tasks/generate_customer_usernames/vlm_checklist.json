@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_customer_usernames@1",
+    "task_completion": [
+        {
+            "id": "open_customer_table_design",
+            "description": "The agent opens the 'Customer' table in Design View to modify the schema.",
+            "points": 10,
+            "visual_evidence": "A LibreOffice Base window showing the Table Design view for the 'Customer' table."
+        },
+        {
+            "id": "add_username_column",
+            "description": "A new column named 'Username' is added to the table definition with the type VARCHAR.",
+            "points": 15,
+            "visual_evidence": "The text 'Username' entered in a new row under 'Field Name' and 'Text [VARCHAR]' selected under 'Field Type' in the Design View."
+        },
+        {
+            "id": "save_table_schema",
+            "description": "The table schema changes are saved to the database.",
+            "points": 10,
+            "visual_evidence": "The 'Save' icon being clicked or the absence of the 'modified' asterisk in the title bar after adding the column."
+        },
+        {
+            "id": "populate_usernames_lowercase",
+            "description": "The 'Username' column is populated with the lowercase prefix of the 'Email' column.",
+            "points": 45,
+            "visual_evidence": "The 'Customer' table data view showing the 'Username' column filled with values like 'bjorn.hansen' corresponding to 'Bjorn.Hansen@google.com'. All characters must be lowercase."
+        },
+        {
+            "id": "verify_all_records",
+            "description": "The 'Username' column is populated for all 59 records in the table.",
+            "points": 20,
+            "visual_evidence": "Scrolling through the table data view showing the 'Username' column is not null for various records throughout the list (total 59 rows)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the LibreOffice Base GUI rather than executing raw SQL in a terminal or SQL command window.",
+            "visual_evidence": "Screenshots show interactions with the Table Design and Data View windows rather than a terminal prompt or the 'Tools > SQL' dialog."
+        },
+        {
+            "id": "no_manual_entry_shortcuts",
+            "description": "The agent did not manually type in every username, which would be inefficient and prone to error.",
+            "visual_evidence": "Evidence of using a formula, an Update query, or a bulk operation rather than individual cell editing for all 59 rows."
+        },
+        {
+            "id": "genuine_app_interaction",
+            "description": "The agent interacted with the actual chinook.odb file.",
+            "visual_evidence": "The window title bar or status bar shows 'chinook.odb' as the active database."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The 'Customer' table contains exactly 59 records. The 'Email' column is the source of data. The 'Username' column must be VARCHAR and contain only the part of the email before the '@' symbol, converted entirely to lowercase. Example: 'Luís' from 'luisg@embraer.com.br' becomes 'luisg'."
+}

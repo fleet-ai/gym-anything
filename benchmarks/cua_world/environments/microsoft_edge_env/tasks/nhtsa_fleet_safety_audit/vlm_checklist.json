@@ -1,0 +1,59 @@
+{
+    "task_id": "nhtsa_fleet_safety_audit@1",
+    "task_completion": [
+        {
+            "id": "nhtsa_search_navigation",
+            "description": "Agent navigates to nhtsa.gov and searches for the specific 2023 vehicle models.",
+            "points": 10,
+            "visual_evidence": "Browser screenshots showing nhtsa.gov/ratings with search queries for Toyota Camry, Ford F-150, and Jeep Wrangler."
+        },
+        {
+            "id": "camry_data_retrieval",
+            "description": "Agent identifies the safety rating and recall count for the 2023 Toyota Camry (4-Door Sedan).",
+            "points": 15,
+            "visual_evidence": "Screenshot of the NHTSA vehicle page for the 2023 Toyota Camry showing the 5-star rating and recall count."
+        },
+        {
+            "id": "ford_f150_data_retrieval",
+            "description": "Agent identifies the safety rating and recall count for the 2023 Ford F-150 (Super Crew).",
+            "points": 15,
+            "visual_evidence": "Screenshot of the NHTSA vehicle page for the 2023 Ford F-150 Super Crew showing the 5-star rating and recall count."
+        },
+        {
+            "id": "jeep_wrangler_data_retrieval",
+            "description": "Agent identifies the safety rating and recall count for the 2023 Jeep Wrangler (4-Door Unlimited).",
+            "points": 15,
+            "visual_evidence": "Screenshot of the NHTSA vehicle page for the 2023 Jeep Wrangler showing the safety rating (or lack thereof) and recall count."
+        },
+        {
+            "id": "download_technical_report",
+            "description": "Agent downloads the 'Electronic Stability Control' technical report for the 2023 Toyota Camry.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the 'Technical Resources' or 'Manufacturer Communications' section on NHTSA for the Camry, and a file named similarly to 'Electronic Stability Control...' appearing in the Downloads folder or file manager."
+        },
+        {
+            "id": "create_final_report",
+            "description": "Agent creates the fleet_safety_report.txt on the Desktop with the required vehicle details.",
+            "points": 20,
+            "visual_evidence": "Screenshot of a text editor or terminal 'cat' command showing /home/ga/Desktop/fleet_safety_report.txt containing the names, ratings, and recall counts for all three vehicles."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the web browser GUI to find information rather than just generating the file via terminal.",
+            "visual_evidence": "Screenshots must show active navigation and scrolling on the nhtsa.gov website, not just a terminal window."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not copy-paste the answers from a pre-existing source or the prompt's privileged info structure.",
+            "visual_evidence": "The agent is seen typing or selecting data directly from the browser view into the report."
+        },
+        {
+            "id": "actual_file_download",
+            "description": "The technical report was actually downloaded from the website, not created as a dummy file.",
+            "visual_evidence": "Browser download manager showing a completed download from an nhtsa.gov URL."
+        }
+    ],
+    "privileged_info_for_vlm": "2023 Toyota Camry (4-Door Sedan): 5-Star Overall Rating, 2 Recalls. 2023 Ford F-150 (Super Crew): 5-Star Overall Rating, 7 Recalls. 2023 Jeep Wrangler (4-Door Unlimited): Not Rated (or 0 stars/no overall rating provided by NHTSA), 6 Recalls. The Electronic Stability Control report for the Camry is typically found under the 'Vehicle Detail' -> 'Safety Technology' or 'Manufacturer Communications' section."
+}

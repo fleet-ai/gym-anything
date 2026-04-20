@@ -1,0 +1,53 @@
+{
+    "task_id": "recover_and_purge_trash@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_trash",
+            "description": "The agent navigates to the 'Trash' folder in the helpdesk interface.",
+            "points": 10,
+            "visual_evidence": "The sidebar shows the 'Trash' folder as the active selection, and the conversation list displays items currently in the trash."
+        },
+        {
+            "id": "identify_target_conversation",
+            "description": "The agent identifies the conversation 'Signed Contract - Q3 2024' within the Trash folder.",
+            "points": 10,
+            "visual_evidence": "A conversation with the subject 'Signed Contract - Q3 2024' is visible in the Trash list, often highlighted or selected by the agent."
+        },
+        {
+            "id": "restore_target_conversation",
+            "description": "The agent restores the 'Signed Contract - Q3 2024' conversation to the active inbox.",
+            "points": 30,
+            "visual_evidence": "The agent clicks a 'Restore' or 'Move to Inbox' button for the specific conversation. Subsequently, the conversation is no longer in Trash and appears in the 'Open' or 'Inbox' folder."
+        },
+        {
+            "id": "purge_remaining_trash",
+            "description": "The agent permanently deletes the remaining items in the Trash folder.",
+            "points": 30,
+            "visual_evidence": "The agent selects the remaining junk items ('SEO Proposal', 'You won!', 'Undelivered Mail') and clicks 'Delete Permanently' or uses an 'Empty Trash' function."
+        },
+        {
+            "id": "verify_empty_trash",
+            "description": "The Trash folder is confirmed to be empty at the end of the trajectory.",
+            "points": 20,
+            "visual_evidence": "The Trash folder is shown with a message such as 'No conversations found' or 'Trash is empty'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the FreeScout web interface rather than executing database or terminal commands to move records.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI buttons, and page transitions within the browser, not just a terminal window."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "The agent did not accidentally delete the 'Signed Contract - Q3 2024' conversation permanently.",
+            "visual_evidence": "The target conversation is visible in the Inbox/Open folder at the end, not missing from all folders."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the folders manually rather than jumping to a hardcoded URL that bypasses the UI logic.",
+            "visual_evidence": "The sequence of screenshots shows the agent clicking sidebar elements to switch between Trash and Inbox."
+        }
+    ],
+    "privileged_info_for_vlm": "The target conversation to be restored is 'Signed Contract - Q3 2024'. The junk items that must be permanently deleted are 'SEO Proposal', 'You won!', and 'Undelivered Mail'. Success is defined by 'Signed Contract - Q3 2024' being in the active inbox and the Trash folder being completely empty."
+}

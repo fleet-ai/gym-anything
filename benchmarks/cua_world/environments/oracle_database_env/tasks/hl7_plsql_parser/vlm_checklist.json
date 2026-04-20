@@ -1,0 +1,59 @@
+{
+    "task_id": "hl7_plsql_parser@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent connects to the Oracle database using the provided credentials (hr/hr123@XEPDB1).",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection to XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "create_target_table",
+            "description": "Agent creates the PATIENT_ADMISSIONS table with the specified columns and data types.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE TABLE PATIENT_ADMISSIONS' with columns MRN, PATIENT_NAME, ADMISSION_DATE, MESSAGE_EVENT, and DIAGNOSIS_CODE."
+        },
+        {
+            "id": "implement_parsing_logic",
+            "description": "Agent writes the PL/SQL procedure PARSE_HL7_BATCH containing logic to parse HL7 segments (MSH, PID, PV1, DG1).",
+            "points": 30,
+            "visual_evidence": "Code for 'CREATE OR REPLACE PROCEDURE PARSE_HL7_BATCH' showing string manipulation (like SUBSTR/INSTR or REGEXP) to extract data from MESSAGE_BODY."
+        },
+        {
+            "id": "handle_date_and_name_format",
+            "description": "The procedure includes logic to format the name as 'Last, First' and convert HL7 date strings to Oracle DATE types.",
+            "points": 20,
+            "visual_evidence": "PL/SQL code showing name concatenation (Last || ', ' || First) and TO_DATE functions with formats like 'YYYYMMDDHH24MI'."
+        },
+        {
+            "id": "execute_procedure",
+            "description": "Agent executes the PARSE_HL7_BATCH procedure to process the records in RAW_HL7_LOG.",
+            "points": 10,
+            "visual_evidence": "SQL command 'EXEC PARSE_HL7_BATCH;' or an anonymous block calling the procedure, followed by a 'Procedure successfully completed' message."
+        },
+        {
+            "id": "verify_data_migration",
+            "description": "Agent queries the PATIENT_ADMISSIONS table to verify the parsed data, specifically the sentinel record.",
+            "points": 15,
+            "visual_evidence": "A SELECT query on PATIENT_ADMISSIONS showing at least one row with MRN 'TEST999' and Name 'Everdeen, Katniss'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_sentinel",
+            "description": "The agent did not simply insert the sentinel values manually without running a parser.",
+            "visual_evidence": "The procedure code must show generic parsing logic (searching for '|' or '^' delimiters) rather than hardcoding 'Everdeen, Katniss'."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle instance rather than mocking the output in a text editor.",
+            "visual_evidence": "Screenshots show a real SQL*Plus, SQLcl, or SQL Developer interface with standard Oracle system prompts."
+        },
+        {
+            "id": "source_table_usage",
+            "description": "The agent actually reads from the RAW_HL7_LOG table.",
+            "visual_evidence": "The PL/SQL procedure contains a cursor or loop iterating over 'FROM RAW_HL7_LOG'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source table is RAW_HL7_LOG. The target table must be PATIENT_ADMISSIONS. The procedure must be named PARSE_HL7_BATCH. A sentinel record exists in the source with MRN 'TEST999' and name 'Everdeen^Katniss'. After parsing, this must appear in the target table as MRN 'TEST999' and Name 'Everdeen, Katniss'. The Message Event for this record should be 'ADT^A01'. The procedure must handle the DG1 segment (diagnosis) which may be missing in some records."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "model_ride_hailing_drt@1",
+    "task_completion": [
+        {
+            "id": "demand_generation_command",
+            "description": "Agent executes a command or script to generate DRT demand with 20 taxis and 50 passengers.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a command (likely using randomTrips.py or a custom script) referencing 20 taxis, 50 persons, and the output path /home/ga/SUMO_Output/drt_demand.rou.xml."
+        },
+        {
+            "id": "config_file_creation",
+            "description": "Agent creates the SUMO configuration file with the correct network and demand files.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command showing ride_hailing.sumocfg containing references to pasubio_buslanes.net.xml and drt_demand.rou.xml."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent runs the SUMO simulation until time 3600 using the created configuration.",
+            "points": 20,
+            "visual_evidence": "Terminal showing 'sumo' or 'sumo-gui' running with the flag '--end 3600' or the simulation reaching step 3600 in the GUI/logs."
+        },
+        {
+            "id": "drt_dispatch_parameters",
+            "description": "Agent ensures the simulation uses greedy dispatch and random circling for idle vehicles.",
+            "points": 20,
+            "visual_evidence": "The configuration file or command line arguments showing '--device.taxi.dispatch-algorithm greedy' and '--device.taxi.idle-algorithm randomCircle'."
+        },
+        {
+            "id": "wait_time_calculation",
+            "description": "Agent processes the simulation output to calculate the average passenger waiting time.",
+            "points": 20,
+            "visual_evidence": "Terminal showing a script (e.g., python) parsing tripinfo.xml or similar to compute the mean of 'waitingTime' for person elements."
+        },
+        {
+            "id": "final_result_file",
+            "description": "Agent saves the numeric average wait time to the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal showing 'cat /home/ga/SUMO_Output/avg_wait_time.txt' displaying a single float value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_result",
+            "description": "The agent did not simply echo a number into avg_wait_time.txt without running the simulation.",
+            "visual_evidence": "The trajectory must show the simulation execution (SUMO logs) and the parsing of an XML output file before the final text file is created."
+        },
+        {
+            "id": "correct_scenario_usage",
+            "description": "The agent used the specific Bologna Pasubio network file requested.",
+            "visual_evidence": "Commands or config files must explicitly reference /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_buslanes.net.xml."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the terminal or editor rather than just outputting a final answer block.",
+            "visual_evidence": "Step-by-step command execution in the terminal and file system modifications."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a specific setup: 20 taxis, 50 passengers, end time 3600, greedy dispatch, and random circling. The network file is at /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_buslanes.net.xml. The final output must be a single float in /home/ga/SUMO_Output/avg_wait_time.txt derived from the simulation's tripinfo or stop-output data."
+}

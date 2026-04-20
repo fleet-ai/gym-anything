@@ -1,0 +1,59 @@
+{
+    "task_id": "graph_traversal_analysis@1",
+    "task_completion": [
+        {
+            "id": "access_orientdb_studio",
+            "description": "Agent successfully accesses the OrientDB Studio web interface at http://localhost:2480.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio login page or dashboard in a web browser."
+        },
+        {
+            "id": "database_login",
+            "description": "Agent logs into the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 'demodb' database selected and the user 'admin' logged in, or the database schema view."
+        },
+        {
+            "id": "query_total_counts",
+            "description": "Agent executes queries to find the total number of vertices and edges in the database.",
+            "points": 15,
+            "visual_evidence": "SQL query editor showing commands like 'SELECT count(*) FROM V' and 'SELECT count(*) FROM E' with resulting output."
+        },
+        {
+            "id": "query_hotel_stats",
+            "description": "Agent executes queries to find the count of 5-star hotels and the number of distinct countries for hotels.",
+            "points": 20,
+            "visual_evidence": "SQL query editor showing filters for 'stars = 5' on Hotel class and 'DISTINCT(country)' or similar logic."
+        },
+        {
+            "id": "query_luca_network",
+            "description": "Agent performs a traversal query to find the network size of 'luca.rossi@example.com' within a depth of 2 via 'HasFriend' edges.",
+            "points": 30,
+            "visual_evidence": "SQL or Gremlin query involving 'TRAVERSE', 'out(\"HasFriend\")', or 'both(\"HasFriend\")' starting from the specific email, with a depth limit of 2."
+        },
+        {
+            "id": "report_creation",
+            "description": "Agent creates the final report file at the specified path with the required five lines.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '/home/ga/graph_analysis_report.txt' containing the five specific keys and their integer values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply type the answers without performing the database queries.",
+            "visual_evidence": "The trajectory must show the agent actually running queries in the OrientDB Studio interface and seeing the results before writing the file."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface as the primary means of data extraction rather than just querying via CLI.",
+            "visual_evidence": "Screenshots showing the browser interacting with the OrientDB Studio UI (localhost:2480)."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent used the exact file path specified in the task.",
+            "visual_evidence": "The file saving or verification step shows the path '/home/ga/graph_analysis_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is OrientDB 'demodb'. Credentials: admin/admin. Expected values for the report: TOTAL_VERTICES: 55, TOTAL_EDGES: 110, FIVE_STAR_HOTELS: 4, HOTEL_COUNTRIES: 7, LUCA_NETWORK_SIZE: 5. (Note: These values are based on the standard demodb seed; the VLM should prioritize verifying that the agent actually ran the queries to find these specific numbers)."
+}

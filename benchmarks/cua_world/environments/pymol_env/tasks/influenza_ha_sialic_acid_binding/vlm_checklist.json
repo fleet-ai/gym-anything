@@ -1,0 +1,53 @@
+{
+    "task_id": "influenza_ha_sialic_acid_binding@1",
+    "task_completion": [
+        {
+            "id": "fetch_pdb_1rvz",
+            "description": "Fetch the 1934 human H1 Hemagglutinin complex (PDB: 1RVZ) into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1RVZ' and the 3D viewer displays a protein structure."
+        },
+        {
+            "id": "select_sialic_acid",
+            "description": "Locate and select the terminal sialic acid molecules (SIA or NAN).",
+            "points": 15,
+            "visual_evidence": "The PyMOL command line or object menu shows a selection created for 'resn SIA' or 'resn NAN', with corresponding atoms highlighted in the viewer."
+        },
+        {
+            "id": "identify_contact_residues",
+            "description": "Select protein residues within 4.0 Angstroms of the sialic acid.",
+            "points": 25,
+            "visual_evidence": "The PyMOL command history shows a distance-based selection command (e.g., 'select contacts, br. all within 4.0 of resn SIA'). Pink or colored dots/highlights appear around the ligand."
+        },
+        {
+            "id": "visualize_binding_pocket",
+            "description": "Create a high-quality visualization showing the HA pocket, SIA as sticks, and highlighted contact residues.",
+            "points": 25,
+            "visual_evidence": "The 3D viewer shows a zoomed-in view of the binding site where the SIA molecule is in stick representation and nearby protein residues are distinctively colored or labeled."
+        },
+        {
+            "id": "export_image_and_data",
+            "description": "Save the image to the specified path and export the contact residue list to a text file.",
+            "points": 25,
+            "visual_evidence": "The PyMOL command line shows 'png /home/ga/PyMOL_Data/images/ha_receptor_binding.png' and commands to write/save the residue list to 'ha_sialic_acid_contacts.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the PyMOL GUI rather than just simulating file creation via terminal.",
+            "visual_evidence": "Screenshots show the PyMOL application window active, with mouse movements, menu selections, or commands typed into the PyMOL internal console."
+        },
+        {
+            "id": "no_hardcoded_residues",
+            "description": "The agent derived the contact residues using PyMOL's selection logic rather than typing a pre-known list.",
+            "visual_evidence": "The command history shows the use of 'within' or 'expand' operators rather than a manual selection of specific residue numbers like 153 or 183 from the start."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "The PyMOL command log or terminal shows the specific paths '/home/ga/PyMOL_Data/images/ha_receptor_binding.png' and '/home/ga/PyMOL_Data/ha_sialic_acid_contacts.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 1RVZ. The sialic acid ligand is identified by residue name SIA. Key conserved base residues in the binding pocket for this structure are 153 and 183. The agent must use a 4.0 Angstrom cutoff for the selection. The final image must be at least 800x600 resolution."
+}

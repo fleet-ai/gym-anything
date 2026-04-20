@@ -1,0 +1,65 @@
+{
+    "task_id": "switch_to_imperial_units@1",
+    "task_completion": [
+        {
+            "id": "open_file",
+            "description": "Open the specified dive data file /home/ga/Documents/dives.ssrf in Subsurface.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window title or file menu indicates that 'dives.ssrf' is the active file, and dive logs are visible in the list."
+        },
+        {
+            "id": "open_preferences",
+            "description": "Navigate to the Preferences/Settings window and select the 'Units' tab.",
+            "points": 10,
+            "visual_evidence": "A dialog box titled 'Preferences' is open with the 'Units' tab selected and visible."
+        },
+        {
+            "id": "set_depth_feet",
+            "description": "Change Depth/Length unit to feet.",
+            "points": 15,
+            "visual_evidence": "In the Units preferences, the radio button or dropdown for Depth/Length is set to 'ft'."
+        },
+        {
+            "id": "set_pressure_psi",
+            "description": "Change Pressure unit to psi.",
+            "points": 15,
+            "visual_evidence": "In the Units preferences, the radio button or dropdown for Pressure is set to 'psi'."
+        },
+        {
+            "id": "set_temperature_fahrenheit",
+            "description": "Change Temperature unit to Fahrenheit.",
+            "points": 15,
+            "visual_evidence": "In the Units preferences, the radio button or dropdown for Temperature is set to '°F'."
+        },
+        {
+            "id": "set_weight_lbs",
+            "description": "Change Weight unit to lbs.",
+            "points": 15,
+            "visual_evidence": "In the Units preferences, the radio button or dropdown for Weight is set to 'lbs'."
+        },
+        {
+            "id": "set_volume_cuft",
+            "description": "Change Volume unit to cu ft.",
+            "points": 20,
+            "visual_evidence": "In the Units preferences, the radio button or dropdown for Volume is set to 'cuft'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to change settings rather than editing configuration files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Preferences dialog and radio buttons."
+        },
+        {
+            "id": "actual_file_loaded",
+            "description": "The agent is working with the requested file 'dives.ssrf' and not a blank or default session.",
+            "visual_evidence": "The dive list panel shows data entries (dates, depths, durations) consistent with a loaded logbook."
+        },
+        {
+            "id": "applied_changes",
+            "description": "The agent clicked 'OK' or 'Apply' to save the unit changes.",
+            "visual_evidence": "The Preferences dialog is closed, and the main dive list/profile now displays units like 'ft', 'psi', and '°F' instead of 'm', 'bar', and '°C'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if the Subsurface Units preferences are all set to the second option (Imperial). Specifically: Depth=ft, Pressure=psi, Temperature=°F, Weight=lbs, and Volume=cuft. In the underlying configuration, these all correspond to the integer value 1. The agent must load the file from /home/ga/Documents/dives.ssrf."
+}

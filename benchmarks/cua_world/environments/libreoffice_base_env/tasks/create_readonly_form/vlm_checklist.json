@@ -1,0 +1,53 @@
+{
+    "task_id": "create_readonly_form@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "LibreOffice Base is open with the chinook.odb file loaded.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base main window title bar shows 'chinook.odb' and the 'Forms' section is selected or accessible."
+        },
+        {
+            "id": "form_wizard_or_design",
+            "description": "The agent initiates form creation for the 'Customer' table.",
+            "points": 15,
+            "visual_evidence": "A Form Wizard or Form Design window is visible showing the 'Customer' table selected as the data source."
+        },
+        {
+            "id": "all_fields_included",
+            "description": "All fields from the Customer table are added to the form.",
+            "points": 20,
+            "visual_evidence": "The form layout or wizard shows all 13 fields (CustomerId, FirstName, LastName, etc.) moved to the 'Fields in the form' list."
+        },
+        {
+            "id": "readonly_properties_set",
+            "description": "The form data properties are configured to prevent additions, modifications, and deletions.",
+            "points": 35,
+            "visual_evidence": "The 'Form Properties' dialog box under the 'Data' tab shows 'Allow additions', 'Allow modifications', and 'Allow deletions' all set to 'No'."
+        },
+        {
+            "id": "save_form_name",
+            "description": "The form is saved with the specific name 'Customer_ReadOnly'.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or the main database window shows a new form entry named exactly 'Customer_ReadOnly'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than manipulating the .odb XML structure via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, wizards, and property dialogs."
+        },
+        {
+            "id": "genuine_form_creation",
+            "description": "The agent did not simply rename an existing form.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step process of the Form Wizard or Design View being populated."
+        },
+        {
+            "id": "no_external_scripting",
+            "description": "The agent did not use external python scripts to inject the form into the database.",
+            "visual_evidence": "The terminal is not used to run custom scripts that bypass the LibreOffice interface for form creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The target table is 'Customer' which contains 13 fields. The final form must be named 'Customer_ReadOnly'. Crucially, in the Form Properties > Data tab, 'Allow additions', 'Allow modifications', and 'Allow deletions' must all be set to 'No' (which corresponds to the internal XML attributes allow-inserts, allow-updates, and allow-deletes being 'false')."
+}

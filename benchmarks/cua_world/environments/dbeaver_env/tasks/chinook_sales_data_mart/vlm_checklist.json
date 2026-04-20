@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_sales_data_mart@1",
+    "task_completion": [
+        {
+            "id": "source_db_access",
+            "description": "Agent accesses the source database at /home/ga/Documents/databases/chinook.db to inspect schema.",
+            "points": 10,
+            "visual_evidence": "A database browser (like DB Browser for SQLite) or terminal showing the connection to chinook.db and its tables (Invoices, Customers, Employees, etc.)."
+        },
+        {
+            "id": "sql_script_creation",
+            "description": "Agent writes the ETL SQL script containing the logic for joins and transformations.",
+            "points": 20,
+            "visual_evidence": "A text editor or IDE showing SQL code with joins between Invoice_Items, Invoices, Customers, Employees, Tracks, and Albums/Artists."
+        },
+        {
+            "id": "script_saved",
+            "description": "The ETL script is saved to the specific path /home/ga/Documents/scripts/etl_sales_mart.sql.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the file etl_sales_mart.sql exists in the /home/ga/Documents/scripts/ directory."
+        },
+        {
+            "id": "target_db_creation",
+            "description": "A new SQLite database is created at /home/ga/Documents/databases/chinook_dw.db.",
+            "points": 15,
+            "visual_evidence": "A file explorer or database tool showing the creation of chinook_dw.db at the specified path."
+        },
+        {
+            "id": "table_schema_verification",
+            "description": "The 'fact_sales' table exists in the new DB with all 10 required columns.",
+            "points": 20,
+            "visual_evidence": "A database browser showing the schema of 'fact_sales' with columns: InvoiceLineId, InvoiceDate, SalesQuarter, CustomerName, CustomerCountry, SalesRepName, IsCrossBorder, TrackName, ArtistName, LineTotal."
+        },
+        {
+            "id": "data_population_accuracy",
+            "description": "The 'fact_sales' table is populated with the correct number of rows and transformed data.",
+            "points": 25,
+            "visual_evidence": "A query result showing 'SELECT count(*) FROM fact_sales' returning 2240, and data samples showing SalesQuarter as 'YYYY-Q#' and IsCrossBorder as 0 or 1."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually type out the data rows but used SQL INSERT/SELECT logic.",
+            "visual_evidence": "The SQL script should contain a 'SELECT' statement with joins, not a long list of 'VALUES' containing hardcoded strings like '2009-Q1'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the database tools or terminal rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots show active use of SQLite CLI, DB Browser, or a Python script to execute the SQL against the actual database files."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Agent used the exact paths specified in the instructions, not default or temporary directories.",
+            "visual_evidence": "Command logs or file save dialogs showing the /home/ga/Documents/... paths being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The source database is /home/ga/Documents/databases/chinook.db. The target database must be /home/ga/Documents/databases/chinook_dw.db. The table 'fact_sales' must have exactly 2240 rows. SalesQuarter must follow the 'YYYY-Q#' format (e.g., 2009-Q1). IsCrossBorder is 1 if the Customer's Country does not match the Country of their Support Rep (Employee), otherwise 0. LineTotal is UnitPrice * Quantity. The script must be saved at /home/ga/Documents/scripts/etl_sales_mart.sql."
+}

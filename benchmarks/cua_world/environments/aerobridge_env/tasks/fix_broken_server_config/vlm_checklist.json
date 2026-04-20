@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_broken_server_config@1",
+    "task_completion": [
+        {
+            "id": "diagnose_via_logs",
+            "description": "Agent examines the server logs to identify the crash cause.",
+            "points": 10,
+            "visual_evidence": "A terminal or text editor window showing the contents of /var/log/aerobridge_server.log, specifically showing errors related to cryptography or Fernet keys."
+        },
+        {
+            "id": "edit_env_file",
+            "description": "Agent modifies the .env file with a valid Fernet key.",
+            "points": 20,
+            "visual_evidence": "A text editor (like nano, vim, or gedit) showing /opt/aerobridge/.env being edited, specifically the CRYPTOGRAPHY_SALT field being updated with a base64-encoded string."
+        },
+        {
+            "id": "restore_admin_access",
+            "description": "Agent successfully loads the Aerobridge admin login page or dashboard.",
+            "points": 30,
+            "visual_evidence": "A web browser showing http://localhost:8000/admin/ with a rendered Django admin login form or the Aerobridge dashboard, rather than a connection error."
+        },
+        {
+            "id": "navigate_to_aircraft_registry",
+            "description": "Agent navigates to the Aircraft section within the admin panel.",
+            "points": 20,
+            "visual_evidence": "A web browser showing the 'Select aircraft to change' page or a list view of Aircraft records in the Aerobridge admin interface."
+        },
+        {
+            "id": "record_aircraft_count",
+            "description": "Agent writes the correct number of aircraft to the verification file.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., cat, echo) or text editor showing the integer '2' being saved into /home/ga/repair_verification.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_browser_interaction",
+            "description": "The agent actually used the web browser to find the aircraft count rather than guessing.",
+            "visual_evidence": "Screenshots must show the browser open to the Aerobridge admin panel; the count should not appear in the terminal before the browser is opened."
+        },
+        {
+            "id": "no_hardcoded_answer_injection",
+            "description": "The agent did not simply write '2' to the file without first fixing the server.",
+            "visual_evidence": "The sequence of screenshots must show the .env file being fixed and the server becoming reachable before the verification file is created."
+        },
+        {
+            "id": "valid_fernet_format",
+            "description": "The agent used a validly formatted Fernet key (32 url-safe base64-encoded bytes).",
+            "visual_evidence": "The .env file content shows a key ending in an '=' or containing a long string of alphanumeric characters consistent with Fernet/cryptography standards."
+        }
+    ],
+    "privileged_info_for_vlm": "The server log is located at /var/log/aerobridge_server.log. The configuration file is /opt/aerobridge/.env. The specific setting to fix is CRYPTOGRAPHY_SALT. The admin panel is at http://localhost:8000/admin/. The correct number of Aircraft records in the database is 2. The final answer in /home/ga/repair_verification.txt must be the integer 2."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "enforce_bookmark_retention_policy@1",
+    "task_completion": [
+        {
+            "id": "access_vms_api",
+            "description": "Agent accesses the Nx Witness VMS API documentation or endpoint at https://localhost:7001.",
+            "points": 10,
+            "visual_evidence": "Browser or terminal showing connection to https://localhost:7001 or the API documentation page."
+        },
+        {
+            "id": "fetch_bookmarks",
+            "description": "Agent performs a GET request to retrieve the list of existing bookmarks.",
+            "points": 15,
+            "visual_evidence": "Terminal output or script showing a GET request to /rest/v1/devices/*/bookmarks or /ec2/getBookmarks."
+        },
+        {
+            "id": "identify_expired_bookmarks",
+            "description": "Agent identifies bookmarks older than 30 days based on startTimeMs that do not contain 'LegalHold'.",
+            "points": 25,
+            "visual_evidence": "Script logic, terminal output, or temporary files showing filtering of bookmarks by timestamp and description."
+        },
+        {
+            "id": "delete_bookmarks",
+            "description": "Agent issues DELETE requests for the identified bookmarks.",
+            "points": 30,
+            "visual_evidence": "Terminal output or script execution showing HTTP DELETE requests or successful response codes for specific bookmark IDs."
+        },
+        {
+            "id": "create_log_file",
+            "description": "Agent saves the IDs of the deleted bookmarks to the specified log file path.",
+            "points": 20,
+            "visual_evidence": "Terminal command (e.g., 'cat' or 'ls') showing the file /home/ga/Documents/retention_log.txt exists and contains a list of IDs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_interaction",
+            "description": "Agent interacted with the actual API rather than just creating a fake log file.",
+            "visual_evidence": "Screenshots must show network traffic (curl, python requests, or browser dev tools) targeting localhost:7001."
+        },
+        {
+            "id": "no_hardcoded_ids",
+            "description": "Agent did not simply hardcode the IDs from the task prompt or external knowledge without fetching them first.",
+            "visual_evidence": "The agent must be seen parsing the JSON response from the GET bookmarks call before performing deletions."
+        },
+        {
+            "id": "correct_logic_application",
+            "description": "Agent correctly applied the 'LegalHold' exclusion (case-insensitive).",
+            "visual_evidence": "The log file or terminal output should show that bookmarks with 'legalhold' or 'LegalHold' were skipped even if they were older than 30 days."
+        }
+    ],
+    "privileged_info_for_vlm": "The API base is https://localhost:7001. The retention threshold is 30 days (older than 30 days from current time based on startTimeMs). Bookmarks containing 'LegalHold' (case-insensitive) must be preserved. The final output must be a text file at /home/ga/Documents/retention_log.txt containing only the IDs of deleted bookmarks."
+}

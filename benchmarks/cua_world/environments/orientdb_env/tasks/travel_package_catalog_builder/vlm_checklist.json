@@ -1,0 +1,59 @@
+{
+    "task_id": "travel_package_catalog_builder@1",
+    "task_completion": [
+        {
+            "id": "schema_updates",
+            "description": "Add 'Price' property (DOUBLE) to Hotels, Restaurants, and Attractions classes, and create 'Packages' vertex and 'IncludesItem' edge classes.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the OrientDB schema editor or SQL commands (e.g., CREATE PROPERTY, CREATE CLASS) confirming the new property and classes exist."
+        },
+        {
+            "id": "update_existing_prices",
+            "description": "Assign prices to Hotel Artemide, Hotel de Crillon, Park Hyatt Tokyo, Roma Sparita, Le Jules Verne, and Sushi Saito.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the 'Browse' tab or SQL UPDATE results showing the 'Price' field populated for these specific records (e.g., Hotel Artemide = 250.00)."
+        },
+        {
+            "id": "create_new_attractions",
+            "description": "Create new Attraction vertices for Colosseum, Eiffel Tower, and Tokyo Tower with correct City and Price.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the creation or existence of three new Attraction vertices with names, cities (Rome, Paris, Tokyo), and prices (25.00, 30.00, 20.00)."
+        },
+        {
+            "id": "create_packages",
+            "description": "Create the three package vertices: 'Roman Holiday', 'Parisian Romance', and 'Tokyo Tech'.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'Packages' class containing three records with the specified names."
+        },
+        {
+            "id": "link_package_components",
+            "description": "Create 'IncludesItem' edges between packages and their respective components.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the OrientDB Graph editor or SQL queries showing edges connecting 'Roman Holiday' to its 3 items, 'Parisian Romance' to its 3 items, and 'Tokyo Tech' to its 3 items."
+        },
+        {
+            "id": "calculate_total_prices",
+            "description": "Calculate and update TotalPrice for each package applying a 10% discount.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Packages' records with TotalPrice values: Roman Holiday (301.5), Parisian Romance (927.0), and Tokyo Tech (828.0)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface for most operations.",
+            "visual_evidence": "Screenshots should show the OrientDB Studio browser window, not just a terminal/shell."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Agent calculated the prices based on the sum of components rather than just entering the final numbers from memory.",
+            "visual_evidence": "Screenshots showing the agent querying the prices of components or using a calculator/scratchpad before updating the TotalPrice."
+        },
+        {
+            "id": "database_context",
+            "description": "Agent is working within the 'demodb' database.",
+            "visual_evidence": "The OrientDB Studio header or connection string should clearly show 'demodb' as the active database."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct TotalPrice values (after 10% discount) are: Roman Holiday = 301.5 (from 250+60+25=335), Parisian Romance = 927.0 (from 800+200+30=1030), and Tokyo Tech = 828.0 (from 600+300+20=920). The Price property must be of type DOUBLE. The agent must use the credentials root/GymAnything123! for the server and admin/admin for the database."
+}

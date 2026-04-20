@@ -1,0 +1,59 @@
+{
+    "task_id": "model_wind_turbine_aep@1",
+    "task_completion": [
+        {
+            "id": "pysam_import_and_setup",
+            "description": "Agent imports PySAM (specifically Windpower) and initializes the model in a script or notebook.",
+            "points": 10,
+            "visual_evidence": "Code showing 'import PySAM.Windpower as wp' or similar and 'wp.new()' or 'wp.default(\"WindPowerSingleOwner\")'."
+        },
+        {
+            "id": "configure_turbine_specs",
+            "description": "Agent sets the turbine parameters: 1500 kW capacity, 80m hub height, and 77m rotor diameter.",
+            "points": 15,
+            "visual_evidence": "Code setting 'system_capacity' to 1500, 'wind_turbine_hub_ht' to 80, and 'wind_turbine_rotor_diameter' to 77."
+        },
+        {
+            "id": "input_power_curve",
+            "description": "Agent inputs the specific power curve provided in the task description into the model.",
+            "points": 20,
+            "visual_evidence": "Code or data structure containing the wind speed array [0, 1, ... 30] and the corresponding power output array [0, 0, ... 0]."
+        },
+        {
+            "id": "load_wind_resource",
+            "description": "Agent specifies a valid .srw file from /opt/SAM/ and sets coordinates to (0,0).",
+            "points": 15,
+            "visual_evidence": "Code showing the file path to a .srw file in /opt/SAM/ and setting latitude/longitude to 0."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent runs the simulation command to calculate energy production.",
+            "points": 15,
+            "visual_evidence": "Code showing the execution of the model, typically 'model.execute()' or similar."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the required keys to /home/ga/Documents/SAM_Projects/wind_analysis_results.json.",
+            "points": 25,
+            "visual_evidence": "Code or terminal output showing the creation of the JSON file with keys: annual_energy_kwh, capacity_factor_percent, monthly_energy_kwh, turbine_capacity_kw, hub_height_m, rotor_diameter_m, and wind_resource_file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding the output JSON.",
+            "visual_evidence": "Screenshots must show the agent writing and executing Python code that calls PySAM functions, not just a script that writes a static JSON file."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "Verify the agent used the specific wind resource file from the required directory.",
+            "visual_evidence": "The code or logs should show a path starting with /opt/SAM/ for the wind resource."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Verify the results in the JSON are calculated values, not placeholders.",
+            "visual_evidence": "The 'annual_energy_kwh' and 'capacity_factor_percent' should be specific numbers (likely between 1.5M-7M and 10-55 respectively) rather than round numbers like 0 or 100."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use PySAM's Windpower module. Required turbine specs: 1500kW, 80m hub height, 77m rotor diameter. The power curve must match the provided array (starts dropping to 0 at 26 m/s). Expected Annual Energy Production (AEP) should be between 1,500,000 and 7,000,000 kWh, and Capacity Factor (CF) between 10% and 55%. The output file must be /home/ga/Documents/SAM_Projects/wind_analysis_results.json."
+}

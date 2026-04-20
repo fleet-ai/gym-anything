@@ -1,0 +1,53 @@
+{
+    "task_id": "fomc_policy_archival@1",
+    "task_completion": [
+        {
+            "id": "navigate_fed_website",
+            "description": "Agent navigates to federalreserve.gov and locates the most recent FOMC meeting materials.",
+            "points": 10,
+            "visual_evidence": "Browser showing the Federal Reserve website, specifically the 'Monetary Policy' or 'Recent FOMC Decisions' section."
+        },
+        {
+            "id": "download_statement_pdf",
+            "description": "Agent downloads the 'Statement' PDF and saves it as 'statement.pdf' in the target directory.",
+            "points": 20,
+            "visual_evidence": "File manager or terminal showing 'statement.pdf' inside '/home/ga/Documents/FOMC_Policy/'."
+        },
+        {
+            "id": "save_implementation_note",
+            "description": "Agent saves the 'Implementation Note' as 'implementation_note.pdf' in the target directory.",
+            "points": 25,
+            "visual_evidence": "File manager or terminal showing 'implementation_note.pdf' inside '/home/ga/Documents/FOMC_Policy/'. Note: Since the source is HTML, the agent must have printed/saved the page as a PDF."
+        },
+        {
+            "id": "extract_summary_text",
+            "description": "Agent records the first full paragraph of the Statement text into 'summary_text.txt'.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command output showing 'summary_text.txt' containing the first paragraph of the January 2026 statement."
+        },
+        {
+            "id": "create_metadata_file",
+            "description": "Agent records the meeting date in 'metadata.txt' within the target directory.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command output showing 'metadata.txt' containing the date 'January 27-28, 2026'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the web browser GUI to find and download the documents rather than just using 'wget' or 'curl' for everything.",
+            "visual_evidence": "Screenshots showing the browser open, mouse movements, or clicking on links on the Federal Reserve website."
+        },
+        {
+            "id": "genuine_content_extraction",
+            "description": "The summary text is extracted from the actual document, not hallucinated or pre-filled.",
+            "visual_evidence": "Screenshots showing the agent highlighting/copying text from the PDF or HTML view of the statement."
+        },
+        {
+            "id": "directory_creation",
+            "description": "Agent manually creates or navigates to the specific requested directory.",
+            "visual_evidence": "Terminal or file manager showing the creation or usage of '/home/ga/Documents/FOMC_Policy/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The most recent meeting is January 27-28, 2026. The Statement PDF is available at federalreserve.gov/monetarypolicy/files/monetary20260128a1.pdf. The Implementation Note is only available as HTML at federalreserve.gov/newsevents/pressreleases/monetary20260128a1.htm, so the agent must save this HTML view as a PDF named 'implementation_note.pdf'. The metadata.txt must contain the date 'January 27-28, 2026'. The summary_text.txt must contain the first full paragraph of that specific statement."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_seb_browser_security@1",
+    "task_completion": [
+        {
+            "id": "access_seb_server",
+            "description": "Access the SEB Server login page and authenticate with super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "Browser showing http://localhost:8080 with the user logged in as 'super-admin' or the dashboard visible."
+        },
+        {
+            "id": "select_or_create_config",
+            "description": "Navigate to the 'LPN Certification Practice Exam' configuration or create it if missing.",
+            "points": 15,
+            "visual_evidence": "The configuration list or edit page showing the name 'LPN Certification Practice Exam'."
+        },
+        {
+            "id": "configure_browser_view_and_url",
+            "description": "Set the Start URL and Browser View Mode to Fullscreen.",
+            "points": 20,
+            "visual_evidence": "Start URL field containing 'https://lms.nursingcollege.edu/mod/quiz/attempt.php' and Browser View Mode dropdown/radio set to 'Fullscreen'."
+        },
+        {
+            "id": "disable_browser_features",
+            "description": "Disable the browser window toolbar, back/forward navigation, and the reload button.",
+            "points": 25,
+            "visual_evidence": "Checkboxes or toggles for 'Show browser window toolbar', 'Allow browsing back/forward', and 'Show reload button' are all unchecked/disabled."
+        },
+        {
+            "id": "configure_quit_settings",
+            "description": "Enable the option to quit SEB and set the quit/unlock password.",
+            "points": 20,
+            "visual_evidence": "The 'Allow quitting SEB' option is enabled and the password field (even if masked) is interacted with to set 'NurseExam2024!'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the changes made to the configuration.",
+            "points": 10,
+            "visual_evidence": "Clicking a 'Save' or 'Update' button, followed by a success message or redirection to the configuration list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the configuration through the SEB Server web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser window at localhost:8080."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the terminal to execute SQL commands to update the configuration.",
+            "visual_evidence": "The terminal is not used to run 'mysql' or 'mariadb' commands to modify the 'exam' or 'settings' tables."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually typed or pasted the specific URL and password into the form fields.",
+            "visual_evidence": "The URL and password 'NurseExam2024!' appearing in the correct form fields in the browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The target configuration name is 'LPN Certification Practice Exam'. The required Start URL is 'https://lms.nursingcollege.edu/mod/quiz/attempt.php'. The quit password must be 'NurseExam2024!'. Fullscreen mode corresponds to value '1' in the underlying system. The toolbar, back/forward, and reload buttons must all be set to false/disabled."
+}

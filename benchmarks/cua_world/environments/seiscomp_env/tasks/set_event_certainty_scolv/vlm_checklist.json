@@ -1,0 +1,53 @@
+{
+    "task_id": "set_event_certainty_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv",
+            "description": "The agent has successfully launched the SeisComP Origin Locator (scolv) application.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scolv' or 'Origin Locator' is visible on the desktop."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "The agent has selected the correct event (Noto Peninsula, Japan, 2024-01-01, M7.5) in the event list.",
+            "points": 15,
+            "visual_evidence": "The event list in scolv shows the Noto Peninsula event highlighted or selected, with magnitude 7.5 and date 2024-01-01."
+        },
+        {
+            "id": "navigate_to_event_tab",
+            "description": "The agent has navigated to the 'Event' tab or the specific panel where event parameters are edited.",
+            "points": 15,
+            "visual_evidence": "The 'Event' tab is active in the scolv main window, showing event details like Type and Certainty."
+        },
+        {
+            "id": "set_certainty_known",
+            "description": "The agent has changed the 'Type Certainty' dropdown or field to 'known'.",
+            "points": 30,
+            "visual_evidence": "The 'Type Certainty' field in the scolv UI displays the value 'known' instead of 'not set'."
+        },
+        {
+            "id": "commit_changes",
+            "description": "The agent has clicked the 'Commit' button to save the changes to the database.",
+            "points": 30,
+            "visual_evidence": "The agent is seen clicking the 'Commit' button (often represented by a checkmark or disk icon), and a confirmation dialog or status bar update may appear."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the scolv GUI to perform the task rather than just executing database commands in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the scolv dropdowns and buttons."
+        },
+        {
+            "id": "no_manual_db_edit",
+            "description": "The agent did not bypass the application by editing configuration files or using 'scevtls' via terminal.",
+            "visual_evidence": "The terminal is not used for direct SQL or SeisComP command-line event modification during the core task steps."
+        },
+        {
+            "id": "genuine_app_state",
+            "description": "The application shows the specific event data (M7.5, Noto Peninsula) loaded from the local environment, not a static image.",
+            "visual_evidence": "The scolv window shows dynamic elements like the map or arrival list corresponding to the Noto Peninsula event."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the Noto Peninsula, Japan earthquake from 2024-01-01 with Magnitude 7.5. Initially, the 'Type Certainty' in scolv will appear as 'not set' (representing a NULL value in the database). The agent must change this specific field to 'known' and click 'Commit' for the task to be successful."
+}

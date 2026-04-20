@@ -1,0 +1,53 @@
+{
+    "task_id": "create_sales_region@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_sales_region",
+            "description": "Navigate to the 'Sales Region' window in the ERP system.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Sales Region' window title or menu selection active in the UI."
+        },
+        {
+            "id": "enter_region_details",
+            "description": "Fill in the Search Key 'PNW', Name 'Pacific North West', and Description 'Territory covering WA, OR, and ID' in the new record fields.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the text fields for Search Key, Name, and Description populated with the exact strings 'PNW', 'Pacific North West', and 'Territory covering WA, OR, and ID'."
+        },
+        {
+            "id": "save_sales_region",
+            "description": "Save the newly created Sales Region record.",
+            "points": 15,
+            "visual_evidence": "A 'Record Saved' message, the save icon becoming grayed out, or the record appearing in the grid view/history."
+        },
+        {
+            "id": "navigate_to_business_partner",
+            "description": "Navigate to the 'Business Partner' window and locate 'Joe Block'.",
+            "points": 15,
+            "visual_evidence": "The 'Business Partner' window is open and the record for 'Joe Block' is selected or displayed."
+        },
+        {
+            "id": "assign_region_to_customer",
+            "description": "Assign the 'PNW' / 'Pacific North West' Sales Region to Joe Block's record.",
+            "points": 35,
+            "visual_evidence": "The 'Sales Region' field within Joe Block's Business Partner record (often under a 'Customer' or 'Location' tab) is updated to show 'PNW' or 'Pacific North West'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The agent clicks buttons, types in form fields, and navigates menus in the browser/ERP client rather than typing 'psql' or 'UPDATE' commands in a terminal."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent searched for the records manually rather than jumping to a specific URL that bypasses the UI flow.",
+            "visual_evidence": "The agent uses the search/find functionality or menu navigation to locate 'Joe Block'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not simply paste the final result into a text file but interacted with the ERP software.",
+            "visual_evidence": "Sequential screenshots showing the progression of form filling and record saving within the iDempiere/GardenWorld interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sales Region must have Search Key 'PNW' and Name 'Pacific North West'. The description must contain 'Territory covering'. The target Business Partner is 'Joe Block'. These are synthetic records in the GardenWorld demo database. Verification requires seeing these specific strings entered into the ERP's Sales Region and Business Partner forms."
+}

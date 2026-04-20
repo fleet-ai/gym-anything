@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_exoskeleton_ankle_biomechanics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_exoskeleton",
+            "description": "Open the Webots simulation environment with the EXO_LEG robot model.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D view of an exoskeleton leg and the scene tree on the left."
+        },
+        {
+            "id": "configure_knee_joint",
+            "description": "Set the KNEE_JOINT HingeJointParameters: minStop (0.0), maxStop (2.62), and dampingConstant (2.0).",
+            "points": 20,
+            "visual_evidence": "The scene tree or a pop-up dialog shows the KNEE_JOINT device parameters with minStop: 0, maxStop: 2.62, and dampingConstant: 2."
+        },
+        {
+            "id": "configure_ankle_joint_limits",
+            "description": "Set the ANKLE_JOINT HingeJointParameters: minStop (-0.87) and maxStop (0.35).",
+            "points": 20,
+            "visual_evidence": "The scene tree shows the ANKLE_JOINT device parameters with minStop: -0.87 and maxStop: 0.35."
+        },
+        {
+            "id": "configure_ankle_impedance",
+            "description": "Set the ANKLE_JOINT HingeJointParameters: springConstant (500.0) and dampingConstant (5.0).",
+            "points": 20,
+            "visual_evidence": "The scene tree shows the ANKLE_JOINT device parameters with springConstant: 500 and dampingConstant: 5."
+        },
+        {
+            "id": "configure_ankle_sensor",
+            "description": "Set the ANKLE_SENSOR resolution to 0.0015.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the ANKLE_SENSOR (PositionSensor) node with the resolution field set to 0.0015."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path on the Desktop.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the window title bar confirms the file is being saved as /home/ga/Desktop/exoskeleton_biomechanics.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree fields or parameter input boxes."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or 'echo' in the terminal.",
+            "visual_evidence": "The agent is seen navigating the Webots interface to perform the 'Save World As' action."
+        },
+        {
+            "id": "authentic_parameter_entry",
+            "description": "The agent manually entered the specific biomechanical values into the software.",
+            "visual_evidence": "Sequential screenshots show the values being typed or updated in the Webots property editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure the EXO_LEG in Webots with these exact values: KNEE_JOINT (minStop: 0.0, maxStop: 2.62, dampingConstant: 2.0); ANKLE_JOINT (minStop: -0.87, maxStop: 0.35, springConstant: 500.0, dampingConstant: 5.0); ANKLE_SENSOR (resolution: 0.0015). The final file must be saved to /home/ga/Desktop/exoskeleton_biomechanics.wbt."
+}

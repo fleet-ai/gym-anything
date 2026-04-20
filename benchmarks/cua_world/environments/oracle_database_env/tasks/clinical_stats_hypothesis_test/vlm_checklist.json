@@ -1,0 +1,59 @@
+{
+    "task_id": "clinical_stats_hypothesis_test@1",
+    "task_completion": [
+        {
+            "id": "db_connection",
+            "description": "Connect to the Oracle database using the RESEARCH user credentials.",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or terminal) showing a successful connection to XEPDB1 as user RESEARCH."
+        },
+        {
+            "id": "create_view_cohorts",
+            "description": "Create the PATIENT_COHORTS_VW view with the COHORT logic ('DISEASE' if diagnosis > 0, else 'NORMAL').",
+            "points": 15,
+            "visual_evidence": "SQL command execution showing 'View PATIENT_COHORTS_VW created' or the view appearing in the database schema tree."
+        },
+        {
+            "id": "create_results_table",
+            "description": "Create the STUDY_RESULTS table with METRIC_NAME and METRIC_VALUE columns.",
+            "points": 10,
+            "visual_evidence": "SQL command execution showing 'Table STUDY_RESULTS created' or the table structure visible in the GUI."
+        },
+        {
+            "id": "calculate_averages",
+            "description": "Calculate and insert AVG_HR_DISEASE and AVG_HR_NORMAL into STUDY_RESULTS.",
+            "points": 20,
+            "visual_evidence": "SQL INSERT statements or a data grid showing the average Max Heart Rate values for both cohorts."
+        },
+        {
+            "id": "calculate_correlation",
+            "description": "Calculate and insert the Pearson correlation (CORR) between Age and Cholesterol as CORRELATION_AGE_CHOL.",
+            "points": 20,
+            "visual_evidence": "SQL code using the CORR function and an insertion into STUDY_RESULTS."
+        },
+        {
+            "id": "calculate_p_value",
+            "description": "Calculate and insert the two-sided P-value for Max Heart Rate difference using STATS_T_TEST_INDEP as P_VALUE_HR_DIFF.",
+            "points": 25,
+            "visual_evidence": "SQL code utilizing the STATS_T_TEST_INDEP function and the resulting value inserted into the table."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent must calculate values using SQL functions, not manually typing the final numbers from external sources.",
+            "visual_evidence": "SQL scripts should contain functions like AVG(), CORR(), and STATS_T_TEST_INDEP() rather than just INSERT statements with raw numbers."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "The agent interacts with the Oracle database environment directly.",
+            "visual_evidence": "Screenshots show an active database session, query execution logs, or a database management GUI."
+        },
+        {
+            "id": "precision_check",
+            "description": "The agent ensures values are stored with 4 decimal places as requested.",
+            "visual_evidence": "The STUDY_RESULTS table data grid or SELECT output shows values formatted to 4 decimal places."
+        }
+    ],
+    "privileged_info_for_vlm": "The database user is RESEARCH (password: research123) on PDB XEPDB1. The source data is the UCI Cleveland Heart Disease dataset. The agent must use STATS_T_TEST_INDEP for the p-value and CORR for the Pearson correlation. Expected tolerances for verification: p-value and correlation within 0.0001, and averages within 0.01."
+}

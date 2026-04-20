@@ -1,0 +1,59 @@
+{
+    "task_id": "occupational_exposure_limit_compilation@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website (https://cameochemicals.noaa.gov/).",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search interface."
+        },
+        {
+            "id": "search_chemicals",
+            "description": "Agent searches for the five specified chemicals (Hydrogen Cyanide, Ammonia, Carbon Monoxide, Chlorine, and Methyl Ethyl Ketone).",
+            "points": 20,
+            "visual_evidence": "Screenshots show search queries or individual chemical data pages for the listed substances on the CAMEO website."
+        },
+        {
+            "id": "extract_exposure_limits",
+            "description": "Agent locates the OSHA PEL and NIOSH IDLH values within the 'Response Recommendations' or 'Air Concentrations' sections of the chemical pages.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent viewing the specific sections of the CAMEO pages where PEL and IDLH values are listed."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates a text file at ~/Documents/exposure_limits_report.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or file manager shows a file named 'exposure_limits_report.txt' being saved in the Documents folder."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the name, OSHA PEL, and IDLH for all five chemicals with correct units.",
+            "points": 20,
+            "visual_evidence": "The open text file shows a list of the five chemicals with their respective PEL and IDLH values (e.g., ppm or mg/m3)."
+        },
+        {
+            "id": "identify_lowest_idlh",
+            "description": "The report correctly identifies the chemical with the lowest IDLH value using the specified format.",
+            "points": 10,
+            "visual_evidence": "The bottom of the report contains the text 'LOWEST_IDLH: Chlorine'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent actually browsed the CAMEO Chemicals website rather than using pre-existing knowledge or terminal-only commands.",
+            "visual_evidence": "Screenshots show the browser navigating through the NOAA.gov domain and interacting with the search/result elements."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the final report content into a file without first visiting the data source.",
+            "visual_evidence": "The trajectory shows a sequence of searching and viewing data pages before the final report is written."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent used the web browser GUI to find information as intended by the task.",
+            "visual_evidence": "Visible mouse movements, clicks on search buttons, and scrolling on the CAMEO Chemicals website."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified values for the report: 1. Hydrogen Cyanide: PEL 10 ppm, IDLH 50 ppm. 2. Ammonia: PEL 50 ppm, IDLH 300 ppm. 3. Carbon Monoxide: PEL 50 ppm, IDLH 1200 ppm. 4. Chlorine: PEL 1 ppm (ceiling), IDLH 10 ppm. 5. Methyl Ethyl Ketone (MEK): PEL 200 ppm, IDLH 3000 ppm. The chemical with the lowest IDLH is Chlorine (10 ppm). The report must be at ~/Documents/exposure_limits_report.txt and end with 'LOWEST_IDLH: Chlorine'."
+}

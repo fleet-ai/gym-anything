@@ -1,0 +1,59 @@
+{
+    "task_id": "tumor_sir_quantification@1",
+    "task_completion": [
+        {
+            "id": "load_mri_sequences",
+            "description": "Load T1, T1ce, T2, and FLAIR MRI sequences into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the 3D Slicer (or similar) interface with multiple volume layers or a loaded data tree containing T1, T1ce, T2, and FLAIR volumes."
+        },
+        {
+            "id": "place_tumor_roi",
+            "description": "Place a Region of Interest (ROI) or markup on the enhancing tumor (Label 4 area).",
+            "points": 20,
+            "visual_evidence": "Visual markers, segmentations, or closed curves placed over the hyperintense (bright) region on the T1ce sequence."
+        },
+        {
+            "id": "place_wm_roi",
+            "description": "Place a Region of Interest (ROI) on the contralateral normal white matter.",
+            "points": 20,
+            "visual_evidence": "Visual markers or ROIs placed on the healthy brain hemisphere opposite to the tumor site."
+        },
+        {
+            "id": "extract_signal_intensities",
+            "description": "Calculate mean signal intensities for both ROIs across all four sequences.",
+            "points": 20,
+            "visual_evidence": "A statistics module, table, or console output within the GUI showing mean intensity values for the defined ROIs."
+        },
+        {
+            "id": "save_roi_markups",
+            "description": "Save the ROI markups to the specified path: ~/Documents/SlicerData/BraTS/sir_rois.mrk.json.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog box showing the specific file path and filename, or a terminal/file explorer view confirming the file exists at that location."
+        },
+        {
+            "id": "generate_sir_report",
+            "description": "Save a JSON report containing tumor_roi, wm_roi, signal_intensities, sir_values, and interpretation to the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or file preview showing a JSON structure with the required keys (sir_values, interpretation, etc.) saved to ~/Documents/SlicerData/BraTS/sir_report.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to place ROIs rather than just script execution.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with ROI placement tools or manual adjustment of markup points."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The SIR values are derived from the loaded data, not pre-filled from privileged info.",
+            "visual_evidence": "The signal intensity values in the report match the values shown in the software's statistical analysis UI."
+        },
+        {
+            "id": "no_hardcoded_paths",
+            "description": "The agent navigated the file system to save data rather than just printing a success message.",
+            "visual_evidence": "File explorer windows or 'Save As' dialogs showing the directory structure ~/Documents/SlicerData/BraTS/."
+        }
+    ],
+    "privileged_info_for_vlm": "For BraTS 2021 data, the enhancing tumor (ET) corresponds to Label 4. The SIR for T1ce should typically be greater than 1.0 (often 1.1-3.5) as the tumor enhances relative to white matter. The SIR for T1 (pre-contrast) is usually lower than T1ce."
+}

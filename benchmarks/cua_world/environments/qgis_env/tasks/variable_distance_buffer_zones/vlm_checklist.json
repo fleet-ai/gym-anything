@@ -1,0 +1,59 @@
+{
+    "task_id": "variable_distance_buffer_zones@1",
+    "task_completion": [
+        {
+            "id": "load_input_layer",
+            "description": "The agent loads the input file 'roads_noise_attributed.geojson' into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'roads_noise_attributed' appears in the Layers panel or a file browser shows the file being selected."
+        },
+        {
+            "id": "open_buffer_tool",
+            "description": "The agent opens the Buffer tool or Variable Distance Buffer tool.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Buffer' or 'Variable distance buffer' is visible on the screen."
+        },
+        {
+            "id": "select_distance_field",
+            "description": "The agent selects the 'impact_dist' field to define the buffer distance instead of a fixed value.",
+            "points": 25,
+            "visual_evidence": "In the Buffer tool settings, the 'Distance' parameter is linked to the 'impact_dist' field (often indicated by a data-defined override icon or a dropdown selection)."
+        },
+        {
+            "id": "run_buffer_process",
+            "description": "The agent executes the buffer operation.",
+            "points": 20,
+            "visual_evidence": "A progress bar is shown, or a new layer (e.g., 'Buffered' or 'variable_buffers') appears in the Layers panel."
+        },
+        {
+            "id": "verify_variable_widths",
+            "description": "The resulting buffer layer shows features with different widths.",
+            "points": 15,
+            "visual_evidence": "The map canvas displays three distinct polygons with visibly different widths (150m, 80m, and 30m relative to each other)."
+        },
+        {
+            "id": "export_geojson",
+            "description": "The agent exports the result to the specified path '/home/ga/GIS_Data/exports/variable_buffers.geojson'.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save Vector Layer as' dialog shows the format set to GeoJSON and the file path set to /home/ga/GIS_Data/exports/variable_buffers.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GIS software GUI to perform the task rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show interactions with menus, toolboxes, and dialog windows within the GIS application (e.g., QGIS)."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the input file or create a dummy file.",
+            "visual_evidence": "The visual representation of the output layer on the map shows polygon geometries, whereas the input layer shows line geometries."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent used the attribute field for buffering rather than manually typing distances for each feature.",
+            "visual_evidence": "The Buffer tool configuration shows the 'impact_dist' field selected in the distance settings."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file 'roads_noise_attributed.geojson' contains 3 road features. The buffer must be driven by the 'impact_dist' field, which contains values of 150, 80, and 30. The output must be a GeoJSON file named 'variable_buffers.geojson' located in '/home/ga/GIS_Data/exports/'. Visually, the result should show three parallel-ish polygons of varying thicknesses corresponding to the three road segments."
+}

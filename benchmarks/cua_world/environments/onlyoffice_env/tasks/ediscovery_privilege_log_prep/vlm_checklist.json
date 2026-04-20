@@ -1,0 +1,55 @@
+{
+    "task_id": "ediscovery_privilege_log_prep@1",
+    "task_completion": [
+        {
+            "id": "open_onlyoffice_and_data",
+            "description": "Agent opens ONLYOFFICE Spreadsheet Editor and accesses the source metadata CSV and counsel list.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing ONLYOFFICE open and the contents of 'enron_production_vol1.csv' or 'counsel_list.txt' being viewed."
+        },
+        {
+            "id": "create_log_sheet_structure",
+            "description": "A workbook named 'Privilege_Log.xlsx' is created with a sheet named 'Log' containing a bold header row and the two required new columns.",
+            "points": 15,
+            "visual_evidence": "The file name in the title bar is 'Privilege_Log.xlsx', the tab name is 'Log', and columns 'Privilege_Claimed' and 'Privilege_Description' are visible with bold headers."
+        },
+        {
+            "id": "identify_privileged_rows",
+            "description": "Rows containing counsel names (James Derrick, Richard Sanders, Mark Haedicke, Carol Essig, Vinson & Elkins) in From/To/Cc fields are identified.",
+            "points": 25,
+            "visual_evidence": "The 'Privilege_Claimed' column is populated with 'Attorney-Client Privilege' for rows where the sender or recipient matches the counsel list."
+        },
+        {
+            "id": "populate_privilege_descriptions",
+            "description": "The 'Privilege_Description' column is populated using the specific format 'Legal advice regarding [Subject]'.",
+            "points": 25,
+            "visual_evidence": "Cells in the 'Privilege_Description' column show text like 'Legal advice regarding...' followed by the actual subject line from that row's metadata."
+        },
+        {
+            "id": "create_summary_sheet",
+            "description": "A 'Summary' sheet is created with a table calculating total produced vs. withheld documents.",
+            "points": 25,
+            "visual_evidence": "A second sheet tab named 'Summary' is visible containing a table with counts for documents with and without privilege claims."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ONLYOFFICE GUI to perform spreadsheet operations rather than just writing the file via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ONLYOFFICE menus, cells, or ribbon tools."
+        },
+        {
+            "id": "no_hardcoded_summary",
+            "description": "The summary table should reflect the data processed, not just a pre-written text block.",
+            "points": 0,
+            "visual_evidence": "The agent is seen using formulas (e.g., COUNTIF) or manually counting rows within the spreadsheet application."
+        },
+        {
+            "id": "genuine_file_save",
+            "description": "The agent saves the file through the application interface.",
+            "visual_evidence": "The 'Save' icon or 'File > Save As' dialog is visible in the ONLYOFFICE interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The counsel names to check for are: James Derrick, Richard Sanders, Mark Haedicke, Carol Essig, and Vinson & Elkins. These names are case-insensitive. The source data is in ~/Documents/Spreadsheets/enron_production_vol1.csv. The final file must be ~/Documents/Spreadsheets/Privilege_Log.xlsx. 'Withheld' documents are those where 'Privilege_Claimed' is 'Attorney-Client Privilege'; 'Produced' documents are those where that field is blank."
+}

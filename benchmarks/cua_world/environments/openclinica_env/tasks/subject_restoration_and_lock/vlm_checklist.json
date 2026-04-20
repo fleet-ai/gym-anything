@@ -1,0 +1,53 @@
+{
+    "task_id": "subject_restoration_and_lock@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into OpenClinica using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the OpenClinica dashboard or study home page after the login screen, with 'root' as the logged-in user."
+        },
+        {
+            "id": "locate_removed_subject",
+            "description": "Navigate to the subject list and locate DM-105 (likely requiring a filter for 'removed' or 'all' status).",
+            "points": 15,
+            "visual_evidence": "A list of subjects showing DM-105, often indicated with a status icon representing 'removed' (e.g., a red 'X' or strikethrough)."
+        },
+        {
+            "id": "restore_subject_dm105",
+            "description": "Restore subject DM-105 to 'Available' or 'Active' status.",
+            "points": 25,
+            "visual_evidence": "A confirmation page or a change in the subject list where DM-105 no longer has a 'removed' status icon and appears as an active record."
+        },
+        {
+            "id": "navigate_to_baseline_event",
+            "description": "Access the 'Baseline Assessment' event for subject DM-105.",
+            "points": 15,
+            "visual_evidence": "The 'View Subject' or 'Enter Data' page for DM-105 showing the 'Baseline Assessment' event row."
+        },
+        {
+            "id": "lock_baseline_event",
+            "description": "Lock the 'Baseline Assessment' event specifically.",
+            "points": 35,
+            "visual_evidence": "A lock icon appearing next to the 'Baseline Assessment' event for DM-105, or a status message confirming the event is locked. The subject-level status should remain active, not locked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent must use the OpenClinica web interface, not SQL or terminal commands.",
+            "visual_evidence": "The trajectory should show mouse movements, clicks, and page transitions within the browser, rather than a terminal window executing 'psql' or 'update' commands."
+        },
+        {
+            "id": "no_collateral_damage",
+            "description": "The agent should not modify or delete other subjects like DM-101.",
+            "visual_evidence": "Screenshots should show the agent specifically selecting DM-105 and not performing bulk actions or clicking 'Restore'/'Lock' on DM-101."
+        },
+        {
+            "id": "event_lock_vs_subject_lock",
+            "description": "The agent must lock the specific event, not the entire subject record.",
+            "visual_evidence": "The visual state should show the lock icon at the row level for 'Baseline Assessment', while the overall subject status remains 'Available'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target study is 'DM-TRIAL-2024'. Subject DM-105 starts in a 'Removed' status (status_id 5) and must be restored to 'Available'. The specific event to be locked is 'Baseline Assessment'. Subject DM-101 is present in the database as a control and must not be modified."
+}

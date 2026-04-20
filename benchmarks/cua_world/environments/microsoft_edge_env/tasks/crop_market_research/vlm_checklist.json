@@ -1,0 +1,53 @@
+{
+    "task_id": "crop_market_research@1",
+    "task_completion": [
+        {
+            "id": "access_usda_sources",
+            "description": "Agent navigates to official USDA websites (e.g., ers.usda.gov, nass.usda.gov, or usda.gov) to research crop data.",
+            "points": 15,
+            "visual_evidence": "Browser address bar showing a .gov URL containing 'usda' and pages displaying corn, soybean, or wheat market data."
+        },
+        {
+            "id": "download_usda_report",
+            "description": "Agent downloads at least one official USDA report or data file to the Downloads folder.",
+            "points": 20,
+            "visual_evidence": "A file download notification in the browser or a PDF/CSV/XLSX file visible in the /home/ga/Downloads directory via a file manager."
+        },
+        {
+            "id": "create_planting_brief",
+            "description": "Agent creates a file named 'planting_brief.txt' on the Desktop.",
+            "points": 10,
+            "visual_evidence": "An icon for 'planting_brief.txt' appearing on the desktop or the file being opened in a text editor at the path /home/ga/Desktop/planting_brief.txt."
+        },
+        {
+            "id": "include_commodity_prices",
+            "description": "The brief contains recent price data for all three required commodities: corn, soybeans, and wheat.",
+            "points": 25,
+            "visual_evidence": "Text within the open 'planting_brief.txt' file showing numerical price values (e.g., $/bu or cents) associated with corn, soybeans, and wheat."
+        },
+        {
+            "id": "citations_and_recommendation",
+            "description": "The brief includes source citations and a specific planting recommendation based on the researched data.",
+            "points": 30,
+            "visual_evidence": "Text in the brief identifying USDA sources (e.g., 'Source: WASDE') and a concluding statement recommending which crop(s) to plant."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_research",
+            "description": "Agent performed actual web navigation rather than generating data from memory.",
+            "visual_evidence": "Screenshots show the agent actively scrolling through USDA reports or data tables in a web browser."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the browser and text editor GUI rather than just executing silent terminal commands to create the file.",
+            "visual_evidence": "Visible mouse movements, clicking on download links, and typing within a text editor window."
+        },
+        {
+            "id": "source_consistency",
+            "description": "The data in the final brief matches the data seen on the websites visited.",
+            "visual_evidence": "The price figures visible on the USDA website in early screenshots match the figures typed into the text file in later screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use official USDA domains (.gov). Required commodities are corn, wheat, and soybeans (or 'soy'). The final file must be at /home/ga/Desktop/planting_brief.txt. Valid price formats include '$X.XX', 'X cents', or 'X/bu'. The agent must download at least one file to /home/ga/Downloads; verify this via the browser's download manager or a file explorer view."
+}

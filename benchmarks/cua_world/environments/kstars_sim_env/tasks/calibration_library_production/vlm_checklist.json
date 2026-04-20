@@ -1,0 +1,53 @@
+{
+    "task_id": "calibration_library_production@1",
+    "task_completion": [
+        {
+            "id": "read_requirements",
+            "description": "Agent opens and reads the calibration specification file at ~/Documents/cal_requirements.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of cal_requirements.txt."
+        },
+        {
+            "id": "generate_bias_frames",
+            "description": "Agent produces the required 10 Bias frames in the calibration directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'ls' output showing 10 files identified as Bias frames in /home/ga/Calibration."
+        },
+        {
+            "id": "generate_dark_frames",
+            "description": "Agent produces the required 10 Dark frames at 300s and 10 Dark frames at 600s.",
+            "points": 25,
+            "visual_evidence": "File listings showing 20 total Dark frames with filenames or metadata indicating the 300s and 600s exposure times."
+        },
+        {
+            "id": "generate_flat_frames",
+            "description": "Agent produces the required Flat frames for V, R, and B filters (5 each).",
+            "points": 25,
+            "visual_evidence": "File listings showing 15 total Flat frames (5 per filter) in the calibration directory."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Agent creates a summary report confirming all frames are in place at the specified location.",
+            "points": 25,
+            "visual_evidence": "A file named calibration_summary.txt being saved or displayed, containing a count or list of the generated frames."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent should use calibration software or scripts rather than manually 'touching' empty files to mimic frames.",
+            "visual_evidence": "The process of generation should involve a specific application or a script that simulates CCD capture, not just shell commands like 'touch'."
+        },
+        {
+            "id": "genuine_content_verification",
+            "description": "The summary report must reflect the actual files generated, not a pre-written template.",
+            "visual_evidence": "The summary report content should match the timestamps and file counts observed in the file system screenshots."
+        },
+        {
+            "id": "directory_adherence",
+            "description": "Agent uses the correct root directory for output as specified in the system configuration.",
+            "visual_evidence": "Screenshots show paths within /home/ga/Calibration, not temporary or default home directories."
+        }
+    ],
+    "privileged_info_for_vlm": "The required calibration library consists of: 10 Bias frames, 10 Dark frames (300s), 10 Dark frames (600s), 5 Flat-V frames, 5 Flat-R frames, and 5 Flat-B frames. All files must be located in /home/ga/Calibration. The final summary report must be saved to /home/ga/Calibration/calibration_summary.txt."
+}

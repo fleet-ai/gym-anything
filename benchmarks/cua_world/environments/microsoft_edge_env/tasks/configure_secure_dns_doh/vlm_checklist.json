@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_secure_dns_doh@1",
+    "task_completion": [
+        {
+            "id": "edge_settings_doh",
+            "description": "Navigate to Microsoft Edge settings and enable 'Choose a service provider' under Security.",
+            "points": 20,
+            "visual_evidence": "Screenshot showing Edge Settings > Privacy, search, and services, with 'Use secure DNS' toggled on and a custom provider field visible."
+        },
+        {
+            "id": "cloudflare_configured",
+            "description": "Configure Cloudflare (1.1.1.1) as the DNS-over-HTTPS provider.",
+            "points": 25,
+            "visual_evidence": "The Edge settings page showing 'Cloudflare (1.1.1.1)' selected from the dropdown or the URL 'https://chrome.cloudflare-dns.com/dns-query' entered in the custom field."
+        },
+        {
+            "id": "visit_verification_page",
+            "description": "Visit the Cloudflare help page to verify the connection.",
+            "points": 15,
+            "visual_evidence": "The browser address bar showing 'https://1.1.1.1/help' or 'https://one.one.one.one/help'."
+        },
+        {
+            "id": "doh_active_status",
+            "description": "The verification page confirms that DNS-over-HTTPS is active.",
+            "points": 20,
+            "visual_evidence": "The webpage content showing 'Using DNS over HTTPS (DoH)' with a 'Yes' status next to it."
+        },
+        {
+            "id": "save_screenshot_file",
+            "description": "Save the screenshot of the verification page to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal output showing 'doh_verification.png' exists in /home/ga/Desktop/."
+        },
+        {
+            "id": "create_status_text_file",
+            "description": "Create the text file with the required content.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file /home/ga/Desktop/doh_status.txt contains the exact string 'DoH Active: Yes'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Edge GUI to configure settings rather than modifying config files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Edge settings menu and dropdowns."
+        },
+        {
+            "id": "genuine_web_page",
+            "description": "The agent visited the actual Cloudflare help site rather than spoofing a local HTML file.",
+            "visual_evidence": "The browser address bar shows the live URL (1.1.1.1/help) and not a 'file://' path."
+        },
+        {
+            "id": "no_manual_text_spoofing",
+            "description": "The text file content matches the live state of the browser verification.",
+            "visual_evidence": "The 'DoH Active: Yes' in the text file corresponds to the 'Yes' shown on the browser screen in the same trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The official Cloudflare DoH endpoint for Edge/Chrome is 'https://chrome.cloudflare-dns.com/dns-query'. The verification page at https://1.1.1.1/help must specifically show 'Using DNS over HTTPS (DoH): Yes' for the task to be successful. The files must be saved in /home/ga/Desktop/."
+}

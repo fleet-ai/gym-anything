@@ -1,0 +1,56 @@
+{
+    "task_id": "build_interactive_inventory_dashboard@1",
+    "task_completion": [
+        {
+            "id": "dashboard_tiddler_exists",
+            "description": "A tiddler titled 'Reagent Inventory' is created and open in the wiki.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a tiddler with the title 'Reagent Inventory' in the main story river."
+        },
+        {
+            "id": "reagents_listed_alphabetically",
+            "description": "The dashboard displays the list of reagents (e.g., 1000uL Pipette Tips, 10x TBE Buffer, Agarose Powder, LE) sorted alphabetically.",
+            "points": 15,
+            "visual_evidence": "A list of reagent names appearing in alphabetical order within the 'Reagent Inventory' tiddler."
+        },
+        {
+            "id": "stock_and_unit_display",
+            "description": "Each reagent entry shows its current 'stock_level' and 'unit' field values.",
+            "points": 15,
+            "visual_evidence": "Text next to each reagent name showing a number (stock) and a string (unit, e.g., 'mL', 'units', or 'boxes')."
+        },
+        {
+            "id": "increment_decrement_controls",
+            "description": "Each reagent has visible buttons or controls to increase and decrease the stock level.",
+            "points": 20,
+            "visual_evidence": "Two distinct buttons (often labeled '+' and '-' or 'Up' and 'Down') next to every reagent entry."
+        },
+        {
+            "id": "functional_math_logic",
+            "description": "The dashboard uses TiddlyWiki widgets and math filters to update the stock level by exactly 1.",
+            "points": 40,
+            "visual_evidence": "Screenshots showing the 'stock_level' value changing (e.g., from 5 to 6 or 5 to 4) immediately after a button click without the tiddler entering edit mode."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_external_plugins",
+            "description": "The agent did not install external plugins or use JavaScript macros to achieve the math functionality.",
+            "points": 0,
+            "visual_evidence": "The code within the tiddler (if visible) uses <$action-setfield> and filters like 'add[1]', not custom JS functions or third-party plugin syntax."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki interface to create and edit the tiddler rather than just modifying files via the terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the agent typing into the TiddlyWiki edit field and clicking the 'save' (checkmark) button."
+        },
+        {
+            "id": "genuine_reagent_data",
+            "description": "The dashboard pulls data from actual tiddlers tagged 'Reagent' rather than hardcoding a static list.",
+            "points": 0,
+            "visual_evidence": "The list matches the specific reagents known to be in the wiki (e.g., Taq DNA Polymerase, Ethidium Bromide)."
+        }
+    ],
+    "privileged_info_for_vlm": "The dashboard must be titled 'Reagent Inventory'. It must target tiddlers with the tag 'Reagent'. The specific reagents that should appear are: '1000uL Pipette Tips', '10x TBE Buffer', 'Agarose Powder, LE', 'Ethidium Bromide (10mg/mL)', 'Nuclease-Free Water', and 'Taq DNA Polymerase'. Correct implementation requires the use of <$list>, <$button>, and <$action-setfield> widgets, specifically using the filters 'add[1]' and 'subtract[1]' for the math logic."
+}

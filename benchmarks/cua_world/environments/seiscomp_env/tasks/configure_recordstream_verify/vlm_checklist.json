@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_recordstream_verify@1",
+    "task_completion": [
+        {
+            "id": "edit_global_cfg",
+            "description": "Configure the global recordstream parameter in /home/ga/seiscomp/etc/global.cfg",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the line 'recordstream = sdsarchive:///home/ga/seiscomp/var/lib/archive' inside the global.cfg file."
+        },
+        {
+            "id": "source_environment",
+            "description": "Source the SeisComP environment (e.g., .bashrc or SeisComP alias)",
+            "points": 10,
+            "visual_evidence": "Terminal command showing 'source ~/.bashrc' or 'seiscomp' commands being executed successfully without 'command not found' errors."
+        },
+        {
+            "id": "generate_inventory_listing",
+            "description": "Generate a listing of station codes from the GE network XML file",
+            "points": 20,
+            "visual_evidence": "Terminal command using an inventory tool (like 'scinv') or 'grep' on /home/ga/seiscomp/etc/inventory/ge_stations.xml to extract station codes."
+        },
+        {
+            "id": "save_inventory_file",
+            "description": "Save the station codes to /home/ga/inventory_listing.txt",
+            "points": 15,
+            "visual_evidence": "Terminal command showing redirection '>' to /home/ga/inventory_listing.txt or a 'cat' command showing the file contents containing GE station codes (e.g., TOLI, GSI, KWP)."
+        },
+        {
+            "id": "extract_waveforms",
+            "description": "Extract miniSEED waveform data for January 1, 2024, from the SDS archive",
+            "points": 25,
+            "visual_evidence": "Terminal command using a tool like 'scart' or 'sclist' with dates '2024-01-01' and the SDS path, targeting the output file /home/ga/extracted_waveforms.mseed."
+        },
+        {
+            "id": "verify_waveform_output",
+            "description": "Verify the existence and size of the extracted waveform file",
+            "points": 10,
+            "visual_evidence": "Terminal command 'ls -l /home/ga/extracted_waveforms.mseed' showing a file size of at least 512 bytes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent did not simply 'echo' the expected station names into a file without reading the XML",
+            "visual_evidence": "The agent should be seen opening, grepping, or running SeisComP tools on the specific file /home/ga/seiscomp/etc/inventory/ge_stations.xml."
+        },
+        {
+            "id": "actual_sds_access",
+            "description": "The agent interacted with the SDS archive path rather than creating a dummy file",
+            "visual_evidence": "Commands should explicitly reference the path 'sdsarchive:///home/ga/seiscomp/var/lib/archive' or the local directory equivalent."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not copy-paste the station list from the task prompt or external notes",
+            "visual_evidence": "The agent's terminal history should show the extraction process (e.g., scinv, grep, or awk) rather than a single 'cat << EOF' command with all station names pre-filled."
+        }
+    ],
+    "privileged_info_for_vlm": "The global recordstream must be exactly 'sdsarchive:///home/ga/seiscomp/var/lib/archive'. The inventory listing in /home/ga/inventory_listing.txt must contain at least these GE network stations: TOLI, GSI, KWP, SANI, BKB. The waveform file /home/ga/extracted_waveforms.mseed must be at least 512 bytes and correspond to data from 2024-01-01."
+}

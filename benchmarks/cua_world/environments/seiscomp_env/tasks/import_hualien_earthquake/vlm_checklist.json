@@ -1,0 +1,53 @@
+{
+    "task_id": "import_hualien_earthquake@1",
+    "task_completion": [
+        {
+            "id": "scml_file_creation",
+            "description": "The agent creates the SCML file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A terminal command or file explorer showing the creation of '~/Documents/hualien_earthquake.scml'."
+        },
+        {
+            "id": "correct_earthquake_parameters",
+            "description": "The SCML file contains the correct origin time, coordinates, depth, and magnitude.",
+            "points": 30,
+            "visual_evidence": "Text editor or 'cat' command output showing: time='2024-04-02T23:58:11', lat='23.819', lon='121.562', depth='34.8', and magnitude='7.4'."
+        },
+        {
+            "id": "scdb_command_execution",
+            "description": "The agent uses the 'scdb' tool with the 'dbmysql' plugin to import the file.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a command like 'scdb -i ~/Documents/hualien_earthquake.scml -d mysql://sysop:sysop@localhost/seiscomp'."
+        },
+        {
+            "id": "successful_import_confirmation",
+            "description": "The import command completes without errors.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing no error messages after the scdb command, or a success message indicating objects were inserted/updated."
+        },
+        {
+            "id": "database_verification",
+            "description": "The agent verifies the data exists in the SeisComP database.",
+            "points": 20,
+            "visual_evidence": "A SQL query (e.g., 'SELECT * FROM Origin...') or a SeisComP GUI (like scolv or scevt) showing the Hualien event with the correct parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'Success' without running the SeisComP tools.",
+            "visual_evidence": "The presence of actual 'scdb' command execution and database connection logs."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually wrote the file to the disk rather than just simulating the text in the terminal.",
+            "visual_evidence": "Commands like 'nano', 'vim', 'tee', or 'cat >' followed by a 'ls' or 'stat' check of the file path."
+        },
+        {
+            "id": "proper_plugin_usage",
+            "description": "The agent used the required dbmysql plugin for the import.",
+            "visual_evidence": "The string 'mysql://' or '-d mysql' appearing in the import command arguments."
+        }
+    ],
+    "privileged_info_for_vlm": "The earthquake parameters must match exactly: Time: 2024-04-02T23:58:11.000Z; Lat: 23.819; Lon: 121.562; Depth: 34.8 km; Magnitude: 7.4 Mw; Agency: CWA; Description: Hualien. The file must be saved to /home/ga/Documents/hualien_earthquake.scml. The import tool is 'scdb' and the database URI is mysql://sysop:sysop@localhost/seiscomp."
+}

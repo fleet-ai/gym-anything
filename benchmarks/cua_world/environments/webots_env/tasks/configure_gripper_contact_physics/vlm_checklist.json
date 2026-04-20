@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_gripper_contact_physics@1",
+    "task_completion": [
+        {
+            "id": "set_pad_materials",
+            "description": "Set the contactMaterial for 'LEFT_PAD' and 'RIGHT_PAD' to 'silicone'.",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree or a node editor window showing the 'contactMaterial' field for both LEFT_PAD and RIGHT_PAD set to 'silicone'."
+        },
+        {
+            "id": "set_object_material",
+            "description": "Set the contactMaterial for 'TARGET_OBJECT' to 'glass'.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree or a node editor window showing the 'contactMaterial' field for TARGET_OBJECT set to 'glass'."
+        },
+        {
+            "id": "create_contact_properties",
+            "description": "Add a ContactProperties entry in WorldInfo for the 'silicone' and 'glass' interaction.",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree showing a new ContactProperties node under WorldInfo -> contactProperties, with material1 set to 'silicone' and material2 set to 'glass' (or vice versa)."
+        },
+        {
+            "id": "configure_physics_values",
+            "description": "Set coulombFriction to 0.15 and bounce to 0.0 in the ContactProperties node.",
+            "points": 25,
+            "visual_evidence": "The Webots node editor for the specific ContactProperties entry showing 'coulombFriction' as 0.15 and 'bounce' as 0.0."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path on the Desktop.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog box with the path '/home/ga/Desktop/slippery_grasp.wbt' typed in, or the Webots title bar/file explorer showing the file exists at that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node properties rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Webots Scene Tree, Field Editor, or Menu bars."
+        },
+        {
+            "id": "genuine_node_creation",
+            "description": "The agent actually opened the 'Add a node' dialog to insert ContactProperties.",
+            "visual_evidence": "The 'Add a node' pop-up window visible in the Webots interface during the process."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file but actively modified the current world.",
+            "visual_evidence": "Sequential screenshots showing the transition from default/empty fields to the specified 'silicone' and 'glass' values."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure Webots physics: LEFT_PAD and RIGHT_PAD contactMaterial = 'silicone'; TARGET_OBJECT contactMaterial = 'glass'. In WorldInfo, a ContactProperties node must exist for 'silicone'-'glass' with coulombFriction=0.15 and bounce=0.0. The final file must be saved as /home/ga/Desktop/slippery_grasp.wbt."
+}

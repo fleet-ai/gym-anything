@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_devtools_memory_snapshot@1",
+    "task_completion": [
+        {
+            "id": "click_generate_leak",
+            "description": "The agent clicked the 'Generate Memory Leak' button on the web page.",
+            "points": 10,
+            "visual_evidence": "The mouse cursor is over the 'Generate Memory Leak' button or the button shows a pressed state."
+        },
+        {
+            "id": "confirm_leak_status",
+            "description": "The status text on the page confirms the leak was generated.",
+            "points": 10,
+            "visual_evidence": "The text on the HTML page changes to indicate the leak is complete (e.g., 'Memory leak generated' or similar status message)."
+        },
+        {
+            "id": "open_devtools_memory",
+            "description": "Firefox Developer Tools are open and the 'Memory' tab is selected.",
+            "points": 20,
+            "visual_evidence": "The DevTools pane is visible at the bottom or side of the browser, and the 'Memory' tab is highlighted/active."
+        },
+        {
+            "id": "take_snapshot",
+            "description": "The agent initiated the 'Take snapshot' action.",
+            "points": 20,
+            "visual_evidence": "The 'Take snapshot' button is clicked, and the UI shows a progress bar or a new snapshot entry appearing in the sidebar."
+        },
+        {
+            "id": "save_snapshot_dialog",
+            "description": "The agent clicked 'Save' on the captured snapshot to trigger the file picker.",
+            "points": 15,
+            "visual_evidence": "The 'Save' link/button next to the snapshot entry is clicked, and a 'Save As' file dialog appears."
+        },
+        {
+            "id": "correct_filename_path",
+            "description": "The snapshot is saved with the exact filename and path specified.",
+            "points": 25,
+            "visual_evidence": "The file save dialog shows '/home/ga/Documents/heap_analysis.fxsnapshot' in the name field, or a final confirmation shows the file saved to that specific location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI and DevTools interface rather than terminal commands to generate or move files.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the Firefox browser and DevTools UI; no terminal/shell windows are used to create the .fxsnapshot file."
+        },
+        {
+            "id": "genuine_snapshot_process",
+            "description": "The agent actually waited for the snapshot to process rather than clicking through instantly.",
+            "visual_evidence": "Sequential screenshots show the 'Processing...' state or the heap map visualization appearing in the DevTools Memory tab before the save action."
+        },
+        {
+            "id": "active_page_context",
+            "description": "The agent interacted with the specific file URL provided.",
+            "visual_evidence": "The browser address bar shows 'file:///home/ga/Documents/memory_leak.html' during the entire process."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires the use of the Firefox built-in Memory tool. The file must be saved with the extension '.fxsnapshot'. The status text on the page is the trigger to start the DevTools process. The specific path /home/ga/Documents/heap_analysis.fxsnapshot is mandatory for success."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "tag_short_papers@1",
+    "task_completion": [
+        {
+            "id": "open_zotero",
+            "description": "The agent opens the Zotero application to access the library.",
+            "points": 10,
+            "visual_evidence": "The Zotero application window is visible on the screen."
+        },
+        {
+            "id": "inspect_metadata",
+            "description": "The agent selects papers and inspects their metadata (specifically the 'Pages' field) to identify length.",
+            "points": 20,
+            "visual_evidence": "The 'Info' tab in the right-hand pane is visible, showing the 'Pages' field for various items."
+        },
+        {
+            "id": "tag_dijkstra",
+            "description": "The agent adds the 'short-read' tag to 'A Note on Two Problems in Connexion with Graphs'.",
+            "points": 20,
+            "visual_evidence": "The 'Tags' tab or the tag selector shows 'short-read' applied to this specific paper title."
+        },
+        {
+            "id": "tag_watson_crick",
+            "description": "The agent adds the 'short-read' tag to 'Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid'.",
+            "points": 25,
+            "visual_evidence": "The 'Tags' tab or the tag selector shows 'short-read' applied to this specific paper title."
+        },
+        {
+            "id": "tag_huffman",
+            "description": "The agent adds the 'short-read' tag to 'A Method for the Construction of Minimum-Redundancy Codes'.",
+            "points": 25,
+            "visual_evidence": "The 'Tags' tab or the tag selector shows 'short-read' applied to this specific paper title."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI rather than command-line database manipulation.",
+            "visual_evidence": "Mouse cursor movements, clicks on Zotero buttons, and typing within the Zotero interface are visible."
+        },
+        {
+            "id": "no_hallucinated_tags",
+            "description": "The agent did not tag long papers like 'Mastering the Game of Go...'.",
+            "visual_evidence": "The tag 'short-read' is absent from the metadata of papers exceeding 5 pages."
+        },
+        {
+            "id": "manual_tag_entry",
+            "description": "The agent interacted with the tag input field rather than just displaying a final state.",
+            "visual_evidence": "Screenshots show the 'Add' button in the Tags pane being clicked or the tag being typed into the input box."
+        }
+    ],
+    "privileged_info_for_vlm": "The target tag is 'short-read'. Only papers with 5 pages or fewer should be tagged. The correct papers to tag are: 1. 'A Note on Two Problems in Connexion with Graphs' (3 pages), 2. 'Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid' (2 pages), and 3. 'A Method for the Construction of Minimum-Redundancy Codes' (4 pages). The paper 'Mastering the Game of Go with Deep Neural Networks and Tree Search' is a distractor and should not be tagged."
+}

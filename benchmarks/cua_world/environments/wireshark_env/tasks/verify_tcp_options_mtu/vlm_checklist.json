@@ -1,0 +1,53 @@
+{
+    "task_id": "verify_tcp_options_mtu@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_wireshark",
+            "description": "Open the specified pcapng file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "filter_tcp_stream_0",
+            "description": "Filter the packet list to show only TCP Stream 0.",
+            "points": 10,
+            "visual_evidence": "The display filter bar contains 'tcp.stream == 0' and the packet list is updated accordingly."
+        },
+        {
+            "id": "identify_handshake_options",
+            "description": "Locate the SYN and SYN-ACK packets to identify MSS and Window Scale values.",
+            "points": 25,
+            "visual_evidence": "The 'Packet Details' pane shows the 'Options' field expanded for the first two packets of the stream, highlighting MSS and Window Scale."
+        },
+        {
+            "id": "determine_max_payload",
+            "description": "Identify the largest TCP payload size (tcp.len) in the stream.",
+            "points": 25,
+            "visual_evidence": "The agent sorts the 'Length' column or uses a filter/statistic tool to find the maximum 'tcp.len' value (1460)."
+        },
+        {
+            "id": "save_report_file",
+            "description": "Create and save the report file with the required content and format.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output showing the content of '/home/ga/Documents/captures/tcp_options_report.txt' with the specific keys: Client_MSS, Server_MSS, Client_WScale, Server_WScale, Max_Payload_Size, and TSO_Detected."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "wireshark_gui_usage",
+            "description": "The agent used the Wireshark GUI to analyze the traffic rather than just running tshark commands.",
+            "visual_evidence": "Screenshots show the Wireshark application window, packet list, and packet details pane."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the values into a file without inspecting the packets.",
+            "visual_evidence": "Screenshots show the agent clicking on specific packets (SYN, SYN-ACK) and expanding the TCP header options."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the exact path specified in the task.",
+            "visual_evidence": "The file manager or terminal shows the file exists at '/home/ga/Documents/captures/tcp_options_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "For TCP Stream 0 in 200722_tcp_anon.pcapng: The Client MSS (Packet 1) is 1460. The Server MSS (Packet 2) is 1460. The Client Window Scale shift count is 8. The Server Window Scale shift count is 7. The Max_Payload_Size (tcp.len) is 1460. Since the max payload does not exceed the MSS, TSO_Detected should be 'NO'. Jumbo Frames are not present."
+}

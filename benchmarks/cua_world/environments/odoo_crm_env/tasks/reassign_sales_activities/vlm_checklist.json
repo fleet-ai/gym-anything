@@ -1,0 +1,59 @@
+{
+    "task_id": "reassign_sales_activities@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_activities",
+            "description": "Agent navigates to the Activities or CRM section where pending tasks are listed.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo interface showing a list of activities, tasks, or a CRM pipeline view."
+        },
+        {
+            "id": "filter_by_ellis_absent",
+            "description": "Agent filters or searches for activities specifically assigned to 'Ellis Absent'.",
+            "points": 15,
+            "visual_evidence": "The search bar or filter breadcrumbs should show 'Assigned to: Ellis Absent' or 'User: Ellis Absent'."
+        },
+        {
+            "id": "identify_three_activities",
+            "description": "Agent identifies the three specific activities: 'Contract Negotiation', 'Pricing Update', and 'Prepare Demo'.",
+            "points": 15,
+            "visual_evidence": "A list view showing these three specific activity summaries on the screen simultaneously or sequentially."
+        },
+        {
+            "id": "reassign_first_activity",
+            "description": "Agent opens and changes the 'Assigned to' field of at least one activity to 'Sam Cover'.",
+            "points": 20,
+            "visual_evidence": "An activity edit form or quick-edit dropdown showing the 'Assigned to' field being changed from 'Ellis Absent' to 'Sam Cover'."
+        },
+        {
+            "id": "reassign_remaining_activities",
+            "description": "Agent reassigns the remaining two activities to 'Sam Cover'.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the reassignment process for the other two activities (Pricing Update and Prepare Demo)."
+        },
+        {
+            "id": "verify_no_pending_for_ellis",
+            "description": "Agent verifies that no pending activities remain under 'Ellis Absent'.",
+            "points": 20,
+            "visual_evidence": "A final view of the activity list filtered by 'Ellis Absent' showing 'No records found' or a list filtered by 'Sam Cover' showing all three activities."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the Odoo web interface rather than using terminal commands or scripts.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and form entries in the browser, not a command-line interface."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the UI elements rather than guessing and typing direct database record URLs.",
+            "visual_evidence": "The agent is seen clicking menus (CRM, Activities) and using the search/filter tools."
+        },
+        {
+            "id": "genuine_user_selection",
+            "description": "The agent selected 'Sam Cover' from the actual user dropdown list.",
+            "visual_evidence": "The VLM should see the dropdown menu appearing with 'Sam Cover' as a selectable option."
+        }
+    ],
+    "privileged_info_for_vlm": "There are exactly 3 activities to reassign: 'Contract Negotiation', 'Pricing Update', and 'Prepare Demo'. They are initially assigned to 'Ellis Absent' and must be reassigned to 'Sam Cover'. The task is complete only when all three specific activities are moved to Sam Cover and none remain for Ellis."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "osm_geolocation_verification@1",
+    "task_completion": [
+        {
+            "id": "open_osm_website",
+            "description": "The agent successfully navigates to openstreetmap.org in the browser.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'openstreetmap.org' and the OpenStreetMap homepage is visible."
+        },
+        {
+            "id": "override_london_coordinates",
+            "description": "The agent overrides the browser's geolocation to London coordinates (51.50, -0.12).",
+            "points": 15,
+            "visual_evidence": "Browser developer tools (Sensors tab) or a console command showing the geolocation override to approximately 51.50, -0.12."
+        },
+        {
+            "id": "trigger_london_location",
+            "description": "The agent clicks the 'Show My Location' button and the map centers on London.",
+            "points": 20,
+            "visual_evidence": "The 'Show My Location' icon on the OSM sidebar is active/clicked, and the map displays London landmarks or the URL contains coordinates near 51.50, -0.12."
+        },
+        {
+            "id": "override_tokyo_coordinates",
+            "description": "The agent overrides the browser's geolocation to Tokyo coordinates (35.68, 139.69).",
+            "points": 15,
+            "visual_evidence": "Browser developer tools or console logs showing the geolocation override updated to approximately 35.68, 139.69."
+        },
+        {
+            "id": "trigger_tokyo_location",
+            "description": "The agent clicks the 'Show My Location' button and the map centers on Tokyo.",
+            "points": 20,
+            "visual_evidence": "The map view shifts to Tokyo, and the URL in the address bar updates to reflect coordinates near 35.68, 139.69."
+        },
+        {
+            "id": "save_report_file",
+            "description": "The agent saves both captured URLs to the specified report file on the desktop.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the content of '/home/ga/Desktop/geo_verification_report.txt' containing two OSM URLs with the correct coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the OSM website UI rather than just writing a file manually.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'Show My Location' button or the map moving in response to clicks."
+        },
+        {
+            "id": "no_hardcoded_urls",
+            "description": "The agent did not simply copy-paste the expected URLs from the task description into the report.",
+            "visual_evidence": "The agent is seen copying the URL from the browser address bar after the map has updated for each location."
+        },
+        {
+            "id": "actual_geolocation_override",
+            "description": "The agent used browser features to simulate the location change.",
+            "visual_evidence": "Evidence of using DevTools Sensors, CDP commands, or extension settings to change latitude and longitude."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected London coordinates are approximately 51.50, -0.12. The expected Tokyo coordinates are approximately 35.68, 139.69. The report must be saved at /home/ga/Desktop/geo_verification_report.txt. A coordinate tolerance of 0.5 is acceptable. The OSM URL format typically includes '#map=zoom/lat/lon'."
+}

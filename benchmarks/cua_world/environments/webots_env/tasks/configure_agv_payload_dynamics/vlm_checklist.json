@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_agv_payload_dynamics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the Webots simulation environment with the AGV model.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D scene with an AGV robot."
+        },
+        {
+            "id": "locate_custom_payload",
+            "description": "Locate and select the CUSTOM_PAYLOAD Solid node in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The 'CUSTOM_PAYLOAD (Solid)' node is highlighted in the Webots scene tree (left sidebar)."
+        },
+        {
+            "id": "set_payload_mass",
+            "description": "Update the mass of the CUSTOM_PAYLOAD to 120.0 kg.",
+            "points": 20,
+            "visual_evidence": "In the Scene Tree, under CUSTOM_PAYLOAD > physics > Physics > mass, the value is set to 120."
+        },
+        {
+            "id": "set_payload_com",
+            "description": "Update the center of mass (centerOfMass) for the CUSTOM_PAYLOAD to 0.12 -0.05 0.18.",
+            "points": 20,
+            "visual_evidence": "In the Scene Tree, under CUSTOM_PAYLOAD > physics > Physics > centerOfMass, the vector is set to [0.12, -0.05, 0.18]."
+        },
+        {
+            "id": "set_motor_torques",
+            "description": "Set the maxTorque for both left_motor and right_motor to 80.0 Nm.",
+            "points": 25,
+            "visual_evidence": "In the Scene Tree, under the AGV_BASE children, the maxTorque field for both 'left_motor' and 'right_motor' is visible and set to 80."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specific path /home/ga/Desktop/agv_heavy_payload.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box is shown with the path /home/ga/Desktop/agv_heavy_payload.wbt, or the file is visible on the Desktop after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree fields and typing values into the property editor."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not simply run a python/bash script to overwrite the .wbt file without opening Webots.",
+            "visual_evidence": "The Webots application is open and active throughout the configuration process."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent used the 'File > Save World As' menu or shortcut within the application.",
+            "visual_evidence": "The Webots menu or file browser dialog is visible during the saving step."
+        }
+    ],
+    "privileged_info_for_vlm": "The target node for mass/CoM is 'CUSTOM_PAYLOAD'. Required mass: 120.0. Required centerOfMass: 0.12 -0.05 0.18. The motors are named 'left_motor' and 'right_motor' under the 'AGV_BASE' robot; both require maxTorque set to 80.0. The final file must be saved specifically as /home/ga/Desktop/agv_heavy_payload.wbt."
+}

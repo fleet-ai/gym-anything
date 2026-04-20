@@ -1,0 +1,53 @@
+{
+    "task_id": "legacy_scenario_migration@1",
+    "task_completion": [
+        {
+            "id": "read_migration_spec",
+            "description": "Agent opens and reads the migration specification file to identify the required coordinate shifts and model mappings.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window displaying the contents of '/home/ga/Documents/migration_spec.txt'."
+        },
+        {
+            "id": "create_migrated_directories",
+            "description": "Agent creates three new directories in the target path with the 'Migrated - ' prefix.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing directories like 'Migrated - Scenario_A' (or similar names) inside '/opt/bridgecommand/Scenarios/'."
+        },
+        {
+            "id": "copy_environment_ini",
+            "description": "Agent copies the environment.ini file unchanged to the new directories.",
+            "points": 15,
+            "visual_evidence": "File operations showing 'environment.ini' being copied or existing in the new destination folders."
+        },
+        {
+            "id": "apply_coordinate_shift",
+            "description": "Agent updates Latitude and Longitude in ownship.ini and othership.ini using the +0.0015 and -0.0022 datum shifts.",
+            "points": 30,
+            "visual_evidence": "Text editor showing 'InitialLat' and 'InitialLong' values updated (e.g., 50.8 becomes 50.8015, -1.1 becomes -1.1022) in the target INI files."
+        },
+        {
+            "id": "replace_vessel_models",
+            "description": "Agent replaces deprecated vessel models in othership.ini with the target models from the spec.",
+            "points": 30,
+            "visual_evidence": "Text editor showing 'Old_Tanker' replaced by 'Tanker_A', 'Old_Ferry' by 'Ferry_Pax_1', and 'Old_Buoy' by 'Buoy_Cardinal_N' in the destination files."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply echo the final values without opening the source files.",
+            "visual_evidence": "Screenshots must show the agent opening the original files in '/home/ga/Documents/legacy_scenarios/' before writing to the new location."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent uses standard file manipulation tools rather than just simulating output.",
+            "visual_evidence": "Visible use of a text editor (like gedit, nano, vim) or file manager (Nautilus) to perform the edits and moves."
+        },
+        {
+            "id": "directory_naming_compliance",
+            "description": "Agent follows the specific naming convention required by the task.",
+            "visual_evidence": "The new folders in '/opt/bridgecommand/Scenarios/' must explicitly start with the string 'Migrated - '."
+        }
+    ],
+    "privileged_info_for_vlm": "The migration requires a Latitude shift of +0.0015 and a Longitude shift of -0.0022. Model mappings are: Old_Tanker -> Tanker_A; Old_Ferry -> Ferry_Pax_1; Old_Buoy -> Buoy_Cardinal_N. For Scenario_A, the original ownship coordinates (50.8, -1.1) should become (50.8015, -1.1022). All three scenarios must be moved to /opt/bridgecommand/Scenarios/ with the 'Migrated - ' prefix."
+}

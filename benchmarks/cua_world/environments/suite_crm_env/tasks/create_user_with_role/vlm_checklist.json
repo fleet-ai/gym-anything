@@ -1,0 +1,59 @@
+{
+    "task_id": "create_user_with_role@1",
+    "task_completion": [
+        {
+            "id": "role_creation_ui",
+            "description": "The agent navigates to the Role Management section and initiates the creation of a new role.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the 'Role Management' or 'Create Role' screen with the name 'Field Sales Rep' entered."
+        },
+        {
+            "id": "accounts_permissions_set",
+            "description": "The agent configures the Accounts module permissions: Delete set to None and Export set to None.",
+            "points": 20,
+            "visual_evidence": "The ACL (Access Control List) grid showing the 'Accounts' row with 'Delete' and 'Export' columns set to 'None' (often indicated by a red cell or specific dropdown value)."
+        },
+        {
+            "id": "cases_permissions_set",
+            "description": "The agent configures the Cases module permissions: Access set to Disabled.",
+            "points": 15,
+            "visual_evidence": "The ACL grid showing the 'Cases' row with the 'Access' column set to 'Disabled'."
+        },
+        {
+            "id": "user_details_entry",
+            "description": "The agent creates a new user with the specified personal and account details.",
+            "points": 20,
+            "visual_evidence": "The 'Create User' form with Username: 'mchen', First Name: 'Marcus', Last Name: 'Chen', Email: 'marcus.chen@pnwindustrial.com', and Status: 'Active' filled in."
+        },
+        {
+            "id": "password_configuration",
+            "description": "The agent sets the password for the new user.",
+            "points": 10,
+            "visual_evidence": "The password fields in the user creation form being filled (likely masked) or a success message indicating the password 'SalesRep2024!' was set."
+        },
+        {
+            "id": "role_assignment",
+            "description": "The agent assigns the 'Field Sales Rep' role to the user 'mchen'.",
+            "points": 25,
+            "visual_evidence": "The 'Roles' subpanel under the user profile for Marcus Chen showing 'Field Sales Rep' as an assigned role, or a confirmation screen linking the two."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface rather than executing direct database queries or CLI scripts.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and form typing in the browser rather than just terminal commands."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent navigated through the menu system (Admin -> Role Management/User Management) rather than jumping directly to a final 'success' URL.",
+            "visual_evidence": "Screenshots show the sequence of navigation through the CRM's administrative menus."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent manually entered the specific strings provided in the task rather than using placeholder data.",
+            "visual_evidence": "The screenshots show the exact strings 'Field Sales Rep', 'mchen', and 'marcus.chen@pnwindustrial.com' being typed into the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The role must be named 'Field Sales Rep'. For the Accounts module, 'Delete' and 'Export' must be set to 'None' (internally ACL_ALLOW_NONE or -99). For the Cases module, 'Access' must be 'Disabled'. The user details are: Username 'mchen', First Name 'Marcus', Last Name 'Chen', Email 'marcus.chen@pnwindustrial.com', Status 'Active', and Password 'SalesRep2024!'. Ensure the role is explicitly linked to this specific user."
+}

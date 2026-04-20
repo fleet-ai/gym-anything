@@ -1,0 +1,59 @@
+{
+    "task_id": "validate_volume_conservation@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the Muncie HEC-RAS project from the specified directory.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window showing the project path '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.prj' or similar."
+        },
+        {
+            "id": "run_unsteady_simulation",
+            "description": "Execute the unsteady flow simulation for Plan 04.",
+            "points": 15,
+            "visual_evidence": "The 'Unsteady Flow Analysis' window open with 'Plan: Plan 04' selected, and a computation progress bar or 'Finished' status window."
+        },
+        {
+            "id": "verify_hdf5_output",
+            "description": "Confirm the creation of the Muncie.p04.hdf output file.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal window showing 'Muncie.p04.hdf' exists in the project directory."
+        },
+        {
+            "id": "python_script_creation",
+            "description": "Create a Python script to process the HDF5 file and calculate mass balance using trapezoidal integration.",
+            "points": 25,
+            "visual_evidence": "A text editor or IDE showing Python code that imports 'h5py', accesses cross-section data, and implements a trapezoidal rule for volume."
+        },
+        {
+            "id": "calculate_mass_balance",
+            "description": "Execute the script to calculate inflow, outflow, and error percentage.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing calculated values for total inflow, total outflow, and mass balance error percentage."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Save the final findings to the specified JSON file path with the correct structure.",
+            "points": 20,
+            "visual_evidence": "The content of '/home/ga/Documents/hec_ras_results/volume_conservation.json' displayed, containing all required keys like 'mass_balance_error_percent' and 'conservation_acceptable'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the HEC-RAS simulation rather than using pre-existing results.",
+            "visual_evidence": "Screenshots showing the HEC-RAS computation window active and the progress bar moving or completing."
+        },
+        {
+            "id": "script_logic_verification",
+            "description": "Ensure the Python script actually performs calculations on the HDF5 data rather than hardcoding values.",
+            "visual_evidence": "The Python code should show dynamic path handling for 'Muncie.p04.hdf' and mathematical operations (e.g., np.trapz or manual integration loops)."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the JSON output contains realistic values derived from the simulation, not just zeros or placeholders.",
+            "visual_evidence": "The JSON file should show non-zero floats for volumes (e.g., values in the magnitude of 10^9) and a specific error percentage around 8.7%."
+        }
+    ],
+    "privileged_info_for_vlm": "The HEC-RAS project is located at /home/ga/Documents/hec_ras_projects/Muncie. The simulation must be run for Plan 04, which generates Muncie.p04.hdf. Based on ground truth, the total inflow volume is approximately 1.59e9 ft^3 and the mass balance error is approximately 8.7%. Therefore, 'conservation_acceptable' in the final JSON should be 'false' because 8.7% is greater than the 5.0% threshold."
+}

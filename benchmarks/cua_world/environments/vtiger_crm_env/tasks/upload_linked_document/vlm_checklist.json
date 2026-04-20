@@ -1,0 +1,53 @@
+{
+    "task_id": "upload_linked_document@1",
+    "task_completion": [
+        {
+            "id": "create_organization",
+            "description": "Create an organization named 'NovaTech Solutions'.",
+            "points": 20,
+            "visual_evidence": "The VLM should see a form being filled out with 'NovaTech Solutions' in the Organization Name field and a subsequent confirmation or list view showing this organization exists."
+        },
+        {
+            "id": "open_document_upload",
+            "description": "Navigate to the Documents module and initiate the creation of a new document.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Add Document' or 'Create Document' interface open within the CRM."
+        },
+        {
+            "id": "set_document_title",
+            "description": "Set the document title to 'NovaTech Solutions - Signed NDA'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see 'NovaTech Solutions - Signed NDA' typed into the Title field of the document creation form."
+        },
+        {
+            "id": "select_file_and_folder",
+            "description": "Select the file 'Standard_NDA.pdf' and ensure the folder is set to 'Default'.",
+            "points": 25,
+            "visual_evidence": "The VLM should see a file picker or file path indicating 'Standard_NDA.pdf' is selected and the 'Folder' dropdown set to 'Default'."
+        },
+        {
+            "id": "link_organization",
+            "description": "Link the document to the 'NovaTech Solutions' organization.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the 'Organization' or 'Related To' field in the document form populated with 'NovaTech Solutions' before saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface rather than executing database commands or scripts to create records.",
+            "visual_evidence": "The screenshots should show mouse movements, clicks, and typing within the browser, not just terminal commands."
+        },
+        {
+            "id": "genuine_file_upload",
+            "description": "The agent actually navigated the file system to select the specific PDF file.",
+            "visual_evidence": "The VLM should see a file upload dialog or a file path selection pointing to /home/ga/Documents/Standard_NDA.pdf."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply navigate to a pre-existing record to claim success.",
+            "visual_evidence": "The VLM should see the creation process (filling out forms) rather than just a final view of a record that existed before the task started."
+        }
+    ],
+    "privileged_info_for_vlm": "The organization name must be exactly 'NovaTech Solutions'. The document title must be exactly 'NovaTech Solutions - Signed NDA'. The source file is located at '/home/ga/Documents/Standard_NDA.pdf'. The document must be placed in the 'Default' folder and explicitly linked to the 'NovaTech Solutions' organization record."
+}

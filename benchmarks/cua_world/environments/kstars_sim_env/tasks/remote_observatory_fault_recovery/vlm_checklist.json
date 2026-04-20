@@ -1,0 +1,59 @@
+{
+    "task_id": "remote_observatory_fault_recovery@1",
+    "task_completion": [
+        {
+            "id": "read_fault_log",
+            "description": "Agent opens and reads the fault log at ~/Documents/fault_log.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of fault_log.txt."
+        },
+        {
+            "id": "diagnose_subsystems",
+            "description": "Agent interacts with observatory control software or system tools to diagnose the cascading failures mentioned in the log.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent checking status panels, logs, or diagnostic tools related to telescope subsystems."
+        },
+        {
+            "id": "resolve_faults",
+            "description": "Agent performs actions to fix the identified subsystem faults (e.g., restarting services, clearing errors).",
+            "points": 25,
+            "visual_evidence": "GUI interactions such as clicking 'Reset', 'Connect', or 'Initialize' on telescope/camera control panels, or terminal commands resolving service errors."
+        },
+        {
+            "id": "target_vega_observation",
+            "description": "Agent commands the telescope to slew to Vega and configures a 10-second V-band exposure.",
+            "points": 20,
+            "visual_evidence": "Observatory software showing coordinates near RA 18.6h / Dec +38.7, filter set to 'V', and exposure time set to 10s."
+        },
+        {
+            "id": "verify_test_image",
+            "description": "A test observation image of Vega is saved to the specified verification directory.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal showing a new FITS/image file in ~/Images/verification/."
+        },
+        {
+            "id": "file_resolution_report",
+            "description": "Agent creates a detailed fault resolution report at ~/Documents/fault_resolution.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the creation and saving of fault_resolution.txt with content describing the fixes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_software_interaction",
+            "description": "The agent used the observatory control GUI rather than just simulating file creation via terminal.",
+            "visual_evidence": "Screenshots showing the telescope control software interface being manipulated (buttons clicked, fields filled)."
+        },
+        {
+            "id": "no_preemptive_reporting",
+            "description": "The fault resolution report was written after the faults were addressed and the observation was taken.",
+            "visual_evidence": "The timestamp or sequence of screenshots shows the report creation as one of the final steps."
+        },
+        {
+            "id": "actual_coordinate_input",
+            "description": "The agent manually or programmatically entered the correct coordinates for Vega rather than slewing to a random star.",
+            "visual_evidence": "The telescope control GUI showing RA 18h 36m and Dec +38 47' (or decimal equivalents) being entered or active."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is Vega. Correct coordinates are RA: 18.6156 hours (18h 36m 56.3s) and Dec: +38.7837 degrees (+38° 47' 01.3\"). The observation must be 10 seconds in the V-band filter. The verification image must be in /home/ga/Images/verification/ and the report at /home/ga/Documents/fault_resolution.txt."
+}

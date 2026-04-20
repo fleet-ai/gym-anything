@@ -1,0 +1,53 @@
+{
+    "task_id": "centroid_extraction_csv_export@1",
+    "task_completion": [
+        {
+            "id": "load_vector_layer",
+            "description": "The agent loads the specific shapefile 'ne_110m_admin_0_countries.shp' into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer panel shows 'ne_110m_admin_0_countries' and the map canvas displays a world map."
+        },
+        {
+            "id": "filter_south_america",
+            "description": "The agent filters or selects only the countries located in South America.",
+            "points": 15,
+            "visual_evidence": "A selection highlight (usually yellow) on the South American continent or a query builder window showing a filter like 'CONTINENT = South America'."
+        },
+        {
+            "id": "calculate_centroids",
+            "description": "The agent runs a centroid extraction tool on the selected South American features.",
+            "points": 25,
+            "visual_evidence": "A 'Centroids' dialog box being configured or a new point layer appearing over the centers of South American countries."
+        },
+        {
+            "id": "add_coordinate_fields",
+            "description": "The agent adds new decimal fields named 'longitude' and 'latitude' to the attribute table.",
+            "points": 25,
+            "visual_evidence": "The attribute table or Field Calculator showing the creation of 'longitude' and 'latitude' columns with decimal values."
+        },
+        {
+            "id": "export_csv",
+            "description": "The agent exports the resulting data to the specific path '/home/ga/GIS_Data/exports/south_america_centroids.csv'.",
+            "points": 25,
+            "visual_evidence": "An 'Export' or 'Save Vector Layer as' dialog showing the format as CSV and the file path set to /home/ga/GIS_Data/exports/south_america_centroids.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursors, open dialog boxes (like Field Calculator or Centroids tool), and menu navigation within the GIS application."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent calculated coordinates from the geometry rather than typing them manually.",
+            "visual_evidence": "The Field Calculator showing expressions like '$x' or 'x($geometry)' being used to populate the fields."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the local file path provided in the instructions.",
+            "visual_evidence": "The 'Add Vector Layer' dialog or layer properties showing the source path /home/ga/GIS_Data/natural_earth/ne_110m_admin_0_countries.shp."
+        }
+    ],
+    "privileged_info_for_vlm": "The final CSV should contain exactly 13 rows (representing South American countries including the Falkland Islands). The longitude values must range between approximately -78.38 and -53.05, and latitude values between -51.71 and 12.5. The output file must be named south_america_centroids.csv and located in /home/ga/GIS_Data/exports/."
+}

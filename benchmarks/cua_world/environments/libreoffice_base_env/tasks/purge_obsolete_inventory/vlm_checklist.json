@@ -1,0 +1,59 @@
+{
+    "task_id": "purge_obsolete_inventory@1",
+    "task_completion": [
+        {
+            "id": "open_chinook_db",
+            "description": "Open the Chinook_Sqlite database in the database management tool.",
+            "points": 10,
+            "visual_evidence": "The application (e.g., LibreOffice Base or a SQL editor) is open showing the 'Chinook_Sqlite' database connection or file path."
+        },
+        {
+            "id": "create_archive_table",
+            "description": "Create the 'UnsoldTracksArchive' table with the specified columns (TrackId, Name, Composer, UnitPrice).",
+            "points": 20,
+            "visual_evidence": "A SQL execution window showing a 'CREATE TABLE UnsoldTracksArchive' statement or the new table appearing in the table list."
+        },
+        {
+            "id": "populate_archive",
+            "description": "Insert tracks that have never been sold (not in InvoiceLine) into the 'UnsoldTracksArchive' table.",
+            "points": 25,
+            "visual_evidence": "An INSERT INTO statement selecting tracks where TrackId is NOT IN (SELECT TrackId FROM InvoiceLine), or a confirmation message of rows inserted."
+        },
+        {
+            "id": "remove_playlist_references",
+            "description": "Delete references to the unsold tracks from the 'PlaylistTrack' table to maintain referential integrity.",
+            "points": 15,
+            "visual_evidence": "A DELETE FROM PlaylistTrack statement targeting TrackIds that are not in the InvoiceLine table."
+        },
+        {
+            "id": "delete_unsold_tracks",
+            "description": "Delete the unsold tracks from the main 'Track' table.",
+            "points": 20,
+            "visual_evidence": "A DELETE FROM Track statement targeting the same set of unsold TrackIds."
+        },
+        {
+            "id": "save_database_changes",
+            "description": "Commit or save the changes to the database file.",
+            "points": 10,
+            "visual_evidence": "The agent clicking a 'Save' icon, executing a 'COMMIT' command, or closing the application with a save confirmation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI rather than just executing a single script in a terminal.",
+            "visual_evidence": "Screenshots show the LibreOffice Base interface or a dedicated SQL GUI being navigated."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent used subqueries or joins to identify unsold tracks rather than hardcoding a list of IDs.",
+            "visual_evidence": "SQL queries show logic like 'NOT IN (SELECT TrackId FROM InvoiceLine)' or 'LEFT JOIN ... WHERE InvoiceLine.TrackId IS NULL'."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual database file at the specified path.",
+            "visual_evidence": "The file path /opt/libreoffice_base_samples/Chinook_Sqlite.sqlite is visible in the application title bar or open file dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /opt/libreoffice_base_samples/Chinook_Sqlite.sqlite. There are exactly 1519 tracks that have never been sold (not present in the InvoiceLine table). The archive table must be named 'UnsoldTracksArchive'. The agent must delete from PlaylistTrack before deleting from Track to avoid foreign key constraint violations."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_interface@1",
+    "task_completion": [
+        {
+            "id": "open_refactor_menu",
+            "description": "The agent initiates the 'Extract Interface' refactoring on the UserService class.",
+            "points": 10,
+            "visual_evidence": "The Eclipse 'Extract Interface' dialog box is visible, showing 'UserService' as the source and 'IUserService' being typed as the interface name."
+        },
+        {
+            "id": "select_methods",
+            "description": "The agent selects the five required methods for extraction.",
+            "points": 15,
+            "visual_evidence": "In the Extract Interface dialog, checkboxes are checked for findById, findAll, save, delete, and exists."
+        },
+        {
+            "id": "interface_creation",
+            "description": "The new IUserService interface is created in the project explorer.",
+            "points": 20,
+            "visual_evidence": "The file 'IUserService.java' appears in the Package Explorer under com.serviceapp.service, and the editor shows the interface definition with the 5 methods."
+        },
+        {
+            "id": "update_userservice_declaration",
+            "description": "The UserService class is updated to implement the new interface.",
+            "points": 15,
+            "visual_evidence": "The code for UserService.java shows 'public class UserService implements IUserService'."
+        },
+        {
+            "id": "update_references",
+            "description": "Existing references in UserController are updated to use the interface type.",
+            "points": 25,
+            "visual_evidence": "The code for UserController.java shows the UserService field or constructor parameter typed as 'IUserService' instead of 'UserService'."
+        },
+        {
+            "id": "project_compilation",
+            "description": "The project remains in a compilable state without errors.",
+            "points": 15,
+            "visual_evidence": "The Eclipse 'Problems' view is empty or does not show red error markers on the ServiceApp project after the refactoring."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_eclipse_refactoring",
+            "description": "The agent used the built-in Eclipse refactoring tools rather than manually editing all files or using the terminal.",
+            "visual_evidence": "Screenshots show the Eclipse 'Extract Interface' wizard/dialog being used."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use sed, awk, or other CLI tools to perform the refactoring via terminal.",
+            "visual_evidence": "The terminal is not the primary window used for the code changes; the Eclipse editor and dialogs are active."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the GUI elements of the IDE.",
+            "visual_evidence": "Mouse cursor movements or highlighted menu items (Refactor > Extract Interface) are visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/eclipse-workspace/ServiceApp. The target class is com.serviceapp.service.UserService. The new interface must be named IUserService and must contain exactly these five methods: findById, findAll, save, delete, and exists. The UserController class must be checked for updated references to the interface. The environment uses Java 17."
+}

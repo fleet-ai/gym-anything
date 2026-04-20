@@ -1,0 +1,59 @@
+{
+    "task_id": "snells_law_optics_lab@1",
+    "task_completion": [
+        {
+            "id": "open_dataset",
+            "description": "The agent opens the dataset file optics_data.csv to inspect the laser angle measurements.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal window showing the contents of /home/ga/Documents/optics_data.csv."
+        },
+        {
+            "id": "create_python_script",
+            "description": "The agent creates a Python script named calculate_n.py at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or VS Code) showing code that uses Snell's Law (sin i / sin r) and the file path /home/ga/Documents/calculate_n.py in the title bar or save dialog."
+        },
+        {
+            "id": "execute_calculation",
+            "description": "The agent runs the Python script to calculate the average index of refraction.",
+            "points": 20,
+            "visual_evidence": "A terminal output or IDE console showing the execution of 'python3 calculate_n.py' and a resulting numerical output."
+        },
+        {
+            "id": "create_lab_report",
+            "description": "The agent opens a word processor to create the lab report optics_report.odt.",
+            "points": 15,
+            "visual_evidence": "LibreOffice Writer or a similar ODT-compatible editor open on the screen."
+        },
+        {
+            "id": "report_content_n_value",
+            "description": "The lab report contains the calculated average index of refraction rounded to 1.52.",
+            "points": 20,
+            "visual_evidence": "The text '1.52' visible within the optics_report.odt document."
+        },
+        {
+            "id": "report_content_material",
+            "description": "The lab report correctly identifies the material as Crown Glass.",
+            "points": 20,
+            "visual_evidence": "The words 'Crown Glass' or 'Glass' visible within the optics_report.odt document as the identified material."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply type the final answer without processing the data.",
+            "visual_evidence": "The VLM should check if the Python script actually reads the CSV file and performs math, rather than just printing '1.52'."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the Sugar Learning Platform environment/GUI for tasks.",
+            "visual_evidence": "Screenshots show interaction with the desktop environment, file manager, or GUI text editors rather than only a full-screen terminal."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent saves files to the specific paths requested in the prompt.",
+            "visual_evidence": "Save dialogs or file manager views showing files at /home/ga/Documents/."
+        }
+    ],
+    "privileged_info_for_vlm": "The average index of refraction calculated from the provided dataset is exactly 1.52. Based on the reference values (Water ~1.33, Crown Glass ~1.52, Diamond ~2.42), the identified material must be Crown Glass. The script must be saved at /home/ga/Documents/calculate_n.py and the report at /home/ga/Documents/optics_report.odt."
+}

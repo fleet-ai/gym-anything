@@ -1,0 +1,53 @@
+{
+    "task_id": "import_csv_data@1",
+    "task_completion": [
+        {
+            "id": "create_airport_class",
+            "description": "Create the 'Airports' vertex class with the specified schema and UNIQUE index on IataCode.",
+            "points": 20,
+            "visual_evidence": "OrientDB Studio (Schema tab) showing the 'Airports' class with properties: IataCode (STRING, UNIQUE index), Name (STRING), City (STRING), Country (STRING), Latitude (DOUBLE), Longitude (DOUBLE), and Altitude (INTEGER)."
+        },
+        {
+            "id": "import_csv_records",
+            "description": "Import the 20 airport records from /home/ga/airports.csv into the Airports class.",
+            "points": 25,
+            "visual_evidence": "OrientDB Studio (Browse/Query tab) showing a 'SELECT COUNT(*) FROM Airports' result of 20, or a list of records including IataCodes like FCO, JFK, and LHR."
+        },
+        {
+            "id": "create_isincountry_edge_class",
+            "description": "Create the 'IsInCountry' edge class in the database.",
+            "points": 15,
+            "visual_evidence": "OrientDB Studio (Schema tab) showing 'IsInCountry' listed under Classes with a Superclass of 'E' (Edge)."
+        },
+        {
+            "id": "link_airports_to_countries",
+            "description": "Create edges linking Airport vertices to Country vertices based on the Country field.",
+            "points": 30,
+            "visual_evidence": "OrientDB Studio (Graph or Query tab) showing edges of type 'IsInCountry' connecting Airport nodes to Country nodes, or a query result showing 'SELECT count(*) FROM IsInCountry' returning 20."
+        },
+        {
+            "id": "verify_data_integrity",
+            "description": "Verify that the imported data is correctly typed (e.g., Altitude is an Integer, Latitude is a Double).",
+            "points": 10,
+            "visual_evidence": "OrientDB Studio record view showing numeric values for Latitude/Longitude/Altitude without quotes, or the Schema tab confirming the property types."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface for configuration and verification.",
+            "visual_evidence": "Screenshots show the browser open to the OrientDB Studio URL (usually port 2480) and interactions with the Studio UI elements."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent did not manually type in all 20 records but used an import mechanism or batch command.",
+            "visual_evidence": "Absence of 20 individual 'INSERT' commands for every airport; evidence of using the ETL tool, a CSV import wizard, or a single LOAD script."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent logged into the 'demodb' database using the specified credentials.",
+            "visual_evidence": "Login screen showing 'demodb' as the database and 'admin' as the username."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/airports.csv containing exactly 20 airports (including FCO, JFK, LHR, NRT). The database name is 'demodb' with credentials admin/admin. The 'Country' vertices already exist in the database and must be linked to the new 'Airports' vertices via the 'IsInCountry' edge class. The IataCode property must have a UNIQUE index."
+}

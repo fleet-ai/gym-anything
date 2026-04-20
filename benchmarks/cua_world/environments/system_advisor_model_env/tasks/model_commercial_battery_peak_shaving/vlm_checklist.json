@@ -1,0 +1,59 @@
+{
+    "task_id": "model_commercial_battery_peak_shaving@1",
+    "task_completion": [
+        {
+            "id": "open_sam_software",
+            "description": "Agent opens the SAM (System Advisor Model) software or a Python IDE for PySAM.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the SAM GUI interface or a code editor with PySAM imports (e.g., import PySAM.BatteryStateful)."
+        },
+        {
+            "id": "configure_battery_specs",
+            "description": "Agent sets the battery power to 200 kW and energy capacity to 400 kWh.",
+            "points": 15,
+            "visual_evidence": "SAM 'Battery Cell and Pack' or 'Battery System' page showing 200 kW and 400 kWh (or 2 hours) values, or code setting these parameters."
+        },
+        {
+            "id": "load_profile_synthesis",
+            "description": "Agent creates or imports a load profile with 250 kW peaks (06:00-18:00) and 50 kW baseline.",
+            "points": 20,
+            "visual_evidence": "The 'Electric Load' page in SAM showing a diurnal profile with a 250 kW plateau, or code logic generating an 8760 array with these values."
+        },
+        {
+            "id": "dispatch_strategy_setup",
+            "description": "Agent selects the 'Automated Peak Shaving' dispatch strategy.",
+            "points": 15,
+            "visual_evidence": "SAM 'Battery Dispatch' page with 'Automated Peak Shaving' selected, or PySAM code setting the dispatch mode to peak shaving."
+        },
+        {
+            "id": "save_script_or_project",
+            "description": "Agent saves the project file or Python script to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing /home/ga/Documents/SAM_Projects/commercial_peak_shaving.py or Commercial_Peak_Shaving.sam."
+        },
+        {
+            "id": "generate_results_json",
+            "description": "Agent saves the final results JSON with all required keys to the specified path.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output displaying the content of /home/ga/Documents/SAM_Projects/peak_shaving_results.json containing battery_power_kw, battery_energy_kwh, original_peak_demand_kw, new_peak_demand_kw, peak_reduction_kw, and annual_load_kwh."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran a simulation rather than just writing a JSON file with hardcoded values.",
+            "visual_evidence": "Screenshots showing the 'Simulate' button being clicked in SAM, or terminal output showing the execution of the Python script."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Check if the agent manually calculated the 'new_peak_demand_kw' instead of extracting it from SAM/PySAM outputs.",
+            "visual_evidence": "The Python script should show variables assigned from simulation output objects (e.g., out.Outputs.gen) rather than fixed numbers for the results."
+        },
+        {
+            "id": "path_consistency",
+            "description": "Ensure the agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "The file paths in the code or save dialogs must match /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The facility has a 12-hour peak (250kW) and 12-hour base (50kW). Annual load is 912,500 kWh. Battery is 200kW/400kWh. The original peak is 250 kW. Because the peak duration (12 hours) is much longer than the battery duration (2 hours), the 'new_peak_demand_kw' should be between 180 kW and 240 kW (it cannot be reduced to 50kW). The JSON must contain exactly 6 keys: battery_power_kw (200), battery_energy_kwh (400), original_peak_demand_kw (250), new_peak_demand_kw, peak_reduction_kw, and annual_load_kwh (912500)."
+}

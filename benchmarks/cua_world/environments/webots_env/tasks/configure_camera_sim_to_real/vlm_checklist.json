@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_camera_sim_to_real@1",
+    "task_completion": [
+        {
+            "id": "open_webots_interface",
+            "description": "The agent has opened the Webots simulation environment and located the DELIVERY_BOT node.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Webots application window with the DELIVERY_BOT visible in the scene tree or 3D view."
+        },
+        {
+            "id": "locate_front_camera",
+            "description": "The agent has expanded the DELIVERY_BOT node and selected the 'front_camera' device.",
+            "points": 15,
+            "visual_evidence": "The scene tree on the left shows 'front_camera' highlighted or selected."
+        },
+        {
+            "id": "configure_noise_and_blur",
+            "description": "The agent has set the noise to 0.05 and motion blur to 20.0 in the camera properties.",
+            "points": 20,
+            "visual_evidence": "The field editor or scene tree shows 'noise' set to 0.05 and 'motionBlur' set to 20."
+        },
+        {
+            "id": "configure_lens_coefficients",
+            "description": "The agent has set the radial lens coefficients to -0.3 and 0.05.",
+            "points": 20,
+            "visual_evidence": "The 'lens' field under the camera node shows 'radialCoefficients' with values -0.3 and 0.05."
+        },
+        {
+            "id": "configure_focal_properties",
+            "description": "The agent has set the focal distance to 1.2 and focal length to 0.02.",
+            "points": 20,
+            "visual_evidence": "The 'focus' or 'lens' fields show 'focalDistance' set to 1.2 and 'focalLength' set to 0.02."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The agent saves the modified world to the specific path /home/ga/Desktop/sim_to_real_camera.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a terminal command showing the file being saved to /home/ga/Desktop/sim_to_real_camera.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI to modify parameters rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots Scene Tree/Field Editor."
+        },
+        {
+            "id": "no_hardcoded_script_execution",
+            "description": "The agent did not simply run a pre-made script to generate the file without opening the software.",
+            "visual_evidence": "The agent is seen navigating the Webots node hierarchy."
+        },
+        {
+            "id": "correct_target_node",
+            "description": "The agent modified the 'front_camera' specifically, not a generic camera or a different robot.",
+            "visual_evidence": "The selection highlight in the Webots tree is clearly on the 'front_camera' child of 'DELIVERY_BOT'."
+        }
+    ],
+    "privileged_info_for_vlm": "The required values for the 'front_camera' are: noise=0.05, motionBlur=20.0, radialCoefficients=[-0.3, 0.05], focalDistance=1.2, and focalLength=0.02. The final file must be saved exactly to /home/ga/Desktop/sim_to_real_camera.wbt. Ensure the agent is editing the DELIVERY_BOT's camera and not another object."
+}

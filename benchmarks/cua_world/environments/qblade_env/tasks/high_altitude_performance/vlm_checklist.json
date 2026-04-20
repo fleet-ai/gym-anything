@@ -1,0 +1,59 @@
+{
+    "task_id": "high_altitude_performance@1",
+    "task_completion": [
+        {
+            "id": "open_hawt_bem",
+            "description": "Open the HAWT BEM Simulation module within the software.",
+            "points": 10,
+            "visual_evidence": "The software interface shows the 'HAWT BEM Simulation' tab or window active."
+        },
+        {
+            "id": "sim_sealevel_setup",
+            "description": "Configure and run 'Sim_SeaLevel' with air density set to 1.225 kg/m^3.",
+            "points": 20,
+            "visual_evidence": "A simulation named 'Sim_SeaLevel' is visible in the project tree or settings with the density field showing '1.225'."
+        },
+        {
+            "id": "sim_highalt_setup",
+            "description": "Configure and run 'Sim_HighAlt' with air density set to 0.900 kg/m^3.",
+            "points": 20,
+            "visual_evidence": "A simulation named 'Sim_HighAlt' is visible in the project tree or settings with the density field showing '0.900'."
+        },
+        {
+            "id": "save_project_file",
+            "description": "Save the project to the specified path /home/ga/Documents/projects/altitude_study.wpa.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the window title bar shows the path or filename 'altitude_study.wpa'."
+        },
+        {
+            "id": "extract_max_power",
+            "description": "Identify the Maximum Power (kW) values for both simulations from the results/graphs.",
+            "points": 15,
+            "visual_evidence": "The agent views a results table, graph, or 'Power' curve for both simulations to extract the peak values."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the report at /home/ga/Documents/projects/altitude_report.txt with the required format and values.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file 'altitude_report.txt' containing 'Sea Level Max Power', 'High Altitude Max Power', and 'Ratio'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the simulation software GUI rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the HAWT BEM module and simulation parameters."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The Max Power values in the report are derived from the simulation results, not just the prompt's privileged info.",
+            "visual_evidence": "The agent is seen looking at the simulation output/graphs before writing the report."
+        },
+        {
+            "id": "no_hardcoded_ratio",
+            "description": "The ratio calculation should reflect the actual simulated values.",
+            "visual_evidence": "The report shows a ratio consistent with the simulated power outputs (approx 0.7347)."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected air densities are 1.225 kg/m^3 (Sea Level) and 0.900 kg/m^3 (High Altitude). Because wind power is linearly proportional to air density in BEM theory, the expected ratio of High Altitude Max Power to Sea Level Max Power is approximately 0.7347 (0.900 / 1.225). A tolerance of 0.05 is acceptable for the ratio due to potential numerical rounding in the simulation software."
+}

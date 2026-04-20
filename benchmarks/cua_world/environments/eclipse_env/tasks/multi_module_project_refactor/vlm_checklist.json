@@ -1,0 +1,59 @@
+{
+    "task_id": "multi_module_project_refactor@1",
+    "task_completion": [
+        {
+            "id": "target_directory_creation",
+            "description": "The agent created the target directory /home/ga/ecommerce-refactored and the three module subdirectories.",
+            "points": 10,
+            "visual_evidence": "A file explorer view or terminal output showing the existence of /home/ga/ecommerce-refactored containing subfolders: ecommerce-api, ecommerce-persistence, and ecommerce-service."
+        },
+        {
+            "id": "parent_pom_configuration",
+            "description": "The root pom.xml is configured as a parent project with packaging 'pom' and lists the three modules.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the root pom.xml showing <packaging>pom</packaging> and a <modules> section containing ecommerce-api, ecommerce-persistence, and ecommerce-service."
+        },
+        {
+            "id": "module_pom_metadata",
+            "description": "Each module's pom.xml uses groupId 'com.example' and version '1.0-SNAPSHOT'.",
+            "points": 15,
+            "visual_evidence": "Screenshots of pom.xml files in the sub-modules showing the correct groupId and version tags."
+        },
+        {
+            "id": "source_code_migration",
+            "description": "Source code is moved to the correct modules: model classes to ecommerce-api, repositories to ecommerce-persistence, and services to ecommerce-service.",
+            "points": 20,
+            "visual_evidence": "File explorer or editor tabs showing Product.java in ecommerce-api, ProductRepository.java in ecommerce-persistence, and ProductService.java in ecommerce-service (preserving the com.example.ecommerce package structure)."
+        },
+        {
+            "id": "inter_module_dependencies",
+            "description": "The ecommerce-persistence module depends on ecommerce-api, and ecommerce-service depends on both api and persistence.",
+            "points": 20,
+            "visual_evidence": "The <dependencies> section of ecommerce-service/pom.xml showing dependency entries for ecommerce-api and ecommerce-persistence."
+        },
+        {
+            "id": "successful_build",
+            "description": "The project builds successfully using 'mvn clean install' from the root directory.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the output of 'mvn clean install' ending with a 'BUILD SUCCESS' message and a reactor summary listing all modules."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent did not leave placeholder comments or empty classes.",
+            "visual_evidence": "Screenshots of the refactored Java files showing actual logic/code migrated from the monolith, not just empty class definitions."
+        },
+        {
+            "id": "genuine_maven_execution",
+            "description": "The agent actually ran the Maven build command rather than just echoing 'BUILD SUCCESS'.",
+            "visual_evidence": "The terminal output should show the standard Maven progress logs (downloading plugins, compiling, etc.) preceding the success message."
+        },
+        {
+            "id": "manual_refactoring_effort",
+            "description": "The agent interacted with the file system or IDE to move files rather than just creating a single script to do it all instantly.",
+            "visual_evidence": "Sequence of screenshots showing the agent opening different files, creating directories, and editing POM files over time."
+        }
+    ],
+    "privileged_info_for_vlm": "The source monolith is at /home/ga/ecommerce-monolith. The target is /home/ga/ecommerce-refactored. Required modules: ecommerce-api (contains Product, Customer, Order, OrderItem), ecommerce-persistence (contains ProductRepository, CustomerRepository, OrderRepository), and ecommerce-service (contains ProductService, CustomerService, OrderService). All modules must have groupId 'com.example' and version '1.0-SNAPSHOT'. The build must be verified with 'mvn clean install' at the root."
+}

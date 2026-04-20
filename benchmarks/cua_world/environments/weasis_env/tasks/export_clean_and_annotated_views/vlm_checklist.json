@@ -1,0 +1,59 @@
+{
+    "task_id": "export_clean_and_annotated_views@1",
+    "task_completion": [
+        {
+            "id": "ct_image_loaded",
+            "description": "A CT image is loaded into the medical imaging software viewer.",
+            "points": 10,
+            "visual_evidence": "The software interface shows a cross-sectional CT scan (e.g., axial, sagittal, or coronal view) in the main viewport."
+        },
+        {
+            "id": "measurement_tool_active",
+            "description": "The agent selects and activates the line measurement or ruler tool.",
+            "points": 15,
+            "visual_evidence": "The ruler/line tool icon is highlighted in the toolbar, or a measurement cursor is visible over the image."
+        },
+        {
+            "id": "line_measurement_drawn",
+            "description": "A line measurement is drawn on the CT image.",
+            "points": 20,
+            "visual_evidence": "A visible line with distance markers or numerical values (e.g., in mm) is overlaid on the CT scan."
+        },
+        {
+            "id": "export_annotated_view",
+            "description": "The agent exports the view with the measurement visible as 'annotated.jpg'.",
+            "points": 25,
+            "visual_evidence": "The export dialog or file explorer shows the filename 'annotated.jpg' being saved to ~/DICOM/exports/ while the measurement is visible on screen."
+        },
+        {
+            "id": "hide_measurement",
+            "description": "The agent hides or removes the measurement overlay from the view.",
+            "points": 10,
+            "visual_evidence": "The CT image is shown in the viewer without the previously drawn line or numerical measurement markers."
+        },
+        {
+            "id": "export_clean_view",
+            "description": "The agent exports the view without the measurement as 'clean.jpg'.",
+            "points": 20,
+            "visual_evidence": "The export dialog or file explorer shows the filename 'clean.jpg' being saved to ~/DICOM/exports/ while the measurement is hidden."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the software GUI to perform the task rather than command-line manipulation.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and button clicks within the imaging software, not just terminal commands like 'cp' or 'mv'."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement was manually placed by the agent, not pre-existing.",
+            "visual_evidence": "The trajectory shows the sequence of clicking the tool and dragging the line across the anatomy."
+        },
+        {
+            "id": "correct_export_directory",
+            "description": "The files are saved specifically to the requested export directory.",
+            "visual_evidence": "The file save dialog or terminal confirmation shows the path /home/ga/DICOM/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must save two files to /home/ga/DICOM/exports/: 'annotated.jpg' (must show a visible line measurement) and 'clean.jpg' (must show the same CT view but with the measurement hidden). The task is performed on a synthetic CT image."
+}

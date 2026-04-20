@@ -1,0 +1,53 @@
+{
+    "task_id": "corporate_divestiture_segregation@1",
+    "task_completion": [
+        {
+            "id": "read_memo",
+            "description": "Agent opens and reads the divestiture_memo.txt file on the desktop to identify target employees and configuration values.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/divestiture_memo.txt."
+        },
+        {
+            "id": "configure_job_title",
+            "description": "Agent creates or updates the Job Title 'Divestiture Transition Staff' in the HRMS settings.",
+            "points": 15,
+            "visual_evidence": "The Sentrifugo HRMS interface showing the 'Job Title' configuration screen with 'Divestiture Transition Staff' added or selected."
+        },
+        {
+            "id": "configure_employment_status",
+            "description": "Agent creates or updates the Employment Status 'Divested Entity' in the HRMS settings.",
+            "points": 15,
+            "visual_evidence": "The Sentrifugo HRMS interface showing the 'Employment Status' configuration screen with 'Divested Entity' added or selected."
+        },
+        {
+            "id": "update_employee_attributes_batch_1",
+            "description": "Agent updates the first three target employees (EMP008, EMP010, EMP012) with the new Job Title, Employment Status, and @qaserve.com email.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the edit profile pages for EMP008, EMP010, and EMP012 with the updated fields visible."
+        },
+        {
+            "id": "update_employee_attributes_batch_2",
+            "description": "Agent updates the remaining three target employees (EMP015, EMP018, EMP020) with the new Job Title, Employment Status, and @qaserve.com email.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the edit profile pages for EMP015, EMP018, and EMP020 with the updated fields visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed the updates through the Sentrifugo web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots showing the browser navigating the Sentrifugo HRMS menus and clicking 'Save' or 'Update' buttons."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a custom script to automate the SQL database or API calls directly.",
+            "visual_evidence": "The terminal history or active windows do not show the execution of custom Python/Bash scripts designed to bypass the UI."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated to each employee's profile individually or through the employee list.",
+            "visual_evidence": "Sequential screenshots showing the search or selection process for the specific employee IDs (EMP008, etc.)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target employees to be updated are EMP008, EMP010, EMP012, EMP015, EMP018, and EMP020. The new Job Title must be exactly 'Divestiture Transition Staff'. The new Employment Status must be exactly 'Divested Entity'. The email domain for all six employees must be changed to '@qaserve.com' while keeping their original 'first.last' prefix (e.g., john.doe@qaserve.com)."
+}

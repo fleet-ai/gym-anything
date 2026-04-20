@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_hcpv_vs_flatplate_yield@1",
+    "task_completion": [
+        {
+            "id": "hcpv_model_setup",
+            "description": "Create a High Concentration PV (HCPV) model and select a Phoenix, AZ weather file.",
+            "points": 10,
+            "visual_evidence": "SAM GUI showing 'High Concentration PV' in the navigation tree and a Phoenix, AZ TMY file selected in the 'Location and Resource' page, or Python code defining an HCPV module with a Phoenix weather path."
+        },
+        {
+            "id": "pvwatts_model_setup",
+            "description": "Create a Flat-Plate PV (PVWatts) model using the same Phoenix weather file.",
+            "points": 10,
+            "visual_evidence": "SAM GUI showing a 'PVWatts' case or Python code initializing a PVWatts model with the same weather file path used for HCPV."
+        },
+        {
+            "id": "capacity_scaling",
+            "description": "Set the PVWatts DC Nameplate Capacity to exactly 1.2 times the HCPV Nameplate Capacity.",
+            "points": 20,
+            "visual_evidence": "The 'System Design' page for PVWatts showing a 'DC Nameplate Capacity' value that is 1.2x the value shown in the HCPV system design, or Python code performing this calculation (e.g., pv_cap = hcpv_cap * 1.2)."
+        },
+        {
+            "id": "run_simulations",
+            "description": "Execute simulations for both the HCPV and Flat-Plate PV systems.",
+            "points": 20,
+            "visual_evidence": "The 'Simulate' button being clicked, progress bars appearing, or the 'Results' page populating with data for both cases."
+        },
+        {
+            "id": "save_project_files",
+            "description": "Save the project file or script to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or terminal output showing a .sam or .py file saved in /home/ga/Documents/SAM_Projects/."
+        },
+        {
+            "id": "generate_json_results",
+            "description": "Save the comparative results (Annual Energy and Capacity Factor) to the specified JSON file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/Documents/SAM_Projects/technology_comparison.json containing all 7 required keys with numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_software_interaction",
+            "description": "Verify the agent actually used SAM or PySAM rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the SAM GUI interface with active results or a Python script that imports 'PySAM' or 'nrel.pysam' and calls the 'execute()' method."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Ensure the agent didn't simply write the JSON file without running a model.",
+            "visual_evidence": "The trajectory must show the 'Results' summary table in SAM or the print output of simulation variables before the JSON file is created."
+        },
+        {
+            "id": "correct_scaling_logic",
+            "description": "Check that the 1.2x capacity ratio was derived from the HCPV system's specific capacity.",
+            "visual_evidence": "Visual confirmation of the HCPV capacity (usually ~20 kW by default in SAM) and the PVWatts capacity being set to exactly 1.2x that specific value."
+        }
+    ],
+    "privileged_info_for_vlm": "The default SAM HCPV (High Concentration PV) case typically has a Nameplate Capacity of 20 kW DC. Therefore, the PVWatts system capacity should be set to 24 kW DC. Phoenix, AZ weather files in SAM are usually named 'phoenix_az_33.450445_-111.983046_tmy3.csv' or similar. Annual energy for HCPV in Phoenix is generally higher per kW than flat-plate due to high DNI, but the 1.2x capacity boost for PVWatts may make the total kWh values comparable."
+}

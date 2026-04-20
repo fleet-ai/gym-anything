@@ -1,0 +1,59 @@
+{
+    "task_id": "migrate_logbook_to_sqlite@1",
+    "task_completion": [
+        {
+            "id": "subsurface_open",
+            "description": "Subsurface application is open and displaying the dive logbook.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible, showing a list of dives in the main pane."
+        },
+        {
+            "id": "save_as_dialog_opened",
+            "description": "The agent navigated to 'File' -> 'Save As' to initiate the migration.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' or 'Save File' file picker dialog is visible over the Subsurface main window."
+        },
+        {
+            "id": "correct_filename_entered",
+            "description": "The agent entered 'dives.db' as the filename in the save dialog.",
+            "points": 20,
+            "visual_evidence": "The text 'dives.db' is typed into the 'Name' or 'File Name' field of the file picker dialog."
+        },
+        {
+            "id": "correct_directory_selected",
+            "description": "The agent navigated to the /home/ga/Documents directory in the file picker.",
+            "points": 20,
+            "visual_evidence": "The file picker path bar or sidebar indicates the current directory is '/home/ga/Documents'."
+        },
+        {
+            "id": "sqlite_format_selection",
+            "description": "The agent attempted to select an SQLite or database format filter in the file dialog.",
+            "points": 25,
+            "visual_evidence": "The file format dropdown menu is open or shows a selection intended for SQLite/database files."
+        },
+        {
+            "id": "save_confirmed",
+            "description": "The agent clicked the 'Save' button to finalize the export.",
+            "points": 10,
+            "visual_evidence": "The cursor is over the 'Save' button, or the dialog closes after clicking 'Save'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the Subsurface GUI rather than terminal commands to perform the migration.",
+            "visual_evidence": "Screenshots show interactions with the Subsurface menu and file dialogs, not a terminal window running sqlite3 or cp commands."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor or touch command to create a dummy file.",
+            "visual_evidence": "The agent interacts specifically with the Subsurface 'Save As' workflow."
+        },
+        {
+            "id": "original_file_preserved",
+            "description": "The agent did not rename or delete the original 'dives.ssrf' file.",
+            "visual_evidence": "The file manager or Subsurface title bar still references the original logbook or shows it exists in the Documents folder."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires migrating a logbook containing 29 dives (found in SampleDivesV2.ssrf) to an SQLite file named 'dives.db' in /home/ga/Documents. Note: Subsurface typically uses XML (.ssrf/.xml) as its native format; the agent must attempt to use the 'Save As' dialog to change the format to SQLite as instructed. Although metadata might suggest 8 dives, the actual file contains 29 dives."
+}

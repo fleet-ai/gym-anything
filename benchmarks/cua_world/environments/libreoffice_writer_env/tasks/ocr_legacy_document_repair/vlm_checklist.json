@@ -1,0 +1,53 @@
+{
+    "task_id": "ocr_legacy_document_repair@1",
+    "task_completion": [
+        {
+            "id": "open_source_document",
+            "description": "The agent opens the source file '/home/ga/Documents/udhr_ocr_scan.docx' in a word processor.",
+            "points": 10,
+            "visual_evidence": "A word processor window (like LibreOffice Writer) showing the file path or name 'udhr_ocr_scan.docx' in the title bar."
+        },
+        {
+            "id": "apply_title_style",
+            "description": "The 'Title' style is applied to the first line of the document.",
+            "points": 15,
+            "visual_evidence": "The cursor is on the first line (Universal Declaration of Human Rights) and the style dropdown/sidebar shows 'Title' selected."
+        },
+        {
+            "id": "apply_heading_styles",
+            "description": "Apply 'Heading 1' to 'Preamble' and 'Heading 2' to 'Article 1' through 'Article 5'.",
+            "points": 20,
+            "visual_evidence": "The text 'Preamble' and 'Article 1' through 'Article 5' appear with distinct heading formatting; style inspector shows 'Heading 1' and 'Heading 2' respectively."
+        },
+        {
+            "id": "repair_ocr_flow",
+            "description": "Broken lines are joined into natural paragraphs and hyphenated words are re-joined.",
+            "points": 30,
+            "visual_evidence": "Text blocks appear as continuous paragraphs rather than short, jagged lines. Words like 'declaration', 'fundamental', and 'inalienable' are whole words without mid-word hyphens or spaces."
+        },
+        {
+            "id": "save_restored_document",
+            "description": "The document is saved to the specific output path '/home/ga/Documents/udhr_restored.docx'.",
+            "points": 25,
+            "visual_evidence": "The 'Save As' dialog showing the path '/home/ga/Documents/udhr_restored.docx' or the title bar updating to 'udhr_restored.docx' after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the word processor's GUI to apply styles and edit text rather than just using terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with style menus, toolbars, or the document body in the GUI."
+        },
+        {
+            "id": "no_manual_retyping",
+            "description": "The agent repaired the existing text rather than deleting everything and re-typing the entire UDHR from memory.",
+            "visual_evidence": "The agent is seen selecting specific line breaks to delete or using backspace/delete on specific OCR artifacts within the existing text."
+        },
+        {
+            "id": "genuine_formatting",
+            "description": "The agent used actual document styles (Title, Heading 1, Heading 2) rather than just manually changing font size and bolding.",
+            "visual_evidence": "The style selection box in the toolbar explicitly displays 'Title', 'Heading 1', or 'Heading 2' when the text is selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is 'udhr_ocr_scan.docx' and the output must be 'udhr_restored.docx'. Key words that were likely broken by OCR and need re-joining include: declaration, fundamental, jurisdiction, distinction, inalienable, conscience, and brotherhood. The final document should have between 10 and 25 paragraphs. 'Preamble' must be Heading 1, and Articles 1-5 must be Heading 2."
+}

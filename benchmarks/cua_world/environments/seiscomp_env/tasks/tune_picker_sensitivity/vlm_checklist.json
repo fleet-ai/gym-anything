@@ -1,0 +1,59 @@
+{
+    "task_id": "tune_picker_sensitivity@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig",
+            "description": "Open the SeisComP configuration tool (scconfig).",
+            "points": 10,
+            "visual_evidence": "The SeisComP Configuration window is visible on the desktop."
+        },
+        {
+            "id": "navigate_to_scautopick_bindings",
+            "description": "Navigate to the scautopick module bindings for station GE.KWP.",
+            "points": 15,
+            "visual_evidence": "The 'Modules' or 'Bindings' tab is selected, showing 'scautopick' and the station 'GE.KWP'."
+        },
+        {
+            "id": "select_highthreshold_profile",
+            "description": "Select or open the 'HighThreshold' binding profile for editing.",
+            "points": 15,
+            "visual_evidence": "A configuration panel for the 'HighThreshold' profile is active/visible."
+        },
+        {
+            "id": "update_trigon_parameter",
+            "description": "Update the 'trigOn' parameter to 3.0.",
+            "points": 25,
+            "visual_evidence": "The 'trigOn' input field within the HighThreshold profile shows the value '3.0' or '3'."
+        },
+        {
+            "id": "apply_configuration",
+            "description": "Save and apply the configuration changes to the system.",
+            "points": 15,
+            "visual_evidence": "The agent clicks 'Save' or 'Apply' in scconfig, often followed by a 'Configuration updated' or 'Sync' confirmation dialog."
+        },
+        {
+            "id": "execute_playback_command",
+            "description": "Run the scautopick playback command using the specified waveform file and database.",
+            "points": 20,
+            "visual_evidence": "A terminal window shows the command 'scautopick --playback --inventory-db ...' or similar, referencing the file '/home/ga/seiscomp/var/lib/archive/2024/GE/KWP/BHZ.D/GE.KWP..BHZ.D.2024.001' and the mysql database."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SeisComP GUI (scconfig) to modify parameters rather than editing text files directly.",
+            "visual_evidence": "Screenshots show the scconfig window and mouse interactions with the GUI elements."
+        },
+        {
+            "id": "correct_station_context",
+            "description": "The agent specifically modified GE.KWP and not a different station.",
+            "visual_evidence": "The station name 'GE.KWP' is clearly visible in the binding or configuration path."
+        },
+        {
+            "id": "genuine_command_execution",
+            "description": "The playback command was typed/executed in a terminal, not just simulated.",
+            "visual_evidence": "A terminal prompt showing the execution of the scautopick command and any resulting output (even if it reports a missing file)."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must set the 'trigOn' parameter to exactly 3.0 for the 'HighThreshold' profile of station 'GE.KWP' within the 'scautopick' module. Note: The waveform file /home/ga/seiscomp/var/lib/archive/2024/GE/KWP/BHZ.D/GE.KWP..BHZ.D.2024.001 is known to be missing from the environment; the agent should still be credited for attempting the command as instructed in the task description."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "derive_reach_storage_curve@1",
+    "task_completion": [
+        {
+            "id": "locate_hdf5_file",
+            "description": "Agent locates the HDF5 geometry file 'Muncie.p04.tmp.hdf' in the file system.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or terminal output showing the path to Muncie.p04.tmp.hdf."
+        },
+        {
+            "id": "inspect_hdf5_structure",
+            "description": "Agent uses a tool (like h5py in a script or an HDF viewer) to inspect the geometry data, specifically cross-section properties.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the agent exploring HDF5 groups such as 'Geometry/Cross Sections'."
+        },
+        {
+            "id": "script_development_logic",
+            "description": "Agent writes a Python script that implements the Average End Area method and iterates through elevations 925 to 955.",
+            "points": 25,
+            "visual_evidence": "An editor or terminal showing Python code that references '925', '955', 'Average End Area', and 'Main Channel reach lengths'."
+        },
+        {
+            "id": "execute_volume_calculation",
+            "description": "Agent executes the Python script to process the HDF5 data and calculate volumes.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing the script running without errors or printing intermediate calculation results."
+        },
+        {
+            "id": "save_csv_output",
+            "description": "Agent saves the final results to the specific path /home/ga/Documents/hec_ras_results/reach_storage_curve.csv.",
+            "points": 15,
+            "visual_evidence": "Code showing the save command or a terminal command confirming the file exists at the specified path."
+        },
+        {
+            "id": "verify_csv_format",
+            "description": "The generated CSV contains the correct header and data range (925 to 955 ft).",
+            "points": 10,
+            "visual_evidence": "A 'cat' or 'head' command showing the CSV content with header 'Elevation_ft,Volume_acft' and rows starting at 925."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the volume values directly into the script without calculation.",
+            "visual_evidence": "The Python script should contain logic to read HDF5 datasets and perform math, rather than a dictionary of pre-computed values."
+        },
+        {
+            "id": "genuine_hdf5_access",
+            "description": "The agent actually opened and read the Muncie.p04.tmp.hdf file.",
+            "visual_evidence": "Code must include h5py.File() or similar calls targeting the specific HDF5 file provided in the task."
+        },
+        {
+            "id": "methodology_adherence",
+            "description": "The agent used the Average End Area method as requested, not a simplified bounding box or single-section estimate.",
+            "visual_evidence": "The script logic should show summation of (Area1 + Area2) / 2 * Length across multiple cross-sections."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing a HEC-RAS HDF5 file. Note that in HEC-RAS 6.x, cross-section identifiers are often found in the 'Attributes' dataset within the Geometry groups; a common error is looking for a 'River Stations' dataset which may not exist. The elevation range is 925 to 955 inclusive (31 data points). The output must be at /home/ga/Documents/hec_ras_results/reach_storage_curve.csv with the exact header 'Elevation_ft,Volume_acft'. A 5% tolerance is allowed for the volume values compared to the ground truth."
+}

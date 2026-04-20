@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_automatic_door_kinematics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment and locates the door robot.",
+            "points": 10,
+            "visual_evidence": "The Webots application is visible with a 3D scene containing a hospital environment and a door structure."
+        },
+        {
+            "id": "set_sensor_max_range",
+            "description": "Set the 'DEF DOOR_SENSOR DistanceSensor' maxRange to 4.0 meters.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a pop-up dialog shows the 'maxRange' field of the DistanceSensor node set to 4.0."
+        },
+        {
+            "id": "set_joint_max_stop",
+            "description": "Update the 'DEF DOOR_PARAMS JointParameters' maxStop to 1.5 meters.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows the 'maxStop' field under JointParameters set to 1.5."
+        },
+        {
+            "id": "set_motor_max_velocity",
+            "description": "Configure the 'DEF DOOR_MOTOR LinearMotor' maxVelocity to 0.8 m/s.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows the 'maxVelocity' field of the LinearMotor node set to 0.8."
+        },
+        {
+            "id": "set_motor_max_force",
+            "description": "Configure the 'DEF DOOR_MOTOR LinearMotor' maxForce to 150.0 N.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the 'maxForce' field of the LinearMotor node set to 150.0."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specific path /home/ga/Desktop/hospital_door_fixed.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a terminal confirmation shows the file being saved to /home/ga/Desktop/hospital_door_fixed.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree or field editor."
+        },
+        {
+            "id": "no_hardcoding_script",
+            "description": "The agent did not simply run a script to overwrite the file without opening the simulator.",
+            "visual_evidence": "The Webots application window is active and the specific nodes (DOOR_SENSOR, DOOR_PARAMS, DOOR_MOTOR) are expanded in the UI."
+        },
+        {
+            "id": "correct_node_selection",
+            "description": "The agent correctly identified the DEF names specified in the task.",
+            "visual_evidence": "The highlighted nodes in the Webots tree view match the DEF names: DOOR_SENSOR, DOOR_PARAMS, and DOOR_MOTOR."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must set the following specific values in the Webots scene tree: DistanceSensor (DEF DOOR_SENSOR) maxRange = 4.0; JointParameters (DEF DOOR_PARAMS) maxStop = 1.5; LinearMotor (DEF DOOR_MOTOR) maxVelocity = 0.8 and maxForce = 150.0. The final file must be saved as /home/ga/Desktop/hospital_door_fixed.wbt."
+}

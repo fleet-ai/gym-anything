@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_isolated_territories@1",
+    "task_completion": [
+        {
+            "id": "load_layers",
+            "description": "Load both the countries and populated places shapefiles into the gvSIG View.",
+            "points": 10,
+            "visual_evidence": "The Table of Contents (TOC) in gvSIG shows 'ne_110m_admin_0_countries' and 'ne_110m_populated_places' as active layers."
+        },
+        {
+            "id": "open_spatial_selection",
+            "description": "Open the 'Select by Location' or 'Spatial Selection' tool dialog.",
+            "points": 15,
+            "visual_evidence": "A dialog window titled 'Selection by location' or 'Spatial selection' is visible over the gvSIG workspace."
+        },
+        {
+            "id": "configure_spatial_selection",
+            "description": "Configure the tool to select countries that 'do not contain' or are 'disjoint' from populated places.",
+            "points": 25,
+            "visual_evidence": "The spatial selection dialog shows 'ne_110m_admin_0_countries' as the target and 'ne_110m_populated_places' as the reference, with a spatial relationship like 'disjoint' or 'does not contain' selected."
+        },
+        {
+            "id": "verify_selection_visual",
+            "description": "Execute the selection and verify that specific countries are highlighted in the map or attribute table.",
+            "points": 20,
+            "visual_evidence": "A subset of countries is highlighted (usually yellow) on the map. Major countries like the USA, China, and Russia should NOT be highlighted."
+        },
+        {
+            "id": "export_shapefile",
+            "description": "Export the selected features to the specified output path.",
+            "points": 30,
+            "visual_evidence": "The 'Export to...' or 'Save as...' dialog is shown with the output path set to '/home/ga/gvsig_data/exports/isolated_territories.shp', followed by a success message or the new layer appearing in the TOC."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gvSIG menus, toolbars, and dialog boxes."
+        },
+        {
+            "id": "no_manual_selection",
+            "description": "The agent used spatial selection logic rather than manually clicking individual countries to match a known list.",
+            "visual_evidence": "The 'Spatial Selection' dialog is configured and executed; the agent does not use the manual 'Select Feature' tool to click 15 specific polygons."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The output file was created via the gvSIG export process.",
+            "visual_evidence": "The export wizard or 'Save as' dialog is visible and filled out within the gvSIG interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The final output shapefile should contain exactly 15 features. Major countries such as the United States of America, China, Brazil, India, Russia, Australia, and Canada MUST NOT be in the final selection, as they all contain populated places in this dataset. The spatial relationship used should be 'disjoint' or a negative selection of 'contains'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_sales_group_and_reassign_leads@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_groups",
+            "description": "Navigate to the User Groups management section in Vtiger CRM settings.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Groups' list or 'Add Group' interface within the CRM settings."
+        },
+        {
+            "id": "create_enterprise_sales_group",
+            "description": "Create a new group named 'Enterprise Sales Team' with the specified description.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the 'Add Group' form with 'Enterprise Sales Team' in the Group Name field and 'Team for handling large technology accounts' in the Description field."
+        },
+        {
+            "id": "add_admin_to_group",
+            "description": "Add the 'Administrator' user to the 'Enterprise Sales Team' group.",
+            "points": 15,
+            "visual_evidence": "The group creation or edit screen showing 'Administrator' selected in the 'Member List' or 'Users' column for the new group."
+        },
+        {
+            "id": "filter_technology_leads",
+            "description": "Filter or search the Leads module for records where the Industry is 'Technology'.",
+            "points": 15,
+            "visual_evidence": "The Leads list view showing a filter applied for 'Industry equals Technology' or a list of leads where the Industry column explicitly says 'Technology'."
+        },
+        {
+            "id": "select_technology_leads",
+            "description": "Select all leads identified as belonging to the 'Technology' industry.",
+            "points": 10,
+            "visual_evidence": "Checkboxes next to the Technology leads are ticked in the Leads list view."
+        },
+        {
+            "id": "reassign_leads_to_group",
+            "description": "Mass update or change owner of the selected leads to the 'Enterprise Sales Team' group.",
+            "points": 30,
+            "visual_evidence": "A 'Change Owner' or 'Mass Edit' dialog showing the 'Assigned To' field being set to 'Group' and then 'Enterprise Sales Team'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_db_mod",
+            "description": "The agent did not use the terminal to execute SQL queries to modify the database directly.",
+            "visual_evidence": "The terminal logs should not show 'mysql' commands or SQL scripts being executed to update the 'vtiger_groups' or 'vtiger_leaddetails' tables."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Vtiger CRM web interface to perform the tasks.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with CRM buttons, dropdowns, and text fields."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the menu system rather than guessing direct URLs for internal settings.",
+            "visual_evidence": "The agent is seen clicking on the 'Settings' gear icon or 'Marketing' menu to reach the required modules."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected group name is 'Enterprise Sales Team'. The target industry to filter by is 'Technology'. There are exactly 5 leads that match the 'Technology' industry criteria which must be reassigned to the new group. The 'Administrator' user must be a member of the new group."
+}

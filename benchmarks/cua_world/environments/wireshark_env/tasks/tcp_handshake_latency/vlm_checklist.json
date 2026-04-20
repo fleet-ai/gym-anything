@@ -1,0 +1,53 @@
+{
+    "task_id": "tcp_handshake_latency@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the specified pcapng file in a network analysis tool like Wireshark or via terminal-based tshark.",
+            "points": 10,
+            "visual_evidence": "A window showing Wireshark with '200722_tcp_anon.pcapng' loaded or a terminal command referencing the file path."
+        },
+        {
+            "id": "filter_handshakes",
+            "description": "The agent applies filters or logic to isolate TCP SYN/ACK packets to calculate initial RTT.",
+            "points": 15,
+            "visual_evidence": "Display filters like 'tcp.flags.syn == 1' in Wireshark or tshark commands extracting 'tcp.analysis.initial_rtt'."
+        },
+        {
+            "id": "calculate_rtt_values",
+            "description": "The agent identifies the RTT for the connections in the capture.",
+            "points": 20,
+            "visual_evidence": "Terminal output or scripts showing RTT values (e.g., ~0.0045s or ~0.0056s) being processed."
+        },
+        {
+            "id": "generate_csv_output",
+            "description": "The agent creates the CSV file with the specific header and required columns.",
+            "points": 25,
+            "visual_evidence": "A file named 'handshake_latencies.csv' in ~/Documents/captures/ with columns: src_ip, dst_ip, src_port, dst_port, initial_rtt_seconds."
+        },
+        {
+            "id": "generate_summary_text",
+            "description": "The agent creates the summary text file containing connection counts and RTT statistics (min, max, mean).",
+            "points": 30,
+            "visual_evidence": "A file named 'handshake_summary.txt' in ~/Documents/captures/ containing the total connections, min/max/mean RTT in ms, and details of the slowest connection."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "The agent performed actual analysis of the pcap file rather than guessing values.",
+            "visual_evidence": "The agent is seen running tshark/Wireshark or a script that reads the pcap file, rather than just echo-ing text into files."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not copy-paste the ground truth values from an external source or prompt injection.",
+            "visual_evidence": "The agent's command history shows the derivation of the statistics (e.g., using awk, python, or tshark stats) before writing the files."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific file paths requested in the prompt.",
+            "visual_evidence": "Commands or file explorer views showing files at '~/Documents/captures/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth data for '200722_tcp_anon.pcapng' contains 4 connection entries (due to tshark reporting RTT for both directions of 2 unique flows). Expected statistics: Minimum RTT = 4.57 ms, Maximum RTT = 5.66 ms, Mean RTT = 5.12 ms. The CSV must use seconds (e.g., 0.00457), while the summary text must use milliseconds. The slowest connection has an RTT of approximately 5.66 ms."
+}

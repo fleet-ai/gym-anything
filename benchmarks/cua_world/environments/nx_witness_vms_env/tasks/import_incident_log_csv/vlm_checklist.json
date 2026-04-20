@@ -1,0 +1,59 @@
+{
+    "task_id": "import_incident_log_csv@1",
+    "task_completion": [
+        {
+            "id": "open_csv_file",
+            "description": "Agent opens and reads the source CSV file at /home/ga/Documents/acs_exceptions.csv",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of acs_exceptions.csv, including columns for Event Type, Camera Name, and Timestamp."
+        },
+        {
+            "id": "write_python_script",
+            "description": "Agent writes a Python script to process the CSV and interact with the Nx Witness API",
+            "points": 20,
+            "visual_evidence": "A code editor or terminal showing Python code that imports 'csv', 'requests', and 'datetime', referencing the localhost:7001 endpoint."
+        },
+        {
+            "id": "script_execution",
+            "description": "Agent executes the Python script to perform the import",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the execution of the python script (e.g., 'python3 script.py') without fatal connection errors."
+        },
+        {
+            "id": "vms_login_verification",
+            "description": "Agent accesses the Nx Witness Web Admin or Client to verify the import",
+            "points": 15,
+            "visual_evidence": "A browser window or VMS client showing the Nx Witness interface at localhost:7001."
+        },
+        {
+            "id": "verify_bookmarks_created",
+            "description": "Bookmarks appear in the VMS matching the CSV event types",
+            "points": 20,
+            "visual_evidence": "The Nx Witness 'Bookmarks' log or timeline showing entries like 'Door Held Open', 'Access Denied', or 'Barrier Forced'."
+        },
+        {
+            "id": "verify_bookmark_details",
+            "description": "Bookmark descriptions and camera assignments are correct",
+            "points": 20,
+            "visual_evidence": "A bookmark detail view showing the description field formatted as 'User: [Name]' and the bookmark associated with the specific 'Camera Name' from the CSV."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_interaction",
+            "description": "Agent used the API/Scripting method rather than manual entry",
+            "visual_evidence": "Screenshots must show the creation and execution of a Python script, not the agent manually typing each bookmark into the VMS GUI one by one."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "Agent used the actual CSV data, not dummy data",
+            "visual_evidence": "The script or terminal output should reflect the specific names and timestamps found in /home/ga/Documents/acs_exceptions.csv."
+        },
+        {
+            "id": "authenticated_requests",
+            "description": "Agent used the provided credentials for the API",
+            "visual_evidence": "The Python script or environment variables should show the use of 'admin' and 'Admin1234!' for authentication."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/acs_exceptions.csv. The Nx Witness VMS is at https://localhost:7001. Credentials are admin / Admin1234!. The CSV contains 4 events: 'Door Held Open', 'Access Denied', 'Barrier Forced', and 'Unauthorized Entry'. Timestamps must be converted from ISO 8601 to millisecond Unix timestamps for the API 'startTimeMs' and 'durationMs' fields. Descriptions must strictly follow the 'User: [User]' format."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "harden_discussion_pingbacks@1",
+    "task_completion": [
+        {
+            "id": "disable_default_pingbacks",
+            "description": "Disable pingbacks and trackbacks on new posts in Discussion Settings.",
+            "points": 10,
+            "visual_evidence": "In Settings > Discussion, the checkbox 'Allow link notifications from other blogs (pingbacks and trackbacks) on new articles' is unchecked."
+        },
+        {
+            "id": "auto_close_comments",
+            "description": "Automatically close comments on posts older than 30 days.",
+            "points": 15,
+            "visual_evidence": "In Settings > Discussion, the checkbox 'Automatically close comments on posts older than X days' is checked and the number is set to '30'."
+        },
+        {
+            "id": "comment_link_limit",
+            "description": "Hold comments in the queue if they contain 1 or more links.",
+            "points": 15,
+            "visual_evidence": "In Settings > Discussion, under 'Comment Moderation', the value for 'Hold a comment in the queue if it contains X or more links' is set to '1'."
+        },
+        {
+            "id": "retroactive_ping_disable",
+            "description": "Retroactively update all published posts to disallow pings.",
+            "points": 30,
+            "visual_evidence": "The agent uses the 'Bulk Actions' menu in the Posts screen to select all posts, clicks 'Edit', and changes the 'Pings' dropdown to 'Do not allow', followed by clicking 'Update'."
+        },
+        {
+            "id": "remove_pingback_spam",
+            "description": "Remove all pending pingback spam from the moderation queue.",
+            "points": 20,
+            "visual_evidence": "In the Comments screen, pending pingbacks (often identified by '[...]' or specific pingback icons) are deleted or moved to Trash."
+        },
+        {
+            "id": "preserve_jane_doe",
+            "description": "Ensure the legitimate comment from 'Jane Doe' remains intact.",
+            "points": 10,
+            "visual_evidence": "The comment from 'Jane Doe' is still visible in the Comments list (either in 'All' or 'Approved') and was not deleted during the spam cleanup."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress web interface rather than WP-CLI or terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with WordPress dashboard menus and settings pages in the Firefox browser."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the settings pages rather than jumping directly to success URLs.",
+            "visual_evidence": "Sequential screenshots show the transition from the Dashboard to Settings > Discussion and the Posts/Comments management screens."
+        },
+        {
+            "id": "no_manual_database_edit",
+            "description": "The agent did not use a database manager (like phpMyAdmin) to change settings.",
+            "visual_evidence": "The agent remains within the WordPress admin area and Firefox browser throughout the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The following WordPress options must be set: 'default_ping_status' must be 'closed'; 'close_comments_for_old_posts' must be '1' (enabled); 'close_comments_days_old' must be '30'; 'comment_max_links' must be '1'. The agent must use the Bulk Edit feature on the Posts page to set 'Pings' to 'Do not allow' for existing content. The comment by 'Jane Doe' must not be deleted."
+}

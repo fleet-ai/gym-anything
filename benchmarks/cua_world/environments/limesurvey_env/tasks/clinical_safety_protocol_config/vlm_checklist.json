@@ -1,0 +1,53 @@
+{
+    "task_id": "clinical_safety_protocol_config@1",
+    "task_completion": [
+        {
+            "id": "access_survey_settings",
+            "description": "Navigate to the 'Depression Screening - Fall 2024' survey settings or structure page.",
+            "points": 10,
+            "visual_evidence": "The survey title 'Depression Screening - Fall 2024' is visible in the LimeSurvey interface."
+        },
+        {
+            "id": "configure_admin_notification",
+            "description": "Set the admin notification email with the conditional expression.",
+            "points": 25,
+            "visual_evidence": "The expression {if(safety_check == 'Y', 'dr.patel@clinical-safety.org', '')} is entered in the 'Send detailed admin notification email to' field within the survey notification settings."
+        },
+        {
+            "id": "create_crisis_resource_question",
+            "description": "Create a new 'Text display' question with the code 'crisis_resource'.",
+            "points": 20,
+            "visual_evidence": "A question with code 'crisis_resource' and type 'Text display' is visible in the survey structure."
+        },
+        {
+            "id": "set_crisis_resource_text",
+            "description": "Add the specific lifeline text to the 'crisis_resource' question.",
+            "points": 20,
+            "visual_evidence": "The text '988 Suicide & Crisis Lifeline' is visible in the question text editor for 'crisis_resource'."
+        },
+        {
+            "id": "set_relevance_equation",
+            "description": "Configure the relevance equation for the crisis resource question.",
+            "points": 25,
+            "visual_evidence": "The relevance equation field for the 'crisis_resource' question contains 'safety_check == \"Y\"'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey buttons, form fields, and menus."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply display a success message without performing the configuration steps.",
+            "visual_evidence": "Sequential screenshots show the actual input of the email expression and relevance logic into the software's UI."
+        },
+        {
+            "id": "correct_target_survey",
+            "description": "The agent is working on the 'Depression Screening - Fall 2024' survey and not a default or placeholder survey.",
+            "visual_evidence": "The survey name is consistently visible in the breadcrumbs or header of the application."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey name is 'Depression Screening - Fall 2024'. The trigger question code is 'safety_check' (case-sensitive). The required email expression is {if(safety_check == 'Y', 'dr.patel@clinical-safety.org', '')}. The crisis resource question must have code 'crisis_resource', contain the text '988 Suicide & Crisis Lifeline', and have the relevance equation 'safety_check == \"Y\"'. Note that LimeSurvey uses curly braces for expressions in notification fields but often uses a dedicated 'Relevance equation' field for questions."
+}

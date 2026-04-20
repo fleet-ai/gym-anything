@@ -1,0 +1,59 @@
+{
+    "task_id": "schedule_sequential_routine@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger fitness manager as 'admin'.",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or routine list is visible, and the 'admin' username is shown in the navigation bar or user profile section."
+        },
+        {
+            "id": "locate_existing_routine",
+            "description": "Agent locates and views the details of the '5x5 Beginner' routine to find its End Date.",
+            "points": 15,
+            "visual_evidence": "A screen showing the '5x5 Beginner' routine details, specifically displaying its 'End Date' field."
+        },
+        {
+            "id": "initiate_new_routine",
+            "description": "Agent opens the form to create a new training routine.",
+            "points": 10,
+            "visual_evidence": "The 'Add routine' or 'New routine' form is visible on the screen."
+        },
+        {
+            "id": "set_routine_name",
+            "description": "Agent enters 'Intermediate Hypertrophy' as the name of the new routine.",
+            "points": 15,
+            "visual_evidence": "The text 'Intermediate Hypertrophy' is typed into the 'Description' or 'Name' field of the routine form."
+        },
+        {
+            "id": "calculate_and_set_start_date",
+            "description": "Agent sets the Start Date of the new routine to exactly one day after the '5x5 Beginner' End Date.",
+            "points": 30,
+            "visual_evidence": "The date picker or text input for 'Start Date' shows a value that is numerically one day greater than the previously viewed End Date of the '5x5 Beginner' routine."
+        },
+        {
+            "id": "save_routine",
+            "description": "Agent submits the form to create the routine.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Save' or 'Submit' button, and a success message or the updated routine list appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands or scripts via the terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser; no terminal windows showing SQL or Django management commands are used to create the routine."
+        },
+        {
+            "id": "no_hardcoded_date_assumption",
+            "description": "The agent actually looked up the '5x5 Beginner' end date before setting the new start date.",
+            "visual_evidence": "The trajectory includes a step where the agent navigates to the '5x5 Beginner' routine details page before filling out the new routine form."
+        },
+        {
+            "id": "genuine_app_interaction",
+            "description": "The agent interacted with the local wger instance at http://localhost.",
+            "visual_evidence": "The browser address bar consistently shows 'localhost' or '127.0.0.1' during the routine creation process."
+        }
+    ],
+    "privileged_info_for_vlm": "The prerequisite routine is named '5x5 Beginner'. Its end date is randomized at runtime, so the agent MUST view this routine's details to determine the correct Start Date for the new routine. The new routine must be named exactly 'Intermediate Hypertrophy' and its Start Date must be (5x5 Beginner End Date + 1 day)."
+}

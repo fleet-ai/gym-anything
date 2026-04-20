@@ -1,0 +1,59 @@
+{
+    "task_id": "mars_rover_relay_network_analysis@1",
+    "task_completion": [
+        {
+            "id": "read_spec_file",
+            "description": "Agent opens and reads the mission specifications from ~/Desktop/mars_relay_spec.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of mars_relay_spec.txt on the desktop."
+        },
+        {
+            "id": "gmat_setup",
+            "description": "Agent opens the GMAT application and configures the Mars rover (Jezero Crater) and the two orbiters (MRO and MAVEN).",
+            "points": 20,
+            "visual_evidence": "The GMAT GUI open with 'Jezero', 'MRO', and 'MAVEN' visible in the Resources tree."
+        },
+        {
+            "id": "visibility_constraint_config",
+            "description": "Agent sets the 10-degree minimum elevation constraint for the contact locators.",
+            "points": 15,
+            "visual_evidence": "GMAT 'ContactLocator' configuration window showing a 'Minimum Elevation Angle' set to 10 degrees."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the GMAT simulation for the specified 7-day period starting 01 Jan 2026.",
+            "points": 20,
+            "visual_evidence": "GMAT Mission tree showing the 'Run' command or a progress bar indicating the simulation is executing."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing 'mars_relay_analysis.script' inside the '~/GMAT_output/' folder."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent creates the final relay_summary.txt with the calculated minutes and primary relay.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing 'relay_summary.txt' with 'mro_total_minutes', 'maven_total_minutes', and 'primary_relay' formatted correctly."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_usage",
+            "description": "The agent used the GMAT GUI to perform calculations rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the GMAT interface being interacted with (Resource tree, Mission tree, or Output tabs)."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply copy the expected values from the prompt or privileged info without running the tool.",
+            "visual_evidence": "The GMAT 'ReportFile' or 'ContactLocator' output windows showing the calculated durations before they are written to the final text file."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent used the specified paths for input and output.",
+            "visual_evidence": "File paths in the GMAT 'Save' dialogs or terminal commands matching '~/Desktop/mars_relay_spec.txt' and '~/GMAT_output/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation should cover 7 days starting 01 Jan 2026 12:00:00.000 UTC. Expected MRO total minutes should be between 30.0 and 400.0 (calculated ~114). Expected MAVEN total minutes should be between 400.0 and 6000.0 (calculated ~5012). MAVEN is the primary relay due to significantly higher visibility time. The elevation constraint must be exactly 10 degrees."
+}

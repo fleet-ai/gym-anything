@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_hov_lane_policy@1",
+    "task_completion": [
+        {
+            "id": "create_demand_file",
+            "description": "Create the hov_demand.rou.xml file with 160 standard and 40 HOV vehicles.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the creation of /home/ga/SUMO_Output/hov_demand.rou.xml with vClass='passenger' and vClass='hov' definitions."
+        },
+        {
+            "id": "create_traci_script",
+            "description": "Create the run_hov_sim.py script to implement the HOV lane restriction policy.",
+            "points": 20,
+            "visual_evidence": "Text editor or 'cat' command showing Python code that uses traci.lane.setAllowed to restrict the leftmost lane to 'hov' only."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Run the SUMO simulation using the TraCI script.",
+            "points": 20,
+            "visual_evidence": "Terminal showing the execution of 'python3 /home/ga/SUMO_Output/run_hov_sim.py' and simulation progress/completion messages."
+        },
+        {
+            "id": "generate_tripinfo",
+            "description": "Verify the generation of the tripinfo.xml output file.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal 'ls' command showing /home/ga/SUMO_Output/tripinfo.xml exists after the simulation run."
+        },
+        {
+            "id": "calculate_and_save_results",
+            "description": "Calculate average trip durations and save them to hov_analysis.txt in the specified format.",
+            "points": 30,
+            "visual_evidence": "Content of /home/ga/SUMO_Output/hov_analysis.txt showing 'avg_duration_standard=' and 'avg_duration_hov=' with numerical values rounded to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't just write the analysis file without running the simulation.",
+            "visual_evidence": "The trajectory must show the simulation execution logs and the processing of tripinfo.xml before the creation of hov_analysis.txt."
+        },
+        {
+            "id": "genuine_traci_interaction",
+            "description": "Verify the agent used TraCI commands rather than just modifying the .net.xml file statically.",
+            "visual_evidence": "The Python script should contain 'traci.start' and lane-specific logic (e.g., setAllowed or setDisallowed) rather than just calling a standard sumo command."
+        },
+        {
+            "id": "correct_vehicle_counts",
+            "description": "Check that the vehicle counts match the task requirements exactly.",
+            "visual_evidence": "The route file or the script generating it must explicitly show the numbers 160 (standard) and 40 (hov)."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must generate 160 standard vehicles (vClass='passenger', id='type_standard') and 40 HOV vehicles (vClass='hov', id='type_hov', color='0,255,0'). The simulation must be run via a TraCI script at /home/ga/SUMO_Output/run_hov_sim.py which dynamically restricts the leftmost lane of multi-lane edges to HOV only. The final output must be in /home/ga/SUMO_Output/hov_analysis.txt with the specific keys 'avg_duration_standard' and 'avg_duration_hov' rounded to two decimal places."
+}

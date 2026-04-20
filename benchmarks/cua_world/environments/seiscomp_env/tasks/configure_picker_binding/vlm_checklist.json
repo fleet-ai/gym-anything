@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_picker_binding@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig_bindings",
+            "description": "Open the SeisComP configuration tool (scconfig) and navigate to the 'Bindings' tab.",
+            "points": 10,
+            "visual_evidence": "The 'scconfig' window is visible with the 'Bindings' tab selected in the left-hand navigation or top menu."
+        },
+        {
+            "id": "create_profile_broadband_opt",
+            "description": "Create a new binding profile named 'broadband_opt' under the 'scautopick' module.",
+            "points": 20,
+            "visual_evidence": "A new profile entry named 'broadband_opt' is visible under the 'scautopick' section in the bindings list."
+        },
+        {
+            "id": "configure_filter_value",
+            "description": "Set the 'filter' parameter to 'BW(3,0.7,4.0)' within the 'broadband_opt' profile.",
+            "points": 20,
+            "visual_evidence": "The text 'BW(3,0.7,4.0)' is typed into the 'filter' field in the configuration panel for the 'broadband_opt' profile."
+        },
+        {
+            "id": "configure_time_correction",
+            "description": "Set the 'timeCorrection' parameter to '-0.5' within the 'broadband_opt' profile.",
+            "points": 20,
+            "visual_evidence": "The value '-0.5' is entered into the 'timeCorrection' field in the configuration panel for the 'broadband_opt' profile."
+        },
+        {
+            "id": "assign_profile_to_ge_stations",
+            "description": "Assign the 'broadband_opt' profile to the GE network stations (TOLI, GSI, KWP, SANI, BKB).",
+            "points": 20,
+            "visual_evidence": "The 'broadband_opt' profile is dragged or assigned to the station nodes (TOLI, GSI, KWP, SANI, BKB) under the GE network in the bindings tree."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the configuration changes.",
+            "points": 10,
+            "visual_evidence": "The 'Save' button is clicked, or a 'Configuration saved' confirmation message/status bar update is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "Verify the agent used the scconfig GUI rather than just executing shell commands to modify config files directly.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the scconfig window, dropdowns, and text fields."
+        },
+        {
+            "id": "no_hardcoded_scripts",
+            "description": "Ensure the agent didn't simply run a pre-written script to automate the binding creation.",
+            "visual_evidence": "The agent is seen manually typing the profile name and values into the GUI fields."
+        },
+        {
+            "id": "correct_network_context",
+            "description": "Verify the agent is interacting with the GE network specifically and not a dummy network.",
+            "visual_evidence": "The station list in the GUI shows the GE network prefix or the specific station names TOLI, GSI, KWP, SANI, and BKB."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create a profile named 'broadband_opt' specifically for the 'scautopick' module. The filter string must be exactly 'BW(3,0.7,4.0)' and the timeCorrection must be '-0.5'. These settings must be applied to five specific stations (TOLI, GSI, KWP, SANI, BKB) which belong to the GE network."
+}

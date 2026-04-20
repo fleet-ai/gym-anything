@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_spatial_context_polyconvert@1",
+    "task_completion": [
+        {
+            "id": "directory_navigation",
+            "description": "Agent navigates to the /home/ga/SUMO_Scenarios/bologna_pasubio/ directory.",
+            "points": 10,
+            "visual_evidence": "A terminal window or file explorer showing the path /home/ga/SUMO_Scenarios/bologna_pasubio/."
+        },
+        {
+            "id": "polyconvert_command_execution",
+            "description": "Agent executes the polyconvert command with the correct input files and typemap.",
+            "points": 25,
+            "visual_evidence": "Terminal command showing 'polyconvert' with arguments '--osm-files pasubio_area.osm', '--net-file pasubio_buslanes.net.xml', '--type-file' pointing to the osmPolyconvert.typ.xml, and '--output-file pasubio_polygons.add.xml'."
+        },
+        {
+            "id": "polygon_file_creation",
+            "description": "The file pasubio_polygons.add.xml is successfully generated in the target directory.",
+            "points": 15,
+            "visual_evidence": "A file listing (ls -l) or file explorer showing pasubio_polygons.add.xml exists in the bologna_pasubio folder."
+        },
+        {
+            "id": "config_file_duplication",
+            "description": "Agent creates run_enriched.sumocfg based on the existing run.sumocfg.",
+            "points": 15,
+            "visual_evidence": "Terminal command like 'cp run.sumocfg run_enriched.sumocfg' or a text editor saving a new file with that name."
+        },
+        {
+            "id": "modify_enriched_config",
+            "description": "Agent edits run_enriched.sumocfg to include the new polygons file in the additional-files section.",
+            "points": 25,
+            "visual_evidence": "A text editor (like nano, gedit, or VS Code) showing the XML content of run_enriched.sumocfg with <additional-files value=\"...pasubio_polygons.add.xml\"/> or similar entry."
+        },
+        {
+            "id": "final_verification",
+            "description": "Agent verifies the existence of both the new polygon file and the enriched configuration file.",
+            "points": 10,
+            "visual_evidence": "A final directory listing showing both pasubio_polygons.add.xml and run_enriched.sumocfg present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply 'touch' or create empty files to mimic success.",
+            "visual_evidence": "The VLM should see the polyconvert command outputting processing logs and the text editor showing actual XML structure in the config file."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific paths and filenames requested, not generic ones.",
+            "visual_evidence": "Screenshots must show the exact strings 'pasubio_polygons.add.xml' and 'run_enriched.sumocfg' being used in commands."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the terminal or editor rather than just displaying a final state.",
+            "visual_evidence": "Sequential screenshots showing the typing of commands or the process of editing the XML file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target directory is /home/ga/SUMO_Scenarios/bologna_pasubio/. The required output files are pasubio_polygons.add.xml (generated via polyconvert) and run_enriched.sumocfg (a modified version of run.sumocfg). The polyconvert command must use the typemap at $SUMO_HOME/data/typemap/osmPolyconvert.typ.xml."
+}

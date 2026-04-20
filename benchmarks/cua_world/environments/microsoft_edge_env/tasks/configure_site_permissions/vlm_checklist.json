@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_site_permissions@1",
+    "task_completion": [
+        {
+            "id": "read_requirements_file",
+            "description": "Agent opens and reads the requirements file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/Desktop/lab_permission_requirements.txt."
+        },
+        {
+            "id": "block_youtube_facebook_notifications",
+            "description": "Agent configures Microsoft Edge to block notifications for youtube.com and facebook.com.",
+            "points": 20,
+            "visual_evidence": "Edge 'Settings > Cookies and site permissions > Notifications' page showing 'youtube.com' and 'facebook.com' under the 'Block' list."
+        },
+        {
+            "id": "allow_teams_notifications",
+            "description": "Agent configures Microsoft Edge to allow notifications for teams.microsoft.com.",
+            "points": 15,
+            "visual_evidence": "Edge 'Settings > Cookies and site permissions > Notifications' page showing 'teams.microsoft.com' under the 'Allow' list."
+        },
+        {
+            "id": "allow_zoom_camera",
+            "description": "Agent configures Microsoft Edge to allow camera access for zoom.us.",
+            "points": 20,
+            "visual_evidence": "Edge 'Settings > Cookies and site permissions > Camera' page showing 'zoom.us' under the 'Allow' list."
+        },
+        {
+            "id": "allow_google_maps_location",
+            "description": "Agent configures Microsoft Edge to allow location access for maps.google.com.",
+            "points": 20,
+            "visual_evidence": "Edge 'Settings > Cookies and site permissions > Location' page showing 'maps.google.com' under the 'Allow' list."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Agent creates a summary report of the changes at the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing the existence and content of /home/ga/Desktop/permission_config_report.txt containing the list of changes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent should use the Microsoft Edge browser interface to change settings rather than just editing internal database files via terminal.",
+            "visual_evidence": "Screenshots showing the Edge browser open and navigation through the 'Settings' menus."
+        },
+        {
+            "id": "genuine_report_creation",
+            "description": "The report should be created after the settings are applied, not at the start of the task.",
+            "visual_evidence": "The timestamp of the report creation or the sequence of screenshots showing the report being written after browser configuration."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The summary report must contain the actual domains and permissions configured, not generic text.",
+            "visual_evidence": "The content of permission_config_report.txt explicitly mentions youtube.com, facebook.com, teams.microsoft.com, zoom.us, and maps.google.com."
+        }
+    ],
+    "privileged_info_for_vlm": "The requirements file is located at /home/ga/Desktop/lab_permission_requirements.txt. The expected configurations in Edge are: Notifications Blocked for youtube.com and facebook.com; Notifications Allowed for teams.microsoft.com; Camera Allowed for zoom.us; Location Allowed for maps.google.com. The final report must be saved to /home/ga/Desktop/permission_config_report.txt. In Edge settings, 'Allow' is represented by value 1 and 'Block' by value 2."
+}

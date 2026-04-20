@@ -1,0 +1,59 @@
+{
+    "task_id": "model_mhk_wave_energy@1",
+    "task_completion": [
+        {
+            "id": "import_pysam_mhk",
+            "description": "Agent imports PySAM's MhkWave module in a Python environment.",
+            "points": 10,
+            "visual_evidence": "Code showing 'import PySAM.MhkWave' or 'from PySAM import MhkWave' in a terminal or IDE."
+        },
+        {
+            "id": "load_default_config",
+            "description": "Agent initializes the MhkWave model and loads the default configuration.",
+            "points": 15,
+            "visual_evidence": "Code showing 'MhkWave.new()' and 'MhkWave.default(\"MhkWaveLCOE\")' or similar initialization calls."
+        },
+        {
+            "id": "set_system_capacity",
+            "description": "Agent sets the system rated capacity to 300 kW.",
+            "points": 15,
+            "visual_evidence": "Code setting a parameter like 'system_capacity' or 'device_rated_power' to 300."
+        },
+        {
+            "id": "configure_loss_parameters",
+            "description": "Agent configures the five specific loss percentages (0, 5, 2, 5, 0).",
+            "points": 20,
+            "visual_evidence": "Code setting loss_array_spacing=0, loss_resource_overprediction=5, loss_transmission=2, loss_downtime=5, and loss_additional=0."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent executes the simulation using the .execute() method.",
+            "points": 15,
+            "visual_evidence": "Code showing the model instance calling '.execute()'."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the results to the specified path with the required JSON keys.",
+            "points": 25,
+            "visual_evidence": "Code showing the creation of a dictionary with keys like 'annual_energy_kwh' and 'capacity_factor_percent', and writing it to '/home/ga/Documents/SAM_Projects/wave_energy_results.json'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_interaction",
+            "description": "The agent actually uses the PySAM library rather than hardcoding a JSON file.",
+            "visual_evidence": "Screenshots must show Python code execution and PySAM object manipulation, not just a script that writes a static string to a file."
+        },
+        {
+            "id": "no_premade_results",
+            "description": "The agent does not copy-paste the final results from a hidden source.",
+            "visual_evidence": "The agent should be seen extracting values from the simulation object (e.g., model.Outputs.annual_energy) before saving."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent uses the specific file path requested in the instructions.",
+            "visual_evidence": "The code or terminal output shows the path '/home/ga/Documents/SAM_Projects/wave_energy_results.json'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 300 kW system capacity. The specific loss values are: array spacing (0%), resource overprediction (5%), transmission (2%), downtime (5%), and additional (0%). The output must be a JSON file at /home/ga/Documents/SAM_Projects/wave_energy_results.json. Note: While the default PySAM configuration often produces high energy values (~56M kWh), the agent must follow the 300kW constraint and the specific loss parameters provided."
+}

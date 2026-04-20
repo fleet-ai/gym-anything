@@ -1,0 +1,59 @@
+{
+    "task_id": "continent_thematic_map@1",
+    "task_completion": [
+        {
+            "id": "workspace_creation",
+            "description": "Create a workspace named 'regional_atlas' with the specified URI.",
+            "points": 10,
+            "visual_evidence": "GeoServer 'Workspaces' list showing 'regional_atlas' with the namespace URI 'http://atlas.regional.example.org'."
+        },
+        {
+            "id": "datastore_configuration",
+            "description": "Configure the PostGIS datastore 'world_geodata' in the 'regional_atlas' workspace.",
+            "points": 15,
+            "visual_evidence": "The 'Edit Data Store' page showing the name 'world_geodata', host 'gs-postgis', database 'gis', and user 'geoserver'."
+        },
+        {
+            "id": "style_creation_sld",
+            "description": "Create an SLD style named 'continent_colors' with 7 classification rules.",
+            "points": 30,
+            "visual_evidence": "The Style Editor for 'continent_colors' showing SLD XML code containing 7 <Rule> blocks, each with a <Filter> for 'continent' and a <PolygonSymbolizer>."
+        },
+        {
+            "id": "layer_publication",
+            "description": "Publish the 'ne_countries' table as a layer named 'countries'.",
+            "points": 15,
+            "visual_evidence": "The 'Layers' list showing a layer named 'countries' associated with the 'world_geodata' store."
+        },
+        {
+            "id": "layer_style_assignment",
+            "description": "Assign 'continent_colors' as the default style for the 'countries' layer.",
+            "points": 10,
+            "visual_evidence": "The 'Publishing' tab of the 'countries' layer configuration showing 'continent_colors' selected as the Default Style."
+        },
+        {
+            "id": "map_preview_verification",
+            "description": "Verify the thematic map in Layer Preview showing 7 distinct colors.",
+            "points": 20,
+            "visual_evidence": "The GeoServer Layer Preview (OpenLayers) for 'regional_atlas:countries' showing a world map where countries are colored differently based on their continent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than just executing SQL or shell commands.",
+            "visual_evidence": "Screenshots show the browser interacting with the GeoServer web UI (buttons, forms, and menus)."
+        },
+        {
+            "id": "genuine_style_config",
+            "description": "The style rules were actually typed or uploaded into the GeoServer style editor.",
+            "visual_evidence": "Screenshots of the SLD editor within the GeoServer interface showing the specific continent names (Africa, Antarctica, etc.)."
+        },
+        {
+            "id": "live_preview",
+            "description": "The final result is shown in the GeoServer Layer Preview, not a static image file.",
+            "visual_evidence": "The browser URL bar shows a localhost:8080/geoserver/web/ URL or an OpenLayers preview window."
+        }
+    ],
+    "privileged_info_for_vlm": "The 7 required continent values for the SLD filters are: Africa, Antarctica, Asia, Europe, North America, Oceania, and South America. The workspace must be 'regional_atlas' and the layer name must be 'countries'. The style must use PropertyIsEqualTo filters on the 'continent' attribute."
+}

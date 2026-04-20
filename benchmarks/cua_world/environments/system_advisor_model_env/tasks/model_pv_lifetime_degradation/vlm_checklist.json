@@ -1,0 +1,53 @@
+{
+    "task_id": "model_pv_lifetime_degradation@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Locate and identify the correct TMY weather file for Tucson or nearest Arizona location from the specified directory.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing the agent reading /home/ga/.SAM/solar_resource_dir.txt and listing files in that directory."
+        },
+        {
+            "id": "pysam_script_setup",
+            "description": "Write a Python script importing PySAM.Pvwattsv8 and setting system parameters (100MW, 1.2 DC:AC, 30 tilt, 180 azimuth).",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing a Python script with 'import PySAM.Pvwattsv8', 'system_capacity = 100000', 'dc_ac_ratio = 1.2', 'tilt = 30', and 'azimuth = 180'."
+        },
+        {
+            "id": "implement_degradation_logic",
+            "description": "Implement the compounding degradation formula (0.5%/year) over a 25-year analysis period.",
+            "points": 25,
+            "visual_evidence": "Python code showing a loop or array calculation using the formula (1 - 0.005)^(N-1) or equivalent compounding logic for 25 years."
+        },
+        {
+            "id": "calculate_lifetime_metrics",
+            "description": "Calculate Year 1 energy, Year 25 energy, cumulative energy, and lifetime capacity factor.",
+            "points": 25,
+            "visual_evidence": "Python code or terminal output showing the calculation of annual_energy, cumulative sums, and capacity factor (Total Energy / (Capacity * Hours))."
+        },
+        {
+            "id": "save_results_json",
+            "description": "Save all required keys to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "Terminal command or code showing the creation of /home/ga/Documents/SAM_Projects/lifetime_degradation_results.json with the required keys like 'year25_annual_energy_kwh' and 'total_degradation_loss_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually executed PySAM code rather than hardcoding the final values.",
+            "visual_evidence": "Terminal showing 'python3' execution and PySAM module output/logs rather than just a 'cat' command creating a file with pre-calculated numbers."
+        },
+        {
+            "id": "weather_file_source",
+            "description": "Ensure the weather file path was derived from the provided text file, not hardcoded from external knowledge.",
+            "visual_evidence": "Screenshots showing the agent opening /home/ga/.SAM/solar_resource_dir.txt to find the data path."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the JSON output contains specific calculated values, not placeholders like 'null' or '0'.",
+            "visual_evidence": "A 'cat' or 'jq' view of the final JSON file showing non-zero, high-precision floating point numbers for energy values."
+        }
+    ],
+    "privileged_info_for_vlm": "The system capacity must be 100,000 kW (100 MW). The degradation is compounding: Year 25 = Year 1 * (0.995^24). The DC:AC ratio is 1.2, Tilt is 30, and Azimuth is 180. The output must be saved to /home/ga/Documents/SAM_Projects/lifetime_degradation_results.json. The weather file must be an Arizona TMY file found in the path listed in /home/ga/.SAM/solar_resource_dir.txt."
+}

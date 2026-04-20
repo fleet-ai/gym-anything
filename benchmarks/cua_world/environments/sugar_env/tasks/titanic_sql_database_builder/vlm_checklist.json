@@ -1,0 +1,59 @@
+{
+    "task_id": "titanic_sql_database_builder@1",
+    "task_completion": [
+        {
+            "id": "python_script_creation",
+            "description": "The agent writes a Python script that imports 'csv' and 'sqlite3' and defines the 'passengers' table schema.",
+            "points": 10,
+            "visual_evidence": "Code editor or terminal showing a Python script with 'import csv', 'import sqlite3', and a CREATE TABLE statement for 'passengers' with the specified 12 columns."
+        },
+        {
+            "id": "csv_parsing_logic",
+            "description": "The script includes logic to read the CSV and handle quoted fields (like names) correctly without using pandas.",
+            "points": 15,
+            "visual_evidence": "Python code showing the use of 'csv.reader' or 'csv.DictReader' and an INSERT statement. Absence of 'import pandas' in the code."
+        },
+        {
+            "id": "database_file_creation",
+            "description": "The agent executes the script to create the SQLite database file at the specified path.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing script execution or a file explorer/terminal command (ls) showing 'titanic.db' exists in /home/ga/Documents/."
+        },
+        {
+            "id": "database_verification",
+            "description": "The agent verifies the database content, specifically checking that records were imported.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a SQL query like 'SELECT COUNT(*) FROM passengers;' returning 891."
+        },
+        {
+            "id": "survival_calculation",
+            "description": "The agent calculates the survival rates for 1st and 3rd class passengers using SQL or Python logic.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the calculation of survival percentages (e.g., ~62.9% for 1st class and ~24.2% for 3rd class)."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "The agent saves the labeled survival results to the specified text file.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing the contents of /home/ga/Documents/survival_summary.txt with the calculated percentages."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_pandas_usage",
+            "description": "The agent must not use the pandas library as per instructions.",
+            "visual_evidence": "Review all code written by the agent to ensure 'import pandas' or 'pd.' is never used."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent should calculate the values from the data, not hard-code them from memory.",
+            "visual_evidence": "The Python script or SQL queries must show the logic for filtering by Pclass and calculating the mean of the Survived column."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the exact file paths specified in the instructions.",
+            "visual_evidence": "Screenshots show the paths /home/ga/Documents/titanic.db and /home/ga/Documents/survival_summary.txt being used in code and commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The Titanic dataset contains 891 rows. The correct survival rate for 1st class (Pclass=1) is approximately 62.96% (should fall between 61.0% and 64.0%). The correct survival rate for 3rd class (Pclass=3) is approximately 24.24% (should fall between 23.0% and 26.0%). The agent is strictly forbidden from using pandas; it must use the built-in 'csv' and 'sqlite3' modules."
+}

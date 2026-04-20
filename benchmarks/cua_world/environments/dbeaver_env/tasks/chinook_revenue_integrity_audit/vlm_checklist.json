@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_revenue_integrity_audit@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connection",
+            "description": "Connect to the ChinookAudit database in DBeaver",
+            "points": 10,
+            "visual_evidence": "DBeaver application is open and the 'ChinookAudit' connection is visible and active in the Database Navigator sidebar."
+        },
+        {
+            "id": "sql_query_composition",
+            "description": "Write a SQL query to calculate discrepancies between Invoice Total and sum of InvoiceLine items",
+            "points": 20,
+            "visual_evidence": "A SQL editor tab in DBeaver showing a query that joins 'Invoice' and 'InvoiceLine', calculates SUM(UnitPrice * Quantity), and filters for ABS(Total - Calculated) > 0.05."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "Execute the query and display the correct discrepant invoices",
+            "points": 25,
+            "visual_evidence": "The DBeaver results grid shows exactly 5 rows with InvoiceIds 10, 55, 120, 250, and 310, sorted by Discrepancy descending."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the query results to the specified CSV path",
+            "points": 25,
+            "visual_evidence": "The DBeaver 'Export Data' wizard or a file explorer window showing 'invoice_discrepancies.csv' created in '/home/ga/Documents/exports/'."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL query to the specified script path",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window showing 'audit_query.sql' saved in '/home/ga/Documents/scripts/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "Verify the agent used the DBeaver GUI for database interaction",
+            "visual_evidence": "Screenshots show interaction with DBeaver menus, SQL editor, and export wizards rather than just executing sqlite3 commands in a terminal."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Verify the agent didn't hardcode the known corrupted IDs",
+            "visual_evidence": "The SQL query in the editor contains logic for calculation (SUM, GROUP BY, subtraction) rather than a simple 'WHERE InvoiceId IN (10, 55, ...)' clause."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Verify the agent used the specific audit database provided",
+            "visual_evidence": "The connection properties or the SQL editor tab header shows the path '/home/ga/Documents/databases/chinook_audit.db'."
+        }
+    ],
+    "privileged_info_for_vlm": "The audit should identify exactly 5 corrupted invoices: 10, 55, 120, 250, and 310. Invoice 10 has a discrepancy of +5.0, and Invoice 55 has a discrepancy of -2.0. The results must be sorted by Discrepancy descending. The required export path is /home/ga/Documents/exports/invoice_discrepancies.csv and the SQL path is /home/ga/Documents/scripts/audit_query.sql."
+}

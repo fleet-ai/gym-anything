@@ -1,0 +1,53 @@
+{
+    "task_id": "osint_web_archival@1",
+    "task_completion": [
+        {
+            "id": "navigate_and_save_cia",
+            "description": "Navigate to the CIA World Factbook countries page and save it as 'cia_world_factbook.mhtml' in the specified directory.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the browser at cia.gov/the-world-factbook/countries/ and the 'Save As' dialog or file explorer showing 'cia_world_factbook.mhtml' in /home/ga/Documents/OSINT_Evidence/."
+        },
+        {
+            "id": "navigate_and_save_fbi",
+            "description": "Navigate to the FBI Most Wanted page and save it as 'fbi_most_wanted.mhtml' in the specified directory.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the browser at fbi.gov/wanted and the 'Save As' dialog or file explorer showing 'fbi_most_wanted.mhtml' in /home/ga/Documents/OSINT_Evidence/."
+        },
+        {
+            "id": "navigate_and_save_ofac",
+            "description": "Navigate to the OFAC Sanctions Programs page and save it as 'ofac_sanctions.mhtml' in the specified directory.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the browser at ofac.treasury.gov/sanctions-programs-and-country-information and the 'Save As' dialog or file explorer showing 'ofac_sanctions.mhtml' in /home/ga/Documents/OSINT_Evidence/."
+        },
+        {
+            "id": "verify_mhtml_format",
+            "description": "Ensure files are saved specifically in the MHTML format as requested.",
+            "points": 10,
+            "visual_evidence": "The 'Save as type' dropdown in the browser print/save dialog showing 'Webpage, Single File' or '.mhtml' extension in the file manager."
+        },
+        {
+            "id": "create_catalog_file",
+            "description": "Create the evidence_catalog.txt file containing the URL, description, and filename for each entry.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of /home/ga/Documents/OSINT_Evidence/evidence_catalog.txt with three entries matching the saved files."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the browser GUI to save the pages rather than just using 'wget' or 'curl' in the terminal.",
+            "visual_evidence": "Screenshots showing the browser application active, clicking menus, or interacting with the 'Save As' dialog."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent actually visited the live URLs rather than creating empty files with the correct names.",
+            "visual_evidence": "Screenshots showing the rendered content of the CIA, FBI, and OFAC websites in the browser window."
+        },
+        {
+            "id": "directory_persistence",
+            "description": "The agent created the specific directory /home/ga/Documents/OSINT_Evidence/ if it didn't exist, rather than saving to the desktop or home folder.",
+            "visual_evidence": "File manager or terminal showing the full path /home/ga/Documents/OSINT_Evidence/ containing the files."
+        }
+    ],
+    "privileged_info_for_vlm": "The verified URLs are: CIA (https://www.cia.gov/the-world-factbook/countries/), FBI (https://www.fbi.gov/wanted), and OFAC (https://ofac.treasury.gov/sanctions-programs-and-country-information). Note that OFAC's official domain is ofac.treasury.gov. Each saved .mhtml file should ideally be larger than 10,240 bytes (10 KB) to be considered a valid archival of these content-heavy pages."
+}

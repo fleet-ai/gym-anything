@@ -1,0 +1,59 @@
+{
+    "task_id": "create_prp_dual_task@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a CSV file at /home/ga/PsychoPyExperiments/prp_conditions.csv with required columns and at least 10 trials.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing a file named 'prp_conditions.csv' with columns: tone_freq, letter, soa, corr_resp_tone, and corr_resp_letter, containing at least 10 rows of data."
+        },
+        {
+            "id": "experiment_setup_and_loop",
+            "description": "Create the PsychoPy experiment file and wrap the trial routine in a loop linked to the conditions file.",
+            "points": 15,
+            "visual_evidence": "PsychoPy Builder interface showing 'prp_task.psyexp' with a loop (e.g., 'trials') surrounding a routine, and the loop properties dialog showing the 'Conditions' field pointing to 'prp_conditions.csv'."
+        },
+        {
+            "id": "fixation_and_audio_timing",
+            "description": "Configure a fixation cross (0.5s) and an auditory stimulus starting at 0.5s.",
+            "points": 15,
+            "visual_evidence": "PsychoPy Builder routine view showing a Polygon/Text component (fixation) with duration 0.5s and a Sound component starting at 0.5s with $tone_freq as the frequency."
+        },
+        {
+            "id": "visual_stimulus_soa_timing",
+            "description": "Configure the visual stimulus (letter) to start at 0.5s + SOA.",
+            "points": 20,
+            "visual_evidence": "PsychoPy Builder Sound or Text component properties showing the 'Start' time field containing a variable expression like '$0.5 + soa' or similar logic using the SOA column."
+        },
+        {
+            "id": "dual_response_configuration",
+            "description": "Configure two keyboard components to record responses for both tasks over a fixed 3.0s duration without 'Force end of Routine'.",
+            "points": 25,
+            "visual_evidence": "PsychoPy Builder routine showing two Keyboard components. The properties for both should show 'Duration' as 3.0 and the 'Force end of Routine' checkbox must be UNCHECKED."
+        },
+        {
+            "id": "save_experiment_file",
+            "description": "Save the experiment to the specified path.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file saved at /home/ga/PsychoPyExperiments/prp_task.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing raw XML/Python code via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with PsychoPy components, dialog boxes, and the flow timeline."
+        },
+        {
+            "id": "genuine_conditions_data",
+            "description": "The conditions file contains varied data matching the task requirements (SOAs like 0.05, 0.8; frequencies like 300, 800).",
+            "visual_evidence": "The content of prp_conditions.csv showing a mix of the specified numerical values and letters."
+        },
+        {
+            "id": "no_shortcut_scripting",
+            "description": "The agent did not simply run a python script to generate the .psyexp file without opening the PsychoPy application.",
+            "visual_evidence": "Visual presence of the PsychoPy Builder application window throughout the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The conditions file MUST be at /home/ga/PsychoPyExperiments/prp_conditions.csv and MUST contain these 5 columns: tone_freq, letter, soa, corr_resp_tone, corr_resp_letter. There must be at least 10 rows. The experiment file MUST be at /home/ga/PsychoPyExperiments/prp_task.psyexp. In the trial routine, the auditory stimulus starts at 0.5s, the visual stimulus starts at 0.5 + soa, and the keyboard components must NOT terminate the routine early (Force end of Routine = False) to allow for dual responses over the 3.0s window."
+}

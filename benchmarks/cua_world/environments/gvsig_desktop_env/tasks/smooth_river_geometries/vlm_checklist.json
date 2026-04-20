@@ -1,0 +1,53 @@
+{
+    "task_id": "smooth_river_geometries@1",
+    "task_completion": [
+        {
+            "id": "load_input_layer",
+            "description": "The agent loads the input shapefile from the specified path into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'ne_110m_rivers_lake_centerlines' is visible in the layer manager/table of contents."
+        },
+        {
+            "id": "open_processing_tool",
+            "description": "The agent opens a tool specifically for smoothing or densification (e.g., 'Smooth', 'Chaikin', or 'Densify').",
+            "points": 15,
+            "visual_evidence": "A dialog box or toolbox window for a smoothing or densification algorithm is active on screen."
+        },
+        {
+            "id": "configure_smoothing_parameters",
+            "description": "The agent configures the tool to add vertices or smooth the geometry rather than simplify it.",
+            "points": 25,
+            "visual_evidence": "Parameters in the tool dialog show settings for 'smoothing', 'interpolation', or 'maximum distance between vertices' (densification)."
+        },
+        {
+            "id": "execute_algorithm",
+            "description": "The agent runs the algorithm to process the river geometries.",
+            "points": 20,
+            "visual_evidence": "A progress bar, a new layer appearing in the TOC, or a 'Success' message from the processing tool."
+        },
+        {
+            "id": "save_output_shapefile",
+            "description": "The agent saves or exports the processed layer to the specific required path.",
+            "points": 30,
+            "visual_evidence": "An 'Export' or 'Save As' dialog showing the file path '/home/ga/gvsig_data/exports/rivers_smooth.shp'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and interaction with GIS dialog boxes."
+        },
+        {
+            "id": "no_simplification_used",
+            "description": "The agent did not use a 'Simplify' or 'Generalize' tool which reduces vertices.",
+            "visual_evidence": "The tool names in the screenshots are 'Smooth', 'Densify', or similar; 'Simplify' or 'Douglas-Peucker' are not selected."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the input file to the output path.",
+            "visual_evidence": "Visual evidence of a processing dialog or algorithm execution window appearing between loading the input and saving the output."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is located at /home/ga/gvsig_data/rivers/ne_110m_rivers_lake_centerlines.shp and contains PolyLine geometries (Type 3). The output must be saved to /home/ga/gvsig_data/exports/rivers_smooth.shp. The task specifically forbids simplification/generalization; it requires smoothing or densification (adding vertices)."
+}

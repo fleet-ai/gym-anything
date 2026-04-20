@@ -1,0 +1,53 @@
+{
+    "task_id": "hts_tariff_classification@1",
+    "task_completion": [
+        {
+            "id": "access_hts_database",
+            "description": "Agent navigates to the official USITC HTS database website.",
+            "points": 10,
+            "visual_evidence": "The browser shows the URL https://hts.usitc.gov/ or the USITC HTS search interface."
+        },
+        {
+            "id": "search_battery_tea",
+            "description": "Agent searches for and identifies codes for lithium-ion batteries and green tea.",
+            "points": 20,
+            "visual_evidence": "Screenshots show search queries or results for 'lithium-ion battery' and 'green tea' on the HTS website."
+        },
+        {
+            "id": "search_bolts_mugs_shirts",
+            "description": "Agent searches for and identifies codes for stainless steel bolts, ceramic mugs, and cotton t-shirts.",
+            "points": 25,
+            "visual_evidence": "Screenshots show search queries or results for 'stainless steel bolts', 'ceramic mugs', and 'men's cotton t-shirts' on the HTS website."
+        },
+        {
+            "id": "extract_duty_rates",
+            "description": "Agent identifies the 'General' duty rates for all five products from the search results.",
+            "points": 20,
+            "visual_evidence": "The agent is seen viewing the 'General' column in the HTS table for the relevant codes."
+        },
+        {
+            "id": "create_json_report",
+            "description": "Agent creates the JSON file at the specified path with the required schema.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output shows the file '~/Documents/tariff_classification.json' containing an array of objects with 'description', 'hts_code', 'general_duty_rate', and 'hts_chapter'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent used the web browser to find information rather than generating it from internal knowledge.",
+            "visual_evidence": "The trajectory shows active navigation and scrolling through the USITC HTS website for each product."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the privileged information without visiting the source.",
+            "visual_evidence": "The agent performs individual searches for each item rather than typing the final JSON immediately after starting."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent saved the file in the specific directory requested.",
+            "visual_evidence": "The file path '~/Documents/tariff_classification.json' is visible in the save command or editor header."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified HTS Data: 1. Lithium-ion batteries: Chapter 85, Code 8507.60.00, Duty: Free. 2. Green tea (>3kg): Chapter 09, Code 0902.10.90, Duty: Free. 3. Stainless steel hex bolts: Chapter 73, Code 7318.15.20, Duty: 8.5%. 4. Ceramic mugs (stoneware): Chapter 69, Code 6912.00.44 or 6912.00.48, Duty: 4.5%. 5. Men's cotton knit t-shirts: Chapter 61, Code 6109.10.00, Duty: 16.5%. Ensure the JSON 'hts_code' follows the XXXX.XX.XX format."
+}

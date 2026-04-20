@@ -1,0 +1,59 @@
+{
+    "task_id": "network_analysis_shortest_path@1",
+    "task_completion": [
+        {
+            "id": "load_road_network",
+            "description": "The road_network.geojson file is loaded into the GIS software.",
+            "points": 10,
+            "visual_evidence": "A layer named 'road_network' or similar is visible in the layers panel, and the network geometry is displayed on the map canvas."
+        },
+        {
+            "id": "load_logistics_stops",
+            "description": "The logistics_stops.geojson file is loaded into the GIS software.",
+            "points": 10,
+            "visual_evidence": "A layer named 'logistics_stops' or similar is visible in the layers panel, showing the Warehouse and Customer points."
+        },
+        {
+            "id": "open_network_analysis_tool",
+            "description": "The agent opens a network analysis tool (e.g., Shortest Path, Dijkstra, or Route finder).",
+            "points": 15,
+            "visual_evidence": "A dialog box or processing panel for 'Shortest Path' or 'Network Analysis' is visible on the screen."
+        },
+        {
+            "id": "configure_route_parameters",
+            "description": "The agent selects the road network as the vector layer and sets the Warehouse as the start and Customer as the end point.",
+            "points": 25,
+            "visual_evidence": "The tool settings show 'road_network' as the input layer and coordinates or point selections corresponding to the Warehouse (South-West) and Customer (North-East)."
+        },
+        {
+            "id": "generate_shortest_path",
+            "description": "The agent runs the analysis to generate the shortest path layer.",
+            "points": 20,
+            "visual_evidence": "A new line layer representing the route (likely a diagonal or specific path between the two points) appears on the map."
+        },
+        {
+            "id": "export_geojson",
+            "description": "The resulting shortest path is exported to the specified GeoJSON path.",
+            "points": 20,
+            "visual_evidence": "An 'Export' or 'Save Vector Layer as' dialog is shown with the file path set to /home/ga/GIS_Data/exports/delivery_route.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show the agent interacting with menus, toolboxes, and map layers in a GIS application like QGIS."
+        },
+        {
+            "id": "no_manual_drawing",
+            "description": "The route was generated via network analysis tools, not manually drawn with a line tool.",
+            "visual_evidence": "The 'Shortest Path' tool dialog is visible and executed, rather than the 'Add Line Feature' tool being active."
+        },
+        {
+            "id": "genuine_file_path",
+            "description": "The agent exported to the correct directory and filename as specified in the task.",
+            "visual_evidence": "The file save dialog or the export log shows the path /home/ga/GIS_Data/exports/delivery_route.geojson."
+        }
+    ],
+    "privileged_info_for_vlm": "The road network connects a Warehouse at the South-West corner (0,0) to a Customer at the North-East corner (1,1). The optimal shortest path is a diagonal with a length of approximately 1.414 units. A suboptimal Manhattan-style path (going along the edges) would have a length of 2.0. The midpoint of the correct shortest path should be at approximately [0.5, 0.5]. The final output must be saved specifically to /home/ga/GIS_Data/exports/delivery_route.geojson."
+}

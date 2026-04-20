@@ -1,0 +1,53 @@
+{
+    "task_id": "simulate_motorcycle_lane_splitting@1",
+    "task_completion": [
+        {
+            "id": "define_moto_split_vtype",
+            "description": "Define the 'moto_split' vehicle type with specific sublane parameters in a route or XML file.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal output showing a <vType> tag with id='moto_split', vClass='motorcycle', width='0.8', length='2.2', latAlignment='arbitrary', and minGapLat='0.1'."
+        },
+        {
+            "id": "configure_moto_flow",
+            "description": "Define a flow of 150 'moto_split' vehicles starting from begin 0 to end 1000.",
+            "points": 15,
+            "visual_evidence": "Code editor showing a <flow> tag with id='moto_flow', type='moto_split', number='150', begin='0', and end='1000' using the first route from pasubio.rou.xml."
+        },
+        {
+            "id": "sumo_config_sublane",
+            "description": "Configure the SUMO configuration file to use a lateral resolution of 0.8 and specify the tripinfo output path.",
+            "points": 20,
+            "visual_evidence": "SUMO configuration file (.sumocfg) showing <lateral-resolution value=\"0.8\"/> and <tripinfo-output value=\"/home/ga/SUMO_Output/sublane_tripinfos.xml\"/>."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation using the configured files.",
+            "points": 20,
+            "visual_evidence": "Terminal showing the execution of 'sumo' or 'sumo-gui' with the created config file, or a screenshot of the simulation running."
+        },
+        {
+            "id": "generate_comparison_report",
+            "description": "Create the final report at /home/ga/SUMO_Output/mode_comparison.txt with calculated average durations.",
+            "points": 30,
+            "visual_evidence": "A text editor or 'cat' command output showing the file /home/ga/SUMO_Output/mode_comparison.txt containing 'avg_duration_moto=' and 'avg_duration_other=' with numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent didn't just write the report without running the simulation.",
+            "visual_evidence": "The VLM should check for the existence of the 'sublane_tripinfos.xml' file with a timestamp or content consistent with a fresh simulation run before the report is generated."
+        },
+        {
+            "id": "actual_file_interaction",
+            "description": "Verify the agent interacted with the specified file paths in the Bologna Pasubio directory.",
+            "visual_evidence": "Terminal commands or file explorer views showing navigation to /home/ga/SUMO_Scenarios/bologna_pasubio/ and /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "Verify the agent used a script or command to parse the XML for averages rather than guessing.",
+            "visual_evidence": "Code (Python, awk, or grep) shown in the terminal used to extract 'duration' values from the tripinfo XML and calculate the mean."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use lateral-resolution 0.8. The expected average duration for 'moto_split' is 491.27 and for all other vehicles is 381.56. The report must be at /home/ga/SUMO_Output/mode_comparison.txt in the exact format: avg_duration_moto=[value]\\navg_duration_other=[value]."
+}

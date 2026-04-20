@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_vacuum_gripper@1",
+    "task_completion": [
+        {
+            "id": "open_webots_interface",
+            "description": "The Webots simulation environment is open and the palletizing robot is visible in the 3D view.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is active, showing a 3D scene with a robotic arm."
+        },
+        {
+            "id": "locate_wrist_link",
+            "description": "The agent has expanded the robot node in the Scene Tree and located the 'WRIST_LINK' Solid node.",
+            "points": 15,
+            "visual_evidence": "The Scene Tree (left panel) shows the robot hierarchy with 'WRIST_LINK' highlighted or selected."
+        },
+        {
+            "id": "add_vacuum_gripper_node",
+            "description": "A VacuumGripper node has been added to the children of the WRIST_LINK node.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows a 'VacuumGripper' node nested under the WRIST_LINK's children field."
+        },
+        {
+            "id": "configure_gripper_properties",
+            "description": "The VacuumGripper properties (translation, name, isOn, tensile/shear strength, and material) are correctly set in the selection field editor.",
+            "points": 35,
+            "visual_evidence": "The field editor shows: translation [0 0 0.05], name 'piab_array', isOn TRUE, tensileStrength 480, shearStrength 240, and contactMaterial 'piab_rubber'."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world is saved to the specific path /home/ga/Desktop/palletizer_gripper.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog box is visible with the path /home/ga/Desktop/palletizer_gripper.wbt entered, or a terminal/file explorer shows the file exists at that location after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to add and configure the node rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Scene Tree and the field editor in the Webots application."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file to the target filename.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step addition of the VacuumGripper node within the Webots interface."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent manually entered the specific values required by the task.",
+            "visual_evidence": "Screenshots show the agent typing or selecting the values 480, 240, and 'piab_rubber' in the Webots property fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful only if the VacuumGripper is a child of 'WRIST_LINK'. Required values: translation [0 0 0.05], name 'piab_array', isOn TRUE, tensileStrength 480, shearStrength 240, and contactMaterial 'piab_rubber'. The final file must be saved as /home/ga/Desktop/palletizer_gripper.wbt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "fetch_import_usgs_catalog@1",
+    "task_completion": [
+        {
+            "id": "retrieve_mainshock_params",
+            "description": "Retrieve mainshock latitude, longitude, and origin time from the local SeisComP database.",
+            "points": 10,
+            "visual_evidence": "Terminal output or GUI view showing the 2024 Noto Peninsula earthquake details (Lat: ~37.5, Lon: ~137.2, Time: 2024-01-01)."
+        },
+        {
+            "id": "query_usgs_fdsn",
+            "description": "Query the USGS FDSN Event Service with the correct parameters (M>=4.5, 24h window, 1.5-degree radius).",
+            "points": 15,
+            "visual_evidence": "A URL in a browser or a curl/wget command containing 'earthquake.usgs.gov/fdsnws/event/1/query', 'minmagnitude=4.5', and coordinates derived from the mainshock."
+        },
+        {
+            "id": "save_quakeml",
+            "description": "Save the retrieved QuakeML data to '~/aftershocks_usgs.xml'.",
+            "points": 15,
+            "visual_evidence": "Terminal command (ls, cat, or save dialog) showing the creation of '~/aftershocks_usgs.xml' with XML content."
+        },
+        {
+            "id": "convert_to_scml",
+            "description": "Convert the QuakeML file to SeisComP XML using the specified script.",
+            "points": 20,
+            "visual_evidence": "Execution of 'python3 /workspace/scripts/convert_quakeml.py' (or similar) and the resulting file '~/aftershocks.scml' appearing in the file system."
+        },
+        {
+            "id": "import_to_database",
+            "description": "Update the local SeisComP database with the converted aftershock data.",
+            "points": 20,
+            "visual_evidence": "Command line output showing successful import (e.g., scimport or scevtls) or the database reflecting new event entries."
+        },
+        {
+            "id": "generate_csv_report",
+            "description": "Produce a CSV report at '~/imported_events.csv' with 'event_id, magnitude, time'.",
+            "points": 20,
+            "visual_evidence": "Content of '~/imported_events.csv' displayed, showing a list of events including the mainshock and at least 3 aftershocks."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "script_usage",
+            "description": "Verify the agent used the specific conversion script provided in the instructions.",
+            "visual_evidence": "The command history or terminal logs must show the path '/workspace/scripts/convert_quakeml.py' being called."
+        },
+        {
+            "id": "no_hardcoded_csv",
+            "description": "Ensure the CSV report was generated from database/file queries, not manually typed.",
+            "visual_evidence": "The agent should be seen running a script or command to extract database info to CSV, rather than just using 'echo' with all the data."
+        },
+        {
+            "id": "actual_usgs_query",
+            "description": "Verify the agent actually contacted the USGS service rather than using pre-existing local data.",
+            "visual_evidence": "Network activity or terminal commands showing a request to 'earthquake.usgs.gov'."
+        }
+    ],
+    "privileged_info_for_vlm": "The mainshock is the 2024 Noto Peninsula earthquake (M7.5, approx 37.5N, 137.2E, 2024-01-01 07:10 UTC). A correct USGS query with M>=4.5, 1.5-degree radius, and 24-hour window should return approximately 36 aftershocks. The final CSV must be at '~/imported_events.csv' and include the mainshock and these imported events. The conversion script is located strictly at '/workspace/scripts/convert_quakeml.py'."
+}

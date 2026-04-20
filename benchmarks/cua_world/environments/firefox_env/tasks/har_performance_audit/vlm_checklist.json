@@ -1,0 +1,65 @@
+{
+    "task_id": "har_performance_audit@1",
+    "task_completion": [
+        {
+            "id": "open_network_tab",
+            "description": "Firefox Developer Tools is open and the 'Network' tab is selected.",
+            "points": 10,
+            "visual_evidence": "The Firefox DevTools pane is visible at the bottom or side of the browser with the 'Network' tab highlighted."
+        },
+        {
+            "id": "disable_cache_enabled",
+            "description": "The 'Disable Cache' option is checked in the Network tab.",
+            "points": 10,
+            "visual_evidence": "A checkmark or active state is visible on the 'Disable Cache' checkbox within the Network tab toolbar."
+        },
+        {
+            "id": "navigate_to_target_url",
+            "description": "The browser navigates to the specific Wikipedia page for James Webb Space Telescope.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'https://en.wikipedia.org/wiki/James_Webb_Space_Telescope' and the page content is visible."
+        },
+        {
+            "id": "network_traffic_captured",
+            "description": "The Network tab shows a list of captured requests for the JWST page.",
+            "points": 15,
+            "visual_evidence": "Multiple rows of network requests (images, scripts, etc.) appear in the Network tab list."
+        },
+        {
+            "id": "export_har_file",
+            "description": "The agent initiates the export of the network log as a HAR file.",
+            "points": 20,
+            "visual_evidence": "The 'Save All As HAR' context menu option is selected or a file picker dialog appears for saving 'jwst_network.har'."
+        },
+        {
+            "id": "identify_slowest_asset",
+            "description": "The agent sorts the network requests by 'Time' or 'Transferred' to identify the slowest asset.",
+            "points": 15,
+            "visual_evidence": "The 'Time' column header in the Network tab shows a sort arrow, and the agent highlights or hovers over the top entry."
+        },
+        {
+            "id": "create_txt_file",
+            "description": "A text file named 'slowest_asset.txt' is created in the Documents folder with a URL.",
+            "points": 20,
+            "visual_evidence": "A text editor or file manager shows '~/Documents/slowest_asset.txt' containing a full URL starting with 'https://'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI to capture and analyze data rather than CLI tools like curl.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Firefox DevTools UI elements."
+        },
+        {
+            "id": "genuine_har_export",
+            "description": "The HAR file was exported via the DevTools menu, not manually typed into a file.",
+            "visual_evidence": "The right-click context menu in the Network tab or the 'cog' icon menu is visible during the export process."
+        },
+        {
+            "id": "no_precomputed_answer",
+            "description": "The agent actually performed the sort/analysis in the UI rather than just writing a known URL to the text file.",
+            "visual_evidence": "The Network tab is seen sorted by the 'Time' column before the text file is created."
+        }
+    ],
+    "privileged_info_for_vlm": "The slowest asset on this specific Wikipedia page is typically a large media file or a high-resolution image from the 'commons.wikimedia.org' domain. The URL in slowest_asset.txt must be a full absolute URL. The HAR file must be saved specifically to '~/Documents/jwst_network.har'."
+}

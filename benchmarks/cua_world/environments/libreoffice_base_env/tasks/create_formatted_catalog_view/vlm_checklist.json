@@ -1,0 +1,59 @@
+{
+    "task_id": "create_formatted_catalog_view@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent opens the Chinook database in a SQL editor or management tool.",
+            "points": 10,
+            "visual_evidence": "A SQL editor window showing a connection to 'Chinook' or listing tables like 'Artist', 'Album', and 'Track'."
+        },
+        {
+            "id": "view_creation_syntax",
+            "description": "Agent writes a CREATE VIEW statement named 'FormattedTrackList'.",
+            "points": 15,
+            "visual_evidence": "Code in the editor containing the text 'CREATE VIEW FormattedTrackList AS'."
+        },
+        {
+            "id": "table_joins",
+            "description": "The SQL query joins the Artist, Album, and Track tables correctly.",
+            "points": 20,
+            "visual_evidence": "SQL code showing JOIN clauses between Artist, Album, and Track tables (e.g., Artist.ArtistId = Album.ArtistId)."
+        },
+        {
+            "id": "column_selection_aliasing",
+            "description": "The query selects the required columns with the exact aliases: Artist, Album, and Track.",
+            "points": 15,
+            "visual_evidence": "The SELECT statement includes aliases like 'Artist', 'Album', and 'Track' for the respective name/title fields."
+        },
+        {
+            "id": "duration_formatting_logic",
+            "description": "The query includes logic to convert Milliseconds into a 'MM:SS' string named 'Duration'.",
+            "points": 25,
+            "visual_evidence": "SQL logic involving division/modulo by 60000 and 1000, and string concatenation or formatting to produce 'MM:SS'."
+        },
+        {
+            "id": "view_execution_success",
+            "description": "The agent executes the command and receives a success confirmation.",
+            "points": 15,
+            "visual_evidence": "A console message or status bar indicating 'Query executed successfully' or 'View created'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type out a table of results instead of creating a view.",
+            "visual_evidence": "The agent writes a dynamic SQL query using table names, not a series of 'VALUES' or 'INSERT' statements with manual data."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with a SQL IDE or command-line interface rather than just editing a text file.",
+            "visual_evidence": "Screenshots show a database management tool (like DBeaver, SQLite Browser, or a terminal connected to sqlite3)."
+        },
+        {
+            "id": "no_premade_view",
+            "description": "The agent actually types or constructs the query rather than finding the view already exists.",
+            "visual_evidence": "The sequence of screenshots shows the progression of writing and then executing the CREATE VIEW command."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named 'FormattedTrackList'. Required columns and sources: 'Artist' (Artist.Name), 'Album' (Album.Title), 'Track' (Track.Name), and 'Duration'. The 'Duration' must be calculated from 'Milliseconds' using the logic: minutes = Milliseconds / 60000, seconds = (Milliseconds % 60000) / 1000. The final format must be a string 'MM:SS' (e.g., 4:05). Ensure the agent uses the Chinook database schema."
+}

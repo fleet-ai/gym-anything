@@ -1,0 +1,53 @@
+{
+    "task_id": "trajectory_jerk_analysis@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_connection",
+            "description": "Agent successfully connects to CoppeliaSim via ZMQ Remote API using the specified credentials.",
+            "points": 10,
+            "visual_evidence": "Terminal output or code showing successful connection to port 23000 with username 'ga' and password 'password123'."
+        },
+        {
+            "id": "robot_motion_execution",
+            "description": "The robot arm is seen moving through multiple waypoints in the CoppeliaSim simulation window.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the CoppeliaSim GUI showing the robot arm in different poses/positions over time."
+        },
+        {
+            "id": "data_collection_process",
+            "description": "Agent records end-effector positions at every simulation time step.",
+            "points": 15,
+            "visual_evidence": "Code or terminal logs showing a loop capturing position data (x, y, z) from the simulation API."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "The file 'trajectory_samples.csv' is created in the correct directory with at least 200 rows and required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer view or terminal 'cat/head' command showing /home/ga/Documents/CoppeliaSim/exports/trajectory_samples.csv with columns: timestamp_s, x_m, y_m, z_m, velocity_m_s, acceleration_m_s2, jerk_m_s3."
+        },
+        {
+            "id": "json_report_verification",
+            "description": "The file 'smoothness_report.json' is created with all required statistical fields.",
+            "points": 30,
+            "visual_evidence": "A terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/smoothness_report.json containing total_samples (>=200), total_waypoints (>=5), and the calculated physics metrics (avg_velocity, max_jerk, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim software rather than just creating dummy files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim application window active and the simulation clock running or the robot in motion."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The CSV and JSON data should reflect dynamic values, not perfectly rounded or hardcoded placeholder numbers.",
+            "visual_evidence": "The 'trajectory_samples.csv' should contain high-precision floating point numbers that vary across rows."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent used the specific export path requested rather than the default working directory.",
+            "visual_evidence": "Terminal commands or file paths in code explicitly referencing /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 5 waypoints and at least 200 samples. The output files must be located in /home/ga/Documents/CoppeliaSim/exports/. The CSV must include specific physics columns (velocity, acceleration, jerk) and the JSON must include 'smooth_segment_pct'. Note: A path length of 0.15m is a hidden expectation for a successful run, though not explicitly in the user prompt."
+}

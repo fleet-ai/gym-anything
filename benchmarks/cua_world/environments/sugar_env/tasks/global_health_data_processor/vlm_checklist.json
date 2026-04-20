@@ -1,0 +1,53 @@
+{
+    "task_id": "global_health_data_processor@1",
+    "task_completion": [
+        {
+            "id": "open_text_editor",
+            "description": "The agent opens a text editor or IDE to write the Python script.",
+            "points": 10,
+            "visual_evidence": "A text editor window (like Write, Pippy, or a terminal editor) is visible on the OLPC desktop."
+        },
+        {
+            "id": "script_content_logic",
+            "description": "The Python script contains logic to filter 'Percentage' >= 30.0 and sort in descending order using the 'csv' library.",
+            "points": 25,
+            "visual_evidence": "The script code is visible on screen showing 'import csv', a conditional check for '>= 30.0', and a sort function or logic."
+        },
+        {
+            "id": "save_script_path",
+            "description": "The script is saved to the specific path /home/ga/Documents/process_health_data.py.",
+            "points": 15,
+            "visual_evidence": "The file manager or the editor's title bar/save dialog shows the filename 'process_health_data.py' in the Documents folder."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent executes the Python script using the terminal.",
+            "points": 20,
+            "visual_evidence": "A terminal window shows a command like 'python3 /home/ga/Documents/process_health_data.py' being run."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "The output file /home/ga/Documents/critical_stunting.csv is created and contains the filtered data.",
+            "points": 30,
+            "visual_evidence": "The file 'critical_stunting.csv' is visible in the Documents folder, or its contents are displayed in a terminal/editor showing 'Country' and 'Percentage' columns with values >= 30.0."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_pandas_usage",
+            "description": "The agent must not use the pandas library as it is not installed.",
+            "visual_evidence": "The Python script code does not contain 'import pandas' or 'pd.' calls."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent processes the actual CSV file rather than hardcoding the output values.",
+            "visual_evidence": "The script shows code that opens 'global_stunting_2022.csv' and iterates through rows, rather than just writing a static string to the output file."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent uses the absolute paths specified in the instructions.",
+            "visual_evidence": "The script or terminal commands explicitly reference '/home/ga/Documents/' for both input and output files."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file contains 26 rows where the percentage is 30.0 or higher. The country with the highest percentage is Burundi (50.9). The final output file 'critical_stunting.csv' should have exactly 26 data rows (plus a header) and must be sorted from highest percentage to lowest."
+}

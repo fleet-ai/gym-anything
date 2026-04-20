@@ -1,0 +1,53 @@
+{
+    "task_id": "checkpoint_peak_congestion_state@1",
+    "task_completion": [
+        {
+            "id": "open_sumo_scenario",
+            "description": "Open the Bologna Pasubio scenario in the SUMO GUI or command line interface.",
+            "points": 10,
+            "visual_evidence": "The SUMO-GUI window showing the Bologna Pasubio network or a terminal command loading 'bologna_pasubio/run.sumocfg'."
+        },
+        {
+            "id": "run_simulation_to_collect_data",
+            "description": "Run the simulation to monitor or generate a summary of vehicle halting statistics.",
+            "points": 20,
+            "visual_evidence": "The simulation running in the GUI with the time counter advancing, or a terminal command generating a summary.xml file."
+        },
+        {
+            "id": "identify_peak_congestion",
+            "description": "Identify the specific simulation second with the maximum number of halting vehicles.",
+            "points": 25,
+            "visual_evidence": "The agent viewing a summary file, graph, or terminal output that highlights the peak halting value (588) at the correct time (2867)."
+        },
+        {
+            "id": "save_simulation_state",
+            "description": "Save the simulation state checkpoint at the identified peak time to the specified path.",
+            "points": 25,
+            "visual_evidence": "A command or GUI action saving the state to '~/SUMO_Output/peak_state.xml' at simulation time 2867."
+        },
+        {
+            "id": "create_peak_report",
+            "description": "Create the peak_report.txt file with the required two-line format.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing 'peak_report.txt' containing 'Peak_Time: 2867' and 'Max_Halting: 588'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_analysis",
+            "description": "Verify the agent actually analyzed the simulation data rather than guessing the peak.",
+            "visual_evidence": "Screenshots showing the agent opening a summary file, using grep/awk on simulation outputs, or observing the GUI statistics."
+        },
+        {
+            "id": "correct_checkpoint_timing",
+            "description": "Ensure the checkpoint was saved at the exact peak second, not a random time.",
+            "visual_evidence": "The simulation time in the GUI or the command line arguments for saving state must show the value 2867."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Check that the agent didn't simply create the report file without running or inspecting the simulation.",
+            "visual_evidence": "The trajectory must show the SUMO process being executed or the configuration file being loaded."
+        }
+    ],
+    "privileged_info_for_vlm": "The Bologna Pasubio scenario reaches its absolute maximum congestion at simulation time 2867.0. At this exact second, the number of halting vehicles is 588. The agent must save the state at this time to ~/SUMO_Output/peak_state.xml and the report must reflect these specific values (Time: 2867, Halting: 588)."
+}

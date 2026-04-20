@@ -1,0 +1,53 @@
+{
+    "task_id": "export_multiple_measurements_csv@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image (0002.DCM) is successfully loaded into the medical viewer interface.",
+            "points": 10,
+            "visual_evidence": "A medical imaging viewer (e.g., Horos, Weasis, or similar) is open showing a grayscale DICOM image of a patient scan."
+        },
+        {
+            "id": "three_measurements_drawn",
+            "description": "Three distinct line measurements have been drawn on different areas of the DICOM image.",
+            "points": 25,
+            "visual_evidence": "Three separate measurement lines with associated length labels (e.g., in mm or cm) are visible on the image in the viewer."
+        },
+        {
+            "id": "csv_content_created",
+            "description": "A CSV file is created with the correct headers and at least three rows of measurement data.",
+            "points": 25,
+            "visual_evidence": "A text editor or spreadsheet view shows a file with headers 'Measurement, Length, Unit' and three rows of numeric data corresponding to the annotations."
+        },
+        {
+            "id": "csv_saved_correctly",
+            "description": "The CSV file is saved to the specific path '~/DICOM/exports/trial_data.csv'.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or the title bar of a text editor shows the file path /home/ga/DICOM/exports/trial_data.csv."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the viewer showing all three annotations is saved to '~/DICOM/exports/trial_screenshot.jpg'.",
+            "points": 25,
+            "visual_evidence": "A file explorer shows 'trial_screenshot.jpg' in the exports folder, or a 'Save As' dialog confirms this specific filename and path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI tools to perform measurements rather than just writing a script to generate the CSV.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement tool icons (ruler/line tool) and dragging lines on the image."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with an actual DICOM viewer application.",
+            "visual_evidence": "The presence of standard medical imaging software UI elements (window leveling, zoom, DICOM metadata overlays) is visible."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create the CSV via terminal without performing the visual measurements first.",
+            "visual_evidence": "The sequence of screenshots shows the measurements appearing on the image before the CSV file is finalized."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 3 measurements. The CSV must be at /home/ga/DICOM/exports/trial_data.csv with headers 'Measurement, Length, Unit'. The screenshot must be at /home/ga/DICOM/exports/trial_screenshot.jpg. The verifier strictly requires at least 3 numeric data rows in the CSV."
+}

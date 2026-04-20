@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_runtime_config@1",
+    "task_completion": [
+        {
+            "id": "dockerfile_modifications",
+            "description": "Dockerfile installs 'gettext', copies the entrypoint script, and sets the ENTRYPOINT instruction.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the Dockerfile showing 'apk add gettext' (or equivalent), 'COPY docker-entrypoint.sh', and 'ENTRYPOINT [\"/docker-entrypoint.sh\"]'."
+        },
+        {
+            "id": "template_creation",
+            "description": "Configuration templates are created with ${API_URL} and ${WORKER_PROCESSES} placeholders.",
+            "points": 15,
+            "visual_evidence": "Screenshots of 'app/config.js.template' containing '${API_URL}' and 'nginx/nginx.conf.template' containing '${WORKER_PROCESSES}'."
+        },
+        {
+            "id": "entrypoint_script_logic",
+            "description": "The docker-entrypoint.sh script uses envsubst to replace specific variables while protecting Nginx internal variables.",
+            "points": 25,
+            "visual_evidence": "Screenshot of 'docker-entrypoint.sh' showing 'envsubst' command, specifically using a list of variables like 'envsubst \"${API_URL} ${WORKER_PROCESSES}\"' to avoid overwriting '$uri' or '$host'."
+        },
+        {
+            "id": "image_build_success",
+            "description": "The new Docker image 'acme-dashboard:dynamic' is successfully built.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker build -t acme-dashboard:dynamic .' finishing without errors or 'docker images' listing the new tag."
+        },
+        {
+            "id": "runtime_verification",
+            "description": "The container is run with environment variables and the internal files reflect the injected values.",
+            "points": 30,
+            "visual_evidence": "Terminal output showing 'docker run -e API_URL=... -e WORKER_PROCESSES=...' followed by 'cat' or 'grep' commands inside the running container showing the actual values in '/usr/share/nginx/html/config.js' and '/etc/nginx/nginx.conf'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply hardcode the final values into the Docker image.",
+            "visual_evidence": "The Dockerfile and templates must show variable placeholders (${...}), not static strings like 'https://api.example.com'."
+        },
+        {
+            "id": "genuine_docker_interaction",
+            "description": "The agent actually built and ran the container rather than just editing local files.",
+            "visual_evidence": "Screenshots must show docker build/run command execution and output, not just text editor views."
+        },
+        {
+            "id": "nginx_variable_protection",
+            "description": "The agent correctly restricted envsubst to prevent breaking Nginx internal variables.",
+            "visual_evidence": "The envsubst command in the script must explicitly list the variables to substitute (e.g., '$API_URL') instead of a naked 'envsubst < file'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/acme-dashboard. The base image is nginx:1.24-alpine. The target configuration paths inside the container are /usr/share/nginx/html/config.js and /etc/nginx/nginx.conf. The agent must install 'gettext' to provide the 'envsubst' binary. The final image must be tagged 'acme-dashboard:dynamic'."
+}

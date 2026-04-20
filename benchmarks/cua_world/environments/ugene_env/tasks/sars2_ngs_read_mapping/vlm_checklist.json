@@ -1,0 +1,59 @@
+{
+    "task_id": "sars2_ngs_read_mapping@1",
+    "task_completion": [
+        {
+            "id": "load_reference_and_reads",
+            "description": "Load the Spike gene reference FASTA and the patient reads FASTQ into UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE project view or dashboard shows 'sars2_spike_reference.fasta' and 'patient_reads.fastq' as loaded documents."
+        },
+        {
+            "id": "open_ugene_genome_aligner",
+            "description": "Open the UGENE Genome Aligner tool dialog.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'UGENE Genome Aligner' or 'Map Reads to Reference' is visible on the screen."
+        },
+        {
+            "id": "configure_alignment_parameters",
+            "description": "Set the input files and the output BAM file path in the aligner settings.",
+            "points": 20,
+            "visual_evidence": "The aligner dialog shows the output path set to '~/UGENE_Data/ngs/results/alignment.bam' (or the absolute path equivalent)."
+        },
+        {
+            "id": "execute_read_mapping",
+            "description": "Run the alignment process and generate the BAM file.",
+            "points": 25,
+            "visual_evidence": "A progress bar for the alignment task is visible, or the 'alignment.bam' file appears in the UGENE project tree/file explorer after the process finishes."
+        },
+        {
+            "id": "export_consensus_sequence",
+            "description": "Generate and export the consensus sequence from the alignment to the specified FASTA file.",
+            "points": 20,
+            "visual_evidence": "The 'Export consensus' dialog is shown with the output file set to '~/UGENE_Data/ngs/results/patient_consensus.fasta'."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Document the completion and the aligner used in the mapping_report.txt file.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) shows 'mapping_report.txt' containing text about the UGENE Genome Aligner and task completion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "Verify the agent used the UGENE GUI rather than just executing command-line tools in the terminal.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being interacted with by the cursor."
+        },
+        {
+            "id": "genuine_alignment_interaction",
+            "description": "Ensure the agent didn't simply rename or move files to simulate work.",
+            "visual_evidence": "Visual confirmation of the UGENE Genome Aligner progress window or the alignment visualization (tracks) in the UGENE Assembly Browser."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "Verify the report was typed or saved during the session.",
+            "visual_evidence": "The agent is seen opening a text editor or using a 'Save As' dialog for the .txt file within the session timeframe."
+        }
+    ],
+    "privileged_info_for_vlm": "The reference sequence length is 3822 bp. The patient data contains a specific mutation (A to G) at position 1841 of the Spike gene. The output files must be saved exactly to ~/UGENE_Data/ngs/results/ with the names alignment.bam, patient_consensus.fasta, and mapping_report.txt. The tool used must be the 'UGENE Genome Aligner'."
+}

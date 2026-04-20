@@ -1,0 +1,59 @@
+{
+    "task_id": "cell_spacing_distance_transform@1",
+    "task_completion": [
+        {
+            "id": "image_loading_segmentation",
+            "description": "The agent opens cell_image.tif in Fiji and performs segmentation (e.g., thresholding) to identify cells.",
+            "points": 15,
+            "visual_evidence": "Fiji window showing the input fluorescence image and a subsequent binary/mask image or ROI Manager populated with cell outlines."
+        },
+        {
+            "id": "distance_map_generation",
+            "description": "The agent generates a Euclidean Distance Map (EDM) of the intercellular space.",
+            "points": 20,
+            "visual_evidence": "A grayscale image window in Fiji titled 'Distance Map' or similar, showing a gradient where intensity represents distance from cell edges."
+        },
+        {
+            "id": "measurement_extraction",
+            "description": "The agent extracts cell centroids, areas, and calculates Nearest-Neighbor (NN) distances.",
+            "points": 25,
+            "visual_evidence": "A 'Results' table or 'Summary' window in Fiji containing columns for X, Y, Area, and evidence of a plugin or script calculating 'Nearest Neighbor' distances."
+        },
+        {
+            "id": "file_export_tif_csv",
+            "description": "The agent saves the distance map as a .tif and the measurements as a .csv to the specified results directory.",
+            "points": 15,
+            "visual_evidence": "File explorer or Fiji 'Save As' dialogs showing the paths ~/Fiji_Data/results/spacing/distance_map.tif and ~/Fiji_Data/results/spacing/cell_measurements.csv."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "The agent generates a text report with specific keys: num_cells, cell_coverage_percent, mean_nn_distance_px, edm_mean_px, and edm_max_px.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing spacing_report.txt with the five required keys and their calculated values."
+        },
+        {
+            "id": "qc_overlay_export",
+            "description": "The agent saves a visual QC overlay showing the original image with cell outlines.",
+            "points": 10,
+            "visual_evidence": "An image window or saved file at ~/Fiji_Data/results/spacing/qc_overlay.png showing the original microscopy image with colored or highlighted cell boundaries superimposed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the Fiji GUI to perform image processing rather than just writing a python script in the terminal.",
+            "visual_evidence": "Screenshots showing the Fiji menu bar, toolbars, and active image windows being manipulated."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent should not hardcode the summary values; they must be derived from the Fiji Results table.",
+            "visual_evidence": "The values in the final spacing_report.txt should match the statistics visible in the Fiji 'Results' or 'Distribution' windows."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent must use the specific paths provided in the task description for saving outputs.",
+            "visual_evidence": "The file paths visible in 'Save As' dialogs or terminal confirmation must match ~/Fiji_Data/results/spacing/."
+        }
+    ],
+    "privileged_info_for_vlm": "The input image is located at ~/Fiji_Data/workspace/cell_image.tif. The pixel scale is 0.65 µm/px. The output CSV must contain exactly these columns: cell_id, centroid_x, centroid_y, area_px, and nn_dist. The summary report must contain: num_cells, cell_coverage_percent, mean_nn_distance_px, edm_mean_px, and edm_max_px. The distance map should be a Euclidean Distance Map (EDM) where pixels represent the distance to the nearest cell boundary."
+}

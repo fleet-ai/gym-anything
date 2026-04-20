@@ -1,0 +1,53 @@
+{
+    "task_id": "extend_aircraft_model@1",
+    "task_completion": [
+        {
+            "id": "modify_models_py",
+            "description": "Add the 'max_altitude_m' IntegerField to the Aircraft model in /opt/aerobridge/registry/models.py.",
+            "points": 15,
+            "visual_evidence": "A screenshot of a text editor or terminal showing the Aircraft class in models.py with the line: max_altitude_m = models.IntegerField(null=True, blank=True, help_text='Maximum permitted flight altitude in meters')."
+        },
+        {
+            "id": "modify_admin_py",
+            "description": "Update the Aircraft admin configuration in /opt/aerobridge/registry/admin.py to include the new field.",
+            "points": 15,
+            "visual_evidence": "A screenshot of admin.py showing 'max_altitude_m' added to the list_display or fieldsets of the AircraftAdmin class."
+        },
+        {
+            "id": "run_migrations",
+            "description": "Generate and apply database migrations for the model changes.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'python manage.py makemigrations' and 'python manage.py migrate' executing successfully without errors."
+        },
+        {
+            "id": "populate_data",
+            "description": "Populate all existing Aircraft records with a 'max_altitude_m' value of 120.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a management command, python script, or shell session (e.g., Aircraft.objects.all().update(max_altitude_m=120)) being executed."
+        },
+        {
+            "id": "verify_admin_ui",
+            "description": "Verify the field and the populated data are visible in the Django admin panel.",
+            "points": 25,
+            "visual_evidence": "A browser screenshot of http://localhost:8000/admin/registry/aircraft/ showing a column or detail view for 'Max altitude m' with the value '120' for the aircraft entries."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_admin_interaction",
+            "description": "The agent logged into the actual Django admin interface rather than just viewing local files.",
+            "visual_evidence": "Screenshots showing the browser address bar at http://localhost:8000/admin/ and the Django login or dashboard interface."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent actually modified the source code files rather than just printing the desired output to the terminal.",
+            "visual_evidence": "Screenshots showing the file path in an editor (like VS Code or vim) or 'cat' commands showing the saved changes in the actual file system."
+        },
+        {
+            "id": "migration_file_creation",
+            "description": "The agent created a real migration file instead of manually editing the SQLite database.",
+            "visual_evidence": "Terminal output or file explorer showing a new .py file in the /opt/aerobridge/registry/migrations/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The field name must be exactly 'max_altitude_m'. The required default value for all existing records is 120. The admin panel is located at http://localhost:8000/admin/registry/aircraft/. The model file is at /opt/aerobridge/registry/models.py and the admin file is at /opt/aerobridge/registry/admin.py."
+}

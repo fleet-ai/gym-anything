@@ -1,0 +1,59 @@
+{
+    "task_id": "add_cpt_code@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_billing_admin",
+            "description": "Navigate to the billing or CPT code management section of FreeMED.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the agent clicking on 'Admin' or 'Billing' menus and reaching a page titled 'CPT Codes', 'Procedure Codes', or similar."
+        },
+        {
+            "id": "enter_cpt_code_and_internal_name",
+            "description": "Enter the CPT code '99214' and the internal name 'Office outpatient visit est moderate MDM'.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing '99214' typed into a code field and 'Office outpatient visit est moderate MDM' typed into an internal name or description field."
+        },
+        {
+            "id": "enter_external_name",
+            "description": "Enter the full external name for the CPT code.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the text 'Office or other outpatient visit for the evaluation and management of an established patient requiring moderate medical decision making' entered into the external name or long description field."
+        },
+        {
+            "id": "set_gender_and_tax_status",
+            "description": "Set gender restriction to none/all and ensure the taxed option is disabled.",
+            "points": 20,
+            "visual_evidence": "The VLM should see a gender dropdown set to 'Both', 'None', or 'All', and a 'Taxed' checkbox or radio button set to 'No' or unchecked."
+        },
+        {
+            "id": "submit_new_code",
+            "description": "Submit the form to save the new CPT code.",
+            "points": 10,
+            "visual_evidence": "The agent clicking a 'Save', 'Add', or 'Submit' button at the bottom of the CPT entry form."
+        },
+        {
+            "id": "verify_code_creation",
+            "description": "Confirm the code 99214 appears in the system list after saving.",
+            "points": 20,
+            "visual_evidence": "A success message (e.g., 'Code added successfully') or a list view showing the entry for '99214' with the correct associated names."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the FreeMED web interface rather than direct database manipulation or terminal commands.",
+            "visual_evidence": "The trajectory shows mouse movements and clicks within the browser-based GUI, not a command-line interface."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menus rather than jumping directly to a deep-link URL that might bypass the UI flow.",
+            "visual_evidence": "The VLM should see the agent clicking through the FreeMED navigation sidebar or top menu."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually typed or pasted the specific strings into the form fields rather than using automated script injection.",
+            "visual_evidence": "Screenshots show the cursor active in the input fields and text appearing sequentially or via standard paste actions."
+        }
+    ],
+    "privileged_info_for_vlm": "CPT code 99214 is a standard medical code for an 'established patient' (external name) and requires 'moderate' medical decision making (internal name). In FreeMED, adding this code typically requires navigating to the Administration or Billing configuration area. Ensure the 'Taxed' field is specifically set to 'No' as per instructions."
+}

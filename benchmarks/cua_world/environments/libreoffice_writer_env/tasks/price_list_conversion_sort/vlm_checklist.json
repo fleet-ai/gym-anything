@@ -1,0 +1,53 @@
+{
+    "task_id": "price_list_conversion_sort@1",
+    "task_completion": [
+        {
+            "id": "open_source_document",
+            "description": "The agent opens the source file 'raw_inventory_dump.docx' in a word processor.",
+            "points": 10,
+            "visual_evidence": "A word processor (like LibreOffice Writer) is visible showing the raw tab-separated text from the source file."
+        },
+        {
+            "id": "convert_to_table",
+            "description": "The agent converts the raw text into a structured table format.",
+            "points": 20,
+            "visual_evidence": "The text is now contained within a grid/table structure with distinct cells for Product Name, Category, SKU, and Price."
+        },
+        {
+            "id": "header_formatting",
+            "description": "The first row is formatted as a header row.",
+            "points": 15,
+            "visual_evidence": "The top row containing 'Product Name', 'Category', 'SKU', and 'Price' is visually distinct (e.g., bold text, shaded background, or specific table style)."
+        },
+        {
+            "id": "sort_by_price_descending",
+            "description": "The table is sorted by the 'Price' column in descending order.",
+            "points": 30,
+            "visual_evidence": "The values in the 'Price' column are arranged from highest to lowest. The VLM should check that the top row (after the header) has a higher price than the bottom row."
+        },
+        {
+            "id": "save_new_file",
+            "description": "The document is saved as 'formatted_price_list.docx' in the Documents folder.",
+            "points": 25,
+            "visual_evidence": "The 'Save As' dialog or the application title bar shows the filename 'formatted_price_list.docx' and the path '/home/ga/Documents/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the word processor's GUI features to format and sort rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the agent clicking menu items (like 'Table' -> 'Sort' or 'Insert' -> 'Table') or using toolbar icons."
+        },
+        {
+            "id": "no_file_overwrite",
+            "description": "The agent did not overwrite the original file.",
+            "visual_evidence": "The 'Save As' dialog is used to create a new file name instead of a simple 'Save' on the original document."
+        },
+        {
+            "id": "genuine_sorting",
+            "description": "The agent used the software's sorting tool rather than manually moving rows.",
+            "visual_evidence": "The sorting dialog box or menu selection is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file contains 15 items with headers: Product Name, Category, SKU, Price. The final table must be sorted by Price in descending order (highest price at the top). The output filename must be exactly 'formatted_price_list.docx' located in '/home/ga/Documents/'. The original file 'raw_inventory_dump.docx' must remain unchanged."
+}

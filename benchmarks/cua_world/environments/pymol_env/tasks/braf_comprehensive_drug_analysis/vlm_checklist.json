@@ -1,0 +1,65 @@
+{
+    "task_id": "braf_comprehensive_drug_analysis@1",
+    "task_completion": [
+        {
+            "id": "pdb_loading_and_pocket_selection",
+            "description": "Fetch PDB 3OG7 and select residues within 4.0A of the ligand (Vemurafenib).",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '3OG7' and a selection (likely named 'sele' or 'pocket') highlighting residues surrounding the ligand in the 3D viewer."
+        },
+        {
+            "id": "distance_measurements_and_h_bonds",
+            "description": "Measure five specific C-alpha to ligand distances and display polar contacts.",
+            "points": 15,
+            "visual_evidence": "Measurement labels (dashed lines with Angstrom values) are visible between protein C-alpha atoms and the ligand. Yellow dashed lines representing H-bonds are visible between the protein and ligand."
+        },
+        {
+            "id": "dfg_alignment_and_comparison",
+            "description": "Fetch 1UWH, align it to 3OG7, and identify DFG motif displacement.",
+            "points": 20,
+            "visual_evidence": "Two kinase structures (gray and light blue) are superimposed in the viewer. The DFG motif (Asp-Phe-Gly) is shown in stick representation for both, showing a conformational shift."
+        },
+        {
+            "id": "sasa_and_surface_representation",
+            "description": "Compute SASA and generate a pocket surface colored by residue property.",
+            "points": 15,
+            "visual_evidence": "A molecular surface is visible in the PyMOL viewer, colored with specific colors (yellow, white, blue, red) corresponding to hydrophobic, polar, and charged residues."
+        },
+        {
+            "id": "gatekeeper_mutation_modeling",
+            "description": "Mutate Thr529 to Met and measure the distance to the ligand to check for steric clashes.",
+            "points": 15,
+            "visual_evidence": "The Mutagenesis Wizard is active or a Methionine residue is visible at position 529. A distance measurement between the Met sidechain and the ligand is displayed."
+        },
+        {
+            "id": "comprehensive_report_generation",
+            "description": "Write a structured analysis report with 6 specific sections to the designated file path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the content of 'braf_drug_analysis_report.txt' containing labeled sections for Binding Pocket, Key Distances, DFG Dynamics, BSA, Mutation, and Implications."
+        },
+        {
+            "id": "final_outputs_and_session",
+            "description": "Save four specific PNG images and the PyMOL session file (.pse).",
+            "points": 10,
+            "visual_evidence": "The file explorer or terminal 'ls' command shows braf_vemurafenib_pocket.png, braf_dfg_comparison.png, braf_pocket_surface.png, braf_gatekeeper_mutation.png, and braf_analysis.pse in the specified directories."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_software_interaction",
+            "description": "Verify the agent interacted with the PyMOL application rather than just outputting text.",
+            "visual_evidence": "Screenshots show the PyMOL GUI, including the internal command history, object menu, and 3D canvas, with active manipulations visible."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "Ensure distance and SASA values were calculated in-session.",
+            "visual_evidence": "The PyMOL external GUI or command log shows the output of 'distance' and 'get_area' (or 'dot') commands matching the values reported in the text file."
+        },
+        {
+            "id": "manual_mutagenesis_wizard",
+            "description": "Check that the mutagenesis wizard or specific mutation commands were used.",
+            "visual_evidence": "The PyMOL 'Wizard' menu or the specific 'wizard mutagenesis' command is visible in the command history."
+        }
+    ],
+    "privileged_info_for_vlm": "In 3OG7, the gatekeeper residue is Thr529. In 1UWH (DFG-out), the DFG-Phe (Phe595 in 3OG7 numbering) moves significantly (approx 10-15A) compared to 3OG7 (DFG-in). The T529M mutation in BRAF is a known resistance mechanism because the larger Methionine sidechain sterically hinders the binding of vemurafenib in the ATP-binding site. Expected BSA for vemurafenib is typically in the range of 300-500 A^2."
+}

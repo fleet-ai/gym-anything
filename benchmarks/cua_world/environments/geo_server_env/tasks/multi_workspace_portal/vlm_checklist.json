@@ -1,0 +1,59 @@
+{
+    "task_id": "multi_workspace_portal@1",
+    "task_completion": [
+        {
+            "id": "workspaces_created",
+            "description": "Create 'infrastructure' and 'environment' workspaces with correct URIs.",
+            "points": 10,
+            "visual_evidence": "The GeoServer 'Workspaces' list showing 'infrastructure' (http://infrastructure.authority.gov/gis) and 'environment' (http://environment.authority.gov/gis)."
+        },
+        {
+            "id": "datastores_configured",
+            "description": "Configure 'infra_data' and 'env_data' PostGIS datastores.",
+            "points": 15,
+            "visual_evidence": "The 'Stores' list showing 'infra_data' (workspace: infrastructure) and 'env_data' (workspace: environment) both connected to gs-postgis."
+        },
+        {
+            "id": "layers_published",
+            "description": "Publish 'settlements' and 'waterways' layers from the database tables.",
+            "points": 15,
+            "visual_evidence": "The 'Layers' list showing 'infrastructure:settlements' and 'environment:waterways' as enabled layers."
+        },
+        {
+            "id": "custom_styles_created",
+            "description": "Create 'settlement_marker' and 'waterway_line' SLD styles with specific hex codes.",
+            "points": 25,
+            "visual_evidence": "The 'Styles' editor showing SLD code for 'settlement_marker' with #FFA500 and 'waterway_line' with #0080FF."
+        },
+        {
+            "id": "styles_assigned",
+            "description": "Assign the custom styles as the default for the respective layers.",
+            "points": 15,
+            "visual_evidence": "The 'Publishing' tab for the 'settlements' layer showing 'settlement_marker' as default, and 'waterways' showing 'waterway_line' as default."
+        },
+        {
+            "id": "layer_group_created",
+            "description": "Create a global layer group named 'regional_portal' containing both layers.",
+            "points": 20,
+            "visual_evidence": "The 'Layer Groups' page showing 'regional_portal' with both 'infrastructure:settlements' and 'environment:waterways' in the layer list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than direct API calls or database manipulation.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with GeoServer menus, forms being filled, and 'Save' buttons being clicked."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not simply rename existing layers but went through the creation/publishing workflow.",
+            "visual_evidence": "Sequential screenshots showing the 'New Store' and 'New Layer' wizard pages being populated."
+        },
+        {
+            "id": "live_preview",
+            "description": "The agent verified the results using the Layer Preview or Layer Group preview.",
+            "visual_evidence": "A screenshot of the OpenLayers preview showing orange circles and blue lines on a map."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific naming and values: Workspaces: 'infrastructure' (URI: http://infrastructure.authority.gov/gis) and 'environment' (URI: http://environment.authority.gov/gis). Stores: 'infra_data' and 'env_data' (Host: gs-postgis, Port: 5432, DB: gis). Layers: 'settlements' (from ne_populated_places) and 'waterways' (from ne_rivers). Styles: 'settlement_marker' must use orange #FFA500 and size 8; 'waterway_line' must use blue #0080FF and width 2. Layer Group: 'regional_portal' must contain both layers."
+}

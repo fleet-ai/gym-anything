@@ -1,0 +1,59 @@
+{
+    "task_id": "convert_meeting_to_recurring_schedule@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the Odoo system with admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo dashboard or calendar view after the login screen, with 'admin' visible as the user profile."
+        },
+        {
+            "id": "locate_team_standup",
+            "description": "Locate and open the 'Team Standup' meeting on next Monday.",
+            "points": 15,
+            "visual_evidence": "A calendar view showing the 'Team Standup' event on the correct date, and the event details window or edit form being opened."
+        },
+        {
+            "id": "enable_recurrent_checkbox",
+            "description": "Enable the 'Recurrent' checkbox in the event settings.",
+            "points": 15,
+            "visual_evidence": "The 'Recurrent' checkbox is checked, revealing the recurrence options (Repeat Every, Weeks, etc.)."
+        },
+        {
+            "id": "set_weekly_mon_thu",
+            "description": "Set the recurrence to Weekly on Mondays and Thursdays.",
+            "points": 25,
+            "visual_evidence": "The recurrence type is set to 'Weeks', and both 'Mon' and 'Thu' (or Monday and Thursday) buttons/checkboxes are selected in the recurrence configuration."
+        },
+        {
+            "id": "set_occurrence_count",
+            "description": "Set the recurrence to end after exactly 10 occurrences.",
+            "points": 25,
+            "visual_evidence": "The 'End' or 'Stop' condition is set to 'Number of repetitions' or 'After', and the value '10' is entered in the count field."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save the updated meeting configuration.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the 'Save' button, and the calendar view updates to show the recurring instances of the meeting."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI elements, and form filling within the browser."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application rather than jumping directly to a final state URL if not provided.",
+            "visual_evidence": "The trajectory shows the process of opening the calendar and clicking the specific event."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual Odoo instance and did not simulate the result using image editing or mockups.",
+            "visual_evidence": "Consistent UI rendering, loading states, and standard Odoo interface behavior across the screenshot sequence."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is named 'Team Standup'. It is initially scheduled for next Monday. The recurrence must be configured as: Repeat: Weekly; Days: Monday (mon) and Thursday (thu); End Type: Count (Number of repetitions); Count: 10. Ensure the agent selects both Monday and Thursday, as Odoo often defaults to only the current day."
+}

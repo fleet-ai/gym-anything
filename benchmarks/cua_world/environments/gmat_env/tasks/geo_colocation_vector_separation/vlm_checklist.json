@@ -1,0 +1,65 @@
+{
+    "task_id": "geo_colocation_vector_separation@1",
+    "task_completion": [
+        {
+            "id": "open_directive_file",
+            "description": "Agent opens the colocation_directive.txt file to retrieve orbital elements.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/Desktop/colocation_directive.txt."
+        },
+        {
+            "id": "configure_spacecraft",
+            "description": "Agent defines EuroSat4 and EuroSat8 in the GMAT interface or script.",
+            "points": 15,
+            "visual_evidence": "GMAT Resource Tree showing two Spacecraft objects (EuroSat4, EuroSat8) or script code defining both satellites."
+        },
+        {
+            "id": "configure_propagator",
+            "description": "Agent sets up a propagator with Earth Point Mass or J2 gravity and a 3600s step size.",
+            "points": 15,
+            "visual_evidence": "GMAT Propagator configuration window showing 'PointMass' or 'J2' and 'Step Size' set to 3600."
+        },
+        {
+            "id": "configure_report_file",
+            "description": "Agent configures a ReportFile to output Cartesian states to the specified path.",
+            "points": 20,
+            "visual_evidence": "GMAT ReportFile resource properties showing the path /home/ga/GMAT_output/colocation_ephem.txt and selected parameters X, Y, Z for both satellites."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the required output directory.",
+            "points": 10,
+            "visual_evidence": "GMAT title bar or a file explorer window showing the file saved at /home/ga/GMAT_output/geo_colocation.script."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the simulation for a 14-day duration.",
+            "points": 15,
+            "visual_evidence": "GMAT Mission tree showing a 'Propagate' command for 14 days and the 'Run' button being pressed or the 'Output' log showing successful completion."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "Agent verifies the existence and content of the generated report file.",
+            "points": 15,
+            "visual_evidence": "A terminal or text editor showing /home/ga/GMAT_output/colocation_ephem.txt with multiple rows of numerical data (Cartesian states)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical user interface for the primary task.",
+            "visual_evidence": "Screenshots show the GMAT application window, resource tree, and mission sequence rather than just a terminal script execution."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type out the final report file content.",
+            "visual_evidence": "The report file is generated via the GMAT 'Run' command, evidenced by the GMAT output log or timestamp updates."
+        },
+        {
+            "id": "genuine_file_paths",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Screenshots of the GMAT configuration or file explorer confirm paths: /home/ga/GMAT_output/colocation_ephem.txt and /home/ga/GMAT_output/geo_colocation.script."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must run for 14 days with a 3600s step size, which should result in approximately 337 rows of data in the output file (minimum 330). The output file /home/ga/GMAT_output/colocation_ephem.txt must contain Cartesian X, Y, Z coordinates for both EuroSat4 and EuroSat8. The script must be saved to /home/ga/GMAT_output/geo_colocation.script. The orbital slot is 19.2°E."
+}

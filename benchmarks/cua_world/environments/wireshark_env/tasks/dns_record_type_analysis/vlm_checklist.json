@@ -1,0 +1,59 @@
+{
+    "task_id": "dns_record_type_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the packet capture file /home/ga/Documents/captures/dns.cap using a network analysis tool like Wireshark.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark or a similar GUI tool with 'dns.cap' loaded and packets visible in the packet list pane."
+        },
+        {
+            "id": "analyze_dns_traffic",
+            "description": "The agent filters or inspects the traffic to identify DNS record types, query counts, and server IP addresses.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent applying a 'dns' filter, expanding the 'Domain Name System' protocol tree, or using 'Statistics -> DNS' in Wireshark."
+        },
+        {
+            "id": "report_unique_domains",
+            "description": "The audit report contains a section listing all unique domain names queried, one per line.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing 'dns_audit_report.txt' with a list of domain names (e.g., google.com, etc.) formatted one per line."
+        },
+        {
+            "id": "report_record_types_counts",
+            "description": "The report includes all DNS record types observed (A, AAAA, MX, etc.) with their respective query counts.",
+            "points": 20,
+            "visual_evidence": "The 'dns_audit_report.txt' file showing a section with record types and numerical counts (e.g., 'A: 12', 'AAAA: 4')."
+        },
+        {
+            "id": "report_dns_servers",
+            "description": "The report identifies the IP addresses of the DNS servers used in the capture.",
+            "points": 15,
+            "visual_evidence": "The 'dns_audit_report.txt' file showing a section listing specific IP addresses identified as DNS servers."
+        },
+        {
+            "id": "report_packet_totals",
+            "description": "The report lists the total number of DNS query packets and total number of DNS response packets.",
+            "points": 20,
+            "visual_evidence": "The 'dns_audit_report.txt' file showing two distinct counts for 'Total Queries' and 'Total Responses'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the Wireshark GUI to analyze the traffic rather than just running command-line scripts to extract data.",
+            "visual_evidence": "Screenshots showing the Wireshark application window active and being interacted with (menus, packet details, or filters)."
+        },
+        {
+            "id": "genuine_report_creation",
+            "description": "The agent manually compiles or saves the report based on observed data rather than copy-pasting a pre-existing solution.",
+            "visual_evidence": "Screenshots of the agent typing in a text editor (like Gedit or VS Code) or using 'Save As' within the environment."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent works with the specific files and paths mentioned in the task.",
+            "visual_evidence": "The file manager or application title bars showing the path /home/ga/Documents/captures/dns.cap and the creation of dns_audit_report.txt in the same directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file 'dns.cap' contains exactly 38 packets. The VLM should verify that the 'Total DNS query packets' and 'Total DNS response packets' in the final report sum to 38 (or a subset if non-DNS traffic exists, though this is a DNS-specific capture). The file size is 4338 bytes. The report must be located at /home/ga/Documents/captures/dns_audit_report.txt."
+}

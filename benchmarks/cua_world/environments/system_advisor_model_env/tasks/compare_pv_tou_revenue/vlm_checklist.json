@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_pv_tou_revenue@1",
+    "task_completion": [
+        {
+            "id": "create_directory",
+            "description": "Create the project directory at /home/ga/Documents/SAM_Projects/",
+            "points": 5,
+            "visual_evidence": "Terminal output showing 'mkdir' or a file explorer window showing the created folder path."
+        },
+        {
+            "id": "script_implementation",
+            "description": "Write the Python script 'tou_analysis.py' using PySAM (Pvwattsv8) with the specified system parameters (5000kW, 180/270 azimuth, etc.).",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal 'cat' command showing the script content with PySAM imports and the correct system configurations."
+        },
+        {
+            "id": "weather_file_usage",
+            "description": "The script correctly references a Phoenix TMY weather file from the SAM solar_resource directory.",
+            "points": 15,
+            "visual_evidence": "Code snippet showing the path to a Phoenix weather file (typically .csv or .tm2) being loaded into the PySAM model."
+        },
+        {
+            "id": "tou_logic_implementation",
+            "description": "The script implements the TOU pricing logic: Peak (16:00-20:00) at $0.15 and Off-Peak at $0.05.",
+            "points": 25,
+            "visual_evidence": "Code showing the hourly loop or array indexing (indices 16-19) and the multiplication by the specified price values."
+        },
+        {
+            "id": "script_execution",
+            "description": "Run the Python script to perform the 8760 hourly analysis.",
+            "points": 10,
+            "visual_evidence": "Terminal showing the execution of 'python3 tou_analysis.py' without errors."
+        },
+        {
+            "id": "json_output_generation",
+            "description": "Generate the 'tou_results.json' file with the required structure and data for both systems.",
+            "points": 20,
+            "visual_evidence": "Terminal 'cat' output or file editor showing the JSON file containing 'south_system', 'west_system', and 'recommended_azimuth'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final energy/revenue values directly into the script without calculation.",
+            "visual_evidence": "The script should contain logic for iterating through 8760 hours and calculating revenue based on hourly AC output, not just print statements of fixed numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually used the PySAM library rather than mocking the results.",
+            "visual_evidence": "Presence of 'import PySAM.Pvwattsv8' and calls to 'system.execute()' in the source code."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the task rather than local temporary files.",
+            "visual_evidence": "The script and JSON file are located in /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using PySAM.Pvwattsv8. System parameters: 5000 kW DC, 20° tilt, 1.2 DC/AC, 14.08% losses, 96% inverter efficiency. South Azimuth is 180°, West is 270°. TOU Peak hours are indices 16, 17, 18, and 19 (4 PM - 8 PM) at $0.15/kWh; all other hours are $0.05/kWh. The weather file must be a Phoenix TMY file from the standard SAM solar_resource directory. The final output must be a JSON file at /home/ga/Documents/SAM_Projects/tou_results.json."
+}

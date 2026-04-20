@@ -1,0 +1,59 @@
+{
+    "task_id": "create_workflow_rule@1",
+    "task_completion": [
+        {
+            "id": "workflow_creation_navigation",
+            "description": "Navigate to the Workflow creation page in SuiteCRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Workflow' module open with a 'Create Workflow' form or edit view visible."
+        },
+        {
+            "id": "basic_info_config",
+            "description": "Set the Workflow Name, Module, and Status correctly.",
+            "points": 15,
+            "visual_evidence": "The 'Workflow Name' field contains 'Auto-Qualify High-Value Prospects', 'Workflow Module' is set to 'Opportunities', and 'Status' is 'Active'."
+        },
+        {
+            "id": "run_settings_config",
+            "description": "Configure the 'Run' and 'Run On' settings.",
+            "points": 10,
+            "visual_evidence": "The 'Run' dropdown is set to 'Always' and 'Run On' is set to 'All Records'."
+        },
+        {
+            "id": "condition_amount",
+            "description": "Add a condition for the Opportunity Amount.",
+            "points": 20,
+            "visual_evidence": "A condition row showing the field 'Amount', operator 'Greater Than or Equal To', and value '50000'."
+        },
+        {
+            "id": "condition_stage",
+            "description": "Add a condition for the Sales Stage.",
+            "points": 20,
+            "visual_evidence": "A condition row showing the field 'Sales Stage', operator 'Equal To', and value 'Prospecting'."
+        },
+        {
+            "id": "action_configuration",
+            "description": "Add a 'Modify Record' action to update the Sales Stage.",
+            "points": 25,
+            "visual_evidence": "An Action block named 'Advance to Qualification' with 'Select Action' set to 'Modify Record', and a field mapping setting 'Sales Stage' to 'Qualification'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SuiteCRM web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with SuiteCRM form fields and dropdowns."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use the terminal to run SQL queries to insert the workflow rule directly.",
+            "visual_evidence": "The terminal logs (if visible) do not show SQL 'INSERT' statements or direct file edits to the SuiteCRM database."
+        },
+        {
+            "id": "genuine_workflow_save",
+            "description": "The agent actually clicks the 'Save' button to commit the workflow.",
+            "visual_evidence": "A screenshot showing the 'Save' button being clicked or a 'Success' message/Detail View of the saved workflow."
+        }
+    ],
+    "privileged_info_for_vlm": "The workflow must be named 'Auto-Qualify High-Value Prospects' for the 'Opportunities' module. Status must be 'Active'. Conditions: Amount >= 50000 AND Sales Stage = 'Prospecting'. Action: 'Modify Record' named 'Advance to Qualification' setting Sales Stage to 'Qualification'. Run settings: 'Always' on 'All Records'."
+}

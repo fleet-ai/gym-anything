@@ -1,0 +1,59 @@
+{
+    "task_id": "delete_weight_entries@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to wger using the provided admin credentials",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger dashboard or user profile page, and the 'Login' button is no longer visible, replaced by a 'Logout' or user icon."
+        },
+        {
+            "id": "navigate_to_weight_log",
+            "description": "Navigate to the body weight history/log section",
+            "points": 10,
+            "visual_evidence": "The page title or header indicates 'Weight' or 'Body weight' and displays a list or table of weight entries."
+        },
+        {
+            "id": "locate_erroneous_entries",
+            "description": "Identify the entries with values above 150 kg (approx. 191.8, 190.5, 192.3 kg)",
+            "points": 20,
+            "visual_evidence": "The agent scrolls or navigates through pagination to find entries with values > 150 kg in the weight list."
+        },
+        {
+            "id": "delete_first_entry",
+            "description": "Delete one of the erroneous weight entries",
+            "points": 20,
+            "visual_evidence": "A confirmation dialog for deletion appears, or an entry > 150 kg disappears from the list after a delete action."
+        },
+        {
+            "id": "delete_remaining_entries",
+            "description": "Delete the remaining two erroneous weight entries",
+            "points": 30,
+            "visual_evidence": "The agent repeats the deletion process for the other two entries > 150 kg. Screenshots show these specific rows being removed."
+        },
+        {
+            "id": "verify_clean_history",
+            "description": "Confirm no entries above 150 kg remain in the history",
+            "points": 10,
+            "visual_evidence": "The agent views the weight history pages and no entries with values > 150 kg are visible in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than terminal commands to delete entries",
+            "visual_evidence": "The agent clicks buttons (trash icons, delete buttons) in the Firefox browser; no use of 'sqlite3' or 'curl' in a terminal is seen."
+        },
+        {
+            "id": "no_manual_url_skipping",
+            "description": "The agent navigated through the UI rather than guessing direct deletion URLs",
+            "visual_evidence": "The agent is seen clicking through the wger menu and weight log pagination."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the actual wger application instance",
+            "visual_evidence": "The URL bar shows http://localhost/en/user/login or related local paths throughout the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful only if all three specific entries (191.8 kg, 190.5 kg, and 192.3 kg) are deleted. The threshold for erroneous entries is strictly 150 kg. The agent must use the admin/adminadmin credentials. Note that these entries are likely on older pages, so the agent must use the pagination controls at the bottom of the weight list to find them."
+}

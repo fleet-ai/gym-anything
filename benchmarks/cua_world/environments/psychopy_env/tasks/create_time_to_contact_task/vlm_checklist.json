@@ -1,0 +1,59 @@
+{
+    "task_id": "create_time_to_contact_task@1",
+    "task_completion": [
+        {
+            "id": "setup_directory_and_files",
+            "description": "The agent creates the project directory and the conditions.csv file with the required columns.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing /home/ga/PsychoPyExperiments/ttc_task/ containing conditions.csv, or the CSV file open in an editor showing 'speed', 'start_pos', and 'direction' columns."
+        },
+        {
+            "id": "download_background_image",
+            "description": "The agent attempts to download or save the background image to the specified path.",
+            "points": 10,
+            "visual_evidence": "A browser window, terminal command (wget/curl), or file explorer showing road_bg.jpg in the ttc_task folder."
+        },
+        {
+            "id": "psychopy_builder_interface",
+            "description": "The agent opens PsychoPy Builder and begins constructing the experiment.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder GUI is visible on the screen."
+        },
+        {
+            "id": "configure_components",
+            "description": "The agent adds an image component (background), a polygon component (circular vehicle), and a rectangular occluder.",
+            "points": 25,
+            "visual_evidence": "The PsychoPy 'Routine' pane shows icons for an image, a circle/polygon, and a rectangle. The rectangle's properties show x=0.3 and width=0.4."
+        },
+        {
+            "id": "implement_movement_and_response",
+            "description": "The agent sets the vehicle's position using a time-based formula with 'speed' and 'start_pos' variables and adds a keyboard component.",
+            "points": 25,
+            "visual_evidence": "The properties window for the circular vehicle shows a formula in the 'Position' field (e.g., involving $t, speed, start_pos). A keyboard component named 'key_resp' or similar is visible in the routine with 'space' as an allowed key."
+        },
+        {
+            "id": "save_and_compile",
+            "description": "The agent saves the experiment as ttc_task.psyexp and compiles it to a Python script.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy window title shows 'ttc_task.psyexp' and the agent clicks the 'Compile Script' button (paper icon), resulting in a new .py tab or file appearing."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the PsychoPy Builder GUI to design the experiment rather than just writing a Python script manually.",
+            "visual_evidence": "Screenshots show the agent clicking buttons and typing into property fields within the PsychoPy Builder interface."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent creates the conditions.csv file with actual data rows.",
+            "visual_evidence": "Screenshots show the agent typing data into a spreadsheet or text editor for the CSV file, containing at least three rows."
+        },
+        {
+            "id": "no_hardcoding_values",
+            "description": "The agent uses the variables from the conditions file in the component properties.",
+            "visual_evidence": "The PsychoPy component property fields contain variable names (e.g., $speed) rather than static numbers."
+        }
+    ],
+    "privileged_info_for_vlm": "The background image URL (https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/P1010368.JPG/1280px-P1010368.JPG) is known to be broken (404). The agent may encounter an error downloading it; look for how they handle this (e.g., using a placeholder or continuing). The experiment must be saved at /home/ga/PsychoPyExperiments/ttc_task/ttc_task.psyexp. The occluder must be at x=0.3 with a width of 0.4."
+}

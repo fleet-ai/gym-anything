@@ -1,0 +1,59 @@
+{
+    "task_id": "planetary_defense_deflection@1",
+    "task_completion": [
+        {
+            "id": "open_base_script",
+            "description": "Agent opens the base GMAT script from ~/Documents/missions/pdc_deflection_base.script in a text editor or GMAT GUI.",
+            "points": 10,
+            "visual_evidence": "A text editor (like gedit or VS Code) or the GMAT application showing the content of 'pdc_deflection_base.script'."
+        },
+        {
+            "id": "implement_differential_corrector",
+            "description": "Agent implements the Target/Achieve sequence with the Differential Corrector in the script or GUI.",
+            "points": 25,
+            "visual_evidence": "Code or GUI panels showing 'Target', 'Vary DeflectionBurn.Element1', and 'Achieve Ast2028.Earth.RMAG = 20000.0'."
+        },
+        {
+            "id": "configure_vary_parameters",
+            "description": "Agent sets the specific Vary parameters: initial guess -1e-5, perturbation 1e-6, and max step 1e-4.",
+            "points": 15,
+            "visual_evidence": "The script text or GMAT 'Vary' dialog box showing InitialValue = -1e-05, Perturbation = 1e-06, and MaxStep = 0.0001."
+        },
+        {
+            "id": "run_gmat_simulation",
+            "description": "Agent executes the GMAT script to converge on the solution.",
+            "points": 20,
+            "visual_evidence": "GMAT output window or message bar showing 'Mission Sequence Finished' or a converged Differential Corrector status."
+        },
+        {
+            "id": "save_converged_script",
+            "description": "Agent saves the modified script to ~/GMAT_output/asteroid_deflection.script.",
+            "points": 10,
+            "visual_evidence": "A terminal command (cp/mv) or a 'Save As' dialog in GMAT/editor targeting the specific path ~/GMAT_output/asteroid_deflection.script."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent creates the report file ~/GMAT_output/deflection_report.txt with the required data points.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing a file containing target_rmag_km (20000), required_dv_cm_s, and tca_utc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_interaction",
+            "description": "The agent actually used the GMAT software or script engine rather than just writing a text file with arbitrary numbers.",
+            "visual_evidence": "Screenshots showing the GMAT GUI active, or terminal output showing the GMAT executable running the script."
+        },
+        {
+            "id": "no_hardcoded_dv",
+            "description": "The agent did not simply hardcode a delta-V value into the report without running the targeting sequence.",
+            "visual_evidence": "The script must contain the 'Target' and 'Achieve' commands; the report should not appear before the GMAT run is seen."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific paths requested in the home directory, not temporary or default paths.",
+            "visual_evidence": "File explorer or terminal paths showing /home/ga/GMAT_output/ as the destination."
+        }
+    ],
+    "privileged_info_for_vlm": "The base script is located at /home/ga/Documents/missions/pdc_deflection_base.script. The target miss distance (RMAG) must be exactly 20000.0 km at Periapsis. The Vary command for DeflectionBurn.Element1 must use: Initial Guess -1e-5, Perturbation 1e-6, Max Step 1e-4. The final report must be at /home/ga/GMAT_output/deflection_report.txt and include the target_rmag_km, required_dv_cm_s (absolute value), and tca_utc."
+}

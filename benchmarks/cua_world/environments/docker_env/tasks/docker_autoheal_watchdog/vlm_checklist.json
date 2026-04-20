@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_autoheal_watchdog@1",
+    "task_completion": [
+        {
+            "id": "modify_docker_compose_healthcheck",
+            "description": "Add a healthcheck configuration to the payment-gateway service in docker-compose.yml.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing 'healthcheck:' added to the payment-gateway service, using 'curl -f http://localhost:8000/health' or similar as the test command."
+        },
+        {
+            "id": "implement_autoheal_service",
+            "description": "Add an autoheal container (e.g., willfarrell/autoheal) to the docker-compose.yml file.",
+            "points": 20,
+            "visual_evidence": "The docker-compose.yml file showing a new service (usually named 'autoheal') with the 'willfarrell/autoheal' image and a volume mapping for '/var/run/docker.sock'."
+        },
+        {
+            "id": "enable_autoheal_label",
+            "description": "Add the 'autoheal=true' label to the payment-gateway service.",
+            "points": 15,
+            "visual_evidence": "The docker-compose.yml file showing 'labels: - autoheal=true' under the payment-gateway service definition."
+        },
+        {
+            "id": "deploy_updated_stack",
+            "description": "Restart the docker-compose stack to apply the watchdog configuration.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker-compose up -d' and both the payment-gateway and autoheal containers starting/running."
+        },
+        {
+            "id": "trigger_sabotage",
+            "description": "Trigger the deadlock bug using the sabotage endpoint.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'curl -X POST http://localhost:8000/sabotage' returning a success message or the service becoming unresponsive."
+        },
+        {
+            "id": "verify_recovery",
+            "description": "Verify the service automatically recovers and returns a healthy status.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'curl http://localhost:8000/health' returning a 200 OK status or '{\"status\": \"healthy\"}' after the sabotage event, or docker logs showing the container being restarted by autoheal."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_docker_interaction",
+            "description": "The agent interacted with the actual Docker daemon and compose files rather than just echoing text.",
+            "visual_evidence": "Screenshots showing real terminal command execution (docker ps, docker-compose up) and file edits in a text editor like VS Code or vim."
+        },
+        {
+            "id": "no_manual_restart",
+            "description": "The agent did not manually run 'docker restart' to fix the service after sabotage.",
+            "visual_evidence": "The command history or terminal logs should not show a manual 'docker restart payment-gateway' command after the sabotage curl."
+        },
+        {
+            "id": "verified_endpoint_usage",
+            "description": "The agent used the specific ports and endpoints defined in the task.",
+            "visual_evidence": "Commands showing interaction with port 8000 and the /health and /sabotage paths."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/payment-gateway. The health endpoint is http://localhost:8000/health (returns 200 when healthy, 500 when unhealthy). The sabotage endpoint is a POST request to http://localhost:8000/sabotage. A successful implementation typically involves adding a 'healthcheck' to the gateway service and an 'autoheal' service (image: willfarrell/autoheal) to the docker-compose.yml, with the gateway labeled 'autoheal=true'."
+}

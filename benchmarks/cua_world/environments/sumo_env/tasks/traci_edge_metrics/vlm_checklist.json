@@ -1,0 +1,59 @@
+{
+    "task_id": "traci_edge_metrics@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at /home/ga/SUMO_Output/traci_monitor.py with TraCI import and the correct SUMO config path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/SUMO_Output/traci_monitor.py referencing /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg."
+        },
+        {
+            "id": "headless_execution",
+            "description": "The script is executed using 'sumo' (not 'sumo-gui') via TraCI to run the simulation headlessly.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the execution of the python script and SUMO starting in non-GUI mode."
+        },
+        {
+            "id": "simulation_progress",
+            "description": "The simulation runs for at least 500 simulated seconds.",
+            "points": 20,
+            "visual_evidence": "Terminal logs or script output indicating the simulation reached or exceeded step 500."
+        },
+        {
+            "id": "csv_generation",
+            "description": "The output file /home/ga/SUMO_Output/edge_metrics.csv is created.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal command (ls) showing the existence of edge_metrics.csv in the specified directory."
+        },
+        {
+            "id": "csv_header_validation",
+            "description": "The CSV file contains the exact required headers: sim_time, edge_id, vehicle_count, mean_speed, travel_time.",
+            "points": 15,
+            "visual_evidence": "A 'cat' or 'head' command showing the first line of edge_metrics.csv with the correct column names."
+        },
+        {
+            "id": "data_content_validation",
+            "description": "The CSV contains data at 60-second intervals for multiple edges.",
+            "points": 25,
+            "visual_evidence": "A view of the CSV content showing sim_time values (e.g., 60, 120, 180...) and various edge IDs with associated metrics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type or echo the CSV content into a file without running a simulation.",
+            "visual_evidence": "The trajectory should show the execution of the Python script and SUMO logs, not just a series of 'echo' commands to build the CSV."
+        },
+        {
+            "id": "genuine_traci_usage",
+            "description": "The agent used the TraCI library to interface with SUMO rather than hardcoding values.",
+            "visual_evidence": "The Python script code must contain 'import traci' and calls like 'traci.edge.getLastStepVehicleNumber'."
+        },
+        {
+            "id": "correct_config_path",
+            "description": "The agent used the specific Bologna Acosta scenario path provided in the instructions.",
+            "visual_evidence": "The script or command line must explicitly reference /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be at /home/ga/SUMO_Output/traci_monitor.py and the CSV at /home/ga/SUMO_Output/edge_metrics.csv. Required CSV columns: sim_time, edge_id, vehicle_count, mean_speed, travel_time. The simulation must span at least 250-300 seconds (instructions say 500) and contain at least 6 unique time steps and 20 unique edges to be considered valid."
+}

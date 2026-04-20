@@ -1,0 +1,53 @@
+{
+    "task_id": "json_duality_view_integration@1",
+    "task_completion": [
+        {
+            "id": "create_duality_view",
+            "description": "Create the JSON Relational Duality View named DEPT_EMP_DV linking Departments and Employees.",
+            "points": 20,
+            "visual_evidence": "SQL command in a terminal or IDE showing 'CREATE OR REPLACE JSON RELATIONAL DUALITY VIEW DEPT_EMP_DV' with a nested 'staff' array mapping."
+        },
+        {
+            "id": "insert_initial_data",
+            "description": "Insert Department 300 and Employees 3001 and 3002 through the view.",
+            "points": 25,
+            "visual_evidence": "An INSERT statement into DEPT_EMP_DV containing a JSON object with department_id 300, 'Cloud Infrastructure', and the two employee objects (Sanjay Gupta and Alisha Wong)."
+        },
+        {
+            "id": "update_dept_name",
+            "description": "Update the Department Name to 'Cloud Operations' via the view.",
+            "points": 15,
+            "visual_evidence": "An UPDATE statement or JSON merge operation targeting DEPT_EMP_DV where the department name is changed to 'Cloud Operations' for ID 300."
+        },
+        {
+            "id": "update_employee_email",
+            "description": "Update Sanjay's Email to 'SGUPTA_CLOUD' through the view.",
+            "points": 15,
+            "visual_evidence": "An UPDATE statement or JSON patch targeting the 'staff' array within DEPT_EMP_DV to change the email for employee 3001."
+        },
+        {
+            "id": "export_json_file",
+            "description": "Export the resulting JSON document for Department 300 to the specified desktop path.",
+            "points": 25,
+            "visual_evidence": "A command (like spool, redirection, or a python script) showing the selection of the JSON document from DEPT_EMP_DV and saving it to /home/ga/Desktop/cloud_ops.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply echo the final JSON into a file without querying the database.",
+            "visual_evidence": "The agent must show SQL execution or database connection logs, not just a 'cat > file' command with the final answer."
+        },
+        {
+            "id": "actual_duality_syntax",
+            "description": "The agent used Oracle JSON Duality View syntax rather than standard relational tables.",
+            "visual_evidence": "Presence of keywords like 'JSON RELATIONAL DUALITY VIEW' or 'JSON_SERIALIZE' in the command history."
+        },
+        {
+            "id": "verified_path_usage",
+            "description": "The agent used the exact file path specified in the task.",
+            "visual_evidence": "The file path /home/ga/Desktop/cloud_ops.json appears in the export command."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named DEPT_EMP_DV. The final JSON document for Department 300 must have the department name 'Cloud Operations' and employee 3001 (Sanjay Gupta) must have the email 'SGUPTA_CLOUD'. The output file must be located at /home/ga/Desktop/cloud_ops.json. The view structure requires a nested array named 'staff' for employees."
+}

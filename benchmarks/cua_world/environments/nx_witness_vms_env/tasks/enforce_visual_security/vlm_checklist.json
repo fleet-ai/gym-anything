@@ -1,0 +1,59 @@
+{
+    "task_id": "enforce_visual_security@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the Nx Witness Web Admin interface",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Nx Witness dashboard or settings page after the login screen, showing the user is authenticated as 'admin'."
+        },
+        {
+            "id": "watermark_user_enabled",
+            "description": "Enable visual watermarking and set it to display 'User Name'",
+            "points": 20,
+            "visual_evidence": "In the Security or Watermark settings, a checkbox for 'Enable watermarking' is checked and the 'User Name' option is selected."
+        },
+        {
+            "id": "watermark_opacity_range",
+            "description": "Set watermark opacity between 30% and 40%",
+            "points": 20,
+            "visual_evidence": "A slider or numerical input field for watermark opacity showing a value between 30 and 40 (or 0.3 and 0.4)."
+        },
+        {
+            "id": "secure_https_cameras",
+            "description": "Enforce secure HTTPS connections to cameras",
+            "points": 20,
+            "visual_evidence": "A setting labeled 'Force HTTPS' or 'Secure connection to cameras' is toggled on in the System or Security settings."
+        },
+        {
+            "id": "audit_trail_enabled",
+            "description": "Enable the system audit trail",
+            "points": 15,
+            "visual_evidence": "A checkbox or toggle for 'Enable Audit Trail' is marked as active in the settings menu."
+        },
+        {
+            "id": "session_timeout_limit",
+            "description": "Set the session timeout to 15 minutes",
+            "points": 15,
+            "visual_evidence": "An input field for 'Session Timeout' or 'Limit session duration' showing '15' minutes or '900' seconds."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing scripts or API calls in a terminal",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser UI elements and navigating through the Nx Witness menus."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent actually applied the settings rather than just navigating to the page",
+            "visual_evidence": "The VLM should see the 'Save' or 'Apply' button being clicked after the settings are modified."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not use developer tools to force the UI state",
+            "visual_evidence": "The browser's Inspect Element/Console window is not open or being used to manipulate the page values."
+        }
+    ],
+    "privileged_info_for_vlm": "The watermark opacity must be strictly between 0.3 and 0.4 (30-40%); ignore metadata suggesting 25-45%. The session timeout of 15 minutes is equivalent to 900 seconds. The watermark must specifically use the 'User Name' field. Verification should confirm the 'Apply' or 'Save' button was clicked to commit these security changes."
+}

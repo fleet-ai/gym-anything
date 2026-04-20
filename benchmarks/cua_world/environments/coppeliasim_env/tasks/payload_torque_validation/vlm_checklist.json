@@ -1,0 +1,59 @@
+{
+    "task_id": "payload_torque_validation@1",
+    "task_completion": [
+        {
+            "id": "load_ur5_model",
+            "description": "Load the UR5 robot model into the CoppeliaSim scene.",
+            "points": 10,
+            "visual_evidence": "The UR5 robot model is visible in the CoppeliaSim 3D hierarchy or scene view."
+        },
+        {
+            "id": "payload_attachment_setup",
+            "description": "Create a cuboid payload and a force sensor, parenting them to the UR5's last joint.",
+            "points": 15,
+            "visual_evidence": "The scene hierarchy shows a Force Sensor parented to UR5_joint6 and a cuboid parented to the Force Sensor."
+        },
+        {
+            "id": "horizontal_pose_execution",
+            "description": "Command the robot to a horizontal outstretched pose (Shoulder joint at 90 degrees).",
+            "points": 15,
+            "visual_evidence": "The UR5 is seen in the simulator in a horizontal position, perpendicular to the base, with the payload attached."
+        },
+        {
+            "id": "mass_sweep_simulation",
+            "description": "Perform the simulation sweep across multiple mass increments (1kg to 15kg).",
+            "points": 30,
+            "visual_evidence": "The simulation play button is active, and terminal output or script logs show iterations of mass values being updated."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Export the torque curve data to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'ls' command shows 'payload_torque_curve.csv' in /home/ga/Documents/CoppeliaSim/exports/."
+        },
+        {
+            "id": "json_report_verification",
+            "description": "Export the final capacity report to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'cat' command shows 'payload_capacity_report.json' with fields like max_safe_mass_kg and limit_nm."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI or API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application open and active, with the robot moving or the scene hierarchy updating."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write the final files without running the simulation logic.",
+            "visual_evidence": "Code snippets or terminal logs show the use of the ZMQ Remote API (sim.getJointForce) and a loop for the mass sweep."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent used the specific file paths requested rather than default locations.",
+            "visual_evidence": "The file paths in the code or terminal match /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The UR5 shoulder joint (joint2) torque limit for this task is 150.0 N·m. In a horizontal pose, the torque is calculated as T = (Mass_arm_center_of_gravity + Mass_payload) * g * distance. The agent must use sim.getJointForce() to retrieve the torque. The sweep must cover 15 increments from 1.0kg to 15.0kg."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "supply_chain_dependency_map@1",
+    "task_completion": [
+        {
+            "id": "openlca_launch",
+            "description": "The agent successfully launches the openLCA application.",
+            "points": 10,
+            "visual_evidence": "The openLCA splash screen or main application window is visible on the desktop."
+        },
+        {
+            "id": "database_import",
+            "description": "The agent imports the USLCI database from the specified zip file path.",
+            "points": 20,
+            "visual_evidence": "The 'Import' wizard in openLCA showing the source path '~/LCA_Imports/uslci_database.zip' or the USLCI database appearing in the navigation pane."
+        },
+        {
+            "id": "process_identification",
+            "description": "The agent searches for and identifies processes consuming 'Natural gas' as an input.",
+            "points": 20,
+            "visual_evidence": "Search results or process editor tabs showing 'Inputs' for processes like 'Natural gas, production mixture' or similar variants."
+        },
+        {
+            "id": "data_selection",
+            "description": "The agent selects or compiles at least 5 distinct processes for the report.",
+            "points": 20,
+            "visual_evidence": "A list, selection, or table within openLCA showing at least 5 different process names associated with natural gas consumption."
+        },
+        {
+            "id": "export_configuration",
+            "description": "The agent configures the export to the correct file path and format.",
+            "points": 15,
+            "visual_evidence": "An export dialog or file explorer window showing the destination '~/LCA_Results/natural_gas_dependency.csv'."
+        },
+        {
+            "id": "final_csv_content",
+            "description": "The final CSV file is generated with the required columns: Process Name, Amount, and Unit.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet viewer or text editor showing the CSV file with headers 'Process Name', 'Amount', and 'Unit' (or close variants) and at least 5 rows of data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA GUI to perform the task rather than just creating a file via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks, and dialog interactions within the openLCA interface."
+        },
+        {
+            "id": "genuine_database_usage",
+            "description": "The data in the report originates from the USLCI database, not manual typing.",
+            "visual_evidence": "The agent is seen navigating the USLCI database tree or using the internal search function to find specific flows."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file or copy a pre-existing result.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step creation/export process of the CSV file."
+        }
+    ],
+    "privileged_info_for_vlm": "The USLCI database (uslci_database.zip) contains specific natural gas flows such as 'Natural gas, production mixture, at extraction' and 'Transport, pipeline, natural gas'. The agent must find at least 5 processes using these as inputs. The final output must be a CSV at /home/ga/LCA_Results/natural_gas_dependency.csv with columns for Process Name, Amount, and Unit. The agent should be using openLCA version 2.x."
+}

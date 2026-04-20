@@ -1,0 +1,53 @@
+{
+    "task_id": "cell_reach_optimization@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_connection",
+            "description": "Connect to the CoppeliaSim simulation on port 23000.",
+            "points": 10,
+            "visual_evidence": "Terminal output or code showing a successful connection to the Remote API on port 23000, or the CoppeliaSim GUI active."
+        },
+        {
+            "id": "candidate_evaluation",
+            "description": "Evaluate at least 8 spatially diverse candidate base positions for the robot arm.",
+            "points": 25,
+            "visual_evidence": "Code execution logs or simulation movement showing the robot base or a proxy object being moved to at least 8 different X/Y locations."
+        },
+        {
+            "id": "reachability_testing",
+            "description": "Determine reachability for the 6 target points (WS_1 to WS_6) at each candidate position.",
+            "points": 25,
+            "visual_evidence": "Logs or terminal output showing distance calculations or reachability checks (within 0.05m) for the specific workstation coordinates."
+        },
+        {
+            "id": "csv_export",
+            "description": "Export detailed results to /home/ga/Documents/CoppeliaSim/exports/placement_candidates.csv with all required columns.",
+            "points": 20,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing the CSV file with columns: candidate_id, base_x, base_y, base_z, reachable_count, avg_min_distance_m, and score."
+        },
+        {
+            "id": "json_summary_export",
+            "description": "Export a summary to /home/ga/Documents/CoppeliaSim/exports/placement_recommendation.json with required summary statistics.",
+            "points": 20,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing the JSON file containing total_candidates, best/worst candidate IDs, and target_points_evaluated."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent actually interacted with CoppeliaSim rather than hardcoding results.",
+            "visual_evidence": "Screenshots showing the CoppeliaSim application window, API calls in the terminal, or the robot model updating in the scene."
+        },
+        {
+            "id": "data_consistency",
+            "description": "The exported CSV and JSON data match the coordinates and targets specified in the task.",
+            "visual_evidence": "The CSV/JSON content should reflect the 6 WS coordinates (e.g., 0.3, 0.4, 0.3) and show at least 8 unique candidate rows."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not use dummy data for the reachability counts or distances.",
+            "visual_evidence": "The 'reachable_count' and 'avg_min_distance_m' values in the exported files should be floating point numbers/integers that vary between candidates."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires evaluating 6 specific targets: WS_1(0.3,0.4,0.3), WS_2(-0.25,0.5,0.25), WS_3(0.5,-0.2,0.35), WS_4(-0.4,-0.3,0.2), WS_5(0.1,0.6,0.4), and WS_6(-0.15,-0.55,0.3). The agent must test at least 8 base positions. Reachability is defined as being within 0.05m of a target. Output files must be saved to /home/ga/Documents/CoppeliaSim/exports/."
+}

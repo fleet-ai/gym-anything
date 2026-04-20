@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_amr_social_navigation@1",
+    "task_completion": [
+        {
+            "id": "pedestrian_speed_config",
+            "description": "Set the DOCTOR Pedestrian speed to 1.4 m/s.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree or a field editor showing the 'speed' field of the Pedestrian (DEF DOCTOR) set to 1.4."
+        },
+        {
+            "id": "pedestrian_waypoints_config",
+            "description": "Configure the Pedestrian trajectory waypoints to (5.0, 2.5, 0.0) and (5.0, -2.5, 0.0).",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree showing the 'waypoints' field of the Pedestrian node containing the two specified 3D coordinate vectors."
+        },
+        {
+            "id": "lidar_translation_z",
+            "description": "Update the safety_lidar Z translation to 0.4 meters.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree showing the 'translation' field of the safety_lidar (under HOSPITAL_ROBOT) with the third component (Z) set to 0.4."
+        },
+        {
+            "id": "lidar_fov_config",
+            "description": "Update the safety_lidar field of view to 4.71 radians.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree or Lidar property panel showing the 'fieldOfView' field set to 4.71."
+        },
+        {
+            "id": "lidar_resolution_config",
+            "description": "Update the safety_lidar horizontal resolution to 1080.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree or Lidar property panel showing the 'horizontalResolution' field set to 1080."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the world to the specific path /home/ga/Desktop/amr_social_navigation.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog box with the correct path entered, or the Webots window title bar reflecting the new filename after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the Webots GUI to modify fields rather than just executing a script to overwrite the file.",
+            "visual_evidence": "Screenshots showing the agent clicking on the scene tree, typing values into the field editor, or using the Webots menu."
+        },
+        {
+            "id": "genuine_webots_interface",
+            "description": "The agent interacted with the actual Webots simulation environment.",
+            "visual_evidence": "The standard Webots 3D view and Scene Tree panel are visible and active during the configuration process."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not simply use 'sed' or 'echo' in the terminal to modify the .wbt file directly without opening the editor.",
+            "visual_evidence": "Absence of terminal commands that directly manipulate the text content of the world file to achieve the goal."
+        }
+    ],
+    "privileged_info_for_vlm": "The Pedestrian (DEF DOCTOR) must have speed=1.4 and waypoints=[5 2.5 0, 5 -2.5 0]. The safety_lidar (inside HOSPITAL_ROBOT) must have translation Z=0.4, fieldOfView=4.71, and horizontalResolution=1080. The final file must be saved as /home/ga/Desktop/amr_social_navigation.wbt."
+}

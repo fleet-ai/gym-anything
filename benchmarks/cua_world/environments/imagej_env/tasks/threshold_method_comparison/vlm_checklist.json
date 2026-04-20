@@ -1,0 +1,53 @@
+{
+    "task_id": "threshold_method_comparison@1",
+    "task_completion": [
+        {
+            "id": "open_blobs_image",
+            "description": "The 'Blobs' sample image is opened in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "A window titled 'blobs.gif' or 'blobs (25K)' is visible in the Fiji workspace."
+        },
+        {
+            "id": "apply_auto_thresholds",
+            "description": "The agent interacts with the 'Auto Threshold' or 'Threshold' dialog to test different algorithms.",
+            "points": 20,
+            "visual_evidence": "The 'Threshold' or 'Auto Threshold' dialog box is open, showing a dropdown menu with methods like Otsu, Li, Triangle, etc."
+        },
+        {
+            "id": "analyze_particles_execution",
+            "description": "The agent runs 'Analyze Particles' for at least 4 different thresholding methods.",
+            "points": 30,
+            "visual_evidence": "The 'Results' table or 'Summary' table is visible and updates as different thresholds are applied and measured."
+        },
+        {
+            "id": "data_collection_table",
+            "description": "A table or list is compiled containing Method, Threshold value, Count, and Total Area.",
+            "points": 20,
+            "visual_evidence": "A Results table or a text editor window is visible containing at least 4 rows of data with columns for Method, Threshold, Count, and Area."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "The data is exported to the specific CSV path with the required header.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog pointing to '~/ImageJ_Data/results/threshold_comparison.csv' or a terminal command/file explorer showing the file has been created in that specific directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform the analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus (Image > Adjust > Threshold) and the Blobs image window changing appearance (red overlay for threshold)."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The threshold values and particle counts are derived from the software, not hallucinated.",
+            "visual_evidence": "The values in the final CSV or summary table match the values displayed in the Fiji 'Results' or 'Log' windows during the process."
+        },
+        {
+            "id": "no_premade_data",
+            "description": "The agent did not simply copy a pre-existing CSV file.",
+            "visual_evidence": "The trajectory shows the step-by-step process of applying thresholds and recording results for each of the 4+ methods."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Blobs (25K)' image is a standard Fiji sample. Valid threshold methods include: Default, Huang, Intermodes, IsoData, Li, MaxEntropy, Mean, MinError, Minimum, Moments, Otsu, Percentile, RenyiEntropy, Shanbhag, Triangle, and Yen. The output must be a CSV at /home/ga/ImageJ_Data/results/threshold_comparison.csv with exactly 4 columns: Method, Threshold, Count, and Total_Area, containing at least 4 rows of data."
+}

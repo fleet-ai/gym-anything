@@ -1,0 +1,62 @@
+{
+    "task_id": "tno_astrometric_recovery@1",
+    "task_completion": [
+        {
+            "id": "read_ephemeris",
+            "description": "Agent opens and reads the ephemeris file for the correct date (2026-03-10).",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/tno_ephemeris_2026.txt with coordinates for Eris, Makemake, and Haumea."
+        },
+        {
+            "id": "capture_eris_images",
+            "description": "Capture three 120s exposures of Eris using Slot 1 filter.",
+            "points": 20,
+            "visual_evidence": "Telescope control software or file explorer showing three FITS/image files for Eris in /home/ga/Images/tno_recovery/Eris/ with 120s exposure and Filter Slot 1 settings visible."
+        },
+        {
+            "id": "capture_makemake_images",
+            "description": "Capture three 120s exposures of Makemake using Slot 1 filter.",
+            "points": 20,
+            "visual_evidence": "Telescope control software or file explorer showing three FITS/image files for Makemake in /home/ga/Images/tno_recovery/Makemake/ with 120s exposure and Filter Slot 1 settings visible."
+        },
+        {
+            "id": "capture_haumea_images",
+            "description": "Capture three 120s exposures of Haumea using Slot 1 filter.",
+            "points": 20,
+            "visual_evidence": "Telescope control software or file explorer showing three FITS/image files for Haumea in /home/ga/Images/tno_recovery/Haumea/ with 120s exposure and Filter Slot 1 settings visible."
+        },
+        {
+            "id": "makemake_sky_survey",
+            "description": "Execute the bash script for the Makemake sky survey image with correct parameters.",
+            "points": 15,
+            "visual_evidence": "Terminal showing the command `bash ~/capture_sky_view.sh /home/ga/Images/tno_recovery/makemake_field.png 0.5 --palette cool` being executed and the resulting image file."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "Create a summary report with the date, target list, and coordinates used.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing ~/Documents/tno_recovery_report.txt containing the date 2026-03-10, the three target names, and their RA/Dec coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_telescope_interaction",
+            "description": "Agent interacted with the telescope control GUI or API rather than just creating empty files.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the telescope control interface (KStars/Ekos or similar) with active exposure progress bars or status logs."
+        },
+        {
+            "id": "no_coordinate_hardcoding",
+            "description": "Agent retrieved coordinates from the provided text file rather than guessing.",
+            "points": 0,
+            "visual_evidence": "The agent is seen opening tno_ephemeris_2026.txt before inputting coordinates into the capture software."
+        },
+        {
+            "id": "correct_survey_parameters",
+            "description": "The sky survey command used the exact flags and palette specified.",
+            "points": 0,
+            "visual_evidence": "The terminal command history shows '--palette cool' and '0.5' as arguments."
+        }
+    ],
+    "privileged_info_for_vlm": "The target date is 2026-03-10. Coordinates from the ephemeris: Eris (RA 27.8, Dec -3.175), Makemake (RA 202.0167, Dec 25.925), Haumea (RA 223.8333, Dec 14.2528). Required settings: 3 exposures per target, 120 seconds each, Filter Slot 1 (Luminance). The sky survey must be 0.5 FOV with the 'cool' palette."
+}

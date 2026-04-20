@@ -1,0 +1,65 @@
+{
+    "task_id": "cytochrome_c_heme_motif_search@1",
+    "task_completion": [
+        {
+            "id": "load_fasta_ugene",
+            "description": "The 8 cytochrome c sequences from the specified FASTA file are loaded into the UGENE interface.",
+            "points": 10,
+            "visual_evidence": "UGENE window showing 'cytochrome_c_multispecies.fasta' in the Project View or as an opened sequence object with 8 entries."
+        },
+        {
+            "id": "muscle_alignment_execution",
+            "description": "The MUSCLE alignment algorithm is configured and run on the loaded sequences.",
+            "points": 15,
+            "visual_evidence": "The MUSCLE alignment dialog box open or a progress bar indicating the alignment process is running."
+        },
+        {
+            "id": "export_stockholm_alignment",
+            "description": "The aligned sequences are exported to the Stockholm (.sto) format at the specified path.",
+            "points": 15,
+            "visual_evidence": "Export dialog showing the file path '~/UGENE_Data/results/cytc_alignment.sto' and the format selected as Stockholm."
+        },
+        {
+            "id": "motif_search_pattern",
+            "description": "A search for the pattern 'C..CH' is performed within the alignment.",
+            "points": 20,
+            "visual_evidence": "The 'Search in Sequence' or 'Find Pattern' dialog showing the regex/pattern 'C..CH' entered."
+        },
+        {
+            "id": "annotate_heme_binding_site",
+            "description": "Matches found by the pattern search are annotated as 'heme_binding_site'.",
+            "points": 15,
+            "visual_evidence": "The UGENE sequence view showing annotations labeled 'heme_binding_site' on the sequences."
+        },
+        {
+            "id": "export_gff_annotations",
+            "description": "The annotations are exported to a GFF file at the specified path.",
+            "points": 15,
+            "visual_evidence": "Export dialog or file explorer showing 'cytc_heme_motifs.gff' being saved to '~/UGENE_Data/results/'."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "A text report is created containing sequence names, motif presence, coordinates, and a conclusion.",
+            "points": 10,
+            "visual_evidence": "A text editor or UGENE internal viewer showing 'heme_motif_report.txt' with the required content (names, coordinates, and conservation conclusion)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the UGENE graphical interface rather than just executing command-line scripts to generate files.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being interacted with."
+        },
+        {
+            "id": "genuine_motif_search",
+            "description": "The motif search was actually performed on the data, not manually typed into a report.",
+            "visual_evidence": "Visual confirmation of the 'C..CH' pattern being entered into UGENE's search/annotation tool."
+        },
+        {
+            "id": "file_path_fidelity",
+            "description": "The agent used the specific file paths and names requested in the task description.",
+            "visual_evidence": "Save/Export dialogs showing the exact paths in the ~/UGENE_Data/results/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file contains 8 UniProt Cytochrome c sequences. The motif 'C..CH' is a real conserved heme-binding motif present in all 8 sequences. The expected output files are cytc_alignment.sto, cytc_heme_motifs.gff, and heme_motif_report.txt. The motif typically appears around position 14-20 depending on the specific sequence alignment."
+}

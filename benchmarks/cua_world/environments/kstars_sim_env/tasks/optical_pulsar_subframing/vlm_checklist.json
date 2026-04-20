@@ -1,0 +1,62 @@
+{
+    "task_id": "optical_pulsar_subframing@1",
+    "task_completion": [
+        {
+            "id": "read_observation_plan",
+            "description": "Agent opens and reads the pulsar_observation_plan.txt file to retrieve parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/pulsar_observation_plan.txt."
+        },
+        {
+            "id": "dss2_context_capture",
+            "description": "Agent executes the shell script to capture the DSS2 field context image.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the execution of the provided shell script and/or the resulting DSS2 image displayed in a viewer."
+        },
+        {
+            "id": "configure_camera_settings",
+            "description": "Agent sets the Filter to Luminance (Slot 1), Binning to 2x2, and Exposure to 0.5s in the imaging software.",
+            "points": 20,
+            "visual_evidence": "The camera control panel showing 'Luminance' or 'Slot 1' selected, '2x2' binning, and '0.5' in the exposure field."
+        },
+        {
+            "id": "configure_subframe",
+            "description": "Agent configures the subframe dimensions to 256x256 and offsets to X=512, Y=512.",
+            "points": 25,
+            "visual_evidence": "The imaging software's frame/geometry settings showing Width: 256, Height: 256, X-offset: 512, and Y-offset: 512."
+        },
+        {
+            "id": "sequence_setup",
+            "description": "Agent configures the sequence to capture 30 frames.",
+            "points": 10,
+            "visual_evidence": "The sequence or batch capture settings showing a count or repeat value of 30."
+        },
+        {
+            "id": "execute_observation",
+            "description": "Agent initiates the capture sequence for the Crab Pulsar.",
+            "points": 20,
+            "visual_evidence": "The software status bar showing 'Capturing', a progress bar for 30 frames, or the image history populating with subframed pulsar images."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the astronomical imaging GUI for camera control rather than just terminal scripts.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the camera control software buttons and input fields."
+        },
+        {
+            "id": "genuine_subframing",
+            "description": "The captured images or preview window show a small 256x256 frame, not a full-sensor image.",
+            "points": 0,
+            "visual_evidence": "The image display area shows a small square frame consistent with the 256x256 subframe setting."
+        },
+        {
+            "id": "no_hardcoded_completion",
+            "description": "Agent did not simply create a dummy file to simulate completion.",
+            "points": 0,
+            "visual_evidence": "The sequence of screenshots shows the step-by-step configuration of the actual imaging software."
+        }
+    ],
+    "privileged_info_for_vlm": "The Crab Pulsar (PSR B0531+21) is located at RA 05h 34m 32s and Dec +22d 00m 52s. Required settings: Filter Slot 1 (Luminance), Binning 2x2, Exposure 0.5s, Subframe size 256x256, Subframe offsets X=512, Y=512, Count 30. A DSS2 context image must be captured via the provided shell script."
+}

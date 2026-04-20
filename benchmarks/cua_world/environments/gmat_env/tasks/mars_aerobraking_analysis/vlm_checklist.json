@@ -1,0 +1,59 @@
+{
+    "task_id": "mars_aerobraking_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_spec_file",
+            "description": "Agent opens the aerobraking_spec.txt file to retrieve mission parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/aerobraking_spec.txt."
+        },
+        {
+            "id": "configure_gmat_spacecraft",
+            "description": "Agent configures the MarsExplorer spacecraft with 1200 kg mass, 35 m^2 area, and 2.2 Cd in GMAT.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Spacecraft' properties panel showing Mass=1200, Drag Area=35, and Coefficient of Drag=2.2."
+        },
+        {
+            "id": "configure_force_model",
+            "description": "Agent sets Mars-centered Force Model with Point Mass gravity and Mars Exponential atmosphere.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Propagator' or 'ForceModel' dialog showing Central Body: Mars, Gravity: Point Mass (Degree 0, Order 0), and Atmosphere: MarsExponential."
+        },
+        {
+            "id": "run_60_day_simulation",
+            "description": "Agent runs the simulation for a duration of 60 days.",
+            "points": 15,
+            "visual_evidence": "GMAT Mission tree showing a 'Propagate' command with a condition of 60 days (5184000 seconds) and the simulation execution progress or completion."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the simulation script to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing the existence of ~/Documents/missions/mars_aerobraking.script."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Agent writes the final report with the required calculated values to the output file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/aerobraking_results.txt containing initial_apoapsis_radius_km: 23396.19, final_periapsis_radius_km, final_apoapsis_radius_km, and deltav_saved_mps."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent uses the GMAT GUI to configure the mission rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots show the GMAT application window being interacted with (panels, mission tree, etc.)."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent performs calculations or extracts data from GMAT rather than typing the final report immediately after opening the spec.",
+            "visual_evidence": "The agent is seen interacting with GMAT output windows or report files before writing the final summary."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent does not use 'echo' to create the script file instantly without opening GMAT.",
+            "visual_evidence": "The GMAT interface is visible and active during the task execution."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial apoapsis radius is 23396.19 km. The Mars gravitational parameter (mu) is 42828.31 km^3/s^2. The simulation must use the Mars Exponential atmosphere model. The final delta-V saved is calculated by comparing the velocity at the final periapsis of the aerobraked orbit to the velocity required at the initial periapsis to reach the same final apoapsis using the Vis-Viva equation: v = sqrt(mu * (2/r - 1/a))."
+}

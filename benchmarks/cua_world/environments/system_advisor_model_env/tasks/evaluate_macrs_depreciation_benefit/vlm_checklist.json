@@ -1,0 +1,56 @@
+{
+    "task_id": "evaluate_macrs_depreciation_benefit@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script 'depreciation_model.py' in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation or saving of /home/ga/Documents/SAM_Projects/depreciation_model.py."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "The script configures PySAM with the correct parameters: 10,000 kW size, $12,000,000 cost, 30% ITC, and Phoenix weather data.",
+            "points": 20,
+            "visual_evidence": "Code snippets in the editor showing 'system_capacity': 10000, 'total_installed_cost': 12000000, 'itc_fed_percent': 30, and the path to phoenix_az_tmy.csv."
+        },
+        {
+            "id": "depreciation_logic",
+            "description": "The script contains logic to toggle or compare MACRS 5-year and Straight-Line 20-year depreciation.",
+            "points": 25,
+            "visual_evidence": "Code showing the setting of depreciation types (e.g., 'depr_fed_type' or similar PySAM variables) for both 5-year MACRS and 20-year Straight Line."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script to run the simulations.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'python3 depreciation_model.py' being run without errors."
+        },
+        {
+            "id": "json_export",
+            "description": "The agent exports the results to 'depreciation_results.json' with all required keys.",
+            "points": 30,
+            "visual_evidence": "A view of the 'depreciation_results.json' file containing keys: system_size_kw, total_installed_cost, npv_macrs_usd, npv_straight_line_usd, and macrs_value_add_usd."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final NPV values into the script without running a simulation.",
+            "points": 0,
+            "visual_evidence": "The script should show calls to PySAM's 'execute()' or 'run()' methods rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually saved the files to the specified paths rather than just displaying them in the terminal.",
+            "points": 0,
+            "visual_evidence": "File explorer or 'ls' command showing the files exist in /home/ga/Documents/SAM_Projects/."
+        },
+        {
+            "id": "weather_data_usage",
+            "description": "The agent used the local weather file provided in the task.",
+            "points": 0,
+            "visual_evidence": "The script references the absolute path /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected system size is 10,000 kW and the total cost is $12,000,000. Based on the Phoenix TMY data and a 30% ITC, the NPV for the MACRS scenario should be approximately $1,670,000 (within a range of $100k to $20M). The output file must be named 'depreciation_results.json' and contain the specific key 'macrs_value_add_usd' which represents the difference between the MACRS NPV and the Straight-Line NPV."
+}

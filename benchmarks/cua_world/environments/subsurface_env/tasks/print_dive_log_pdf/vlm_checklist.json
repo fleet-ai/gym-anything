@@ -1,0 +1,59 @@
+{
+    "task_id": "print_dive_log_pdf@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The Subsurface application is open and the dive log is loaded.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible, showing a list of dives (e.g., Sund Rock, Yellow House)."
+        },
+        {
+            "id": "open_print_dialog",
+            "description": "The agent opens the Print dialog from the File menu.",
+            "points": 15,
+            "visual_evidence": "A 'Print' dialog window or overlay is visible on top of the main Subsurface window."
+        },
+        {
+            "id": "select_template",
+            "description": "The agent selects either the 'Table print' or 'Two dives per page' template.",
+            "points": 20,
+            "visual_evidence": "In the Print dialog, the radio button or tab for 'Table print' or 'Two dives per page' is selected."
+        },
+        {
+            "id": "initiate_print_to_pdf",
+            "description": "The agent clicks the 'Print' or 'Export' button to trigger the system file save dialog.",
+            "points": 15,
+            "visual_evidence": "A system file explorer/save dialog appears, or the print settings transition to a file naming screen."
+        },
+        {
+            "id": "set_output_path",
+            "description": "The agent enters the specific file path /home/ga/Documents/printed_log.pdf.",
+            "points": 20,
+            "visual_evidence": "The text '/home/ga/Documents/printed_log.pdf' is typed into the 'Name' or 'Save As' field of the file dialog."
+        },
+        {
+            "id": "verify_pdf_content",
+            "description": "The agent opens the generated PDF to verify the content.",
+            "points": 20,
+            "visual_evidence": "A PDF viewer (like Evince) is open showing 'printed_log.pdf' with dive data including locations like 'Sund Rock' or 'Hoodsport'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to print rather than command-line tools like 'cupsfilter' or 'pandoc'.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Subsurface menus and dialog buttons."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create an empty file or a text file named .pdf using a terminal.",
+            "visual_evidence": "The file is seen being generated through the Subsurface print workflow, and the final PDF contains formatted dive tables/logs."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The printed document contains the actual dive data from the loaded log, not placeholder text.",
+            "visual_evidence": "The PDF content matches the dive list in the application, specifically showing locations like 'Sund Rock' and 'Yellow House'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dive log contains locations 'Sund Rock', 'Yellow House', and 'Hoodsport'. The keyword 'Washington' is NOT present in the dataset (it uses 'WA, USA'), so do not penalize the agent if 'Washington' is missing from the PDF. The final file must be saved exactly to /home/ga/Documents/printed_log.pdf."
+}

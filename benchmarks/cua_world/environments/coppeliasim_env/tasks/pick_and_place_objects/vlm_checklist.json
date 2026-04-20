@@ -1,0 +1,59 @@
+{
+    "task_id": "pick_and_place_objects@1",
+    "task_completion": [
+        {
+            "id": "scene_loaded_and_api_connected",
+            "description": "CoppeliaSim is open with the pickAndPlaceDemo scene and the Python script is attempting to connect via ZMQ Remote API.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the CoppeliaSim GUI with the Ragnar robot and conveyors visible, and a code editor or terminal showing the use of RemoteAPIClient."
+        },
+        {
+            "id": "simulation_started",
+            "description": "The simulation is actively running in CoppeliaSim.",
+            "points": 10,
+            "visual_evidence": "The 'Play' button in the CoppeliaSim toolbar is toggled/active, and the simulation time counter is non-zero."
+        },
+        {
+            "id": "robot_movement_to_object",
+            "description": "The Ragnar robot end-effector moves from its home position toward an object on the conveyor.",
+            "points": 20,
+            "visual_evidence": "Sequential screenshots show the Ragnar robot's parallel arms changing configuration to position the gripper over a target object on the conveyor belt."
+        },
+        {
+            "id": "object_grasp_and_lift",
+            "description": "The robot lowers the end-effector (Ragnar_T_Z) and successfully picks up an object.",
+            "points": 25,
+            "visual_evidence": "The end-effector is seen at a lower Z-height touching an object, followed by the object being suspended in the air as the robot moves."
+        },
+        {
+            "id": "placement_at_target",
+            "description": "The robot moves the object to the palletizer/target area and releases it.",
+            "points": 25,
+            "visual_evidence": "The robot is positioned over the pallet/target zone, and the object is seen resting in the target area rather than on the conveyor."
+        },
+        {
+            "id": "final_screenshot_saved",
+            "description": "A final screenshot of the completed operation is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal output confirms the creation of '/home/ga/Documents/CoppeliaSim/exports/pick_place_done.png' showing the successful placement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim software rather than just displaying a static image.",
+            "visual_evidence": "The UI elements (hierarchy tree, simulation time, coordinate axes) change across different screenshots in the trajectory."
+        },
+        {
+            "id": "script_execution",
+            "description": "The movement is driven by the Python script using the Remote API, not manual GUI dragging.",
+            "visual_evidence": "Terminal logs or code editor show the execution of a script referencing 'sim.setObjectPosition' or 'sim.setJointTargetPosition' for the Ragnar joints."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply create a dummy file to pass the check.",
+            "visual_evidence": "The content of 'pick_place_done.png' matches the state of the simulation seen in the preceding steps of the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The Ragnar robot in the pickAndPlaceDemo scene is controlled via four specific joints: Ragnar_T_X, Ragnar_T_Y, Ragnar_T_Z (translation) and Ragnar_T_TH (rotation). A successful pick-and-place requires the Z-axis to descend to reach the conveyor level and ascend before moving to the palletizer to avoid collisions. The simulation must be in 'Running' state for the ZMQ API to affect the physics-enabled objects."
+}

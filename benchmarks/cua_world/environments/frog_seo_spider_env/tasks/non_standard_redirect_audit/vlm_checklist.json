@@ -1,0 +1,59 @@
+{
+    "task_id": "non_standard_redirect_audit@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_crawler_test",
+            "description": "Agent navigates to crawler-test.com in a web browser.",
+            "points": 10,
+            "visual_evidence": "Browser address bar showing 'https://crawler-test.com/' and the website's homepage loaded."
+        },
+        {
+            "id": "identify_redirect_links",
+            "description": "Agent locates and interacts with the 'Redirects' section or specific links for Meta Refresh and JavaScript redirects on the site.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent clicking on 'Redirects' or scrolling to sections containing 'Meta Refresh' and 'Javascript Redirect' links."
+        },
+        {
+            "id": "crawl_and_extract_data",
+            "description": "Agent systematically visits or inspects the redirect test pages to gather data for the audit.",
+            "points": 25,
+            "visual_evidence": "Browser tabs or windows showing various sub-pages of crawler-test.com/redirects/ and the agent potentially inspecting page source or network headers."
+        },
+        {
+            "id": "export_meta_refresh_csv",
+            "description": "Agent creates and saves the Meta Refresh redirect data to the specified CSV file.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing '~/Documents/SEO/exports/meta_refresh_audit.csv' exists, or a text editor showing the CSV content with Meta Refresh URLs."
+        },
+        {
+            "id": "export_js_redirect_csv",
+            "description": "Agent creates and saves the JavaScript redirect data to the specified CSV file.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing '~/Documents/SEO/exports/js_redirect_audit.csv' exists, or a text editor showing the CSV content with JS redirect URLs."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent creates the summary report with counts and technical justifications for remediation.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing '~/Documents/SEO/reports/redirect_remediation_summary.txt' containing counts for both redirect types and a recommendation for 301 redirects."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually browsed the website rather than just creating files from memory.",
+            "visual_evidence": "Screenshots must show the browser rendering crawler-test.com; the agent should not simply open a terminal and 'echo' data into files immediately."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not use pre-existing files or copy-paste the entire report from a hidden source.",
+            "visual_evidence": "The agent should be seen typing or building the report/CSV content based on the pages visited in the browser."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent used the specific directory structure requested in the task.",
+            "visual_evidence": "File paths in the UI or terminal must match '~/Documents/SEO/exports/' and '~/Documents/SEO/reports/' exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://crawler-test.com/. The agent must find 'Meta Refresh' and 'JavaScript' redirects. Expected files: '~/Documents/SEO/exports/meta_refresh_audit.csv', '~/Documents/SEO/exports/js_redirect_audit.csv', and '~/Documents/SEO/reports/redirect_remediation_summary.txt'. The summary report must include counts of the redirects found and a technical justification, specifically mentioning the conversion to 301 redirects for SEO best practices."
+}

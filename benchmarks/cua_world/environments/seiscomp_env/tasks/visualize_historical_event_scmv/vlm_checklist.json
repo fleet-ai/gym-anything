@@ -1,0 +1,59 @@
+{
+    "task_id": "visualize_historical_event_scmv@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "The agent opens the configuration file ~/.seiscomp/scmv.cfg in a text editor.",
+            "points": 10,
+            "visual_evidence": "A text editor (like gedit, nano, or vim) is visible showing the contents of scmv.cfg."
+        },
+        {
+            "id": "modify_visible_timespan",
+            "description": "The agent sets events.visibleTimeSpan to at least 1000d in the config file.",
+            "points": 20,
+            "visual_evidence": "The text 'events.visibleTimeSpan = 1000d' (or a larger value) is visible in the editor."
+        },
+        {
+            "id": "modify_retention",
+            "description": "The agent sets events.retention to at least 1000d in the config file.",
+            "points": 20,
+            "visual_evidence": "The text 'events.retention = 1000d' (or a larger value) is visible in the editor."
+        },
+        {
+            "id": "launch_scmv",
+            "description": "The SeisComP Map View (scmv) application is launched and visible.",
+            "points": 15,
+            "visual_evidence": "A window titled 'scmv' or 'Map View' showing a world/regional map is visible."
+        },
+        {
+            "id": "locate_noto_earthquake",
+            "description": "The map is centered on or displays the Noto Peninsula, Japan region with an earthquake event symbol.",
+            "points": 25,
+            "visual_evidence": "The map shows the Japanese archipelago, specifically the Noto Peninsula area, with a circle or star icon representing an earthquake event."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves the final view to the specified path ~/scmv_noto_map.png.",
+            "points": 10,
+            "visual_evidence": "A terminal command or file manager action showing the creation of 'scmv_noto_map.png' in the home directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_scmv_interface",
+            "description": "The agent interacted with the actual SeisComP GUI rather than displaying a static image.",
+            "visual_evidence": "Standard SeisComP UI elements (toolbars, status bars, map layers) are visible and consistent with the software's design."
+        },
+        {
+            "id": "config_persistence",
+            "description": "The changes were made in the configuration file, not just passed as temporary command-line arguments.",
+            "visual_evidence": "The screenshot shows the text editor saving the .cfg file before the application is launched."
+        },
+        {
+            "id": "no_image_spoofing",
+            "description": "The screenshot is a genuine capture of the desktop environment, not an external image opened in a viewer.",
+            "visual_evidence": "The screenshot includes the OS window decorations, taskbar, or other desktop environment context."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the 2024 Noto Peninsula earthquake (Japan). To display this historical event, both 'events.visibleTimeSpan' and 'events.retention' must be set to at least 1000d (or 86400000 seconds) in ~/.seiscomp/scmv.cfg. The final screenshot must be saved to /home/ga/scmv_noto_map.png and must show the earthquake symbol over the Noto Peninsula region of Japan."
+}

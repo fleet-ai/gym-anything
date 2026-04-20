@@ -1,0 +1,59 @@
+{
+    "task_id": "upload_patient_photo@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The login screen transitions to a dashboard or patient search interface; the username 'admin' may be visible in the header."
+        },
+        {
+            "id": "patient_search",
+            "description": "Agent searches for and identifies the correct patient record for Jayson Fadel.",
+            "points": 15,
+            "visual_evidence": "The name 'Jayson Fadel' and DOB '1992-06-30' are visible in search results or a selected patient header."
+        },
+        {
+            "id": "navigate_to_photo_upload",
+            "description": "Agent navigates to the specific section of the patient chart where photos or documents are managed.",
+            "points": 15,
+            "visual_evidence": "A 'Documents', 'Patient Photo', or 'Upload' interface is visible within Jayson Fadel's chart."
+        },
+        {
+            "id": "file_selection",
+            "description": "Agent selects the correct file from the local file system.",
+            "points": 20,
+            "visual_evidence": "A file picker dialog or file path input shows '/home/ga/Documents/patient_photo.jpg' being selected."
+        },
+        {
+            "id": "upload_action",
+            "description": "Agent triggers the upload or save action for the selected photo.",
+            "points": 20,
+            "visual_evidence": "A 'Save', 'Upload', or 'Submit' button is clicked, often followed by a progress bar or loading state."
+        },
+        {
+            "id": "photo_visible_on_chart",
+            "description": "The photo is successfully saved and displayed on Jayson Fadel's patient record.",
+            "points": 20,
+            "visual_evidence": "The patient's profile now displays the uploaded image (or a thumbnail/confirmation of the specific file) within the chart interface."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web application's GUI to perform the upload rather than using terminal commands to move files.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on browser elements, and the browser's file upload dialog rather than a terminal window executing 'cp' or 'mv' commands."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the application menus rather than guessing/typing direct database or file-store URLs.",
+            "visual_evidence": "The trajectory shows clicks on navigation links (e.g., 'Patients' -> 'Search') rather than the address bar being manually edited to jump to a specific PID."
+        },
+        {
+            "id": "genuine_file_upload",
+            "description": "The agent interacted with the actual file system of the environment.",
+            "visual_evidence": "The system file explorer or browser file-upload dialog is visible, showing the path /home/ga/Documents/patient_photo.jpg."
+        }
+    ],
+    "privileged_info_for_vlm": "The target patient is Jayson Fadel (PID 3), born on 1992-06-30. The source file for the upload is located at /home/ga/Documents/patient_photo.jpg. The agent must use the login 'admin' with password 'pass' to access the system."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "mpr_thick_slab_mip@1",
+    "task_completion": [
+        {
+            "id": "mpr_viewer_active",
+            "description": "The Multiplanar Reconstruction (MPR) viewer interface is open and displaying the CT series.",
+            "points": 10,
+            "visual_evidence": "A medical imaging interface showing orthogonal views (Axial, Sagittal, Coronal) of a CT scan."
+        },
+        {
+            "id": "mip_mode_selected",
+            "description": "The rendering mode is set to Maximum Intensity Projection (MIP).",
+            "points": 20,
+            "visual_evidence": "A dropdown menu, toggle, or label in the settings panel explicitly showing 'MIP' or 'Maximum Intensity Projection' as the active mode."
+        },
+        {
+            "id": "slab_thickness_set",
+            "description": "The slab thickness is configured to at least 15mm.",
+            "points": 30,
+            "visual_evidence": "A numerical input field or slider label for 'Thickness' or 'Slab' showing a value of 15 or higher (e.g., '15.0 mm')."
+        },
+        {
+            "id": "screenshot_captured",
+            "description": "The agent captures a full-screen screenshot of the configured MPR view.",
+            "points": 20,
+            "visual_evidence": "A screenshot action or a file explorer window showing 'mip_slab_view.png' in the '~/DICOM/exports/' directory."
+        },
+        {
+            "id": "settings_file_created",
+            "description": "The agent documents the parameters in the specified text file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the creation/content of 'mpr_settings.txt' containing the MIP and thickness parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface to configure the MPR settings rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the MPR settings panel or dropdown menus."
+        },
+        {
+            "id": "genuine_rendering",
+            "description": "The visual appearance of the CT scan changes to reflect the MIP rendering and increased thickness.",
+            "visual_evidence": "The CT images should appear brighter and show more vascular/bony structures merged together compared to a standard thin-slice view."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo text into a file without opening the medical imaging software.",
+            "visual_evidence": "The presence of the medical imaging software window in the trajectory history before the file export."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a minimum slab thickness of 15mm. The expected export paths are /home/ga/DICOM/exports/mip_slab_view.png and /home/ga/DICOM/exports/mpr_settings.txt. The patient ID for the synthetic series is MPR001."
+}

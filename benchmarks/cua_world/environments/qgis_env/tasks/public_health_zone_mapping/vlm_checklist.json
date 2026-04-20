@@ -1,0 +1,53 @@
+{
+    "task_id": "public_health_zone_mapping@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the census tracts dataset and the designation criteria file.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the content of /home/ga/GIS_Data/census_tracts.geojson and /home/ga/GIS_Data/designation_criteria.txt in a text editor, GIS tool, or data viewer."
+        },
+        {
+            "id": "identify_criteria",
+            "description": "Agent identifies the specific filtering parameters from the criteria text file.",
+            "points": 10,
+            "visual_evidence": "The criteria file is visible on screen, likely showing conditions such as AQI > 75, population density > 3500, and distance to hospital > 7.5km."
+        },
+        {
+            "id": "filter_census_tracts",
+            "description": "Agent applies filters or logic to the dataset to isolate qualifying tracts.",
+            "points": 30,
+            "visual_evidence": "A GUI-based filtering dialog, a spreadsheet filter, or a script being executed that processes the geojson data based on the criteria."
+        },
+        {
+            "id": "verify_qualifying_tracts",
+            "description": "Agent identifies the specific IDs that meet the criteria.",
+            "points": 20,
+            "visual_evidence": "A list or selection of tracts including CT-003, CT-007, CT-011, CT-014, CT-016, CT-018, and CT-020 is visible."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Agent exports the filtered results to the specified output path.",
+            "points": 30,
+            "visual_evidence": "An 'Export' or 'Save As' dialog showing the destination path /home/ga/GIS_Data/exports/high_risk_zones.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used GUI tools rather than just executing a single terminal command to solve the task.",
+            "visual_evidence": "Presence of a GIS application (like QGIS), a spreadsheet tool (like LibreOffice Calc), or a text editor with manual data manipulation visible."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply type the list of qualifying tracts from memory or external notes.",
+            "visual_evidence": "The agent is seen interacting with the source data file to derive the results."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The output file was created through an application's export/save function.",
+            "visual_evidence": "Menu navigation (File > Export) or a 'Save' confirmation dialog for the specific geojson file."
+        }
+    ],
+    "privileged_info_for_vlm": "The criteria for a High-Risk Health Zone are: AQI > 75, population density > 3500, and distance to hospital > 7.5km. The qualifying census tracts are: CT-003, CT-007, CT-011, CT-014, CT-016, CT-018, and CT-020. The final output must be a GeoJSON file located at /home/ga/GIS_Data/exports/high_risk_zones.geojson."
+}

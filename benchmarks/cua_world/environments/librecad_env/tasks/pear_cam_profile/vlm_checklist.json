@@ -1,0 +1,59 @@
+{
+    "task_id": "pear_cam_profile@1",
+    "task_completion": [
+        {
+            "id": "librecad_interface_setup",
+            "description": "LibreCAD is open and the drawing units are set to millimeters.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD application window is visible. The status bar or 'Current Drawing Preferences' dialog shows 'Millimeter' as the unit."
+        },
+        {
+            "id": "layer_creation",
+            "description": "The 'PROFILE' (White/7) and 'BORE' (Cyan/4) layers are created and visible in the Layer List.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget shows 'PROFILE' with a white/black icon and 'BORE' with a cyan icon."
+        },
+        {
+            "id": "cam_circles_geometry",
+            "description": "A base circle (R30 at 0,0) and a nose circle (R10 at 0,50) are drawn.",
+            "points": 20,
+            "visual_evidence": "Two circles are visible on the 'PROFILE' layer. The coordinate display or property editor shows the larger circle at (0,0) and the smaller one at (0,50)."
+        },
+        {
+            "id": "tangent_lines_trimming",
+            "description": "The circles are joined by tangent lines and trimmed to form a single continuous pear-shaped profile.",
+            "points": 25,
+            "visual_evidence": "The drawing shows a smooth pear shape without internal overlapping circle arcs. The lines connect the outer edges of the two circles perfectly."
+        },
+        {
+            "id": "keyed_bore_geometry",
+            "description": "A 20mm diameter hole with a 5mm wide keyway (top at Y=13) is drawn on the BORE layer.",
+            "points": 20,
+            "visual_evidence": "A cyan circle is centered at (0,0) with a rectangular notch at the top. The notch is centered on the vertical axis."
+        },
+        {
+            "id": "file_saved",
+            "description": "The drawing is saved to the specified path: /home/ga/Documents/LibreCAD/cam_profile.dxf.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD title bar shows 'cam_profile.dxf' or a 'Save As' dialog is seen with the correct file path and name."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just generating a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD tools (Circle, Line, Trim, Layer) and menus."
+        },
+        {
+            "id": "no_premade_import",
+            "description": "The agent did not simply open an existing DXF file.",
+            "visual_evidence": "The trajectory shows the step-by-step construction of the geometry (drawing circles, then lines, then trimming)."
+        },
+        {
+            "id": "genuine_layer_management",
+            "description": "The agent manually configured the layer colors and names.",
+            "visual_evidence": "The 'Layer Settings' or 'Add Layer' dialog is seen with 'PROFILE' and 'BORE' being typed and colors selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The final drawing must have two layers: 'PROFILE' (Color 7/White) and 'BORE' (Color 4/Cyan). Geometry: Base circle R=30 at (0,0); Nose circle R=10 at (0,50); Bore circle diameter=20 (R=10) at (0,0); Keyway width=5, top edge Y=13. The final file must be saved as /home/ga/Documents/LibreCAD/cam_profile.dxf."
+}

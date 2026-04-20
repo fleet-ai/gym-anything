@@ -1,0 +1,59 @@
+{
+    "task_id": "load_playback_recording@1",
+    "task_completion": [
+        {
+            "id": "select_playback_mode",
+            "description": "The agent selects 'PLAYBACK' mode in the System Control Panel.",
+            "points": 10,
+            "visual_evidence": "The 'PLAYBACK' button or tab is highlighted or selected within the OpenBCI GUI System Control Panel."
+        },
+        {
+            "id": "open_file_browser",
+            "description": "The agent clicks the button to select a playback file.",
+            "points": 10,
+            "visual_evidence": "A file selection dialog or file path input field is visible on the screen."
+        },
+        {
+            "id": "select_correct_file",
+            "description": "The agent selects the specific file 'OpenBCI-EEG-S001-EyesOpen.txt' from the correct directory.",
+            "points": 25,
+            "visual_evidence": "The file path '~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-EyesOpen.txt' (or the filename itself) is visible in the GUI's file selection field."
+        },
+        {
+            "id": "start_session",
+            "description": "The agent clicks 'Start Session' to enter the main GUI interface.",
+            "points": 15,
+            "visual_evidence": "The System Control Panel disappears and the main OpenBCI GUI workspace (with widgets like Time Series) loads."
+        },
+        {
+            "id": "start_playback_stream",
+            "description": "The agent initiates the data playback stream.",
+            "points": 20,
+            "visual_evidence": "The 'Start Playback' button (usually top left) is clicked, and the button text changes to 'Stop Playback' or the playback progress bar begins to move."
+        },
+        {
+            "id": "verify_scrolling_waveforms",
+            "description": "The Time Series widget shows active, scrolling EEG waveforms.",
+            "points": 20,
+            "visual_evidence": "The Time Series widget displays 8 channels of moving EEG data lines, indicating the 250 Hz recording is actively playing."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to load the file rather than moving files or triggering playback via a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the OpenBCI GUI buttons and file dialogs; no terminal windows are used to bypass the GUI's loading logic."
+        },
+        {
+            "id": "genuine_playback_source",
+            "description": "The data being displayed matches the playback file, not a synthetic signal generator.",
+            "visual_evidence": "The GUI header or control panel should indicate 'Source: Playback' rather than 'Source: Synthetic' or 'Source: Cyton'."
+        },
+        {
+            "id": "no_pre_existing_state",
+            "description": "The agent actually performed the steps rather than the recording already being loaded at the start.",
+            "visual_evidence": "Initial screenshots show the System Control Panel in its default state before the agent selects the file."
+        }
+    ],
+    "privileged_info_for_vlm": "The application is OpenBCI GUI v5.2.2. The data source must be set to 'PLAYBACK' mode. The specific file to be loaded is 'OpenBCI-EEG-S001-EyesOpen.txt'. This file contains 8 channels of real human EEG data from the PhysioNet EEGMMI dataset (Subject 1, Run 1). Success is defined by the 'Time Series' widget showing 8 channels of scrolling data while in Playback mode."
+}

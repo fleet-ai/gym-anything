@@ -1,0 +1,53 @@
+{
+    "task_id": "create_project_timeline@1",
+    "task_completion": [
+        {
+            "id": "milestone_tiddlers_created",
+            "description": "Five specific milestone tiddlers exist in the wiki sidebar or story river.",
+            "points": 15,
+            "visual_evidence": "The VLM should see 'IRB Protocol Submission', 'Equipment Procurement', 'Participant Recruitment Phase 1', 'Interim Data Analysis', and 'Year 1 Progress Report to NIH' in the TiddlyWiki interface."
+        },
+        {
+            "id": "milestone_tagging_and_fields",
+            "description": "Milestone tiddlers are tagged 'Milestone' and contain 'due-date' and 'status' fields.",
+            "points": 20,
+            "visual_evidence": "In the tiddler edit or info view, the tag 'Milestone' is visible, and the custom fields area shows 'due-date' (e.g., 20250215) and 'status' (e.g., completed)."
+        },
+        {
+            "id": "milestone_content_accuracy",
+            "description": "The body text of the milestones matches the specific research project details provided.",
+            "points": 20,
+            "visual_evidence": "The VLM should check for specific strings like '#2024-0847', 'Oscar 2 devices', '120 participants', or 'R01-HL-163892' within the tiddler bodies."
+        },
+        {
+            "id": "dashboard_tiddler_creation",
+            "description": "A tiddler titled 'Project Timeline' exists and is tagged 'Dashboard'.",
+            "points": 15,
+            "visual_evidence": "A tiddler with the title 'Project Timeline' is open or listed, showing the 'Dashboard' tag."
+        },
+        {
+            "id": "list_widget_implementation",
+            "description": "The 'Project Timeline' tiddler uses a <$list> widget with the correct filter logic.",
+            "points": 30,
+            "visual_evidence": "In the 'Project Timeline' tiddler (either in view or edit mode), the VLM should see a list of the five milestones. If in edit mode, the code must contain: [tag[Milestone]sort[due-date]]."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create content rather than modifying the underlying file via terminal.",
+            "visual_evidence": "Screenshots should show the browser window, clicking the '+' button, and typing into the TiddlyWiki fields."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The agent did not use 'lorem ipsum' or generic text for the milestone bodies.",
+            "visual_evidence": "The tiddler bodies must contain the specific NIH study details provided in the prompt."
+        },
+        {
+            "id": "correct_date_format",
+            "description": "The agent used the YYYYMMDD format for the due-date field as specified.",
+            "visual_evidence": "The 'due-date' field values should look like '20250215', not 'Feb 15, 2025' or '2025-02-15'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create 5 milestones: IRB Protocol Submission (20250215, completed), Equipment Procurement (20250301, completed), Participant Recruitment Phase 1 (20250430, in-progress), Interim Data Analysis (20250715, pending), and Year 1 Progress Report to NIH (20251201, pending). All must be tagged 'Milestone'. A 'Project Timeline' tiddler tagged 'Dashboard' must display these using a <$list> widget filtered by [tag[Milestone]sort[due-date]]."
+}

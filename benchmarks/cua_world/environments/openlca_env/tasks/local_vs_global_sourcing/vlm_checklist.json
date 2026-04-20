@@ -1,0 +1,59 @@
+{
+    "task_id": "local_vs_global_sourcing@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database from the specified zip file into the LCA software.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the import dialog or the USLCI database appearing in the navigation pane/library."
+        },
+        {
+            "id": "local_ceramic_modeling",
+            "description": "Create the 'Flooring, Local Ceramic' product system with 20 kg material and 4.0 t*km truck transport.",
+            "points": 20,
+            "visual_evidence": "Process editor or input tab showing 'Flooring, Local Ceramic' with a truck transport flow set to 4.0 (or 4000 kg*km)."
+        },
+        {
+            "id": "global_vinyl_modeling",
+            "description": "Create the 'Flooring, Global Vinyl' product system with 3 kg material, 45.0 t*km ocean freight, and 3.0 t*km truck transport.",
+            "points": 25,
+            "visual_evidence": "Process editor showing 'Flooring, Global Vinyl' with ocean freight at 45.0 and truck transport at 3.0 (t*km)."
+        },
+        {
+            "id": "lcia_calculation_setup",
+            "description": "Configure the LCIA calculation using the TRACI 2.1 impact assessment method.",
+            "points": 15,
+            "visual_evidence": "Calculation setup window or wizard with 'TRACI 2.1' selected as the impact assessment method."
+        },
+        {
+            "id": "comparison_results_view",
+            "description": "Generate the comparison results for Global Warming Potential (GWP) between the two systems.",
+            "points": 15,
+            "visual_evidence": "A results screen or chart comparing the two product systems, specifically highlighting GWP or Climate Change impacts."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the comparison results to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "Export dialog showing the file path '~/LCA_Results/flooring_comparison.csv' or a file explorer showing the created file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LCA software GUI rather than just executing scripts in the terminal.",
+            "visual_evidence": "Screenshots of the LCA software interface (e.g., openLCA, SimaPro) being actively used."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent performed an actual calculation rather than manually typing values into a CSV.",
+            "visual_evidence": "Presence of the software's calculation progress bars or result analysis tabs."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the expected values into a file without opening the database.",
+            "visual_evidence": "Visual confirmation of the USLCI database being browsed or searched."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the USLCI database. Key values to verify in the modeling: Local Ceramic transport = 4.0 t*km (20kg * 200km / 1000). Global Vinyl transport = 45.0 t*km ocean (3kg * 15000km / 1000) and 3.0 t*km truck (3kg * 1000km / 1000). The LCIA method must be TRACI 2.1. The final output path is /home/ga/LCA_Results/flooring_comparison.csv."
+}

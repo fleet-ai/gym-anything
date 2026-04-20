@@ -1,0 +1,59 @@
+{
+    "task_id": "highway_earthwork_volume_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source CSV file and the formulas text file.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing 'sr99_cross_sections.csv' and 'earthwork_formulas.txt' open in a spreadsheet application or text editor."
+        },
+        {
+            "id": "calculate_station_distance",
+            "description": "Agent calculates the distance between consecutive stations in the spreadsheet.",
+            "points": 10,
+            "visual_evidence": "A column in the spreadsheet showing the difference between station values (e.g., Station 10+50 minus Station 10+00)."
+        },
+        {
+            "id": "calculate_cut_fill_volumes",
+            "description": "Agent applies the Average End Area method to calculate Cut and Fill volumes.",
+            "points": 25,
+            "visual_evidence": "Columns labeled 'Cut Volume' and 'Fill Volume' with values calculated based on the cross-sectional areas and distances."
+        },
+        {
+            "id": "calculate_adjusted_fill_net_volume",
+            "description": "Agent calculates Adjusted Fill Volume (applying shrinkage/swell) and Net Volume.",
+            "points": 20,
+            "visual_evidence": "Columns for 'Adjusted Fill' and 'Net Volume' (Cut minus Adjusted Fill) populated with data."
+        },
+        {
+            "id": "calculate_mass_haul",
+            "description": "Agent calculates the Cumulative Mass Haul for each interval.",
+            "points": 20,
+            "visual_evidence": "A 'Cumulative Mass Haul' column showing the running total of Net Volumes across all stations."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the completed analysis to the specified path.",
+            "points": 15,
+            "visual_evidence": "The spreadsheet application showing the file name 'sr99_mass_haul.xlsx' in the title bar or a 'Save As' dialog pointing to '~/Documents/Spreadsheets/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the spreadsheet GUI rather than just terminal commands to generate the file.",
+            "visual_evidence": "Screenshots showing the cursor interacting with spreadsheet cells, formulas being typed into the formula bar, and the OnlyOffice/LibreOffice interface."
+        },
+        {
+            "id": "no_manual_copy_paste",
+            "description": "Agent did not simply paste a pre-completed block of data.",
+            "visual_evidence": "Sequential screenshots showing the progressive building of the spreadsheet columns and formulas rather than a single jump from empty to full."
+        },
+        {
+            "id": "formula_usage",
+            "description": "Agent used spreadsheet formulas for calculations.",
+            "visual_evidence": "The formula bar showing mathematical expressions (e.g., =(A2+A1)/2*B2) when a cell is selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains 53 survey stations. The final output must be an Excel file (.xlsx) located at /home/ga/Documents/Spreadsheets/sr99_mass_haul.xlsx. The calculations must follow the Average End Area method: Volume = [(Area1 + Area2) / 2] * Distance. The Net Volume is typically Cut minus Adjusted Fill. Cumulative Mass Haul is the running sum of the Net Volume."
+}

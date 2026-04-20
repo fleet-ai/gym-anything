@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_constructor_to_builder@1",
+    "task_completion": [
+        {
+            "id": "builder_implementation",
+            "description": "Implement a static inner Builder class within SmartHomeDevice.java with methods for all 7 fields.",
+            "points": 25,
+            "visual_evidence": "Code editor showing SmartHomeDevice.java containing a 'public static class Builder' with methods like .name(), .ipAddress(), etc., and a .build() method."
+        },
+        {
+            "id": "refactor_device_service",
+            "description": "Update DeviceService.java to use the new Builder API instead of the telescoping constructor.",
+            "points": 20,
+            "visual_evidence": "Code editor showing DeviceService.java using 'new SmartHomeDevice.Builder()...build()' syntax instead of 'new SmartHomeDevice(...)'."
+        },
+        {
+            "id": "refactor_device_service_test",
+            "description": "Update DeviceServiceTest.java to use the new Builder API for test object instantiation.",
+            "points": 20,
+            "visual_evidence": "Code editor showing DeviceServiceTest.java using the Builder pattern to create test instances of SmartHomeDevice."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project compiles successfully after the refactoring.",
+            "points": 15,
+            "visual_evidence": "Terminal or IDE build output showing 'BUILD SUCCESS' or no red error underlines in the project explorer/editor after changes."
+        },
+        {
+            "id": "tests_passing",
+            "description": "Run the tests in DeviceServiceTest.java and ensure they pass.",
+            "points": 20,
+            "visual_evidence": "IDE test runner window or terminal output showing that tests in DeviceServiceTest (e.g., via Maven or JUnit) have passed (green checkmarks or 'Tests run: X, Failures: 0')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent performed the refactoring using the IDE's editor features rather than just running a script to overwrite files.",
+            "visual_evidence": "Screenshots show the agent typing in the IDE, using 'Refactor' menus, or manually editing the Java files."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually executed the tests rather than just claiming they passed.",
+            "visual_evidence": "A screenshot showing the IDE's test runner tab or a terminal command like 'mvn test' with the resulting output."
+        },
+        {
+            "id": "project_path_consistency",
+            "description": "The agent is working in the correct project directory.",
+            "visual_evidence": "The IDE title bar or file explorer shows the path /home/ga/IdeaProjects/iot-device-manager."
+        }
+    ],
+    "privileged_info_for_vlm": "The SmartHomeDevice class is located at src/main/java/com/iot/manager/model/SmartHomeDevice.java and has 7 fields: id (UUID), name, ipAddress, macAddress, firmwareVersion, location (Strings), and isActive (boolean). The refactor must replace the multi-argument constructor with a Builder pattern. The files to be updated are SmartHomeDevice.java, DeviceService.java, and DeviceServiceTest.java. All 7 fields must be supported by the builder."
+}

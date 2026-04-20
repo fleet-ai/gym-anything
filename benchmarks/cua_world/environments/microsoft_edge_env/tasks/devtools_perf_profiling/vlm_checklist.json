@@ -1,0 +1,59 @@
+{
+    "task_id": "devtools_perf_profiling@1",
+    "task_completion": [
+        {
+            "id": "navigate_and_profile_cnn",
+            "description": "Navigate to CNN and record a performance profile using browser DevTools.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the browser at cnn.com with the DevTools 'Performance' tab active and a recording in progress or completed."
+        },
+        {
+            "id": "navigate_and_profile_wikipedia",
+            "description": "Navigate to Wikipedia and record a performance profile using browser DevTools.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the browser at wikipedia.org with the DevTools 'Performance' tab active and a recording in progress or completed."
+        },
+        {
+            "id": "navigate_and_profile_github",
+            "description": "Navigate to GitHub and record a performance profile using browser DevTools.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the browser at github.com with the DevTools 'Performance' tab active and a recording in progress or completed."
+        },
+        {
+            "id": "extract_timing_values",
+            "description": "Extract Scripting, Rendering, and Painting values from the Summary tab of the Performance profiles for all three sites.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Summary' pie chart or list in DevTools for each site, displaying specific millisecond (ms) values for Scripting, Rendering, and Painting."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the performance profile report at the specified path on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation or existence of /home/ga/Desktop/performance_profile_report.txt."
+        },
+        {
+            "id": "report_content_and_summary",
+            "description": "The report must contain the specific timing values for all three sites and a summary identifying the site with the heaviest scripting load.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the final report content showing a table or list with Scripting, Rendering, and Painting values for CNN, Wikipedia, and GitHub, plus a concluding statement on which site had the highest scripting value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_devtools_usage",
+            "description": "Verify the agent actually used the DevTools Performance panel rather than guessing values.",
+            "visual_evidence": "Screenshots must show the DevTools panel open with unique trace data (flame graphs/pie charts) visible for each of the three URLs."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Ensure the agent didn't create the report before actually visiting the sites.",
+            "visual_evidence": "The trajectory should show navigation and profiling actions occurring chronologically before the final report is written."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent should interact with the browser GUI to trigger the profiling.",
+            "visual_evidence": "Mouse cursor movements or clicks on the 'Record' or 'Reload' buttons within the DevTools Performance tab."
+        }
+    ],
+    "privileged_info_for_vlm": "The report must be saved to /home/ga/Desktop/performance_profile_report.txt. The required metrics to be extracted and compared are 'Scripting', 'Rendering', and 'Painting'. The report must also include 'Loading' and 'Idle' categories to be fully compliant with the internal verification script, even though the prompt emphasizes the first three. The sites to profile are cnn.com, wikipedia.org, and github.com."
+}

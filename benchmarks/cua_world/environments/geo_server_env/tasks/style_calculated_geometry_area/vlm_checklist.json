@@ -1,0 +1,53 @@
+{
+    "task_id": "style_calculated_geometry_area@1",
+    "task_completion": [
+        {
+            "id": "create_style_dialog",
+            "description": "Create a new style named 'area_classification' in the 'ne' workspace.",
+            "points": 10,
+            "visual_evidence": "The GeoServer 'New Style' page showing the name 'area_classification' and the workspace 'ne' selected in the dropdown."
+        },
+        {
+            "id": "sld_logic_implementation",
+            "description": "Implement SLD logic using the 'area' function with a 15.0 threshold and specified hex colors.",
+            "points": 30,
+            "visual_evidence": "The SLD editor showing code containing '<ogc:Function name=\"area\">', the value '15.0', and the hex codes '#FF0000' (red) and '#AAAAAA' (gray)."
+        },
+        {
+            "id": "set_default_style",
+            "description": "Set 'area_classification' as the default style for the 'ne:ne_countries' layer.",
+            "points": 20,
+            "visual_evidence": "The 'Publishing' tab of the 'ne_countries' layer settings showing 'area_classification' selected as the Default Style."
+        },
+        {
+            "id": "map_preview_generation",
+            "description": "Generate a map preview with the correct dimensions and extent.",
+            "points": 20,
+            "visual_evidence": "A Layer Preview or OpenLayers view showing the world map, or a terminal command/URL showing width=800, height=400, and the bbox -180,-90,180,90."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "Export the final map to /home/ga/area_map.png with correct color distribution.",
+            "points": 20,
+            "visual_evidence": "An image viewer or file explorer showing 'area_map.png' at the specified path. The map should show large countries (like Russia, Canada, USA, China, Brazil, Australia) in gray and smaller countries in red."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "geoserver_gui_usage",
+            "description": "The agent used the GeoServer web interface rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots showing the GeoServer web UI (Style editor, Layer settings) being navigated."
+        },
+        {
+            "id": "no_hardcoded_image",
+            "description": "The agent did not simply copy a pre-existing image to the destination.",
+            "visual_evidence": "The agent is seen interacting with the 'Save' button in the Style editor and using the 'Layer Preview' or a WMS request to generate the image."
+        },
+        {
+            "id": "genuine_sld_entry",
+            "description": "The SLD was actually typed or pasted into the GeoServer editor.",
+            "visual_evidence": "The SLD editor window containing the specific logic for the 'area' function and the 15.0 threshold."
+        }
+    ],
+    "privileged_info_for_vlm": "The style must be named 'area_classification' in workspace 'ne'. The SLD must use the 'area' function. Threshold: < 15.0 is #FF0000 (Red), >= 15.0 is #AAAAAA (Gray). The target layer is 'ne:ne_countries'. The output image must be 800x400 at /home/ga/area_map.png. In the final map, large landmasses like Russia, Canada, USA, China, Brazil, and Australia must be gray (#AAAAAA), while most other smaller nations must be red (#FF0000)."
+}

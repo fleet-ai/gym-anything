@@ -1,0 +1,53 @@
+{
+    "task_id": "rename_volume_node@1",
+    "task_completion": [
+        {
+            "id": "volume_loaded",
+            "description": "The 'MRHead' volume is loaded and visible in the 3D Slicer interface.",
+            "points": 10,
+            "visual_evidence": "Look for 'MRHead' in the Data module tree or the slice viewers (Red/Yellow/Green views)."
+        },
+        {
+            "id": "open_data_module",
+            "description": "The agent navigates to the 'Data' module to manage scene nodes.",
+            "points": 15,
+            "visual_evidence": "The module selector at the top shows 'Data' and the Data panel is visible on the left."
+        },
+        {
+            "id": "initiate_rename",
+            "description": "The agent interacts with the 'MRHead' node to begin the renaming process.",
+            "points": 20,
+            "visual_evidence": "The agent right-clicks 'MRHead' in the Subject Hierarchy or double-clicks the name to enter edit mode."
+        },
+        {
+            "id": "input_new_name",
+            "description": "The agent types the exact required name into the node name field.",
+            "points": 25,
+            "visual_evidence": "An active text cursor or highlighted text field showing 'STUDY001_T1_Brain' being typed."
+        },
+        {
+            "id": "final_name_verification",
+            "description": "The volume node is successfully renamed to 'STUDY001_T1_Brain' in the Data module.",
+            "points": 30,
+            "visual_evidence": "The node previously named 'MRHead' now explicitly displays 'STUDY001_T1_Brain' in the Subject Hierarchy tree."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface rather than the Python console.",
+            "visual_evidence": "The mouse cursor is seen interacting with the Data module tree; the Python Interactor (bottom console) is not used to execute 'setName()' commands."
+        },
+        {
+            "id": "no_node_recreation",
+            "description": "The agent renamed the existing node rather than deleting it and loading a new one.",
+            "visual_evidence": "The node ID or position in the hierarchy remains stable; no 'Add Data' dialogs or file browser windows appear during the renaming phase."
+        },
+        {
+            "id": "genuine_software_use",
+            "description": "The agent is interacting with a live 3D Slicer instance.",
+            "visual_evidence": "Standard Slicer UI elements (crosshairs, slice sliders, module selector) are responsive and change state across screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The original volume name is 'MRHead'. The target name is 'STUDY001_T1_Brain'. This is a standard 3D Slicer sample dataset. Renaming is typically performed in the 'Data' module within the 'Subject Hierarchy' tab."
+}

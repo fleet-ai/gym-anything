@@ -1,0 +1,59 @@
+{
+    "task_id": "neutrino_alert_optical_followup@1",
+    "task_completion": [
+        {
+            "id": "read_gcn_alert",
+            "description": "Agent opens and reads the GCN alert file to identify the three candidate blazars.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/gcn_alert_IceCube170922A.txt with TXS 0506+056, PKS 0502+049, and GB6 J0512+0529 listed."
+        },
+        {
+            "id": "dss_reference_images",
+            "description": "Agent generates a 0.5-degree DSS sky view image for each candidate using the 'cool' palette.",
+            "points": 15,
+            "visual_evidence": "A file browser or image viewer showing 'dss_reference.png' in three separate subdirectories under ~/Images/neutrino_followup/, with the images appearing in a blue/cyan 'cool' color scheme."
+        },
+        {
+            "id": "telescope_control_setup",
+            "description": "Agent configures the telescope software with the correct filter slots (Slot 2 for V, Slot 4 for R).",
+            "points": 15,
+            "visual_evidence": "The INDI control panel or observatory software interface showing filter wheel settings where Slot 2 is labeled 'V' and Slot 4 is labeled 'R'."
+        },
+        {
+            "id": "optical_exposures_v_band",
+            "description": "Agent captures three 60-second V-band exposures for each of the three candidates.",
+            "points": 25,
+            "visual_evidence": "Observatory software logs or file explorer showing three .fits or .png image files per candidate directory with 'V' or 'slot2' in the metadata/filename and 60s exposure time."
+        },
+        {
+            "id": "optical_exposures_r_band",
+            "description": "Agent captures three 60-second R-band exposures for each of the three candidates.",
+            "points": 25,
+            "visual_evidence": "Observatory software logs or file explorer showing three .fits or .png image files per candidate directory with 'R' or 'slot4' in the metadata/filename and 60s exposure time."
+        },
+        {
+            "id": "draft_gcn_circular",
+            "description": "Agent drafts the observation confirmation report including all three candidate names.",
+            "points": 10,
+            "visual_evidence": "A text editor showing ~/Documents/gcn_circular_draft.txt containing the names TXS 0506+056, PKS 0502+049, and GB6 J0512+0529."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses the observatory GUI/INDI control panel rather than just creating dummy files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with telescope control software buttons (Connect, Expose, Filter Select)."
+        },
+        {
+            "id": "genuine_image_generation",
+            "description": "The DSS images and exposures are generated through the appropriate tools, not by renaming unrelated files.",
+            "visual_evidence": "The DSS images must show the 'cool' palette (blue/cyan) as requested, and exposure progress bars should be visible during the task."
+        },
+        {
+            "id": "no_copy_paste_report",
+            "description": "The GCN circular draft is typed or constructed based on the alert data, not instantly generated.",
+            "visual_evidence": "The agent is seen extracting the names from the alert file before writing the draft."
+        }
+    ],
+    "privileged_info_for_vlm": "The three candidate blazars are TXS 0506+056, PKS 0502+049, and GB6 J0512+0529. Required filters: V-band (Slot 2) and R-band (Slot 4). Required cadence: 3 exposures of 60 seconds each per filter, per candidate (total 18 science exposures). DSS reference images must be 0.5 degrees and use the 'cool' color palette. Target directory: ~/Images/neutrino_followup/."
+}

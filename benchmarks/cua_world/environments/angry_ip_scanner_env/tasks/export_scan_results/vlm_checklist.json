@@ -1,0 +1,62 @@
+{
+    "task_id": "export_scan_results@1",
+    "task_completion": [
+        {
+            "id": "start_scan_initiated",
+            "description": "The agent clicks the 'Start' button or uses the Scan menu to begin the process.",
+            "points": 10,
+            "visual_evidence": "The 'Start' button is clicked, or the button text changes to 'Stop', or a progress bar appears at the bottom of the Angry IP Scanner window."
+        },
+        {
+            "id": "scan_in_progress",
+            "description": "The scanner is actively processing the IP range 10.0.2.0 to 10.0.2.255.",
+            "points": 15,
+            "visual_evidence": "The progress bar at the bottom of the application moves, and the IP range fields show 10.0.2.0 and 10.0.2.255."
+        },
+        {
+            "id": "scan_results_populated",
+            "description": "The scan completes, showing active hosts and specific open ports.",
+            "points": 25,
+            "visual_evidence": "The table shows at least one blue circle (active host) with '22, 80' visible in the Ports column for the local machine (ga-base)."
+        },
+        {
+            "id": "export_dialog_opened",
+            "description": "The agent opens the export/save dialog via the menu or shortcut.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' or 'Export' file dialog window appears over the main application."
+        },
+        {
+            "id": "save_location_and_name",
+            "description": "The agent navigates to the correct directory and sets the filename.",
+            "points": 15,
+            "visual_evidence": "The file dialog shows the path /home/ga/Documents and the filename 'scan_results.csv' in the input field."
+        },
+        {
+            "id": "file_saved_successfully",
+            "description": "The agent confirms the save operation.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Save' or 'OK', and the file dialog closes, returning focus to the main application or showing a success message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the terminal to manually create the CSV file.",
+            "points": 0,
+            "visual_evidence": "No terminal window is used to run 'touch', 'echo', or 'printf' commands to generate scan_results.csv."
+        },
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the Angry IP Scanner GUI elements.",
+            "points": 0,
+            "visual_evidence": "The cursor is seen clicking the 'Start' button and navigating the 'Scan' menu in the application window."
+        },
+        {
+            "id": "actual_scan_execution",
+            "description": "The agent waited for the scan to finish rather than exporting an empty or stale list.",
+            "points": 0,
+            "visual_evidence": "The 'Scan finished' summary dialog appears, or the progress bar reaches 100% before the export begins."
+        }
+    ],
+    "privileged_info_for_vlm": "The local machine hostname is 'ga-base'. The scan must show ports 22 and 80 as open for this host. The required export format is CSV and the destination is /home/ga/Documents/scan_results.csv."
+}

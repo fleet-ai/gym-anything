@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_collision_geometry@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the 'collision_debug.wbt' file in the Webots simulator.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible showing a 3D scene with a robot and two obstacles."
+        },
+        {
+            "id": "select_mobile_robot_bounding",
+            "description": "The agent has selected the 'MOBILE_ROBOT' node and is editing its 'boundingObject' field.",
+            "points": 15,
+            "visual_evidence": "The Scene Tree on the left shows 'MOBILE_ROBOT' expanded, with the 'boundingObject' field selected or being modified."
+        },
+        {
+            "id": "configure_robot_box",
+            "description": "The 'MOBILE_ROBOT' boundingObject is set to a Box with dimensions 0.4 x 0.2 x 0.3.",
+            "points": 20,
+            "visual_evidence": "The field editor at the bottom of the Scene Tree shows a Box shape with size x: 0.4, y: 0.2, z: 0.3 for the MOBILE_ROBOT."
+        },
+        {
+            "id": "configure_obstacle_box",
+            "description": "The 'OBSTACLE_BOX' boundingObject is set to a Box with dimensions 0.6 x 0.6 x 0.4.",
+            "points": 20,
+            "visual_evidence": "The field editor shows 'OBSTACLE_BOX' -> boundingObject -> Box with size x: 0.6, y: 0.6, z: 0.4."
+        },
+        {
+            "id": "configure_obstacle_cylinder",
+            "description": "The 'OBSTACLE_CYLINDER' boundingObject is set to a Cylinder with radius 0.2 and height 0.5.",
+            "points": 20,
+            "visual_evidence": "The field editor shows 'OBSTACLE_CYLINDER' -> boundingObject -> Cylinder with radius: 0.2 and height: 0.5."
+        },
+        {
+            "id": "save_world_as",
+            "description": "The corrected world is saved to the specific path /home/ga/Desktop/collision_fixed.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or the Webots title bar shows the file path /home/ga/Desktop/collision_fixed.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots Scene Tree GUI to modify properties rather than just editing the text file in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or selection highlights within the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "no_script_cheating",
+            "description": "The agent did not run a python/bash script to automate the file modification.",
+            "visual_evidence": "The terminal history (if visible) does not show execution of a script that performs sed/awk or file replacement on the .wbt file."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent used the 'File > Save World As...' menu or shortcut within the Webots GUI.",
+            "visual_evidence": "The File menu is open or the Save As dialog is visible on top of the Webots interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The required dimensions for the bounding objects are: MOBILE_ROBOT (Box: 0.4, 0.2, 0.3), OBSTACLE_BOX (Box: 0.6, 0.6, 0.4), and OBSTACLE_CYLINDER (Cylinder: radius 0.2, height 0.5). The final file must be saved exactly as /home/ga/Desktop/collision_fixed.wbt. Note that Webots may show wireframes (cyan lines) around objects when bounding objects are correctly assigned."
+}

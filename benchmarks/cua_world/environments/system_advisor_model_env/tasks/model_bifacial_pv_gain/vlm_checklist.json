@@ -1,0 +1,59 @@
+{
+    "task_id": "model_bifacial_pv_gain@1",
+    "task_completion": [
+        {
+            "id": "read_weather_path",
+            "description": "Agent reads the weather file path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "A terminal or text editor showing the content of /home/ga/.SAM/weather_file_path.txt."
+        },
+        {
+            "id": "pysam_import_setup",
+            "description": "Agent imports PySAM.Pvwattsv8 and initializes the model in a script or notebook.",
+            "points": 15,
+            "visual_evidence": "Code visible on screen showing 'import PySAM.Pvwattsv8' or 'import PySAM.PySSC'."
+        },
+        {
+            "id": "configure_monofacial",
+            "description": "Agent configures the model with monofacial parameters (bifaciality 0, albedo 0.20, 10MW, 1-axis tracking).",
+            "points": 20,
+            "visual_evidence": "Code or variable assignments showing system_capacity=10000, array_type=2, bifaciality=0, and albedo=0.2."
+        },
+        {
+            "id": "configure_bifacial",
+            "description": "Agent configures the model with bifacial parameters (bifaciality 0.70, albedo 0.30).",
+            "points": 20,
+            "visual_evidence": "Code or variable assignments showing bifaciality=0.7 and albedo=0.3."
+        },
+        {
+            "id": "calculate_gain",
+            "description": "Agent executes the simulation for both cases and calculates the percentage gain.",
+            "points": 20,
+            "visual_evidence": "Code showing the execution of the model and a calculation for ((bifacial_energy - monofacial_energy) / monofacial_energy) * 100."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Agent exports the final results to the specified JSON file path with the correct structure.",
+            "points": 15,
+            "visual_evidence": "A terminal command or code block saving the dictionary to /home/ga/Documents/SAM_Projects/bifacial_comparison.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the energy values or gain percentage from the task description or privileged info.",
+            "visual_evidence": "The code should show the model being run and variables being assigned from the model output, not direct assignment of large energy numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Agent actually uses the PySAM library rather than just writing a JSON file manually.",
+            "visual_evidence": "Screenshots must show the agent writing or running Python code that interacts with the PySAM API."
+        },
+        {
+            "id": "weather_file_usage",
+            "description": "Agent uses the specific weather file path provided in the text file.",
+            "visual_evidence": "The code should reference the string or variable obtained from reading /home/ga/.SAM/weather_file_path.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use PySAM's PVWattsv8. Verified parameters: Capacity 10000 kW, DC:AC 1.2, Array Type 2 (1-axis tracking), GCR 0.35, Losses 14%. Monofacial: bifaciality 0, albedo 0.2. Bifacial: bifaciality 0.7, albedo 0.3. Expected annual energy should be between 15,000,000 and 25,000,000 kWh. The expected bifacial gain percentage is typically between 2.0% and 20.0% (specifically around 3.6% for these parameters)."
+}

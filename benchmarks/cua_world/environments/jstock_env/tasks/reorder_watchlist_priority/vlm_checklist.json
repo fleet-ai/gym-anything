@@ -1,0 +1,59 @@
+{
+    "task_id": "reorder_watchlist_priority@1",
+    "task_completion": [
+        {
+            "id": "open_jstock_watchlist",
+            "description": "Open the JStock application and navigate to 'My Watchlist'.",
+            "points": 10,
+            "visual_evidence": "The JStock application window is visible with the 'Watchlist' tab selected and 'My Watchlist' displayed in the dropdown or sidebar."
+        },
+        {
+            "id": "initiate_reorder",
+            "description": "The agent interacts with the watchlist items to begin reordering (e.g., right-clicking a stock or using drag-and-drop handles).",
+            "points": 15,
+            "visual_evidence": "Visual cues such as a context menu for 'Move Up/Down' or a stock row being dragged/selected for movement."
+        },
+        {
+            "id": "position_msft_first",
+            "description": "Microsoft Corp. (MSFT) is moved to the first position in the list.",
+            "points": 20,
+            "visual_evidence": "The ticker 'MSFT' is visible at the very top of the 'My Watchlist' table."
+        },
+        {
+            "id": "position_nvda_second",
+            "description": "NVIDIA Corp. (NVDA) is moved to the second position in the list.",
+            "points": 20,
+            "visual_evidence": "The ticker 'NVDA' is visible directly below MSFT in the second row."
+        },
+        {
+            "id": "position_aapl_third",
+            "description": "Apple Inc. (AAPL) is moved to the third position in the list.",
+            "points": 20,
+            "visual_evidence": "The ticker 'AAPL' is visible directly below NVDA in the third row."
+        },
+        {
+            "id": "save_watchlist_changes",
+            "description": "The agent ensures the new order is saved or persisted within the application.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save' icon, selects 'File > Save', or the final screenshot shows the correct order (MSFT, NVDA, AAPL) persisting after the interaction is complete."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the JStock GUI to reorder stocks rather than editing the CSV file via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements, drag-and-drop actions, or menu clicks within the JStock interface; no terminal windows showing 'nano', 'vim', or 'sed' on the watchlist path."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual JStock software.",
+            "visual_evidence": "The JStock window decorations, menus, and stock data table are visible and active during the process."
+        },
+        {
+            "id": "no_manual_file_overwrite",
+            "description": "The agent did not simply delete and recreate the watchlist file to bypass the UI.",
+            "visual_evidence": "The sequence of screenshots shows the incremental movement of stocks within the UI table."
+        }
+    ],
+    "privileged_info_for_vlm": "The required order for 'My Watchlist' is exactly: 1. MSFT, 2. NVDA, 3. AAPL. The remaining stocks (GOOGL, AMZN) must follow these three but their relative order does not matter. The changes must be reflected in the JStock GUI. The underlying data file is located at /home/ga/.jstock/1.0.7/UnitedState/watchlist/My Watchlist/realtimestock.csv."
+}

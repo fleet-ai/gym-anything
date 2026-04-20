@@ -1,0 +1,59 @@
+{
+    "task_id": "devtools_computed_style_audit@1",
+    "task_completion": [
+        {
+            "id": "open_browser_and_page",
+            "description": "Agent opens Microsoft Edge and navigates to localhost:8000.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows Microsoft Edge browser with 'localhost:8000' in the address bar."
+        },
+        {
+            "id": "open_devtools_computed_tab",
+            "description": "Agent opens Browser DevTools and navigates to the 'Computed' styles tab.",
+            "points": 15,
+            "visual_evidence": "DevTools panel is visible, specifically showing the 'Computed' sub-tab under the Elements panel."
+        },
+        {
+            "id": "inspect_h1_font",
+            "description": "Agent inspects the h1 element to find the resolved font-family.",
+            "points": 20,
+            "visual_evidence": "The h1 element is selected in the DOM tree, and the Computed tab shows 'font-family' with the resolved value 'DejaVu Sans'."
+        },
+        {
+            "id": "inspect_button_color",
+            "description": "Agent inspects the .btn-primary element to find the resolved background-color.",
+            "points": 20,
+            "visual_evidence": "The .btn-primary element is selected, and the Computed tab shows 'background-color' as 'rgb(0, 128, 255)'."
+        },
+        {
+            "id": "inspect_alert_and_footer",
+            "description": "Agent inspects the .alert border-left-width and footer opacity.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the .alert element with 'border-left-width' at '6px' and the footer element with 'opacity' at '0.75' in the Computed tab."
+        },
+        {
+            "id": "create_json_file",
+            "description": "Agent creates the style_audit.json file on the Desktop with the correct structure and values.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the creation/content of /home/ga/Desktop/style_audit.json containing the four required keys and values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_devtools_usage",
+            "description": "Agent used the DevTools GUI to find values rather than guessing or reading source code alone.",
+            "visual_evidence": "Screenshots must show the DevTools 'Computed' pane active; values like '6px' (from a calc) or 'rgb' (from HSL) should be visible in the UI."
+        },
+        {
+            "id": "no_hardcoded_shortcut",
+            "description": "Agent did not simply echo the values into a file without visiting the site.",
+            "visual_evidence": "The trajectory must show the browser navigating to localhost:8000 before the JSON file is created."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent saved the file to the specific requested path.",
+            "visual_evidence": "Terminal commands or file explorer show the file located at /home/ga/Desktop/style_audit.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct values for the audit are: 1. heading_font: 'DejaVu Sans' (the first font 'NonExistentFont' fails, falling back to DejaVu Sans). 2. button_color: 'rgb(0, 128, 255)' (resolved from HSL 210, 100%, 50%). 3. alert_border_width: '6px' (resolved from calc(8px * 0.75)). 4. footer_opacity: '0.75'. The agent must use the 'Computed' tab in DevTools to see these final resolved values."
+}

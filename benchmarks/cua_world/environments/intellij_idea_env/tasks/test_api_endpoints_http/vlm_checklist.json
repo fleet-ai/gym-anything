@@ -1,0 +1,59 @@
+{
+    "task_id": "test_api_endpoints_http@1",
+    "task_completion": [
+        {
+            "id": "create_http_file",
+            "description": "Create a file named 'library_tests.http' within the 'LibraryClient' project directory.",
+            "points": 10,
+            "visual_evidence": "The file 'library_tests.http' is visible in the project explorer sidebar under the 'LibraryClient' project."
+        },
+        {
+            "id": "define_get_request",
+            "description": "Define a GET request to http://localhost:8081/api/books in the .http file.",
+            "points": 20,
+            "visual_evidence": "The text 'GET http://localhost:8081/api/books' is visible in the editor window for library_tests.http."
+        },
+        {
+            "id": "define_post_request",
+            "description": "Define a POST request to http://localhost:8081/api/books with the correct Content-Type header.",
+            "points": 20,
+            "visual_evidence": "The text 'POST http://localhost:8081/api/books' followed by 'Content-Type: application/json' is visible in the editor."
+        },
+        {
+            "id": "define_json_body",
+            "description": "Include a JSON body in the POST request with 'title', 'author', and 'year' fields.",
+            "points": 20,
+            "visual_evidence": "A JSON block containing keys \"title\", \"author\", and \"year\" is visible below the POST request headers."
+        },
+        {
+            "id": "execute_get_request",
+            "description": "Execute the GET request and view the response.",
+            "points": 15,
+            "visual_evidence": "A 'Run' icon (green arrow) next to the GET request is clicked, or a 'Services' or 'Response' tool window appears showing the output of the GET request."
+        },
+        {
+            "id": "execute_post_request",
+            "description": "Execute the POST request and view the response.",
+            "points": 15,
+            "visual_evidence": "A 'Run' icon next to the POST request is clicked, or a 'Services' or 'Response' tool window appears showing the output of the POST request."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_http_client_gui",
+            "description": "The agent used the IDE's built-in HTTP Client editor rather than just running curl in the terminal.",
+            "visual_evidence": "The .http file is open in the main editor tabs and the IDE's native 'Run' gutters/icons are used to trigger requests."
+        },
+        {
+            "id": "actual_server_interaction",
+            "description": "The requests were actually sent to the local server, not just typed out.",
+            "visual_evidence": "A 'Response' tab or window is visible showing status codes (e.g., 200 OK) or JSON output from the server."
+        },
+        {
+            "id": "no_manual_log_editing",
+            "description": "The agent did not attempt to manually edit server logs to simulate success.",
+            "visual_evidence": "The agent's focus remains on the .http file and the IDE's execution tools, not on editing files in /tmp/."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/LibraryClient. The server runs on port 8081. The required file name is exactly 'library_tests.http'. The server logs access to /tmp/library_server_access.log, which can be used to verify if the agent's requests actually reached the backend if the terminal is visible."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "migrate_db_prefix_security@1",
+    "task_completion": [
+        {
+            "id": "config_file_update",
+            "description": "The wp-config.php file is updated to reflect the new database prefix 'sec24_'.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal view showing the line $table_prefix = 'sec24_'; in the wp-config.php file."
+        },
+        {
+            "id": "table_renaming_process",
+            "description": "The agent executes commands or uses a tool to rename database tables from 'wp_' to 'sec24_'.",
+            "points": 25,
+            "visual_evidence": "SQL commands (RENAME TABLE...) in a terminal or a database management tool (like phpMyAdmin) showing the table names changing to start with 'sec24_'."
+        },
+        {
+            "id": "metadata_key_migration",
+            "description": "Internal metadata keys (user_roles, capabilities, user_level) are updated to use the 'sec24_' prefix.",
+            "points": 25,
+            "visual_evidence": "SQL UPDATE queries targeting the options and usermeta tables to replace 'wp_' with 'sec24_' in option_name and meta_key fields."
+        },
+        {
+            "id": "verify_no_old_tables",
+            "description": "Confirmation that no tables starting with the old 'wp_' prefix remain in the database.",
+            "points": 15,
+            "visual_evidence": "A database list (SHOW TABLES;) or GUI view showing only 'sec24_' tables and the absence of 'wp_' tables."
+        },
+        {
+            "id": "site_functionality_check",
+            "description": "The WordPress site and admin panel are fully functional after the migration.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the WordPress dashboard and the public-facing site loading correctly without database connection errors or permission issues."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual system files and database rather than just simulating output.",
+            "visual_evidence": "The agent opening real files (wp-config.php) and executing real SQL commands in a terminal or database client."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo a success message without performing the migration steps.",
+            "visual_evidence": "The presence of intermediate steps like editing files and running SQL queries before the final verification."
+        },
+        {
+            "id": "gui_and_terminal_usage",
+            "description": "The agent uses the provided tools (Firefox, Terminal) to perform the task as a user would.",
+            "visual_evidence": "Screenshots showing the agent actively typing in the terminal or navigating the WordPress interface in Firefox."
+        }
+    ],
+    "privileged_info_for_vlm": "The old database prefix is 'wp_' and the new required prefix is 'sec24_'. The agent must specifically update the 'wp_user_roles' option in the options table, and the 'wp_capabilities' and 'wp_user_level' keys in the usermeta table to use the 'sec24_' prefix for the admin account to retain permissions."
+}

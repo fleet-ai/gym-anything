@@ -1,0 +1,53 @@
+{
+    "task_id": "add_admin_flight_count@1",
+    "task_completion": [
+        {
+            "id": "access_admin_login",
+            "description": "Agent navigates to the Django admin login page.",
+            "points": 10,
+            "visual_evidence": "The browser shows the Aerobridge Django administration login screen at http://localhost:8000/admin/."
+        },
+        {
+            "id": "navigate_to_aircraft_list",
+            "description": "Agent navigates to the Aircraft list view in the registry app.",
+            "points": 10,
+            "visual_evidence": "The browser URL is http://localhost:8000/admin/registry/aircraft/ and the page title/header says 'Select aircraft to change'."
+        },
+        {
+            "id": "modify_admin_source_code",
+            "description": "Agent edits the admin.py file to add the custom column logic.",
+            "points": 30,
+            "visual_evidence": "Terminal or text editor screenshots show code being added to /opt/aerobridge/registry/admin.py, specifically defining a method for 'Plan Count' and adding it to list_display."
+        },
+        {
+            "id": "verify_column_header",
+            "description": "The Aircraft list view table now includes a column header labeled 'Plan Count'.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the Aircraft admin table shows a column header explicitly text-labeled 'Plan Count'."
+        },
+        {
+            "id": "verify_column_data",
+            "description": "The 'Plan Count' column displays numerical values representing the count of flight plans.",
+            "points": 25,
+            "visual_evidence": "In the Aircraft list view, the rows under the 'Plan Count' column contain integers (e.g., 0, 1, 2) rather than being empty or showing errors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_ui_interaction",
+            "description": "The agent interacted with the web interface rather than just simulating a success message.",
+            "visual_evidence": "Screenshots show the browser address bar, the Django admin sidebar, and the actual table rows of the Aerobridge application."
+        },
+        {
+            "id": "source_code_edit",
+            "description": "The agent actually modified the source code on disk.",
+            "visual_evidence": "Terminal output shows 'cat', 'vi', 'sed', or a text editor saving changes to /opt/aerobridge/registry/admin.py."
+        },
+        {
+            "id": "no_hardcoded_html",
+            "description": "The agent did not simply inject HTML into the browser console to fake the result.",
+            "visual_evidence": "The agent is seen refreshing the page after code changes, and the changes persist across the refresh."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file for modification is /opt/aerobridge/registry/admin.py. Note: In the actual Aerobridge codebase, there is no direct Foreign Key between Aircraft and FlightPlan. To fulfill the task, the agent must implement a custom method in AircraftAdmin that queries FlightPlans (likely filtered by a shared attribute or a related model like FlightOperation) and returns the count. The VLM should specifically look for the exact string 'Plan Count' in the table header at http://localhost:8000/admin/registry/aircraft/."
+}

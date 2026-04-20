@@ -1,0 +1,59 @@
+{
+    "task_id": "stale_pipeline_and_ticket_cleanup@1",
+    "task_completion": [
+        {
+            "id": "login_vtiger",
+            "description": "Log into the vtiger CRM dashboard using provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the vtiger CRM dashboard or home screen after the login page."
+        },
+        {
+            "id": "update_stale_deals",
+            "description": "Identify and update deals with past closing dates and active stages to 'Closed Lost' with 0% probability.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Opportunities' (Deals) list or detail view where 'Atlas Supply Chain Analytics' has Sales Stage 'Closed Lost' and Probability '0%'."
+        },
+        {
+            "id": "reclassify_tickets",
+            "description": "Change status of Closed tickets with Critical severity or Urgent priority to 'Resolved'.",
+            "points": 25,
+            "visual_evidence": "Screenshots in the 'HelpDesk' (Tickets) module showing a ticket status changed from 'Closed' to 'Resolved'."
+        },
+        {
+            "id": "ticket_description_audit",
+            "description": "Prepend the SLA-AUDIT string to the description of reclassified tickets.",
+            "points": 15,
+            "visual_evidence": "The description field of the modified ticket starts with '[SLA-AUDIT] Reclassified from Closed to Resolved per Q1 hygiene protocol.'"
+        },
+        {
+            "id": "account_industry_update",
+            "description": "Update the 'Blackstone Industrial' account Industry to 'Industrial Machinery & Equipment'.",
+            "points": 10,
+            "visual_evidence": "The 'Industry' field for 'Blackstone Industrial' shows 'Industrial Machinery & Equipment' in the Organizations/Accounts module."
+        },
+        {
+            "id": "account_description_update",
+            "description": "Update the 'Blackstone Industrial' account Description with the specific enterprise client text.",
+            "points": 15,
+            "visual_evidence": "The 'Description' field for 'Blackstone Industrial' contains 'Enterprise client specializing in industrial automation and factory systems'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to perform updates rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with vtiger CRM elements, form fields being filled, and 'Save' buttons being clicked."
+        },
+        {
+            "id": "genuine_search",
+            "description": "The agent searched for or navigated to the specific records (Deals, Tickets, Accounts) within the CRM.",
+            "visual_evidence": "Screenshots show the agent using the search bar or filtering the list views to find 'Atlas Supply Chain Analytics' or 'Blackstone Industrial'."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply display a success message without showing the actual record updates.",
+            "visual_evidence": "The trajectory includes the intermediate steps of editing the record fields, not just a final 'Task Complete' screen."
+        }
+    ],
+    "privileged_info_for_vlm": "The deal 'Atlas Supply Chain Analytics' is the primary target for the pipeline update (past date, active stage). Note that 'Nexus SCADA Security Assessment' is already 'Closed Won' and should not be changed. The account 'Blackstone Industrial' may not exist in the initial seed data; if the agent creates it to fulfill the update requirement, this is acceptable behavior for this task. The ticket reclassification applies to any ticket found with Status='Closed' AND (Severity='Critical' OR Priority='Urgent')."
+}

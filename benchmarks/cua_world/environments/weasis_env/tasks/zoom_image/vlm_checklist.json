@@ -1,0 +1,53 @@
+{
+    "task_id": "zoom_image@1",
+    "task_completion": [
+        {
+            "id": "weasis_interface_loaded",
+            "description": "The Weasis DICOM viewer is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible, showing the standard medical imaging interface (toolbar, thumbnails, and main viewport)."
+        },
+        {
+            "id": "dicom_image_displayed",
+            "description": "The specific DICOM image (0002.DCM) is loaded into the main viewing area.",
+            "points": 15,
+            "visual_evidence": "A medical X-ray/Angiography image is visible in the central canvas of the application."
+        },
+        {
+            "id": "zoom_tool_interaction",
+            "description": "The agent interacts with the zoom tool or uses a mouse-drag gesture to initiate magnification.",
+            "points": 20,
+            "visual_evidence": "The cursor changes to a magnifying glass icon, or the 'Zoom' button in the toolbar is highlighted/selected."
+        },
+        {
+            "id": "image_magnification_visible",
+            "description": "The image shows clear visual evidence of being larger than its initial state.",
+            "points": 25,
+            "visual_evidence": "The anatomical structures in the DICOM image appear significantly larger and more detailed compared to the first frame; parts of the image may now be cropped out of the viewport."
+        },
+        {
+            "id": "target_zoom_reached",
+            "description": "The image is magnified by at least 2x from its initial size.",
+            "points": 30,
+            "visual_evidence": "The zoom percentage indicator in the status bar or overlay shows a value of 200% (2.0) or higher, or the visual scale of the image has doubled in size relative to the initial view."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface rather than terminal commands to manipulate the image.",
+            "visual_evidence": "The mouse cursor is seen moving to toolbar icons or dragging on the image; no terminal windows are used to execute scripts that bypass the UI."
+        },
+        {
+            "id": "no_static_image_replacement",
+            "description": "The agent did not simply open a pre-zoomed static image file.",
+            "visual_evidence": "The transition from 1x to 2x zoom is visible across the trajectory frames within the Weasis application environment."
+        },
+        {
+            "id": "genuine_software_state",
+            "description": "The zoom level is reflected in the application's own UI elements.",
+            "visual_evidence": "The Weasis status bar or image overlay text dynamically updates to reflect the new zoom ratio (e.g., changing from 100% to 200%+)."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial zoom level of the DICOM image (0002.DCM) is 1.0 (100%). The task is successful only if the final zoom level is at least 2.0 (200%). Look for the zoom percentage indicator in the Weasis status bar or overlay text to confirm the numerical value."
+}

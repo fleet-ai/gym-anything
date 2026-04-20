@@ -1,0 +1,59 @@
+{
+    "task_id": "export_timeseries_csv@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the HEC-RAS application and load the Muncie project.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window is visible with 'Muncie' project loaded in the project path or title bar."
+        },
+        {
+            "id": "access_unsteady_results",
+            "description": "Navigate to the output/results section for the unsteady simulation (Plan 04).",
+            "points": 15,
+            "visual_evidence": "The 'Stage and Flow Post-Processor' or 'Detailed Output Table' window is open, referencing Plan 04 or Muncie.p04.hdf."
+        },
+        {
+            "id": "select_cross_sections_data",
+            "description": "Select all cross-sections and the required variables (Flow and WSE).",
+            "points": 20,
+            "visual_evidence": "A data table or export dialog shows multiple River Station IDs (e.g., 16404, 15696.8) and variables 'Flow' and 'WSE' selected."
+        },
+        {
+            "id": "export_flow_csv",
+            "description": "Export the flow time series data to the specific CSV file path.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' or 'Export' dialog showing the file path '/home/ga/Documents/hec_ras_results/flow_timeseries.csv' being entered or saved."
+        },
+        {
+            "id": "export_wse_csv",
+            "description": "Export the water surface elevation (WSE) time series data to the specific CSV file path.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' or 'Export' dialog showing the file path '/home/ga/Documents/hec_ras_results/wse_timeseries.csv' being entered or saved."
+        },
+        {
+            "id": "verify_csv_format",
+            "description": "Verify the CSV files contain the 'Time' header and River Station ID columns.",
+            "points": 5,
+            "visual_evidence": "A text editor or spreadsheet view showing the CSV content with 'Time' in the first column and numeric IDs in subsequent columns."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the HEC-RAS GUI to extract data rather than just writing a script or using terminal commands to create the files.",
+            "visual_evidence": "Screenshots show active interaction with HEC-RAS menus, tables, or export dialogs."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The data is sourced from the actual Muncie.p04.hdf file within the HEC-RAS environment.",
+            "visual_evidence": "The HEC-RAS interface shows the active plan as 'Plan 04' or the file 'Muncie.p04.hdf' during the extraction process."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create empty files or mock data using a text editor.",
+            "visual_evidence": "The flow of screenshots shows data being selected in HEC-RAS followed by an export action, not just a terminal 'touch' command or manual typing of values."
+        }
+    ],
+    "privileged_info_for_vlm": "The HEC-RAS project is located at /home/ga/Documents/hec_ras_projects/Muncie and the specific simulation file is Muncie.p04.hdf. The agent must save the outputs to /home/ga/Documents/hec_ras_results/flow_timeseries.csv and /home/ga/Documents/hec_ras_results/wse_timeseries.csv. The CSVs must have a 'Time' column followed by River Station IDs like '16404' and '15696.8'."
+}

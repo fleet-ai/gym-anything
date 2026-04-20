@@ -1,0 +1,59 @@
+{
+    "task_id": "add_band_power_widget@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_running",
+            "description": "The OpenBCI GUI application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "A window titled 'OpenBCI GUI' or showing the OpenBCI interface is present."
+        },
+        {
+            "id": "synthetic_session_active",
+            "description": "The GUI is running an active Synthetic EEG session.",
+            "points": 15,
+            "visual_evidence": "The 'Start System' or 'Stop System' button state indicates data is flowing, and the source is set to 'SYNTHETIC (BOARD)'."
+        },
+        {
+            "id": "widget_dropdown_accessed",
+            "description": "The agent interacts with a widget selection dropdown menu in one of the panels.",
+            "points": 15,
+            "visual_evidence": "A dropdown menu is visible over one of the existing panels, showing a list of available widgets."
+        },
+        {
+            "id": "band_power_selected",
+            "description": "The 'Band Power' option is selected from the widget list.",
+            "points": 20,
+            "visual_evidence": "The cursor is over 'Band Power' in the menu, or the menu highlights 'Band Power' before closing."
+        },
+        {
+            "id": "band_power_widget_displayed",
+            "description": "The Band Power widget is successfully loaded into one of the GUI panels.",
+            "points": 25,
+            "visual_evidence": "A panel now displays the title 'Band Power' and contains a bar graph or visualization of frequency bands."
+        },
+        {
+            "id": "frequency_bands_visible",
+            "description": "The widget displays the five classic EEG frequency bands (Delta, Theta, Alpha, Beta, Gamma).",
+            "points": 15,
+            "visual_evidence": "Labels for Delta, Theta, Alpha, Beta, and Gamma are visible within the Band Power widget panel."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface to change the widget rather than command-line scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to and clicking the widget selection menus within the OpenBCI GUI."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use a terminal to force-load a configuration file to bypass the UI steps.",
+            "visual_evidence": "The terminal is not the primary window used for the configuration; the GUI remains in the foreground during the setup."
+        },
+        {
+            "id": "genuine_session",
+            "description": "The widget is displaying live synthetic data, not a static image or mockup.",
+            "visual_evidence": "The bars in the Band Power widget show fluctuations or movement across consecutive screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenBCI GUI version is v5.2.2. The 'Band Power' widget is a standard feature. Note that while the task description uses standard ranges (e.g., Alpha 8-12Hz), the GUI labels in this version specifically show: Delta (0.5-4Hz), Theta (4-8Hz), Alpha (8-13Hz), Beta (13-32Hz), and Gamma (32-100Hz). The VLM should accept these GUI-specific labels as correct."
+}

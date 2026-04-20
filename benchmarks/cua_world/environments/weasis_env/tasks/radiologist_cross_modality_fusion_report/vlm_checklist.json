@@ -1,0 +1,59 @@
+{
+    "task_id": "radiologist_cross_modality_fusion_report@1",
+    "task_completion": [
+        {
+            "id": "load_both_modalities",
+            "description": "Load both the CT and MRI datasets into the Weasis viewer simultaneously.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the Weasis interface with both CT and MRI series listed in the thumbnails panel or displayed in the workspace."
+        },
+        {
+            "id": "simultaneous_comparison_layout",
+            "description": "Configure the viewer layout to show CT and MRI images side-by-side for comparison.",
+            "points": 15,
+            "visual_evidence": "A split-screen or multi-view layout in Weasis showing a CT slice and an MRI slice at the same time."
+        },
+        {
+            "id": "ct_bone_window",
+            "description": "Apply a bone window setting to the CT image for assessment.",
+            "points": 15,
+            "visual_evidence": "The CT image appears with high contrast/brightness settings typical of bone windows (e.g., WL: 300-500, WW: 1500-2000), making cortical bone clearly visible."
+        },
+        {
+            "id": "anatomical_measurements",
+            "description": "Perform a measurement of the same anatomical structure on both the CT and MRI images.",
+            "points": 25,
+            "visual_evidence": "Measurement lines (calipers) with numerical values (e.g., in mm) visible on both the CT and MRI views in the Weasis workspace."
+        },
+        {
+            "id": "export_annotated_views",
+            "description": "Export the annotated views as PNG files to the specified export directory.",
+            "points": 15,
+            "visual_evidence": "The agent navigating the 'Export' or 'Save As' dialog in Weasis, targeting /home/ga/DICOM/exports/ct_crossmod.png and mr_crossmod.png."
+        },
+        {
+            "id": "comparative_report_generation",
+            "description": "Create a text report containing measurements, percentage difference, and diagnostic commentary.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal view showing the content of /home/ga/DICOM/exports/crossmodality_report.txt with the required numerical data and comparative text."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "Verify the agent used the Weasis GUI for measurements rather than just generating a text file via terminal.",
+            "visual_evidence": "Screenshots must show the mouse cursor interacting with Weasis measurement tools and the viewer interface."
+        },
+        {
+            "id": "genuine_measurement_values",
+            "description": "Ensure the measurements in the report match the values visible on the Weasis screen annotations.",
+            "visual_evidence": "The numerical values in the final .txt report should correspond to the labels on the calipers in the exported .png images."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "Check that the commentary on diagnostic advantages is specific to the modalities and not generic filler text.",
+            "visual_evidence": "The report text should mention specific characteristics like CT's bone detail versus MRI's soft tissue contrast."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use Weasis to load CT data from /home/ga/DICOM/studies/crossmod_ct/ and MRI data from /home/ga/DICOM/studies/crossmod_mr/. It must use a bone window for CT. The final outputs must be two PNGs (ct_crossmod.png, mr_crossmod.png) and one text report (crossmodality_report.txt) in /home/ga/DICOM/exports/. The report must contain: 1) CT measurement, 2) MRI measurement, 3) Percentage difference, 4) Commentary on CT vs MRI advantages."
+}

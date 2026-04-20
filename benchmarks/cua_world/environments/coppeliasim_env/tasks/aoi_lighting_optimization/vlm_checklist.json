@@ -1,0 +1,59 @@
+{
+    "task_id": "aoi_lighting_optimization@1",
+    "task_completion": [
+        {
+            "id": "scene_construction",
+            "description": "Construct the AOI scene in CoppeliaSim with a test target (cuboid and cylinder), a Vision Sensor at (0,0,0.5), and a Spotlight.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the CoppeliaSim 3D hierarchy or scene view showing the cuboid, cylinder, vision sensor, and spotlight objects."
+        },
+        {
+            "id": "lighting_sweep_execution",
+            "description": "Execute a script that iterates through at least 24 different spotlight positions on a hemisphere.",
+            "points": 25,
+            "visual_evidence": "Terminal output or code execution showing a loop running for at least 24 iterations, or the CoppeliaSim GUI showing the light moving to different positions."
+        },
+        {
+            "id": "contrast_calculation",
+            "description": "Calculate the image contrast metric (standard deviation) for the captured images.",
+            "points": 15,
+            "visual_evidence": "Code snippets or terminal logs showing the calculation of standard deviation of pixel intensities for the vision sensor data."
+        },
+        {
+            "id": "export_csv_data",
+            "description": "Export the sweep results to lighting_sweep.csv with the required columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/lighting_sweep.csv with columns: pose_id, light_x, light_y, light_z, contrast_metric."
+        },
+        {
+            "id": "export_json_report",
+            "description": "Export the summary report to lighting_report.json with the required fields.",
+            "points": 15,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/lighting_report.json containing total_positions_tested (>=24), best_pose_id, and contrast metrics."
+        },
+        {
+            "id": "export_optimal_image",
+            "description": "Export the optimal_inspection.png image corresponding to the highest contrast position.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the image file /home/ga/Documents/CoppeliaSim/exports/optimal_inspection.png showing the test target from the vision sensor's perspective."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually interacted with the CoppeliaSim ZMQ API and didn't just create dummy files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim application window active and the simulation running (play button pressed or time elapsed) during the sweep."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the contrast metrics and best pose are derived from simulation, not hardcoded in the script.",
+            "visual_evidence": "The script should contain calls to sim.getVisionSensorImg or similar ZMQ API functions and mathematical operations for standard deviation."
+        },
+        {
+            "id": "file_path_compliance",
+            "description": "Verify the files were saved in the specific directory requested, not the default working directory.",
+            "visual_evidence": "Terminal commands or file manager showing the full path /home/ga/Documents/CoppeliaSim/exports/ for the output files."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must test at least 24 positions. The output files must be located exactly at /home/ga/Documents/CoppeliaSim/exports/. The CSV must contain 5 specific columns (pose_id, light_x, light_y, light_z, contrast_metric) and the JSON must contain 7 specific fields (total_positions_tested, best_pose_id, best_x, best_y, best_z, max_contrast_metric, min_contrast_metric). The vision sensor must be at (0,0,0.5) facing down."
+}

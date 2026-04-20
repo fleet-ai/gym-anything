@@ -1,0 +1,59 @@
+{
+    "task_id": "school_renovation_calc_pippy@1",
+    "task_completion": [
+        {
+            "id": "open_csv_data",
+            "description": "Agent opens or reads the room_dimensions.csv file to access the dimensions.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output showing the contents of /home/ga/Documents/room_dimensions.csv."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Agent creates the renovation_calc.py script at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Pippy or Leafpad) showing code being written and saved to /home/ga/Documents/renovation_calc.py."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The Python script contains logic for calculating Floor Area, Wall Area, and Paint Buckets (Total Wall Area / 100 rounded up).",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing formulas like 'length * width', '2 * (l*h + w*h)', and 'math.ceil(total_wall / 100)'."
+        },
+        {
+            "id": "execute_script",
+            "description": "Agent executes the Python script to perform the calculations.",
+            "points": 15,
+            "visual_evidence": "A terminal window or IDE console showing the command 'python3 /home/ga/Documents/renovation_calc.py' being run."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "The script or agent generates the renovation_report.txt file.",
+            "points": 10,
+            "visual_evidence": "The file /home/ga/Documents/renovation_report.txt appearing in a file manager or being opened in an editor."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains the individual room areas and the correct final totals with exact labels.",
+            "points": 25,
+            "visual_evidence": "The content of renovation_report.txt showing 'Total Floor Area: 2939.5', 'Total Wall Area: 4266.2', and 'Paint Buckets Needed: 43'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the final answers into the text file without calculation logic.",
+            "visual_evidence": "The Python script should show loops or data processing logic rather than just print statements with the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the specified file paths rather than creating dummy files elsewhere.",
+            "visual_evidence": "File paths in the code and terminal match /home/ga/Documents/."
+        },
+        {
+            "id": "correct_rounding_method",
+            "description": "The agent used a rounding up method (ceil) for paint buckets as required.",
+            "visual_evidence": "The Python code uses math.ceil() or an equivalent integer math trick (e.g., // 100 + 1) to get 43 from 42.662."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is in /home/ga/Documents/room_dimensions.csv. The script must be at /home/ga/Documents/renovation_calc.py and the report at /home/ga/Documents/renovation_report.txt. Verified calculation results: Total Floor Area: 2939.5, Total Wall Area: 4266.2, Paint Buckets Needed: 43 (calculated as ceil(4266.2 / 100)). The 'Library Main' room specifically has a Floor Area of 180.0."
+}

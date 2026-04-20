@@ -1,0 +1,59 @@
+{
+    "task_id": "microscopy_timelapse_formatting@1",
+    "task_completion": [
+        {
+            "id": "load_mitosis_sample",
+            "description": "The agent successfully opens the 'Mitosis' sample dataset in ImageJ.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 'mitosis.tif' or 'mitosis (5D)' showing a 5D hyperstack (channels=2, slices=5, frames=51)."
+        },
+        {
+            "id": "z_projection_performed",
+            "description": "A Maximum Intensity Z-Projection is performed on the stack.",
+            "points": 15,
+            "visual_evidence": "A new image window appears with 'MAX_' prefix in the title, and the 'slices' dimension in the image info bar is reduced to 1 or removed."
+        },
+        {
+            "id": "channel_isolation",
+            "description": "The Red channel (Channel 1) is isolated and the Green channel is removed.",
+            "points": 15,
+            "visual_evidence": "The image window shows 'C=1/1' or the title indicates channel 1. The image should appear grayscale or red-tinted chromatin, not green spindles."
+        },
+        {
+            "id": "substack_creation",
+            "description": "A sub-stack containing only the first 20 timepoints is created.",
+            "points": 20,
+            "visual_evidence": "The image info bar at the top of the window shows '1/20' frames instead of the original 51."
+        },
+        {
+            "id": "timestamp_addition",
+            "description": "A timestamp is added to the top-left corner with the correct interval and font size.",
+            "points": 25,
+            "visual_evidence": "A 'Time Stamper' dialog box showing 'Interval: 15.00', 'Font size: 20-25', and 'Location: Top-Left'. The resulting image must show a '00:00' (or similar) text overlay in the top-left corner."
+        },
+        {
+            "id": "save_final_output",
+            "description": "The final processed TIFF stack is saved to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a file explorer view showing the file 'mitosis_movie_formatted.tif' being saved to '~/ImageJ_Data/processed/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI menus rather than just executing a background script or terminal command.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (Image > Stacks, Image > Hyperstacks, etc.) and dialog boxes."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the original file or move a pre-existing file.",
+            "visual_evidence": "Sequential screenshots show the intermediate windows (MAX_ projection, Substack, etc.) being generated in real-time."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent interacted with the software to determine parameters rather than typing them from memory without looking.",
+            "visual_evidence": "The agent opens the 'Properties' or 'Show Info' windows to verify stack dimensions before processing."
+        }
+    ],
+    "privileged_info_for_vlm": "The original Mitosis sample is 171x196 pixels, 2 channels, 5 Z-slices, and 51 frames. The final output must be 171x196 pixels, 1 channel (Red/C1), 1 Z-slice (Max Projection), and exactly 20 frames. The timestamp must start at 00:00 with 15.00s increments. The final file path is /home/ga/ImageJ_Data/processed/mitosis_movie_formatted.tif."
+}

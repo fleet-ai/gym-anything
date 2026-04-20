@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_attendance_codes@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the student information system using administrator credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'admin' username entered in the login field and the system dashboard or home screen appearing after login."
+        },
+        {
+            "id": "navigate_to_attendance_setup",
+            "description": "Navigate to the attendance codes configuration section.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the agent clicking on menu items related to 'Attendance' and 'Attendance Codes' or 'Setup'."
+        },
+        {
+            "id": "create_half_day_code",
+            "description": "Create the 'Half Day' attendance code with correct Title and Short Name.",
+            "points": 25,
+            "visual_evidence": "A screenshot showing a form or table row with Title: 'Half Day' and Short Name: 'HD'."
+        },
+        {
+            "id": "configure_half_day_details",
+            "description": "Configure Type, State Code, and Default status for 'Half Day'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see Type set to 'Official', State Code set to 'HD', and the 'Default' checkbox/toggle set to No/Unchecked for the 'Half Day' entry."
+        },
+        {
+            "id": "create_virtual_attendance_code",
+            "description": "Create the 'Virtual Attendance' attendance code with correct Title and Short Name.",
+            "points": 25,
+            "visual_evidence": "A screenshot showing a form or table row with Title: 'Virtual Attendance' and Short Name: 'VA'."
+        },
+        {
+            "id": "configure_virtual_attendance_details",
+            "description": "Configure Type, State Code, and Default status for 'Virtual Attendance'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see Type set to 'Official', State Code set to 'VA', and the 'Default' checkbox/toggle set to No/Unchecked for the 'Virtual Attendance' entry."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands via a terminal.",
+            "visual_evidence": "The trajectory should show mouse movements and clicks within the browser, not commands like 'psql' or 'mysql' in a terminal window."
+        },
+        {
+            "id": "manual_data_entry",
+            "description": "The agent manually entered the code details into the system forms.",
+            "visual_evidence": "The VLM should see the agent typing into the input fields or selecting from dropdowns in the browser."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the live OpenSIS application.",
+            "visual_evidence": "The screenshots should show the browser URL bar pointing to the local or provided application address and the UI responding to clicks."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create two specific attendance codes in OpenSIS. Code 1: Title='Half Day', Short Name='HD', Type='Official', State Code='HD', Default='No'. Code 2: Title='Virtual Attendance', Short Name='VA', Type='Official', State Code='VA', Default='No'. Credentials are admin/Admin@123. Ensure 'Default' is not checked for either code."
+}

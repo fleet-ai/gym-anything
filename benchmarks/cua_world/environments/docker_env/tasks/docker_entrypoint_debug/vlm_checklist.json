@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_entrypoint_debug@1",
+    "task_completion": [
+        {
+            "id": "diagnose_failures",
+            "description": "Agent investigates the container logs or entrypoint scripts to identify the causes of the crashes.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker logs' for the failing containers or 'cat' commands viewing the entrypoint scripts in ~/projects/acme-services/."
+        },
+        {
+            "id": "fix_entrypoint_scripts",
+            "description": "Agent modifies the entrypoint scripts or Dockerfiles to resolve the startup errors.",
+            "points": 25,
+            "visual_evidence": "Screenshots of a text editor (like VS Code, nano, or vim) showing edits to files within the subdirectories of ~/projects/acme-services/."
+        },
+        {
+            "id": "rebuild_images",
+            "description": "Agent rebuilds the Docker images using the same tags as specified in the task.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'docker build' commands being executed for acme-cache-warmer, acme-event-processor, acme-report-generator, and acme-static-server."
+        },
+        {
+            "id": "start_containers_successfully",
+            "description": "Agent starts all four containers and verifies they are running without crashing.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'docker ps' where all four containers (acme-cache-warmer, acme-event-processor, acme-report-generator, acme-static-server) have a status of 'Up' and have not exited."
+        },
+        {
+            "id": "create_debugging_report",
+            "description": "Agent writes a debugging report to the specified path describing the root cause and fix for each service.",
+            "points": 15,
+            "visual_evidence": "A file named 'debugging_report.txt' visible on the Desktop or terminal output showing 'cat ~/Desktop/debugging_report.txt' with content detailing the 4 services."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_troubleshooting",
+            "description": "Verify the agent actually inspected the logs or code rather than guessing the fixes.",
+            "visual_evidence": "Terminal history showing commands like 'docker logs' or 'ls -R' in the project directory before edits were made."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "Verify the debugging report was typed or generated during the session, not simply moved from a hidden location.",
+            "visual_evidence": "Screenshots showing the agent actively typing in the report file or using echo/cat to redirect text into ~/Desktop/debugging_report.txt."
+        },
+        {
+            "id": "actual_rebuild_execution",
+            "description": "Verify the agent actually ran the docker build commands rather than just renaming images.",
+            "visual_evidence": "Terminal output showing the step-by-step build process (layers being created) for the Docker images."
+        }
+    ],
+    "privileged_info_for_vlm": "The project files are located in /home/ga/projects/acme-services. The four specific service names are acme-cache-warmer, acme-event-processor, acme-report-generator, and acme-static-server. The final report must be located at /home/ga/Desktop/debugging_report.txt. Success is defined by all four containers showing an 'Up' status in 'docker ps' simultaneously after the fixes."
+}

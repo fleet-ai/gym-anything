@@ -1,0 +1,53 @@
+{
+    "task_id": "neurologist_mri_ventricle_morphometry@1",
+    "task_completion": [
+        {
+            "id": "load_dicom_weasis",
+            "description": "The agent successfully opens the Weasis medical viewer and loads the brain MRI study from the specified directory.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the Weasis application open with brain MRI slices visible in the viewport and the study path or patient ID matching the target directory."
+        },
+        {
+            "id": "evans_index_measurement",
+            "description": "The agent performs linear measurements for the Evans Index (maximum width of frontal horns and internal diameter of the skull).",
+            "points": 25,
+            "visual_evidence": "Visual measurement lines (calipers) on an axial slice of the brain showing the width of the frontal horns and the maximum inner skull diameter."
+        },
+        {
+            "id": "third_ventricle_temporal_horns",
+            "description": "The agent measures the width of the third ventricle and the temporal horns as required by the morphometric assessment.",
+            "points": 20,
+            "visual_evidence": "Measurement annotations/calipers specifically targeting the third ventricle (central) and the temporal horns (lateral/inferior) on appropriate MRI slices."
+        },
+        {
+            "id": "export_annotated_image",
+            "description": "The agent exports the annotated measurement image to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or a 'Save/Export' dialog showing the file being saved as 'evans_index_measurement.png' in /home/ga/DICOM/exports/."
+        },
+        {
+            "id": "generate_structured_report",
+            "description": "The agent creates a structured text report containing all measurements and a clinical determination regarding NPH.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal view showing the content of 'nph_assessment_report.txt' with numerical values for Evans index, third ventricle, and temporal horns, plus a conclusion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Weasis GUI to perform measurements rather than simulating results via terminal scripts.",
+            "visual_evidence": "Screenshots must show the mouse cursor interacting with Weasis measurement tools (ruler/caliper icons) and active drawing of lines on the MRI slices."
+        },
+        {
+            "id": "genuine_measurement_values",
+            "description": "The measurements in the report should correspond to the visual annotations made in the software.",
+            "visual_evidence": "The numerical values visible in the Weasis 'measurements' overlay/sidebar must match the values written in the final .txt report."
+        },
+        {
+            "id": "no_premade_report_copy",
+            "description": "The agent did not simply copy a pre-existing report from the source directory to the export directory.",
+            "visual_evidence": "The agent is seen manually typing the report or using a text editor to format the findings based on the observed measurements."
+        }
+    ],
+    "privileged_info_for_vlm": "The Evans Index is calculated as the ratio of the maximum width of the frontal horns to the maximum internal diameter of the skull; a value > 0.3 is the standard threshold for ventriculomegaly in NPH. The required measurements for a complete assessment are: frontal horn width, biparietal (inner skull) diameter, third ventricle width, and temporal horn width. The target files must be saved exactly to /home/ga/DICOM/exports/evans_index_measurement.png and /home/ga/DICOM/exports/nph_assessment_report.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "import_json_data_dashboard@1",
+    "task_completion": [
+        {
+            "id": "open_tiddlywiki",
+            "description": "The agent has accessed the TiddlyWiki interface in the browser.",
+            "points": 10,
+            "visual_evidence": "The TiddlyWiki sidebar and empty story river are visible in the browser window."
+        },
+        {
+            "id": "import_json_file",
+            "description": "The earthquake JSON data from the local path is imported into the wiki.",
+            "points": 20,
+            "visual_evidence": "An 'Import' tiddler or a list of pending tiddlers from 'usgs_historical_earthquakes.json' is visible, or multiple new tiddlers with earthquake names appear in the sidebar."
+        },
+        {
+            "id": "create_dashboard_tiddler",
+            "description": "A new tiddler is created with the specific title 'Top Earthquakes Dashboard'.",
+            "points": 15,
+            "visual_evidence": "A tiddler edit or view window is open showing the title 'Top Earthquakes Dashboard'."
+        },
+        {
+            "id": "assign_dashboard_tag",
+            "description": "The 'Top Earthquakes Dashboard' tiddler is assigned the tag 'Dashboard'.",
+            "points": 15,
+            "visual_evidence": "The tag 'Dashboard' is visible in the tags field of the 'Top Earthquakes Dashboard' tiddler."
+        },
+        {
+            "id": "implement_filter_logic",
+            "description": "The tiddler contains the filter logic for Earthquake tags, magnitude sorting, and a limit of 5.",
+            "points": 25,
+            "visual_evidence": "The tiddler body contains code similar to '[tag[Earthquake]!nsort[magnitude]limit[5]]'."
+        },
+        {
+            "id": "verify_dynamic_list",
+            "description": "The dashboard displays a list of exactly 5 earthquake records sorted by magnitude.",
+            "points": 15,
+            "visual_evidence": "The rendered view of the 'Top Earthquakes Dashboard' shows a list of 5 items (e.g., Valdivia, Alaska, Sumatra) in descending order of strength."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and tag tiddlers rather than just modifying the underlying file system via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the TiddlyWiki 'plus' button, tag input, and save buttons."
+        },
+        {
+            "id": "no_hardcoded_list",
+            "description": "The agent used a dynamic filter string rather than manually typing out the names of the top 5 earthquakes.",
+            "visual_evidence": "The edit mode of the dashboard tiddler shows TiddlyWiki filter syntax (square brackets) rather than a static bulleted list of names."
+        },
+        {
+            "id": "genuine_import",
+            "description": "The agent actually imported the file rather than manually creating 10 earthquake tiddlers.",
+            "visual_evidence": "The 'Import' mechanism or the 'Import' button in the TiddlyWiki interface is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The dashboard must be titled 'Top Earthquakes Dashboard' and have the tag 'Dashboard'. The required filter string must include 'tag[Earthquake]', '!nsort[magnitude]', and 'limit[5]'. The source data is located at /home/ga/usgs_historical_earthquakes.json."
+}

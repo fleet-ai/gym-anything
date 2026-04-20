@@ -1,0 +1,59 @@
+{
+    "task_id": "exit_and_remove_stock@1",
+    "task_completion": [
+        {
+            "id": "open_jstock",
+            "description": "The agent has the JStock application open and visible.",
+            "points": 10,
+            "visual_evidence": "The JStock window is visible on the desktop, showing the main interface with stock lists or portfolio tabs."
+        },
+        {
+            "id": "navigate_to_sell_dialog",
+            "description": "The agent initiates a sell transaction for NVDA.",
+            "points": 15,
+            "visual_evidence": "A 'Sell' or 'Transaction' dialog box is open, specifically referencing NVDA."
+        },
+        {
+            "id": "enter_sell_details",
+            "description": "The agent enters the correct quantity, price, and fee for the NVDA sale.",
+            "points": 25,
+            "visual_evidence": "The transaction dialog shows '25' in the quantity field, '850.00' in the price field, and '0' in the broker fee field."
+        },
+        {
+            "id": "confirm_sell_transaction",
+            "description": "The agent completes the sale, and it appears in the portfolio history.",
+            "points": 20,
+            "visual_evidence": "The 'Sell Portfolio' tab or a transaction history list shows a record for NVDA with 25 shares at $850.00."
+        },
+        {
+            "id": "locate_watchlist_nvda",
+            "description": "The agent locates NVDA in the watchlist for removal.",
+            "points": 10,
+            "visual_evidence": "The 'Watchlist' tab is active, and NVDA is highlighted or right-clicked."
+        },
+        {
+            "id": "remove_from_watchlist",
+            "description": "The agent removes NVDA from the watchlist.",
+            "points": 20,
+            "visual_evidence": "The 'Watchlist' tab no longer contains the NVDA symbol after the removal action is performed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the JStock GUI to perform actions rather than terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the JStock interface; no terminal window is used to modify .csv files directly."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not open the underlying CSV database files in a text editor to fake the result.",
+            "visual_evidence": "No text editors (like gedit or vim) are seen displaying the contents of 'realtimestock.csv' or 'sellportfolio.csv'."
+        },
+        {
+            "id": "genuine_app_state",
+            "description": "The final state shows the JStock application reflecting the changes.",
+            "visual_evidence": "The JStock UI itself shows an empty watchlist (or one without NVDA) and a populated sell portfolio, rather than just a confirmation message."
+        }
+    ],
+    "privileged_info_for_vlm": "The target stock is NVDA. The agent must sell exactly 25 shares at a price of 850.00 with a 0 fee. The sale must be recorded in the 'Sell Portfolio' section of JStock. NVDA must be completely removed from the 'Watchlist' tab. The relevant file paths for verification (though GUI is preferred) are /home/ga/.jstock/1.0.7/UnitedState/watchlist/My Watchlist/realtimestock.csv and /home/ga/.jstock/1.0.7/UnitedState/portfolios/My Portfolio/sellportfolio.csv."
+}

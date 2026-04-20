@@ -1,0 +1,53 @@
+{
+    "task_id": "security_headers_compliance_audit@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_target",
+            "description": "Agent navigates to https://crawler-test.com/ in a web browser.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'https://crawler-test.com/' and the page content is visible."
+        },
+        {
+            "id": "crawl_and_audit_headers",
+            "description": "Agent performs a crawl or inspects multiple URLs on the site to check for security headers.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent clicking through various links on the site or using a tool/script to fetch headers for multiple pages."
+        },
+        {
+            "id": "create_export_csv",
+            "description": "Agent creates the security audit CSV file at the specified path.",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal view shows 'security_audit.csv' exists in '/home/ga/Documents/SEO/exports/'."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent creates the summary text report at the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal view shows 'security_headers_summary.txt' exists in '/home/ga/Documents/SEO/reports/'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The summary report contains the total URL count, missing X-Frame-Options count, missing X-Content-Type-Options count, and HSTS status.",
+            "points": 30,
+            "visual_evidence": "A text editor or 'cat' command output shows the content of 'security_headers_summary.txt' with all four required metrics clearly listed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the website rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the browser active and loading different pages or the network tab being used to inspect headers."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The report contains specific numbers derived from the crawl, not generic placeholders like 'X' or 'N/A'.",
+            "visual_evidence": "The summary report shows actual integers for the counts of missing headers."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent used the exact file paths specified in the task rather than default directories.",
+            "visual_evidence": "The file paths in the terminal or file explorer match '/home/ga/Documents/SEO/exports/' and '/home/ga/Documents/SEO/reports/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://crawler-test.com/. The agent must audit 'X-Frame-Options' and 'X-Content-Type-Options' specifically. The export file must be named 'security_audit.csv' and the summary 'security_headers_summary.txt'. HSTS (Strict-Transport-Security) status must be explicitly stated as Yes or No based on the audit of the target domain."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_key_recovery@1",
+    "task_completion": [
+        {
+            "id": "docker_container_discovery",
+            "description": "Agent lists or identifies the five specific keyvault containers using Docker commands.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker ps -a' or 'docker container ls' with keyvault-cache, proxy, scheduler, storage, and worker listed."
+        },
+        {
+            "id": "fragment_extraction",
+            "description": "Agent executes commands to inspect containers (logs, inspect, exec, or cp) to find hex fragments.",
+            "points": 30,
+            "visual_evidence": "Terminal screenshots showing commands like 'docker inspect', 'docker logs', or 'docker exec' targeting the specific containers and revealing 8-character hex strings."
+        },
+        {
+            "id": "key_assembly_logic",
+            "description": "Agent correctly orders the fragments alphabetically by container name (cache, proxy, scheduler, storage, worker).",
+            "points": 20,
+            "visual_evidence": "Terminal output or text editor showing the fragments being organized in the specific order: cache-proxy-scheduler-storage-worker."
+        },
+        {
+            "id": "save_recovered_key",
+            "description": "Agent saves the assembled key to ~/Desktop/recovered_key.txt.",
+            "points": 20,
+            "visual_evidence": "A file named 'recovered_key.txt' visible on the Desktop or a 'cat' command showing the full key saved to that specific path."
+        },
+        {
+            "id": "create_methodology_report",
+            "description": "Agent writes a methodology report to ~/Desktop/recovery_report.txt explaining the discovery process.",
+            "points": 20,
+            "visual_evidence": "A file named 'recovery_report.txt' visible on the Desktop or terminal output showing the content of the report being written/saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_key",
+            "description": "Agent did not simply echo the final key without performing discovery commands.",
+            "visual_evidence": "The trajectory must show the agent actually running docker commands to find the fragments, not just writing the final key immediately."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the Docker CLI rather than just creating files manually.",
+            "visual_evidence": "Presence of docker-related commands in the terminal history/screenshots."
+        },
+        {
+            "id": "correct_fragment_source",
+            "description": "The methodology report matches the actual commands run during the session.",
+            "visual_evidence": "The text in recovery_report.txt should describe the same methods (e.g., 'docker logs') seen in the terminal screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct assembled key is 'c4d81f56-e9027a4d-a2f4d709-7f3a9b2e-5b6c8e31'. The fragments must be ordered by container name: keyvault-cache (c4d81f56), keyvault-proxy (e9027a4d), keyvault-scheduler (a2f4d709), keyvault-storage (7f3a9b2e), and keyvault-worker (5b6c8e31). The output files must be on the Desktop of the user 'ga'."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "schedule_hypertension_followup@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenEMR system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenEMR dashboard or main navigation menu is visible after the login screen."
+        },
+        {
+            "id": "patient_search",
+            "description": "Agent searches for and selects the correct patient, Jayson Fadel.",
+            "points": 15,
+            "visual_evidence": "The patient search results or the specific patient record for 'Jayson Fadel' (PID 3) is displayed on screen."
+        },
+        {
+            "id": "calendar_navigation",
+            "description": "Agent navigates to the calendar or scheduling interface to create a new appointment.",
+            "points": 10,
+            "visual_evidence": "The OpenEMR calendar view or the 'Add New Appointment' dialog box is visible."
+        },
+        {
+            "id": "appointment_timing",
+            "description": "The appointment is set within the next 14 days and between 9:00 AM and 12:00 PM.",
+            "points": 25,
+            "visual_evidence": "The appointment creation screen shows a date within 14 days of the current system date and a start time between 09:00 and 12:00."
+        },
+        {
+            "id": "appointment_duration",
+            "description": "The appointment duration is set to 30 minutes.",
+            "points": 15,
+            "visual_evidence": "The duration field shows '30 min' or the end time is exactly 30 minutes after the start time."
+        },
+        {
+            "id": "appointment_comment",
+            "description": "The comment 'hypertension follow-up' is entered into the appointment details.",
+            "points": 15,
+            "visual_evidence": "The text 'hypertension follow-up' is visible in the 'Comments' or 'Notes' field of the appointment dialog."
+        },
+        {
+            "id": "appointment_confirmation",
+            "description": "The appointment is saved and appears on the schedule.",
+            "points": 10,
+            "visual_evidence": "A confirmation message is shown, or the appointment block for Jayson Fadel is visible on the calendar grid."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to perform the task rather than executing database commands in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements, clicks on UI elements, and form filling in the browser, not SQL queries in a terminal."
+        },
+        {
+            "id": "genuine_patient_selection",
+            "description": "The agent interacted with the actual patient database search results.",
+            "visual_evidence": "The agent is seen typing 'Fadel' or 'Jayson' into the search bar and clicking the resulting record."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not bypass the scheduling flow by navigating directly to a success URL.",
+            "visual_evidence": "The trajectory shows the step-by-step progression through the appointment dialog boxes."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Jayson Fadel (PID 3). The appointment must be scheduled within 14 days of the current date shown in the system. The time must be between 09:00 and 12:00. The duration must be 30 minutes. The exact string 'hypertension follow-up' must be in the comments field."
+}

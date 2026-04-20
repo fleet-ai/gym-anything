@@ -1,0 +1,65 @@
+{
+    "task_id": "brain_mri_key_images@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_viewer",
+            "description": "The agent opens a DICOM viewer application and loads the brain MRI study from the specified directory.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer (e.g., Horos, Weasis, or a similar medical imaging GUI) is visible on the screen with a brain MRI study loaded."
+        },
+        {
+            "id": "apply_window_settings",
+            "description": "The agent manually sets the Window Width (WW) to 80 and Window Level (WL) to 40.",
+            "points": 15,
+            "visual_evidence": "The GUI's windowing/leveling tool or status bar shows 'WW: 80' and 'WL: 40' (or 'W: 80, L: 40')."
+        },
+        {
+            "id": "locate_vertex_slice",
+            "description": "The agent navigates to the vertex / high convexity level for the first key image.",
+            "points": 15,
+            "visual_evidence": "The viewer displays the top-most slices of the brain where only the upper cortex/vertex is visible."
+        },
+        {
+            "id": "locate_basal_ganglia_slice",
+            "description": "The agent navigates to the basal ganglia / thalamus level for the second key image.",
+            "points": 15,
+            "visual_evidence": "The viewer displays a mid-brain axial slice showing structures like the thalamus, internal capsule, or basal ganglia."
+        },
+        {
+            "id": "locate_posterior_fossa_slice",
+            "description": "The agent navigates to the posterior fossa / cerebellum level for the third key image.",
+            "points": 15,
+            "visual_evidence": "The viewer displays a lower brain slice showing the cerebellum and brainstem."
+        },
+        {
+            "id": "export_png_images",
+            "description": "The agent uses the GUI export/save function to save the three slices as PNG files with the correct filenames.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer shows 'key_image_01.png', 'key_image_02.png', and 'key_image_03.png' being saved to /home/ga/DICOM/exports/key_images/."
+        },
+        {
+            "id": "create_summary_file",
+            "description": "The agent creates a summary text file documenting the anatomical levels, slice info, and window settings.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command shows the creation of 'key_image_summary.txt' containing the required anatomical and windowing details."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_imaging",
+            "description": "The agent used a medical imaging GUI to identify slices and apply windowing rather than just using command-line image conversion tools.",
+            "visual_evidence": "Screenshots show the agent interacting with a DICOM viewer's sliders, windowing presets, or export menus."
+        },
+        {
+            "id": "no_placeholder_files",
+            "description": "The exported images are actual MRI slices, not blank or placeholder images.",
+            "visual_evidence": "File previews or the viewer display show actual medical imaging content for each of the three exported PNGs."
+        },
+        {
+            "id": "manual_window_entry",
+            "description": "The agent specifically applied the requested (though clinically unusual) WW 80 and WL 40.",
+            "visual_evidence": "The agent is seen typing '80' and '40' into the viewer's windowing fields or selecting a custom preset."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is 'Patient ID 322-292-73-6 (Rubo DEMO)'. The agent must use Window Width 80 and Window Level 40, even though these are typically CT settings. Three PNG images must be exported to /home/ga/DICOM/exports/key_images/ and each must be at least 20KB. The summary file must be at /home/ga/DICOM/exports/key_image_summary.txt."
+}

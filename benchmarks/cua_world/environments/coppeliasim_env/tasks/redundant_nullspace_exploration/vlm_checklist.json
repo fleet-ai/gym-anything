@@ -1,0 +1,53 @@
+{
+    "task_id": "redundant_nullspace_exploration@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "The agent successfully launches CoppeliaSim and loads a 7-DOF robot model (Panda or KUKA).",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim GUI is visible with a 7-DOF robot arm (e.g., Franka Emika Panda) in the scene."
+        },
+        {
+            "id": "nullspace_script_execution",
+            "description": "The agent writes or executes a script/command to perform null-space exploration (moving the elbow while keeping the TCP fixed).",
+            "points": 20,
+            "visual_evidence": "Code editor (e.g., VS Code or internal script editor) showing logic for null-space movement or terminal output showing script execution."
+        },
+        {
+            "id": "visual_elbow_movement",
+            "description": "The robot's elbow is seen moving through different configurations while the end-effector remains at the same spatial coordinate.",
+            "points": 20,
+            "visual_evidence": "Sequential screenshots or a clear change in the robot's joint configuration (elbow position) while the tool tip stays in the same spot relative to the grid/objects."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "The agent exports at least 30 configurations to the specified CSV file path with correct columns.",
+            "points": 25,
+            "visual_evidence": "A terminal 'cat' command or file explorer showing /home/ga/Documents/CoppeliaSim/exports/nullspace_configs.csv with at least 30 rows and columns: config_id, j1-j7, tcp_x-z, elbow_x-z."
+        },
+        {
+            "id": "json_report_verification",
+            "description": "The agent exports the summary report to the specified JSON file path with required fields.",
+            "points": 25,
+            "visual_evidence": "A terminal 'cat' command or file explorer showing /home/ga/Documents/CoppeliaSim/exports/nullspace_report.json containing robot_model, total_distinct_configs, tcp_variance_m, and max_elbow_displacement_m."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim environment rather than just creating dummy files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim application active and the robot model in various poses; files should not appear instantaneously without simulation activity."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the required values into files without running logic.",
+            "visual_evidence": "The script or terminal history should show calculations or API calls (e.g., sim.setJointPosition) rather than just 'echo' commands for the entire file content."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent used the correct user profile and directory structure specified in the task.",
+            "visual_evidence": "File paths in the terminal or file manager match /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires at least 30 distinct configurations. The CSV must be located at /home/ga/Documents/CoppeliaSim/exports/nullspace_configs.csv and the JSON at /home/ga/Documents/CoppeliaSim/exports/nullspace_report.json. The TCP variance (tcp_variance_m) in the report should ideally be very low (near 0.005m or less) to prove the tool did not move, while the elbow displacement should be significant (e.g., >0.05m)."
+}

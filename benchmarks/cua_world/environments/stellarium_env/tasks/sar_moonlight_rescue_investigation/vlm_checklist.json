@@ -1,0 +1,53 @@
+{
+    "task_id": "sar_moonlight_rescue_investigation@1",
+    "task_completion": [
+        {
+            "id": "location_config",
+            "description": "Set location to Mt. Hood (45.3736° N, 121.6959° W) at 3429m altitude.",
+            "points": 10,
+            "visual_evidence": "Location window or status bar showing coordinates near 45.37°N, 121.69°W and altitude ~3429m."
+        },
+        {
+            "id": "environment_config",
+            "description": "Disable atmosphere and landscape to show the mathematical geometric horizon.",
+            "points": 15,
+            "visual_evidence": "Sky appears black (no atmosphere) and the ground is replaced by a simple line or grid (no landscape features)."
+        },
+        {
+            "id": "moon_below_horizon_screenshot",
+            "description": "Capture a screenshot centered on the Moon while it is below the horizon.",
+            "points": 15,
+            "visual_evidence": "A screenshot in ~/Pictures/stellarium/ showing the Moon selected and centered, with its altitude value being negative."
+        },
+        {
+            "id": "exact_moonrise_screenshot",
+            "description": "Capture a screenshot at the exact moment the Moon's geometric center crosses 0° altitude.",
+            "points": 30,
+            "visual_evidence": "A screenshot in ~/Pictures/stellarium/ showing the Moon's center exactly on the horizon line; the info text should show Altitude: +0°00'00\" (or very close)."
+        },
+        {
+            "id": "report_creation",
+            "description": "Record the moonrise time in HH:MM format to ~/Desktop/sar_illumination_report.txt.",
+            "points": 30,
+            "visual_evidence": "A text file on the desktop containing a time (expected 11:03 or 11:04) that matches the time shown in the moonrise screenshot."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the Stellarium GUI to find the moon and adjust settings.",
+            "visual_evidence": "Screenshots show the Stellarium interface, search dialogs, or location windows being actively used."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report time matches the simulation state shown in screenshots.",
+            "visual_evidence": "The HH:MM in the text file matches the UTC time displayed in the Stellarium clock at the moment of the 0° altitude screenshot."
+        },
+        {
+            "id": "authentic_simulation",
+            "description": "The agent did not use external websites to find the time and then just type it.",
+            "visual_evidence": "Sequential screenshots show the agent advancing time within Stellarium to find the specific crossing point."
+        }
+    ],
+    "privileged_info_for_vlm": "The exact geometric moonrise (0° altitude) for the specified coordinates and date (2024-02-04) occurs at approximately 11:03:40 UTC. The agent's report should state 11:03 or 11:04. The screenshots must show the atmosphere and landscape toggled OFF. The location must be verified as Mt. Hood (45.37N, 121.69W)."
+}

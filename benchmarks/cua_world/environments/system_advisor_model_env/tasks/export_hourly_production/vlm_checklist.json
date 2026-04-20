@@ -1,0 +1,59 @@
+{
+    "task_id": "export_hourly_production@1",
+    "task_completion": [
+        {
+            "id": "sam_app_opened",
+            "description": "The System Advisor Model (SAM) application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The SAM application window is open on the desktop."
+        },
+        {
+            "id": "location_set_tucson",
+            "description": "The location is set to Tucson, Arizona in the solar resource/location settings.",
+            "points": 15,
+            "visual_evidence": "The location selection screen or weather file selection shows 'Tucson' or a Tucson-based weather file selected."
+        },
+        {
+            "id": "system_capacity_configured",
+            "description": "The system nameplate capacity is set to approximately 7.5 kW with a south-facing orientation.",
+            "points": 15,
+            "visual_evidence": "The 'System Design' or 'PVWatts' input page shows a DC system size of 7.5 kW and an azimuth of 180 degrees (south)."
+        },
+        {
+            "id": "simulation_executed",
+            "description": "The simulation is run to generate hourly results.",
+            "points": 15,
+            "visual_evidence": "The 'Simulate' button is clicked and the 'Results' tab becomes active with data visualizations."
+        },
+        {
+            "id": "csv_export_created",
+            "description": "The hourly AC power output is exported to the specific CSV path.",
+            "points": 25,
+            "visual_evidence": "A file explorer window or terminal command shows 'Tucson_Hourly_Production.csv' exists in /home/ga/Documents/SAM_Projects/ and contains 8,761 lines (header + data)."
+        },
+        {
+            "id": "json_summary_created",
+            "description": "A summary JSON file is created with system configuration and annual totals.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or text editor shows 'Tucson_Hourly_Summary.json' in /home/ga/Documents/SAM_Projects/ containing keys for annual energy and peak output."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to configure and run the simulation rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with SAM's input fields and the 'Simulate' button."
+        },
+        {
+            "id": "genuine_data_generation",
+            "description": "The exported data reflects actual simulation results rather than hardcoded placeholder values.",
+            "visual_evidence": "The CSV file contains varying hourly power values consistent with a solar profile, and the JSON summary matches the simulation results shown in the GUI."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply use 'echo' or 'cat' to manually write the entire 8760-row CSV file.",
+            "visual_evidence": "The agent is seen using the SAM 'Export' or 'Data Tables' functionality to generate the output."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must be for Tucson, AZ with a 7.5 kW DC system size. The CSV file must be named 'Tucson_Hourly_Production.csv' and contain 8,760 data rows plus a header. The JSON file must be named 'Tucson_Hourly_Summary.json'. Expected annual energy for this configuration in Tucson is typically above 12,000 kWh."
+}

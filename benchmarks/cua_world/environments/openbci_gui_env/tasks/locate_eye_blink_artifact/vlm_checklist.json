@@ -1,0 +1,53 @@
+{
+    "task_id": "locate_eye_blink_artifact@1",
+    "task_completion": [
+        {
+            "id": "open_recording_file",
+            "description": "The agent opens the specified EEG recording file in an analysis tool or viewer.",
+            "points": 10,
+            "visual_evidence": "A file explorer or application showing 'OpenBCI-EEG-S001-EyesOpen.txt' being selected or opened."
+        },
+        {
+            "id": "visualize_eeg_channels",
+            "description": "The agent displays the EEG waveforms, specifically focusing on Channels 1 and 2 (Fp1/Fp2).",
+            "points": 15,
+            "visual_evidence": "A GUI window showing multiple EEG traces, with labels like 'Fp1', 'Fp2', 'Channel 1', or 'EXG Channel 0' visible."
+        },
+        {
+            "id": "identify_blink_artifact",
+            "description": "The agent locates the first large, rounded deflection (eye blink) in the early part of the recording.",
+            "points": 25,
+            "visual_evidence": "The cursor or a zoom-in window positioned over a high-amplitude peak (approx. 80uV+) in the first few seconds of the Fp1/Fp2 traces."
+        },
+        {
+            "id": "determine_peak_timestamp",
+            "description": "The agent identifies the specific time (in seconds) corresponding to the peak of the first blink.",
+            "points": 30,
+            "visual_evidence": "The agent highlighting a specific point on the X-axis or a tooltip/status bar showing a time value in seconds near the first artifact."
+        },
+        {
+            "id": "save_timestamp_file",
+            "description": "The agent saves the numerical timestamp to the specified output file.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'echo ... > /home/ga/blink_timestamp.txt') or a text editor saving a single numerical value to that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_analysis",
+            "description": "The agent actually interacts with the EEG data rather than guessing or using hardcoded values from the prompt.",
+            "visual_evidence": "Screenshots showing the agent scrolling through or zooming into the EEG waveform before determining the timestamp."
+        },
+        {
+            "id": "no_precomputed_answer",
+            "description": "The agent does not simply cat/echo a value without first opening the data file.",
+            "visual_evidence": "The sequence of screenshots must show the EEG file being opened *before* the output file is created."
+        },
+        {
+            "id": "correct_channel_focus",
+            "description": "The agent specifically looks at the frontal channels (Fp1/Fp2) as instructed.",
+            "visual_evidence": "The UI focus or cursor placement is on the top two channels of the EEG display."
+        }
+    ],
+    "privileged_info_for_vlm": "The recording 'OpenBCI-EEG-S001-EyesOpen.txt' has a sample rate of 250 Hz. The first eye blink artifact is a large deflection exceeding 80uV in Channel 1 (Fp1). The agent's identified timestamp should be within 1.5 seconds of the actual peak. The final answer must be a numerical value saved in /home/ga/blink_timestamp.txt."
+}

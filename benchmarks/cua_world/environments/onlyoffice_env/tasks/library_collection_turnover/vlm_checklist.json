@@ -1,0 +1,65 @@
+{
+    "task_id": "library_collection_turnover@1",
+    "task_completion": [
+        {
+            "id": "open_source_csv",
+            "description": "Agent opens the source CSV file 'spl_catalog_sample.csv' in a spreadsheet application or text editor.",
+            "points": 10,
+            "visual_evidence": "A window showing the contents of 'spl_catalog_sample.csv' with columns like CheckoutCount_YTD, DaysInCatalog, and ItemType."
+        },
+        {
+            "id": "create_catalog_data_sheet",
+            "description": "Agent creates a new workbook with a sheet named 'Catalog_Data' containing the original data.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet application showing a tab labeled 'Catalog_Data' with the catalog records populated."
+        },
+        {
+            "id": "calculate_circulation_rate",
+            "description": "Agent adds a 'Circulation_Rate' column with the correct formula calculation.",
+            "points": 20,
+            "visual_evidence": "A column titled 'Circulation_Rate' in the 'Catalog_Data' sheet; the formula bar should show a calculation involving CheckoutCount_YTD and DaysInCatalog (e.g., =B2/(C2/365))."
+        },
+        {
+            "id": "flag_weed_candidates",
+            "description": "Agent adds a 'Weed_Candidate' column flagging items based on the specific criteria (Book, <2014, <2 checkouts).",
+            "points": 20,
+            "visual_evidence": "A column titled 'Weed_Candidate' with 'Yes' or 'No' values. VLM should see 'Yes' only for rows where ItemType is Book and PublicationYear is before 2014."
+        },
+        {
+            "id": "create_collection_summary_sheet",
+            "description": "Agent creates a second sheet named 'Collection_Summary' with global statistics.",
+            "points": 15,
+            "visual_evidence": "A second tab labeled 'Collection_Summary' containing labels for Total Items, Total YTD Checkouts, Average Circulation Rate, and Items to Weed."
+        },
+        {
+            "id": "item_type_breakdown",
+            "description": "Agent includes a breakdown of counts for Books, DVDs, Audiobooks, and Graphic Novels in the summary.",
+            "points": 10,
+            "visual_evidence": "A table or list in the 'Collection_Summary' sheet showing specific counts for the four required categories: Books, DVDs, Audiobooks, and Graphic Novels."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the final workbook to the specified path.",
+            "points": 10,
+            "visual_evidence": "The file manager or spreadsheet title bar showing the file saved as 'library_collection_analysis.xlsx' in the '~/Documents/Spreadsheets/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used a spreadsheet GUI (like LibreOffice Calc or Excel) rather than just terminal scripts to generate the file.",
+            "visual_evidence": "Screenshots show the agent clicking cells, typing formulas in the formula bar, or using spreadsheet menu options."
+        },
+        {
+            "id": "no_hardcoded_summary",
+            "description": "Summary statistics are derived from the data, not just typed in as static numbers.",
+            "visual_evidence": "When the agent clicks on a summary cell (e.g., Total Items), the formula bar shows a function like =COUNT() or =SUM() rather than a raw integer."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent did not simply rename the source file or move a pre-existing file.",
+            "visual_evidence": "The trajectory shows the process of adding new columns and creating the second sheet manually or via spreadsheet tools."
+        }
+    ],
+    "privileged_info_for_vlm": "The final output must be an Excel workbook (.xlsx) located at /home/ga/Documents/Spreadsheets/library_collection_analysis.xlsx. It must contain exactly two sheets: 'Catalog_Data' and 'Collection_Summary'. The 'Weed_Candidate' logic is: ItemType == 'Book' AND PublicationYear < 2014 AND CheckoutCount_YTD < 2. The 'Circulation_Rate' formula is: CheckoutCount_YTD / (DaysInCatalog / 365)."
+}

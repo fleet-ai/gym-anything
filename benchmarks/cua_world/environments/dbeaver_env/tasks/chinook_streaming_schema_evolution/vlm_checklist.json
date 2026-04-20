@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_streaming_schema_evolution@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connection_created",
+            "description": "Create a DBeaver connection named 'ChinookStreaming' pointing to the specified database file.",
+            "points": 10,
+            "visual_evidence": "DBeaver Database Navigator showing a connection named 'ChinookStreaming' connected to /home/ga/Documents/databases/chinook_streaming.db."
+        },
+        {
+            "id": "subscription_plans_table_created",
+            "description": "Create the 'subscription_plans' table with the specified columns and three initial records (Free, Premium, Family).",
+            "points": 20,
+            "visual_evidence": "DBeaver table view or data grid showing 'subscription_plans' table with columns PlanId, PlanName, MonthlyPrice, MaxDevices, OfflineAccess and 3 rows of data."
+        },
+        {
+            "id": "customers_tracks_modified",
+            "description": "Modify 'customers' table to include 'SubscriptionPlanId' and 'tracks' table to include 'PlayCount'.",
+            "points": 20,
+            "visual_evidence": "DBeaver Properties/Columns tab for 'customers' showing 'SubscriptionPlanId' and for 'tracks' showing 'PlayCount'."
+        },
+        {
+            "id": "listening_history_table_and_indexes",
+            "description": "Create 'listening_history' table with specified columns and indexes 'idx_listening_customer' and 'idx_listening_track'.",
+            "points": 25,
+            "visual_evidence": "DBeaver showing 'listening_history' table structure and an 'Indexes' tab or SQL DDL showing the two named indexes."
+        },
+        {
+            "id": "migration_script_saved",
+            "description": "Save the SQL migration script to the specified file path.",
+            "points": 25,
+            "visual_evidence": "A text editor or DBeaver SQL editor showing the script content and the file path /home/ga/Documents/scripts/streaming_migration.sql in the window title or save dialog."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DBeaver GUI to perform database operations rather than just executing a shell script in the terminal.",
+            "visual_evidence": "Screenshots showing the DBeaver application window, connection wizard, table editors, or SQL editor active."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent actually connected to the SQLite file and didn't just mock the UI.",
+            "visual_evidence": "DBeaver showing the schema tree (Tables, Views, etc.) populated for the 'ChinookStreaming' connection."
+        },
+        {
+            "id": "no_premade_script_copy",
+            "description": "The agent drafted the SQL or used the GUI tools rather than opening a pre-existing migration script.",
+            "visual_evidence": "Screenshots showing the agent typing SQL commands or using the 'Create New Table' dialogs in DBeaver."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook_streaming.db. The DBeaver connection must be named 'ChinookStreaming'. The migration script must be saved to /home/ga/Documents/scripts/streaming_migration.sql. Required table 'subscription_plans' must have 3 rows: (1, 'Free', 0.00, 1, 0), (2, 'Premium', 9.99, 3, 1), and (3, 'Family', 14.99, 6, 1). The 'customers' table needs 'SubscriptionPlanId' (DEFAULT 1) and 'tracks' needs 'PlayCount' (DEFAULT 0)."
+}

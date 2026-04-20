@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_inventory_report@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the MariaDB container 'seb-server-mariadb' using the provided credentials.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a successful login to MariaDB or a command like 'docker exec -it seb-server-mariadb mysql' being executed."
+        },
+        {
+            "id": "query_execution",
+            "description": "Agent executes SQL queries against the 'institution', 'user', and 'configuration_node' tables in the 'SEBServer' database.",
+            "points": 20,
+            "visual_evidence": "Terminal screenshots showing SELECT statements targeting the specified tables and the resulting data output."
+        },
+        {
+            "id": "role_mapping_logic",
+            "description": "Agent correctly maps integer role values (0, 1, 2, 4) to their string names (e.g., SEB_SERVER_ADMIN) as per the instructions.",
+            "points": 20,
+            "visual_evidence": "Code snippets, scripts, or terminal processing showing the transformation of role integers to the required string labels."
+        },
+        {
+            "id": "json_structure_creation",
+            "description": "Agent assembles the queried data into the specified JSON structure including the 'summary' object with counts.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output displaying the formatted JSON content with the required keys: report_title, generated_by, institutions, user_accounts, exam_configurations, and summary."
+        },
+        {
+            "id": "file_saved",
+            "description": "The final report is saved to the specific path ~/Documents/seb_inventory_report.json.",
+            "points": 20,
+            "visual_evidence": "A command like 'cat', 'ls', or a file explorer view confirming the existence and content of the file at /home/ga/Documents/seb_inventory_report.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_data",
+            "description": "The agent did not hardcode the report data without querying the database.",
+            "visual_evidence": "The trajectory must show active interaction with the MariaDB database (SQL queries) rather than just writing a file with pre-existing knowledge."
+        },
+        {
+            "id": "correct_container_usage",
+            "description": "The agent interacted with the specific 'seb-server-mariadb' container.",
+            "visual_evidence": "Commands in the terminal should explicitly reference the container name or the specific database 'SEBServer'."
+        },
+        {
+            "id": "genuine_summary_calculation",
+            "description": "The summary counts match the number of records retrieved in the queries.",
+            "visual_evidence": "The 'total_users' and other counts in the final JSON should correspond to the number of rows visible in the database query outputs."
+        }
+    ],
+    "privileged_info_for_vlm": "The final report must be saved at /home/ga/Documents/seb_inventory_report.json. It must contain the top-level keys: 'report_title', 'generated_by', 'institutions', 'user_accounts', 'exam_configurations', and 'summary'. Role mapping is strict: 0=SEB_SERVER_ADMIN, 1=INSTITUTIONAL_ADMIN, 2=EXAM_ADMIN, 4=EXAM_SUPPORTER. The database is a synthetic MariaDB instance inside a Docker container named 'seb-server-mariadb'."
+}

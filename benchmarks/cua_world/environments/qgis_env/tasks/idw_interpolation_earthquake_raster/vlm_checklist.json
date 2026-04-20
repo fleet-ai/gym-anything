@@ -1,0 +1,59 @@
+{
+    "task_id": "idw_interpolation_earthquake_raster@1",
+    "task_completion": [
+        {
+            "id": "load_geojson_data",
+            "description": "Load the california_earthquakes.geojson file into QGIS.",
+            "points": 10,
+            "visual_evidence": "The 'california_earthquakes' layer is visible in the QGIS Layers panel and point features are displayed on the map canvas."
+        },
+        {
+            "id": "open_idw_tool",
+            "description": "Open the IDW Interpolation tool from the Processing Toolbox.",
+            "points": 10,
+            "visual_evidence": "The 'IDW Interpolation' dialog window is open on the screen."
+        },
+        {
+            "id": "configure_idw_parameters",
+            "description": "Configure the IDW tool using the 'mag' attribute and setting the pixel size/extent.",
+            "points": 25,
+            "visual_evidence": "In the IDW dialog, the Interpolation attribute is set to 'mag', and the Pixel Size (X and Y) is set to approximately 0.05 or the Rows/Columns are at least 100x100."
+        },
+        {
+            "id": "generate_raster_surface",
+            "description": "Run the interpolation to create a continuous raster surface.",
+            "points": 25,
+            "visual_evidence": "A new raster layer (often named 'Interpolated' or similar) appears in the Layers panel, showing a gradient surface rather than individual points."
+        },
+        {
+            "id": "export_geotiff",
+            "description": "Export the resulting raster to the specified GeoTIFF path.",
+            "points": 15,
+            "visual_evidence": "The 'Save Raster Layer as' dialog or a successful log message shows the output path /home/ga/GIS_Data/exports/earthquake_magnitude_surface.tif."
+        },
+        {
+            "id": "save_qgis_project",
+            "description": "Save the QGIS project to the specified location.",
+            "points": 15,
+            "visual_evidence": "The QGIS title bar shows 'earthquake_interpolation.qgz' or a 'Project Saved' message appears in the status bar with the path /home/ga/GIS_Data/projects/earthquake_interpolation.qgz."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QGIS graphical interface rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, toolboxes, and dialog windows."
+        },
+        {
+            "id": "genuine_interpolation_process",
+            "description": "The raster was generated through the tool, not by loading a pre-existing file.",
+            "visual_evidence": "The 'IDW Interpolation' progress bar or the 'Interpolated' layer appearing immediately after tool execution."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the specific geojson file provided in the task.",
+            "visual_evidence": "The layer properties or the 'Add Vector Layer' dialog shows the path /home/ga/GIS_Data/california_earthquakes.geojson."
+        }
+    ],
+    "privileged_info_for_vlm": "The input data contains earthquake magnitudes starting at 2.5. Therefore, the resulting IDW raster must have a minimum pixel value of 2.5 and a maximum value between 4.26 and 5.1. Any raster showing values outside the 2.5 to 5.1 range (e.g., 0 to 10) is likely incorrect or uses default placeholder scales. The output must be a GeoTIFF at /home/ga/GIS_Data/exports/earthquake_magnitude_surface.tif and the project at /home/ga/GIS_Data/projects/earthquake_interpolation.qgz."
+}

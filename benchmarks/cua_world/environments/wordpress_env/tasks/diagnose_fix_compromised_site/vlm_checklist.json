@@ -1,0 +1,59 @@
+{
+    "task_id": "diagnose_fix_compromised_site@1",
+    "task_completion": [
+        {
+            "id": "restore_site_identity",
+            "description": "Restore the site title and tagline to original values.",
+            "points": 10,
+            "visual_evidence": "In Settings > General, the Site Title is 'My WordPress Blog' and the Tagline is 'A WordPress blog for testing and demonstrations'."
+        },
+        {
+            "id": "restore_timezone",
+            "description": "Restore the site timezone to America/Los_Angeles.",
+            "points": 10,
+            "visual_evidence": "In Settings > General, the Timezone dropdown or setting shows 'America/Los_Angeles'."
+        },
+        {
+            "id": "disable_open_admin_registration",
+            "description": "Ensure public registration is disabled or the default role is not administrator.",
+            "points": 15,
+            "visual_evidence": "In Settings > General, 'Anyone can register' is unchecked, OR the 'New User Default Role' is set to something other than Administrator (e.g., Subscriber)."
+        },
+        {
+            "id": "enable_comment_moderation",
+            "description": "Configure comments to require manual moderation.",
+            "points": 15,
+            "visual_evidence": "In Settings > Discussion, the checkbox 'Comment must be manually approved' is checked."
+        },
+        {
+            "id": "set_seo_permalinks",
+            "description": "Change permalink structure from plain numeric IDs to SEO-friendly links.",
+            "points": 20,
+            "visual_evidence": "In Settings > Permalinks, a structure other than 'Plain' is selected (e.g., 'Post name')."
+        },
+        {
+            "id": "remove_rogue_admin",
+            "description": "Ensure 'admin' is the only administrator account by removing rogue accounts.",
+            "points": 30,
+            "visual_evidence": "In the Users > All Users screen, only the 'admin' user has the 'Administrator' role. The rogue user 'service_worker' should be deleted or downgraded."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress Admin dashboard (GUI) rather than just CLI commands.",
+            "visual_evidence": "Screenshots show the browser navigating through WordPress menu items like Settings and Users."
+        },
+        {
+            "id": "no_external_plugins",
+            "description": "The agent did not install external security plugins to solve the task.",
+            "visual_evidence": "The Plugins menu does not show new security plugins (like Wordfence or Sucuri) being activated or used."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent interacted with the actual site elements rather than just viewing the dashboard.",
+            "visual_evidence": "Cursor movements, highlighted fields, or 'Settings Saved' success notices are visible in the screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The original site title is 'My WordPress Blog'. The original tagline is 'A WordPress blog for testing and demonstrations'. The required timezone is 'America/Los_Angeles'. A rogue administrator account named 'service_worker' was injected and must be removed. The site was compromised with 'Plain' permalinks and disabled comment moderation, which must be reverted."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "photometric_pipeline_commissioning@1",
+    "task_completion": [
+        {
+            "id": "focus_optimization_execution",
+            "description": "Perform focus optimization by capturing frames at different focuser positions.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the CCD control interface capturing 10s exposures at various focuser positions (e.g., 25000, 28000, 31000, 34000, 37000) or a terminal showing FWHM analysis of these frames."
+        },
+        {
+            "id": "calibration_frame_acquisition",
+            "description": "Acquire necessary calibration frames (Darks/Flats).",
+            "points": 15,
+            "visual_evidence": "The CCD control GUI or file browser showing the acquisition or existence of 'Dark' or 'Flat' type FITS files."
+        },
+        {
+            "id": "standard_field_photometry",
+            "description": "Capture B and V band images of the standard field (SA 98).",
+            "points": 20,
+            "visual_evidence": "Telescope control software showing a slew to SA 98 and CCD software capturing frames with 'B' and 'V' filters selected."
+        },
+        {
+            "id": "science_target_photometry",
+            "description": "Capture B and V band images of the science target.",
+            "points": 20,
+            "visual_evidence": "CCD control interface showing image capture of a science target (distinct from the standard field) using B and V filters."
+        },
+        {
+            "id": "pipeline_execution",
+            "description": "Run the Python data-reduction pipeline to process FITS data.",
+            "points": 20,
+            "visual_evidence": "A terminal or IDE showing the execution of a Python script that processes the captured FITS files to derive CCD characteristics and magnitudes."
+        },
+        {
+            "id": "results_file_creation",
+            "description": "Save all quantitative results to ~/Documents/photometric_pipeline.json.",
+            "points": 10,
+            "visual_evidence": "A file explorer or text editor showing the content of '~/Documents/photometric_pipeline.json' containing calibrated magnitudes and CCD data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the INDI/KStars/CCD GUI rather than just scripting the final output.",
+            "visual_evidence": "Screenshots must show the mouse cursor or active window highlights on the telescope control and CCD capture software interfaces."
+        },
+        {
+            "id": "actual_data_processing",
+            "description": "The agent did not hardcode the results into the JSON file without running the pipeline.",
+            "visual_evidence": "The terminal should show logs of the Python script reading multiple FITS files and performing calculations, rather than just a 'cat' or 'echo' command to create the JSON."
+        },
+        {
+            "id": "dynamic_focus_selection",
+            "description": "The agent selected the focus position based on FWHM evidence.",
+            "visual_evidence": "The agent should be seen identifying 34000 as the optimal focus (lowest FWHM) before proceeding to science imaging."
+        }
+    ],
+    "privileged_info_for_vlm": "The focus target is Vega (RA 18.6156, Dec 38.7836). The optimal focus position is 34000 (FWHM ~3.50px). The standard field is SA 98. The agent must use 10s exposures for focus tests. The final output must be a JSON file in ~/Documents/photometric_pipeline.json containing CCD characteristics and B/V magnitudes derived from the pipeline."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_gate_control_trigger@1",
+    "task_completion": [
+        {
+            "id": "read_manual",
+            "description": "Agent opens and reads the gate controller manual to retrieve API details.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of '/home/ga/Documents/gate_controller_manual.txt' with the URL and credentials."
+        },
+        {
+            "id": "open_event_rules",
+            "description": "Agent navigates to the Event Rules engine in Nx Witness.",
+            "points": 10,
+            "visual_evidence": "The 'Event Rules' dialog or tab is visible within the Nx Witness client interface."
+        },
+        {
+            "id": "configure_soft_trigger",
+            "description": "Agent creates a new rule with 'Soft Trigger' as the event, named 'OPEN GATE' with the Door/Gate icon.",
+            "points": 20,
+            "visual_evidence": "Event Rule settings showing Event: 'Soft Trigger', Name: 'OPEN GATE', and the selected icon resembling a door or gate."
+        },
+        {
+            "id": "camera_selection",
+            "description": "Agent restricts the trigger to be available only on the 'Entrance Camera'.",
+            "points": 15,
+            "visual_evidence": "The 'At Device' or 'Source' field in the Event Rule settings lists 'Entrance Camera' as the only selected device."
+        },
+        {
+            "id": "action_http_request",
+            "description": "Agent sets the action to 'Do HTTP request' with the POST method and correct URL.",
+            "points": 25,
+            "visual_evidence": "Action section showing Action: 'Do HTTP request', HTTP Method: 'POST', and URL: 'http://192.168.1.200/api/v1/controls/relay1/activate'."
+        },
+        {
+            "id": "auth_configuration",
+            "description": "Agent configures Basic Authentication with the credentials from the manual.",
+            "points": 20,
+            "visual_evidence": "The HTTP Request settings showing 'Basic' authentication selected with username 'gate_admin' and a masked password field."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent configured the rule through the Nx Witness GUI rather than direct database or config file manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Nx Witness desktop client menus and dialog boxes."
+        },
+        {
+            "id": "manual_source_usage",
+            "description": "The agent actually opened the manual file rather than guessing the IP or credentials.",
+            "visual_evidence": "A screenshot exists showing the manual file content being displayed before the rule is finalized."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the live Nx Witness application, not a static image or mock-up.",
+            "visual_evidence": "UI elements like hover states, dropdown menus, or window dragging are visible across the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The manual at /home/ga/Documents/gate_controller_manual.txt contains: URL: http://192.168.1.200/api/v1/controls/relay1/activate, Method: POST, Username: gate_admin, Password: SecureGatePassword!. The rule must be named 'OPEN GATE' and assigned specifically to the 'Entrance Camera'."
+}

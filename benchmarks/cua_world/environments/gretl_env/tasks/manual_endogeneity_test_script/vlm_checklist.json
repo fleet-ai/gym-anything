@@ -1,0 +1,53 @@
+{
+    "task_id": "manual_endogeneity_test_script@1",
+    "task_completion": [
+        {
+            "id": "load_dataset_and_filter",
+            "description": "Load 'mroz.gdt' and restrict the sample to working women (lfp=1).",
+            "points": 10,
+            "visual_evidence": "The Gretl main window showing 'mroz.gdt' loaded and a message or status bar indicating the sample is restricted (e.g., 'n = 428')."
+        },
+        {
+            "id": "first_stage_regression",
+            "description": "Perform first-stage OLS regression of 'educ' on 'const', 'exper', 'expersq', and 'motheduc'.",
+            "points": 20,
+            "visual_evidence": "An OLS model output window where the dependent variable is 'educ' and independent variables include 'const', 'exper', 'expersq', and 'motheduc'."
+        },
+        {
+            "id": "save_residuals",
+            "description": "Save the residuals from the first-stage regression as 'v_hat'.",
+            "points": 15,
+            "visual_evidence": "A dialog box for saving residuals or the main Gretl variable list now including a new variable named 'v_hat'."
+        },
+        {
+            "id": "second_stage_regression",
+            "description": "Perform second-stage OLS regression of 'lwg' on 'const', 'educ', 'exper', 'expersq', and 'v_hat'.",
+            "points": 30,
+            "visual_evidence": "An OLS model output window where the dependent variable is 'lwg' and independent variables include 'const', 'educ', 'exper', 'expersq', and 'v_hat'."
+        },
+        {
+            "id": "save_output_to_file",
+            "description": "Save the complete output of the second-stage regression to the specified text file.",
+            "points": 25,
+            "visual_evidence": "A 'Save as' dialog or menu action directing the output to '/home/ga/Documents/gretl_output/endogeneity_test_results.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Gretl GUI rather than just executing a script in the terminal.",
+            "visual_evidence": "Screenshots show the Gretl application windows, menus, and dialog boxes being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not manually type the results into a text file without running the regression.",
+            "visual_evidence": "The regression output windows in Gretl show coefficients matching the expected values (v_hat coefficient approx 0.068)."
+        },
+        {
+            "id": "correct_sample_size",
+            "description": "The agent used the correct subset of data (lfp=1).",
+            "visual_evidence": "The regression output headers show 'Observations used' or 'n' as 428."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset is mroz.gdt. After restricting the sample to lfp=1, the sample size should be 428. In the second-stage regression (lwg on const, educ, exper, expersq, v_hat), the coefficient for 'v_hat' should be approximately 0.068381. The output must be saved to /home/ga/Documents/gretl_output/endogeneity_test_results.txt."
+}

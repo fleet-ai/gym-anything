@@ -1,0 +1,59 @@
+{
+    "task_id": "update_study_parameters@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenClinica system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenClinica dashboard or home screen is visible, showing the user 'root' is logged in."
+        },
+        {
+            "id": "select_correct_study",
+            "description": "Agent selects or navigates to the 'Phase II Diabetes Trial' (DM-TRIAL-2024).",
+            "points": 15,
+            "visual_evidence": "The study name 'Phase II Diabetes Trial' or identifier 'DM-TRIAL-2024' is visible in the header or study selection dropdown."
+        },
+        {
+            "id": "navigate_to_study_parameters",
+            "description": "Agent navigates to the 'Update Study' or 'Study Parameters' configuration page.",
+            "points": 15,
+            "visual_evidence": "A page titled 'Update Study Details' or 'Update Study Parameters' is displayed with various configuration options."
+        },
+        {
+            "id": "configure_dob_and_sex",
+            "description": "Agent sets 'Collect Subject Date of Birth' to 'Only Year of Birth' and 'Sex Required' to 'Not Used'.",
+            "points": 20,
+            "visual_evidence": "Dropdowns or radio buttons for 'Collect Subject Date of Birth' show 'Only Year of Birth' and 'Sex Required' show 'Not Used' (or 'No')."
+        },
+        {
+            "id": "configure_person_id_and_interviewer",
+            "description": "Agent sets 'Person ID Required' to 'Not Used', and both 'Interviewer Name Required' and 'Interview Date Required' to 'Yes'.",
+            "points": 20,
+            "visual_evidence": "Selection fields for 'Person ID Required' show 'Not Used', and 'Interviewer Name Required' and 'Interview Date Required' both show 'Yes' (or 'Required')."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Agent clicks the save or submit button to finalize the changes.",
+            "points": 20,
+            "visual_evidence": "A success message such as 'The study has been updated successfully' or the browser returning to the study overview page with updated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the web interface rather than using SQL or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling in the browser, not a terminal window executing 'psql' or 'curl' commands."
+        },
+        {
+            "id": "correct_study_context",
+            "description": "The agent interacted with the specific study 'DM-TRIAL-2024' and not a default or placeholder study.",
+            "visual_evidence": "The identifier 'DM-TRIAL-2024' is consistently visible in the breadcrumbs or header during the configuration process."
+        },
+        {
+            "id": "no_hardcoded_url_skip",
+            "description": "The agent navigated through the menu system rather than jumping directly to a final confirmation URL.",
+            "visual_evidence": "Sequential screenshots show the agent clicking through 'Tasks', 'Build Study', or 'Update Study' menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The target study is 'Phase II Diabetes Trial' (DM-TRIAL-2024). For the parameters: 'Collect Subject Date of Birth' must be set to 'Only Year of Birth' (internal value 2); 'Sex Required' and 'Person ID Required' must be 'Not Used' (internal value false/0); 'Interviewer Name Required' and 'Interview Date Required' must be 'Yes' (internal value true/1)."
+}

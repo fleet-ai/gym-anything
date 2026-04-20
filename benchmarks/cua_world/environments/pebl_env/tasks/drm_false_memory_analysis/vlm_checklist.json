@@ -1,0 +1,53 @@
+{
+    "task_id": "drm_false_memory_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "The agent accesses the raw dataset at ~/pebl/data/drm_recognition_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, ls) or a script opening the specific CSV file path."
+        },
+        {
+            "id": "participant_exclusion_logic",
+            "description": "The agent identifies and excludes participants with 100% 'Yes' responses and mean RT < 100ms.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the filtering logic or the identification of sub-99 as invalid."
+        },
+        {
+            "id": "metric_calculation",
+            "description": "The agent calculates True Recognition, Critical False Memory, and Baseline False Alarm rates.",
+            "points": 25,
+            "visual_evidence": "Code snippets or execution logs showing the calculation of means for 'studied', 'critical_lure', and 'unrelated' conditions."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent generates a JSON report containing individual metrics and group means.",
+            "points": 20,
+            "visual_evidence": "A command or script output showing the creation of a JSON structure with 'participants' and 'group_means' keys."
+        },
+        {
+            "id": "file_export",
+            "description": "The agent saves the final report to ~/pebl/analysis/drm_report.json.",
+            "points": 25,
+            "visual_evidence": "A terminal command (e.g., 'ls ~/pebl/analysis/') or file-save operation confirming the file exists at the exact path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not hardcode the results for sub-99 or group means without processing the file.",
+            "visual_evidence": "The agent should be seen reading the CSV file and performing calculations rather than just writing a pre-determined JSON string."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "The agent used data analysis tools (Python, Pandas, etc.) rather than just manual inspection.",
+            "visual_evidence": "Screenshots showing the use of an IDE, text editor, or terminal to run analysis scripts."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent used the specific paths provided in the task description.",
+            "visual_evidence": "The code or terminal commands explicitly reference ~/pebl/data/drm_recognition_data.csv and ~/pebl/analysis/drm_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a contaminated participant, 'sub-99', who has 100% 'yes' responses and reaction times between 20ms and 80ms; this participant must be excluded from group means. The final output must be a JSON file located at /home/ga/pebl/analysis/drm_report.json."
+}

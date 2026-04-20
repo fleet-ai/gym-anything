@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_battery_chemistries_npv@1",
+    "task_completion": [
+        {
+            "id": "sam_initialization",
+            "description": "Initialize a SAM project with PV and Battery storage for Phoenix, AZ.",
+            "points": 10,
+            "visual_evidence": "SAM interface showing a 'Detailed PV' and 'Battery Storage' configuration with Phoenix, AZ selected in the Location and Resource menu."
+        },
+        {
+            "id": "system_design_config",
+            "description": "Configure the PV system to 5.0 kW DC and the battery to 10.0 kWh / 5.0 kW.",
+            "points": 15,
+            "visual_evidence": "System Design page showing 'Nameplate capacity' as 5.0 kW and Battery Cell and System page showing 'Max bank capacity' as 10.0 kWh and 'Max discharge power' as 5.0 kW."
+        },
+        {
+            "id": "battery_chemistry_setup",
+            "description": "Configure Lead-Acid (AGM) and Lithium-Ion (LFP) chemistries in separate scenarios or runs.",
+            "points": 15,
+            "visual_evidence": "Battery Cell and System page showing the selection of 'Lead Acid' and 'Lithium Ion' (specifically LFP if available) in the battery type dropdown or properties."
+        },
+        {
+            "id": "replacement_logic_config",
+            "description": "Set battery replacement at 80% capacity with a cost of $300/kWh.",
+            "points": 20,
+            "visual_evidence": "Battery Replacement page showing 'Replace battery when capacity degrades to 80%' and Battery Cost page showing replacement cost input as $300/kWh."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Run simulations for both battery scenarios to generate financial metrics.",
+            "points": 15,
+            "visual_evidence": "The 'Simulate' button being clicked and the 'Results' tab populating with data for both scenarios."
+        },
+        {
+            "id": "data_extraction_and_save",
+            "description": "Extract NPV and Battery Replacement Cost and save to the specified JSON and SAM/Python files.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the creation of 'battery_chemistry_comparison.json' with the required JSON structure and the saving of 'battery_comparison.sam' or 'compare_batteries.py'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to configure parameters rather than just writing a script with hardcoded values.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with SAM input fields and dropdowns."
+        },
+        {
+            "id": "genuine_results",
+            "description": "The NPV values in the JSON match the values displayed in the SAM Results summary table.",
+            "visual_evidence": "Comparison between the 'NPV' field in the SAM Results tab and the values written in the final JSON file."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply echo the expected values from a hidden source without running the simulation.",
+            "visual_evidence": "The simulation progress bar appearing or the results dashboard updating after a 'Simulate' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The system size must be 5.0 kW DC. Battery capacity must be 10.0 kWh. The replacement threshold is 80% and cost is $300/kWh. The output must be saved to /home/ga/Documents/SAM_Projects/battery_chemistry_comparison.json. The SAM project file must be named battery_comparison.sam or the script compare_batteries.py. Expected NPV for LFP is typically higher than AGM due to longer cycle life and lower replacement frequency in hot climates like Phoenix."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "query_optimization@1",
+    "task_completion": [
+        {
+            "id": "initial_explain_plans",
+            "description": "Document EXPLAIN results for the three queries before optimization.",
+            "points": 15,
+            "visual_evidence": "Terminal or text editor showing 'EXPLAIN' output for the three queries (Hotels.City, Hotels.Country/Stars, Profiles.Nationality) indicating full scans or existing execution paths."
+        },
+        {
+            "id": "create_city_index",
+            "description": "Create a NOTUNIQUE index on Hotels.City.",
+            "points": 15,
+            "visual_evidence": "SQL command execution or GUI confirmation showing the creation of a NOTUNIQUE index on the 'City' property of the 'Hotels' class."
+        },
+        {
+            "id": "create_composite_index",
+            "description": "Create a NOTUNIQUE COMPOSITE index on Hotels(Country, Stars).",
+            "points": 25,
+            "visual_evidence": "SQL command execution or GUI confirmation showing a composite index created on 'Country' and 'Stars' (in that order) for the 'Hotels' class."
+        },
+        {
+            "id": "create_nationality_index",
+            "description": "Create a NOTUNIQUE index on Profiles.Nationality.",
+            "points": 15,
+            "visual_evidence": "SQL command execution or GUI confirmation showing the creation of a NOTUNIQUE index on the 'Nationality' property of the 'Profiles' class."
+        },
+        {
+            "id": "verify_index_usage",
+            "description": "Verify that the queries utilize the new indexes via EXPLAIN.",
+            "points": 20,
+            "visual_evidence": "EXPLAIN output for the three queries showing 'index' or 'idx' usage instead of 'scan' for the relevant fields."
+        },
+        {
+            "id": "final_report_creation",
+            "description": "Document all before/after EXPLAIN results in ~/query_optimization_report.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or 'cat' command showing the file /home/ga/query_optimization_report.txt containing the documented EXPLAIN results for all three queries."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacted with the actual database management system.",
+            "visual_evidence": "Screenshots show the database console, terminal connected to the DB, or a database GUI (like OrientDB Studio) rather than just a text editor."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report was generated from actual query results, not pre-written text.",
+            "visual_evidence": "The agent is seen running the EXPLAIN commands and copying/pasting or redirecting those specific outputs into the report file."
+        },
+        {
+            "id": "correct_index_order",
+            "description": "The composite index must follow the specific order requested.",
+            "visual_evidence": "The command or GUI configuration for the composite index explicitly lists 'Country' first and 'Stars' second."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb'. The three queries are: 1) SELECT FROM Hotels WHERE City = 'Rome', 2) SELECT FROM Hotels WHERE Country = 'Italy' AND Stars >= 4, 3) SELECT FROM Profiles WHERE Nationality = 'British'. Required indexes: NOTUNIQUE on Hotels(City), NOTUNIQUE on Hotels(Country, Stars), and NOTUNIQUE on Profiles(Nationality). The final report must be at /home/ga/query_optimization_report.txt and contain EXPLAIN results for all 3 queries both before and after the indexes were created."
+}

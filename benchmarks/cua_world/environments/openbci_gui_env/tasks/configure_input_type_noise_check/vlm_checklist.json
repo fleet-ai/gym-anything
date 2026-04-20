@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_input_type_noise_check@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_active",
+            "description": "The OpenBCI_GUI application is open and in a 'SYNTHETIC (CYTON)' session.",
+            "points": 10,
+            "visual_evidence": "The window title or header indicates 'Synthetic' and 'Cyton' mode is active."
+        },
+        {
+            "id": "hardware_settings_panel_open",
+            "description": "The Hardware Settings panel/tab is visible to allow channel configuration.",
+            "points": 15,
+            "visual_evidence": "A panel showing channel settings (Input Type, Gain, Bias, etc.) is visible on the screen."
+        },
+        {
+            "id": "channels_1_to_4_shorted",
+            "description": "Channels 1, 2, 3, and 4 are set to 'SHORTED' input type.",
+            "points": 35,
+            "visual_evidence": "In the hardware settings grid/list, the 'Input Type' dropdown or label for channels 1, 2, 3, and 4 explicitly shows 'SHORTED'."
+        },
+        {
+            "id": "channels_5_to_8_normal",
+            "description": "Channels 5, 6, 7, and 8 remain set to 'NORMAL' input type.",
+            "points": 20,
+            "visual_evidence": "In the hardware settings grid/list, the 'Input Type' for channels 5, 6, 7, and 8 explicitly shows 'NORMAL'."
+        },
+        {
+            "id": "screenshot_saved_correctly",
+            "description": "A screenshot of the configuration is saved to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or a terminal output confirms the creation of '/home/ga/Documents/OpenBCI_GUI/Screenshots/noise_floor_config.png', or the GUI's screenshot notification appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor over dropdowns or the 'Hardware Settings' button being clicked."
+        },
+        {
+            "id": "no_image_manipulation",
+            "description": "The screenshot is a genuine capture of the software, not a mock-up or edited image.",
+            "visual_evidence": "Consistency in UI fonts, colors, and the presence of the standard OpenBCI GUI layout."
+        },
+        {
+            "id": "correct_session_type",
+            "description": "The agent is specifically in a Synthetic Cyton session as requested, not a live board session.",
+            "visual_evidence": "The UI status bar or connection settings show 'Synthetic' mode."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenBCI_GUI uses an ADS1299 settings board where 'Input Type' is a configurable parameter. For a noise floor test, 'SHORTED' is the required state for target channels. Verified values: Channels 1-4 must be 'SHORTED'; Channels 5-8 must be 'NORMAL'. The final screenshot must be saved to /home/ga/Documents/OpenBCI_GUI/Screenshots/noise_floor_config.png."
+}

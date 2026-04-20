@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_stored_procedure_debugging@1",
+    "task_completion": [
+        {
+            "id": "fix_sales_by_category",
+            "description": "Resolve the ONLY_FULL_GROUP_BY error in 'sp_report_sales_by_category' and export results.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the modified procedure with non-aggregated columns added to the GROUP BY clause or use of ANY_VALUE(), and a file explorer or terminal showing 'sales_by_category.csv' in /home/ga/Documents/exports/."
+        },
+        {
+            "id": "add_credit_score_column",
+            "description": "Add the missing 'credit_score' INT column to the 'customer' table.",
+            "points": 15,
+            "visual_evidence": "An ALTER TABLE statement in the SQL editor or the 'customer' table schema view showing the 'credit_score' column with an INT data type."
+        },
+        {
+            "id": "fix_calculate_customer_credit",
+            "description": "Fix 'sp_calculate_customer_credit' logic and export the top 20 customers.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the procedure updating the new credit_score column, and a file explorer or terminal showing 'top_credit_customers.csv' in the exports folder."
+        },
+        {
+            "id": "fix_dead_inventory_logic",
+            "description": "Correct 'sp_identify_dead_inventory' to find items never rented (LEFT JOIN where rental_id IS NULL).",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the procedure logic changed to identify inventory IDs not present in the rental table, and 'dead_inventory.csv' appearing in the exports folder."
+        },
+        {
+            "id": "verify_all_exports",
+            "description": "Ensure all three required CSV files exist in the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file manager window or 'ls' command output showing sales_by_category.csv, dead_inventory.csv, and top_credit_customers.csv all present in /home/ga/Documents/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used MySQL Workbench or a similar GUI for database interaction rather than just command-line scripts.",
+            "visual_evidence": "Screenshots showing the MySQL Workbench application window, query tabs, and result grids."
+        },
+        {
+            "id": "genuine_debugging",
+            "description": "The agent actually opened and edited the stored procedures rather than just creating the CSVs manually.",
+            "visual_evidence": "Screenshots of the 'Stored Procedures' tree in the object browser being expanded and the 'ALTER PROCEDURE' code being visible."
+        },
+        {
+            "id": "no_hardcoded_csvs",
+            "description": "The CSV files were generated via SQL export tools or SELECT INTO OUTFILE, not by echo-ing text into a file.",
+            "visual_evidence": "The agent using the 'Export' button in the result grid or executing SQL commands that output to the specific file paths."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires fixing three specific procedures in the 'sakila' database: 1. 'sp_report_sales_by_category' (fix Error 1055 by adjusting GROUP BY). 2. 'sp_identify_dead_inventory' (fix logic to find inventory with 0 rentals). 3. 'sp_calculate_customer_credit' (requires adding an INT column 'credit_score' to the 'customer' table first). All exports must be saved to /home/ga/Documents/exports/."
+}

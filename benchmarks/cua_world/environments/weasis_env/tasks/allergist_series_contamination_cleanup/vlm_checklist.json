@@ -1,0 +1,53 @@
+{
+    "task_id": "allergist_series_contamination_cleanup@1",
+    "task_completion": [
+        {
+            "id": "identify_dicom_files",
+            "description": "Agent accesses the source directory /home/ga/DICOM/studies/airway_series/ and examines the DICOM files.",
+            "points": 10,
+            "visual_evidence": "A file manager window or DICOM viewer showing the contents of /home/ga/DICOM/studies/airway_series/."
+        },
+        {
+            "id": "distinguish_modalities",
+            "description": "Agent identifies the modality (CT vs MR) of the files in the source directory using a DICOM viewer or metadata tool.",
+            "points": 20,
+            "visual_evidence": "A DICOM viewer or metadata inspector showing 'Modality' tags (CT and MR) for the files in the source directory."
+        },
+        {
+            "id": "relocate_contaminants",
+            "description": "Agent moves the non-CT (MRI) files from the source directory to /home/ga/DICOM/quarantine/.",
+            "points": 25,
+            "visual_evidence": "Visual confirmation of files being moved or the /home/ga/DICOM/quarantine/ directory containing the MRI files (e.g., 0003.DCM)."
+        },
+        {
+            "id": "verify_remaining_ct",
+            "description": "Agent confirms that only CT files belonging to the same study remain in the source directory.",
+            "points": 15,
+            "visual_evidence": "The source directory /home/ga/DICOM/studies/airway_series/ shown containing only CT files."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent creates a report at /home/ga/DICOM/exports/contamination_report.txt documenting the findings.",
+            "points": 30,
+            "visual_evidence": "A text editor or file viewer showing the content of /home/ga/DICOM/exports/contamination_report.txt, including the count of contaminants (1), modality (MR), and patient info."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a DICOM viewer or GUI-based file manager rather than just executing silent terminal commands.",
+            "visual_evidence": "Screenshots showing a DICOM viewer (like Horos, Weasis, or a generic viewer) or a graphical file manager window."
+        },
+        {
+            "id": "genuine_metadata_check",
+            "description": "The agent actually opened the files to check metadata rather than guessing based on filenames.",
+            "visual_evidence": "Screenshots showing the agent inspecting DICOM headers or viewing the images to identify the brain MRI."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply write the report using the numbers from the prompt without inspecting the files first.",
+            "visual_evidence": "The sequence of screenshots shows inspection of files occurring before the report is written."
+        }
+    ],
+    "privileged_info_for_vlm": "The source directory is /home/ga/DICOM/studies/airway_series/. There is exactly 1 contaminating MRI file (0003.DCM) which must be moved to /home/ga/DICOM/quarantine/. The remaining files in the source should be CT scans. The final report must be at /home/ga/DICOM/exports/contamination_report.txt and should state that 1 contaminating MR file was found."
+}

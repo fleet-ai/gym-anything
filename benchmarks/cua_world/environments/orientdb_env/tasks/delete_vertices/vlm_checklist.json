@@ -1,0 +1,59 @@
+{
+    "task_id": "delete_vertices@1",
+    "task_completion": [
+        {
+            "id": "login_demodb",
+            "description": "Agent successfully logs into the 'demodb' database in OrientDB Studio.",
+            "points": 10,
+            "visual_evidence": "The OrientDB Studio interface showing 'demodb' as the active database and the user logged in as 'admin'."
+        },
+        {
+            "id": "locate_hotels_class",
+            "description": "Agent navigates to the 'Hotels' class or executes a query to view the existing hotel vertices.",
+            "points": 10,
+            "visual_evidence": "The 'Schema' tab showing the 'Hotels' class or a 'Browse' tab showing a list of hotels including the target ones."
+        },
+        {
+            "id": "delete_copacabana",
+            "description": "Agent executes a command to delete the 'Copacabana Palace' vertex.",
+            "points": 25,
+            "visual_evidence": "A SQL command in the 'Query' editor containing 'DELETE VERTEX' and 'Copacabana Palace', followed by a success message (e.g., 'Delete 1 record(s)')."
+        },
+        {
+            "id": "delete_park_hyatt",
+            "description": "Agent executes a command to delete the 'Park Hyatt Tokyo' vertex.",
+            "points": 25,
+            "visual_evidence": "A SQL command in the 'Query' editor containing 'DELETE VERTEX' and 'Park Hyatt Tokyo', followed by a success message."
+        },
+        {
+            "id": "delete_four_seasons",
+            "description": "Agent executes a command to delete the 'Four Seasons Sydney' vertex.",
+            "points": 25,
+            "visual_evidence": "A SQL command in the 'Query' editor containing 'DELETE VERTEX' and 'Four Seasons Sydney', followed by a success message."
+        },
+        {
+            "id": "verify_deletion",
+            "description": "Agent verifies that the three hotels are no longer in the database while others remain.",
+            "points": 5,
+            "visual_evidence": "A 'SELECT' query result showing that the target hotels are missing, but 'Hotel Artemide' or 'The Savoy' are still present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing scripts via a hidden terminal.",
+            "visual_evidence": "Screenshots show the browser with the OrientDB Studio URL and interaction with the Query/Browse tabs."
+        },
+        {
+            "id": "correct_command_usage",
+            "description": "The agent used 'DELETE VERTEX' as requested to ensure edge cleanup, rather than a simple 'DELETE FROM'.",
+            "visual_evidence": "The SQL text in the query editor explicitly uses the keywords 'DELETE VERTEX'."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "The agent did not delete the entire Hotels class or unrelated hotels.",
+            "visual_evidence": "Query results or the 'Browse' tab showing that 'Hotel Artemide' and 'The Savoy' still exist in the database."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb'. The three hotels to be deleted are 'Copacabana Palace', 'Park Hyatt Tokyo', and 'Four Seasons Sydney'. The agent must use the 'DELETE VERTEX' command. Two hotels that must NOT be deleted are 'Hotel Artemide' and 'The Savoy'. Success is confirmed if the query logs show 1 record deleted for each specific hotel and a subsequent search for these names returns no results."
+}

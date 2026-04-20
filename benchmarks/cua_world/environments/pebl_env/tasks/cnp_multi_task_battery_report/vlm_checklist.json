@@ -1,0 +1,59 @@
+{
+    "task_id": "cnp_multi_task_battery_report@1",
+    "task_completion": [
+        {
+            "id": "data_access_and_loading",
+            "description": "Agent accesses and loads the three raw CSV files from ~/pebl/data/cnp/.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening or reading bart_data.csv, stopsignal_data.csv, and scap_data.csv in a code editor or terminal."
+        },
+        {
+            "id": "id_harmonization",
+            "description": "Agent harmonizes participant IDs to the 'sub-NNNNN' format, specifically addressing the 'subNNNNN' format in the SCAP file.",
+            "points": 15,
+            "visual_evidence": "Code or dataframes showing the transformation of SCAP IDs (e.g., 'sub10159' to 'sub-10159') to match the other datasets."
+        },
+        {
+            "id": "contamination_detection",
+            "description": "Agent identifies and excludes the participant with 0 pumps in BART and short SSRTs in Stop Signal.",
+            "points": 20,
+            "visual_evidence": "Code or logs showing the identification of a specific participant (sub-10159) as having 0 ADJMEANPUMPS and their subsequent exclusion from BART/SSRT calculations."
+        },
+        {
+            "id": "metric_calculation",
+            "description": "Agent calculates BART adjusted mean pumps, SSRT (integration method), and SCAP set size 7 accuracy.",
+            "points": 25,
+            "visual_evidence": "Code snippets or intermediate outputs showing the math for SSRT (mean Go RT - nth Go RT) and SCAP accuracy filtering for set_size=7."
+        },
+        {
+            "id": "z_score_and_classification",
+            "description": "Agent computes within-sample z-scores and classifies participants as 'impaired' if z < -1.5.",
+            "points": 15,
+            "visual_evidence": "Code or data tables showing the calculation of mean/SD for the valid group and the assignment of 'impaired' or 'intact' labels."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent writes the final JSON report to ~/pebl/analysis/cnp_battery_report.json with the required structure.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the final JSON file content showing keys like 'participants', 'group_statistics', 'bart_z', and 'domains_impaired'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation",
+            "description": "Agent performs actual data processing rather than hardcoding values.",
+            "visual_evidence": "The presence of data manipulation code (e.g., pandas, numpy) and the absence of a single print statement containing all final results without prior logic."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Agent interacts with the specified file paths.",
+            "visual_evidence": "Terminal commands or Python code referencing the specific directories ~/pebl/data/cnp/ and ~/pebl/analysis/."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "Agent excludes the contaminated participant only from BART/SSRT, not SCAP.",
+            "visual_evidence": "The final JSON report should show 'excluded' for BART/SSRT for the specific ID, but numerical values for SCAP for that same ID."
+        }
+    ],
+    "privileged_info_for_vlm": "The contaminated participant is sub-10159 (appears as sub10159 in SCAP). In BART, this participant has 0 adjusted mean pumps. In Stop Signal, they have an impossibly low SSRT. This participant must be marked as 'excluded' in the JSON for BART and SSRT fields, but their SCAP data (set size 7 accuracy) should still be processed and included. The SSRT must be calculated using the integration method (Mean Go RT - nth Go RT), not the simple mean of SSDs."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_bipolar_srb2_montage@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is open, showing the main interface with signal processing or control panels."
+        },
+        {
+            "id": "synthetic_session_started",
+            "description": "The GUI is connected to a 'Synthetic' data source and the session is active.",
+            "points": 15,
+            "visual_evidence": "The top control bar shows 'Synthetic (OpenBCI)' as the source and the 'Start Data Stream' button has been pressed (often indicated by a 'Stop Data Stream' button or scrolling waveforms)."
+        },
+        {
+            "id": "hardware_settings_opened",
+            "description": "The Hardware Settings/Channel Settings menu is expanded to show individual channel controls.",
+            "points": 15,
+            "visual_evidence": "A panel labeled 'Hardware Settings' or 'Channel Settings' is visible, showing a grid of buttons for channels 1-8 including columns for SRB2."
+        },
+        {
+            "id": "odd_channels_srb2_off",
+            "description": "SRB2 is disabled for all odd channels (1, 3, 5, 7).",
+            "points": 25,
+            "visual_evidence": "In the 'SRB2' column, the buttons for rows 1, 3, 5, and 7 are in the 'Off' state (typically indicated by a specific color like blue/grey or the text 'Off')."
+        },
+        {
+            "id": "even_channels_srb2_on",
+            "description": "SRB2 is enabled for all even channels (2, 4, 6, 8).",
+            "points": 25,
+            "visual_evidence": "In the 'SRB2' column, the buttons for rows 2, 4, 6, and 8 are in the 'On' state (typically indicated by a specific color like orange/yellow or the text 'On')."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the configuration is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "The agent interacts with the 'Screenshot' button in the GUI or a file explorer window shows 'srb2_config.png' saved in /home/ga/Documents/OpenBCI_GUI/Screenshots/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor hovering over or clicking the SRB2 toggle buttons in the OpenBCI GUI."
+        },
+        {
+            "id": "genuine_software_state",
+            "description": "The configuration is shown within the live OpenBCI GUI environment, not a static image viewer.",
+            "visual_evidence": "The SRB2 settings are visible within the context of the OpenBCI GUI application window, including the surrounding menu bars and real-time data displays."
+        },
+        {
+            "id": "no_pre_existing_file",
+            "description": "The agent did not simply find an existing screenshot but actively configured the settings.",
+            "visual_evidence": "Sequential screenshots show the SRB2 buttons changing state from their default to the target configuration."
+        }
+    ],
+    "privileged_info_for_vlm": "The target configuration for the SRB2 column in the Hardware Settings is: Channels 1, 3, 5, 7 must be OFF; Channels 2, 4, 6, 8 must be ON. In OpenBCI GUI v5.x, the relevant column headers are 'PGA Gain', 'Input Type', 'Bias Include', 'SRB2', and 'SRB1'. The final screenshot must be saved as /home/ga/Documents/OpenBCI_GUI/Screenshots/srb2_config.png."
+}

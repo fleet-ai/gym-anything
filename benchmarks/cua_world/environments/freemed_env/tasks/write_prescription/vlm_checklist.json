@@ -1,0 +1,59 @@
+{
+    "task_id": "write_prescription@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the FreeMED system using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the FreeMED dashboard or main menu after the login screen, showing the user 'admin' is logged in."
+        },
+        {
+            "id": "patient_selection",
+            "description": "Locate and select the correct patient, Crystal Schroeder (ID 18).",
+            "points": 15,
+            "visual_evidence": "The VLM should see Crystal Schroeder's patient record or name selected in the patient search or patient view interface."
+        },
+        {
+            "id": "prescription_interface",
+            "description": "Navigate to the 'Add Prescription' or 'New Prescription' module for the selected patient.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a form titled 'Prescription', 'New Prescription', or similar, associated with Crystal Schroeder."
+        },
+        {
+            "id": "drug_details_entry",
+            "description": "Enter the correct drug name (Naproxen Sodium 220mg) and dose (220mg).",
+            "points": 25,
+            "visual_evidence": "The VLM should see 'Naproxen Sodium 220mg' in the drug field and '220mg' in the dose field of the prescription form."
+        },
+        {
+            "id": "dosage_and_quantity",
+            "description": "Enter the quantity (30), dosage instructions (1 tablet twice daily as needed), and refills (0).",
+            "points": 25,
+            "visual_evidence": "The VLM should see '30' in the quantity field, '1 tablet twice daily as needed' in the dosage/instructions field, and '0' in the refills field."
+        },
+        {
+            "id": "prescription_submission",
+            "description": "Save or submit the prescription successfully.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a 'Success' message, a saved prescription entry in the patient's history, or the form clearing/closing after clicking 'Save' or 'Submit'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the FreeMED web interface rather than executing direct database queries or terminal commands to insert the record.",
+            "visual_evidence": "The screenshots should show the mouse cursor interacting with form fields and buttons within the browser, not just terminal output."
+        },
+        {
+            "id": "no_manual_url_injection",
+            "description": "The agent navigated through the application menus to reach the prescription area rather than guessing internal URLs.",
+            "visual_evidence": "The trajectory should show the agent clicking on menu items like 'Patients' or 'Medical Records' to find the patient."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent typed or selected the specific patient and drug details rather than using placeholder data.",
+            "visual_evidence": "The screenshots must show the specific values (Crystal Schroeder, Naproxen Sodium 220mg, 30 tablets) being entered into the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Crystal Schroeder, ID 18, DOB 1972-07-19. The prescription must exactly match: Drug: Naproxen Sodium 220mg, Dose: 220mg, Quantity: 30, Dosage: 1 tablet twice daily as needed, Refills: 0. Ensure the agent is logged in as 'admin'."
+}

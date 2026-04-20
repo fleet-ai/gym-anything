@@ -1,0 +1,53 @@
+{
+    "task_id": "query_api_export_data@1",
+    "task_completion": [
+        {
+            "id": "read_credentials",
+            "description": "Agent accesses the OAuth2 credentials from the local file system.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/api_credentials.txt."
+        },
+        {
+            "id": "obtain_oauth_token",
+            "description": "Agent successfully requests an authentication token from the OAuth endpoint.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., curl or postman-like tool) targeting http://localhost:8080/oauth/token showing a JSON response containing an 'access_token'."
+        },
+        {
+            "id": "query_institutions",
+            "description": "Agent queries the institution endpoint and receives data.",
+            "points": 20,
+            "visual_evidence": "A request to http://localhost:8080/admin-api/v1/institution and the resulting JSON data displayed on screen."
+        },
+        {
+            "id": "query_users_and_configs",
+            "description": "Agent queries the useraccount and configuration_node endpoints.",
+            "points": 25,
+            "visual_evidence": "Requests to http://localhost:8080/admin-api/v1/useraccount and http://localhost:8080/admin-api/v1/configuration_node with corresponding JSON responses."
+        },
+        {
+            "id": "verify_exported_files",
+            "description": "Agent saves the JSON responses to the specified directory and filenames.",
+            "points": 25,
+            "visual_evidence": "A file manager or 'ls' command showing institutions.json, users.json, and configurations.json inside the /home/ga/api_export directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_creation",
+            "description": "The agent did not manually type out the JSON content into the files.",
+            "visual_evidence": "The agent should be seen capturing the output of the API calls rather than typing long strings of synthetic data manually."
+        },
+        {
+            "id": "genuine_api_interaction",
+            "description": "The agent interacted with the localhost:8080 server rather than mock files.",
+            "visual_evidence": "Network tool logs or terminal commands showing active requests to localhost:8080."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent used the specific directory requested in the instructions.",
+            "visual_evidence": "The path /home/ga/api_export is explicitly used in commands or file explorer views."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected output directory is exactly /home/ga/api_export. The required files are institutions.json, users.json, and configurations.json. The data is synthetic SEB Server demo data. The agent must use the credentials found in ~/api_credentials.txt to authenticate via the /oauth/token endpoint before accessing the admin-api endpoints."
+}

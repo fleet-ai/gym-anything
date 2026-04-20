@@ -1,0 +1,59 @@
+{
+    "task_id": "mobile_odometry_drift_analysis@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "Launch CoppeliaSim and load the Pioneer P3DX robot model.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible with a Pioneer P3DX robot present in the 3D scene."
+        },
+        {
+            "id": "trajectory_execution",
+            "description": "The robot executes a multi-segment trajectory involving both translation and rotation.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the robot in different positions and orientations over time, indicating movement."
+        },
+        {
+            "id": "data_collection_duration",
+            "description": "The simulation runs for at least 10 seconds while collecting data.",
+            "points": 15,
+            "visual_evidence": "The simulation clock in the CoppeliaSim status bar or a terminal log shows a elapsed time of >= 10 seconds."
+        },
+        {
+            "id": "csv_generation",
+            "description": "Save the time-series data to /home/ga/Documents/CoppeliaSim/exports/odometry_track.csv with required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal 'ls' command shows odometry_track.csv exists in the specified path; a 'cat' or 'head' command shows columns: odom_x, odom_y, true_x, true_y, error_m."
+        },
+        {
+            "id": "json_generation",
+            "description": "Save aggregate statistics to /home/ga/Documents/CoppeliaSim/exports/odometry_summary.json.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal shows odometry_summary.json exists in the specified path."
+        },
+        {
+            "id": "requirement_thresholds",
+            "description": "The recorded data covers at least 1.0m of translation and 1.0rad of rotation.",
+            "points": 15,
+            "visual_evidence": "The contents of the CSV or JSON file show values for translation (change in x/y) >= 1.0m and rotation (change in orientation) >= 1.0rad."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation",
+            "description": "The agent interacted with the CoppeliaSim environment rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim play button active and the robot physically moving in the viewport."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type the CSV/JSON content with arbitrary numbers.",
+            "visual_evidence": "The agent is seen writing or running a script (Python/Lua) that interfaces with the CoppeliaSim API (Remote API or BlueZero) to fetch real-time coordinates."
+        },
+        {
+            "id": "correct_user_context",
+            "description": "The agent operated under the 'ga' user account as specified.",
+            "visual_evidence": "Terminal prompts show 'ga@' or file paths include '/home/ga/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a minimum of 1.0m translation and 1.0rad rotation over at least 10 seconds. The output files must be located at /home/ga/Documents/CoppeliaSim/exports/odometry_track.csv (containing odom_x, odom_y, true_x, true_y, error_m) and /home/ga/Documents/CoppeliaSim/exports/odometry_summary.json. The robot used must be a Pioneer P3DX."
+}

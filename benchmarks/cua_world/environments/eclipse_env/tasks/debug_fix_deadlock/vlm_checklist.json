@@ -1,0 +1,53 @@
+{
+    "task_id": "debug_fix_deadlock@1",
+    "task_completion": [
+        {
+            "id": "open_project_files",
+            "description": "Agent opens the FinancialSystem project and TransferService.java in the IDE.",
+            "points": 10,
+            "visual_evidence": "The IDE (e.g., Eclipse or VS Code) is visible showing the project explorer with 'FinancialSystem' and the file 'TransferService.java' open in an editor tab."
+        },
+        {
+            "id": "identify_deadlock_threads",
+            "description": "Agent identifies the two stuck threads and records them in analysis.txt.",
+            "points": 15,
+            "visual_evidence": "A file named 'analysis.txt' is visible in the editor containing the thread names 'Transfer-Worker-A' and 'Transfer-Worker-B'."
+        },
+        {
+            "id": "modify_transfer_service",
+            "description": "Agent modifies TransferService.java to implement a resource ordering strategy (e.g., comparing account IDs) to prevent deadlock.",
+            "points": 30,
+            "visual_evidence": "The code in TransferService.java is shown with new logic that orders locks, typically using an 'if (id1 < id2)' or similar comparison before synchronized blocks."
+        },
+        {
+            "id": "run_deadlock_demo",
+            "description": "Agent executes the DeadlockDemo simulation after applying the fix.",
+            "points": 15,
+            "visual_evidence": "A terminal or IDE console shows the command to run 'com.financial.simulation.DeadlockDemo' or the start of its execution output."
+        },
+        {
+            "id": "verify_simulation_completion",
+            "description": "The simulation completes successfully without hanging.",
+            "points": 30,
+            "visual_evidence": "The IDE console or terminal explicitly displays the text 'SIMULATION COMPLETED' and the process has exited."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply print 'SIMULATION COMPLETED' using an echo command.",
+            "visual_evidence": "The 'SIMULATION COMPLETED' text appears as standard output from a Java execution (java -cp ...) rather than a simple shell echo or manual text file edit."
+        },
+        {
+            "id": "genuine_code_fix",
+            "description": "The agent actually modified the Java source code rather than just deleting the problematic lines.",
+            "visual_evidence": "TransferService.java shows logic for resource ordering (comparing IDs) rather than just removing synchronization entirely."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE/GUI for code editing and project navigation.",
+            "visual_evidence": "Screenshots show the agent interacting with the IDE interface (menus, editor tabs, project explorer) rather than exclusively using 'sed' or 'cat' in the terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/FinancialSystem. The two threads causing the deadlock are 'Transfer-Worker-A' and 'Transfer-Worker-B'. The fix must be applied in 'src/main/java/com/financial/core/TransferService.java' by ensuring locks are acquired in a consistent order (e.g., by comparing Account IDs). The success condition is the console output 'SIMULATION COMPLETED' from the class 'com.financial.simulation.DeadlockDemo'."
+}

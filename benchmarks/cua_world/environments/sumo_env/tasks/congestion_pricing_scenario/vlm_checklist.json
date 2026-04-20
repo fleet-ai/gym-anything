@@ -1,0 +1,53 @@
+{
+    "task_id": "congestion_pricing_scenario@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_execution",
+            "description": "Execute the baseline SUMO simulation and save metrics to baseline_traffic_economics.csv.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing SUMO running the Bologna Pasubio scenario and a file explorer or cat command showing baseline_traffic_economics.csv with vehicle count, VKT, and speed metrics."
+        },
+        {
+            "id": "pricing_model_creation",
+            "description": "Create a modified route file (pasubio_priced.rou.xml) and configuration (run_priced.sumocfg) with a 15-25% reduction in private vehicle trips.",
+            "points": 20,
+            "visual_evidence": "Code editor or cat command showing pasubio_priced.rou.xml with reduced vehicle entries or a script filtering trips, and run_priced.sumocfg referencing the new route file."
+        },
+        {
+            "id": "priced_simulation_execution",
+            "description": "Execute the pricing simulation and save metrics to priced_traffic_economics.csv.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the execution of run_priced.sumocfg and the creation of priced_traffic_economics.csv in the /home/ga/SUMO_Output/ directory."
+        },
+        {
+            "id": "cba_calculation",
+            "description": "Generate congestion_pricing_cba.csv using the specified economic values (15 EUR/hr, 1.80 EUR/L, 100 EUR/tonne).",
+            "points": 25,
+            "visual_evidence": "A CSV file or spreadsheet view showing columns: category, baseline_value, priced_value, change_pct, annual_monetized_eur, with values calculated using the mandated constants."
+        },
+        {
+            "id": "executive_brief_documentation",
+            "description": "Produce an executive brief (congestion_pricing_brief.txt) documenting policy design and impacts.",
+            "points": 25,
+            "visual_evidence": "A text file named congestion_pricing_brief.txt containing sections on policy design (charging zone), demand impacts (15-25% reduction), and recommendations."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sumo_interaction",
+            "description": "Verify the agent actually ran SUMO simulations rather than fabricating results.",
+            "visual_evidence": "Screenshots must show SUMO terminal logs (e.g., 'Step #...'), SUMO-GUI windows, or system-generated XML output files before the CSVs are created."
+        },
+        {
+            "id": "parameter_adherence",
+            "description": "Check that the agent used the specific economic constants provided in the prompt.",
+            "visual_evidence": "The CBA file or the script used to generate it must explicitly show the values 15, 1.80, and 100 being used for calculations."
+        },
+        {
+            "id": "charging_zone_compliance",
+            "description": "Ensure the charging zone includes at least 5 edges as required.",
+            "visual_evidence": "The route modification script or the brief should list or show the selection of at least 5 specific edge IDs from the Bologna network."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 15-25% reduction in private vehicle trips for the priced scenario. Public transit must remain exempt. Economic constants for the CBA are: Travel Time = 15 EUR/hour, Fuel = 1.80 EUR/liter, CO2 = 100 EUR/tonne. The charging zone must consist of at least 5 edges. All outputs must be saved in /home/ga/SUMO_Output/ with specific filenames: baseline_traffic_economics.csv, priced_traffic_economics.csv, congestion_pricing_cba.csv, and congestion_pricing_brief.txt."
+}

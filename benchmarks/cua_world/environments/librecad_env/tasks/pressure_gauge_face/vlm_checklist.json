@@ -1,0 +1,59 @@
+{
+    "task_id": "pressure_gauge_face@1",
+    "task_completion": [
+        {
+            "id": "layer_setup",
+            "description": "Create the required layers: PLATE, TICKS, LABELS, and DANGER with correct colors.",
+            "points": 10,
+            "visual_evidence": "The Layer List widget in LibreCAD shows the names 'PLATE', 'TICKS', 'LABELS', and 'DANGER' with their respective colors (White/Black, Cyan, Green, Red)."
+        },
+        {
+            "id": "plate_geometry",
+            "description": "Draw the outer border (50mm radius) and mounting hole (3mm radius) at center (0,0).",
+            "points": 15,
+            "visual_evidence": "Two concentric circles are visible on the 'PLATE' layer; the status bar or coordinate display shows the center at 0,0 when selected."
+        },
+        {
+            "id": "tick_marks",
+            "description": "Draw major ticks (10 PSI intervals) and minor ticks (5 PSI intervals) between 225° and -45°.",
+            "points": 25,
+            "visual_evidence": "A series of radial lines (Cyan) arranged in a 270-degree sweep. Major ticks are visibly longer than the intermediate minor ticks."
+        },
+        {
+            "id": "labels_text",
+            "description": "Add text labels '0' through '100' near the major ticks.",
+            "points": 20,
+            "visual_evidence": "Green text numbers 0, 10, 20... 100 are positioned radially inside or outside the tick marks following the 270-degree arc."
+        },
+        {
+            "id": "danger_arc",
+            "description": "Draw a red arc at radius 40mm covering the 80-100 PSI range.",
+            "points": 15,
+            "visual_evidence": "A red arc segment is visible on the 'DANGER' layer, specifically spanning the final portion of the scale (from the '80' label to the '100' label)."
+        },
+        {
+            "id": "save_file",
+            "description": "Save the drawing to the specified path: /home/ga/Documents/LibreCAD/pressure_gauge.dxf.",
+            "points": 15,
+            "visual_evidence": "The LibreCAD title bar shows the file name 'pressure_gauge.dxf' or a 'Save As' dialog is seen with the correct directory path and filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI tools rather than just generating the file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (Circle, Line, Text tools) and the command line within the app."
+        },
+        {
+            "id": "genuine_design",
+            "description": "The design was constructed step-by-step rather than appearing instantly.",
+            "visual_evidence": "Sequential screenshots show the progression of the drawing (e.g., circles appearing first, then ticks, then labels)."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the terminal to move a pre-made file to the destination.",
+            "visual_evidence": "The terminal is not used to execute 'mv' or 'cp' commands for a .dxf file; the saving process happens within the LibreCAD interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The gauge must have a 270-degree sweep starting from the bottom-left (225°) and ending at the bottom-right (-45° or 315°). Major ticks (10 PSI) are 5mm long; minor ticks (5 PSI) are 2.5mm long. The 'DANGER' arc must be red and specifically cover the 80 to 100 PSI section. The file must be saved as /home/ga/Documents/LibreCAD/pressure_gauge.dxf."
+}

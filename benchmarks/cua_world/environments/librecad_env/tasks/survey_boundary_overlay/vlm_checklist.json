@@ -1,0 +1,62 @@
+{
+    "task_id": "survey_boundary_overlay@1",
+    "task_completion": [
+        {
+            "id": "open_floorplan_dxf",
+            "description": "The agent successfully opens the original floorplan.dxf in LibreCAD.",
+            "points": 10,
+            "visual_evidence": "LibreCAD window showing a floorplan with a 2-car garage and residential rooms (bedrooms, kitchen) as described in the privileged info."
+        },
+        {
+            "id": "boundary_polygon_bearings",
+            "description": "A closed property boundary polygon is drawn around the house with labeled bearings and distances.",
+            "points": 25,
+            "visual_evidence": "A continuous line forming a closed shape around the building footprint, with text labels like 'N 45°30 E' and numerical distances along the segments."
+        },
+        {
+            "id": "setback_lines",
+            "description": "Front, rear (20 ft), and side (5 ft) yard setbacks are drawn relative to the property lines.",
+            "points": 20,
+            "visual_evidence": "Lines offset inward from the property boundary. The distance between the boundary and the setback line should visually reflect the 20ft vs 5ft ratio."
+        },
+        {
+            "id": "utility_easement_dashed",
+            "description": "At least one utility easement is added using dashed lines and annotation.",
+            "points": 15,
+            "visual_evidence": "A dashed line (non-continuous) within the property boundary, accompanied by a text label such as 'Utility Easement' or 'U.E.'."
+        },
+        {
+            "id": "survey_elements_legend_north",
+            "description": "A survey legend/notes block and a north arrow indicator are present.",
+            "points": 15,
+            "visual_evidence": "A graphical arrow pointing 'N' and a rectangular block containing text/symbols (legend) or survey notes on the drawing canvas."
+        },
+        {
+            "id": "layer_organization_save",
+            "description": "Survey elements are organized on dedicated layers and the file is saved as floorplan_survey.dxf.",
+            "points": 15,
+            "visual_evidence": "The LibreCAD layer list shows new layers (e.g., 'Boundary', 'Setbacks', 'Easements') and the window title bar or 'Save As' dialog shows the filename 'floorplan_survey.dxf'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to perform drafting tasks rather than just script execution.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (line tool, offset tool, text tool) and the layer dock."
+        },
+        {
+            "id": "genuine_drawing_process",
+            "description": "The survey elements are manually placed/drawn relative to the specific floorplan geometry.",
+            "points": 0,
+            "visual_evidence": "Sequential screenshots show the boundary and setbacks being constructed around the specific 2-car garage footprint."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not simply use a python script (like ezdxf) to generate the file without opening the CAD software.",
+            "points": 0,
+            "visual_evidence": "The agent is seen actively using the LibreCAD interface to add annotations and lines."
+        }
+    ],
+    "privileged_info_for_vlm": "The original floorplan.dxf contains 967 entities and 24 layers, featuring a 2-car garage and residential rooms. The final output must be named floorplan_survey.dxf. Setbacks must be 20 units (front/rear) and 5 units (sides). Bearings must follow the 'N/S degrees E/W' format. The utility easement must specifically use a dashed linetype."
+}

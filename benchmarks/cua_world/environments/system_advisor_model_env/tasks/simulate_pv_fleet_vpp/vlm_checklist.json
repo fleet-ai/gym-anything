@@ -1,0 +1,59 @@
+{
+    "task_id": "simulate_pv_fleet_vpp@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent identifies the Phoenix, AZ TMY weather file path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "script_creation",
+            "description": "Agent writes the Python script using PySAM (Pvwattsv8) with the correct system parameters (5kW, 22.0 tilt, array type 1).",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing the creation of /home/ga/Documents/SAM_Projects/vpp_simulation.py containing PySAM logic."
+        },
+        {
+            "id": "azimuth_loop_implementation",
+            "description": "The script includes logic to iterate through or define the five specific azimuths: 90, 135, 180, 225, and 270.",
+            "points": 15,
+            "visual_evidence": "Code snippet in the editor showing an array or loop containing the values [90, 135, 180, 225, 270]."
+        },
+        {
+            "id": "execution_of_simulation",
+            "description": "Agent executes the Python script to perform the simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal showing the command 'python3 /home/ga/Documents/SAM_Projects/vpp_simulation.py' being run without errors."
+        },
+        {
+            "id": "json_output_generation",
+            "description": "The script generates the results file at the specified path with the correct JSON structure.",
+            "points": 20,
+            "visual_evidence": "File explorer or terminal showing the existence of /home/ga/Documents/SAM_Projects/vpp_fleet_results.json."
+        },
+        {
+            "id": "verify_json_content",
+            "description": "The JSON file contains the correct fleet capacity (25.0) and individual annual energies for all five azimuths.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the content of the JSON file with 'total_fleet_capacity_kw': 25.0 and the five azimuth keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write a JSON file with hardcoded values without running a simulation.",
+            "visual_evidence": "The Python script must contain PySAM library imports and function calls, not just a print statement of the final JSON."
+        },
+        {
+            "id": "genuine_weather_usage",
+            "description": "The agent used the weather file path provided in the environment rather than a generic string.",
+            "visual_evidence": "The script should show the weather file path being read from the specified text file or the exact path found within it."
+        },
+        {
+            "id": "proper_file_paths",
+            "description": "The agent saved files to the specific directories requested (/home/ga/Documents/SAM_Projects/).",
+            "visual_evidence": "The file paths in the terminal or editor match the task requirements exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use PySAM's Pvwattsv8. The total fleet capacity is exactly 25.0 kW (5 systems * 5.0 kW). The azimuth 180 (South) should typically yield the highest individual annual energy among the five systems. The weather file path is stored in /home/ga/.SAM/solar_resource_dir.txt and points to a Phoenix, AZ TMY file. The final JSON must include keys for all five azimuths: 90, 135, 180, 225, and 270."
+}

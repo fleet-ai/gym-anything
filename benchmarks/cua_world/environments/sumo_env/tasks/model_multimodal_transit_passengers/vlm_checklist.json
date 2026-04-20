@@ -1,0 +1,59 @@
+{
+    "task_id": "model_multimodal_transit_passengers@1",
+    "task_completion": [
+        {
+            "id": "create_pedestrian_file",
+            "description": "Create a new demand file named pedestrians.rou.xml with at least 10 persons.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the creation of 'pedestrians.rou.xml' containing <person> tags with IDs."
+        },
+        {
+            "id": "define_multimodal_trips",
+            "description": "Define multi-stage trips (walk, ride bus, walk) in the pedestrian file.",
+            "points": 25,
+            "visual_evidence": "The content of 'pedestrians.rou.xml' showing <walk>, <ride lines=\"...\">, and another <walk> tag for the persons."
+        },
+        {
+            "id": "update_sumocfg_demand",
+            "description": "Update run.sumocfg to include pedestrians.rou.xml in the input files.",
+            "points": 15,
+            "visual_evidence": "The 'run.sumocfg' file showing 'pedestrians.rou.xml' added to the <route-files> value."
+        },
+        {
+            "id": "configure_personinfo_output",
+            "description": "Configure run.sumocfg to generate person-info output at the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'run.sumocfg' file showing a <personinfo-output value=\"/home/ga/SUMO_Output/personinfo.xml\"/> entry."
+        },
+        {
+            "id": "run_simulation_completion",
+            "description": "Run the SUMO simulation until completion.",
+            "points": 20,
+            "visual_evidence": "A terminal showing 'sumo' or 'sumo-gui' running and finishing, or a screenshot of the SUMO GUI at the end of the simulation time."
+        },
+        {
+            "id": "verify_output_generation",
+            "description": "Verify that the personinfo.xml file was generated and contains data.",
+            "points": 10,
+            "visual_evidence": "A terminal command (like 'ls' or 'cat') showing the existence and content of '/home/ga/SUMO_Output/personinfo.xml'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited the XML files rather than just claiming they exist.",
+            "visual_evidence": "Screenshots showing an editor (vim, nano, gedit) or 'echo/cat' redirection commands being used to modify the files."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent actually executed the SUMO binary.",
+            "visual_evidence": "Terminal logs showing the SUMO version header and the simulation step-by-step progress or the SUMO GUI window."
+        },
+        {
+            "id": "no_hardcoded_output",
+            "description": "The agent did not simply create a fake personinfo.xml file manually.",
+            "visual_evidence": "The timestamps of the output file generation should align with the simulation run time shown in the logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario is located at /home/ga/SUMO_Scenarios/bologna_pasubio/. The required output file is /home/ga/SUMO_Output/personinfo.xml. The pedestrian file must be named pedestrians.rou.xml and contain at least 10 persons. Each person must have a trip sequence of walk -> ride (using a bus line from the scenario) -> walk. The configuration file to modify is run.sumocfg."
+}

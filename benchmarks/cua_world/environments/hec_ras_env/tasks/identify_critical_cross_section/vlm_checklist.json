@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_critical_cross_section@1",
+    "task_completion": [
+        {
+            "id": "open_hdf5_file",
+            "description": "Agent accesses the HDF5 output file (Muncie.p04.hdf or Muncie.p04.tmp.hdf) to extract hydraulic data.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing an HDF5 viewer, Python script using h5py/pandas, or terminal command accessing the .hdf file in the project directory."
+        },
+        {
+            "id": "extract_geometry_and_wse",
+            "description": "Agent extracts River Station, Bank Elevations, and Peak Water Surface Elevation (WSE) for the cross sections.",
+            "points": 20,
+            "visual_evidence": "Code output, dataframes, or logs showing the retrieval of 'Peak Water Surface' and 'Bank Stations' data from the HDF5 structure."
+        },
+        {
+            "id": "calculate_freeboard",
+            "description": "Agent calculates the freeboard (Min Bank Elevation - Peak WSE) for the cross sections.",
+            "points": 20,
+            "visual_evidence": "Code or spreadsheet showing a calculation column where Peak WSE is subtracted from the minimum of the left/right bank elevations."
+        },
+        {
+            "id": "generate_detailed_csv",
+            "description": "Agent creates the detailed report CSV with the specific required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer showing 'critical_section_report.csv' at the specified path or a terminal 'cat' command showing the CSV header with River_Station, Peak_WSE_ft, etc."
+        },
+        {
+            "id": "generate_summary_txt",
+            "description": "Agent creates the summary text file containing the critical station, overtopping status, and counts.",
+            "points": 25,
+            "visual_evidence": "A screenshot of 'critical_section_summary.txt' containing the Critical_River_Station, Freeboard_ft, and Overtopping status (YES/NO)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_extraction",
+            "description": "Verify the agent actually parsed the HDF5 file rather than guessing values.",
+            "visual_evidence": "Evidence of code execution (e.g., python scripts using h5py) or HDF5 viewer usage rather than just manual text entry."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Verify the agent used the specific paths requested in the task description.",
+            "visual_evidence": "Screenshots showing file operations or saves directed to /home/ga/Documents/hec_ras_results/."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Check that the agent didn't simply echo the final answers without processing.",
+            "visual_evidence": "The presence of intermediate data processing steps or variable assignments in the terminal/IDE."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves Plan 04 of the Muncie HEC-RAS model. Note: The environment may have issues accessing 'Bank Stations' in HDF5; the agent must find a way to extract bank elevations. Correct results should show 61 total cross-sections. All sections are overtopped (Overtopping: YES). The critical section is River Station 1174.213 with a minimum freeboard of approximately -14.4631 ft (negative indicates overtopping)."
+}

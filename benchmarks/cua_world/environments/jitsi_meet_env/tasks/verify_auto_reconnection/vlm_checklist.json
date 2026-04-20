@@ -1,0 +1,53 @@
+{
+    "task_id": "verify_auto_reconnection@1",
+    "task_completion": [
+        {
+            "id": "meeting_access",
+            "description": "The agent successfully joined the Jitsi meeting named 'ResilienceTest'.",
+            "points": 10,
+            "visual_evidence": "A browser window showing a Jitsi Meet interface with the room name 'ResilienceTest' visible in the URL or UI."
+        },
+        {
+            "id": "jvb_stop_execution",
+            "description": "The agent executed the command to stop the JVB container in the correct directory.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker compose stop jvb' being executed within '/home/ga/jitsi'."
+        },
+        {
+            "id": "reconnecting_state_capture",
+            "description": "The agent captured a screenshot of the connection error state.",
+            "points": 25,
+            "visual_evidence": "A screenshot saved as 'reconnecting_state.png' showing a Jitsi 'reconnecting' overlay, 'Connection lost' message, or a greyed-out video interface."
+        },
+        {
+            "id": "jvb_start_execution",
+            "description": "The agent executed the command to restart the JVB container.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker compose start jvb' being executed within '/home/ga/jitsi'."
+        },
+        {
+            "id": "restored_state_capture",
+            "description": "The agent captured a screenshot of the automatically restored meeting state.",
+            "points": 35,
+            "visual_evidence": "A screenshot saved as 'restored_state.png' showing the active Jitsi meeting interface without error overlays, indicating the connection is live again."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_reload",
+            "description": "The agent did not manually refresh the browser to restore the connection.",
+            "visual_evidence": "The terminal history or browser interaction logs should not show a 'F5' keypress, 'reload' button click, or a new URL navigation after the JVB restart."
+        },
+        {
+            "id": "genuine_screenshot_paths",
+            "description": "The screenshots are saved in the specified home directory paths.",
+            "visual_evidence": "File manager or terminal output confirming the existence of '~/reconnecting_state.png' and '~/restored_state.png'."
+        },
+        {
+            "id": "correct_container_target",
+            "description": "The agent targeted the 'jvb' service specifically, not the entire stack.",
+            "visual_evidence": "Terminal commands explicitly mention 'stop jvb' and 'start jvb' rather than 'down' or 'stop' for all containers."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi installation is located at /home/ga/jitsi. The specific Docker service to be manipulated is 'jvb'. The meeting name must be 'ResilienceTest'. The agent must capture two specific files: /home/ga/reconnecting_state.png (showing the error) and /home/ga/restored_state.png (showing the recovery). Auto-reconnection must happen naturally without the agent clicking the browser's reload button."
+}

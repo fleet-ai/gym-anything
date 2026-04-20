@@ -1,0 +1,59 @@
+{
+    "task_id": "mark_conversation_spam@1",
+    "task_completion": [
+        {
+            "id": "login_freescout",
+            "description": "Agent successfully logs into the FreeScout dashboard.",
+            "points": 10,
+            "visual_evidence": "The browser shows the FreeScout dashboard or mailbox list instead of the login page; the user 'admin@helpdesk.local' is logged in."
+        },
+        {
+            "id": "navigate_to_it_support",
+            "description": "Agent navigates to the 'IT Support' mailbox.",
+            "points": 15,
+            "visual_evidence": "The sidebar or header indicates the 'IT Support' mailbox is selected."
+        },
+        {
+            "id": "locate_phishing_email",
+            "description": "Agent identifies the conversation with the specific phishing subject line.",
+            "points": 15,
+            "visual_evidence": "The conversation list shows a ticket with the subject 'URGENT: Your IT credentials expire today - immediate action required'."
+        },
+        {
+            "id": "open_conversation",
+            "description": "Agent opens the specific phishing conversation to view its details.",
+            "points": 10,
+            "visual_evidence": "The screen displays the content of the 'URGENT: Your IT credentials expire today...' conversation."
+        },
+        {
+            "id": "mark_as_spam_action",
+            "description": "Agent triggers the 'Spam' action on the conversation.",
+            "points": 30,
+            "visual_evidence": "The agent clicks a 'Spam' button, or selects 'Mark as Spam' from a dropdown menu/toolbar."
+        },
+        {
+            "id": "verify_removal_or_status",
+            "description": "The conversation is removed from the active queue or shows a Spam indicator.",
+            "points": 20,
+            "visual_evidence": "A success message appears (e.g., 'Conversation moved to Spam'), or the conversation is no longer visible in the 'IT Support' Inbox/Active folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database or CLI commands to change the status.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and browser navigation rather than terminal windows executing SQL or PHP scripts."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the mailbox structure rather than jumping directly to a specific internal ID URL if not previously known.",
+            "visual_evidence": "The agent is seen clicking on the 'IT Support' mailbox link in the UI."
+        },
+        {
+            "id": "no_shortcut_cheating",
+            "description": "The agent did not use developer tools to hide elements or simulate success messages.",
+            "visual_evidence": "The FreeScout UI remains consistent and standard throughout the process; no 'Inspect Element' or console windows are used to manipulate the DOM."
+        }
+    ],
+    "privileged_info_for_vlm": "The target mailbox is 'IT Support'. The target conversation subject is 'URGENT: Your IT credentials expire today - immediate action required'. In FreeScout, marking a conversation as Spam changes its internal status code to 4 and moves it to the Spam folder (Folder Type 80). The agent must perform this via the GUI at http://localhost:8080."
+}

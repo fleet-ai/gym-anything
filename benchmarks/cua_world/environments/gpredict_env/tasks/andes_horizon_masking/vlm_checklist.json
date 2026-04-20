@@ -1,0 +1,53 @@
+{
+    "task_id": "andes_horizon_masking@1",
+    "task_completion": [
+        {
+            "id": "create_ground_station",
+            "description": "Create a ground station named 'Santiago_UChile' with the specified coordinates and altitude.",
+            "points": 15,
+            "visual_evidence": "GPredict 'Ground Stations' configuration window showing Name: Santiago_UChile, Latitude: 33.4500 S, Longitude: 70.6600 W, and Altitude: 520m."
+        },
+        {
+            "id": "configure_horizon_mask",
+            "description": "Incorporate the horizon terrain profile from the specified file path into the ground station settings.",
+            "points": 20,
+            "visual_evidence": "The 'Horizon Mask' field in the Santiago_UChile configuration dialog contains the path '/home/ga/Documents/andes_mask.txt'."
+        },
+        {
+            "id": "create_tracking_module",
+            "description": "Establish a new tracking module named 'Andes_EO' and bind it to the 'Santiago_UChile' station.",
+            "points": 15,
+            "visual_evidence": "Module configuration window showing the name 'Andes_EO' and the 'Ground station' selection set to 'Santiago_UChile'."
+        },
+        {
+            "id": "add_satellites",
+            "description": "Include SUOMI NPP, FENGYUN 3A, and FENGYUN 3B in the tracking module.",
+            "points": 25,
+            "visual_evidence": "The 'Selected Satellites' list in the Andes_EO module configuration contains SUOMI NPP, FENGYUN 3A, and FENGYUN 3B."
+        },
+        {
+            "id": "configure_map_orbits",
+            "description": "Configure the map settings to display 4 orbits for the ground track.",
+            "points": 25,
+            "visual_evidence": "In the module properties or global map preferences, the 'Number of orbits' or 'Ground track' length is set to 4."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to configure settings rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the GPredict application windows, dialog boxes, and mouse cursor interactions with the UI."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not simply open a text editor to simulate the task.",
+            "visual_evidence": "The final screenshots show the GPredict main interface with the 'Andes_EO' module active and satellites visible on the map."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the menu system (Edit -> Preferences or Module -> Configure).",
+            "visual_evidence": "Sequential screenshots show the progression from the main menu to the specific configuration sub-menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground station must be named 'Santiago_UChile' with Lat: -33.45, Lon: -70.66, Alt: 520m. The horizon file is at /home/ga/Documents/andes_mask.txt. The module name is 'Andes_EO'. The required satellites are SUOMI NPP (37849), FENGYUN 3A (32958), and FENGYUN 3B (37214). The map must be set to show 4 orbits."
+}

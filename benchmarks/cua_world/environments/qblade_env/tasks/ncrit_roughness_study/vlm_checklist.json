@@ -1,0 +1,59 @@
+{
+    "task_id": "ncrit_roughness_study@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "NACA 4412 airfoil is generated with 100 panels in QBlade.",
+            "points": 10,
+            "visual_evidence": "QBlade 'Airfoil Design' or 'XFoil Direct Analysis' module showing a NACA 4412 profile and a panel count of 100 in the airfoil properties or generation dialog."
+        },
+        {
+            "id": "clean_polar_setup",
+            "description": "XFoil polar analysis configured for the 'Clean' case (Re=1,000,000, Ncrit=9).",
+            "points": 15,
+            "visual_evidence": "XFoil analysis settings panel showing Reynolds number set to 1,000,000 and Ncrit (transition parameter) set to 9."
+        },
+        {
+            "id": "rough_polar_setup",
+            "description": "XFoil polar analysis configured for the 'Rough' case (Re=1,000,000, Ncrit=5).",
+            "points": 15,
+            "visual_evidence": "XFoil analysis settings panel showing Reynolds number set to 1,000,000 and Ncrit set to 5."
+        },
+        {
+            "id": "polar_execution",
+            "description": "Both polars are simulated for the alpha range -5 to 20 with 0.5 steps.",
+            "points": 20,
+            "visual_evidence": "The QBlade graph area showing two distinct polar curves (Cl vs Alpha or Cl vs Cd) and the analysis log or range input showing -5 to 20 with 0.5 increments."
+        },
+        {
+            "id": "project_saved",
+            "description": "The QBlade project is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "The QBlade window title bar or a file explorer window showing 'roughness_study.wpa' at /home/ga/Documents/projects/."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "A text file is created at the specified path with the required summary data.",
+            "points": 30,
+            "visual_evidence": "A text editor (e.g., Gedit, Mousepad) showing the file /home/ga/Documents/roughness_study_results.txt containing the 'ROUGHNESS SENSITIVITY STUDY' header, Cl_max, Alpha_Cl_max, and Cd_min for both cases, plus the percentage comparisons."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to perform the analysis rather than just writing a text file.",
+            "visual_evidence": "Screenshots showing the QBlade interface, mouse cursor movements over buttons, and the generation of plots within the software."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The percentage values in the text file match the mathematical formula provided.",
+            "visual_evidence": "The VLM should verify that the 'Comparison' section values in the text file are calculated as 100 * |Clean - Rough| / Clean."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not leave [value] placeholders in the final text file.",
+            "visual_evidence": "The summary text file contains actual numerical values derived from the simulation results."
+        }
+    ],
+    "privileged_info_for_vlm": "For a NACA 4412 at Re=1,000,000: The 'Clean' (Ncrit=9) Cl_max should be approximately 1.60-1.63. Lowering Ncrit to 5 (Rough case) must result in a lower Cl_max and a higher Cd_min compared to the Clean case. The alpha for Cl_max is typically around 13.5 to 15 degrees. Ensure the agent used exactly 100 panels as requested."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_dicom_uids_troubleshooting@1",
+    "task_completion": [
+        {
+            "id": "dicom_viewer_opened",
+            "description": "The agent has opened a DICOM viewer application and loaded a medical image.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer interface (e.g., Horos, Weasis, or a similar medical imaging tool) is visible with a scan loaded in the viewport."
+        },
+        {
+            "id": "metadata_window_accessed",
+            "description": "The agent has navigated to and opened the DICOM metadata/header information window.",
+            "points": 15,
+            "visual_evidence": "A pop-up window or sidebar displaying DICOM tags (e.g., 0010,0020; 0020,000D) is visible over the main application."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "The agent saved a screenshot of the DICOM metadata window to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal output confirms the creation of '~/DICOM/exports/dicom_info_screen.png'."
+        },
+        {
+            "id": "text_file_created",
+            "description": "The agent created the routing_info.txt file in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal command shows 'routing_info.txt' exists in '~/DICOM/exports/'."
+        },
+        {
+            "id": "correct_metadata_extraction",
+            "description": "The agent extracted the specific Patient ID, Study UID, and Series UID from the GUI into the text file.",
+            "points": 40,
+            "visual_evidence": "The content of 'routing_info.txt' is displayed (via cat or text editor) and matches the values seen in the DICOM metadata GUI screenshot."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the GUI to find the information rather than just using command-line tools like dcmdump.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the DICOM viewer menus or the metadata window being active."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the values from the task prompt or external notes without opening the file.",
+            "visual_evidence": "The agent is seen actively highlighting or viewing the specific tags (0010,0020, etc.) within the application interface."
+        },
+        {
+            "id": "genuine_screenshot_capture",
+            "description": "The saved screenshot is a capture of the actual application state, not a placeholder image.",
+            "visual_evidence": "The file 'dicom_info_screen.png' matches the desktop environment and application state shown in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The DICOM data will likely belong to one of two patients: PatientID '556342B' (CT scan) or '322-292-73-6' (MR scan). The text file must follow the exact format: 'PatientID: [Value]', 'StudyUID: [Value]', and 'SeriesUID: [Value]'. The expected paths are /home/ga/DICOM/exports/routing_info.txt and /home/ga/DICOM/exports/dicom_info_screen.png."
+}

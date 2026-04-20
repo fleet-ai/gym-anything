@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_user_preferences@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the Odoo system as the admin user.",
+            "points": 10,
+            "visual_evidence": "The Odoo dashboard or home screen is visible, and the user avatar/name in the top right corner indicates 'admin'."
+        },
+        {
+            "id": "navigate_to_preferences",
+            "description": "Agent navigates to the user's personal preferences/profile settings page.",
+            "points": 15,
+            "visual_evidence": "A settings dialog or page titled 'My Profile' or 'Preferences' is open, showing user-specific configuration fields."
+        },
+        {
+            "id": "set_timezone",
+            "description": "Agent selects 'America/Chicago' in the Timezone dropdown field.",
+            "points": 30,
+            "visual_evidence": "The 'Timezone' field is visible and contains the text 'America/Chicago'."
+        },
+        {
+            "id": "set_notification_preference",
+            "description": "Agent selects 'Handle by Emails' in the Notification preference field.",
+            "points": 30,
+            "visual_evidence": "The 'Notification' or 'Email Messages and Notifications' field is visible and set to 'Handle by Emails'."
+        },
+        {
+            "id": "save_preferences",
+            "description": "Agent saves the updated preferences.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save' button, or a notification/toast message appears saying 'Settings saved' or the page transitions back to a saved state."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI elements, and dropdown selections within the browser, not a command-line interface."
+        },
+        {
+            "id": "correct_user_context",
+            "description": "The agent modified the preferences for the 'admin' user specifically.",
+            "visual_evidence": "The user profile being edited is clearly identified as 'admin' in the top right corner or the profile header."
+        },
+        {
+            "id": "no_shortcut_url",
+            "description": "The agent navigated through the UI menus rather than jumping to a final success state.",
+            "visual_evidence": "The trajectory shows the sequence of clicking the user menu and selecting 'My Profile' or 'Preferences'."
+        }
+    ],
+    "privileged_info_for_vlm": "The admin user credentials are admin/admin. The target Timezone must be exactly 'America/Chicago'. The Notification preference 'Handle by Emails' corresponds to the internal value 'email'. Verification is successful only if both fields are updated and the 'Save' action is performed within the Odoo web GUI."
+}

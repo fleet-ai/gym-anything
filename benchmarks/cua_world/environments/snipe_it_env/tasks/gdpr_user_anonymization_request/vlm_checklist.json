@@ -1,0 +1,59 @@
+{
+    "task_id": "gdpr_user_anonymization_request@1",
+    "task_completion": [
+        {
+            "id": "asset_checked_in",
+            "description": "Check in Klaus Weber's MacBook Air (EU-MAC-0142)",
+            "points": 20,
+            "visual_evidence": "Screenshot showing asset EU-MAC-0142 status changed to 'Ready to Deploy' or a success message confirming the check-in from Klaus Weber."
+        },
+        {
+            "id": "kweber_core_fields",
+            "description": "Update Klaus Weber's core profile fields (Name, Username, Email)",
+            "points": 15,
+            "visual_evidence": "User edit screen or profile view for Klaus Weber showing First Name: 'Anonymized', Last Name: 'User_KW', Username: 'anon_kw', and Email: 'gdpr_kw@anonymized.local'."
+        },
+        {
+            "id": "kweber_pii_and_access",
+            "description": "Clear Klaus Weber's PII fields, set Notes to 'GDPR Processed', and disable login",
+            "points": 15,
+            "visual_evidence": "User edit screen showing Phone, Address, City, State, Zip, Country, and Employee Number fields are empty; Notes field contains 'GDPR Processed'; and the 'Login Enabled' checkbox is unchecked."
+        },
+        {
+            "id": "srossi_core_fields",
+            "description": "Update Sofia Rossi's core profile fields (Name, Username, Email)",
+            "points": 15,
+            "visual_evidence": "User edit screen or profile view for Sofia Rossi showing First Name: 'Anonymized', Last Name: 'User_SR', Username: 'anon_sr', and Email: 'gdpr_sr@anonymized.local'."
+        },
+        {
+            "id": "srossi_pii_and_access",
+            "description": "Clear Sofia Rossi's PII fields, set Notes to 'GDPR Processed', and disable login",
+            "points": 15,
+            "visual_evidence": "User edit screen showing Phone, Address, City, State, Zip, Country, and Employee Number fields are empty; Notes field contains 'GDPR Processed'; and the 'Login Enabled' checkbox is unchecked."
+        },
+        {
+            "id": "kwagner_unmodified",
+            "description": "Ensure Klaus Wagner's profile remains unchanged",
+            "points": 20,
+            "visual_evidence": "The agent should not navigate to or edit the profile of Klaus Wagner (kwagner). If viewed, the fields should remain original (e.g., First Name 'Klaus', Last Name 'Wagner')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Snipe-IT web interface rather than terminal commands to modify the database",
+            "visual_evidence": "Screenshots show the browser navigating through the Snipe-IT People and Assets menus and clicking 'Save' on user edit forms."
+        },
+        {
+            "id": "no_profile_deletion",
+            "description": "The agent did not delete the user profiles to achieve anonymization",
+            "visual_evidence": "Screenshots show the profiles being edited and saved, not the 'Delete' button being clicked or the users disappearing from the list."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent searched for or navigated to the specific users and assets mentioned",
+            "visual_evidence": "Screenshots show the agent typing 'Klaus Weber', 'Sofia Rossi', or 'EU-MAC-0142' into the search bars or selecting them from the user list."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific anonymization of two users: Klaus Weber (kweber) and Sofia Rossi (srossi). Klaus Wagner (kwagner) is a different employee and must not be touched. Asset EU-MAC-0142 must be checked in before or during the process. The specific strings for anonymization (e.g., 'User_KW', 'anon_sr') must match the template exactly. Login access must be disabled for both anonymized users."
+}

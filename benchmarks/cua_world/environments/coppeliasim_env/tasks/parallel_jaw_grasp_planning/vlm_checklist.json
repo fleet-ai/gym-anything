@@ -1,0 +1,53 @@
+{
+    "task_id": "parallel_jaw_grasp_planning@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_initialization",
+            "description": "CoppeliaSim is launched and the ZMQ Remote API is active on port 23000.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible, and the terminal or script logs show a successful connection to the ZMQ API."
+        },
+        {
+            "id": "scene_setup",
+            "description": "An asymmetric cuboid workpiece and a virtual gripper (dummy with two proximity sensors) are created in the scene.",
+            "points": 15,
+            "visual_evidence": "The 3D scene view shows a cuboid at the origin and a dummy object with two ray-type proximity sensor lines pointing toward each other."
+        },
+        {
+            "id": "grasp_sampling_execution",
+            "description": "The agent executes a loop or script that moves the gripper through at least 30 distinct candidate poses.",
+            "points": 25,
+            "visual_evidence": "The simulation shows the gripper dummy jumping to various positions/orientations around the cuboid, or terminal logs show a counter reaching at least 30."
+        },
+        {
+            "id": "csv_data_export",
+            "description": "The evaluation data is exported to grasp_evaluations.csv with the required 11 columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal 'cat' command shows /home/ga/Documents/CoppeliaSim/exports/grasp_evaluations.csv containing columns like pose_id, normal_dot_product, and score."
+        },
+        {
+            "id": "json_summary_export",
+            "description": "The optimal grasp summary is exported to optimal_grasp.json with the required fields.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal 'cat' command shows /home/ga/Documents/CoppeliaSim/exports/optimal_grasp.json containing total_poses_tested (>=30), best_score, and best_pose_coords."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim environment rather than just creating static files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application window active and the 3D scene changing as the script runs."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the CSV/JSON content without running a script.",
+            "visual_evidence": "The agent is seen writing and executing a Python script that uses the 'sim' or 'RemoteAPIClient' library."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific paths required by the task for exports.",
+            "visual_evidence": "The code or terminal commands explicitly reference /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must test at least 30 poses. The output files must be located at /home/ga/Documents/CoppeliaSim/exports/grasp_evaluations.csv and /home/ga/Documents/CoppeliaSim/exports/optimal_grasp.json. The grasp quality score must be derived from the dot product of surface normals at contact points. Note that while 30 poses are required, there is no specific minimum number of 'valid' grasps (successful detections) mandated by the underlying task logic, though the JSON must report how many were found."
+}

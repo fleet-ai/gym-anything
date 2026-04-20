@@ -1,0 +1,59 @@
+{
+    "task_id": "quantify_pv_heatwave_loss@1",
+    "task_completion": [
+        {
+            "id": "load_baseline_data",
+            "description": "Load the baseline weather file from the specified path.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing the reading of '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "modify_weather_data",
+            "description": "Increase dry bulb temperature by exactly 10°C for all hours in July (Month 7).",
+            "points": 20,
+            "visual_evidence": "Code logic showing a conditional filter for Month == 7 and an addition of 10 to the temperature column."
+        },
+        {
+            "id": "save_heatwave_csv",
+            "description": "Save the modified weather data to the specified heatwave file path with the SAM header preserved.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the creation of '/home/ga/SAM_Weather_Data/phoenix_heatwave.csv'."
+        },
+        {
+            "id": "pysam_simulation_setup",
+            "description": "Configure PySAM Pvwattsv8 with 10 MW capacity and specific parameters (module_type 0, array_type 0, tilt 20, azimuth 180, losses 14.08).",
+            "points": 20,
+            "visual_evidence": "Code showing PySAM/Pvwattsv8 initialization and setting system_capacity to 10000 (or 10MW equivalent) and other specified parameters."
+        },
+        {
+            "id": "calculate_july_metrics",
+            "description": "Run simulations for both files and calculate the absolute and percentage energy loss for July.",
+            "points": 20,
+            "visual_evidence": "Code or output showing the extraction of July energy (indices 4344 to 5087) and the calculation of the difference and percentage."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Export the final results to the specified JSON file with all required keys.",
+            "points": 15,
+            "visual_evidence": "Code or terminal command 'cat' showing the content of '/home/ga/Documents/SAM_Projects/heatwave_impact.json' with keys like 'july_yield_loss_percent'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't hardcode the final energy values without running a simulation.",
+            "visual_evidence": "The agent should be seen importing 'pysam' or 'PySAM.Pvwattsv8' and calling the 'execute()' method."
+        },
+        {
+            "id": "correct_july_range",
+            "description": "Verify the agent correctly identified July (Month 7) for the temperature increase.",
+            "visual_evidence": "Code should explicitly reference month 7 or the specific hour range for July (4344-5087)."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the exact file paths specified in the task.",
+            "visual_evidence": "Screenshots should show the specific paths /home/ga/SAM_Weather_Data/ and /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline file is 'phoenix_az_tmy.csv'. The heatwave file must be 'phoenix_heatwave.csv'. The temperature increase is exactly 10°C for Month 7. System capacity is 10 MW (10,000 kW). Expected July yield loss percentage should be between 3.0% and 6.0% (typically around 4.4%). The JSON must contain: baseline_weather_file, heatwave_weather_file, system_capacity_kw, baseline_july_energy_kwh, heatwave_july_energy_kwh, july_absolute_loss_kwh, and july_yield_loss_percent."
+}

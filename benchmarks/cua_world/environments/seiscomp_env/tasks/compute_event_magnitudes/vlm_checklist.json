@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_event_magnitudes@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp",
+            "description": "Open the SeisComP database or event management interface.",
+            "points": 10,
+            "visual_evidence": "The SeisComP GUI (e.g., scolv or scevent) is visible on the screen."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "Locate and select the 2024 Noto Peninsula earthquake event in the database.",
+            "points": 15,
+            "visual_evidence": "The event list shows the Noto Peninsula earthquake highlighted or selected, typically with a date around January 1, 2024."
+        },
+        {
+            "id": "calculate_mb",
+            "description": "Trigger or view the calculation for the mb (Body Wave) magnitude.",
+            "points": 25,
+            "visual_evidence": "The magnitude tab or calculation window shows 'mb' as a processed or selected magnitude type with an associated value."
+        },
+        {
+            "id": "calculate_mlv",
+            "description": "Trigger or view the calculation for the MLv (Local) magnitude.",
+            "points": 25,
+            "visual_evidence": "The magnitude tab or calculation window shows 'MLv' as a processed or selected magnitude type with an associated value."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the summary report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command shows the creation of /home/ga/magnitude_report.txt."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "Ensure the report contains the EventID, mb value, and MLv value in the correct format.",
+            "points": 15,
+            "visual_evidence": "The file /home/ga/magnitude_report.txt is displayed with the required labels (EventID, mb, MLv) and numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the SeisComP GUI rather than just using terminal scripts to generate the file.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, or window navigation within the SeisComP graphical interface."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the final values into a file without opening the database.",
+            "visual_evidence": "The trajectory shows the agent browsing the event list and magnitude tabs before writing the report."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent accessed the specific event details for the Noto Peninsula earthquake.",
+            "visual_evidence": "The SeisComP 'Origin' or 'Magnitude' tabs show data specific to the Noto Peninsula event (e.g., coordinates or station arrivals)."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must find the 2024 Noto Peninsula earthquake (Case ID: us6000m0xl) in SeisComP. It must extract the 'mb' and 'MLv' magnitude values. The final report must be saved to /home/ga/magnitude_report.txt. The values in the report are considered correct if they match the database values within a 0.1 tolerance."
+}

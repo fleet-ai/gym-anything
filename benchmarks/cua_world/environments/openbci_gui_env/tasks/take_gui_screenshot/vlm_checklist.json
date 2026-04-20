@@ -1,0 +1,54 @@
+{
+    "task_id": "take_gui_screenshot@1",
+    "task_completion": [
+        {
+            "id": "gui_active_window",
+            "description": "The OpenBCI GUI window is the active, focused window.",
+            "points": 15,
+            "visual_evidence": "The OpenBCI GUI window is in the foreground, and its title bar or window borders indicate it is the active application."
+        },
+        {
+            "id": "synthetic_session_running",
+            "description": "The GUI shows an active Synthetic EEG session.",
+            "points": 15,
+            "visual_evidence": "The 'Start Data Stream' button is toggled to 'Stop Data Stream', and live scrolling waveforms are visible in the EEG channels."
+        },
+        {
+            "id": "expert_mode_active",
+            "description": "Expert Mode is enabled in the GUI.",
+            "points": 15,
+            "visual_evidence": "The 'Expert Mode' toggle/button is in the 'On' state, or the UI layout reflects expert-level controls."
+        },
+        {
+            "id": "screenshot_trigger",
+            "description": "The agent triggers the screenshot functionality using the specific keyboard shortcut.",
+            "points": 30,
+            "visual_evidence": "The agent is seen typing the 'm' key while the OpenBCI GUI is focused, or a visual notification/flash appears in the GUI indicating a screenshot was captured."
+        },
+        {
+            "id": "file_saved_verification",
+            "description": "The agent verifies the screenshot file exists in the correct directory.",
+            "points": 25,
+            "visual_evidence": "A file manager window or terminal 'ls' command shows a new image file (typically named with a timestamp) inside the '~/Documents/OpenBCI_GUI/Screenshots/' folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_screenshot_tools",
+            "description": "The agent did not use system-level screenshot tools like 'scrot' or 'gnome-screenshot'.",
+            "visual_evidence": "The terminal history or process list does not show external screenshot commands; the action is performed via the GUI's internal shortcut 'm'."
+        },
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the OpenBCI GUI rather than just simulating a file creation.",
+            "points": 0,
+            "visual_evidence": "The mouse cursor or focus indicators show the agent clicking into the OpenBCI GUI before pressing the shortcut key."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent did not manually move a file to the destination to fake success.",
+            "visual_evidence": "The file appears in the Screenshots folder immediately following the 'm' key press without 'mv' or 'cp' commands being used in a terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenBCI GUI (v5.2.2) has a built-in screenshot feature triggered by pressing the lowercase 'm' key when the application is in Expert Mode. Screenshots are automatically saved to the directory '~/Documents/OpenBCI_GUI/Screenshots/'. The agent must use this specific application shortcut rather than OS-level print-screen tools."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "calculate_tax_projections@1",
+    "task_completion": [
+        {
+            "id": "open_libreoffice_base",
+            "description": "LibreOffice Base is opened with the Chinook database loaded.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base application window is visible, showing the database name or tables like 'Invoice' and 'Customer'."
+        },
+        {
+            "id": "query_design_setup",
+            "description": "A new query is being created in Design View or SQL View involving the 'Invoice' and 'Customer' tables.",
+            "points": 15,
+            "visual_evidence": "The Query Design window or SQL editor is open, showing both 'Invoice' and 'Customer' tables or a JOIN statement between them."
+        },
+        {
+            "id": "filter_criteria_applied",
+            "description": "The query filters results for customers in 'USA' or 'Canada'.",
+            "points": 15,
+            "visual_evidence": "In the Criterion row of the 'Country' column (Design View) or in the WHERE clause (SQL View), 'USA' and 'Canada' are specified."
+        },
+        {
+            "id": "calculated_columns_defined",
+            "description": "The query includes calculated fields for CustomerName (concatenation), ProjectedTax (Total * 0.065), and ProjectedGrandTotal (Total + Tax).",
+            "points": 25,
+            "visual_evidence": "The field list or SQL text shows expressions for concatenating names and performing the tax math (0.065) and rounding."
+        },
+        {
+            "id": "query_results_verification",
+            "description": "The query is executed, showing the correct columns and sorted by InvoiceId.",
+            "points": 25,
+            "visual_evidence": "A data grid is visible with columns: InvoiceId, CustomerName, OriginalTotal, ProjectedTax, and ProjectedGrandTotal. InvoiceId values are in ascending order."
+        },
+        {
+            "id": "save_query_and_file",
+            "description": "The query is saved with the specific name 'NorthAmericaTaxImpact' and the database file is saved.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog or the Queries pane in the main window shows the name 'NorthAmericaTaxImpact'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just executing a script in the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, the Query Design window, or the SQL editor within the app."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type out the results in a text editor or spreadsheet to fake the output.",
+            "visual_evidence": "The results are displayed within the LibreOffice Base query result grid, not a static text file or external image."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent used SQL/Query expressions for calculations rather than hardcoding values.",
+            "visual_evidence": "The SQL view or Design view shows formulas like '* 0.065' or '||' / 'CONCAT' rather than literal numeric values for every row."
+        }
+    ],
+    "privileged_info_for_vlm": "The query must be named 'NorthAmericaTaxImpact'. It should return exactly 147 rows. Required columns: InvoiceId (sorted ASC), CustomerName (FirstName + LastName), OriginalTotal (Invoice.Total), ProjectedTax (Total * 0.065 rounded to 2), and ProjectedGrandTotal (Total + Tax rounded to 2). Filter: Country must be 'USA' or 'Canada'."
+}

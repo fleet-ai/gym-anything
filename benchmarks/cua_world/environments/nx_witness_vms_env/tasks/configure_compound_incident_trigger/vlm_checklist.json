@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_compound_incident_trigger@1",
+    "task_completion": [
+        {
+            "id": "open_camera_rules",
+            "description": "Open the Camera Rules dialog for the 'Entrance Camera'.",
+            "points": 10,
+            "visual_evidence": "The 'Camera Rules' or 'Event Rules' window is open, with 'Entrance Camera' selected or visible in the context."
+        },
+        {
+            "id": "create_soft_trigger",
+            "description": "Create a new Soft Trigger named 'Report Incident'.",
+            "points": 15,
+            "visual_evidence": "An Event Rule is visible with 'Event' set to 'Soft Trigger' and the 'Name' field set to 'Report Incident'."
+        },
+        {
+            "id": "configure_bookmark_action",
+            "description": "Configure the first action to create a bookmark with a 1-minute duration and 'Manual_Report' tag.",
+            "points": 25,
+            "visual_evidence": "An action is set to 'Create Bookmark'. The 'Fixed Duration' is set to '1:00' (or 60s) and the 'Tags' field contains 'Manual_Report'."
+        },
+        {
+            "id": "configure_recording_action",
+            "description": "Configure the second action to start recording for 5 minutes at Best/High quality.",
+            "points": 25,
+            "visual_evidence": "A second action is set to 'Camera Recording'. The 'Duration' is set to '5:00' (or 300s) and 'Quality' is set to 'Best' or 'High'."
+        },
+        {
+            "id": "set_permissions_all_users",
+            "description": "Ensure the trigger is visible to all users.",
+            "points": 10,
+            "visual_evidence": "In the Soft Trigger settings, the 'Available to' or 'Permissions' field is set to 'All Users'."
+        },
+        {
+            "id": "verify_button_on_overlay",
+            "description": "Verify the 'Report Incident' button appears on the Entrance Camera overlay.",
+            "points": 15,
+            "visual_evidence": "The 'Entrance Camera' live view is visible with a clickable button labeled 'Report Incident' on the right-hand side or bottom overlay."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Nx Witness Desktop Client GUI rather than just executing scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Nx Witness interface and dialog boxes being filled manually."
+        },
+        {
+            "id": "no_hardcoded_api_bypass",
+            "description": "The agent did not simply run a python script to bypass the UI configuration.",
+            "visual_evidence": "The trajectory shows the step-by-step configuration within the Camera Rules menu, not just a terminal window."
+        },
+        {
+            "id": "genuine_resource_usage",
+            "description": "The agent interacted with the specific 'Entrance Camera' instance.",
+            "visual_evidence": "The camera name 'Entrance Camera' is clearly visible in the settings and the final overlay view."
+        }
+    ],
+    "privileged_info_for_vlm": "The target camera is 'Entrance Camera'. The soft trigger must be named 'Report Incident'. The bookmark action requires a duration of 60,000ms (1 min) and the tag 'Manual_Report'. The recording action requires a duration of 300,000ms (5 mins) at Best/High quality. The trigger must be available to 'All Users'."
+}

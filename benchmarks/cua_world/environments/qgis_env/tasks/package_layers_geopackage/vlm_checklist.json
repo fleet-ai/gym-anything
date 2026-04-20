@@ -1,0 +1,53 @@
+{
+    "task_id": "package_layers_geopackage@1",
+    "task_completion": [
+        {
+            "id": "load_source_layers",
+            "description": "Load the three source GeoJSON files (sample_polygon, sample_points, sample_lines) into QGIS.",
+            "points": 15,
+            "visual_evidence": "The QGIS Layers panel shows three layers corresponding to the source GeoJSON files."
+        },
+        {
+            "id": "initiate_package_export",
+            "description": "Open the 'Package Layers' tool or 'Save Features As' dialog to create the GeoPackage.",
+            "points": 15,
+            "visual_evidence": "A processing dialog (Package Layers) or 'Save Vector Layer as' window is visible on screen."
+        },
+        {
+            "id": "configure_gpkg_destination",
+            "description": "Set the destination path to /home/ga/GIS_Data/exports/project_data.gpkg.",
+            "points": 20,
+            "visual_evidence": "The file path '/home/ga/GIS_Data/exports/project_data.gpkg' is typed into the destination file or output GeoPackage field in a dialog."
+        },
+        {
+            "id": "rename_layers_correctly",
+            "description": "Ensure the layers are named 'zones', 'stations', and 'roads' within the GeoPackage settings.",
+            "points": 25,
+            "visual_evidence": "The 'Package Layers' dialog or export settings show the mapping of source layers to the specific names: zones, stations, and roads."
+        },
+        {
+            "id": "save_qgis_project",
+            "description": "Save the QGIS project file to the specified location.",
+            "points": 25,
+            "visual_evidence": "The 'Save Project' dialog shows the path /home/ga/GIS_Data/projects/delivery_project.qgs or the QGIS title bar reflects this file name."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the QGIS graphical interface rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, toolboxes, or dialog windows."
+        },
+        {
+            "id": "genuine_layer_processing",
+            "description": "The agent actually selected the layers for packaging rather than creating an empty file.",
+            "visual_evidence": "The 'Package Layers' tool shows the input layers selected in the multi-select toggle or list."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor to fake the project file.",
+            "visual_evidence": "The project file is saved via the QGIS 'Save' or 'Save As' interface, not a terminal 'touch' or 'gedit' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data consists of: sample_polygon.geojson (2 features, Polygon), sample_points.geojson (3 features, Point), and sample_lines.geojson (LineString). The final GeoPackage must be at /home/ga/GIS_Data/exports/project_data.gpkg with internal layer names 'zones', 'stations', and 'roads'. The project file must be saved as /home/ga/GIS_Data/projects/delivery_project.qgs."
+}

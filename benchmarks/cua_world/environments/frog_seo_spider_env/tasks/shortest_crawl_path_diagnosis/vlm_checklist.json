@@ -1,0 +1,53 @@
+{
+    "task_id": "shortest_crawl_path_diagnosis@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_site",
+            "description": "Agent navigates to books.toscrape.com in a web browser or SEO tool.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows books.toscrape.com and the website content is visible."
+        },
+        {
+            "id": "locate_target_book",
+            "description": "Agent locates the specific book 'It's Only the Himalayas'.",
+            "points": 15,
+            "visual_evidence": "The book title 'It's Only the Himalayas' is visible on the screen, or the URL ending in its-only-the-himalayas_981/index.html is active."
+        },
+        {
+            "id": "diagnose_crawl_depth",
+            "description": "Agent identifies the crawl depth or path for the specific book URL.",
+            "points": 25,
+            "visual_evidence": "An SEO tool interface or breadcrumb trail (Home > Books > Travel) is shown, indicating the depth level."
+        },
+        {
+            "id": "export_csv_report",
+            "description": "Agent exports the Crawl Path Report to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "A file explorer or save-as dialog shows the file being saved to ~/Documents/SEO/exports/himalayas_path.csv."
+        },
+        {
+            "id": "record_depth_value",
+            "description": "Agent records the integer depth value in the specified text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output shows the integer (2 or 3) being saved into ~/Documents/SEO/reports/depth_value.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the graphical interface to find the depth rather than just writing the file via terminal.",
+            "visual_evidence": "Screenshots show the browser or an SEO application being used to navigate the site structure."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not simply echo the value into the file without visiting the site.",
+            "visual_evidence": "The trajectory shows the agent browsing the catalogue or category pages before generating the report."
+        },
+        {
+            "id": "correct_target_path",
+            "description": "Agent used the specific export paths requested in the task, not default downloads.",
+            "visual_evidence": "The file paths in the UI or terminal match ~/Documents/SEO/exports/ and ~/Documents/SEO/reports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The book 'It's Only the Himalayas' is located under Home > Books > Travel. The crawl depth is 2 (if 0-indexed from Home) or 3 (if 1-indexed). The VLM should accept either 2 or 3 in depth_value.txt as long as it matches the logic shown in the agent's diagnostic tool. The target URL fragment is its-only-the-himalayas_981/index.html."
+}

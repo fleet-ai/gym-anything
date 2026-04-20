@@ -1,0 +1,53 @@
+{
+    "task_id": "wcst_perseveration_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw WCST data file at ~/pebl/data/wcst_data.csv",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'ls', or a python script opening the specific CSV file path."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent identifies and excludes participant sub-99999 from the analysis",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing a filter or conditional statement specifically targeting 'sub-99999' for exclusion."
+        },
+        {
+            "id": "scoring_implementation",
+            "description": "Agent implements the Heaton (1993) scoring logic, specifically identifying perseverative errors and conceptual level responses",
+            "points": 30,
+            "visual_evidence": "Python code or script execution showing logic for '10 consecutive correct', 'preceding rule match', and 'runs of >= 3 correct'."
+        },
+        {
+            "id": "json_report_creation",
+            "description": "Agent generates the JSON report file at the specified path ~/pebl/analysis/wcst_report.json",
+            "points": 15,
+            "visual_evidence": "Terminal command showing the creation of the file or a file explorer view showing the file exists in the analysis directory."
+        },
+        {
+            "id": "report_content_validation",
+            "description": "The JSON report contains the required metrics for participants and the group_means object",
+            "points": 30,
+            "visual_evidence": "A 'cat' or 'view' of the JSON file showing keys like 'perseverative_errors', 'conceptual_level_pct', 'excluded': true, and 'group_means'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent calculates metrics from the data rather than hardcoding the final values",
+            "visual_evidence": "The script should contain logic/loops to process the CSV rows, not just a dictionary of pre-calculated numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacts with the actual file system paths provided in the prompt",
+            "visual_evidence": "Commands or code show the specific paths ~/pebl/data/wcst_data.csv and ~/pebl/analysis/wcst_report.json."
+        },
+        {
+            "id": "logical_consistency",
+            "description": "The group means are calculated only from the 11 valid participants",
+            "visual_evidence": "The JSON output or code shows that the 'group_means' calculation excludes the 'sub-99999' data point."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 12 participants. Participant 'sub-99999' must be marked as 'excluded': true in the JSON. Perseverative errors can only occur after the first category (10 consecutive correct) is completed. The 4 key cards for matching are: 1 Red Triangle, 2 Green Stars, 3 Yellow Crosses, 4 Blue Circles. Conceptual Level Responses (CLR) are trials in runs of 3+ correct. Trials to first category is 128 if the participant never reaches 10 consecutive correct."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "troubleshoot_split_study@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_directory",
+            "description": "Agent navigates to and opens the ~/DICOM/qa_task/ directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or DICOM viewer showing the contents of /home/ga/DICOM/qa_task/."
+        },
+        {
+            "id": "inspect_dicom_metadata",
+            "description": "Agent inspects the metadata (specifically Patient ID) of the DICOM files in the directory.",
+            "points": 25,
+            "visual_evidence": "A DICOM viewer, terminal output (e.g., dcmdump or pydicom script), or property window showing Patient ID values for multiple files."
+        },
+        {
+            "id": "identify_mismatched_file",
+            "description": "Agent identifies the specific filename that has a different Patient ID from the others.",
+            "points": 25,
+            "visual_evidence": "The agent selecting, highlighting, or specifically querying a file that shows a 'Patient ID' starting with 'ERR_' or otherwise differing from the majority."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the report file at the specified path ~/DICOM/exports/mismatch_report.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command showing the creation or saving of a file at /home/ga/DICOM/exports/mismatch_report.txt."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains the correct filename and the incorrect Patient ID in the required format.",
+            "points": 25,
+            "visual_evidence": "The final content of mismatch_report.txt showing 'Filename: <name>' and 'PatientID: <id>'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_ground_truth_access",
+            "description": "The agent did not access the ground truth file directly.",
+            "visual_evidence": "The agent's history and screenshots should not show any access to /var/lib/app/ground_truth/qa_answer.json."
+        },
+        {
+            "id": "genuine_metadata_extraction",
+            "description": "The agent actually read the DICOM headers rather than guessing.",
+            "visual_evidence": "Screenshots must show the agent using a tool (pydicom, dcmdump, or a DICOM viewer) to inspect the internal tags of the files."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific export path requested in the task.",
+            "visual_evidence": "The file path /home/ga/DICOM/exports/mismatch_report.txt is visible during the saving process."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves 5 DICOM slices in /home/ga/DICOM/qa_task. One file is corrupted with a Patient ID typically following the pattern 'ERR_XXXXX'. The ground truth (filename and ID) is stored in /var/lib/app/ground_truth/qa_answer.json, which the agent should NOT access. The final report must be at /home/ga/DICOM/exports/mismatch_report.txt."
+}

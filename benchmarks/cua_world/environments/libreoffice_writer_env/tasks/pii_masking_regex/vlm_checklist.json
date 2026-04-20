@@ -1,0 +1,53 @@
+{
+    "task_id": "pii_masking_regex@1",
+    "task_completion": [
+        {
+            "id": "open_source_document",
+            "description": "The agent opens the original file '/home/ga/Documents/employee_roster_sensitive.odt' in a word processor (e.g., LibreOffice Writer).",
+            "points": 10,
+            "visual_evidence": "A screenshot showing LibreOffice Writer open with the file 'employee_roster_sensitive.odt' visible in the title bar or file path."
+        },
+        {
+            "id": "ssn_masking_format",
+            "description": "Social Security Numbers are masked to show only the last 4 digits in the format 'XXX-XX-1234'.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the document text showing SSNs where the first five digits are replaced by 'XXX-XX-' followed by four digits."
+        },
+        {
+            "id": "email_domain_redaction",
+            "description": "All email addresses have their domains replaced with '@redacted.com'.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the document showing email addresses ending specifically in '@redacted.com' (e.g., 'john.doe@redacted.com')."
+        },
+        {
+            "id": "yellow_highlighting",
+            "description": "A yellow highlight is applied to all modified SSNs and email addresses.",
+            "points": 20,
+            "visual_evidence": "Visual confirmation of yellow background color/highlighting behind the masked SSNs and the redacted email addresses."
+        },
+        {
+            "id": "save_sanitized_file",
+            "description": "The modified document is saved as '/home/ga/Documents/roster_sanitized.odt'.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog box showing the path '/home/ga/Documents/roster_sanitized.odt' or the file manager showing the new file exists after the operation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the word processor's GUI (Find/Replace, formatting tools) rather than just running a python/bash script in the terminal to generate the file.",
+            "visual_evidence": "Screenshots showing the Find & Replace dialog, formatting toolbars, or manual selection/highlighting within LibreOffice Writer."
+        },
+        {
+            "id": "no_hardcoded_copy_paste",
+            "description": "The agent did not simply copy-paste the entire content from a hidden source but interacted with the document elements.",
+            "visual_evidence": "Sequential screenshots showing the process of finding, replacing, or highlighting individual elements or groups of elements."
+        },
+        {
+            "id": "actual_application_usage",
+            "description": "The agent interacted with the LibreOffice Writer application interface.",
+            "visual_evidence": "The mouse cursor or focus indicators are seen interacting with LibreOffice menus, buttons, or text areas."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file contains 50 employee records. Original SSNs follow the format ###-##-####. The agent must change the first 5 digits to 'XXX-XX-' and change all email domains (e.g., @gmail.com, @company.com) to '@redacted.com'. Both the masked SSN and the new email must have a yellow highlight. The final output must be a new file named 'roster_sanitized.odt' in the same directory."
+}

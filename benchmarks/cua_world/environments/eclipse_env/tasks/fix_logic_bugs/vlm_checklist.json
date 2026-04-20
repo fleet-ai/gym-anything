@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_logic_bugs@1",
+    "task_completion": [
+        {
+            "id": "open_order_service",
+            "description": "Open the OrderService.java file in the Eclipse IDE editor.",
+            "points": 10,
+            "visual_evidence": "The Eclipse editor tab showing 'OrderService.java' and the source code within the EcommerceBackend project."
+        },
+        {
+            "id": "fix_discount_logic",
+            "description": "Fix the integer division bug for the 5% discount on orders over $500.",
+            "points": 25,
+            "visual_evidence": "Code change in OrderService.java showing the discount calculation modified to use floating-point math (e.g., 5.0 / 100.0 or 0.05) instead of (5 / 100)."
+        },
+        {
+            "id": "fix_shipping_boundary",
+            "description": "Fix the boundary condition for free shipping on orders of exactly $100.00.",
+            "points": 20,
+            "visual_evidence": "Code change in OrderService.java showing the condition modified from 'subtotal > 100.00' to 'subtotal >= 100.00'."
+        },
+        {
+            "id": "fix_tax_fallthrough",
+            "description": "Fix the switch-case fallthrough for 'NJ' tax calculation.",
+            "points": 25,
+            "visual_evidence": "Code change in OrderService.java showing a 'break;' statement added after the 'NJ' case or a return statement that prevents falling through to the default case."
+        },
+        {
+            "id": "run_unit_tests",
+            "description": "Execute the unit tests in OrderServiceTest.java and show they pass.",
+            "points": 20,
+            "visual_evidence": "The JUnit view in Eclipse showing a green bar or terminal output showing 'Tests run: X, Failures: 0, Errors: 0' for OrderServiceTest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "Verify that OrderServiceTest.java was not modified to force a pass.",
+            "visual_evidence": "The agent should not have the OrderServiceTest.java file open in an editor with unsaved changes or visible modifications to the assertions."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "Verify the agent used the Eclipse IDE features to edit and run code.",
+            "visual_evidence": "Screenshots showing the Eclipse editor, Project Explorer, and JUnit runner interface rather than just terminal-only manipulation."
+        },
+        {
+            "id": "logical_fix_application",
+            "description": "Verify the fixes were applied to the logic, not just hardcoding return values for specific test cases.",
+            "visual_evidence": "The code in OrderService.java should show general logic fixes (e.g., using variables/operators) rather than 'if (subtotal == 501) return ...'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/eclipse-workspace/EcommerceBackend. The three specific bugs to fix in OrderService.java are: 1) Change '5 / 100' (which is 0 in Java integer division) to '0.05' or '5.0 / 100.0'. 2) Change 'subtotal > 100.00' to 'subtotal >= 100.00' to include the $100 boundary. 3) Add a 'break;' statement to the 'NJ' case in the tax calculation switch block to prevent it from falling through to the default/error case. The agent must not modify OrderServiceTest.java."
+}

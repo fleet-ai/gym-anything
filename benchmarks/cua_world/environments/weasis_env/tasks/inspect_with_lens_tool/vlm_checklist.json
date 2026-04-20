@@ -1,0 +1,53 @@
+{
+    "task_id": "inspect_with_lens_tool@1",
+    "task_completion": [
+        {
+            "id": "dicom_viewer_launched",
+            "description": "The DICOM viewer application is open and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "A window showing a medical imaging interface (e.g., Rubo Medical or similar DICOM viewer) is active."
+        },
+        {
+            "id": "image_loaded",
+            "description": "A DICOM image (e.g., X-Ray Angiography) is loaded into the viewer's main viewport.",
+            "points": 15,
+            "visual_evidence": "A medical X-ray or angiography scan is displayed within the application workspace."
+        },
+        {
+            "id": "lens_tool_selected",
+            "description": "The Lens or Magnifying Glass tool is selected from the application toolbar.",
+            "points": 20,
+            "visual_evidence": "The Lens icon in the toolbar is highlighted, or the cursor has changed to a magnifying glass icon."
+        },
+        {
+            "id": "lens_overlay_active",
+            "description": "The magnifying lens overlay is actively positioned over a portion of the DICOM image.",
+            "points": 30,
+            "visual_evidence": "A circular or rectangular 'magnified' region is visible on top of the base image, showing a zoomed-in view of the micro-structures."
+        },
+        {
+            "id": "screenshot_saved_correctly",
+            "description": "A screenshot of the active lens inspection is captured and saved to the specific export path.",
+            "points": 25,
+            "visual_evidence": "A file manager window or terminal output confirms the creation of 'lens_inspection.png' in the '/home/ga/DICOM/exports/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the GUI to perform the inspection rather than just generating an image via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the toolbar and the lens being dragged/positioned over the image."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual DICOM viewer interface.",
+            "visual_evidence": "The UI elements (buttons, sliders, menus) belong to a standard DICOM viewer and are not just a static image viewer."
+        },
+        {
+            "id": "no_file_manipulation_cheating",
+            "description": "The agent did not simply rename an existing file to lens_inspection.png.",
+            "visual_evidence": "The content of the saved screenshot matches the state of the GUI (window positions, lens location) seen in the preceding trajectory steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using a DICOM viewer to inspect X-Ray Angiography (XA) samples. The final output must be a PNG file saved at '/home/ga/DICOM/exports/lens_inspection.png' and should be at least 50 KB in size. The VLM should verify that the 'Lens' tool is visually active (magnified area visible) in the final exported image."
+}

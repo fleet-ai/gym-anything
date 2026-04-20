@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_constants@1",
+    "task_completion": [
+        {
+            "id": "open_project_files",
+            "description": "The agent opens the specified Java files in the IDE (Eclipse) to begin refactoring.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing PhysicsConstants.java, UnitConverter.java, OrbitalMechanics.java, or NetworkConfig.java open in the editor tabs."
+        },
+        {
+            "id": "refactor_physics_constants",
+            "description": "Hard-coded literals in PhysicsConstants.java (9.80665, 299792458, etc.) are replaced with public static final constants.",
+            "points": 20,
+            "visual_evidence": "Code editor showing 'public static final double GRAVITY = 9.80665;' or similar UPPER_SNAKE_CASE declarations in PhysicsConstants.java."
+        },
+        {
+            "id": "refactor_unit_converter",
+            "description": "Hard-coded literals in UnitConverter.java (1.60934, 0.453592, 32.0, 1.8, 0.3048) are replaced with constants.",
+            "points": 20,
+            "visual_evidence": "Code editor showing constants like MILES_TO_KM or CELSIUS_OFFSET replacing raw numbers in UnitConverter.java."
+        },
+        {
+            "id": "refactor_remaining_files",
+            "description": "OrbitalMechanics.java and NetworkConfig.java are refactored to use constants instead of magic numbers.",
+            "points": 20,
+            "visual_evidence": "Code editor showing the removal of numeric literals in favor of named constants in the remaining two files."
+        },
+        {
+            "id": "successful_build",
+            "description": "The project is built/compiled without errors after the refactoring.",
+            "points": 15,
+            "visual_evidence": "The 'Problems' view in Eclipse showing 0 errors, or a console output showing 'BUILD SUCCESS'."
+        },
+        {
+            "id": "tests_passed",
+            "description": "JUnit tests are executed and pass successfully.",
+            "points": 15,
+            "visual_evidence": "The JUnit view in Eclipse showing a green bar and all tests passed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the Eclipse IDE interface for editing and building rather than just executing shell scripts to overwrite files.",
+            "visual_evidence": "Screenshots showing the cursor in the code editor, use of IDE menus, or the Eclipse 'Run' button."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent identifies the numbers within the files themselves rather than relying on external notes.",
+            "visual_evidence": "Screenshots showing the agent scrolling through or searching the source code files."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually triggers the JUnit test runner.",
+            "visual_evidence": "The JUnit tab being active and showing the specific test results for the PhysicsCalc project."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/PhysicsCalc. Key literals that must be replaced include: In PhysicsConstants.java: 9.80665, 299792458, 1.380649e-23, and 6.02214076e23. In UnitConverter.java: 1.60934 (miles), 0.453592 (pounds), 32.0 and 1.8 (Fahrenheit/Celsius), and 0.3048 (feet). All constants must be 'public static final' and use UPPER_SNAKE_CASE."
+}

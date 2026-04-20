@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_dicom_send@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_preferences",
+            "description": "Open the DICOM Send or DICOM Nodes configuration window in Weasis.",
+            "points": 10,
+            "visual_evidence": "A preferences or settings dialog box is visible, specifically showing DICOM node management or 'DICOM Send' options."
+        },
+        {
+            "id": "configure_node_details",
+            "description": "Enter the correct configuration details for the new DICOM destination.",
+            "points": 25,
+            "visual_evidence": "The input fields in the DICOM node configuration show: Description/Name: 'Local PACS', AE Title: 'LOCAL_PACS', Hostname: '127.0.0.1', and Port: '4242'."
+        },
+        {
+            "id": "save_dicom_node",
+            "description": "Save or add the newly configured DICOM node to the list of destinations.",
+            "points": 15,
+            "visual_evidence": "The 'Local PACS' node appears in the list of configured DICOM destinations within the Weasis interface."
+        },
+        {
+            "id": "initiate_send_command",
+            "description": "Select the loaded study and initiate the 'Send to DICOM' command.",
+            "points": 20,
+            "visual_evidence": "A right-click menu or toolbar action for 'Send to DICOM' or 'Export to DICOM node' is selected while a study is active."
+        },
+        {
+            "id": "select_destination_and_send",
+            "description": "Select 'Local PACS' as the target and confirm the transfer.",
+            "points": 15,
+            "visual_evidence": "A dialog box shows 'Local PACS' selected as the destination node before the user clicks 'Send' or 'OK'."
+        },
+        {
+            "id": "verify_transfer_success",
+            "description": "Confirm the DICOM series was successfully sent via a progress bar or success notification.",
+            "points": 15,
+            "visual_evidence": "A progress bar completes, or a notification/log entry within Weasis indicates 'Transfer successful' or 'Sent 100%'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to configure the node and send the data, rather than command-line tools like 'dcmsend'.",
+            "visual_evidence": "Screenshots show mouse cursor movements and interactions with the Weasis application windows, not just a terminal window."
+        },
+        {
+            "id": "no_manual_file_move",
+            "description": "The agent did not simply move files to the destination directory using the file manager.",
+            "visual_evidence": "The agent is seen interacting with the DICOM protocol settings in Weasis, not dragging and dropping files in a file explorer."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent actually typed or pasted the specific values into the Weasis UI.",
+            "visual_evidence": "The configuration fields (AE Title, Port, etc.) are visibly populated within the Weasis settings dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The destination must be configured with AE Title: LOCAL_PACS, Hostname: 127.0.0.1, and Port: 4242. A local receiver (storescp) is listening on these parameters and saves files to /tmp/pacs_received. Success is defined by the Weasis UI confirming the transfer to this specific node."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "patient_chart_review@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the medical system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the login page with 'admin' entered, followed by a dashboard or patient search screen."
+        },
+        {
+            "id": "patient_search_and_selection",
+            "description": "Agent searches for and selects the correct patient record for Mariana Hane.",
+            "points": 15,
+            "visual_evidence": "The name 'Mariana Hane' or PID '11' typed into a search bar and the corresponding patient record being opened."
+        },
+        {
+            "id": "data_extraction_navigation",
+            "description": "Agent navigates through different tabs (Medications, Problems, Encounters) to gather information.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent clicking on and viewing various sections of Mariana Hane's clinical chart."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "Agent opens a text editor or uses a file manager to create the summary file at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) open with content being typed, or a terminal showing the creation of /home/ga/Desktop/patient_summary.txt."
+        },
+        {
+            "id": "content_requirement_met",
+            "description": "The summary includes demographics, problems, medications, allergies, and encounters.",
+            "points": 25,
+            "visual_evidence": "The text within the editor or the saved file contains headers or sections for demographics, medications, allergies, and encounters."
+        },
+        {
+            "id": "file_length_and_save",
+            "description": "The final file is saved to the desktop and meets the minimum character count requirement.",
+            "points": 15,
+            "visual_evidence": "The text editor showing a substantial amount of text (approx. 1 paragraph or more) and the file 'patient_summary.txt' appearing on the desktop icon or in the file explorer."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the medical software GUI rather than just querying a database via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI buttons, and navigation through the application's menus."
+        },
+        {
+            "id": "no_precomputed_summary",
+            "description": "The agent did not simply paste a pre-written block of text without visiting the relevant chart sections.",
+            "visual_evidence": "The trajectory shows the agent visiting the specific tabs in the EHR (e.g., 'Allergies' tab) before that information appears in the text file."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent used the provided credentials and did not bypass the authentication layer.",
+            "visual_evidence": "The login screen is visible and interacted with at the start of the session."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Mariana Hane, PID 11, born 1978-06-24. The agent must find her specific record in the Synthea database. The final output must be a text file at /home/ga/Desktop/patient_summary.txt containing at least 500 characters of clinical data including her medications, active problems, and recent visits."
+}

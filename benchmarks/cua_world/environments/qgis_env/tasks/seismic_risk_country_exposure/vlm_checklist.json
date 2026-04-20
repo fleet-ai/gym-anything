@@ -1,0 +1,53 @@
+{
+    "task_id": "seismic_risk_country_exposure@1",
+    "task_completion": [
+        {
+            "id": "load_datasets",
+            "description": "Agent loads both the USGS earthquake GeoJSON and the Natural Earth country boundaries into a GIS tool or programming environment.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the files '/home/ga/GIS_Data/earthquakes_month.geojson' and '/home/ga/GIS_Data/world_countries.geojson' being opened or imported."
+        },
+        {
+            "id": "spatial_join_execution",
+            "description": "Agent performs a spatial join or point-in-polygon analysis to associate earthquake epicenters with country geometries.",
+            "points": 25,
+            "visual_evidence": "Code execution (e.g., geopandas.sjoin) or GUI tool usage (e.g., 'Join Attributes by Location') showing the intersection of points and polygons."
+        },
+        {
+            "id": "compute_statistics",
+            "description": "Agent calculates quake_count, mean_mag, max_mag, and risk_tier for each country.",
+            "points": 25,
+            "visual_evidence": "Code or table views showing the calculation of 'mean_mag' (float), 'max_mag' (float), and 'risk_tier' (string) based on the joined data."
+        },
+        {
+            "id": "filter_countries",
+            "description": "Agent filters the dataset to include only countries with at least one earthquake (quake_count > 0).",
+            "points": 15,
+            "visual_evidence": "A filtered attribute table or code snippet (e.g., df[df['quake_count'] > 0]) showing the removal of countries with no seismic activity."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Agent exports the final FeatureCollection to the specific required path.",
+            "points": 25,
+            "visual_evidence": "A terminal command or file explorer view confirming the creation of '/home/ga/GIS_Data/exports/country_seismic_exposure.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually type in the results or copy them from a hidden source.",
+            "visual_evidence": "The agent should be seen performing data processing steps (joining, grouping, or aggregating) rather than just writing a file with pre-filled values."
+        },
+        {
+            "id": "use_correct_paths",
+            "description": "Agent uses the local file paths provided in the instructions rather than downloading external data.",
+            "visual_evidence": "Code or file dialogs referencing '/home/ga/GIS_Data/' directly."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacts with the software environment (IDE, Terminal, or GIS GUI) to produce the result.",
+            "visual_evidence": "Sequential screenshots showing the progression of data loading, processing, and saving."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use '/home/ga/GIS_Data/earthquakes_month.geojson' and '/home/ga/GIS_Data/world_countries.geojson'. The output file '/home/ga/GIS_Data/exports/country_seismic_exposure.geojson' must be a FeatureCollection where each feature contains: 'ADMIN', 'ISO_A3', 'quake_count' (int), 'mean_mag' (float, 2 decimals), 'max_mag' (float), and 'risk_tier' (string). Only countries with quake_count > 0 should be included."
+}

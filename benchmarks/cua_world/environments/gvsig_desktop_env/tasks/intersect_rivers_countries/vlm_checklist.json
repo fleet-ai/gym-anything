@@ -1,0 +1,59 @@
+{
+    "task_id": "intersect_rivers_countries@1",
+    "task_completion": [
+        {
+            "id": "load_input_layers",
+            "description": "Both the countries and rivers shapefiles are loaded into the gvSIG View.",
+            "points": 10,
+            "visual_evidence": "The Table of Contents (TOC) panel shows 'ne_110m_admin_0_countries' and 'ne_110m_rivers_lake_centerlines' as active layers."
+        },
+        {
+            "id": "open_geoprocessing_toolbox",
+            "description": "The agent opens the Geoprocessing toolbox or the Intersect tool dialog.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Geoprocessing tools' or 'Intersection' is visible over the gvSIG workspace."
+        },
+        {
+            "id": "configure_intersection_parameters",
+            "description": "The agent selects the countries and rivers layers as the input/overlay layers for the intersection.",
+            "points": 20,
+            "visual_evidence": "The Intersection tool dialog shows the two input layers selected in the dropdown menus."
+        },
+        {
+            "id": "set_output_path",
+            "description": "The agent specifies the correct output path for the resulting shapefile.",
+            "points": 15,
+            "visual_evidence": "The output file path field in the tool dialog contains '/home/ga/gvsig_data/exports/rivers_by_country.shp'."
+        },
+        {
+            "id": "execute_intersection",
+            "description": "The agent runs the geoprocessing task and a progress bar or success message appears.",
+            "points": 25,
+            "visual_evidence": "A progress bar for 'Intersection' is visible, or a new layer named 'rivers_by_country' appears in the TOC."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "The resulting layer's attribute table contains fields from both original layers.",
+            "points": 20,
+            "visual_evidence": "The attribute table for 'rivers_by_country' is open, showing columns like 'NAME' (country) and 'name' (river) side-by-side."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task using the gvSIG GUI rather than executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements, menu selections, and dialog interactions within gvSIG, not a bash terminal."
+        },
+        {
+            "id": "genuine_geoprocessing",
+            "description": "The intersection was actually processed by the software, not just a renamed file.",
+            "visual_evidence": "The VLM should see the Geoprocessing toolbox dialog and the processing progress bar."
+        },
+        {
+            "id": "no_premade_output",
+            "description": "The agent did not simply load an existing file from the exports folder without running the tool.",
+            "visual_evidence": "The trajectory shows the step-by-step configuration of the Intersection tool before the output layer appears."
+        }
+    ],
+    "privileged_info_for_vlm": "The input countries layer contains fields 'NAME', 'ADMIN', 'CONTINENT', and 'POP_EST'. The input rivers layer contains 'name', 'scalerank', and 'featurecla'. The final output must be saved to '/home/ga/gvsig_data/exports/rivers_by_country.shp'. A successful intersection will result in an attribute table where a single row contains both the country name (NAME) and the river name (name)."
+}

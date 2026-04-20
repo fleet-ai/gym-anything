@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_legal_pdf_archive@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_wcag",
+            "description": "Navigate to the WCAG 2.1 specification page in Firefox.",
+            "points": 10,
+            "visual_evidence": "The Firefox address bar shows 'https://www.w3.org/TR/WCAG21/' and the page content displays 'Web Content Accessibility Guidelines (WCAG) 2.1'."
+        },
+        {
+            "id": "open_print_dialog",
+            "description": "Open the Firefox native print dialog.",
+            "points": 10,
+            "visual_evidence": "The Firefox print overlay or system print dialog is visible over the webpage."
+        },
+        {
+            "id": "configure_orientation_and_size",
+            "description": "Set Orientation to Landscape and Paper Size to A4.",
+            "points": 20,
+            "visual_evidence": "In the print settings, 'Landscape' is selected and 'A4' is visible in the Paper Size dropdown."
+        },
+        {
+            "id": "configure_backgrounds_and_headers",
+            "description": "Enable 'Print backgrounds' and disable 'Print headers and footers' in More settings.",
+            "points": 20,
+            "visual_evidence": "In the 'More settings' section, the 'Print backgrounds' checkbox is checked and the 'Print headers and footers' checkbox is unchecked."
+        },
+        {
+            "id": "save_dialog_path",
+            "description": "Enter the specific filename and path in the Save As dialog.",
+            "points": 20,
+            "visual_evidence": "A file picker/save dialog is visible with 'WCAG21_Archive.pdf' entered in the name field and the directory set to '~/Documents' or 'Documents'."
+        },
+        {
+            "id": "final_confirmation",
+            "description": "Confirm the save and verify the file exists in the target location.",
+            "points": 20,
+            "visual_evidence": "The print/save dialogs close, and a file manager window or terminal 'ls' command shows 'WCAG21_Archive.pdf' inside the Documents folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use 'wkhtmltopdf' or 'pandoc' via terminal to create the PDF.",
+            "visual_evidence": "The agent is seen interacting with the Firefox GUI and print menu rather than just executing a single CLI command to generate the file."
+        },
+        {
+            "id": "native_print_dialog_usage",
+            "description": "The agent used the Firefox print interface as requested, not a third-party extension.",
+            "visual_evidence": "The screenshots show the standard Firefox 'Print' sidebar or the system-level print modal triggered from Firefox."
+        },
+        {
+            "id": "manual_setting_adjustment",
+            "description": "The agent manually expanded 'More settings' to toggle the required checkboxes.",
+            "visual_evidence": "Screenshots show the 'More settings' chevron being clicked or the expanded menu being visible to access background/header options."
+        }
+    ],
+    "privileged_info_for_vlm": "The WCAG 2.1 URL is https://www.w3.org/TR/WCAG21/. The required file path is ~/Documents/WCAG21_Archive.pdf. In Firefox's print dialog, 'Print backgrounds' and 'Print headers and footers' are located under the 'More settings' dropdown. Landscape orientation and A4 size must be explicitly selected in the print UI before clicking 'Print' or 'Save'."
+}

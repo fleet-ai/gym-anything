@@ -1,0 +1,56 @@
+{
+    "task_id": "netconvert_osm_import@1",
+    "task_completion": [
+        {
+            "id": "locate_input_file",
+            "description": "Agent locates the source OSM file in the specified directory.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing '/home/ga/SUMO_Scenarios/osm_import/bologna_center.osm' exists."
+        },
+        {
+            "id": "netconvert_command_execution",
+            "description": "Agent executes the netconvert command with the required input and output flags.",
+            "points": 20,
+            "visual_evidence": "Terminal screenshot showing 'netconvert --osm-files bologna_center.osm -o bologna_center.net.xml' or similar."
+        },
+        {
+            "id": "geometry_and_topology_flags",
+            "description": "Agent includes flags to remove geometry nodes, guess ramps/roundabouts, and remove isolated edges.",
+            "points": 25,
+            "visual_evidence": "Command line arguments including '--geometry.remove', '--ramps.guess', '--roundabouts.guess', and '--remove-edges.isolated' (or their short forms)."
+        },
+        {
+            "id": "projection_and_join_settings",
+            "description": "Agent applies UTM projection and sets the junction join distance to 15 meters.",
+            "points": 25,
+            "visual_evidence": "Command line arguments including '--proj.utm' and '--junctions.join --junctions.join-dist 15'."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The SUMO network file is successfully generated in the target directory.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'Success' or a file listing showing 'bologna_center.net.xml' with a non-zero file size (approx 2.7MB)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_placeholder_files",
+            "description": "Agent did not simply 'touch' or create an empty file to mimic success.",
+            "points": 0,
+            "visual_evidence": "File size of bologna_center.net.xml should be significantly larger than 0KB (verified threshold is >50KB)."
+        },
+        {
+            "id": "genuine_command_usage",
+            "description": "Agent uses the netconvert utility rather than manually editing XML or renaming files.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the execution of the 'netconvert' binary and its standard log output."
+        },
+        {
+            "id": "correct_directory_context",
+            "description": "Agent works within the specified path /home/ga/SUMO_Scenarios/osm_import/.",
+            "points": 0,
+            "visual_evidence": "The working directory in the terminal prompt or the absolute paths used in commands match the instructions."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is located at /home/ga/SUMO_Scenarios/osm_import/bologna_center.osm. The output must be named bologna_center.net.xml in the same folder. Required netconvert flags: --proj.utm, --junctions.join-dist 15, --geometry.remove, --ramps.guess, --roundabouts.guess, and --remove-edges.isolated. A successful conversion should result in a file size of approximately 2.7MB (minimum 50KB)."
+}

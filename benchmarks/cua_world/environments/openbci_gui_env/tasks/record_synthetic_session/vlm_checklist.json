@@ -1,0 +1,59 @@
+{
+    "task_id": "record_synthetic_session@1",
+    "task_completion": [
+        {
+            "id": "open_openbci_gui",
+            "description": "The OpenBCI GUI application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is open on the desktop."
+        },
+        {
+            "id": "select_synthetic_mode",
+            "description": "The agent selects 'Synthetic (Board)' as the data source.",
+            "points": 10,
+            "visual_evidence": "The 'Synthetic' radio button or dropdown option is selected in the system control panel."
+        },
+        {
+            "id": "start_session",
+            "description": "The agent starts the session to begin data streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' button is clicked and the GUI transitions to the data visualization dashboard."
+        },
+        {
+            "id": "start_recording",
+            "description": "The agent initiates the recording of the synthetic data.",
+            "points": 20,
+            "visual_evidence": "The 'Start Recording' button is clicked, and the recording timer or status indicator changes to 'Recording'."
+        },
+        {
+            "id": "verify_duration",
+            "description": "The recording runs for at least 10 seconds.",
+            "points": 25,
+            "visual_evidence": "The recording timer in the GUI shows a duration of at least 00:00:10 before the recording is stopped."
+        },
+        {
+            "id": "stop_recording_and_session",
+            "description": "The agent stops the recording and the session.",
+            "points": 20,
+            "visual_evidence": "The 'Stop Recording' button is clicked, and the data stream is halted."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the OpenBCI GUI rather than using terminal commands to simulate files.",
+            "visual_evidence": "Screenshots show mouse cursor movements and button highlights within the OpenBCI GUI interface."
+        },
+        {
+            "id": "real_time_progression",
+            "description": "The recording duration progressed naturally in the GUI timer.",
+            "visual_evidence": "Sequential screenshots show the recording timer incrementing (e.g., from 2s to 10s) rather than jumping instantly."
+        },
+        {
+            "id": "synthetic_data_visuals",
+            "description": "The EEG traces show active synthetic waveforms during the recording.",
+            "visual_evidence": "The time-series graph displays moving waveforms consistent with synthetic EEG data generation."
+        }
+    ],
+    "privileged_info_for_vlm": "The default recording directory is /home/ga/Documents/OpenBCI_GUI/Recordings. A valid 10-second recording at the standard 250 Hz sample rate must contain approximately 2500 rows of data and result in a file size of roughly 167 KB. The VLM should verify the 'Synthetic' source is selected and the GUI timer reaches at least 10 seconds."
+}

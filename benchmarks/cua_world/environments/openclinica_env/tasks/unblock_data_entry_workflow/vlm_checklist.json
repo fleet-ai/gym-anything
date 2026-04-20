@@ -1,0 +1,59 @@
+{
+    "task_id": "unblock_data_entry_workflow@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into OpenClinica with the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenClinica dashboard or study home page is visible, showing the user 'root' is logged in."
+        },
+        {
+            "id": "navigate_to_rules",
+            "description": "Agent navigates to the Rule Management or Build Study section to locate the validation rule.",
+            "points": 15,
+            "visual_evidence": "A list of rules or a rule management interface is displayed, showing 'SYS_BP_MAX_160'."
+        },
+        {
+            "id": "disable_rule_assignment",
+            "description": "Agent disables or removes the assignment of rule SYS_BP_MAX_160 globally for the study.",
+            "points": 25,
+            "visual_evidence": "The status of rule 'SYS_BP_MAX_160' is shown as 'Removed', 'Inactive', or the assignment is deleted from the study configuration."
+        },
+        {
+            "id": "locate_subject_dm105",
+            "description": "Agent navigates to the subject matrix and selects subject DM-105.",
+            "points": 10,
+            "visual_evidence": "The Subject Matrix or Subject Details page for 'DM-105' is visible."
+        },
+        {
+            "id": "enter_vital_signs",
+            "description": "Agent enters the specific blood pressure values into the Vital Signs CRF for the Baseline Assessment.",
+            "points": 20,
+            "visual_evidence": "The Vital Signs CRF data entry screen shows Systolic: 165 and Diastolic: 95 entered into the respective fields."
+        },
+        {
+            "id": "complete_crf",
+            "description": "Agent saves the CRF and marks it as 'Complete'.",
+            "points": 20,
+            "visual_evidence": "The CRF status icon for the Baseline Vital Signs event changes to a 'completed' status (usually a green checkmark or solid icon) and the data is saved without validation errors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the OpenClinica web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and browser navigation within the OpenClinica UI rather than just terminal commands."
+        },
+        {
+            "id": "no_rule_bypass_cheating",
+            "description": "The agent actually disabled the rule rather than just trying to force-save the data with the rule still active.",
+            "visual_evidence": "Screenshots show the Rule Management screen where the specific rule 'SYS_BP_MAX_160' was modified or removed."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent manually navigated to the subject and CRF rather than using a direct URL shortcut to the data entry page.",
+            "visual_evidence": "The trajectory shows the sequence of clicking through the Subject Matrix to reach the specific CRF for DM-105."
+        }
+    ],
+    "privileged_info_for_vlm": "The target study is 'DM-TRIAL-2024'. The specific rule to disable is 'SYS_BP_MAX_160'. The target subject is 'DM-105'. The required data values for the Baseline Assessment Vital Signs CRF are Systolic: 165 and Diastolic: 95. The CRF must be marked as 'Complete' (not just 'Initial Data Entry')."
+}

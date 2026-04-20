@@ -1,0 +1,53 @@
+{
+    "task_id": "disable_channels_5_to_8@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI is launched and the control panel is visible.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is open, showing the 'SYSTEM CONTROL' panel or the main workspace."
+        },
+        {
+            "id": "synthetic_session_started",
+            "description": "A synthetic session is started and data is streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' button has been clicked, and the 'Start Data Stream' button (top left) is active or showing 'Stop Data Stream', with moving waveforms visible."
+        },
+        {
+            "id": "channels_5_to_8_disabled",
+            "description": "Channels 5, 6, 7, and 8 are toggled off in the Time Series widget.",
+            "points": 30,
+            "visual_evidence": "In the Time Series widget, the circular channel number buttons for 5, 6, 7, and 8 are greyed out or darkened compared to buttons 1-4."
+        },
+        {
+            "id": "four_channel_display_active",
+            "description": "The Time Series widget displays only waveforms for channels 1, 2, 3, and 4.",
+            "points": 25,
+            "visual_evidence": "The main graph area shows active scrolling waveforms for channels 1-4, while the rows for channels 5-8 are empty or flat-lined."
+        },
+        {
+            "id": "screenshot_saved_correctly",
+            "description": "A screenshot of the 4-channel configuration is captured using the GUI functionality.",
+            "points": 20,
+            "visual_evidence": "The agent triggers a screenshot (often indicated by a flash or a notification in the GUI console) and the final state shows the GUI with only 4 channels active."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent interacted with the GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor hovering over or clicking the channel toggle buttons (5-8) and the 'Start Data Stream' button."
+        },
+        {
+            "id": "genuine_synthetic_data",
+            "description": "The waveforms visible are characteristic of the OpenBCI Synthetic (Bio-potential) generator.",
+            "visual_evidence": "The Time Series widget shows rhythmic, synthetic sine-like or noise waves typical of the OpenBCI 'Synthetic' mode, not static images."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a drawing tool or terminal to 'fake' the screenshot file.",
+            "visual_evidence": "The screenshot 'four_channel_display.png' contains the full OpenBCI GUI interface, including the top bar and widget borders, not just a cropped graph."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must disable channels 5, 6, 7, and 8 by clicking the numbered buttons in the Time Series widget. The resulting screenshot 'four_channel_display.png' must be saved to ~/Documents/OpenBCI_GUI/Screenshots/. Only channels 1, 2, 3, and 4 should show active signal traces. The session must be in 'Synthetic' mode."
+}

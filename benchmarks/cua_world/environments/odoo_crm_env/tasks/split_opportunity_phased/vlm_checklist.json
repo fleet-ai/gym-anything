@@ -1,0 +1,53 @@
+{
+    "task_id": "split_opportunity_phased@1",
+    "task_completion": [
+        {
+            "id": "locate_original_opportunity",
+            "description": "Locate the original 'Azure Interior - Whole Office Design' opportunity in the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the original opportunity named 'Azure Interior - Whole Office Design' with a value of $120,000 on the screen before modification."
+        },
+        {
+            "id": "rename_and_update_phase_1",
+            "description": "Update the existing opportunity to 'Azure Interior - Design Phase' with $20,000 revenue and current month-end closing date.",
+            "points": 25,
+            "visual_evidence": "A form view or list view showing the opportunity name changed to 'Azure Interior - Design Phase', the 'Expected Revenue' field set to 20,000, and the 'Expected Closing' date set to the end of the current month."
+        },
+        {
+            "id": "create_phase_2_opportunity",
+            "description": "Create a new opportunity named 'Azure Interior - Implementation Phase' for Azure Interior.",
+            "points": 25,
+            "visual_evidence": "A creation form or new entry in the CRM pipeline with the name 'Azure Interior - Implementation Phase' and the customer 'Azure Interior'."
+        },
+        {
+            "id": "set_phase_2_details",
+            "description": "Set the revenue for the Implementation Phase to $100,000 and the closing date to ~3 months from today.",
+            "points": 20,
+            "visual_evidence": "The 'Expected Revenue' field for the Implementation Phase showing 100,000 and the 'Expected Closing' date set to approximately three months in the future."
+        },
+        {
+            "id": "verify_pipeline_visibility",
+            "description": "Ensure both opportunities are saved and visible in the CRM pipeline view.",
+            "points": 20,
+            "visual_evidence": "A Kanban or List view showing both 'Azure Interior - Design Phase' ($20,000) and 'Azure Interior - Implementation Phase' ($100,000) simultaneously."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Odoo web interface rather than executing database or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on Odoo buttons (Save, Create, Edit), and text entry into web forms rather than a terminal window."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the CRM module to find and edit the records.",
+            "visual_evidence": "The agent is seen clicking through the Odoo CRM menu and using the search bar or pipeline view rather than jumping to a final state via URL manipulation or scripts."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually typed or pasted the specific names and values into the Odoo fields.",
+            "visual_evidence": "The VLM should see the cursor in the 'Opportunity' and 'Expected Revenue' fields during the editing process."
+        }
+    ],
+    "privileged_info_for_vlm": "The original opportunity is 'Azure Interior - Whole Office Design' ($120,000). It must be split into: 1) 'Azure Interior - Design Phase' with $20,000 revenue and a closing date at the end of the current month. 2) 'Azure Interior - Implementation Phase' with $100,000 revenue and a closing date approximately 3 months from now. Both must belong to the customer 'Azure Interior'."
+}

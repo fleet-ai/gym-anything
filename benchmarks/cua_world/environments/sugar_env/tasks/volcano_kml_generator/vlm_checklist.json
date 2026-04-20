@@ -1,0 +1,53 @@
+{
+    "task_id": "volcano_kml_generator@1",
+    "task_completion": [
+        {
+            "id": "open_tool",
+            "description": "Agent opens the Terminal activity or Pippy (Python IDE) to begin the task.",
+            "points": 10,
+            "visual_evidence": "The Terminal window or Pippy IDE interface is visible on the Sugar desktop."
+        },
+        {
+            "id": "read_csv_source",
+            "description": "Agent accesses or displays the content of /home/ga/Documents/volcanoes.csv.",
+            "points": 15,
+            "visual_evidence": "Code in the editor or a 'cat' command in the terminal showing the CSV headers: Volcano Name, Country, Type, Latitude, Longitude, Elevation."
+        },
+        {
+            "id": "script_logic_filtering",
+            "description": "Agent writes code to filter for 'Stratovolcano' (case-insensitive) and Elevation > 3000.",
+            "points": 25,
+            "visual_evidence": "Visible Python code or script logic showing a conditional check for 'stratovolcano' in the Type column and a numerical comparison for elevation > 3000."
+        },
+        {
+            "id": "kml_structure_implementation",
+            "description": "Agent writes code to format the output as a KML file with the required XML tags and coordinate order.",
+            "points": 25,
+            "visual_evidence": "Code showing the construction of <Placemark>, <name>, <description>, and <coordinates> tags, specifically ensuring longitude comes before latitude."
+        },
+        {
+            "id": "file_generation_verification",
+            "description": "Agent executes the script and verifies the creation of /home/ga/Documents/high_stratovolcanoes.kml.",
+            "points": 25,
+            "visual_evidence": "A terminal command like 'ls' showing the new file exists, or a 'cat' command displaying the final KML content with the correct XML header and data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_kml_creation",
+            "description": "The agent should not manually type out the KML file content without running a script.",
+            "visual_evidence": "The VLM should check if the agent executed a script (Python or Bash) rather than just using a text editor to manually transcribe the data."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the Sugar Learning Platform UI elements.",
+            "visual_evidence": "Mouse cursor movements, highlighting of text, or clicking on activity icons in the Sugar ring/frame."
+        },
+        {
+            "id": "data_source_consistency",
+            "description": "The agent uses the provided CSV file path rather than hardcoding external data.",
+            "visual_evidence": "The script or command must explicitly reference '/home/ga/Documents/volcanoes.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The final KML file must contain exactly 7 volcanoes: Cotopaxi, Fuji, Popocatepetl, Kilimanjaro, Chimborazo, Pico de Teide, and Erebus. The coordinates in the <coordinates> tag MUST be in 'Longitude,Latitude' order. The description tag must follow the format 'Country: X, Elevation: Y m'. Any volcano with an elevation of 3000 exactly or a type other than Stratovolcano (e.g., Shield Volcano) must be excluded."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "regulatory_page_numbering@1",
+    "task_completion": [
+        {
+            "id": "open_document",
+            "description": "The agent opens the draft document in a word processor (e.g., LibreOffice Writer).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the document 'clinical_overview_draft.docx' open in a word processing application."
+        },
+        {
+            "id": "section_1_formatting",
+            "description": "Section 1 (Title Page) has no header and no page numbers.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the first page (ending at 'January 2025') showing empty header and footer areas."
+        },
+        {
+            "id": "section_2_header",
+            "description": "Section 2 (starting at Table of Contents) contains the correct header text.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the Table of Contents page showing the header 'Sorvimab — NDA 215847 — Clinical Overview'."
+        },
+        {
+            "id": "section_2_roman_numerals",
+            "description": "Section 2 uses centered lowercase Roman numeral page numbers starting at i.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the footer in Section 2 showing a centered 'i' (or 'ii', etc.) in lowercase Roman numerals."
+        },
+        {
+            "id": "section_3_header",
+            "description": "Section 3 (starting at 2.5.1) contains the correct header text.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the page starting with '2.5.1 Product Development Rationale' showing the header 'Sorvimab — NDA 215847 — Clinical Overview'."
+        },
+        {
+            "id": "section_3_arabic_numerals",
+            "description": "Section 3 uses centered Arabic numeral page numbers starting at 1.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the footer in Section 3 showing a centered '1' on the first page of that section."
+        },
+        {
+            "id": "save_formatted_document",
+            "description": "The document is saved with the specific filename 'clinical_overview_formatted.docx'.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the 'Save As' dialog or the application title bar showing the new filename 'clinical_overview_formatted.docx'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the word processor's GUI to format sections rather than just renaming files or using CLI tools.",
+            "visual_evidence": "Screenshots showing the agent interacting with 'Insert Section Break', 'Header/Footer' menus, or 'Page Number' formatting dialogs."
+        },
+        {
+            "id": "genuine_formatting",
+            "description": "The agent did not simply type numbers at the bottom of pages but used the actual page numbering feature.",
+            "visual_evidence": "The page number should appear within the footer boundary/field, often indicated by a gray background or specific alignment markers in the word processor."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use python-docx or terminal scripts to bypass the visual formatting task.",
+            "visual_evidence": "The trajectory shows active mouse movements and menu selections within the GUI application."
+        }
+    ],
+    "privileged_info_for_vlm": "The document must be split into 3 distinct sections using section breaks (not just page breaks). Section 1 (Title Page) ends at 'January 2025' and must be blank in headers/footers. Section 2 starts at 'Table of Contents', header is 'Sorvimab — NDA 215847 — Clinical Overview', footer is lowercase Roman (i, ii...). Section 3 starts at '2.5.1 Product Development Rationale', header is 'Sorvimab — NDA 215847 — Clinical Overview', footer is Arabic (1, 2...). The final file must be saved as /home/ga/Documents/clinical_overview_formatted.docx."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "meteorite_kml_generator@1",
+    "task_completion": [
+        {
+            "id": "open_csv_data",
+            "description": "The agent opens or views the source dataset at /home/ga/Documents/meteorite_landings.csv to understand the structure.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output showing the CSV headers (e.g., name, mass, year, reclat, reclong)."
+        },
+        {
+            "id": "create_python_script",
+            "description": "The agent creates the Python script file at /home/ga/Documents/generate_kml.py.",
+            "points": 15,
+            "visual_evidence": "A file explorer showing the new file or a text editor with the file path /home/ga/Documents/generate_kml.py visible in the title bar."
+        },
+        {
+            "id": "implement_filtering_logic",
+            "description": "The script contains logic to filter for mass >= 100,000, year >= 1970, and non-null coordinates.",
+            "points": 25,
+            "visual_evidence": "Code in the editor showing conditional statements or pandas filtering for 'mass' >= 100000 and 'year' >= 1970."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script to generate the KML file.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the command 'python3 /home/ga/Documents/generate_kml.py' being run without errors."
+        },
+        {
+            "id": "verify_kml_output",
+            "description": "The KML file is successfully created at /home/ga/Documents/massive_meteorites.kml.",
+            "points": 10,
+            "visual_evidence": "The file explorer showing massive_meteorites.kml in the /home/ga/Documents/ directory."
+        },
+        {
+            "id": "kml_content_validation",
+            "description": "The generated KML contains Placemarks with name, mass in description, and longitude,latitude coordinates.",
+            "points": 20,
+            "visual_evidence": "The KML file opened in a text editor showing <Placemark> tags with <name>, <description> containing mass values, and <coordinates> in 'long,lat' format."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_kml_creation",
+            "description": "The agent did not manually type out the KML file content instead of generating it via script.",
+            "visual_evidence": "The agent should be seen writing Python code that uses file I/O or a library like simplekml, rather than just typing XML tags into a blank file."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent actually processed the CSV file rather than hardcoding specific meteorite names found in a search.",
+            "visual_evidence": "The Python script should contain code that reads /home/ga/Documents/meteorite_landings.csv."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI environment (text editor, file manager) to perform tasks.",
+            "visual_evidence": "Screenshots show interaction with the desktop environment, code editors (like VS Code or Gedit), and file explorers."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/meteorite_landings.csv. The script must be at /home/ga/Documents/generate_kml.py. The output must be at /home/ga/Documents/massive_meteorites.kml. Filtering criteria: mass >= 100000, year >= 1970. KML coordinate format is strictly 'longitude,latitude,altitude' (altitude usually 0 or omitted), but the task specifically asks for longitude,latitude order."
+}

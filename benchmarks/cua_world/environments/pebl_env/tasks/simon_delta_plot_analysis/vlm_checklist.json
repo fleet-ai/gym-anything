@@ -1,0 +1,59 @@
+{
+    "task_id": "simon_delta_plot_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw data file at ~/pebl/data/simon_task_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal window or file explorer showing the CSV file being opened or read."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participant s99 from the main analysis calculations.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a filter operation (e.g., df[df['participant'] != 's99']) or a specific exclusion of s99."
+        },
+        {
+            "id": "individual_metrics_calculation",
+            "description": "Agent calculates mean RTs and Simon effects for the 25 valid participants using only correct trials.",
+            "points": 20,
+            "visual_evidence": "Code execution or output tables showing columns for mean_rt_congruent_ms, mean_rt_incongruent_ms, and simon_effect_ms."
+        },
+        {
+            "id": "quintile_binning",
+            "description": "Agent divides correct-trial RTs into five quintiles (Q1-Q5) for the delta plot analysis.",
+            "points": 25,
+            "visual_evidence": "Code showing the use of quantiles, bins, or pd.qcut to divide the RT distribution into 5 parts."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the final JSON report with the required structure at ~/pebl/analysis/simon_report.json.",
+            "points": 20,
+            "visual_evidence": "A file editor or terminal output showing the content of simon_report.json including 'participants' and 'group_delta_plot'."
+        },
+        {
+            "id": "s99_exclusion_record",
+            "description": "The JSON report explicitly contains an entry for s99 marked as excluded with a reason.",
+            "points": 10,
+            "visual_evidence": "The content of the JSON file showing \"id\": \"s99\", \"excluded\": true."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final Simon effect values or delta plot points without running calculations.",
+            "visual_evidence": "The agent's scripts should show logic for mean() and quantile() calculations rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent actually reads the provided CSV file rather than using a dummy dataset.",
+            "visual_evidence": "Terminal or IDE screenshots showing the path ~/pebl/data/simon_task_data.csv being loaded."
+        },
+        {
+            "id": "proper_tool_usage",
+            "description": "The agent uses appropriate data analysis tools (like Python/Pandas) to handle the 25-participant dataset.",
+            "visual_evidence": "Screenshots of a code editor or terminal running a script, not just a manual calculator."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 25 valid participants (s1-s25) and one invalid participant (s99). Participant s99 must be excluded from group averages but included in the JSON with 'excluded: true'. The analysis must only use trials where 'correct' == 1. The delta plot requires 5 quintiles (Q1-Q5). The final output must be saved to /home/ga/pebl/analysis/simon_report.json."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "redo_log_sizing_optimization@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle Database as SYSTEM or SYSDBA.",
+            "points": 10,
+            "visual_evidence": "A SQL tool (like SQL Plus or SQL Developer) showing a successful connection message or a prompt indicating the user is logged in as SYSTEM or SYS."
+        },
+        {
+            "id": "identify_current_logs",
+            "description": "Agent queries the current redo log configuration to identify the 50MB groups.",
+            "points": 10,
+            "visual_evidence": "A query result from V$LOG or V$LOGFILE showing groups with a size of approximately 52,428,800 bytes or 50MB."
+        },
+        {
+            "id": "create_new_512mb_groups",
+            "description": "Agent creates three new redo log groups with a size of 512MB.",
+            "points": 30,
+            "visual_evidence": "SQL commands (ALTER DATABASE ADD LOGFILE GROUP...) specifying '512M' and subsequent confirmation messages 'Database altered'."
+        },
+        {
+            "id": "switch_and_checkpoint",
+            "description": "Agent performs log switches to ensure the new groups can become active and old ones can be dropped.",
+            "points": 20,
+            "visual_evidence": "Execution of 'ALTER SYSTEM SWITCH LOGFILE' or 'ALTER SYSTEM CHECKPOINT' commands in the terminal or SQL interface."
+        },
+        {
+            "id": "remove_original_groups",
+            "description": "Agent drops the original 50MB redo log groups.",
+            "points": 20,
+            "visual_evidence": "SQL commands (ALTER DATABASE DROP LOGFILE GROUP...) targeting the original group numbers, followed by 'Database altered' confirmation."
+        },
+        {
+            "id": "verify_final_state",
+            "description": "Agent verifies that exactly three 512MB groups exist and are the only ones remaining.",
+            "points": 10,
+            "visual_evidence": "A final query of V$LOG showing exactly 3 rows, each with a size of 536,870,912 bytes (or 512MB)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_mock_responses",
+            "description": "The agent did not simulate or echo fake database output.",
+            "visual_evidence": "The UI/terminal shows standard Oracle Database headers, timing, and specific system-generated ORA- messages if errors occurred, rather than plain text blocks."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the database environment rather than just describing the steps.",
+            "visual_evidence": "Screenshots show active typing into a terminal or SQL editor and the resulting output from the Oracle engine."
+        },
+        {
+            "id": "correct_parameter_usage",
+            "description": "The agent used the specific size requested (512MB) rather than a default or placeholder value.",
+            "visual_evidence": "The SQL commands explicitly contain the string '512M' or '536870912'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target configuration requires exactly 3 redo log groups. Each group must be exactly 512MB, which is 536,870,912 bytes. The initial groups to be removed are 50MB, which is 52,428,800 bytes. The agent must use the password 'OraclePassword123' if prompted for the SYSTEM user."
+}

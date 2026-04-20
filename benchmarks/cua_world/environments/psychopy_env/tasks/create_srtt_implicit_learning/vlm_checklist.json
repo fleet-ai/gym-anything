@@ -1,0 +1,59 @@
+{
+    "task_id": "create_srtt_implicit_learning@1",
+    "task_completion": [
+        {
+            "id": "directory_structure_setup",
+            "description": "The agent creates the required directory structure in /home/ga/PsychoPyExperiments/ including a 'conditions' subfolder.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal output showing the existence of /home/ga/PsychoPyExperiments/conditions/."
+        },
+        {
+            "id": "sequence_conditions_file",
+            "description": "The agent creates 'srtt_sequence_block.csv' with 60 trials following the [4, 2, 3, 1, 3, 2, 4, 3, 2, 1] pattern and correct mappings.",
+            "points": 20,
+            "visual_evidence": "A CSV editor or text editor showing 'srtt_sequence_block.csv' with columns 'position', 'xPos', and 'correctKey' and values like (1, -0.45, 'z') or (4, 0.45, 'm')."
+        },
+        {
+            "id": "random_and_block_files",
+            "description": "The agent creates 'srtt_random_block.csv' (60 trials) and 'srtt_blocks.csv' (7 rows: 5 sequence, 1 random, 1 sequence).",
+            "points": 20,
+            "visual_evidence": "Screenshots of 'srtt_blocks.csv' showing the blockType and conditionsFile columns with the specific 5-1-1 order."
+        },
+        {
+            "id": "psyexp_routine_structure",
+            "description": "The PsychoPy experiment file is created with routines for instructions, trials, breaks, and completion.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder interface showing the 'Routine' tabs at the bottom or the flow timeline with named routines."
+        },
+        {
+            "id": "nested_loop_implementation",
+            "description": "The experiment implements a nested loop structure: an outer loop for blocks and an inner loop for trials.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Builder 'Flow' pane showing a loop (trials) inside another loop (blocks)."
+        },
+        {
+            "id": "stimulus_and_response_config",
+            "description": "The trial routine uses variables ($xPos) for stimulus position and defines allowed keys (z, x, n, m).",
+            "points": 15,
+            "visual_evidence": "The 'Polygon' or 'Image' component properties showing '$xPos' in the position field and the 'Keyboard' component showing 'z','x','n','m' in allowed keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the PsychoPy Builder GUI to construct the experiment rather than just writing raw XML/Python code.",
+            "visual_evidence": "Screenshots showing the PsychoPy application window being interacted with (clicking components, setting properties)."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent actually saves the files to the specified paths rather than just simulating the action.",
+            "visual_evidence": "The 'Save As' dialog or the file path visible in the PsychoPy title bar showing /home/ga/PsychoPyExperiments/srtt_experiment.psyexp."
+        },
+        {
+            "id": "no_hardcoding_sequence",
+            "description": "The agent uses the CSV variables in the Builder rather than hardcoding 60 individual routines.",
+            "visual_evidence": "The PsychoPy component properties showing variable references (starting with $) instead of literal values."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/srtt_experiment.psyexp. The sequence pattern is [4, 2, 3, 1, 3, 2, 4, 3, 2, 1]. Mappings: 1=(-0.45, 'z'), 2=(-0.15, 'x'), 3=(0.15, 'n'), 4=(0.45, 'm'). The block file 'srtt_blocks.csv' must specify 7 blocks in this order: 5 sequence, 1 random, 1 sequence. The trial routine must include a 0.5s fixation followed by the stimulus."
+}

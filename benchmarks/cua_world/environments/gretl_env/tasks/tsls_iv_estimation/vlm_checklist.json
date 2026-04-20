@@ -1,0 +1,53 @@
+{
+    "task_id": "tsls_iv_estimation@1",
+    "task_completion": [
+        {
+            "id": "load_mroz_dataset",
+            "description": "The agent successfully opens the 'mroz' dataset in gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window displays 'mroz' in the title bar or shows the list of variables including 'lwage', 'educ', 'mothereduc', and 'fathereduc'."
+        },
+        {
+            "id": "open_tsls_dialog",
+            "description": "The agent opens the TSLS (Two-Stage Least Squares) model specification dialog.",
+            "points": 10,
+            "visual_evidence": "A dialog box titled 'TSLS' or 'Two-Stage Least Squares' is visible over the gretl interface."
+        },
+        {
+            "id": "specify_variables",
+            "description": "The agent correctly assigns variables: Dependent (lwage), Endogenous (educ), Exogenous (const, exper, expersq), and Instruments (mothereduc, fathereduc).",
+            "points": 30,
+            "visual_evidence": "The TSLS dialog box shows 'lwage' in the dependent variable field, 'educ' in the endogenous field, and 'mothereduc'/'fathereduc' in the instruments field."
+        },
+        {
+            "id": "execute_estimation",
+            "description": "The agent runs the regression and produces a model output window.",
+            "points": 20,
+            "visual_evidence": "A gretl 'Model' window appears showing 'TSLS, using observations 1-428' and a table of coefficients."
+        },
+        {
+            "id": "save_output_file",
+            "description": "The agent saves the model output to the specified text file path.",
+            "points": 30,
+            "visual_evidence": "The agent is seen using 'File > Save as text' or 'File > Write to file' in the model window, with the path '/home/ga/Documents/gretl_output/tsls_results.txt' entered in the file dialog."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show the gretl application windows, menus, and dialog boxes being interacted with by the cursor."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The results shown in the output window match the expected statistical values for the mroz dataset.",
+            "visual_evidence": "The coefficient for 'educ' in the output window should be approximately 0.0614."
+        },
+        {
+            "id": "no_manual_typing_results",
+            "description": "The agent did not simply type the results into a text editor manually.",
+            "visual_evidence": "The final text file content is generated via the gretl 'Save' or 'Export' interface, not a blank gedit/mousepad window."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'mroz' dataset should have 428 observations for this specific regression (married women with positive hours). The TSLS coefficient for 'educ' (education) using 'mothereduc' and 'fathereduc' as instruments, with 'exper' and 'expersq' as exogenous controls, should be approximately 0.0614. The output must be saved to /home/ga/Documents/gretl_output/tsls_results.txt."
+}

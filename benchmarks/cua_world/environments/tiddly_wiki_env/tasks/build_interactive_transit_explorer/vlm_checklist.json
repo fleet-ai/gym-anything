@@ -1,0 +1,59 @@
+{
+    "task_id": "build_interactive_transit_explorer@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation",
+            "description": "A new tiddler titled 'CTA Line Explorer' is created and open in the wiki.",
+            "points": 10,
+            "visual_evidence": "A tiddler with the exact title 'CTA Line Explorer' visible in the main story river."
+        },
+        {
+            "id": "dropdown_menu_exists",
+            "description": "The explorer contains a dropdown menu for selecting train lines.",
+            "points": 15,
+            "visual_evidence": "A visible HTML select/dropdown element within the 'CTA Line Explorer' tiddler."
+        },
+        {
+            "id": "dropdown_options",
+            "description": "The dropdown menu includes Red, Blue, Green, and Brown lines.",
+            "points": 15,
+            "visual_evidence": "The dropdown menu is clicked or expanded, showing 'Red', 'Blue', 'Green', and 'Brown' as selectable options."
+        },
+        {
+            "id": "station_count_display",
+            "description": "The tiddler displays a total count of stations for the selected line.",
+            "points": 20,
+            "visual_evidence": "A numeric value representing the count of stations updates or appears when a line is selected in the dropdown."
+        },
+        {
+            "id": "alphabetical_station_links",
+            "description": "The tiddler displays a list of clickable links to stations, sorted alphabetically.",
+            "points": 20,
+            "visual_evidence": "A list of blue wiki links (station names) appearing in alphabetical order (e.g., 'Addison' before 'Belmont')."
+        },
+        {
+            "id": "ada_indicator",
+            "description": "Stations with ADA accessibility display the text '(ADA)' next to the link.",
+            "points": 20,
+            "visual_evidence": "The text '(ADA)' is visible immediately following specific station links in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler rather than just modifying files via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking the '+' button, typing in the tiddler editor, and clicking the 'tick' save icon."
+        },
+        {
+            "id": "dynamic_filtering",
+            "description": "The list updates dynamically based on dropdown selection, proving it is not a static text list.",
+            "visual_evidence": "Screenshots show the station list changing when different lines (e.g., Red vs. Blue) are selected in the dropdown."
+        },
+        {
+            "id": "no_hardcoded_list",
+            "description": "The agent used TiddlyWiki widgets (<$list>, <$select>) instead of hardcoding the 15 stations manually.",
+            "visual_evidence": "The tiddler in 'edit' mode shows code containing '<$select', '<$list', and '<$count' widgets."
+        }
+    ],
+    "privileged_info_for_vlm": "The target tiddler must be titled 'CTA Line Explorer'. The dropdown must specifically support 'Red', 'Blue', 'Green', and 'Brown'. The implementation must use TiddlyWiki widgets: <$select> for the menu, <$count> for the total, and <$list> for the station links. The '(ADA)' text must only appear for stations where the 'ada-accessible' field is 'yes'."
+}

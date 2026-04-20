@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_ir_sensor_lookup_table@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the Webots application and load the Micromouse robot world.",
+            "points": 10,
+            "visual_evidence": "The Webots GUI is visible showing a Micromouse robot in a maze or simulation environment."
+        },
+        {
+            "id": "locate_front_ir_sensor",
+            "description": "Locate and select the 'front_ir' DistanceSensor in the scene tree under the MICROMOUSE robot nodes.",
+            "points": 15,
+            "visual_evidence": "The scene tree (left sidebar) shows the 'front_ir' node highlighted or expanded."
+        },
+        {
+            "id": "set_sensor_type",
+            "description": "Change the 'type' field of the 'front_ir' sensor to 'infra-red'.",
+            "points": 15,
+            "visual_evidence": "The 'type' field in the scene tree attributes for 'front_ir' is set to 'infra-red'."
+        },
+        {
+            "id": "configure_lookup_table_points",
+            "description": "Update the 'lookupTable' field with the four specific calibration points provided in the task.",
+            "points": 40,
+            "visual_evidence": "The 'lookupTable' field in the Webots inspector shows four entries: [0.04, 1023, 0], [0.1, 800, 0.02], [0.2, 400, 0.05], and [0.3, 250, 0.08]."
+        },
+        {
+            "id": "save_calibrated_world",
+            "description": "Save the modified world file to the specific path on the Desktop.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog or a file explorer window shows the file being saved as '/home/ga/Desktop/micromouse_calibrated.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify the sensor properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and attribute fields."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or 'echo' to bypass the simulation software.",
+            "visual_evidence": "The sequence of screenshots shows the Webots interface being used to change values before the save action."
+        },
+        {
+            "id": "correct_sensor_selection",
+            "description": "The agent modified the 'front_ir' sensor specifically, not a different sensor on the robot.",
+            "visual_evidence": "The highlighted node in the Webots scene tree clearly reads 'front_ir'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure the 'front_ir' DistanceSensor. Required type: 'infra-red'. Required lookupTable: [[0.04, 1023, 0.0], [0.1, 800, 0.02], [0.2, 400, 0.05], [0.3, 250, 0.08]]. The final file must be saved to /home/ga/Desktop/micromouse_calibrated.wbt. Note that Webots lookup tables often display values in a list format in the inspector."
+}

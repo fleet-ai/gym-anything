@@ -1,0 +1,53 @@
+{
+    "task_id": "response_header_extraction_audit@1",
+    "task_completion": [
+        {
+            "id": "custom_extraction_config",
+            "description": "Configure Screaming Frog Custom Extraction for Server, Content-Type, and Date headers.",
+            "points": 20,
+            "visual_evidence": "Screenshot of Configuration > Custom > Extraction window showing three extractors: 'Server_Header', 'Mime_Type', and 'Response_Date' set to 'HTTP Header' mode."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Crawl the target URL and reach at least 20 URLs.",
+            "points": 15,
+            "visual_evidence": "Screaming Frog main window showing 'https://crawler-test.com/' in the address bar and the 'Internal' tab showing a crawl progress with at least 20 rows/URLs populated."
+        },
+        {
+            "id": "extraction_results_view",
+            "description": "Verify the Custom Extraction tab shows data for the configured headers.",
+            "points": 20,
+            "visual_evidence": "The 'Custom Extraction' tab in Screaming Frog showing columns for 'Server_Header', 'Mime_Type', and 'Response_Date' with data populated (note: Server_Header may be empty as per privileged info)."
+        },
+        {
+            "id": "csv_export",
+            "description": "Export the crawl results to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal showing 'header_audit.csv' exists in '~/Documents/SEO/exports/' or a 'Save' dialog pointing to that specific path."
+        },
+        {
+            "id": "report_generation",
+            "description": "Write the summary report with server software and unique content type count.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing '~/Documents/SEO/reports/server_fingerprint.txt' containing a statement about the web server and a count of unique Mime_Types."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI to perform the crawl and extraction.",
+            "visual_evidence": "Screenshots show the Screaming Frog application window being interacted with (menus, buttons, address bar) rather than just command-line execution."
+        },
+        {
+            "id": "genuine_extraction",
+            "description": "The agent did not manually type data into the CSV or report without running the tool.",
+            "visual_evidence": "The Screaming Frog interface must show the 'Custom Extraction' tab populated with data matching the target site before the report is written."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent used the specific file paths requested in the task.",
+            "visual_evidence": "File paths in the export dialogs or terminal commands match '~/Documents/SEO/exports/header_audit.csv' and '~/Documents/SEO/reports/server_fingerprint.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Server' HTTP header is NOT present in responses from crawler-test.com; therefore, the 'Server_Header' column in Screaming Frog and the report should reflect that it is missing or empty. The 'Content-Type' and 'Date' headers ARE present and should be successfully extracted. The report should identify the count of unique content types (e.g., text/html, text/css, image/vnd.microsoft.icon)."
+}

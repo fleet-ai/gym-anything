@@ -1,0 +1,53 @@
+{
+    "task_id": "stroop_color_lab_protocol_repair@1",
+    "task_completion": [
+        {
+            "id": "locate_and_open_file",
+            "description": "The agent locates and opens the stroop_protocol.json file in a text editor or viewer.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the contents of ~/pebl/lab/stroop_protocol.json."
+        },
+        {
+            "id": "correct_practice_trials",
+            "description": "The agent updates 'practice_trials' to 12.",
+            "points": 15,
+            "visual_evidence": "The text editor showing '\"practice_trials\": 12' in the JSON file."
+        },
+        {
+            "id": "correct_test_trials_and_blocks",
+            "description": "The agent updates 'test_trials_per_block' to 48 and 'blocks' to 4.",
+            "points": 25,
+            "visual_evidence": "The text editor showing '\"test_trials_per_block\": 48' and '\"blocks\": 4' in the JSON file."
+        },
+        {
+            "id": "correct_isi_and_colors",
+            "description": "The agent updates 'isi_ms' to 500 and 'response_colors' to [\"red\",\"blue\",\"green\",\"yellow\"].",
+            "points": 30,
+            "visual_evidence": "The text editor showing '\"isi_ms\": 500' and the array [\"red\",\"blue\",\"green\",\"yellow\"] for response_colors."
+        },
+        {
+            "id": "save_valid_json",
+            "description": "The agent saves the file ensuring it remains a valid JSON structure.",
+            "points": 20,
+            "visual_evidence": "The agent clicking 'Save', using a save shortcut, or running a command that confirms the file was written without syntax errors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not leave any of the original incorrect values in the file.",
+            "visual_evidence": "Final view of the file shows no values other than the ones specified in the task description."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the file system at the specified path rather than just printing text to the console.",
+            "visual_evidence": "Screenshots show the file path ~/pebl/lab/stroop_protocol.json being accessed or edited."
+        },
+        {
+            "id": "syntax_integrity",
+            "description": "The agent maintained the JSON format (quotes, commas, brackets) during the edit.",
+            "visual_evidence": "The final screenshot of the file shows valid JSON syntax without trailing commas or missing quotes."
+        }
+    ],
+    "privileged_info_for_vlm": "The canonical values required are: practice_trials=12, test_trials_per_block=48, blocks=4, isi_ms=500, and response_colors=[\"red\",\"blue\",\"green\",\"yellow\"]. The file path is ~/pebl/lab/stroop_protocol.json. The agent must modify the existing file, not create a new one."
+}

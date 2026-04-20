@@ -1,0 +1,53 @@
+{
+    "task_id": "neo_astrometry_verification@1",
+    "task_completion": [
+        {
+            "id": "read_obs_request",
+            "description": "Agent opens and reads the observation request file (~/Documents/neo_obs_request.txt).",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of neo_obs_request.txt, including target 2020 QG and the 30s exposure requirement."
+        },
+        {
+            "id": "access_fits_data",
+            "description": "Agent navigates to the directory containing the FITS images.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal showing the directory /home/ga/Images/asteroids/2020QG containing at least 6 .fits files."
+        },
+        {
+            "id": "astrometric_reduction",
+            "description": "Agent performs astrometric reduction/plate solving on the images using astronomical software.",
+            "points": 30,
+            "visual_evidence": "Screenshots of an application (like SAOImageDS9, Aladin, or a custom astrometry tool) showing star field matching or coordinate calibration on the asteroid frames."
+        },
+        {
+            "id": "target_measurement",
+            "description": "Agent measures the precise RA/Dec coordinates of the target asteroid 2020 QG.",
+            "points": 30,
+            "visual_evidence": "Software interface showing centroiding or coordinate extraction for a specific moving object, with RA near 16h 52m and Dec near -21d 55m."
+        },
+        {
+            "id": "generate_mpc_report",
+            "description": "Agent formats the measurements into a standard MPC astrometry report.",
+            "points": 20,
+            "visual_evidence": "A text file or terminal output showing the 80-column MPC format, including the designation '2020 QG', date of observation, and the calculated coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_measurement",
+            "description": "Agent did not simply copy the target coordinates from the privileged info or setup script.",
+            "visual_evidence": "The agent is seen interacting with image analysis software to click on or identify the asteroid, rather than just typing the final coordinates into a file immediately."
+        },
+        {
+            "id": "multi_frame_processing",
+            "description": "Agent processes multiple frames as required (minimum 6).",
+            "visual_evidence": "The agent cycles through or opens at least 6 different FITS files in the image viewer/analysis tool."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses graphical tools for image inspection and measurement.",
+            "visual_evidence": "Presence of a GUI-based image viewer or astronomical analysis suite on the desktop during the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is asteroid '2020 QG'. The expected coordinates are approximately RA 16h 52m 58s (16.883 hours) and Dec -21d 55m 00s (-21.917 degrees). The agent must process at least 6 FITS images from /home/ga/Images/asteroids/2020QG, each with a 30-second exposure. The final output must be in the 80-character MPC fixed-width format."
+}

@@ -1,0 +1,62 @@
+{
+    "task_id": "snells_law_optics_svg_pippy@1",
+    "task_completion": [
+        {
+            "id": "open_editor",
+            "description": "The agent opens a text editor or IDE to write the Python script.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit, VS Code, or Mousepad) is visible on the screen."
+        },
+        {
+            "id": "script_content_logic",
+            "description": "The Python script contains the correct physics constants (n1=1.0, n2=1.52, angle=45) and SVG generation code.",
+            "points": 25,
+            "visual_evidence": "The code in the editor shows '1.0', '1.52', '45', and logic to write an SVG file to '/home/ga/Documents/refraction.svg'."
+        },
+        {
+            "id": "save_script",
+            "description": "The script is saved to the specific path /home/ga/Documents/snells_law.py.",
+            "points": 10,
+            "visual_evidence": "The editor's title bar or a file manager shows 'snells_law.py' located in '/home/ga/Documents/'."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent executes the Python script to generate the SVG.",
+            "points": 15,
+            "visual_evidence": "A terminal window shows the command 'python3 /home/ga/Documents/snells_law.py' being run without errors."
+        },
+        {
+            "id": "svg_visual_elements",
+            "description": "The generated SVG contains the required graphical components: boundary, normal, incident ray, and refracted ray.",
+            "points": 20,
+            "visual_evidence": "An image viewer or browser displays 'refraction.svg' showing a horizontal/vertical interface line and two rays meeting at a point."
+        },
+        {
+            "id": "svg_text_labels",
+            "description": "The SVG includes labels for 'Air', 'Glass', '45', and the calculated angle (~27.7).",
+            "points": 20,
+            "visual_evidence": "The SVG display shows text labels 'Air', 'Glass', '45', and a value starting with '27.7' near the refracted ray."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_svg",
+            "description": "The agent did not manually create the SVG file without running a script.",
+            "points": 0,
+            "visual_evidence": "The agent is seen writing Python code that performs calculations, rather than just typing raw SVG XML tags into a file."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent used the script to calculate the angle rather than hardcoding the result '27.7' directly from memory.",
+            "points": 0,
+            "visual_evidence": "The Python script uses math functions (math.asin, math.sin, math.radians) to derive the result."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the GUI environment (editor, file manager, or image viewer) as requested for an OLPC-style task.",
+            "points": 0,
+            "visual_evidence": "Interaction with windowed applications is visible in the trajectory screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct refracted angle for n1=1.00 (Air) to n2=1.52 (Glass) with an incident angle of 45 degrees is approximately 27.72 degrees. The SVG must be saved at /home/ga/Documents/refraction.svg and the script at /home/ga/Documents/snells_law.py. The SVG must contain the text 'Air', 'Glass', '45', and '27.7' (or more precise)."
+}

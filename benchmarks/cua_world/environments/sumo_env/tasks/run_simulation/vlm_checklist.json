@@ -1,0 +1,59 @@
+{
+    "task_id": "run_simulation@1",
+    "task_completion": [
+        {
+            "id": "open_view_settings",
+            "description": "Open the 'Edit Visualisation' or 'View Settings' dialog in sumo-gui.",
+            "points": 10,
+            "visual_evidence": "A pop-up window titled 'View Settings' or 'Edit Visualisation' is visible over the main SUMO interface."
+        },
+        {
+            "id": "select_vehicle_tab",
+            "description": "Navigate to the 'Vehicles' tab within the visualization settings.",
+            "points": 10,
+            "visual_evidence": "The 'Vehicles' tab is selected/active in the View Settings dialog."
+        },
+        {
+            "id": "set_coloring_by_speed",
+            "description": "Change the vehicle coloring attribute to 'speed'.",
+            "points": 25,
+            "visual_evidence": "A dropdown menu or selection box for vehicle 'Color' or 'Color by' shows 'speed' as the selected option."
+        },
+        {
+            "id": "run_simulation_execution",
+            "description": "Start the simulation to populate the network with vehicles.",
+            "points": 20,
+            "visual_evidence": "The simulation time/step counter is increasing, and vehicles are visible moving on the road network."
+        },
+        {
+            "id": "verify_speed_visualization",
+            "description": "Confirm vehicles are colored according to their speed (multi-colored fleet).",
+            "points": 20,
+            "visual_evidence": "Vehicles in the viewport appear in different colors (e.g., a gradient from red to yellow/green) rather than a uniform default color."
+        },
+        {
+            "id": "save_screenshot_command",
+            "description": "Execute the command to save the screenshot to the specific path.",
+            "points": 15,
+            "visual_evidence": "A terminal window shows the execution of a screenshot command (like 'scrot') targeting '/home/ga/SUMO_Output/speed_coloring.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent interacted with the sumo-gui menus rather than just using CLI tools to generate an image.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted menu items within the sumo-gui 'View Settings' dialog."
+        },
+        {
+            "id": "genuine_scenario_loaded",
+            "description": "The agent is working with the Bologna Acosta network, not a default or empty network.",
+            "visual_evidence": "The road layout in the GUI matches a complex real-world urban intersection (Bologna Acosta) rather than a simple grid or single road."
+        },
+        {
+            "id": "no_preexisting_file_manipulation",
+            "description": "The agent did not simply rename an existing image to the target filename.",
+            "visual_evidence": "The sequence of screenshots shows the GUI state changing (coloring settings) followed by the screenshot command being typed/executed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using the 'Bologna Acosta' scenario, which is pre-loaded in sumo-gui. The agent must specifically change the vehicle coloring mode to 'speed' in the View Settings (Vehicles tab). The final output must be a screenshot saved to /home/ga/SUMO_Output/speed_coloring.png showing the simulation running with multi-colored vehicles representing different speeds."
+}

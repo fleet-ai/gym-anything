@@ -1,0 +1,59 @@
+{
+    "task_id": "sector_light_asset_config@1",
+    "task_completion": [
+        {
+            "id": "model_directory_creation",
+            "description": "Create the 'SectorLight' directory in the correct path.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the directory path '/opt/bridgecommand/Models/Othership/SectorLight' exists."
+        },
+        {
+            "id": "boat_ini_configuration",
+            "description": "Create and configure 'boat.ini' with the specified Red and White sectors.",
+            "points": 25,
+            "visual_evidence": "A text editor showing 'boat.ini' containing sector definitions: Red (260 to 280) and White (280 to 260/0) with a range of at least 2.0."
+        },
+        {
+            "id": "scenario_directory_creation",
+            "description": "Create the verification scenario directory.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the directory path '/opt/bridgecommand/Scenarios/Sector_Light_Test/' exists."
+        },
+        {
+            "id": "scenario_files_setup",
+            "description": "Create the required .ini files for the scenario (environment, ownship, othership).",
+            "points": 15,
+            "visual_evidence": "A file listing or editor showing 'environment.ini', 'ownship.ini', and 'othership.ini' within the Sector_Light_Test folder."
+        },
+        {
+            "id": "othership_placement",
+            "description": "Place the 'SectorLight' model in the othership.ini file.",
+            "points": 15,
+            "visual_evidence": "A text editor showing 'othership.ini' referencing the 'SectorLight' model at a specific coordinate."
+        },
+        {
+            "id": "visual_verification_red_sector",
+            "description": "Launch Bridge Command and verify the Red light is visible from the Own Ship's position.",
+            "points": 25,
+            "visual_evidence": "The Bridge Command simulation window showing a Red light visible from the bridge/viewpoint, with the Own Ship positioned at a bearing of approximately 270° from the light source."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "Verify the agent actually created files rather than just viewing existing ones.",
+            "visual_evidence": "Screenshots showing the 'Save' dialog in a text editor or 'touch/mkdir' commands in a terminal."
+        },
+        {
+            "id": "simulation_interaction",
+            "description": "Verify the agent actually ran the Bridge Command application to test the scenario.",
+            "visual_evidence": "Screenshots of the Bridge Command splash screen or scenario selection menu showing 'Sector_Light_Test'."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "Ensure the agent didn't just display a static image of a red light.",
+            "visual_evidence": "The simulation UI (compass, radar, or HUD) should show dynamic data or coordinates consistent with the scenario setup."
+        }
+    ],
+    "privileged_info_for_vlm": "The model must be named 'SectorLight' and located in '/opt/bridgecommand/Models/Othership/SectorLight'. The 'boat.ini' must define a Red sector from 260 to 280 degrees and a White sector from 280 to 260 degrees (passing through 0/360). Range must be >= 2.0 nm. The verification scenario is at '/opt/bridgecommand/Scenarios/Sector_Light_Test/'. To see the Red light, the Own Ship must be at a bearing of ~270 degrees from the SectorLight."
+}

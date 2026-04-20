@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_inventory_shrinkage_audit@1",
+    "task_completion": [
+        {
+            "id": "create_staging_table",
+            "description": "Create the staging table sakila.inventory_audit with film_id and actual_count columns.",
+            "points": 10,
+            "visual_evidence": "SQL command execution or database schema browser showing the 'inventory_audit' table in the 'sakila' database."
+        },
+        {
+            "id": "import_csv_data",
+            "description": "Import data from /home/ga/Documents/imports/store1_physical_count.csv into the staging table.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a successful LOAD DATA INFILE command or a GUI import wizard completion message."
+        },
+        {
+            "id": "create_stored_function",
+            "description": "Implement the stored function fn_get_shrinkage_status with the specified logic (MISSING, EXTRA, MATCH).",
+            "points": 20,
+            "visual_evidence": "SQL code block showing 'CREATE FUNCTION fn_get_shrinkage_status' and the conditional logic for status strings."
+        },
+        {
+            "id": "create_shrinkage_view",
+            "description": "Create the view v_store1_shrinkage_report joining system inventory (store_id=1) with the staging table.",
+            "points": 25,
+            "visual_evidence": "SQL code showing 'CREATE VIEW v_store1_shrinkage_report' with a JOIN between the inventory table and inventory_audit, filtered by store_id=1 and variance != 0."
+        },
+        {
+            "id": "export_final_report",
+            "description": "Export the view results to /home/ga/Documents/exports/shrinkage_report.csv.",
+            "points": 30,
+            "visual_evidence": "Terminal command (e.g., SELECT ... INTO OUTFILE) or GUI export dialog showing the destination path /home/ga/Documents/exports/shrinkage_report.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the MySQL database directly rather than creating a mock file.",
+            "visual_evidence": "Screenshots showing a MySQL prompt (mysql>), a database IDE (like DBeaver or MySQL Workbench), or logs of SQL execution."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculated discrepancies using SQL logic rather than manually typing values from the prompt into the CSV.",
+            "visual_evidence": "SQL queries showing JOIN and subtraction operations (system_count - actual_count) rather than INSERT statements with manual numbers."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The agent accessed the specific file paths provided in the task.",
+            "visual_evidence": "File explorer or terminal showing the existence of the input file in /imports and the creation of the output file in /exports."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific naming: Table 'inventory_audit', Function 'fn_get_shrinkage_status', and View 'v_store1_shrinkage_report'. The function must return 'MISSING' if system > actual and 'EXTRA' if system < actual. The report must only include records where variance != 0 for store_id 1. The input file is at /home/ga/Documents/imports/store1_physical_count.csv and the output must be at /home/ga/Documents/exports/shrinkage_report.csv."
+}

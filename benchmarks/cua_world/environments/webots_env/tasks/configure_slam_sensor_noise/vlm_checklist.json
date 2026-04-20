@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_slam_sensor_noise@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment containing the CLEANING_ROBOT.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Webots application window with a robot model visible in the 3D view or scene tree."
+        },
+        {
+            "id": "locate_wheel_encoders",
+            "description": "The agent locates the 'left_encoder' and 'right_encoder' nodes within the robot's device list.",
+            "points": 15,
+            "visual_evidence": "The scene tree or a search dialog showing 'left_encoder' and 'right_encoder' selected or highlighted."
+        },
+        {
+            "id": "configure_encoder_parameters",
+            "description": "The agent sets resolution to 0.0123 and noise to 0.015 for both wheel encoders.",
+            "points": 25,
+            "visual_evidence": "The field editor in Webots showing 'resolution' as 0.0123 and 'noise' as 0.015 for the encoder nodes."
+        },
+        {
+            "id": "locate_ir_sensors",
+            "description": "The agent locates the 'ir_front', 'ir_left', and 'ir_right' DistanceSensor nodes.",
+            "points": 15,
+            "visual_evidence": "The scene tree showing the infrared sensor nodes being accessed or modified."
+        },
+        {
+            "id": "configure_ir_parameters",
+            "description": "The agent sets resolution to 0.002 and noise to 0.05 for all three IR sensors.",
+            "points": 25,
+            "visual_evidence": "The field editor showing 'resolution' as 0.002 and 'noise' as 0.05 for the IR sensor nodes."
+        },
+        {
+            "id": "save_modified_world",
+            "description": "The agent saves the modified world to the specific path /home/ga/Desktop/noisy_slam_test.wbt.",
+            "points": 10,
+            "visual_evidence": "The 'Save World As...' dialog or a file explorer window showing the file 'noisy_slam_test.wbt' being saved to the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing a text file via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not use a script to automate the property changes.",
+            "visual_evidence": "Sequential screenshots showing manual entry of the numerical values (0.0123, 0.015, etc.) into the GUI fields."
+        },
+        {
+            "id": "correct_target_file",
+            "description": "The agent saved the file with the exact name specified in the instructions.",
+            "visual_evidence": "The file path in the save dialog or the title bar of Webots matches '/home/ga/Desktop/noisy_slam_test.wbt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target robot is named 'CLEANING_ROBOT'. Required values for 'left_encoder' and 'right_encoder' are resolution: 0.0123, noise: 0.015. Required values for 'ir_front', 'ir_left', and 'ir_right' are resolution: 0.002, noise: 0.05. The final output must be saved specifically to /home/ga/Desktop/noisy_slam_test.wbt."
+}

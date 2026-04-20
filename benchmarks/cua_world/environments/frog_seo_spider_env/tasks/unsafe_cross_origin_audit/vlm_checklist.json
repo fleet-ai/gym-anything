@@ -1,0 +1,53 @@
+{
+    "task_id": "unsafe_cross_origin_audit@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_site",
+            "description": "Agent navigates to https://crawler-test.com/ in a web browser.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'https://crawler-test.com/' and the website content is visible."
+        },
+        {
+            "id": "inspect_links_for_vulnerability",
+            "description": "Agent inspects the page source or uses a tool to identify links with target='_blank' missing rel='noopener'.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent opening DevTools, inspecting HTML elements, or using an SEO/Security tool to filter for target='_blank' attributes."
+        },
+        {
+            "id": "create_csv_export",
+            "description": "Agent creates the CSV file with the identified unsafe links in the specified directory.",
+            "points": 25,
+            "visual_evidence": "A file manager or terminal screenshot shows 'unsafe_links.csv' exists in '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "verify_csv_content",
+            "description": "The CSV file contains the required columns 'Target' and 'Rel'.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the opened CSV file or a 'cat' command shows headers 'Target' and 'Rel' with at least two entries."
+        },
+        {
+            "id": "create_security_summary",
+            "description": "Agent records the total count of unsafe links in the security_summary.txt file.",
+            "points": 20,
+            "visual_evidence": "A screenshot shows 'security_summary.txt' in '~/Documents/SEO/reports/' containing a numerical count (expected: 2)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent actually visited the website rather than generating the file from memory.",
+            "visual_evidence": "Screenshots must show the browser open to crawler-test.com and active interaction with the page or its source code."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the expected count into a file without performing an audit.",
+            "visual_evidence": "The trajectory should show the process of identifying the specific links (e.g., 'Foreign Character Domain' or 'Relative URL With Colon') before writing the summary."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Screenshots show the exact paths ~/Documents/SEO/exports/unsafe_links.csv and ~/Documents/SEO/reports/security_summary.txt being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The website https://crawler-test.com/ contains exactly 2 unsafe links with target='_blank' and no rel='noopener' (or equivalent protection). These are: 1) 'Foreign Character Domain' (href='http://www.søkbar.no') and 2) 'Relative URL With Colon' (href='relativeurl:withcolon'). The CSV must have 'Target' and 'Rel' columns. The summary text file should report a count of 2."
+}

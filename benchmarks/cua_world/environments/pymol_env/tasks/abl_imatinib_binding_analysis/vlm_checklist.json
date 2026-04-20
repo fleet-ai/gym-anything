@@ -1,0 +1,59 @@
+{
+    "task_id": "abl_imatinib_binding_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1iep",
+            "description": "Load the crystal structure PDB:1IEP into PyMOL or a similar molecular viewer.",
+            "points": 10,
+            "visual_evidence": "The molecular viewer GUI shows the structure for 1IEP loaded, often visible in the object list or window title."
+        },
+        {
+            "id": "identify_binding_site",
+            "description": "Locate and zoom into the imatinib (STI) binding site within the ABL kinase domain.",
+            "points": 15,
+            "visual_evidence": "The viewport shows a close-up view of the ligand (STI) surrounded by protein residues."
+        },
+        {
+            "id": "measure_gatekeeper_distance",
+            "description": "Measure the distance between the gatekeeper residue (T315) and the imatinib inhibitor.",
+            "points": 20,
+            "visual_evidence": "A measurement line (wizard or distance command) is visible between residue T315 and the STI ligand, with a numerical value displayed in Angstroms."
+        },
+        {
+            "id": "identify_pocket_residues",
+            "description": "Identify all residues within 4 Angstroms of the drug for the report.",
+            "points": 20,
+            "visual_evidence": "The agent uses selection commands (e.g., 'select pocket, br. all within 4 of STI') and the resulting residues are highlighted or listed in the console/viewer."
+        },
+        {
+            "id": "save_publication_figure",
+            "description": "Save a high-quality image of the binding site to the specified path.",
+            "points": 15,
+            "visual_evidence": "The agent executes a save/png command or uses the export menu to save 'abl_imatinib.png' to ~/PyMOL_Data/images/."
+        },
+        {
+            "id": "generate_written_report",
+            "description": "Create a text report containing the distance measurement and the list of pocket residues.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows the creation of 'abl_binding_report.txt' containing the specific distance to T315 and the 4A residue list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_molecular_interaction",
+            "description": "The agent interacted with the molecular viewer GUI/CLI rather than just writing a text file from memory.",
+            "visual_evidence": "Screenshots show the PyMOL/molecular viewer interface active with the 1IEP structure rendered, not just a text editor."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent performed actual measurements in the software rather than copy-pasting the gatekeeper distance from the prompt or external knowledge.",
+            "visual_evidence": "The distance measurement labels or command logs in the GUI show the calculation happening in real-time on the loaded structure."
+        },
+        {
+            "id": "file_system_adherence",
+            "description": "The agent saved files to the specific requested directories.",
+            "visual_evidence": "Terminal commands or file explorer views show the files residing in ~/PyMOL_Data/ and ~/PyMOL_Data/images/."
+        }
+    ],
+    "privileged_info_for_vlm": "The protein is ABL kinase (PDB: 1IEP). The ligand is imatinib, identified in the PDB file as 'STI'. The critical gatekeeper residue is Threonine 315 (T315). The agent must find residues within 4 Angstroms of STI and measure the specific distance from T315 to the STI molecule. The final outputs must be a PNG image and a TXT report in the ~/PyMOL_Data directory tree."
+}

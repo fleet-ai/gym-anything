@@ -1,0 +1,53 @@
+{
+    "task_id": "16s_sanger_contig_assembly@1",
+    "task_completion": [
+        {
+            "id": "open_ugene_and_load_reads",
+            "description": "Open UGENE and load the input FASTA file containing the three 16S reads.",
+            "points": 10,
+            "visual_evidence": "The UGENE interface is visible with 'ecoli_16s_reads.fasta' loaded in the Project View or opened in the Sequence View."
+        },
+        {
+            "id": "initiate_contig_assembly",
+            "description": "Open the 'Contig Assembly' or 'Sanger Data Analysis' tool within UGENE.",
+            "points": 15,
+            "visual_evidence": "A dialog box or window titled 'Contig Assembly', 'DNA Assembly', or 'Sanger' is visible with the three reads listed as input."
+        },
+        {
+            "id": "perform_assembly_alignment",
+            "description": "Run the assembly process to align the reads into a single contig.",
+            "points": 25,
+            "visual_evidence": "An alignment or contig map is visible showing three overlapping reads. One read (Read_2_Reverse) should show an orientation indicating it was complemented/reversed."
+        },
+        {
+            "id": "export_consensus_sequence",
+            "description": "Export the resulting consensus sequence to the specified FASTA path.",
+            "points": 25,
+            "visual_evidence": "An 'Export' or 'Save' dialog showing the file path '~/UGENE_Data/16s_assembly/results/16s_consensus.fasta' or a success message confirming the export."
+        },
+        {
+            "id": "generate_assembly_report",
+            "description": "Create the assembly report text file with the required metrics.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal view showing 'assembly_report.txt' containing: 3 reads, a length between 1500-1560 bp, and identifying 'Read_2_Reverse' as the reverse-complemented read."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the UGENE graphical interface for the assembly rather than just command-line tools.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and assembly visualization tools being interacted with."
+        },
+        {
+            "id": "genuine_assembly_process",
+            "description": "The agent did not simply create the output files manually via a text editor without performing the assembly.",
+            "visual_evidence": "Screenshots show the intermediate steps of the UGENE assembly workflow, such as the contig editor or alignment parameters."
+        },
+        {
+            "id": "no_hardcoding_from_prompt",
+            "description": "The agent derived the report values from the software output, not just copying the task description.",
+            "visual_evidence": "The report values (length, read names) match the data displayed in the UGENE interface during the assembly process."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file contains 3 reads. The specific read that must be reverse-complemented is named 'Read_2_Reverse'. The final consensus sequence length should be between 1500 and 1560 base pairs (specifically around 1540 bp). The output files must be saved to /home/ga/UGENE_Data/16s_assembly/results/."
+}

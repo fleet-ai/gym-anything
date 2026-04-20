@@ -1,0 +1,59 @@
+{
+    "task_id": "digital_twin_rotor_reconstruction@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "Generate NACA 4424 and NACA 4412 airfoils in QBlade.",
+            "points": 10,
+            "visual_evidence": "The QBlade airfoil list or design window showing 'NACA 4424' and 'NACA 4412' entries."
+        },
+        {
+            "id": "xfoil_polar_analysis",
+            "description": "Perform XFoil Polar Analysis at Re=1,000,000 for both airfoils.",
+            "points": 15,
+            "visual_evidence": "XFoil analysis window or polar plots showing 'Re 1.000.000' or '1e6' for both NACA 4424 and 4412."
+        },
+        {
+            "id": "blade_station_config",
+            "description": "Configure the 'Legacy-V1' blade with the 5 specified stations (Pos, Chord, Twist, Airfoil).",
+            "points": 35,
+            "visual_evidence": "The Blade Design table showing 5 rows with positions 0, 5, 15, 30, 40; chords 2.5, 2.3, 1.8, 1.0, 0.6; and twists 20, 15, 8.5, 2, 0."
+        },
+        {
+            "id": "blade_naming",
+            "description": "Name the blade 'Legacy-V1'.",
+            "points": 10,
+            "visual_evidence": "The blade object name field or project tree showing the name 'Legacy-V1'."
+        },
+        {
+            "id": "export_distributions",
+            "description": "Export chord and twist distributions to the specified .dat files.",
+            "points": 15,
+            "visual_evidence": "Export dialogs or a file explorer showing 'chord_dist.dat' and 'twist_dist.dat' in ~/Documents/projects/."
+        },
+        {
+            "id": "save_project",
+            "description": "Save the project as 'legacy_v1_reconstruction.wpa'.",
+            "points": 15,
+            "visual_evidence": "The QBlade title bar or a file explorer showing 'legacy_v1_reconstruction.wpa' in the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to design the rotor rather than just creating text files.",
+            "visual_evidence": "Screenshots showing the QBlade application window, mouse cursor interactions with the blade design table, and airfoil generation menus."
+        },
+        {
+            "id": "genuine_polar_calculation",
+            "description": "The agent actually ran the XFoil analysis rather than just naming a file.",
+            "visual_evidence": "The XFoil convergence log or the generation of polar curves (Cl/Cd plots) in the QBlade interface."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename existing files to match the requirements.",
+            "visual_evidence": "Sequential screenshots showing the manual entry of station data (0.0 to 40.0m) into the QBlade table."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a specific 5-station setup for the 'Legacy-V1' blade. Verified positions are 0.0, 5.0, 15.0, 30.0, and 40.0 meters. The Reynolds number for XFoil analysis must be exactly 1,000,000 (1e6). The airfoils used must transition from NACA 4424 at the root (0-5m) to NACA 4412 for the remainder of the blade (15-40m)."
+}

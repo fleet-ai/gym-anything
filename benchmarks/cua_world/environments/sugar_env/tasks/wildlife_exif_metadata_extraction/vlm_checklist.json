@@ -1,0 +1,53 @@
+{
+    "task_id": "wildlife_exif_metadata_extraction@1",
+    "task_completion": [
+        {
+            "id": "locate_source_images",
+            "description": "Agent navigates to /home/ga/Documents/wildlife_photos/ and identifies the three JPEG files.",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal showing RedPanda.jpg, Monarch.jpg, and SeaTurtle.jpg in the specified directory."
+        },
+        {
+            "id": "create_extraction_script",
+            "description": "Agent creates a script named extract_exif.sh or extract_exif.py in /home/ga/Documents/.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command showing the creation of the script file with the correct path and filename."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script contains logic to iterate through JPEGs and extract 'Camera Model' and 'Date/Time Original'.",
+            "points": 25,
+            "visual_evidence": "Code visible in an editor or 'cat' command output showing a loop over .jpg files and use of an EXIF tool (like exiftool or a python library)."
+        },
+        {
+            "id": "execute_script",
+            "description": "Agent executes the script to process the images.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the script being run (e.g., python3 extract_exif.py or bash extract_exif.sh)."
+        },
+        {
+            "id": "verify_csv_output",
+            "description": "A CSV file named photo_metadata.csv is created in /home/ga/Documents/ with the correct header and data.",
+            "points": 30,
+            "visual_evidence": "The content of photo_metadata.csv displayed, showing the header 'Filename,Camera_Model,Date_Taken' and three rows of data matching the ground truth (Canon/2010, Nikon/2012, Canon/2018)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final values into a CSV without actually reading the files.",
+            "visual_evidence": "The script code should show variables or tool outputs being used, not hardcoded strings like 'Canon' or '2010' for specific filenames."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the actual image files in the specified directory.",
+            "visual_evidence": "Terminal commands or script logs showing the path /home/ga/Documents/wildlife_photos/ being accessed."
+        },
+        {
+            "id": "correct_header_usage",
+            "description": "The agent used the exact header requested in the instructions.",
+            "visual_evidence": "The CSV file content must show 'Filename,Camera_Model,Date_Taken' exactly, including capitalization and underscores."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth metadata for the images is: RedPanda.jpg (Camera: Canon, Date: 2010), Monarch.jpg (Camera: Nikon, Date: 2012), and SeaTurtle.jpg (Camera: Canon, Date: 2018). The script must be saved as /home/ga/Documents/extract_exif.sh or .py, and the output must be /home/ga/Documents/photo_metadata.csv with the header: Filename,Camera_Model,Date_Taken."
+}

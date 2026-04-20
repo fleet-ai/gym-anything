@@ -1,0 +1,53 @@
+{
+    "task_id": "http_session_timeline_reconstruction@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the source packet capture file /home/ga/Documents/captures/http.cap using a tool like Wireshark or tshark.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing a command referencing 'http.cap' or the Wireshark GUI displaying the contents of 'http.cap'."
+        },
+        {
+            "id": "filter_http_traffic",
+            "description": "The agent applies a filter to isolate only HTTP packets (requests and responses).",
+            "points": 15,
+            "visual_evidence": "The Wireshark display filter bar showing 'http' or a tshark command using '-Y http' or '-R http'."
+        },
+        {
+            "id": "extract_fields",
+            "description": "The agent extracts the specific fields required: frame number, relative time, IPs, method, URI, host, response code, content type, and frame length.",
+            "points": 25,
+            "visual_evidence": "A tshark command listing the specific '-e' fields (e.g., frame.number, frame.time_relative, ip.src, http.request.method) or a Wireshark export dialog with these columns selected."
+        },
+        {
+            "id": "create_csv_with_header",
+            "description": "The agent creates the CSV file at the specified path with the exact required header row.",
+            "points": 20,
+            "visual_evidence": "A terminal command (like 'cat' or 'head') showing the first line of /home/ga/Documents/captures/http_session_timeline.csv containing the specified header string."
+        },
+        {
+            "id": "verify_csv_content",
+            "description": "The CSV file contains the reconstructed timeline with 4 HTTP packets (2 GET, 2 OK) ordered by frame number.",
+            "points": 30,
+            "visual_evidence": "A view of the CSV file content showing 4 rows of data (plus header) with frame numbers in ascending order and correct HTTP methods/codes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_typing_data",
+            "description": "The agent should not manually type out the packet data into the CSV; it must be exported or redirected from a tool.",
+            "visual_evidence": "The absence of a text editor (like nano or gedit) being used to manually type IP addresses or timestamps; look for command redirection ('>') or export logs."
+        },
+        {
+            "id": "genuine_source_interaction",
+            "description": "The agent must interact with the provided /home/ga/Documents/captures/http.cap file.",
+            "visual_evidence": "Commands or file-open dialogs explicitly pointing to the path /home/ga/Documents/captures/http.cap."
+        },
+        {
+            "id": "correct_output_path",
+            "description": "The agent saves the file to the specific requested directory and filename.",
+            "visual_evidence": "The final file path /home/ga/Documents/captures/http_session_timeline.csv is visible in the terminal or file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file 'http.cap' contains exactly 4 HTTP packets: two GET requests and two 200 OK responses. The required CSV header is: frame_number,time_relative,source_ip,destination_ip,http_method,http_request_uri,http_host,http_response_code,http_content_type,frame_length. The output must be a CSV file at /home/ga/Documents/captures/http_session_timeline.csv."
+}

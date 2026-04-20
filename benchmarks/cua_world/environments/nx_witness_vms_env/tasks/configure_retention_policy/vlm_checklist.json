@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_retention_policy@1",
+    "task_completion": [
+        {
+            "id": "api_authentication",
+            "description": "Agent successfully authenticates with the Nx Witness REST API at localhost:7001 using provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a browser or API client (like Postman or curl) accessing localhost:7001 with 'admin' credentials or receiving an authentication token/successful login response."
+        },
+        {
+            "id": "camera_identification",
+            "description": "Agent retrieves the list of cameras to identify the unique IDs for Server Room, Entrance, Lobby, Loading Dock, and Parking Lot cameras.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing a GET request to the cameras endpoint (e.g., /ec2/getCameras) and the resulting JSON containing camera names and IDs."
+        },
+        {
+            "id": "update_retention_settings",
+            "description": "Agent sends requests to update minArchivePeriodS and maxArchivePeriodS for the specified cameras.",
+            "points": 35,
+            "visual_evidence": "Screenshots showing PUT or PATCH requests to the API for each camera with the specific integer values for min and max retention periods."
+        },
+        {
+            "id": "verify_configuration",
+            "description": "Agent performs a final check via the API to ensure the settings were applied correctly before generating the report.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing a final GET request or a confirmation response from the server showing the updated retention values for all 5 cameras."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Agent saves the confirmation report to /home/ga/retention_policy_report.json with the required JSON structure.",
+            "points": 20,
+            "visual_evidence": "A screenshot of a terminal command (e.g., 'cat') or a text editor showing the content of /home/ga/retention_policy_report.json containing the camera names, IDs, and the verified retention values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_interaction",
+            "description": "The agent interacted with the live API rather than just creating a fake report file.",
+            "visual_evidence": "Screenshots must show network traffic, browser developer tools, or terminal output indicating real HTTP requests to localhost:7001."
+        },
+        {
+            "id": "no_hardcoded_values_only",
+            "description": "The agent did not simply copy the values from the prompt into the report without querying the system first.",
+            "visual_evidence": "Evidence of a GET request to the system *after* the updates were made to verify the state before writing the file."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the specific path requested, not a generic location.",
+            "visual_evidence": "Terminal output or file explorer showing the file exists specifically at /home/ga/retention_policy_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The required retention values (in seconds) are: Server Room (min: 15552000, max: 31536000), Entrance (min: 7776000, max: 15552000), Lobby (min: 5184000, max: 10368000), Loading Dock (min: 3888000, max: 7776000), and Parking Lot (min: 2592000, max: 5184000). The agent must use the Nx Witness API at localhost:7001. The final report must be a JSON array of objects containing name, id, minArchivePeriodS, and maxArchivePeriodS."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "multi_event_magnitude_comparison_scolv@1",
+    "task_completion": [
+        {
+            "id": "import_aftershock_xml",
+            "description": "The agent imports the aftershock data from /home/ga/Desktop/aftershock_data.xml into SeisComP.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'scdb' or 'scimport' with the XML path, or a file selection dialog in a SeisComP GUI (like scolv) pointing to the desktop XML file."
+        },
+        {
+            "id": "set_event_type_earthquake",
+            "description": "The imported aftershock event type is set to 'earthquake'.",
+            "points": 15,
+            "visual_evidence": "In the scolv 'Event' tab or 'Magnitude' tab, the 'Type' dropdown or label for the aftershock event (ID us6000m13n) is set to 'earthquake'."
+        },
+        {
+            "id": "set_preferred_magnitude_type",
+            "description": "The preferred magnitude type for the aftershock is set to 'Mw(mB)'.",
+            "points": 20,
+            "visual_evidence": "In the scolv Magnitude tab, the magnitude type 'Mw(mB)' is selected or highlighted as the preferred magnitude for the aftershock event."
+        },
+        {
+            "id": "verify_both_events_in_list",
+            "description": "Both the Noto Peninsula mainshock and the imported aftershock are visible in the event list.",
+            "points": 15,
+            "visual_evidence": "The scolv Event list shows two entries: the mainshock (us6000m0xl) and the aftershock (us6000m13n)."
+        },
+        {
+            "id": "generate_bulletin_file",
+            "description": "The agent uses scbulletin to export the event comparison to the specified text file.",
+            "points": 35,
+            "visual_evidence": "A terminal command showing 'scbulletin -e [event_ids] > /home/ga/Desktop/event_comparison.txt' or a text editor showing the content of the file with both event IDs, magnitudes, and locations."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_scolv",
+            "description": "The agent used the SeisComP scolv GUI for event management rather than just scripting the output.",
+            "visual_evidence": "Screenshots show the scolv application window active with the Event or Magnitude tabs being manipulated."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually type the bulletin content into a text editor without running SeisComP tools.",
+            "visual_evidence": "The terminal history or GUI logs show the execution of SeisComP commands or internal export functions, not just 'echo' or manual typing of the magnitude values."
+        },
+        {
+            "id": "correct_event_ids",
+            "description": "The agent used the specific event IDs provided in the database and XML, not generic placeholders.",
+            "visual_evidence": "The IDs 'us6000m0xl' and 'us6000m13n' appear in the GUI or command arguments."
+        }
+    ],
+    "privileged_info_for_vlm": "The mainshock event ID is us6000m0xl. The aftershock event ID to be imported from /home/ga/Desktop/aftershock_data.xml is us6000m13n. The aftershock has a magnitude of 6.2. The agent must specifically set the event type to 'earthquake' and the preferred magnitude type to 'Mw(mB)' within the SeisComP environment (scolv) before exporting the bulletin to /home/ga/Desktop/event_comparison.txt."
+}

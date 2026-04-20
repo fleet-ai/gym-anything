@@ -1,0 +1,56 @@
+{
+    "task_id": "refactor_extract_class@1",
+    "task_completion": [
+        {
+            "id": "create_address_validator",
+            "description": "A new Java file named 'AddressValidator.java' is created in the 'com.ecommerce.service' package.",
+            "points": 10,
+            "visual_evidence": "The project explorer shows AddressValidator.java in the same directory as CustomerService.java, or the file content shows 'public class AddressValidator' with the correct package declaration."
+        },
+        {
+            "id": "move_fields_to_new_class",
+            "description": "The fields 'VALID_COUNTRY_CODES' and 'zipCodePatterns' are moved from CustomerService to AddressValidator.",
+            "points": 15,
+            "visual_evidence": "Code editor screenshots of AddressValidator.java showing the declaration of these two fields, and their absence (or removal) from the field declaration section of CustomerService.java."
+        },
+        {
+            "id": "move_methods_to_new_class",
+            "description": "The methods 'validateAddress', 'formatAddressLabel', and 'resolveRegion' are moved to AddressValidator.",
+            "points": 25,
+            "visual_evidence": "Code editor screenshots of AddressValidator.java showing the implementation of these three methods."
+        },
+        {
+            "id": "delegate_from_customer_service",
+            "description": "CustomerService is updated to use an instance of AddressValidator to perform address operations.",
+            "points": 25,
+            "visual_evidence": "Code editor screenshots of CustomerService.java showing an instantiation or injection of AddressValidator and calls to its methods (e.g., addressValidator.validateAddress(...)) within the original method signatures."
+        },
+        {
+            "id": "verify_compilation_and_tests",
+            "description": "The project compiles successfully and all tests pass after the refactoring.",
+            "points": 25,
+            "visual_evidence": "A terminal or IDE tool window showing a successful build message (e.g., 'BUILD SUCCESS' from Maven) and test execution results showing 0 failures."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_refactoring_usage",
+            "description": "The agent uses IDE refactoring tools (like 'Extract Class' or 'Move') rather than just deleting and typing text.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing IDE refactoring dialogs, context menus (Right-click > Refactor), or 'Move Members' overlays."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually runs the test suite rather than just claiming it passes.",
+            "points": 0,
+            "visual_evidence": "Screenshots of the 'Run' or 'Test' tab in the IDE or a terminal showing the execution of 'mvn test' or similar commands."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent does not leave 'TODO' comments or empty method stubs in the new class.",
+            "points": 0,
+            "visual_evidence": "The final code in AddressValidator.java contains the actual logic moved from CustomerService, not just method signatures."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/ecommerce-legacy. The package for both classes must be com.ecommerce.service. The specific fields to move are VALID_COUNTRY_CODES and zipCodePatterns. The specific methods to move are validateAddress, formatAddressLabel, and resolveRegion. Success is defined by these elements existing in AddressValidator and being called via delegation in CustomerService, followed by a successful Maven build."
+}

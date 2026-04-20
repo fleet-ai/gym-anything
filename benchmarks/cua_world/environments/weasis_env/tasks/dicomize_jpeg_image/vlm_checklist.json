@@ -1,0 +1,59 @@
+{
+    "task_id": "dicomize_jpeg_image@1",
+    "task_completion": [
+        {
+            "id": "open_weasis_dicomizer",
+            "description": "The agent successfully launches the Weasis Dicomizer application.",
+            "points": 10,
+            "visual_evidence": "The Weasis Dicomizer window is visible on the desktop."
+        },
+        {
+            "id": "import_source_image",
+            "description": "The agent imports the file 'endoscopy_capture.jpg' from the Desktop into the tool.",
+            "points": 15,
+            "visual_evidence": "The file path '~/Desktop/endoscopy_capture.jpg' or the image itself is visible within the Dicomizer's file list or preview pane."
+        },
+        {
+            "id": "set_patient_info",
+            "description": "The agent enters the correct Patient Name and Patient ID.",
+            "points": 25,
+            "visual_evidence": "Text fields for 'Patient Name' show 'Doe^John' and 'Patient ID' show 'ENDO-5512' in the application UI."
+        },
+        {
+            "id": "set_modality",
+            "description": "The agent sets the Modality to 'ES'.",
+            "points": 15,
+            "visual_evidence": "The 'Modality' dropdown or text field in the UI is set to 'ES'."
+        },
+        {
+            "id": "configure_export_path",
+            "description": "The agent sets the destination directory to '~/DICOM/exports/'.",
+            "points": 15,
+            "visual_evidence": "The export path or destination folder field in the UI shows '~/DICOM/exports/' or '/home/ga/DICOM/exports/'."
+        },
+        {
+            "id": "execute_conversion",
+            "description": "The agent triggers the conversion/export process and a success message or the resulting file appears.",
+            "points": 20,
+            "visual_evidence": "A progress bar completing, a 'Success' dialog box, or a file browser showing a new .dcm file in the export directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Weasis Dicomizer GUI rather than just command-line tools.",
+            "visual_evidence": "Screenshots show mouse interactions, typing, and navigation within the Weasis Dicomizer graphical interface."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply rename the JPEG to .dcm or use 'touch' to create a dummy file.",
+            "visual_evidence": "The agent is seen interacting with the 'Convert' or 'Export' buttons in the Dicomizer software."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the specific fields required by the task.",
+            "visual_evidence": "The cursor or focus indicators are seen on the Patient Name, ID, and Modality fields during the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is located at /home/ga/Desktop/endoscopy_capture.jpg. Note: Due to a setup error, this file might actually be an HTML file (from a failed download), but the agent must still process it as the source image. The required metadata is: Patient Name: Doe^John, Patient ID: ENDO-5512, Modality: ES. The output must be saved to /home/ga/DICOM/exports/."
+}

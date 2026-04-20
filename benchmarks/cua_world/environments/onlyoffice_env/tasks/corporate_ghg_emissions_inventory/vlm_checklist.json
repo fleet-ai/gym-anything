@@ -1,0 +1,53 @@
+{
+    "task_id": "corporate_ghg_emissions_inventory@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source energy data CSV and the emission factors text file.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing 'nyc_building_energy_2022.csv' open in a spreadsheet viewer or text editor and 'epa_emission_factors.txt' open on the desktop."
+        },
+        {
+            "id": "data_processing_activity",
+            "description": "Agent performs unit conversions and emissions calculations (Scope 1 and Scope 2).",
+            "points": 25,
+            "visual_evidence": "Screenshots of a spreadsheet application (like LibreOffice Calc) or a script being written/executed that shows formulas or logic converting kBtu to MWh/MMBtu and applying the emission factors."
+        },
+        {
+            "id": "create_emissions_data_sheet",
+            "description": "Agent populates the 'Emissions_Data' sheet with calculated values for the 150 properties.",
+            "points": 20,
+            "visual_evidence": "A spreadsheet window showing a sheet named 'Emissions_Data' containing columns for property identifiers and calculated MTCO2e values."
+        },
+        {
+            "id": "create_esg_summary_sheet",
+            "description": "Agent creates the 'ESG_Summary' sheet with portfolio totals and the top 5 emitters.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet window showing a sheet named 'ESG_Summary' with clear labels for 'Scope 1', 'Scope 2', and 'Total MTCO2e' grand totals, plus a distinct list of 5 properties."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the final multi-sheet workbook to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or a 'Save As' dialog showing the file 'ghg_inventory_2023.xlsx' being saved to '~/Documents/Spreadsheets/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used GUI-based tools (Spreadsheet software) for the final report creation rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing an active spreadsheet application window (e.g., LibreOffice Calc) during the data organization and saving process."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply type in the final totals from memory or external sources without showing the source data.",
+            "visual_evidence": "Screenshots showing the agent referencing 'epa_emission_factors.txt' or using formulas in the spreadsheet to derive the totals."
+        },
+        {
+            "id": "genuine_file_navigation",
+            "description": "The agent navigated the file system to locate the specific input files provided in the task.",
+            "visual_evidence": "Screenshots of the file manager or 'Open' dialogs showing the path to '~/Documents/Spreadsheets' and '~/Desktop'."
+        }
+    ],
+    "privileged_info_for_vlm": "The data in 'nyc_building_energy_2022.csv' is synthetic and not real NYC disclosure data. The correct emission factors to be used are: Electricity (0.000293071 MWh/kbtu, 552.8 lb CO2e/MWh), Gas (0.001 MMBtu/kbtu, 53.11 kg CO2e/MMBtu), and Oil (0.001 MMBtu/kbtu, 74.21 kg CO2e/MMBtu). Conversion constants: 2204.62 lb/MT and 1000 kg/MT. The final file must be an .xlsx file at /home/ga/Documents/Spreadsheets/ghg_inventory_2023.xlsx with two specific sheets: 'Emissions_Data' and 'ESG_Summary'."
+}

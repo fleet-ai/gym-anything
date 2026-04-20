@@ -1,0 +1,53 @@
+{
+    "task_id": "pvt_sleep_deprivation_analysis@1",
+    "task_completion": [
+        {
+            "id": "read_incident_log",
+            "description": "Agent reads the lab incident log to identify data quality issues.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/pebl/lab/pvt_incidents.log."
+        },
+        {
+            "id": "access_pvt_csv_files",
+            "description": "Agent opens or reads the individual participant CSV data files from the specified directory.",
+            "points": 10,
+            "visual_evidence": "File explorer, terminal, or spreadsheet view showing files like p01_session_BL.csv in ~/pebl/data/pvt/."
+        },
+        {
+            "id": "calculate_participant_stats",
+            "description": "Agent performs calculations for mean RT, lapse count, RRT, and slowest 10% RT for participants.",
+            "points": 30,
+            "visual_evidence": "Code execution (Python/R), spreadsheet formulas, or scratchpad notes showing the math for individual participant metrics."
+        },
+        {
+            "id": "calculate_group_statistics",
+            "description": "Agent aggregates valid participant data to compute group-level means for BL, TSD, and REC sessions.",
+            "points": 30,
+            "visual_evidence": "Calculations or code output showing group-level averages (e.g., mean_rrt, mean_lapse_count) for the three sessions."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent creates the final JSON report with the required structure and keys in the specified path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of ~/pebl/analysis/pvt_report.json with 'participants' and 'group_statistics' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not simply write the JSON without showing evidence of data processing.",
+            "visual_evidence": "The trajectory must show the agent opening the CSV files or running a script to process them, rather than just typing the final numbers from memory."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "Agent correctly identifies and excludes the specific participant/session mentioned in the log.",
+            "visual_evidence": "The JSON report or intermediate code should show one participant/session marked as 'excluded': true with a reason matching the log content."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacts with the file system to locate and read the data.",
+            "visual_evidence": "Screenshots show the agent navigating to ~/pebl/ or listing files in that directory structure."
+        }
+    ],
+    "privileged_info_for_vlm": "The incident log at ~/pebl/lab/pvt_incidents.log specifies that Participant 04 (p04) had a technical failure during the TSD session (p04_session_TSD.csv) and must be excluded. RRT is calculated as (1 / RT) * 1000. The slowest 10% mean RT requires sorting trials by RT and averaging the highest 10% of values for each session. The final JSON must be at ~/pebl/analysis/pvt_report.json."
+}

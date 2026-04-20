@@ -1,0 +1,62 @@
+{
+    "task_id": "flanker_gratton_effect_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_filtering",
+            "description": "The agent loads the dataset and filters out 'neutral' trials, keeping only 'congruent' and 'incongruent'.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing the removal of 'neutral' trials or a dataframe shape reduction consistent with filtering."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "The agent identifies and excludes the participant with a mean RT < 100ms.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a check for mean RT < 0.1s (or 100ms) and the subsequent exclusion of that specific participant ID."
+        },
+        {
+            "id": "sequential_transition_logic",
+            "description": "The agent correctly identifies cC, cI, iC, and iI transitions strictly within blocks (ignoring the first trial of each block).",
+            "points": 25,
+            "visual_evidence": "Code showing a shift/lag operation grouped by 'participant' and 'block' to determine the previous trial's condition."
+        },
+        {
+            "id": "mean_rt_calculation",
+            "description": "The agent calculates the mean RT in milliseconds for the four transition types per participant.",
+            "points": 20,
+            "visual_evidence": "Code or table showing the calculation of means for cC, cI, iC, and iI, with values multiplied by 1000."
+        },
+        {
+            "id": "gratton_formula_application",
+            "description": "The agent applies the formula (cI - cC) - (iI - iC) to compute the Gratton Effect.",
+            "points": 15,
+            "visual_evidence": "Code showing the specific subtraction and addition of the four transition means to derive the effect value."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the final results to ~/pebl/analysis/gratton_report.json with the required keys and group mean.",
+            "points": 15,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing the JSON file with 'participants' (including excluded status) and 'group_mean_gratton_ms'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the Gratton Effect values or the excluded participant ID without calculation.",
+            "points": 0,
+            "visual_evidence": "The agent's code should show logic (e.g., .mean(), .groupby()) rather than a dictionary of pre-computed numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually reads the CSV file from the specified path and writes the JSON to the specified path.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the file path '~/pebl/data/flanker_data.csv' in the code and the creation of the directory '~/pebl/analysis/' if it didn't exist."
+        },
+        {
+            "id": "proper_unit_conversion",
+            "description": "The agent converts seconds to milliseconds as requested.",
+            "points": 0,
+            "visual_evidence": "Code showing a multiplication by 1000 for the RT values."
+        }
+    ],
+    "privileged_info_for_vlm": "The raw data is in seconds; the output must be in milliseconds. The Gratton Effect formula is (cI - cC) - (iI - iC). A participant is excluded if their overall mean RT < 100ms. Transitions must not cross block boundaries. The final JSON must include 'id', 'gratton_effect_ms', and the four transition means for valid participants, and 'excluded': true for the invalid one."
+}

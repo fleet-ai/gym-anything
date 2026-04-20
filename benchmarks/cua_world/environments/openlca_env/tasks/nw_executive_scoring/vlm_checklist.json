@@ -1,0 +1,59 @@
+{
+    "task_id": "nw_executive_scoring@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database from the specified zip file into openLCA.",
+            "points": 10,
+            "visual_evidence": "The openLCA navigation pane shows the 'uslci_database' (or similar name) as an active database, or an import progress dialog is visible."
+        },
+        {
+            "id": "locate_traci_method",
+            "description": "Locate and open the TRACI 2.1 LCIA method within the Indicators and Parameters section.",
+            "points": 10,
+            "visual_evidence": "The TRACI 2.1 method editor tab is open in the main openLCA window."
+        },
+        {
+            "id": "create_nw_set",
+            "description": "Create a new Normalization and Weighting set named 'US Person-Year 2023'.",
+            "points": 15,
+            "visual_evidence": "The 'NW sets' tab within the TRACI 2.1 editor shows a new entry with the name 'US Person-Year 2023'."
+        },
+        {
+            "id": "input_nw_factors",
+            "description": "Enter the specific normalization and weighting factors for all five impact categories.",
+            "points": 40,
+            "visual_evidence": "The table for 'US Person-Year 2023' shows: Global Warming (N: 24000, W: 0.30), Acidification (N: 90, W: 0.20), Eutrophication (N: 22, W: 0.15), Ozone Depletion (N: 0.22, W: 0.10), and Smog (N: 124, W: 0.25)."
+        },
+        {
+            "id": "save_method",
+            "description": "Save the changes to the TRACI 2.1 method.",
+            "points": 10,
+            "visual_evidence": "The save icon is grayed out after clicking, or the asterisk (*) next to the TRACI 2.1 tab name disappears."
+        },
+        {
+            "id": "export_results",
+            "description": "Export the results to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "An export dialog or a file explorer window shows the file 'normalized_weighted_results.csv' being saved to '/home/ga/LCA_Results/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA graphical user interface rather than just executing scripts in the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with openLCA menus, buttons, and table cells."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the CSV file using a text editor with the expected values.",
+            "visual_evidence": "The CSV export is triggered from within the openLCA interface or a result calculation screen."
+        },
+        {
+            "id": "authentic_database_use",
+            "description": "The agent interacted with the actual USLCI database content.",
+            "visual_evidence": "The navigation tree shows the expanded USLCI database structure (Processes, Flows, etc.)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target NW set name is 'US Person-Year 2023'. The specific factors to verify are: Global Warming (Norm: 24000, Weight: 0.30), Acidification (Norm: 90, Weight: 0.20), Eutrophication (Norm: 22, Weight: 0.15), Ozone Depletion (Norm: 0.22, Weight: 0.10), and Smog (Norm: 124, Weight: 0.25). The output must be saved to /home/ga/LCA_Results/normalized_weighted_results.csv. Note that while the Global Warming normalization factor (24000) is higher than real-world 2023 data, the agent must use the values specified in the task description."
+}

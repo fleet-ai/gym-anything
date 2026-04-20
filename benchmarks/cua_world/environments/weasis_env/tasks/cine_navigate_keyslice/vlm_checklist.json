@@ -1,0 +1,53 @@
+{
+    "task_id": "cine_navigate_keyslice@1",
+    "task_completion": [
+        {
+            "id": "weasis_interface_active",
+            "description": "The Weasis medical viewer is open and displaying the synthetic CT series.",
+            "points": 10,
+            "visual_evidence": "Look for the Weasis application window with a series of CT images loaded in the main viewport."
+        },
+        {
+            "id": "navigate_to_slice_3",
+            "description": "The agent navigates to slice 3 of the 5-slice series.",
+            "points": 20,
+            "visual_evidence": "Check the image overlay or slider in Weasis; it should indicate '3/5' or show Instance Number 3."
+        },
+        {
+            "id": "create_slice_info_txt",
+            "description": "A text file named slice_info.txt is created with the specific required content.",
+            "points": 20,
+            "visual_evidence": "Look for a text editor (like Gedit or Mousepad) or a terminal 'cat' command showing the file content: Slice: 3, Total: 5, File: CT_slice_003.dcm."
+        },
+        {
+            "id": "export_dialog_active",
+            "description": "The agent initiates the export process for the current view/slice.",
+            "points": 20,
+            "visual_evidence": "Look for an 'Export' or 'Save As' dialog box within Weasis, specifically targeting an image format."
+        },
+        {
+            "id": "save_key_slice_png",
+            "description": "The agent saves the slice as key_slice.png in the ~/DICOM/exports/ directory.",
+            "points": 30,
+            "visual_evidence": "Look for a file browser dialog or terminal output confirming the file 'key_slice.png' exists in the /home/ga/DICOM/exports/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Weasis GUI to navigate and export rather than just using CLI tools to move files.",
+            "visual_evidence": "Screenshots should show the mouse cursor interacting with Weasis menus, sliders, or export buttons."
+        },
+        {
+            "id": "no_preexisting_files",
+            "description": "The agent did not simply find existing files but actively created/exported them.",
+            "visual_evidence": "The timestamps or the sequence of actions should show the export dialog being filled out and the text editor being used to type the content."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent actually changed the slice index in the viewer.",
+            "visual_evidence": "The visual content of the CT image in the viewport should change as the agent moves from the default slice to slice 3."
+        }
+    ],
+    "privileged_info_for_vlm": "The series contains exactly 5 slices. Slice 3 corresponds to the file 'CT_slice_003.dcm'. The required output path for the image is /home/ga/DICOM/exports/key_slice.png and for the text file is /home/ga/DICOM/exports/slice_info.txt. The text file must contain exactly: 'Slice: 3', 'Total: 5', and 'File: CT_slice_003.dcm'."
+}

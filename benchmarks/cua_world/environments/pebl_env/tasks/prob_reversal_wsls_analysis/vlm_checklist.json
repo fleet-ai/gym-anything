@@ -1,0 +1,56 @@
+{
+    "task_id": "prob_reversal_wsls_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source CSV file at ~/pebl/data/reversal_learning_data.csv",
+            "points": 10,
+            "visual_evidence": "Terminal command (e.g., cat, head, python script) or file explorer showing the CSV file being opened or read."
+        },
+        {
+            "id": "data_processing_script",
+            "description": "Agent writes or executes code to calculate Win-Stay, Lose-Shift, and accuracy metrics.",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal showing logic for calculating WSLS (comparing choice[t] to choice[t-1] based on feedback[t-1]) and identifying the alternating pattern."
+        },
+        {
+            "id": "participant_exclusion_logic",
+            "description": "Agent identifies and flags the participant with the mechanical alternating response pattern.",
+            "points": 20,
+            "visual_evidence": "Code output or script comments identifying 'PRL-999' as having a mechanical alternation pattern or 0.0 Win-Stay rate."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the JSON report with the required structure (participants list, metrics, and exclusion flags).",
+            "points": 25,
+            "visual_evidence": "Terminal output or text editor showing the creation of a JSON file containing 'Win-Stay', 'Lose-Shift', 'acquisition_accuracy', and 'reversal_accuracy'."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "The final report is saved to the specific path ~/pebl/analysis/reversal_report.json.",
+            "points": 20,
+            "visual_evidence": "Terminal command (ls) or file explorer showing reversal_report.json exists in the ~/pebl/analysis/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation",
+            "description": "Agent performs actual data analysis rather than hardcoding the privileged information values.",
+            "points": 0,
+            "visual_evidence": "Screenshots should show the agent inspecting the CSV data or running a script that processes the 19 rows/participants, rather than just writing the final JSON from memory."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The report contains specific numerical values for all 19 participants, not just the excluded one.",
+            "points": 0,
+            "visual_evidence": "The final JSON file content shows a list of 19 participant entries with varying floating-point metrics."
+        },
+        {
+            "id": "proper_tool_usage",
+            "description": "Agent uses appropriate data analysis tools (Python/Pandas) to handle the CSV.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the use of a programming environment or terminal-based data processing."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 19 participants total. Participant 'PRL-999' is a contaminated case exhibiting 'mechanical_alternation' (perfect A-B-A-B pattern), which results in a Win-Stay rate of exactly 0.0. This participant must be flagged for exclusion in the final JSON. There are 18 'real' participants generated via a Rescorla-Wagner model. The output must be a JSON file at ~/pebl/analysis/reversal_report.json."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "model_csp_parabolic_trough@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent identifies the correct Daggett weather file path from the specified directory.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing the contents of /home/ga/.SAM/solar_resource_dir.txt and a 'ls' or search result showing a Daggett weather file."
+        },
+        {
+            "id": "initialize_pysam_model",
+            "description": "Agent initializes the PySAM TroughPhysical model with a default configuration.",
+            "points": 15,
+            "visual_evidence": "Python code in an editor or terminal showing 'TroughPhysical.default' or 'TroughPhysical.new()' being called."
+        },
+        {
+            "id": "configure_design_parameters",
+            "description": "Agent sets the design-point net output (100 MWe), solar multiple (2.0), and TES hours (6.0).",
+            "points": 25,
+            "visual_evidence": "Python code showing assignments to parameters like 'P_ref', 'solarm', and 'tshours' (or equivalent PySAM attribute names) with the specified values."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent executes the simulation command.",
+            "points": 15,
+            "visual_evidence": "Python code showing 'model.execute()' and no error messages in the terminal output."
+        },
+        {
+            "id": "save_python_script",
+            "description": "Agent saves the simulation script to the specified path.",
+            "points": 15,
+            "visual_evidence": "Terminal command 'ls /home/ga/Documents/SAM_Projects/csp_trough_simulation.py' or a text editor showing the file saved at that location."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent creates the JSON report with the required structure and calculated values.",
+            "points": 20,
+            "visual_evidence": "The content of /home/ga/Documents/SAM_Projects/csp_trough_report.json displayed on screen, containing 'annual_energy_kwh' and 'capacity_factor_percent' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't hardcode the final energy results without running the simulation.",
+            "visual_evidence": "The Python script should show variables being assigned from 'model.Outputs', not static numbers for energy and capacity factor."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually imported and used the PySAM library.",
+            "visual_evidence": "Code showing 'import PySAM.TroughPhysical' or 'import PySAM.Singleowner'."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the specific weather file found in the solar_resource_dir.",
+            "visual_evidence": "The Python script should reference the full path to the Daggett file found in the initial directory check."
+        }
+    ],
+    "privileged_info_for_vlm": "The PySAM TroughPhysical model requires setting 'P_ref' to 100, 'solarm' to 2.0, and 'tshours' to 6.0. The weather file path must be retrieved from the directory listed in /home/ga/.SAM/solar_resource_dir.txt. For a 100MW plant with 2.0 SM and 6h TES in Daggett, CA, the annual energy is typically in the range of 350,000,000 to 450,000,000 kWh, and the capacity factor is usually between 40% and 55%."
+}

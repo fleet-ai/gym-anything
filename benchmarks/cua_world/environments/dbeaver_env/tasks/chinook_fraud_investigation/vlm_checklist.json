@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_fraud_investigation@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Establish a connection to the chinook_fraud.db database using a database management tool.",
+            "points": 10,
+            "visual_evidence": "A database tool (like DBeaver) open showing a connection named 'ChinookFraud' or pointing to '/home/ga/Documents/databases/chinook_fraud.db'."
+        },
+        {
+            "id": "query_financial_mismatch",
+            "description": "Execute a SQL query to identify records where the Invoice Total does not match the sum of UnitPrice * Quantity.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing a query joining 'invoices' and 'invoice_items' with a comparison between 'Total' and 'SUM(UnitPrice * Quantity)'."
+        },
+        {
+            "id": "query_geo_mismatch",
+            "description": "Execute a SQL query to identify records where the BillingCountry in 'invoices' does not match the Country in 'customers'.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing a query joining 'invoices' and 'customers' with a WHERE clause filtering for 'BillingCountry != Country'."
+        },
+        {
+            "id": "export_configuration",
+            "description": "Configure the export of the identified suspicious records with the required columns.",
+            "points": 15,
+            "visual_evidence": "An export wizard or save dialog showing the destination '/home/ga/Documents/exports/fraud_audit.csv' and the specific columns: InvoiceId, ViolationType, InvoiceTotal, CalculatedTotal, BillingCountry, and CustomerCountry."
+        },
+        {
+            "id": "final_csv_content",
+            "description": "Verify the final CSV file contains the correct fraud records and column headers.",
+            "points": 25,
+            "visual_evidence": "A file viewer or spreadsheet showing 'fraud_audit.csv' with headers and data rows including InvoiceIds 99, 128, and 256."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used a GUI-based database tool rather than just executing sqlite3 in the terminal.",
+            "visual_evidence": "Screenshots show DBeaver or a similar GUI application window being used for data exploration and export."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent derived the results from the database rather than typing the known fraud IDs directly into a CSV.",
+            "visual_evidence": "SQL queries are visible that logically calculate the mismatches rather than using 'WHERE InvoiceId IN (99, 128, 256)'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system and database tool UI.",
+            "visual_evidence": "Mouse movements, menu selections, or active cursor placement within the database tool's export wizard."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains three specific financial mismatches: Invoice 99 (Total 53.98 vs Calculated 3.98), Invoice 128 (Total 2.96 vs Calculated 3.96), and Invoice 256 (Total 13.91 vs Calculated 3.91). There are also Geo Mismatches where BillingCountry does not match the Customer's Country. The final CSV must be at /home/ga/Documents/exports/fraud_audit.csv and must contain columns: InvoiceId, ViolationType, InvoiceTotal, CalculatedTotal, BillingCountry, and CustomerCountry."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_asv_hydrodynamics@1",
+    "task_completion": [
+        {
+            "id": "fluid_node_config",
+            "description": "Configure the Fluid node name to 'seawater' and density to 1025.",
+            "points": 15,
+            "visual_evidence": "The Scene Tree or a node editor window showing the Fluid node with 'name' set to 'seawater' and 'density' set to 1025."
+        },
+        {
+            "id": "robot_immersion_properties",
+            "description": "Update the ASV_BATHYMETRY robot to include ImmersionProperties with fluidName 'seawater' and viscousResistanceForceCoefficient 150.",
+            "points": 25,
+            "visual_evidence": "The Scene Tree showing the ASV_BATHYMETRY robot's 'immersionProperties' field expanded, displaying 'fluidName' as 'seawater' and 'viscousResistanceForceCoefficient' as 150."
+        },
+        {
+            "id": "robot_center_of_mass",
+            "description": "Adjust the robot's Physics centerOfMass to [0 0 -0.15].",
+            "points": 15,
+            "visual_evidence": "The Scene Tree showing the ASV_BATHYMETRY robot's 'physics' field expanded, with 'centerOfMass' set to [0, 0, -0.15]."
+        },
+        {
+            "id": "sonar_installation",
+            "description": "Install a DistanceSensor named 'depth_sonar' with type 'sonar' and maxRange 50.",
+            "points": 25,
+            "visual_evidence": "The Scene Tree showing a DistanceSensor node added to the robot's children, with 'name' set to 'depth_sonar', 'type' set to 'sonar', and 'maxRange' set to 50."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to /home/ga/Desktop/asv_configured.wbt.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog box with the path /home/ga/Desktop/asv_configured.wbt, or the Webots title bar/file explorer showing the file saved at that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Scene Tree, field editor, or node selection menus in Webots."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a text file with the final content using a text editor.",
+            "visual_evidence": "The agent is seen navigating the Webots interface and property fields rather than just typing the entire world file structure into a text editor like gedit or vim."
+        },
+        {
+            "id": "genuine_node_addition",
+            "description": "The DistanceSensor was added through the 'Add New' node menu in Webots.",
+            "visual_evidence": "The 'Add a node' pop-up window visible in the Webots interface during the sonar installation step."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot to be modified is named 'ASV_BATHYMETRY'. The specific values required are: Fluid name='seawater', density=1025; ImmersionProperties fluidName='seawater', viscousResistanceForceCoefficient=150; Physics centerOfMass=[0 0 -0.15]; DistanceSensor name='depth_sonar', type='sonar', maxRange=50. The final file must be saved exactly to /home/ga/Desktop/asv_configured.wbt."
+}

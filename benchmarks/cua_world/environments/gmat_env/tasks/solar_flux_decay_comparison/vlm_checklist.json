@@ -1,0 +1,59 @@
+{
+    "task_id": "solar_flux_decay_comparison@1",
+    "task_completion": [
+        {
+            "id": "gmat_interface_open",
+            "description": "The GMAT (General Mission Analysis Tool) software is open and active.",
+            "points": 10,
+            "visual_evidence": "The GMAT application window is visible on the desktop with its resource tree and mission tree."
+        },
+        {
+            "id": "spacecraft_parameters_set",
+            "description": "Sentinel-LEO spacecraft parameters (SMA 6971.14 km, Mass 450 kg, Area 8.0 m^2) are correctly configured.",
+            "points": 15,
+            "visual_evidence": "The 'Spacecraft' resource panel shows SMA set to 6971.14, Dry Mass to 450, and Drag Area to 8.0."
+        },
+        {
+            "id": "three_solar_scenarios_configured",
+            "description": "Three distinct solar flux scenarios (Quiet, Moderate, Active) are set up in the force model or script.",
+            "points": 20,
+            "visual_evidence": "The mission tree or script editor shows three separate propagation sequences or force model configurations for F10.7 values of 70, 150, and 250."
+        },
+        {
+            "id": "simulation_duration_60_days",
+            "description": "The propagation duration is set to 60 days.",
+            "points": 15,
+            "visual_evidence": "The 'Propagate' command in the mission tree or script shows a duration or stop condition of 60 days (5184000 seconds)."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The simulation is executed for all three scenarios.",
+            "points": 20,
+            "visual_evidence": "The GMAT message window shows 'Mission Run Completed' and the output files are generated in the specified directory."
+        },
+        {
+            "id": "analysis_report_generated",
+            "description": "A final analysis report comparing the decay results is saved to the specified path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal shows the content of '/home/ga/GMAT_output/solar_flux_analysis.txt' containing the SMA decay values for the three scenarios."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GMAT GUI to configure the mission rather than just writing a final text file.",
+            "visual_evidence": "Screenshots show the agent interacting with GMAT dialog boxes, the resource tree, or the script editor within the GMAT GUI."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The decay values are not fabricated and match the expected physics of the simulation.",
+            "visual_evidence": "The output report shows specific SMA values that decrease over time, with the 'Active Sun' scenario showing the largest drop in altitude."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the expected results into a file without running the tool.",
+            "visual_evidence": "The GMAT 'Output' tab or 'ReportFile' resource is visible and active during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use GMAT to simulate a 60-day decay starting from SMA 6971.14 km. The three scenarios are: Quiet (F10.7=70, Kp=1), Moderate (F10.7=150, Kp=3), and Active (F10.7=250, Kp=5). The script must be saved at /home/ga/Documents/missions/solar_flux_study.script and the final analysis at /home/ga/GMAT_output/solar_flux_analysis.txt. Expected decay for Quiet Sun is 0.1-5.0 km, Moderate is 1.0-20.0 km, and Active is 5.0-100.0 km."
+}

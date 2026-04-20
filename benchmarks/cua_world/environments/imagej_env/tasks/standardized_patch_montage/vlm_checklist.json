@@ -1,0 +1,59 @@
+{
+    "task_id": "standardized_patch_montage@1",
+    "task_completion": [
+        {
+            "id": "open_blobs_sample",
+            "description": "Open the 'Blobs (25K)' sample image in ImageJ.",
+            "points": 10,
+            "visual_evidence": "The 'blobs.gif' or 'Blobs (25K)' image window is visible in the ImageJ workspace."
+        },
+        {
+            "id": "extract_four_patches",
+            "description": "Extract four distinct 64x64 pixel crops of different blobs.",
+            "points": 25,
+            "visual_evidence": "Four separate small image windows (patches) are visible, or a stack containing four 64x64 images is created. Each should contain a distinct blob."
+        },
+        {
+            "id": "create_stack",
+            "description": "Combine the four patches into an image stack.",
+            "points": 15,
+            "visual_evidence": "An ImageJ stack window is visible with a scroll bar at the bottom indicating 4 slices, or the 'Images to Stack' dialog is used."
+        },
+        {
+            "id": "configure_montage",
+            "description": "Configure the Make Montage dialog with 2 columns, 2 rows, scale 1.0, and 0 border width.",
+            "points": 20,
+            "visual_evidence": "The 'Make Montage' dialog box is shown with 'Columns: 2', 'Rows: 2', 'Scale factor: 1.0', and 'Border width: 0' entered."
+        },
+        {
+            "id": "generate_montage",
+            "description": "Generate the 2x2 montage image.",
+            "points": 15,
+            "visual_evidence": "A new image window titled 'Montage' appears showing a 2x2 grid of the previously extracted blobs."
+        },
+        {
+            "id": "save_png_result",
+            "description": "Save the final montage as a PNG to the specified results directory.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' file dialog is visible showing the path '~/ImageJ_Data/results/blobs_montage.png' or a successful save confirmation in the status bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI menus and tools rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (File, Image, Process) and dialog boxes."
+        },
+        {
+            "id": "genuine_crop_action",
+            "description": "The agent manually selected or specified crop coordinates for distinct blobs.",
+            "visual_evidence": "Selection boxes (ROIs) are visible on the original blobs image before the 'Duplicate' or 'Crop' command is used."
+        },
+        {
+            "id": "no_premade_result",
+            "description": "The agent did not simply move an existing file to the destination.",
+            "visual_evidence": "The montage is seen being constructed step-by-step from the source image in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The final output must be a 128x128 pixel PNG image (calculated from a 2x2 grid of 64x64 patches). The montage must have 0 border width and a scale of 1.0. The expected file path is /home/ga/ImageJ_Data/results/blobs_montage.png. The source image is the standard ImageJ 'Blobs' sample."
+}

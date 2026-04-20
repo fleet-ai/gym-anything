@@ -1,0 +1,59 @@
+{
+    "task_id": "create_export_science_exams@1",
+    "task_completion": [
+        {
+            "id": "login_seb_server",
+            "description": "Log into the SEB Server at http://localhost:8080 using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SEB Server dashboard or management interface after logging in with 'super-admin'."
+        },
+        {
+            "id": "create_math_config",
+            "description": "Create 'Math_Final_Offline' with Start URL 'https://math.edu/exam' and Quit Password 'math_exit'.",
+            "points": 20,
+            "visual_evidence": "A configuration creation screen or list entry showing 'Math_Final_Offline' with the correct URL and password fields filled."
+        },
+        {
+            "id": "create_physics_config",
+            "description": "Create 'Physics_Final_Offline' with Start URL 'https://physics.edu/exam' and Quit Password 'phys_exit'.",
+            "points": 20,
+            "visual_evidence": "A configuration creation screen or list entry showing 'Physics_Final_Offline' with the correct URL and password fields filled."
+        },
+        {
+            "id": "create_bio_config",
+            "description": "Create 'Bio_Final_Offline' with Start URL 'https://bio.edu/exam' and Quit Password 'bio_exit'.",
+            "points": 20,
+            "visual_evidence": "A configuration creation screen or list entry showing 'Bio_Final_Offline' with the correct URL and password fields filled."
+        },
+        {
+            "id": "export_seb_files",
+            "description": "Export the three configurations as .seb files.",
+            "points": 15,
+            "visual_evidence": "The agent clicking 'Export' or 'Download' for each configuration within the SEB Server UI."
+        },
+        {
+            "id": "verify_files_in_directory",
+            "description": "Ensure the three .seb files are saved in ~/Documents/ExamBackups/ with correct names.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal 'ls' output showing 'Math_Final_Offline.seb', 'Physics_Final_Offline.seb', and 'Bio_Final_Offline.seb' inside the '/home/ga/Documents/ExamBackups/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the SEB Server web interface to create configurations, not direct database manipulation.",
+            "visual_evidence": "Screenshots show the browser interacting with the SEB Server UI elements (buttons, text fields)."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The .seb files should be exported from the server, not created as empty dummy files via 'touch'.",
+            "visual_evidence": "The agent is seen using the export/download feature in the browser rather than just creating files in the terminal."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent must specifically use the ~/Documents/ExamBackups/ directory as requested.",
+            "visual_evidence": "The file path is visible in the file manager or terminal during the move/save process."
+        }
+    ],
+    "privileged_info_for_vlm": "The SEB Server is at http://localhost:8080. Credentials: super-admin / admin. Required configurations and their URLs: Math_Final_Offline (https://math.edu/exam), Physics_Final_Offline (https://physics.edu/exam), Bio_Final_Offline (https://bio.edu/exam). Files must be named exactly as the config names plus '.seb' and stored in /home/ga/Documents/ExamBackups/."
+}

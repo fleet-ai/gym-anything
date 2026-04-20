@@ -1,0 +1,65 @@
+{
+    "task_id": "save_scene_bundle@1",
+    "task_completion": [
+        {
+            "id": "load_mrhead_volume",
+            "description": "The MRHead.nrrd volume is successfully loaded into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer slice views (Red, Green, Yellow) show brain MRI scans instead of empty black backgrounds."
+        },
+        {
+            "id": "place_first_fiducial",
+            "description": "A fiducial marker is placed on the MRI scan.",
+            "points": 15,
+            "visual_evidence": "A markup point (fiducial) is visible in the 2D slice views or the 3D viewer."
+        },
+        {
+            "id": "rename_fiducial_a",
+            "description": "The first fiducial is renamed to 'Landmark_A'.",
+            "points": 15,
+            "visual_evidence": "The 'Markups' module list or the label next to the point in the viewer shows the text 'Landmark_A'."
+        },
+        {
+            "id": "place_and_rename_fiducial_b",
+            "description": "A second fiducial is placed at a distinct location and named 'Landmark_B'.",
+            "points": 20,
+            "visual_evidence": "Two distinct markup points are visible; the 'Markups' module list shows both 'Landmark_A' and 'Landmark_B'."
+        },
+        {
+            "id": "open_save_dialog",
+            "description": "The agent opens the 'Save Scene' or 'Save Data' dialog window.",
+            "points": 10,
+            "visual_evidence": "A 'Save Scene' or 'Save Data' dialog box is visible over the main Slicer interface."
+        },
+        {
+            "id": "configure_mrb_export",
+            "description": "The agent selects the MRB format and sets the correct file path.",
+            "points": 15,
+            "visual_evidence": "In the Save dialog, the file format is set to '.mrb' and the directory path includes '~/Documents/SlicerData/Exports/annotated_brain_scene.mrb'."
+        },
+        {
+            "id": "confirm_save_execution",
+            "description": "The agent triggers the save process.",
+            "points": 15,
+            "visual_evidence": "The 'Save' button is clicked, and a progress bar or the closing of the dialog indicates the file was written."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the 3D Slicer GUI to perform the task rather than just running a Python script in the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Markups module, the slice views, and the Save dialog buttons."
+        },
+        {
+            "id": "genuine_placement",
+            "description": "The fiducials are placed manually on the anatomical structure, not just generated via code.",
+            "visual_evidence": "The mouse cursor is seen clicking on specific anatomical locations in the slice views to drop the points."
+        },
+        {
+            "id": "actual_software_use",
+            "description": "The agent interacted with the 3D Slicer application interface rather than manipulating files via a file explorer only.",
+            "visual_evidence": "The 3D Slicer application window is the primary active window throughout the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected fiducial labels are 'Landmark_A' and 'Landmark_B'. The final exported file must be in .mrb format (Medical Reality Bundle), which typically results in a file size of at least 1,000,000 bytes due to the inclusion of the MRHead volume data."
+}

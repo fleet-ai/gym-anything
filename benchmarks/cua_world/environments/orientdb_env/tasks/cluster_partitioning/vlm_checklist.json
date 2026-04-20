@@ -1,0 +1,53 @@
+{
+    "task_id": "cluster_partitioning@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Agent successfully logged into OrientDB Studio 'demodb' using admin/admin credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio dashboard or Schema tab for the 'demodb' database."
+        },
+        {
+            "id": "create_clusters",
+            "description": "Agent created the three required clusters: 'hotels_europe', 'hotels_americas', and 'hotels_asiapacific'.",
+            "points": 20,
+            "visual_evidence": "The 'Clusters' management tab or the 'Hotels' class schema showing these three specific cluster names added to the database."
+        },
+        {
+            "id": "add_clusters_to_class",
+            "description": "Agent associated the three new clusters with the 'Hotels' class.",
+            "points": 15,
+            "visual_evidence": "The Schema view for the 'Hotels' class showing 'hotels_europe', 'hotels_americas', and 'hotels_asiapacific' listed under the class clusters."
+        },
+        {
+            "id": "move_vertices_logic",
+            "description": "Agent executed commands (SQL UPDATE or MOVE) to partition data based on the 'Country' field.",
+            "points": 30,
+            "visual_evidence": "SQL editor screenshots showing queries like 'UPDATE Hotels SET @cluster = \"hotels_europe\" WHERE Country IN [...]' or similar MOVE commands for all three regions."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent created a report at /home/ga/partitioning_report.txt with cluster counts.",
+            "points": 25,
+            "visual_evidence": "A terminal window or text editor showing the content of '/home/ga/partitioning_report.txt' with counts for each cluster and a total."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface for database management rather than just command-line tools.",
+            "visual_evidence": "Screenshots of the browser showing http://localhost:2480/studio/index.html."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent actually ran queries to move data rather than manually typing a report with hardcoded numbers.",
+            "visual_evidence": "SQL 'Query' tab in OrientDB showing the execution of UPDATE or MOVE statements and the resulting 'records updated' messages."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent verified the counts from the database instead of copy-pasting the counts from the task prompt (if they were provided).",
+            "visual_evidence": "Screenshots showing 'SELECT COUNT(*)' queries or the 'Clusters' tab showing record counts for each specific cluster."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Hotels' class must be partitioned into 'hotels_europe', 'hotels_americas', and 'hotels_asiapacific'. Verified data facts: There are 11 total hotels. Europe includes Italy, Germany, France, UK, Spain, Greece, Netherlands (7 hotels). Americas includes US and Brazil (2 hotels); Canada is in the prompt but has 0 hotels in the actual data. Asia-Pacific includes Japan and Australia (2 hotels). The report must be at /home/ga/partitioning_report.txt."
+}

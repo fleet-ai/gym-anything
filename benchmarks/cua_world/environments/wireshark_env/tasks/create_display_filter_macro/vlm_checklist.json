@@ -1,0 +1,53 @@
+{
+    "task_id": "create_display_filter_macro@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Open Wireshark and load the specified pcapng file.",
+            "points": 10,
+            "visual_evidence": "Wireshark window is open showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "open_macros_dialog",
+            "description": "Navigate to the Display Filter Macros configuration dialog.",
+            "points": 10,
+            "visual_evidence": "The 'Display Filter Macros' dialog box is visible (usually found under Analyze -> Display Filter Macros)."
+        },
+        {
+            "id": "configure_macro_details",
+            "description": "Create a macro named 'tcp_bad_quality' with the correct filter string.",
+            "points": 30,
+            "visual_evidence": "A row in the Macros dialog shows Name: 'tcp_bad_quality' and Filter: 'tcp.analysis.retransmission || tcp.analysis.fast_retransmission || tcp.analysis.spurious_retransmission'."
+        },
+        {
+            "id": "apply_macro_filter",
+            "description": "Apply the created macro to the current capture using the macro syntax.",
+            "points": 30,
+            "visual_evidence": "The Wireshark display filter bar contains '${tcp_bad_quality}' and the background is green (valid syntax)."
+        },
+        {
+            "id": "save_packet_count",
+            "description": "Record the resulting packet count into the specified text file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal shows '0' being saved to '~/Documents/packet_count.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_macro_creation",
+            "description": "Verify the macro was created via the Wireshark GUI, not just manually filtered.",
+            "visual_evidence": "Screenshots show the 'Display Filter Macros' dialog box being populated and saved."
+        },
+        {
+            "id": "genuine_pcap_interaction",
+            "description": "Verify the agent is interacting with the actual 200722_tcp_anon.pcapng file.",
+            "visual_evidence": "The packet list pane shows TCP traffic consistent with the netcat capture (35 total packets before filtering)."
+        },
+        {
+            "id": "no_hardcoded_result",
+            "description": "Verify the agent derived the count from the UI status bar after applying the filter.",
+            "visual_evidence": "The Wireshark status bar at the bottom shows 'Displayed: 0 (0.0%)' after the macro is applied."
+        }
+    ],
+    "privileged_info_for_vlm": "The macro name must be exactly 'tcp_bad_quality'. The filter string is 'tcp.analysis.retransmission || tcp.analysis.fast_retransmission || tcp.analysis.spurious_retransmission'. When this filter is applied to '200722_tcp_anon.pcapng', the resulting packet count is 0. The output file ~/Documents/packet_count.txt must contain the integer 0."
+}

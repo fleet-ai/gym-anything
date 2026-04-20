@@ -1,0 +1,59 @@
+{
+    "task_id": "reschedule_appointment@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenEMR system using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenEMR dashboard or calendar view is visible after the login screen."
+        },
+        {
+            "id": "locate_original_appointment",
+            "description": "Agent locates Jayson Fadel's original appointment on the calendar (tomorrow at 10:00 AM).",
+            "points": 15,
+            "visual_evidence": "The calendar view shows an appointment for 'Jayson Fadel' at 10:00 AM on the date corresponding to tomorrow."
+        },
+        {
+            "id": "open_edit_dialog",
+            "description": "Agent opens the existing appointment record for editing rather than creating a new one.",
+            "points": 15,
+            "visual_evidence": "An 'Edit Appointment' or 'Edit Event' dialog box is open, pre-filled with Jayson Fadel's information."
+        },
+        {
+            "id": "update_date_and_time",
+            "description": "Agent changes the appointment date to 2 days from today and the time to 2:30 PM.",
+            "points": 30,
+            "visual_evidence": "The date field shows the date 2 days from the current system date and the time field shows 02:30 PM (or 14:30)."
+        },
+        {
+            "id": "maintain_type_and_duration",
+            "description": "Agent ensures the appointment type and duration (30 minutes/1800s) remain unchanged.",
+            "points": 10,
+            "visual_evidence": "The 'Category' or 'Type' field and the 'Duration' field in the edit dialog remain consistent with the original record."
+        },
+        {
+            "id": "save_and_verify_final",
+            "description": "Agent saves the changes and the updated appointment is visible on the calendar at the new time.",
+            "points": 20,
+            "visual_evidence": "The calendar view for 2 days from today shows Jayson Fadel's appointment at 2:30 PM, and the 10:00 AM slot tomorrow is now empty."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface to perform the task.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons, and typing within the browser, rather than executing SQL commands or scripts in a terminal."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the application menus rather than guessing direct database IDs in the URL.",
+            "visual_evidence": "The agent is seen clicking on the calendar or search functions to find the patient/appointment."
+        },
+        {
+            "id": "genuine_record_update",
+            "description": "The agent updated the existing record instead of deleting it and creating a new one.",
+            "visual_evidence": "The agent clicked 'Edit' on the existing block rather than clicking an empty time slot to create a new entry."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Jayson Fadel (PID 3). The original appointment is at 10:00:00, one day from the current system date. The target appointment must be moved to 14:30:00 (2:30 PM), exactly two days from the current system date. The duration must remain 1800 seconds (30 minutes)."
+}

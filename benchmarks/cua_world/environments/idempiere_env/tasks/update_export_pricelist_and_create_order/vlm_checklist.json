@@ -1,0 +1,53 @@
+{
+    "task_id": "update_export_pricelist_and_create_order@1",
+    "task_completion": [
+        {
+            "id": "login_idempiere",
+            "description": "Log in to iDempiere as GardenAdmin",
+            "points": 10,
+            "visual_evidence": "The iDempiere dashboard or menu is visible, and the user profile/header indicates 'GardenAdmin@GardenWorld'."
+        },
+        {
+            "id": "navigate_to_pricelist",
+            "description": "Navigate to the Price List window and select 'Export 2003'",
+            "points": 10,
+            "visual_evidence": "The 'Price List' or 'Price List Version' window is open with 'Export 2003' selected in the record selector or header."
+        },
+        {
+            "id": "update_product_prices",
+            "description": "Update Standard Prices for Patio Chair ($32.00), Patio Table ($65.00), and Patio Sun Screen ($21.50)",
+            "points": 30,
+            "visual_evidence": "The 'Product Price' tab or grid shows the updated 'Standard Price' values for the three specific products: Patio Chair (32.00), Patio Table (65.00), and Patio Sun Screen (21.50)."
+        },
+        {
+            "id": "create_sales_order_header",
+            "description": "Create a new Sales Order for 'Patio Fun, Inc.' using the 'Export' price list",
+            "points": 20,
+            "visual_evidence": "A new record in the 'Sales Order' window showing Business Partner 'Patio Fun, Inc.' and Price List 'Export' selected."
+        },
+        {
+            "id": "add_order_lines",
+            "description": "Add order lines for 20 Patio Chairs, 8 Patio Tables, and 12 Patio Sun Screens",
+            "points": 30,
+            "visual_evidence": "The 'Order Line' tab shows three rows: Patio Chair (Qty 20), Patio Table (Qty 8), and Patio Sun Screen (Qty 12). The unit prices should reflect the updated price list values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than database commands",
+            "visual_evidence": "Screenshots show mouse cursors, menu navigation, and form filling within the browser, not a terminal or SQL console."
+        },
+        {
+            "id": "no_manual_price_override",
+            "description": "The agent updated the price list first rather than manually overriding prices on the sales order",
+            "visual_evidence": "The trajectory shows the agent navigating to the Price List window before creating the Sales Order."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the live GardenWorld instance",
+            "visual_evidence": "The URL bar shows the expected iDempiere domain/IP and the UI elements are consistent with the iDempiere framework."
+        }
+    ],
+    "privileged_info_for_vlm": "The Price List Version to update is 'Export 2003' (ID 105) under Price List 'Export' (ID 103). Target prices: Patio Chair (ID 133) = 32.00, Patio Table (ID 134) = 65.00, Patio Sun Screen (ID 135) = 21.50. The Sales Order must be for Business Partner 'Patio Fun, Inc.' with quantities 20, 8, and 12 respectively."
+}

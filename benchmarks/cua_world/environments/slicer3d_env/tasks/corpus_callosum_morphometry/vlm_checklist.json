@@ -1,0 +1,53 @@
+{
+    "task_id": "corpus_callosum_morphometry@1",
+    "task_completion": [
+        {
+            "id": "load_mrhead_data",
+            "description": "The MRHead brain MRI dataset is loaded into the 3D Slicer application.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows the 'MRHead' volume in the slice viewers (Red, Green, Yellow)."
+        },
+        {
+            "id": "identify_mid_sagittal",
+            "description": "The agent navigates to the mid-sagittal plane for measurement.",
+            "points": 10,
+            "visual_evidence": "The sagittal slice viewer (usually the Yellow slice) shows a clear view of the corpus callosum at the midline, with the brainstem and septum pellucidum visible."
+        },
+        {
+            "id": "place_measurement_markups",
+            "description": "Measurement markups (lines or points) are placed on the corpus callosum for length and thickness.",
+            "points": 30,
+            "visual_evidence": "Visual markup lines or rulers are visible on the corpus callosum in the sagittal view, indicating measurements for total length and thickness at the genu, body, and splenium."
+        },
+        {
+            "id": "save_markups_json",
+            "description": "The measurement markups are saved to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save Data' dialog or a file browser shows 'cc_measurements.mrk.json' being saved to ~/Documents/SlicerData/SampleData/."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "A report JSON file is created with the required morphometry fields.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows the creation of 'corpus_callosum_report.json' containing fields: total_length_mm, genu_thickness_mm, body_thickness_mm, splenium_thickness_mm, mid_sagittal_slice, and atrophy_grade."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform measurements rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's 'Markups' or 'Ruler' tools and manual placement of points on the MRI."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual markups in the GUI.",
+            "visual_evidence": "The values in the final JSON report (e.g., total_length_mm) are consistent with the lengths shown in the Slicer 'Markups' control panel or on-screen labels."
+        },
+        {
+            "id": "no_prefilled_data",
+            "description": "The agent did not simply copy a pre-existing report file.",
+            "visual_evidence": "The agent is seen actively typing the report values or using a script that extracts values from the active Slicer session."
+        }
+    ],
+    "privileged_info_for_vlm": "The MRHead sample volume in 3D Slicer typically has a mid-sagittal plane around slice index 125-130 in the sagittal view. A normal corpus callosum length is approximately 70-80mm. The report must be saved in ~/Documents/SlicerData/SampleData/ and must include the specific field 'atrophy_grade' which requires the agent to make a qualitative assessment based on the measurements."
+}

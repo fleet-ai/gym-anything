@@ -1,0 +1,53 @@
+{
+    "task_id": "crossvalidate_event_db@1",
+    "task_completion": [
+        {
+            "id": "database_access",
+            "description": "Agent accesses the SeisComP database using the provided credentials (sysop/sysop).",
+            "points": 10,
+            "visual_evidence": "Terminal or GUI showing successful login or connection string to the 'seiscomp' database with user 'sysop'."
+        },
+        {
+            "id": "data_query_cross_validation",
+            "description": "Agent performs queries to link Event, Origin, and Magnitude tables to verify structural integrity.",
+            "points": 25,
+            "visual_evidence": "SQL queries or SeisComP tool commands (like scquery or scbulletin) showing joins or lookups between preferredOriginID and preferredMagnitudeID."
+        },
+        {
+            "id": "xml_dump_creation",
+            "description": "Agent generates an XML dump of the database to the specified path.",
+            "points": 20,
+            "visual_evidence": "Command execution (e.g., scxmldump) or file explorer showing /home/ga/event_dump.xml being created."
+        },
+        {
+            "id": "report_generation_keys",
+            "description": "Agent creates the validation report with all 14 required KEY: VALUE pairs.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command output showing /home/ga/earthquake_validation_report.txt containing keys like EVENT_ID, ORIGIN_REF_VALID, and OVERALL_VALID."
+        },
+        {
+            "id": "final_report_content",
+            "description": "The report contains specific data values related to the Noto Peninsula earthquake (Latitude/Longitude/Magnitude).",
+            "points": 20,
+            "visual_evidence": "The content of /home/ga/earthquake_validation_report.txt showing values consistent with the Noto Peninsula event (e.g., Latitude ~37.5, Longitude ~137.2)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_report",
+            "description": "Agent did not simply echo the report content without querying the database.",
+            "visual_evidence": "Evidence of database interaction (SQL logs or SeisComP tool output) preceding the file write operations."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent used the exact file paths specified in the task rather than default locations.",
+            "visual_evidence": "Commands or file saves explicitly referencing /home/ga/event_dump.xml and /home/ga/earthquake_validation_report.txt."
+        },
+        {
+            "id": "genuine_seiscomp_interaction",
+            "description": "Agent uses SeisComP specific utilities or direct database access rather than generic placeholders.",
+            "visual_evidence": "Usage of commands like 'scxmldump', 'scquery', or 'psql -d seiscomp'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'seiscomp', user is 'sysop', and password is 'sysop'. The task requires exactly 14 specific keys in the report. The data concerns the 2024 Noto Peninsula earthquake. The XML dump must be at /home/ga/event_dump.xml and the report at /home/ga/earthquake_validation_report.txt. The report must use the KEY: VALUE format."
+}

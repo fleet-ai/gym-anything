@@ -1,0 +1,53 @@
+{
+    "task_id": "run_heteroskedasticity_test@1",
+    "task_completion": [
+        {
+            "id": "open_dataset",
+            "description": "The agent opens the 'food.gdt' dataset in gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window displays 'food.gdt' in the title bar or shows the variables 'food_exp' and 'income' in the variable list."
+        },
+        {
+            "id": "run_ols_regression",
+            "description": "The agent performs an OLS regression of 'food_exp' on 'income'.",
+            "points": 20,
+            "visual_evidence": "A gretl model output window titled 'Model 1: OLS, using observations 1-40' (or similar) showing 'Dependent variable: food_exp' and 'income' as a regressor."
+        },
+        {
+            "id": "execute_white_test",
+            "description": "The agent initiates White's test for heteroskedasticity from the model window.",
+            "points": 25,
+            "visual_evidence": "The agent clicking 'Tests' -> 'Heteroskedasticity' -> 'White's test' in the model window menu, or a new window appearing titled 'White's test for heteroskedasticity'."
+        },
+        {
+            "id": "verify_test_results",
+            "description": "The White's test output is generated with the correct statistical values.",
+            "points": 25,
+            "visual_evidence": "A window showing 'White's test for heteroskedasticity', including an auxiliary regression and a Test Statistic (TR^2) with a p-value."
+        },
+        {
+            "id": "save_output_file",
+            "description": "The agent saves the test results to the specified file path.",
+            "points": 20,
+            "visual_evidence": "The agent using 'File' -> 'Save as' or a redirection command to save the text to '/home/ga/Documents/gretl_output/white_test_results.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI to perform the analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gretl menus (Model, Tests) and gretl-specific dialog boxes."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent did not manually type the results into a text file without running the test.",
+            "visual_evidence": "The sequence of screenshots shows the gretl output window being generated before the file is saved."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent saved the file to the exact path requested in the instructions.",
+            "visual_evidence": "The file save dialog or a terminal 'cat' command shows the path /home/ga/Documents/gretl_output/white_test_results.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset 'food.gdt' contains 40 observations (5 real from POE 5th ed, 35 synthetic). The dependent variable is 'food_exp' and the independent variable is 'income'. The agent must run an OLS regression first to access the White's test option in the gretl GUI. The final output must be saved to /home/ga/Documents/gretl_output/white_test_results.txt."
+}

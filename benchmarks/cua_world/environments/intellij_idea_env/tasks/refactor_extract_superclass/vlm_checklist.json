@@ -1,0 +1,59 @@
+{
+    "task_id": "refactor_extract_superclass@1",
+    "task_completion": [
+        {
+            "id": "create_bank_account_class",
+            "description": "Create a new abstract class named 'BankAccount' in the 'com.banking' package.",
+            "points": 15,
+            "visual_evidence": "A new file 'BankAccount.java' is visible in the project explorer or an editor tab showing 'public abstract class BankAccount'."
+        },
+        {
+            "id": "move_common_fields",
+            "description": "Move fields 'accountNumber', 'balance', and 'owner' to the BankAccount class.",
+            "points": 15,
+            "visual_evidence": "The BankAccount.java file contains declarations for accountNumber (String), balance (double), and owner (String)."
+        },
+        {
+            "id": "move_common_methods",
+            "description": "Move 'deposit' and 'withdraw' methods to the BankAccount class.",
+            "points": 20,
+            "visual_evidence": "The BankAccount.java file contains the implementations for the deposit(double amount) and withdraw(double amount) methods."
+        },
+        {
+            "id": "update_subclasses_inheritance",
+            "description": "Modify CheckingAccount and SavingsAccount to extend BankAccount.",
+            "points": 20,
+            "visual_evidence": "CheckingAccount.java and SavingsAccount.java show 'extends BankAccount' in their class declarations."
+        },
+        {
+            "id": "remove_duplicate_code",
+            "description": "Remove the redundant fields and methods from CheckingAccount and SavingsAccount.",
+            "points": 15,
+            "visual_evidence": "CheckingAccount.java and SavingsAccount.java no longer contain private declarations for accountNumber, balance, or owner, nor the duplicate deposit/withdraw logic."
+        },
+        {
+            "id": "verify_tests_pass",
+            "description": "Run the project tests to ensure the refactoring didn't break functionality.",
+            "points": 15,
+            "visual_evidence": "A test runner window (like JUnit in IntelliJ) showing green checkmarks or a 'Tests Passed' message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_ide_refactoring",
+            "description": "The agent used IDE features (like 'Extract Superclass' or manual editing in the editor) rather than just running shell scripts to overwrite files.",
+            "visual_evidence": "Screenshots show the agent interacting with the Java editor, context menus, or refactoring dialogs."
+        },
+        {
+            "id": "no_test_deletion",
+            "description": "The agent did not delete or comment out tests to make them 'pass'.",
+            "visual_evidence": "Test files remain intact in the project explorer and the test execution count matches the expected number of tests."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the IDE GUI rather than performing all actions via a hidden terminal.",
+            "visual_evidence": "Mouse cursor movements, highlighted menu items, or active dialog boxes in the IDE."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/banking-system. The package is com.banking. The common fields to be moved are accountNumber (String), balance (double), and owner (String). The common methods are deposit(double) and withdraw(double). The new class must be 'public abstract class BankAccount'. Both CheckingAccount and SavingsAccount must use 'extends BankAccount'."
+}

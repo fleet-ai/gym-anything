@@ -1,0 +1,53 @@
+{
+    "task_id": "correct_phase_identification_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv",
+            "description": "The agent has successfully launched the SeisComP Origin Locator (scolv) application.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scolv' or showing the SeisComP Origin Locator interface is visible on the desktop."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "The agent has selected or loaded the 2024 Noto Peninsula earthquake event within the application.",
+            "points": 15,
+            "visual_evidence": "The event list or event summary in scolv shows the Noto Peninsula earthquake (likely dated Jan 1, 2024) as the active event."
+        },
+        {
+            "id": "identify_toli_station",
+            "description": "The agent has navigated to the 'Arrivals' or 'Picker' tab and located the entry for station GE.TOLI.",
+            "points": 15,
+            "visual_evidence": "The station list or arrival table shows a row with Network 'GE' and Station 'TOLI'."
+        },
+        {
+            "id": "modify_phase_to_pp",
+            "description": "The agent has changed the phase label for the GE.TOLI arrival from 'P' to 'PP'.",
+            "points": 30,
+            "visual_evidence": "In the arrival table or the phase picker, the 'Phase' column or label for station TOLI is explicitly set to 'PP'."
+        },
+        {
+            "id": "commit_solution",
+            "description": "The agent has triggered the 'Commit' or 'Save' action to update the database with the corrected phase.",
+            "points": 30,
+            "visual_evidence": "The agent clicks a 'Commit' button (often with a checkmark icon in scolv) or a confirmation dialog appears indicating the origin is being saved/committed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the scolv GUI to perform the change rather than just executing database commands in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the scolv interface elements (dropdowns, buttons) rather than just a terminal window."
+        },
+        {
+            "id": "correct_target_only",
+            "description": "The agent specifically targeted station GE.TOLI and did not modify unrelated station phases.",
+            "visual_evidence": "The arrival list shows only the TOLI station phase being edited or highlighted for modification."
+        },
+        {
+            "id": "genuine_software_state",
+            "description": "The application shows the expected initial state (Phase 'P' for TOLI) before the modification.",
+            "visual_evidence": "Early screenshots show the TOLI arrival with a 'P' phase label before the agent interacts with it."
+        }
+    ],
+    "privileged_info_for_vlm": "The target station is GE.TOLI. The initial phase label for this station is 'P'. The required final phase label is 'PP'. The application used must be 'scolv' (SeisComP Origin Locator). The event is the 2024 Noto Peninsula earthquake (USGS ID us6000m0xl). Note that waveform data for TOLI may be missing, so the agent must rely on the arrival list/table within the GUI to change the phase type."
+}

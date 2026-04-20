@@ -1,0 +1,59 @@
+{
+    "task_id": "create_prospective_memory@1",
+    "task_completion": [
+        {
+            "id": "generate_conditions_csv",
+            "description": "Generate a 20-trial conditions CSV file at the specified path with correct columns.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing /home/ga/PsychoPyExperiments/conditions/pm_conditions.csv with columns 'stimulus', 'border_color', and 'correct_key'."
+        },
+        {
+            "id": "csv_content_logic",
+            "description": "Verify the CSV contains approximately 18 'gray' trials ('f'/'j') and 2 'blue' trials ('space').",
+            "points": 15,
+            "visual_evidence": "The content of pm_conditions.csv showing 'blue' paired with 'space' and 'gray' paired with 'f' or 'j'."
+        },
+        {
+            "id": "psychopy_components_setup",
+            "description": "Add Polygon, Text, and Keyboard components to the PsychoPy routine.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder interface showing a routine containing a Polygon component (for the border), a Text component (for the stimulus), and a Keyboard component."
+        },
+        {
+            "id": "component_variable_mapping",
+            "description": "Configure components to use variables from the conditions file (e.g., $stimulus, $border_color).",
+            "points": 25,
+            "visual_evidence": "Properties dialogs in PsychoPy showing '$stimulus' in the Text field and '$border_color' in the Polygon color field, with 'set every repeat' selected."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "Create a loop around the routine linked to the generated conditions file.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy 'Loop Properties' dialog showing the conditions file path pointing to /home/ga/PsychoPyExperiments/conditions/pm_conditions.csv."
+        },
+        {
+            "id": "save_experiment",
+            "description": "Save the final experiment to the specified path.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file saved as /home/ga/PsychoPyExperiments/prospective_memory.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to create the experiment rather than just writing the XML/code manually.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with PsychoPy menus, component icons, and property dialogs."
+        },
+        {
+            "id": "genuine_csv_creation",
+            "description": "The agent processed the source data to create the conditions file.",
+            "visual_evidence": "Terminal or script output showing the transformation of /home/ga/Documents/lexical_source.csv into the 20-trial pm_conditions.csv."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The experiment uses variables ($) rather than hardcoded strings for the stimuli and colors.",
+            "visual_evidence": "PsychoPy component properties showing the '$' prefix for variable names in the 'Text' and 'Color' fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is at /home/ga/Documents/lexical_source.csv. The output conditions file must be at /home/ga/PsychoPyExperiments/conditions/pm_conditions.csv and contain 20 trials. PM trials must have border_color 'blue' and correct_key 'space'. Ongoing trials must have border_color 'gray' and correct_key 'f' or 'j'. The experiment must be saved as /home/ga/PsychoPyExperiments/prospective_memory.psyexp."
+}

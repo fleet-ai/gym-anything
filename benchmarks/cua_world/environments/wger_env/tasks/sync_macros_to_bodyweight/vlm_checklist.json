@@ -1,0 +1,59 @@
+{
+    "task_id": "sync_macros_to_bodyweight@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger fitness manager.",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or navigation menu is visible, showing the user is logged in as 'admin'."
+        },
+        {
+            "id": "locate_body_weight",
+            "description": "Agent navigates to the weight tracking section to find the most recent entry.",
+            "points": 15,
+            "visual_evidence": "A list or chart of body weight entries is displayed, showing a recent weight value (likely between 80.0 and 89.9 kg)."
+        },
+        {
+            "id": "locate_nutrition_plan",
+            "description": "Agent navigates to the 'Lean Bulk Plan' nutrition plan.",
+            "points": 15,
+            "visual_evidence": "The 'Lean Bulk Plan' details page is visible, showing current macro settings or an 'Edit' button."
+        },
+        {
+            "id": "calculate_macros",
+            "description": "Agent calculates the new macro values based on the weight and multipliers (2.5 Protein, 4.0 Carbs, 1.0 Fat).",
+            "points": 20,
+            "visual_evidence": "The agent may type these values into the form or mention the calculation in its thought process. The values should be: Weight * 2.5 (Protein), Weight * 4.0 (Carbs), and Weight * 1.0 (Fat)."
+        },
+        {
+            "id": "update_macro_values",
+            "description": "Agent enters the calculated whole-gram values into the 'Lean Bulk Plan' edit form.",
+            "points": 25,
+            "visual_evidence": "The edit form for the 'Lean Bulk Plan' is shown with new values typed into the Protein, Carbohydrates, and Fat fields."
+        },
+        {
+            "id": "save_and_verify",
+            "description": "Agent saves the changes and the plan reflects the updated values.",
+            "points": 15,
+            "visual_evidence": "A success message is displayed or the 'Lean Bulk Plan' overview page shows the updated macro targets."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling in the browser, not just terminal output."
+        },
+        {
+            "id": "genuine_weight_lookup",
+            "description": "The agent actually looked up the weight in the app rather than guessing.",
+            "visual_evidence": "A screenshot exists showing the weight tracking/diary page before the nutrition plan is edited."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculated values based on the specific weight found in the UI.",
+            "visual_evidence": "The macro values entered match the math (Weight * Multiplier) for the specific weight displayed in the weight log."
+        }
+    ],
+    "privileged_info_for_vlm": "The target plan is 'Lean Bulk Plan'. The multipliers are: Protein = 2.5g/kg, Carbohydrates = 4.0g/kg, Fat = 1.0g/kg. The weight is a random value between 80.0 and 89.9 kg found in the user's weight log. Values must be rounded to the nearest whole gram. A tolerance of +/- 1 gram is acceptable for rounding differences."
+}

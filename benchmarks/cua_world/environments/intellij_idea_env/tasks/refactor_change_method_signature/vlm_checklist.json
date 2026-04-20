@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_change_method_signature@1",
+    "task_completion": [
+        {
+            "id": "open_inventory_service",
+            "description": "Open the InventoryService.java file in the IDE editor.",
+            "points": 10,
+            "visual_evidence": "The file 'InventoryService.java' is visible in an editor tab within the IDE (IntelliJ/VS Code)."
+        },
+        {
+            "id": "rename_method",
+            "description": "Rename the 'checkStock' method to 'verifyAndReserve'.",
+            "points": 15,
+            "visual_evidence": "The method declaration in InventoryService.java shows 'public ... verifyAndReserve(...)' instead of 'checkStock'."
+        },
+        {
+            "id": "update_signature_parameters",
+            "description": "Update the method signature to include locationId, sku, quantity, and strictMode in the correct order.",
+            "points": 25,
+            "visual_evidence": "The method signature in InventoryService.java is exactly: (String locationId, String sku, int quantity, boolean strictMode)."
+        },
+        {
+            "id": "update_call_sites",
+            "description": "Update call sites in OrderProcessor.java to use the new method name and parameters.",
+            "points": 25,
+            "visual_evidence": "The file 'OrderProcessor.java' shows calls to 'verifyAndReserve' with four arguments, starting with \"MAIN\" and ending with 'true'."
+        },
+        {
+            "id": "verify_compilation",
+            "description": "Ensure the project compiles successfully after refactoring.",
+            "points": 25,
+            "visual_evidence": "The IDE shows no red syntax error underlines in the project explorer or editor, or a 'Build Successful' message is visible in the console/terminal."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_refactoring_tools",
+            "description": "The agent used IDE refactoring tools (e.g., 'Change Signature' or 'Rename' dialogs) rather than just manual text editing.",
+            "visual_evidence": "Screenshots show a 'Change Signature' or 'Refactor' dialog box with the new parameters and method name."
+        },
+        {
+            "id": "no_terminal_sed",
+            "description": "The agent did not use command-line tools like 'sed' or 'grep' to perform the refactor.",
+            "visual_evidence": "The terminal history does not show complex stream editing commands; focus remains on the IDE GUI."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system and IDE menus rather than just outputting the final code block in a chat.",
+            "visual_evidence": "Mouse movements, menu clicks, or keyboard shortcuts are visible in the trajectory leading to the code changes."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/warehouse-system. The target file for the method change is src/main/java/com/logistics/service/InventoryService.java. The caller file that must be updated is src/main/java/com/logistics/client/OrderProcessor.java. The new method signature must be: verifyAndReserve(String locationId, String sku, int quantity, boolean strictMode). The default value for locationId is \"MAIN\" and for strictMode is true."
+}

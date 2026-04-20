@@ -1,0 +1,59 @@
+{
+    "task_id": "mobile_device_aup_enforcement@1",
+    "task_completion": [
+        {
+            "id": "read_aup_file",
+            "description": "Agent reads the content of '~/Documents/Legal/2026_Mobile_AUP.txt'",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of the AUP file, specifically mentioning '2026 Mobile Device Acceptable Use Policy'."
+        },
+        {
+            "id": "configure_laptops_category",
+            "description": "Configure 'Laptops' category with the EULA text and 'Send confirmation email to user' or 'Require user to confirm acceptance' enabled.",
+            "points": 20,
+            "visual_evidence": "The Snipe-IT 'Edit Category' page for 'Laptops' showing the AUP text in the EULA field and the 'Require user to confirm acceptance' checkbox selected."
+        },
+        {
+            "id": "configure_tablets_category",
+            "description": "Configure 'Tablets' category with the EULA text and 'Send confirmation email to user' or 'Require user to confirm acceptance' enabled.",
+            "points": 20,
+            "visual_evidence": "The Snipe-IT 'Edit Category' page for 'Tablets' showing the AUP text in the EULA field and the 'Require user to confirm acceptance' checkbox selected."
+        },
+        {
+            "id": "verify_desktops_unchanged",
+            "description": "The 'Desktops' category remains unmodified.",
+            "points": 10,
+            "visual_evidence": "The Snipe-IT 'Edit Category' page for 'Desktops' showing an empty EULA field or the original text, and no changes being saved to it."
+        },
+        {
+            "id": "checkout_laptop_to_dthorne",
+            "description": "Check out laptop 'LT-2026-001' to user 'dthorne'.",
+            "points": 20,
+            "visual_evidence": "The 'Checkout Asset' screen showing Asset Tag 'LT-2026-001' being assigned to user 'David Thorne' (dthorne)."
+        },
+        {
+            "id": "checkout_tablet_to_dthorne",
+            "description": "Check out tablet 'TAB-2026-001' to user 'dthorne'.",
+            "points": 20,
+            "visual_evidence": "The 'Checkout Asset' screen showing Asset Tag 'TAB-2026-001' being assigned to user 'David Thorne' (dthorne)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Snipe-IT web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the browser navigating Snipe-IT menus (Categories, Assets) and clicking 'Save' or 'Checkout' buttons."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent actually opened the local file to get the EULA text.",
+            "visual_evidence": "A screenshot showing the agent opening '2026_Mobile_AUP.txt' before pasting the content into the web UI."
+        },
+        {
+            "id": "no_desktop_modification",
+            "description": "The agent did not accidentally apply the EULA to the Desktops category.",
+            "visual_evidence": "The category list or the Desktops edit page shows the EULA field is not updated with the 2026 policy."
+        }
+    ],
+    "privileged_info_for_vlm": "The AUP text is located at /home/ga/Documents/Legal/2026_Mobile_AUP.txt and contains the string '2026 Mobile Device Acceptable Use Policy'. The target user is 'dthorne' (David Thorne). The specific assets to be checked out are 'LT-2026-001' (Laptop) and 'TAB-2026-001' (Tablet). For the digital signature requirement to work, the 'Require user to confirm acceptance' checkbox must be checked in the Category settings before the checkout occurs."
+}

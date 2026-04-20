@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_earthquake_kml@1",
+    "task_completion": [
+        {
+            "id": "access_seiscomp_database",
+            "description": "Agent successfully accesses the SeisComP database using the sysop credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent entering 'sysop' as the username and password in a database connection dialog or login screen."
+        },
+        {
+            "id": "locate_noto_earthquake",
+            "description": "Agent identifies and selects the 2024 Noto Peninsula earthquake event within the database.",
+            "points": 15,
+            "visual_evidence": "The SeisComP event list or map view showing the 2024 Noto Peninsula earthquake (likely near Japan) highlighted or selected."
+        },
+        {
+            "id": "extract_event_details",
+            "description": "Agent views or extracts the specific event data: coordinates, origin time, depth, and magnitude.",
+            "points": 15,
+            "visual_evidence": "An event detail window or data export preview showing latitude, longitude, ISO 8601 time, depth in km, and magnitude."
+        },
+        {
+            "id": "configure_kml_document_name",
+            "description": "Agent sets the KML Document name to 'SeisComP Earthquake Catalog'.",
+            "points": 15,
+            "visual_evidence": "A text field in a KML export tool or a text editor showing the string 'SeisComP Earthquake Catalog' within a <name> tag."
+        },
+        {
+            "id": "create_placemark_with_data",
+            "description": "Agent creates a Placemark containing the precise coordinates, time, depth, and magnitude.",
+            "points": 25,
+            "visual_evidence": "A KML creation interface or text editor showing a <Placemark> entry populated with the earthquake's specific numerical data."
+        },
+        {
+            "id": "save_kml_file",
+            "description": "Agent saves the final KML file to the specific path /home/ga/earthquake_catalog.kml.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or a file manager window showing the file 'earthquake_catalog.kml' located in the '/home/ga/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the SeisComP GUI or a KML export tool rather than just writing the file via terminal.",
+            "visual_evidence": "Screenshots showing mouse movements, clicks, and interactions with the SeisComP software interface."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply copy-paste a pre-written KML block from a local note or prompt.",
+            "visual_evidence": "The agent is seen navigating the database and manually configuring export settings or typing data based on the UI display."
+        },
+        {
+            "id": "genuine_database_query",
+            "description": "The agent actually queried the database to find the Noto Peninsula event.",
+            "visual_evidence": "The SeisComP search or filter interface being used with parameters related to the 2024 Noto earthquake."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'seiscomp', and the credentials are 'sysop' for both username and password. The target event is the 2024 Noto Peninsula earthquake (USGS ID us6000m0xl). The output must be a KML file at /home/ga/earthquake_catalog.kml with a Document name 'SeisComP Earthquake Catalog'. The Placemark must contain the event's longitude, latitude, ISO 8601 origin time, depth (km), and magnitude."
+}

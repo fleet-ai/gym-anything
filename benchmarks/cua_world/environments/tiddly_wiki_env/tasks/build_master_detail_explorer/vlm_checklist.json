@@ -1,0 +1,59 @@
+{
+    "task_id": "build_master_detail_explorer@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation_metadata",
+            "description": "Create a tiddler titled 'Medication Explorer' with the tag 'Dashboard'.",
+            "points": 10,
+            "visual_evidence": "A tiddler open in the TiddlyWiki interface with the title 'Medication Explorer' and the tag 'Dashboard' visible in the tag area."
+        },
+        {
+            "id": "two_column_layout",
+            "description": "Implement a two-column layout for the dashboard.",
+            "points": 15,
+            "visual_evidence": "The 'Medication Explorer' tiddler displays content split into two distinct side-by-side panes or columns."
+        },
+        {
+            "id": "left_pane_medication_list",
+            "description": "The left pane lists all tiddlers tagged 'Medication'.",
+            "points": 15,
+            "visual_evidence": "The left column of the dashboard contains a list of medication names (e.g., names of drugs)."
+        },
+        {
+            "id": "empty_state_message",
+            "description": "Display 'Please select a medication.' when no medication is selected.",
+            "points": 15,
+            "visual_evidence": "The right pane explicitly shows the text 'Please select a medication.' when the dashboard is first opened or no list item is clicked."
+        },
+        {
+            "id": "selection_state_update",
+            "description": "Selecting a medication updates the state tiddler '$:/state/selected-med'.",
+            "points": 20,
+            "visual_evidence": "Clicking a medication in the left list causes the right pane to change content, or the agent is seen configuring the action to target '$:/state/selected-med'."
+        },
+        {
+            "id": "detail_pane_content",
+            "description": "The detail pane shows the title, Class, Indications, Side Effects, and body text.",
+            "points": 25,
+            "visual_evidence": "When a medication is selected, the right pane displays: the medication name as a heading, the labels 'Class:', 'Indications:', and 'Side Effects:' followed by data, and the descriptive body text."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler.",
+            "visual_evidence": "Screenshots show the agent typing into the TiddlyWiki edit fields and clicking 'save' (tick icon), rather than just using terminal commands to overwrite files."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent used TiddlyWiki syntax (filters/transclusions) rather than hardcoding a static list of medications.",
+            "visual_evidence": "The edit mode of the tiddler shows code like '[tag[Medication]]' or '{{!!drug-class}}' instead of a manually typed list of 15 drugs."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent interacted with the resulting dashboard to verify it works.",
+            "visual_evidence": "Screenshots show the mouse cursor clicking a medication in the list and the right pane successfully updating in response."
+        }
+    ],
+    "privileged_info_for_vlm": "The dashboard must be titled 'Medication Explorer' and tagged 'Dashboard'. The specific empty state string required is 'Please select a medication.' The state tiddler used for selection must be '$:/state/selected-med'. The detail fields to display are 'drug-class', 'indications', and 'common-side-effects' using the specific labels 'Class:', 'Indications:', and 'Side Effects:'."
+}

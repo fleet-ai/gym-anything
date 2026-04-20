@@ -1,0 +1,53 @@
+{
+    "task_id": "mpr_kidney_measurement@1",
+    "task_completion": [
+        {
+            "id": "load_dicom_series",
+            "description": "The agent successfully loads the CT urogram series from the specified directory into the medical imaging software.",
+            "points": 10,
+            "visual_evidence": "The DICOM viewer interface shows a CT scan of the abdomen/pelvis loaded, with patient or study metadata visible."
+        },
+        {
+            "id": "switch_to_coronal_mpr",
+            "description": "The agent navigates to the coronal plane view to prepare for the craniocaudal measurement.",
+            "points": 15,
+            "visual_evidence": "A viewport is active showing the coronal (frontal) slice of the patient, where the full length of the kidneys can be seen."
+        },
+        {
+            "id": "measure_right_kidney",
+            "description": "The agent uses a measurement tool to find the longest craniocaudal axis of the right kidney.",
+            "points": 30,
+            "visual_evidence": "A digital caliper or line tool is visible on the right kidney (viewer's left) in the coronal view, extending from the superior to the inferior pole."
+        },
+        {
+            "id": "export_mpr_image",
+            "description": "The agent saves/exports the coronal view with the measurement overlay to the specified file path.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer window shows the file being saved as /home/ga/DICOM/exports/mpr_renal.png."
+        },
+        {
+            "id": "generate_report",
+            "description": "The agent writes a report including the measurement and a clinical assessment of the size.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal shows the content of /home/ga/DICOM/exports/renal_report.txt containing a millimeter value and a statement on whether it is 'normal'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging GUI to perform the measurement rather than script-based manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the viewer's measurement tools and slice navigation sliders."
+        },
+        {
+            "id": "actual_measurement_taken",
+            "description": "The measurement value in the report matches the value visible in the GUI screenshot.",
+            "visual_evidence": "The numeric value (mm) displayed on the caliper tool in the DICOM viewer matches the text written in the renal_report.txt."
+        },
+        {
+            "id": "correct_kidney_identified",
+            "description": "The agent measured the right kidney, not the left.",
+            "visual_evidence": "The measurement line is placed on the kidney on the left side of the coronal image (anatomical right)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target DICOM files are located in /home/ga/DICOM/studies/ct_urogram/. A normal adult kidney length is typically between 90 mm and 120 mm. The agent must measure the right kidney (anatomical right) in the coronal plane. The final image must be saved to /home/ga/DICOM/exports/mpr_renal.png and the report to /home/ga/DICOM/exports/renal_report.txt."
+}

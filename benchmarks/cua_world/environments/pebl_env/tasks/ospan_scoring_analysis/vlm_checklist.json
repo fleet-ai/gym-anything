@@ -1,0 +1,59 @@
+{
+    "task_id": "ospan_scoring_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the OSPAN data file at ~/pebl/data/ospan_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the contents of ospan_data.csv."
+        },
+        {
+            "id": "math_accuracy_calculation",
+            "description": "Agent calculates math accuracy for participants to identify those below the 0.85 threshold.",
+            "points": 20,
+            "visual_evidence": "Code execution or logs showing math accuracy calculations, specifically identifying sub-99 as having low accuracy."
+        },
+        {
+            "id": "span_scoring_logic",
+            "description": "Agent implements Absolute Span (exact match) and Partial Span (serial position) scoring logic.",
+            "points": 25,
+            "visual_evidence": "Code snippets or script output showing the processing of 'letters_recalled' against 'letters_presented' using Conway et al. rules."
+        },
+        {
+            "id": "exclusion_handling",
+            "description": "Agent excludes participants with math accuracy < 0.85 and marks them with 'excluded': true and a reason.",
+            "points": 15,
+            "visual_evidence": "The final JSON structure or intermediate dataframes showing sub-99 without span scores and with an exclusion flag."
+        },
+        {
+            "id": "group_means",
+            "description": "Agent calculates the group mean for Absolute and Partial spans using only valid participants.",
+            "points": 15,
+            "visual_evidence": "Calculated values for 'group_mean_absolute_span' and 'group_mean_partial_span' appearing in the output."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final report to ~/pebl/analysis/ospan_report.json with the required schema.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer view showing the creation/content of ospan_report.json containing the 'participants' array and group means."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation",
+            "description": "Agent performed actual data processing rather than hardcoding the final values.",
+            "visual_evidence": "Presence of data processing code (Python, R, etc.) and execution logs rather than a single 'echo' command of the final JSON."
+        },
+        {
+            "id": "correct_exclusion_trigger",
+            "description": "Agent correctly identified the specific participant (sub-99) for exclusion based on the data.",
+            "visual_evidence": "The exclusion reason in the JSON specifically references math accuracy for sub-99."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Screenshots show interaction with ~/pebl/data/ospan_data.csv and ~/pebl/analysis/ospan_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 26 participants (sub-01 to sub-25, plus sub-99). Participant 'sub-99' is a contaminated entry with a math accuracy of approximately 0.6133, which is strictly less than the 0.85 threshold and must be excluded from span calculations and group means. The final JSON must be located at ~/pebl/analysis/ospan_report.json."
+}

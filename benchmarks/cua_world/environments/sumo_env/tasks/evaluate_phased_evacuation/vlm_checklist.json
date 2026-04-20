@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_phased_evacuation@1",
+    "task_completion": [
+        {
+            "id": "directory_setup",
+            "description": "Creation of the working directory /home/ga/SUMO_Scenarios/evacuation/",
+            "points": 5,
+            "visual_evidence": "Terminal output showing 'mkdir' command or a file explorer view of the new directory."
+        },
+        {
+            "id": "demand_generation",
+            "description": "Generation of uncoordinated.rou.xml, wave1.rou.xml, and wave2.rou.xml using randomTrips.py with specified parameters.",
+            "points": 20,
+            "visual_evidence": "Terminal commands showing the execution of randomTrips.py with flags -r, -b, -e, -p, and --seed as specified in the prompt."
+        },
+        {
+            "id": "sumo_config_creation",
+            "description": "Creation of uncoordinated.sumocfg and phased.sumocfg with correct network and route file references.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command output showing the XML content of the .sumocfg files, specifically checking for the inclusion of both wave files in the phased config."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Running both simulations to completion using the 'sumo' command line tool.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the SUMO simulation progress and the generation of tripinfo_uncoordinated.xml and tripinfo_phased.xml."
+        },
+        {
+            "id": "data_analysis",
+            "description": "Parsing the XML tripinfo files to calculate clearance time and average duration.",
+            "points": 25,
+            "visual_evidence": "Code execution (Python script or shell commands) showing the extraction of 'arrival' and 'duration' attributes from the XML files."
+        },
+        {
+            "id": "final_report_json",
+            "description": "Creation of the final evacuation_metrics.json file with the required structure and calculated values.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'cat /home/ga/SUMO_Scenarios/evacuation/evacuation_metrics.json' with the correct JSON structure and non-placeholder numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent didn't hardcode results without running SUMO.",
+            "visual_evidence": "The presence of SUMO simulation logs in the terminal showing step-by-step execution and 'Simulation ended' messages."
+        },
+        {
+            "id": "correct_route_files",
+            "description": "Check that the phased scenario actually uses two route files.",
+            "visual_evidence": "The phased.sumocfg file content must show wave1.rou.xml and wave2.rou.xml separated by a comma in the input section."
+        },
+        {
+            "id": "directory_compliance",
+            "description": "Ensure all work is performed in the specified subdirectory.",
+            "visual_evidence": "The working directory in the terminal prompt or file paths in commands should consistently show /home/ga/SUMO_Scenarios/evacuation/."
+        }
+    ],
+    "privileged_info_for_vlm": "The uncoordinated scenario should have approximately 1000 vehicles (500s / 0.5 period). The phased scenario should have approximately 1000 vehicles total (500s / 1.0 period for Wave 1 + 500s / 1.0 period for Wave 2). The clearance_time is the maximum 'arrival' value, and average_duration is the mean of all 'duration' values in the tripinfo XMLs. Ensure the agent used the specific seeds (42 and 43) as requested."
+}

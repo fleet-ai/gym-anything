@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_invoice_alert@1",
+    "task_completion": [
+        {
+            "id": "open_alert_window",
+            "description": "Navigate to the 'Alert' window in iDempiere.",
+            "points": 10,
+            "visual_evidence": "The iDempiere window title or tab shows 'Alert' and the standard alert configuration fields are visible."
+        },
+        {
+            "id": "set_alert_header",
+            "description": "Set the Alert Name to 'High Value Purchase' and Alert Subject to 'Review Invoice > 1000'.",
+            "points": 15,
+            "visual_evidence": "The 'Name' field contains 'High Value Purchase' and the 'Alert Subject' field contains 'Review Invoice > 1000' in the Alert header tab."
+        },
+        {
+            "id": "enforce_client_security",
+            "description": "Ensure the 'Enforce Client Security' checkbox is selected.",
+            "points": 10,
+            "visual_evidence": "The 'Enforce Client Security' checkbox is checked (ticked) in the Alert window."
+        },
+        {
+            "id": "configure_alert_rule_sql",
+            "description": "Create an Alert Rule with the specific SQL SELECT clause for vendor invoices > 1000.",
+            "points": 35,
+            "visual_evidence": "In the 'Alert Rule' tab, the 'Select Clause' or 'From Clause' fields contain 'SELECT * FROM C_Invoice' and the 'Where Clause' contains \"IsSOTrx='N' AND DocStatus='CO' AND GrandTotal > 1000\"."
+        },
+        {
+            "id": "set_alert_recipient",
+            "description": "Add 'GardenAdmin' as the alert recipient.",
+            "points": 20,
+            "visual_evidence": "In the 'Alert Recipient' tab, a record is visible where the User/Contact is set to 'GardenAdmin'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the completed Alert configuration.",
+            "points": 10,
+            "visual_evidence": "The 'Save' icon is clicked/greyed out, or a 'Saved' status message appears in the bottom status bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the iDempiere UI elements and form fields."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent manually entered the SQL and names rather than using a script to bypass the UI.",
+            "visual_evidence": "Sequential screenshots show the text being typed or pasted into the specific iDempiere text fields."
+        },
+        {
+            "id": "authentic_environment",
+            "description": "The agent is working within the GardenWorld client environment.",
+            "visual_evidence": "The iDempiere status bar or login info shows 'GardenWorld' as the active Client/Organization."
+        }
+    ],
+    "privileged_info_for_vlm": "The alert must be named 'High Value Purchase' with subject 'Review Invoice > 1000'. The SQL rule must target the 'C_Invoice' table with the specific filters: IsSOTrx='N' (Vendor), DocStatus='CO' (Completed), and GrandTotal > 1000. The recipient must be the user 'GardenAdmin'. Client Security must be enabled."
+}

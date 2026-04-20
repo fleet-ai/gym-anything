@@ -1,0 +1,59 @@
+{
+    "task_id": "empirical_drag_estimation@1",
+    "task_completion": [
+        {
+            "id": "read_input_data",
+            "description": "Agent opens and reads the decay_data.txt file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/decay_data.txt."
+        },
+        {
+            "id": "gmat_force_model_config",
+            "description": "Agent configures the ForceModel in GMAT with JacchiaRoberts atmosphere and specific solar indices (F107=150, F107A=150, MagneticIndex=3).",
+            "points": 15,
+            "visual_evidence": "GMAT GUI showing the ForceModel resource panel with JacchiaRoberts selected and the specified flux/magnetic values entered."
+        },
+        {
+            "id": "target_sequence_setup",
+            "description": "Agent sets up a Target sequence in the Mission tree with a Vary command for Cd and an Achieve command for SMA.",
+            "points": 20,
+            "visual_evidence": "GMAT Mission tree showing a 'Target' sequence containing 'Vary Cd' and 'Achieve SMA = 6735.2'."
+        },
+        {
+            "id": "run_gmat_simulation",
+            "description": "Agent executes the GMAT script to converge on the Cd value.",
+            "points": 20,
+            "visual_evidence": "GMAT message window or output panel showing the Differential Corrector converging or the simulation running to completion."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script (.script file) in the ~/GMAT_output/ directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or terminal showing a .script file located in ~/GMAT_output/."
+        },
+        {
+            "id": "final_cd_output",
+            "description": "Agent writes the final calculated Drag Coefficient to ~/GMAT_output/estimated_cd.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing a single numerical value (the solved Cd) inside ~/GMAT_output/estimated_cd.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the GMAT graphical user interface to configure the mission rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the GMAT application window active with the mouse cursor interacting with resource nodes or the mission tree."
+        },
+        {
+            "id": "no_hardcoded_result",
+            "description": "Agent did not simply type the final Cd value without running the simulation.",
+            "visual_evidence": "The GMAT output/message window must show convergence logs before the final text file is created."
+        },
+        {
+            "id": "genuine_solver_usage",
+            "description": "Agent used the DifferentialCorrector (DC) as instructed rather than manual trial and error.",
+            "visual_evidence": "The GMAT Mission tree or script editor showing the 'Target' and 'Vary' commands being utilized."
+        }
+    ],
+    "privileged_info_for_vlm": "The target SMA is 6735.20 km. The simulation duration is 30 days. The required solar parameters are F107=150, F107A=150, and MagneticIndex=3. The final Cd value should be a result of the GMAT DifferentialCorrector convergence, typically expected to be near 2.0-2.4 depending on the specific input state in decay_data.txt."
+}

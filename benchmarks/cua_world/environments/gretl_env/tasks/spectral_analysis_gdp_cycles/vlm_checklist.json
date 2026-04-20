@@ -1,0 +1,53 @@
+{
+    "task_id": "spectral_analysis_gdp_cycles@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "Load the 'usa.gdt' dataset into gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window shows 'usa.gdt' as the open file and lists variables including 'gdp'."
+        },
+        {
+            "id": "create_gdp_growth",
+            "description": "Create the 'gdp_growth' variable using the log-difference method.",
+            "points": 20,
+            "visual_evidence": "A new variable named 'gdp_growth' appears in the gretl variable list, or a formula window shows 'ldiff(gdp)' or 'log(gdp) - log(gdp(-1))'."
+        },
+        {
+            "id": "generate_periodogram",
+            "description": "Generate a raw periodogram (spectral density) for 'gdp_growth' without smoothing.",
+            "points": 25,
+            "visual_evidence": "A window titled 'Periodogram' or 'Spectral density' is visible, showing a plot with frequency on the x-axis and density/ordinates on the y-axis."
+        },
+        {
+            "id": "save_numerical_data",
+            "description": "Save the numerical spectral data to the specified text file path.",
+            "points": 20,
+            "visual_evidence": "A file save dialog or a command execution shows the path '/home/ga/Documents/gretl_output/periodogram_data.txt' being used to export data."
+        },
+        {
+            "id": "save_spectral_plot",
+            "description": "Save the spectral plot as a PNG to the specified path.",
+            "points": 25,
+            "visual_evidence": "The periodogram plot window is exported/saved to '/home/ga/Documents/gretl_output/periodogram_plot.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI to perform the analysis rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gretl menus (e.g., Variable, Analysis) and dialog boxes."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The periodogram is generated from the actual 'gdp_growth' variable, not a placeholder.",
+            "visual_evidence": "The periodogram window header or settings dialog explicitly references the 'gdp_growth' variable."
+        },
+        {
+            "id": "no_smoothing_applied",
+            "description": "The agent ensured no smoothed estimator (like a Bartlett kernel) was used.",
+            "visual_evidence": "The spectral density settings show 'No smoothing' or 'Raw periodogram' selected, and the resulting plot is jagged rather than smooth."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset is 'usa.gdt'. The target variable 'gdp' must be transformed into 'gdp_growth' using log-differences (ln(GDP_t) - ln(GDP_{t-1})). The analysis must be a raw Periodogram (spectral density) with NO smoothing. Output files must be exactly: /home/ga/Documents/gretl_output/periodogram_data.txt and /home/ga/Documents/gretl_output/periodogram_plot.png."
+}

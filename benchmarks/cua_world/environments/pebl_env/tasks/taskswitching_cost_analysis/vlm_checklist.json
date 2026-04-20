@@ -1,0 +1,59 @@
+{
+    "task_id": "taskswitching_cost_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw data file at ~/pebl/data/taskswitching_data.csv",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'head', or a script opening the CSV file located in the specified directory."
+        },
+        {
+            "id": "data_filtering",
+            "description": "Agent implements logic to exclude 'FIRST' trials, trials with rt_ms of 0, and participant 'sub-99999'",
+            "points": 20,
+            "visual_evidence": "Code snippets in a script or notebook showing filtering conditions like trial_type != 'FIRST', rt_ms > 0, and id != 'sub-99999'."
+        },
+        {
+            "id": "participant_metrics_calculation",
+            "description": "Agent calculates mean RT and accuracy for both switch and repeat trials for each valid participant",
+            "points": 25,
+            "visual_evidence": "Code or execution output showing grouping by participant ID and trial_transition (switch/repeat) to calculate means."
+        },
+        {
+            "id": "cost_calculation",
+            "description": "Agent calculates RT switch cost (switch - repeat) and Accuracy switch cost (repeat - switch)",
+            "points": 20,
+            "visual_evidence": "Code showing the subtraction logic for both RT (ms) and Accuracy as defined in the task."
+        },
+        {
+            "id": "group_summary_calculation",
+            "description": "Agent calculates the group mean RT and accuracy switch costs for all valid participants",
+            "points": 15,
+            "visual_evidence": "Code or output showing the final averaging of individual participant costs into group means."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final results to ~/pebl/analysis/taskswitching_report.json with the required schema",
+            "points": 10,
+            "visual_evidence": "Terminal output showing the creation of the JSON file or a 'cat' command displaying the structured JSON content containing 'participants' and 'group_mean' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final switch cost values without performing calculations",
+            "visual_evidence": "The script should show dynamic calculation logic (e.g., using pandas or math libraries) rather than a print statement of pre-determined numbers."
+        },
+        {
+            "id": "proper_exclusion_handling",
+            "description": "Agent explicitly handles sub-99999 as an exclusion rather than just ignoring it",
+            "visual_evidence": "The final JSON or the processing script should show 'sub-99999' marked with 'excluded': true or a specific filter step for that ID."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually reads the provided CSV file",
+            "visual_evidence": "Command history or script execution showing the file path ~/pebl/data/taskswitching_data.csv being loaded."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 12 participants total. 'sub-99999' is a contaminated participant with robotic reaction times (<100ms) and must be excluded from group means but included in the JSON with an 'excluded' flag. Valid participants should have their RT switch cost calculated as (mean_rt_switch - mean_rt_repeat) and Accuracy switch cost as (accuracy_repeat - accuracy_switch). Trials where trial_type is 'FIRST' or rt_ms is 0 must be ignored for all calculations."
+}

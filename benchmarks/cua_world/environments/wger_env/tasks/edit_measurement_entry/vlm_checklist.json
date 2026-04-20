@@ -1,0 +1,59 @@
+{
+    "task_id": "edit_measurement_entry@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_measurements",
+            "description": "Agent navigates to the 'Measurements' or 'Body weight and measurements' section of the wger application.",
+            "points": 10,
+            "visual_evidence": "The browser URL shows a path containing '/measurement/' and the page title or header indicates a measurement log."
+        },
+        {
+            "id": "select_waist_category",
+            "description": "Agent selects the 'Waist' category from the list of measurement types.",
+            "points": 15,
+            "visual_evidence": "The screen shows the 'Waist' category being clicked or the 'Waist' specific measurement page loading."
+        },
+        {
+            "id": "locate_edit_action",
+            "description": "Agent identifies the most recent entry (initially 82.0 cm) and clicks the edit icon/button.",
+            "points": 20,
+            "visual_evidence": "A cursor clicking an edit (pencil) icon next to the 82.0 entry, or a dropdown menu showing an 'Edit' option for that specific row."
+        },
+        {
+            "id": "input_new_value",
+            "description": "Agent clears the old value (82.0) and types the new value (79.5) into the measurement field.",
+            "points": 25,
+            "visual_evidence": "The measurement input field in the edit form contains the text '79.5'."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent submits the form to save the updated measurement.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save', 'Submit', or 'Update' button on the edit form."
+        },
+        {
+            "id": "verify_updated_display",
+            "description": "The measurement list now displays 79.5 cm for the most recent Waist entry.",
+            "points": 20,
+            "visual_evidence": "The final screenshot shows the Waist measurement table with the top entry reflecting '79.5' instead of '82.0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands via the terminal.",
+            "visual_evidence": "The trajectory shows browser interactions (clicks, typing in forms) rather than terminal windows running 'python manage.py' or SQL commands."
+        },
+        {
+            "id": "no_new_entries",
+            "description": "The agent edited the existing entry rather than creating a new one to achieve the target value.",
+            "visual_evidence": "The number of entries in the Waist category remains the same; the agent is seen clicking 'Edit' on an existing row rather than 'Add' at the top of the page."
+        },
+        {
+            "id": "no_unrelated_modifications",
+            "description": "The agent did not modify other measurement categories or other entries in the Waist history.",
+            "visual_evidence": "Screenshots show only the 'Waist' category being accessed and only the most recent entry being edited."
+        }
+    ],
+    "privileged_info_for_vlm": "The target category is 'Waist'. The initial value of the most recent entry is exactly 82.0. The required final value is 79.5. A tolerance of 0.05 is acceptable (e.g., 79.50 is valid). The agent must modify the existing record, not create a new one."
+}

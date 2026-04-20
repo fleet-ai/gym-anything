@@ -1,0 +1,53 @@
+{
+    "task_id": "calculate_user_equilibrium_dta@1",
+    "task_completion": [
+        {
+            "id": "create_study_directory",
+            "description": "Create the output directory /home/ga/SUMO_Output/dta_study/",
+            "points": 10,
+            "visual_evidence": "Terminal command 'mkdir' or a file explorer showing the creation of the 'dta_study' folder."
+        },
+        {
+            "id": "generate_demand_file",
+            "description": "Generate a demand file 'demand.trips.xml' with approximately 500 trips for the period 0-3600s.",
+            "points": 20,
+            "visual_evidence": "Terminal command showing 'randomTrips.py' with parameters '-e 3600' and '-p' (around 7.2) or a text editor showing the generated XML file with trip entries."
+        },
+        {
+            "id": "verify_trip_count",
+            "description": "Ensure the generated demand file contains between 400 and 600 trips.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file content showing the number of trips generated or the final trip ID in demand.trips.xml."
+        },
+        {
+            "id": "run_dua_iterate",
+            "description": "Execute the DTA assignment using duaIterate.py for 5 iterations (0 to 4).",
+            "points": 30,
+            "visual_evidence": "Terminal output showing the execution of 'duaIterate.py' and logs indicating progress through iterations 0, 1, 2, 3, and 4."
+        },
+        {
+            "id": "verify_iteration_outputs",
+            "description": "Confirm the existence of the final iteration folder '004' in the study directory.",
+            "points": 25,
+            "visual_evidence": "File explorer or 'ls' command output showing the directory structure /home/ga/SUMO_Output/dta_study/004/ containing simulation results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the output folders or files without running the SUMO scripts.",
+            "visual_evidence": "The agent is seen typing and executing the full Python command for randomTrips.py and duaIterate.py rather than just using 'touch' or 'mkdir' for result files."
+        },
+        {
+            "id": "genuine_iteration_process",
+            "description": "The agent allowed the simulation iterations to process sequentially.",
+            "visual_evidence": "Screenshots show the terminal scrolling with simulation step logs (e.g., 'Step #3600.00') for multiple iterations."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific paths requested in the instructions, not default or temporary directories.",
+            "visual_evidence": "Commands in the terminal explicitly reference /home/ga/SUMO_Scenarios/bologna_acosta/ and /home/ga/SUMO_Output/dta_study/."
+        }
+    ],
+    "privileged_info_for_vlm": "The study directory must be /home/ga/SUMO_Output/dta_study/. The demand file 'demand.trips.xml' should have between 400 and 600 trips (target 500). The DTA process must run for 5 iterations, resulting in a sub-folder named '004' which contains the final stabilized routes and simulation outputs."
+}

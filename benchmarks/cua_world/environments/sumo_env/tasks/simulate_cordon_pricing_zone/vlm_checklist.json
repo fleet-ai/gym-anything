@@ -1,0 +1,59 @@
+{
+    "task_id": "simulate_cordon_pricing_zone@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "Agent runs the baseline simulation using the Bologna Acosta scenario to gather initial traffic data.",
+            "points": 10,
+            "visual_evidence": "Terminal commands showing 'sumo' or 'sumo-gui' execution with the /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg file."
+        },
+        {
+            "id": "identify_top_edges",
+            "description": "Agent identifies the five standard edges with the highest vehicle counts from the baseline output.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the analysis of edge data (e.g., sorting by 'entered' or 'sampledSeconds') to find the top 5 edges."
+        },
+        {
+            "id": "create_weight_file",
+            "description": "Agent creates the pricing_weights.xml file applying travel time penalties to the identified edges.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing the content of /home/ga/SUMO_Output/pricing_weights.xml with the 5 identified Edge IDs and increased weight/traveltime values."
+        },
+        {
+            "id": "generate_priced_routes",
+            "description": "Agent generates alternative routes using the weight file (typically via duarouter).",
+            "points": 20,
+            "visual_evidence": "Terminal command showing 'duarouter' execution referencing the weight file and the original route file."
+        },
+        {
+            "id": "priced_simulation_run",
+            "description": "Agent runs a second simulation using the newly generated priced routes.",
+            "points": 15,
+            "visual_evidence": "Terminal command or SUMO-GUI showing a simulation run using the updated route file or configuration."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Agent creates the final report with the specific 6-line format and CSV data.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/SUMO_Output/pricing_report.txt with the header 'EdgeID, BeforeVolume, AfterVolume' followed by exactly 5 lines of data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent didn't just write the report without performing simulations.",
+            "visual_evidence": "The agent must show terminal commands for running SUMO and processing XML files before the report file is created."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Verify the agent used the specific paths requested in the instructions.",
+            "visual_evidence": "Screenshots should show paths like /home/ga/SUMO_Output/pricing_weights.xml and /home/ga/SUMO_Output/pricing_report.txt being used in commands."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "Verify the agent actually parsed the XML output rather than guessing edge IDs.",
+            "visual_evidence": "Screenshots showing the agent opening or grep-ing the baseline edge data XML file."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline simulation should identify edge '204a[0]' (approx 2733 vehicles) and '43[0]' among the top 5 busiest edges. The final report at /home/ga/SUMO_Output/pricing_report.txt must have exactly 6 lines: a header 'EdgeID, BeforeVolume, AfterVolume' and 5 data lines. The 'AfterVolume' for the targeted edges should generally be lower than 'BeforeVolume' due to the travel time penalty applied in pricing_weights.xml."
+}

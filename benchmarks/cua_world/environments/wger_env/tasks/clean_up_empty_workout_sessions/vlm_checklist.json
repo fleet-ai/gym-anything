@@ -1,0 +1,53 @@
+{
+    "task_id": "clean_up_empty_workout_sessions@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger application using provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the dashboard or the 'Workout' menu after entering 'admin'/'adminadmin' in the login form."
+        },
+        {
+            "id": "navigate_to_calendar_or_log",
+            "description": "Agent navigates to the workout log or calendar view to identify sessions.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of workout sessions or a calendar view showing multiple entries."
+        },
+        {
+            "id": "identify_empty_sessions",
+            "description": "Agent opens or inspects sessions to verify they contain 0 exercises.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the agent clicking into sessions where the 'Exercises' or 'Logs' section is empty."
+        },
+        {
+            "id": "delete_empty_sessions",
+            "description": "Agent initiates and confirms the deletion of the empty workout sessions.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the deletion confirmation dialogs or the 'Delete' button being clicked for sessions with no logs."
+        },
+        {
+            "id": "verify_valid_sessions_remain",
+            "description": "Agent ensures that sessions containing exercises (e.g., Barbell Squats) are not deleted.",
+            "points": 30,
+            "visual_evidence": "The VLM should see a final view of the workout log where only sessions containing exercise entries remain (approximately 10 sessions)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_deletion",
+            "description": "The agent did not use the terminal to delete database entries via SQL or scripts.",
+            "visual_evidence": "The VLM should check that no terminal/shell windows were used to execute 'sqlite3' or 'python manage.py' commands to modify the database."
+        },
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the web interface elements to perform deletions.",
+            "visual_evidence": "The VLM should see mouse movements, clicks on 'Delete' icons, and navigation through the wger web pages."
+        },
+        {
+            "id": "manual_verification",
+            "description": "The agent actually checked the content of sessions before deleting.",
+            "visual_evidence": "The VLM should see the agent opening session details or viewing summaries that indicate 0 exercises before clicking delete."
+        }
+    ],
+    "privileged_info_for_vlm": "There are exactly 15 workout sessions initially. 5 sessions are empty (0 exercises) and should be deleted. 10 sessions contain a 'Barbell Squat' log and must be kept. All sessions are within the past 30 days."
+}

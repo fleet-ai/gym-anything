@@ -1,0 +1,59 @@
+{
+    "task_id": "export_rivers_dxf@1",
+    "task_completion": [
+        {
+            "id": "load_shapefiles",
+            "description": "Load both the countries and rivers shapefiles into the gvSIG view.",
+            "points": 15,
+            "visual_evidence": "The gvSIG 'Table of Contents' or layer list shows 'ne_110m_admin_0_countries' and 'ne_110m_rivers_lake_centerlines' as active layers."
+        },
+        {
+            "id": "select_brazil",
+            "description": "Select the country of Brazil from the countries layer.",
+            "points": 15,
+            "visual_evidence": "The polygon representing Brazil is highlighted (usually in yellow or a selection color) on the map or in the attribute table."
+        },
+        {
+            "id": "spatial_selection_tool",
+            "description": "Open the 'Select by Layer' or 'Spatial Selection' tool to find rivers intersecting Brazil.",
+            "points": 20,
+            "visual_evidence": "A dialog box for spatial selection is visible, showing the rivers layer as the target and the countries layer (selected features) as the source/filter."
+        },
+        {
+            "id": "rivers_selected",
+            "description": "Execute the spatial selection to highlight rivers within Brazil.",
+            "points": 20,
+            "visual_evidence": "River segments within the boundaries of Brazil are highlighted/selected on the map display."
+        },
+        {
+            "id": "export_dxf_dialog",
+            "description": "Initiate the export process and configure the output format to DXF.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' dialog is visible with the format set to 'DXF' or 'Autocad DXF'."
+        },
+        {
+            "id": "save_path_confirmation",
+            "description": "Set the export path to /home/ga/gvsig_data/exports/brazil_rivers.dxf and complete the export.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/gvsig_data/exports/brazil_rivers.dxf' is typed into the file chooser or a success message confirms the export to that specific location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the gvSIG graphical user interface rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks, and gvSIG dialog boxes rather than just a terminal window."
+        },
+        {
+            "id": "genuine_spatial_operation",
+            "description": "The agent performed a real spatial intersection rather than manually selecting lines.",
+            "visual_evidence": "The 'Select by Layer' or 'Spatial Selection' tool window is opened and configured."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename an existing file or use a script to generate the DXF.",
+            "visual_evidence": "The workflow follows the standard gvSIG export wizard steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if the agent uses gvSIG to intersect 'ne_110m_rivers_lake_centerlines.shp' with the selected Brazil polygon from 'ne_110m_admin_0_countries.shp'. The final output must be a DXF file at /home/ga/gvsig_data/exports/brazil_rivers.dxf. A valid export will be approximately 23KB and contain DXF headers like 'SECTION', 'HEADER', and 'ENTITIES'."
+}

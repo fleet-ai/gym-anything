@@ -1,0 +1,53 @@
+{
+    "task_id": "edit_water_type_salt@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent opens the Subsurface dive log application.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible on the desktop."
+        },
+        {
+            "id": "load_dive_log",
+            "description": "The agent loads the dive log file containing the Sund Rock dives.",
+            "points": 15,
+            "visual_evidence": "The dive list in Subsurface is populated with multiple dives, specifically showing dates from 2010."
+        },
+        {
+            "id": "select_december_2010_dives",
+            "description": "The agent selects the dives from the December 2010 Sund Rock trip.",
+            "points": 20,
+            "visual_evidence": "Dives dated December 2010 (2010-12) are highlighted or selected in the dive list."
+        },
+        {
+            "id": "change_water_type_to_salt",
+            "description": "The agent changes the water type from 'Fresh Water' to 'Salt' for the selected dives.",
+            "points": 30,
+            "visual_evidence": "In the dive info/equipment tab, the 'Water type' dropdown or field is set to 'Salt' for the selected December 2010 dives."
+        },
+        {
+            "id": "save_to_destination",
+            "description": "The agent saves the updated logbook to the specific path ~/Documents/dives.ssrf.",
+            "points": 25,
+            "visual_evidence": "The 'Save As' dialog or a file manager window shows the file being saved as 'dives.ssrf' in the 'Documents' folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to perform the edits rather than just editing the XML file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Subsurface menus, dropdowns, or buttons."
+        },
+        {
+            "id": "selective_edit",
+            "description": "The agent only modified the December 2010 dives and did not globally change all dives (e.g., the 2011 trip).",
+            "visual_evidence": "Dives from other dates (like September 2011) still show their original water type if viewed, or only the 2010 dives were selected during the edit."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent did not simply create a dummy file with the name dives.ssrf without using the application.",
+            "visual_evidence": "The Subsurface application is seen processing the data and the 'Save' workflow is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The target dives are from the Sund Rock trip in December 2010 (date prefix 2010-12). There are 29 total dives in the SampleDivesV2.ssrf file. The control trip (which should NOT be changed) is the Yellow House trip from September 2011 (2011-09). In Subsurface, 'Salt' water corresponds to a salinity/density of 1030 g/l."
+}

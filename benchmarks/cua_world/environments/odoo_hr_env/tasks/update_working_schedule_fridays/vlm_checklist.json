@@ -1,0 +1,59 @@
+{
+    "task_id": "update_working_schedule_fridays@1",
+    "task_completion": [
+        {
+            "id": "odoo_login",
+            "description": "Log in to Odoo as admin",
+            "points": 10,
+            "visual_evidence": "The Odoo dashboard or 'Settings' menu is visible, and the user profile icon indicates 'admin' is logged in."
+        },
+        {
+            "id": "navigate_to_working_times",
+            "description": "Navigate to the 'Working Times' or 'Working Schedules' configuration list",
+            "points": 15,
+            "visual_evidence": "A list view of working schedules is shown, typically under Settings -> Technical -> Resource -> Working Times or within the Payroll/Employees app configuration."
+        },
+        {
+            "id": "select_standard_schedule",
+            "description": "Open the 'Standard 40 hours/week' schedule for editing",
+            "points": 15,
+            "visual_evidence": "The form view for the schedule named 'Standard 40 hours/week' is displayed, showing the 'Working Hours' tab with a list of shifts."
+        },
+        {
+            "id": "identify_friday_afternoon",
+            "description": "Locate the Friday afternoon shift (13:00-17:00)",
+            "points": 10,
+            "visual_evidence": "The VLM should see a row in the working hours table where the Day of Week is Friday and the Work From/To times are 13:00 and 17:00 respectively."
+        },
+        {
+            "id": "remove_friday_afternoon",
+            "description": "Delete or remove the Friday afternoon shift entry",
+            "points": 30,
+            "visual_evidence": "The row for Friday (13:00-17:00) is no longer present in the list of working hours, or is being deleted via the trash icon/delete action."
+        },
+        {
+            "id": "verify_remaining_shifts",
+            "description": "Ensure Friday morning (08:00-12:00) and Mon-Thu shifts are preserved",
+            "points": 20,
+            "visual_evidence": "The working hours table still shows Friday 08:00-12:00 and two shifts (morning/afternoon) for Monday, Tuesday, Wednesday, and Thursday. The 'Save' button is clicked or the record is shown as saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than executing raw SQL or shell scripts to modify the database",
+            "visual_evidence": "Screenshots show mouse movements, clicks on Odoo buttons (like 'Edit', 'Save', or the delete icon), and navigation through the Odoo UI."
+        },
+        {
+            "id": "no_schedule_deletion",
+            "description": "The agent modified the existing schedule rather than deleting the entire schedule and creating a new one",
+            "visual_evidence": "The ID or breadcrumbs indicate the agent is editing the existing 'Standard 40 hours/week' record rather than starting from a blank 'New' form."
+        },
+        {
+            "id": "authentic_admin_session",
+            "description": "The agent interacted with the live Odoo instance provided",
+            "visual_evidence": "The URL bar shows the expected local or provided Odoo domain, and the UI elements match the Odoo version used in the environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The target schedule is named 'Standard 40 hours/week'. In Odoo's backend, Friday is represented by day index 4. The goal is to remove the shift starting at 13:00 on Friday while keeping the shift ending at 12:00 on Friday. All shifts for Monday through Thursday (Days 0-3) must remain untouched (typically 08:00-12:00 and 13:00-17:00)."
+}

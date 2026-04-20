@@ -1,0 +1,53 @@
+{
+    "task_id": "implement_soft_delete_view@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the database management interface (e.g., OrientDB Studio or a SQL console) connected to 'demodb'."
+        },
+        {
+            "id": "add_ishidden_property",
+            "description": "Modify the 'Reviews' class schema to include a Boolean property named 'IsHidden'.",
+            "points": 20,
+            "visual_evidence": "Schema view or command output showing the 'Reviews' class with a new property 'IsHidden' of type 'BOOLEAN'."
+        },
+        {
+            "id": "flag_low_star_reviews",
+            "description": "Update the 'Reviews' records to set 'IsHidden' to true for all reviews with 1 or 2 stars.",
+            "points": 25,
+            "visual_evidence": "SQL update command execution (e.g., UPDATE Reviews SET IsHidden = true WHERE Stars <= 2) and a confirmation message of records updated."
+        },
+        {
+            "id": "create_public_reviews_view",
+            "description": "Create a database View named 'PublicReviews' that filters out hidden reviews.",
+            "points": 30,
+            "visual_evidence": "SQL command creating a VIEW named 'PublicReviews' with a query like 'SELECT FROM Reviews WHERE IsHidden = false' or 'WHERE IsHidden IS NOT true'."
+        },
+        {
+            "id": "verify_view_content",
+            "description": "Query the 'PublicReviews' view to ensure it only displays non-hidden reviews.",
+            "points": 15,
+            "visual_evidence": "Result set from 'SELECT * FROM PublicReviews' showing reviews with high star ratings and no reviews with 1 or 2 stars."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI or Studio interface rather than just executing a single script in a terminal.",
+            "visual_evidence": "Screenshots showing navigation through the database UI, schema tabs, or query editors."
+        },
+        {
+            "id": "no_hardcoded_markers",
+            "description": "The agent used logic (Stars <= 2) to hide reviews rather than manually hiding specific IDs or text markers.",
+            "visual_evidence": "The SQL update command uses a WHERE clause based on the 'Stars' property."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The results shown in the final verification are from the actual database environment, not a mock-up.",
+            "visual_evidence": "Consistent UI headers, database names, and record counts visible in the interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb'. The target class is 'Reviews'. The property to add is 'IsHidden' (Boolean). Reviews with 1 or 2 stars (including the one with text 'MARKER_TOXIC_REVIEW') must be hidden. The view must be named 'PublicReviews'. Reviews with 5 stars (including 'MARKER_GOOD_REVIEW') must remain visible in the view."
+}

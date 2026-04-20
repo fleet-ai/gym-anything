@@ -1,0 +1,53 @@
+{
+    "task_id": "srtt_implicit_learning_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading",
+            "description": "The agent successfully opens or reads the SRTT data file (~/pebl/data/srtt_data.csv).",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, python) or a spreadsheet/text editor showing the CSV content with columns like participant, block, and rt_ms."
+        },
+        {
+            "id": "data_cleaning",
+            "description": "The agent filters the data to include only correct trials (correct=1) and identifies/excludes the invalid participant (p99).",
+            "points": 20,
+            "visual_evidence": "Code snippets or output showing a filter for 'correct == 1' and the exclusion of participant 'p99' or participants with zero RT variance."
+        },
+        {
+            "id": "block_mean_calculation",
+            "description": "The agent calculates the mean RT for each of the 8 blocks for valid participants.",
+            "points": 20,
+            "visual_evidence": "A table, dataframe, or printout showing mean RT values grouped by block (1-8)."
+        },
+        {
+            "id": "score_computation",
+            "description": "The agent computes the Sequence-specific learning score (B6 - B5) and General motor speed (B1 - B8).",
+            "points": 25,
+            "visual_evidence": "Calculations or variables in a script/notebook showing the subtraction of Block 5 from Block 6 and Block 8 from Block 1."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the final analysis results to the specified JSON file path.",
+            "points": 25,
+            "visual_evidence": "A command or code saving data to '/home/ga/pebl/analysis/srtt_report.json' or a 'cat' command showing the content of this JSON file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_p99",
+            "description": "The agent identified the invalid participant through data analysis rather than just hardcoding 'p99' from external knowledge.",
+            "visual_evidence": "Code showing a check for variance, standard deviation, or unique values in RTs per participant."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The agent performed actual calculations on the CSV data rather than outputting pre-calculated values.",
+            "visual_evidence": "The use of libraries like pandas, numpy, or standard python math on the loaded CSV data."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the specific file paths provided in the task description.",
+            "visual_evidence": "Screenshots showing interaction with '~/pebl/data/srtt_data.csv' and saving to '/home/ga/pebl/analysis/srtt_report.json'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 16 participants. Participant 'p99' is contaminated and must be excluded because they have zero reaction time variance (all trials are exactly 250.0 ms). The final output must be a JSON file located at /home/ga/pebl/analysis/srtt_report.json. Sequence-specific learning is calculated as Mean RT Block 6 minus Mean RT Block 5."
+}

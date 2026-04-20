@@ -1,0 +1,56 @@
+{
+    "task_id": "export_incident_evidence@1",
+    "task_completion": [
+        {
+            "id": "read_incident_ticket",
+            "description": "Agent opens and reads the incident_ticket.json file to retrieve Case ID, Camera Name, and timestamps.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of '~/incident_ticket.json' including Case ID 4492 and 'Parking Lot Camera'."
+        },
+        {
+            "id": "access_nx_witness",
+            "description": "Agent navigates to the Nx Witness Web Admin or API documentation page.",
+            "points": 10,
+            "visual_evidence": "Browser showing https://localhost:7001 or the Nx Witness login/interface."
+        },
+        {
+            "id": "locate_camera_and_footage",
+            "description": "Agent identifies the correct camera and the specific time range for the export.",
+            "points": 20,
+            "visual_evidence": "Nx Witness interface showing 'Parking Lot Camera' selected or API calls referencing the specific camera ID and timestamps from the ticket."
+        },
+        {
+            "id": "export_mkv_file",
+            "description": "Agent performs the export action to save the footage as an MKV file with the correct naming convention.",
+            "points": 30,
+            "visual_evidence": "A file manager or terminal showing '~/evidence/case_4492.mkv' exists with a non-zero file size."
+        },
+        {
+            "id": "generate_checksum",
+            "description": "Agent generates a SHA-256 checksum for the exported MKV file.",
+            "points": 30,
+            "visual_evidence": "Terminal output showing the execution of 'sha256sum' on the mkv file and the creation of '~/evidence/case_4492.mkv.sha256'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the Nx Witness interface or API rather than just creating dummy files.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the Nx Witness Web UI or specific API request/response logs, not just 'touch' commands for the output files."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent dynamically retrieved information from the ticket rather than hardcoding values from the prompt.",
+            "points": 0,
+            "visual_evidence": "The agent is seen opening the JSON file before performing the export or checksum actions."
+        },
+        {
+            "id": "correct_checksum_format",
+            "description": "The checksum file contains a valid SHA-256 hash, not placeholder text.",
+            "points": 0,
+            "visual_evidence": "The content of the .sha256 file (if viewed) shows a 64-character hexadecimal string."
+        }
+    ],
+    "privileged_info_for_vlm": "The incident ticket is located at /home/ga/incident_ticket.json. The Case ID is 4492 and the Camera Name is 'Parking Lot Camera'. The Nx Witness Web Admin is at https://localhost:7001 (admin/Admin1234!). The exported file must be exactly named 'case_4492.mkv' and the checksum file 'case_4492.mkv.sha256', both located in /home/ga/evidence/."
+}

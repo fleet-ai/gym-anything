@@ -1,0 +1,59 @@
+{
+    "task_id": "renal_nephrometry_scoring@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the abdominal CT scan into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A 3D Slicer or similar medical imaging interface showing axial, sagittal, and coronal views of an abdominal CT scan."
+        },
+        {
+            "id": "measure_tumor_diameter",
+            "description": "The agent performs a linear measurement of the maximum tumor diameter.",
+            "points": 20,
+            "visual_evidence": "A measurement ruler or markup line placed across the largest dimension of the tumor (label 2) in the slice viewer."
+        },
+        {
+            "id": "measure_hilar_distance",
+            "description": "The agent measures the distance from the tumor to the renal sinus or collecting system (N component).",
+            "points": 20,
+            "visual_evidence": "A measurement tool showing the distance between the tumor boundary and the kidney hilum/sinus."
+        },
+        {
+            "id": "save_markups_json",
+            "description": "The agent saves the measurement markups to the specified file path: ~/Documents/SlicerData/KiTS/agent_measurements.mrk.json.",
+            "points": 15,
+            "visual_evidence": "A file browser window, terminal output, or 'Save' dialog showing the specific file path and filename being written."
+        },
+        {
+            "id": "calculate_renal_components",
+            "description": "The agent calculates the individual R, E, N, A, and L scores based on the measurements.",
+            "points": 20,
+            "visual_evidence": "A report, notepad, or terminal showing the breakdown of the five RENAL components and their assigned point values."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "The agent saves the final JSON report with all required fields to ~/Documents/SlicerData/KiTS/renal_score_report.json.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal displaying the final JSON structure containing fields like tumor_side, R_score, total_score, and complexity."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the imaging software GUI to perform measurements rather than just writing a script to generate the report.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with measurement tools, sliders, or markup buttons in the 3D Slicer interface."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the expected values into a file without performing the visual analysis.",
+            "visual_evidence": "The agent is seen navigating through different CT slices to find the maximum diameter and hilar proximity before writing the report."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual application rather than a simulated or static image.",
+            "visual_evidence": "Changes in the UI state, such as crosshair movement, slice number changes, or zooming/panning within the CT viewer."
+        }
+    ],
+    "privileged_info_for_vlm": "For case_00002: The kidney is label 1 and the tumor is label 2. The tumor is approximately 4.5cm in diameter (R_score should be 2) and has an exophytic extent of approximately 40% (E_score should be 2). The VLM should verify that the agent's measurements in the screenshots roughly align with these dimensions."
+}

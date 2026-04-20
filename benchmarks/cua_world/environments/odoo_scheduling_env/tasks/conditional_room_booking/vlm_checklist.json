@@ -1,0 +1,59 @@
+{
+    "task_id": "conditional_room_booking@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent logs into Odoo with the 'admin' account.",
+            "points": 10,
+            "visual_evidence": "The Odoo dashboard or calendar view is visible with the user 'admin' shown in the top right corner."
+        },
+        {
+            "id": "navigate_to_calendar",
+            "description": "Agent navigates to the Calendar module and locates the Friday of the upcoming week.",
+            "points": 10,
+            "visual_evidence": "The Calendar interface is displayed, and the view is focused on the correct Friday date."
+        },
+        {
+            "id": "check_room_availability",
+            "description": "Agent checks if the 'Board Room' is available at 14:00 on that Friday.",
+            "points": 20,
+            "visual_evidence": "The agent views the calendar for the Board Room or checks existing meetings at 14:00 to see if a 'Board Room Reserved' event exists."
+        },
+        {
+            "id": "correct_room_selection",
+            "description": "Agent selects the 'Board Room' if free, or 'Engineering Lab' if the Board Room is occupied.",
+            "points": 25,
+            "visual_evidence": "The meeting creation dialog or the final event details show the 'Location' or 'Room' field set to 'Board Room' (if available) or 'Engineering Lab' (if Board Room was blocked)."
+        },
+        {
+            "id": "meeting_details_config",
+            "description": "Agent sets the meeting name to 'Project Sync' and the time to 14:00-15:00.",
+            "points": 20,
+            "visual_evidence": "The event creation window shows the title 'Project Sync' and the start time as 14:00 (2:00 PM) with a 1-hour duration."
+        },
+        {
+            "id": "final_confirmation",
+            "description": "The meeting is successfully saved and appears on the calendar.",
+            "points": 15,
+            "visual_evidence": "The calendar grid displays the 'Project Sync' event at the 14:00 slot on the correct Friday."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than executing database or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on Odoo buttons, and typing into web forms."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually navigated to the date and checked availability rather than guessing the room.",
+            "visual_evidence": "The trajectory shows the agent looking at the calendar or room schedules before finalizing the booking."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the live Odoo instance.",
+            "visual_evidence": "The URL bar shows the Odoo instance address and the UI elements respond dynamically to clicks."
+        }
+    ],
+    "privileged_info_for_vlm": "The meeting must be named exactly 'Project Sync'. It must be scheduled for the Friday of the upcoming week at 14:00 (2:00 PM) for a 1-hour duration. The agent must check the 'Board Room' first; if a 'Board Room Reserved' event exists at that time, they must use the 'Engineering Lab'. Otherwise, they must use the 'Board Room'."
+}

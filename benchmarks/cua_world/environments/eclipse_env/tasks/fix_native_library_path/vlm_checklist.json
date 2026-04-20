@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_native_library_path@1",
+    "task_completion": [
+        {
+            "id": "open_eclipse_project",
+            "description": "The agent opens the Eclipse IDE and the 'DoseCalculator' project is visible in the Project Explorer.",
+            "points": 10,
+            "visual_evidence": "Eclipse window is open with 'DoseCalculator' listed in the Package Explorer or Project Explorer view."
+        },
+        {
+            "id": "access_build_path_properties",
+            "description": "The agent opens the Properties dialog for the DoseCalculator project and navigates to the Java Build Path section.",
+            "points": 15,
+            "visual_evidence": "A dialog titled 'Properties for DoseCalculator' is visible, with 'Java Build Path' selected in the left sidebar."
+        },
+        {
+            "id": "configure_native_library_location",
+            "description": "The agent configures the Native Library Location for the project or a specific JAR to point to /opt/medphys/lib.",
+            "points": 30,
+            "visual_evidence": "The 'Native library location' field or a sub-node under 'JRE System Library' or a JAR in the Libraries tab shows the path '/opt/medphys/lib'."
+        },
+        {
+            "id": "run_main_class",
+            "description": "The agent attempts to run the com.hospital.dose.Main class from within Eclipse.",
+            "points": 20,
+            "visual_evidence": "The 'Run As' menu is used, or the Console view shows the execution of the Java application."
+        },
+        {
+            "id": "verify_output_file_creation",
+            "description": "The agent verifies that 'dose_report.txt' has been generated in the project directory.",
+            "points": 25,
+            "visual_evidence": "A file named 'dose_report.txt' is visible in the Eclipse project tree (after refresh) or opened in the editor showing the calculated dose value (45.5)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_configuration_used",
+            "description": "The agent used the Eclipse GUI to configure the library path rather than just setting environment variables in a terminal.",
+            "visual_evidence": "Screenshots show the Eclipse Properties dialog and Build Path settings being modified."
+        },
+        {
+            "id": "genuine_execution",
+            "description": "The agent did not manually create the dose_report.txt file with a text editor.",
+            "visual_evidence": "The Console output shows a successful Java execution without 'UnsatisfiedLinkError' before the file is shown."
+        },
+        {
+            "id": "no_hardcoding_results",
+            "description": "The agent did not modify the Java source code to print a hardcoded value instead of calling the native method.",
+            "visual_evidence": "The source code for DoseEngine.java or Main.java (if opened) still shows the 'native' keyword and 'System.loadLibrary' call."
+        }
+    ],
+    "privileged_info_for_vlm": "The native library is located at /opt/medphys/lib/libdosecalc.so. The JNI function inside this library returns a double value of 45.5. Success is defined by the generation of 'dose_report.txt' containing this value, achieved by setting the 'Native library location' in Eclipse's Java Build Path to /opt/medphys/lib."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "science_payload_capacity_sweep@1",
+    "task_completion": [
+        {
+            "id": "open_design_file",
+            "description": "Open the 'ProjetoJupiter_Valetudo_2019.ork' file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket window title or file menu shows 'ProjetoJupiter_Valetudo_2019.ork' is loaded."
+        },
+        {
+            "id": "add_science_payload",
+            "description": "Add a new mass component named 'Science Payload' to the nose cone.",
+            "points": 15,
+            "visual_evidence": "The component tree shows a 'Mass component' named 'Science Payload' nested under the Nose Cone."
+        },
+        {
+            "id": "perform_mass_sweep",
+            "description": "Run flight simulations for payload masses of 1.0kg, 2.0kg, 3.0kg, and 4.0kg.",
+            "points": 25,
+            "visual_evidence": "The simulation list or a plot window shows multiple simulation runs corresponding to the different mass values."
+        },
+        {
+            "id": "export_csv_data",
+            "description": "Export the Apogee and Max Mach data to 'payload_curve.csv' with correct headers.",
+            "points": 20,
+            "visual_evidence": "A text editor or spreadsheet view showing 'payload_curve.csv' with headers 'Payload_Mass_kg,Apogee_m,Max_Mach' and four rows of data."
+        },
+        {
+            "id": "calculate_and_save_summary",
+            "description": "Calculate average apogee loss and save to 'payload_summary.txt'.",
+            "points": 15,
+            "visual_evidence": "A text editor showing 'payload_summary.txt' containing a numerical value representing the average loss per kg."
+        },
+        {
+            "id": "save_modified_ork",
+            "description": "Save the design with the 4.0 kg payload as 'valetudo_payload_4kg.ork'.",
+            "points": 15,
+            "visual_evidence": "The file manager or OpenRocket 'Save As' dialog shows the file being saved to '~/Documents/rockets/valetudo_payload_4kg.ork'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to modify the rocket and run simulations.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with OpenRocket menus, component dialogs, and simulation buttons."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The data in the CSV originates from actual simulation results, not manual entry.",
+            "visual_evidence": "Screenshots show the OpenRocket simulation 'Run' status and the resulting data table before the CSV is created."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the final values into files without performing the analysis.",
+            "visual_evidence": "The trajectory shows the step-by-step process of changing mass values and recording the resulting apogee/velocity."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is 'ProjetoJupiter_Valetudo_2019.ork'. The agent must create a 'Science Payload' mass component. Output files must be: '~/Documents/exports/payload_curve.csv' (with headers Payload_Mass_kg,Apogee_m,Max_Mach), '~/Documents/exports/payload_summary.txt' (containing the average loss calculation), and '~/Documents/rockets/valetudo_payload_4kg.ork'. The average loss formula is (Apogee@1kg - Apogee@4kg) / 3."
+}

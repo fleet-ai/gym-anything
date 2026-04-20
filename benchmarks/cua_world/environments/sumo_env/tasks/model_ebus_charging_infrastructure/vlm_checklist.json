@@ -1,0 +1,59 @@
+{
+    "task_id": "model_ebus_charging_infrastructure@1",
+    "task_completion": [
+        {
+            "id": "locate_bus_stop",
+            "description": "Identify the first bus stop location in the Bologna Pasubio scenario files.",
+            "points": 10,
+            "visual_evidence": "Screenshot of a text editor or terminal showing the XML content of the additional files or route files identifying a busStop ID and its lane/position."
+        },
+        {
+            "id": "configure_battery_devices",
+            "description": "Equip the bus fleet with battery devices (capacity 50000, initial charge 10000).",
+            "points": 20,
+            "visual_evidence": "Code or XML configuration showing 'device.battery.capacity' set to 50000 and 'device.battery.chargeLevel' set to 10000 for the vehicle/vType."
+        },
+        {
+            "id": "deploy_fast_charger",
+            "description": "Define a 200kW charger named 'fast_charger_1' at the identified bus stop.",
+            "points": 20,
+            "visual_evidence": "XML snippet showing <chargingStation id=\"fast_charger_1\" power=\"200000\" startPos=\"0\" endPos=\"20\" ... /> at the correct lane/busStop."
+        },
+        {
+            "id": "schedule_charging_stop",
+            "description": "Add a 120-second charging stop to the bus route.",
+            "points": 15,
+            "visual_evidence": "XML route file or vehicle definition showing a <stop> element with duration=\"120\" at the charging station or bus stop."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation using run.sumocfg.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the SUMO GUI running or a terminal showing the execution of 'sumo' or 'sumo-gui' with the specified config file."
+        },
+        {
+            "id": "extract_battery_report",
+            "description": "Extract the final actualBatteryCapacity and save it to battery_report.txt.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the battery-output XML file content and a 'cat' or 'echo' command saving the final numeric value to /home/ga/SUMO_Output/battery_report.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the actual scenario files rather than guessing values.",
+            "visual_evidence": "Screenshots show the agent opening and reading files in /home/ga/SUMO_Scenarios/bologna_pasubio/."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent actually ran the simulation to get the battery value.",
+            "visual_evidence": "Visual confirmation of the SUMO process running or the generation of a new battery-output.xml file with timestamps."
+        },
+        {
+            "id": "no_hardcoded_result",
+            "description": "The agent did not simply write a number to the report without calculation/extraction.",
+            "visual_evidence": "The agent is seen parsing the output XML or using a script to find the 'actualBatteryCapacity' attribute in the final timestep."
+        }
+    ],
+    "privileged_info_for_vlm": "The charger must be named 'fast_charger_1' with power '200000'. The battery capacity must be '50000' and initial charge '10000'. The stop duration must be '120'. The final output must be a single numeric value representing the actualBatteryCapacity from the last timestep of the battery output file, saved to /home/ga/SUMO_Output/battery_report.txt."
+}

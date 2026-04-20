@@ -1,0 +1,56 @@
+{
+    "task_id": "fix_traffic_intersection_sim@1",
+    "task_completion": [
+        {
+            "id": "locate_project_files",
+            "description": "Agent locates and opens the simulation source files in the specified project directory.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the file explorer or editor with sim/vehicle.py, sim/signal.py, and sim/intersection.py open in /home/ga/PycharmProjects/micro_sim."
+        },
+        {
+            "id": "fix_signal_amber_phase",
+            "description": "Agent modifies sim/signal.py to implement an Amber phase between Green and Red transitions.",
+            "points": 25,
+            "visual_evidence": "Code editor showing logic in sim/signal.py:update that handles a state transition to 'AMBER' or 'YELLOW' before 'RED'."
+        },
+        {
+            "id": "fix_left_turn_gap",
+            "description": "Agent modifies sim/vehicle.py to ensure safe left turns into oncoming traffic.",
+            "points": 25,
+            "visual_evidence": "Code editor showing sim/vehicle.py:assess_gap updated with logic to check for oncoming vehicle distance or time-to-collision."
+        },
+        {
+            "id": "fix_priority_starvation",
+            "description": "Agent modifies sim/intersection.py to prevent starvation at the back of the queue.",
+            "points": 20,
+            "visual_evidence": "Code editor showing sim/intersection.py:resolve_priority updated to include wait-time weighting or a fair queuing mechanism."
+        },
+        {
+            "id": "verify_simulation_run",
+            "description": "Agent runs main.py and the output shows no collisions or violations.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of main.py with a summary indicating 0 collisions, 0 signal violations, and all tests passed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "Agent did not modify the test files to force a pass.",
+            "points": 0,
+            "visual_evidence": "The agent should not be seen editing files in the tests/ directory or changing the assertion logic in main.py."
+        },
+        {
+            "id": "genuine_code_editing",
+            "description": "Agent manually edited the logic rather than deleting the simulation logic entirely.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent typing or using IDE features to modify specific methods (assess_gap, update, resolve_priority) rather than replacing the whole file with a dummy script."
+        },
+        {
+            "id": "verified_execution",
+            "description": "The results are shown in the actual terminal/IDE environment, not just a text file.",
+            "points": 0,
+            "visual_evidence": "The VLM should see the command 'python3 main.py' (or similar) being executed in the terminal and the resulting logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/micro_sim. Specific bugs are located in: sim/vehicle.py (assess_gap method), sim/signal.py (update method), and sim/intersection.py (resolve_priority method). Success is defined by main.py running without reporting collisions or starvation and all internal tests passing (score >= 70)."
+}

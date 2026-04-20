@@ -1,0 +1,59 @@
+{
+    "task_id": "determine_runaway_rpm@1",
+    "task_completion": [
+        {
+            "id": "airfoil_polar_generation",
+            "description": "Generate NACA 4412 airfoil and a polar for Re=1,000,000 with range -5 to 25 degrees.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the NACA 4412 airfoil geometry and a polar plot or table indicating Re=1,000,000 and the specified alpha range."
+        },
+        {
+            "id": "rotor_design_configuration",
+            "description": "Design a 3-bladed rotor with 6m radius, 0.5m hub, 0.5m constant chord, and 0 twist.",
+            "points": 15,
+            "visual_evidence": "Rotor design module showing 3 blades, R=6.0m, Hub=0.5m, and a blade table with constant chord 0.5 and twist 0."
+        },
+        {
+            "id": "bem_simulation_setup",
+            "description": "Setup BEM simulation at 15 m/s wind speed and 0-degree pitch with an RPM sweep.",
+            "points": 20,
+            "visual_evidence": "Simulation settings dialog or panel showing Wind Speed = 15 m/s, Pitch = 0, and an RPM range (e.g., 50-300) selected for the sweep."
+        },
+        {
+            "id": "power_vs_rpm_graph",
+            "description": "Perform the simulation and identify the runaway RPM where power drops to zero.",
+            "points": 25,
+            "visual_evidence": "A plot of Power vs. RPM showing the curve crossing the x-axis (Power=0) and the agent identifying the specific RPM value at that crossing."
+        },
+        {
+            "id": "data_export_and_save",
+            "description": "Export simulation data to runaway_data.txt and save the project as safety_analysis.wpa.",
+            "points": 15,
+            "visual_evidence": "File explorer or application dialogs showing the export of data to the specified path and the 'Save As' dialog for safety_analysis.wpa."
+        },
+        {
+            "id": "report_generation",
+            "description": "Record the identified runaway RPM in runaway_report.txt in the correct format.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of /home/ga/Documents/projects/runaway_report.txt as 'Runaway_RPM: <value>'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to perform the simulation rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots showing the QBlade application window, mouse cursor interactions with menus, and simulation progress bars."
+        },
+        {
+            "id": "genuine_simulation_results",
+            "description": "The runaway RPM value is derived from the simulation graph, not hardcoded from the prompt.",
+            "visual_evidence": "The value in the report matches the zero-crossing point visible on the Power vs RPM graph in the GUI."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the exact file paths and names specified in the task.",
+            "visual_evidence": "Screenshots of the file system or save dialogs showing /home/ga/Documents/projects/ and the specific filenames requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The target airfoil is NACA 4412. The simulation must be run at 15 m/s wind speed and Re=1,000,000. The runaway RPM is the point where Aerodynamic Power (P) equals 0 on the Power vs RPM curve. Based on the sweep range of 50-300 RPM, the VLM should verify the reported RPM is within a tolerance of +/- 2.0 of the zero-crossing shown on the graph. The project file must be named safety_analysis.wpa."
+}

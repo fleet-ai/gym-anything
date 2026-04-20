@@ -1,0 +1,53 @@
+{
+    "task_id": "solar_suitability_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_dem_file",
+            "description": "The agent successfully loads the input DEM file from the specified path into a GIS application.",
+            "points": 10,
+            "visual_evidence": "The file 'elevation.tif' is visible in the layers panel or workspace of a GIS tool (e.g., QGIS, ArcGIS, or a Python IDE with a plot window)."
+        },
+        {
+            "id": "calculate_slope",
+            "description": "The agent performs a slope analysis on the DEM.",
+            "points": 20,
+            "visual_evidence": "A slope calculation dialog is open, or a new layer representing 'slope' appears in the layers list."
+        },
+        {
+            "id": "calculate_aspect",
+            "description": "The agent performs an aspect analysis on the DEM.",
+            "points": 20,
+            "visual_evidence": "An aspect calculation dialog is open, or a new layer representing 'aspect' appears in the layers list."
+        },
+        {
+            "id": "apply_suitability_criteria",
+            "description": "The agent filters or reclassifies the data to find areas with slope < 10 and aspect between 135 and 225.",
+            "points": 30,
+            "visual_evidence": "A Raster Calculator or Reclassify tool window shows the specific logic: (slope < 10) AND (aspect >= 135) AND (aspect <= 225)."
+        },
+        {
+            "id": "save_binary_output",
+            "description": "The agent saves the final result as a binary GeoTIFF to the specified export path.",
+            "points": 20,
+            "visual_evidence": "An export or 'Save As' dialog shows the output path '/home/ga/GIS_Data/exports/solar_candidates.tif' with the file format set to GeoTIFF."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GIS GUI or IDE to perform the analysis rather than just executing a single opaque shell script.",
+            "visual_evidence": "Screenshots show interaction with software menus, toolboxes, or code being written and executed in an editor."
+        },
+        {
+            "id": "no_premade_result",
+            "description": "The agent did not simply rename an existing file to the target output name.",
+            "visual_evidence": "The sequence of screenshots shows the intermediate steps (slope/aspect generation) occurring before the final file is saved."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered the specific criteria values (10, 135, 225) into the tools.",
+            "visual_evidence": "The VLM can see the numbers 10, 135, and 225 typed into tool parameters or script lines."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is /home/ga/GIS_Data/elevation.tif (500x500 pixels, EPSG:32610). The required criteria are: Slope < 10 degrees AND Aspect between 135 and 225 degrees. The final output must be a binary (0/1) GeoTIFF saved at /home/ga/GIS_Data/exports/solar_candidates.tif."
+}

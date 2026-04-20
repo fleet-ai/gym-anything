@@ -1,0 +1,53 @@
+{
+    "task_id": "pose_repeatability_study@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_zmq_setup",
+            "description": "Agent opens CoppeliaSim and prepares a script or environment to connect via ZMQ Remote API on port 23000.",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim GUI is visible; terminal or IDE shows code referencing port 23000 and the ZMQ Remote API."
+        },
+        {
+            "id": "robot_motion_execution",
+            "description": "Agent executes a script that drives the robot arm through multiple homing-and-return cycles.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the robot arm in different joint configurations or moving between a home position and target poses in the CoppeliaSim scene."
+        },
+        {
+            "id": "data_collection_progress",
+            "description": "Agent captures Cartesian end-effector positions for at least 90 total trials (3 poses x 30 trials).",
+            "points": 20,
+            "visual_evidence": "Terminal output or a variable explorer shows a growing list of coordinates or trial counts reaching at least 90."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Agent exports the trial data to the specific CSV path with the required columns.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'ls' or 'cat') or file explorer shows /home/ga/Documents/CoppeliaSim/exports/repeatability_data.csv exists with headers: pose_id, trial_id, target_x, target_y, target_z, measured_x, measured_y, measured_z, deviation_mm."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the summary report JSON with all required ISO-inspired metrics.",
+            "points": 25,
+            "visual_evidence": "The file /home/ga/Documents/CoppeliaSim/exports/repeatability_report.json is displayed, containing fields: total_poses (>=3), trials_per_pose (>=30), worst_rp_mm, best_rp_mm, mean_rp_mm, overall_rp_mm, and iso_compliant: true."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually ran the simulation rather than just creating static files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim simulation clock running or the robot arm in different physical states, not just a text editor creating files."
+        },
+        {
+            "id": "no_hardcoded_metrics",
+            "description": "Check that the RP values in the JSON are derived from the CSV data, not just placeholder numbers.",
+            "visual_evidence": "The CSV file should contain varying 'measured' coordinates and 'deviation_mm' values that correspond to the summary statistics in the JSON."
+        },
+        {
+            "id": "port_and_api_compliance",
+            "description": "Ensure the agent used the specified ZMQ port 23000.",
+            "visual_evidence": "Code snippets in the trajectory must explicitly show the initialization of the ZMQ client on port 23000."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 3 distinct poses and 30 trials per pose (90 total rows in CSV). Poses must be separated by at least 0.05m. The output files must be located at /home/ga/Documents/CoppeliaSim/exports/repeatability_data.csv and /home/ga/Documents/CoppeliaSim/exports/repeatability_report.json. The 'iso_compliant' field in the JSON must be 'true' only if these minimum counts are met."
+}

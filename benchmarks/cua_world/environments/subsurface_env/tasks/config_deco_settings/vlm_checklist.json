@@ -1,0 +1,53 @@
+{
+    "task_id": "config_deco_settings@1",
+    "task_completion": [
+        {
+            "id": "open_preferences",
+            "description": "Open the Subsurface Preferences or Settings window.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Preferences' or 'Subsurface Preferences' is visible over the main application."
+        },
+        {
+            "id": "navigate_to_deco_settings",
+            "description": "Navigate to the 'Dive Computer' or 'Deco' settings tab where Gradient Factors are configured.",
+            "points": 10,
+            "visual_evidence": "The Preferences window shows the 'Dive Computer' or 'Deco' tab selected, revealing GF Low and GF High input fields."
+        },
+        {
+            "id": "set_gradient_factors",
+            "description": "Set GF Low to 30% and GF High to 70%.",
+            "points": 30,
+            "visual_evidence": "The input fields for 'GF Low' show the value '30' and 'GF High' show the value '70'."
+        },
+        {
+            "id": "set_sac_rates",
+            "description": "Set Bottom SAC to 20 L/min and Deco SAC to 17 L/min.",
+            "points": 30,
+            "visual_evidence": "The input fields for 'Bottom SAC' (or 'SAC') show '20' and 'Deco SAC' show '17'. Note: These may be in a 'Rates' or 'General' sub-tab within Preferences."
+        },
+        {
+            "id": "save_settings_and_log",
+            "description": "Apply the settings and save the dive log to persist changes.",
+            "points": 20,
+            "visual_evidence": "The user clicks 'OK' or 'Apply' in the Preferences window, and subsequently clicks 'File' > 'Save' or the Save icon in the main toolbar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_config",
+            "description": "The agent did not use the terminal to edit the configuration file directly.",
+            "visual_evidence": "No terminal window is seen executing 'sed', 'echo', or text editors on the Subsurface.conf file."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Subsurface GUI elements to change values.",
+            "visual_evidence": "Screenshots show the mouse cursor or focus indicators on the specific text boxes for GF and SAC values."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent used the actual Subsurface application interface rather than just simulating a save.",
+            "visual_evidence": "The Subsurface application window is active and responsive throughout the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The required values are: GF Low = 30, GF High = 70, Bottom SAC = 20 L/min, and Deco SAC = 17 L/min. These settings are typically found in the Preferences menu under 'Dive Computer' or 'Rates'. The task is only complete if the agent saves the file (File > Save) after applying the settings."
+}

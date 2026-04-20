@@ -1,0 +1,56 @@
+{
+    "task_id": "agn_blazar_outburst_monitoring@1",
+    "task_completion": [
+        {
+            "id": "read_alert_file",
+            "description": "Agent opens and reads the ATel_alert_Mrk421.txt file to obtain coordinates and specifications.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/ATel_alert_Mrk421.txt."
+        },
+        {
+            "id": "telescope_slew_mrk421",
+            "description": "Agent slews the telescope from Arcturus to the coordinates for Mrk 421 (RA 11h 04m 27s, Dec +38d 12m 32s).",
+            "points": 15,
+            "visual_evidence": "Telescope control software showing the target coordinates being entered or the mount status changing to Mrk 421."
+        },
+        {
+            "id": "optical_imaging_sequence",
+            "description": "Agent performs the multi-band imaging sequence using B, V, and R filters with at least 5 images per filter.",
+            "points": 35,
+            "visual_evidence": "Imaging software logs or file explorer showing at least 5 FITS files generated for each filter (B, V, and R) in the target directory."
+        },
+        {
+            "id": "context_image_management",
+            "description": "Agent handles the X-ray context image as specified in the alert.",
+            "points": 15,
+            "visual_evidence": "The file xray_context.png being moved to or present in the /home/ga/Images/ToO/Mrk421 directory."
+        },
+        {
+            "id": "draft_telegram",
+            "description": "Agent drafts an observation response telegram reporting the findings for Mrk 421.",
+            "points": 25,
+            "visual_evidence": "A text editor or email client showing a drafted report mentioning Mrk 421, the filters used (B, V, R), and the observation event."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses the telescope and camera GUI interfaces rather than just manipulating files via command line.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the cursor interacting with telescope control buttons and imaging software menus."
+        },
+        {
+            "id": "genuine_coordinate_entry",
+            "description": "Agent manually enters or selects the specific coordinates for Mrk 421.",
+            "points": 10,
+            "visual_evidence": "The coordinate input fields in the telescope software reflect the values from the alert file (11 04 27, +38 12 32)."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The drafted telegram contains specific details from the task rather than generic 'lorem ipsum' text.",
+            "points": 10,
+            "visual_evidence": "The telegram text includes 'Markarian 421', 'B, V, R filters', and references the outburst/flare."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: Markarian 421 (Mrk 421). Coordinates: RA 11h 04m 27s (11.0741h), Dec +38d 12m 32s (38.2089°). Required Filters: B, V, and R. Minimum images: 5 per filter. Output directory: /home/ga/Images/ToO/Mrk421. Context image: xray_context.png must be in the output directory. The telescope starts at Arcturus."
+}

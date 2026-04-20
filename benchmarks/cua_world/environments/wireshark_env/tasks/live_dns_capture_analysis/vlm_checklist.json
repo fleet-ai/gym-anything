@@ -1,0 +1,59 @@
+{
+    "task_id": "live_dns_capture_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_capture_tool",
+            "description": "The agent opens a network capture tool (e.g., Wireshark, tcpdump in terminal) to begin monitoring traffic.",
+            "points": 10,
+            "visual_evidence": "A window for Wireshark or a terminal running a capture command is visible on the screen."
+        },
+        {
+            "id": "perform_dns_lookups",
+            "description": "The agent performs DNS lookups for example.com, example.org, and example.net.",
+            "points": 15,
+            "visual_evidence": "Terminal commands like 'dig', 'nslookup', or 'host' being executed for the three specific domains."
+        },
+        {
+            "id": "capture_dns_traffic",
+            "description": "The agent successfully captures DNS packets corresponding to the lookups.",
+            "points": 15,
+            "visual_evidence": "The capture tool interface shows packets with the 'DNS' protocol and queries for the target domains."
+        },
+        {
+            "id": "save_pcap_file",
+            "description": "The agent saves the capture to the specified path: ~/Documents/captures/live_dns_capture.pcapng or .pcap.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or a terminal command (e.g., 'mv' or 'tcpdump -w') showing the file being saved to the correct directory and filename."
+        },
+        {
+            "id": "create_analysis_report",
+            "description": "The agent creates the report file at ~/Documents/captures/dns_analysis_report.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command showing the creation of the file in the specified path."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the total packet count, IP addresses, and response codes in the required format.",
+            "points": 30,
+            "visual_evidence": "The content of dns_analysis_report.txt is displayed, showing 'Total DNS packets:', the three domains, their resolved IPs, and [NOERROR] or other status codes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_capture_interaction",
+            "description": "The agent actually captured live traffic rather than just writing a report from memory.",
+            "visual_evidence": "Screenshots must show a network capture tool active and displaying live packet data, not just a text editor."
+        },
+        {
+            "id": "no_hardcoded_example_ips",
+            "description": "The agent did not simply copy the IP addresses from the task description example (93.184.216.34).",
+            "visual_evidence": "The report should contain the actual IPs resolved during the session (likely starting with 104.18.x.x) rather than the placeholder IPs from the prompt's example."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The agent interacted with the file system to save the files.",
+            "visual_evidence": "The file manager or terminal 'ls' command shows the files existing in /home/ga/Documents/captures/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target domains are example.com, example.org, and example.net. While the task description uses 93.184.216.34 as an example, actual live lookups as of 2026-03-07 typically resolve to Cloudflare IPs: example.com (104.18.26.120, 104.18.27.120), example.org (104.18.3.24, 104.18.2.24), and example.net (104.18.5.106, 104.18.4.106). The report must follow the specific format: 'Total DNS packets: <number>' followed by '<domain>: <IPs> [<status>]'."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "materialize_monthly_revenue@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the agent logged into the database management interface (likely OrientDB Studio) showing 'demodb' as the active database."
+        },
+        {
+            "id": "create_monthly_stats_class",
+            "description": "Create a vertex class named 'MonthlyStats'.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the creation command or the 'MonthlyStats' class appearing in the schema/class list as a Vertex type."
+        },
+        {
+            "id": "define_properties",
+            "description": "Define properties: Year (Integer), Month (Integer), TotalRevenue (Double), and OrderCount (Integer).",
+            "points": 20,
+            "visual_evidence": "The schema view for 'MonthlyStats' showing these four specific property names and their corresponding data types."
+        },
+        {
+            "id": "create_unique_index",
+            "description": "Create a unique index on the Year and Month properties.",
+            "points": 15,
+            "visual_evidence": "The index management tab or a SQL command execution showing a UNIQUE index created on the composite fields [Year, Month]."
+        },
+        {
+            "id": "aggregate_and_insert_data",
+            "description": "Populate 'MonthlyStats' by aggregating 'Orders' data (status='paid', grouped by Year/Month, sum Price, count orders).",
+            "points": 40,
+            "visual_evidence": "A SQL query execution (INSERT INTO MonthlyStats...) or a script that performs the aggregation and insertion, followed by a 'Query' result showing records in the MonthlyStats class."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI rather than just executing a single shell script.",
+            "visual_evidence": "Screenshots showing the browser-based interface (OrientDB Studio), clicking buttons, or typing into the SQL console within the GUI."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent performed actual aggregation queries rather than manually typing in pre-calculated values.",
+            "visual_evidence": "The SQL commands should contain 'GROUP BY', 'SUM(Price)', and 'COUNT(*)' logic rather than 'VALUES (2023, 1, 500.0, 5)'."
+        },
+        {
+            "id": "correct_database_context",
+            "description": "The agent is working within the 'demodb' environment.",
+            "visual_evidence": "The database name 'demodb' is visible in the connection string or the header of the application."
+        }
+    ],
+    "privileged_info_for_vlm": "The target database is 'demodb'. The source class is 'Orders' and the target class is 'MonthlyStats'. Required properties for MonthlyStats are Year (Integer), Month (Integer), TotalRevenue (Double), and OrderCount (Integer). A unique index must exist on (Year, Month). Data must be filtered by status='paid' from the Orders class before aggregation."
+}

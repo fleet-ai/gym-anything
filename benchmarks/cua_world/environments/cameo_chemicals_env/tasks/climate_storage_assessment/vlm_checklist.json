@@ -1,0 +1,56 @@
+{
+    "task_id": "climate_storage_assessment@1",
+    "task_completion": [
+        {
+            "id": "cameo_navigation",
+            "description": "Agent navigated to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or a search results page on cameochemicals.noaa.gov."
+        },
+        {
+            "id": "chemical_data_retrieval",
+            "description": "Agent searched for and viewed the chemical data sheets for the specified chemicals (e.g., Acetic Acid, Acetaldehyde).",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent viewing individual chemical profile pages on CAMEO Chemicals with physical properties visible."
+        },
+        {
+            "id": "data_extraction_accuracy",
+            "description": "Agent correctly identified Melting Points and Boiling Points for the chemicals.",
+            "points": 25,
+            "visual_evidence": "The agent is seen recording or typing values that match the CAMEO data (e.g., Acetic Acid MP ~62°F, Acetaldehyde BP ~69°F)."
+        },
+        {
+            "id": "logic_application",
+            "description": "Agent applied the HEAT/COOL/STANDARD logic correctly based on the retrieved temperatures.",
+            "points": 20,
+            "visual_evidence": "The agent's working notes or the final file show 'HEAT' for Acetic Acid (MP > 41) and 'COOL' for Acetaldehyde (BP < 95)."
+        },
+        {
+            "id": "csv_export",
+            "description": "Agent exported the findings to 'shipping_manifest.csv' on the Desktop with the correct columns.",
+            "points": 20,
+            "visual_evidence": "A file named 'shipping_manifest.csv' is visible on the Desktop or open in a text editor/spreadsheet app with columns: Chemical, Melting Point (F), Boiling Point (F), and Action."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Agent used the web browser to find information rather than just generating the file via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show active navigation and scrolling on the CAMEO Chemicals website."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo the final data into a file without visiting the source.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows a sequence of searches for each CAS number or chemical name on the NOAA site."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "Agent interacted with the desktop environment to save the file.",
+            "points": 0,
+            "visual_evidence": "The agent is seen using a 'Save As' dialog or a text editor within the GUI to create the CSV."
+        }
+    ],
+    "privileged_info_for_vlm": "Correct values from CAMEO Chemicals: 1. Acetic Acid (64-19-7): MP 62°F, BP 244°F -> HEAT. 2. Acetaldehyde (75-07-0): MP -190°F, BP 69°F -> COOL. 3. Benzene (71-43-2): MP 42°F, BP 176°F -> HEAT. 4. Isoprene (78-79-5): MP -231°F, BP 93°F -> COOL. 5. Ethanol (64-17-5): MP -173°F, BP 173°F -> STANDARD. 6. p-Xylene (106-42-3): MP 56°F, BP 281°F -> HEAT. Logic: MP > 41 = HEAT; BP < 95 = COOL; else STANDARD. File must be at ~/Desktop/shipping_manifest.csv."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "configure_channel_gain_settings@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI is launched and a synthetic Cyton board session is started.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is visible, showing 'CYTON' and 'SYNTHETIC' in the top status bar or session setup screen."
+        },
+        {
+            "id": "channel_settings_menu_opened",
+            "description": "The agent navigated to the Hardware Settings or Channel Settings menu to adjust PGA Gain.",
+            "points": 10,
+            "visual_evidence": "The 'Hardware Settings' or 'Channel Settings' overlay/panel is visible on top of the main EEG graph."
+        },
+        {
+            "id": "channels_1_2_gain_set",
+            "description": "PGA Gain for Channels 1 and 2 is set to 12x.",
+            "points": 15,
+            "visual_evidence": "In the channel settings table, the 'Gain' column for rows 1 and 2 displays '12'."
+        },
+        {
+            "id": "channels_3_6_gain_set",
+            "description": "PGA Gain for Channels 3 through 6 is set to 24x.",
+            "points": 20,
+            "visual_evidence": "In the channel settings table, the 'Gain' column for rows 3, 4, 5, and 6 displays '24'."
+        },
+        {
+            "id": "channels_7_8_gain_set",
+            "description": "PGA Gain for Channels 7 and 8 is set to 8x.",
+            "points": 15,
+            "visual_evidence": "In the channel settings table, the 'Gain' column for rows 7 and 8 displays '8'."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the configuration is saved to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output confirms the creation of '~/Documents/OpenBCI_GUI/Screenshots/gain_config.png'."
+        },
+        {
+            "id": "text_report_created",
+            "description": "A text report listing the settings is created at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the content of '~/Documents/OpenBCI_GUI/gain_report.txt' reflecting the 12x, 24x, and 8x settings."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the GUI to change settings rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the OpenBCI GUI dropdowns or buttons for gain adjustment."
+        },
+        {
+            "id": "genuine_session",
+            "description": "The agent is interacting with a live OpenBCI GUI session, not just viewing a static image.",
+            "visual_evidence": "The EEG time-series data (synthetic waves) should be moving or updating in the background of the GUI."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "The file paths visible in the file explorer or terminal match '~/Documents/OpenBCI_GUI/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure a Synthetic Cyton board. Required Gain Settings: Channels 1-2 = 12x; Channels 3-6 = 24x; Channels 7-8 = 8x. Required Files: Screenshot at '~/Documents/OpenBCI_GUI/Screenshots/gain_config.png' and Text Report at '~/Documents/OpenBCI_GUI/gain_report.txt'. Verify these specific values in the GUI screenshots and the final text report."
+}

@@ -1,0 +1,62 @@
+{
+    "task_id": "resolve_merge_conflicts@1",
+    "task_completion": [
+        {
+            "id": "git_merge_initiated",
+            "description": "The agent initiated a merge of 'main' into 'feature/discount-system' resulting in visible conflict markers or a merge tool being opened.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a 'Merge Conflicts' dialog in the IDE or files containing '<<<<<<< HEAD' markers."
+        },
+        {
+            "id": "product_java_resolved",
+            "description": "Product.java contains both 'category' and 'discountPercent' fields, and both are included in the toString() method.",
+            "points": 20,
+            "visual_evidence": "Code editor showing Product.java with private fields for category and discountPercent, and a toString method returning both."
+        },
+        {
+            "id": "inventory_manager_resolved",
+            "description": "InventoryManager.java contains the Streams-based calculateTotalValue() and the calculateDiscountedTotal() method.",
+            "points": 20,
+            "visual_evidence": "Code editor showing InventoryManager.java with a .stream() implementation for total value and the discount calculation method."
+        },
+        {
+            "id": "inventory_utils_resolved",
+            "description": "InventoryUtils.java contains both formatCurrency() and calculateBulkDiscount() methods.",
+            "points": 15,
+            "visual_evidence": "Code editor showing InventoryUtils.java with both method definitions present."
+        },
+        {
+            "id": "pom_xml_resolved",
+            "description": "pom.xml includes both 'commons-lang3' and 'commons-math3' dependencies.",
+            "points": 15,
+            "visual_evidence": "Code editor showing the <dependencies> section of pom.xml with both artifacts listed."
+        },
+        {
+            "id": "successful_maven_build",
+            "description": "The project compiles successfully using Maven after resolving conflicts.",
+            "points": 20,
+            "visual_evidence": "Terminal or IDE tool window showing 'BUILD SUCCESS' from a 'mvn compile' or 'mvn install' command."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's GUI features (like the Merge Tool or Resolve Conflicts dialog) rather than just manual text editing.",
+            "points": 0,
+            "visual_evidence": "Screenshots of the IntelliJ/IDE 'Conflicts' resolver or 'Merge' window."
+        },
+        {
+            "id": "genuine_git_commit",
+            "description": "The agent performed a genuine git commit to finalize the merge rather than just saving files.",
+            "points": 0,
+            "visual_evidence": "Git log or Git commit dialog showing a merge commit being created."
+        },
+        {
+            "id": "no_file_deletion",
+            "description": "The agent did not simply delete conflicting files to bypass the merge.",
+            "points": 0,
+            "visual_evidence": "Project explorer showing all required files (Product.java, InventoryManager.java, etc.) still exist."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/commons-inventory. Key verification points: Product.java must have 'category' (from main) and 'discountPercent' (from feature). InventoryManager.java must use Java Streams for calculateTotalValue. pom.xml must have both commons-lang3 and commons-math3. A successful merge is only complete if a 'BUILD SUCCESS' message is seen in the Maven output and a commit is made."
+}

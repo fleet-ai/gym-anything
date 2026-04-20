@@ -1,0 +1,59 @@
+{
+    "task_id": "meridian_flip_planning@1",
+    "task_completion": [
+        {
+            "id": "set_location_mayhill",
+            "description": "The agent sets the observatory location to Mayhill, NM (32.903° N, 105.528° W).",
+            "points": 15,
+            "visual_evidence": "A location settings window or status bar showing the coordinates 32.903 N and 105.528 W or 'Mayhill' selected."
+        },
+        {
+            "id": "set_date_nov_15",
+            "description": "The agent sets the simulation date to November 15, 2024.",
+            "points": 10,
+            "visual_evidence": "The date/time picker or clock display in the software showing 2024-11-15."
+        },
+        {
+            "id": "search_m42",
+            "description": "The agent searches for and selects the Orion Nebula (M42).",
+            "points": 10,
+            "visual_evidence": "A search box with 'M42' or 'Orion Nebula' typed in, or the object info panel showing M42 is selected."
+        },
+        {
+            "id": "identify_transit_point",
+            "description": "The agent determines the exact UTC time when M42 reaches its highest altitude (transit).",
+            "points": 30,
+            "visual_evidence": "The software showing M42 on the meridian (Azimuth 180° or 0°) with a specific UTC time displayed in the info panel or time bar."
+        },
+        {
+            "id": "screenshot_transit",
+            "description": "The agent captures a screenshot showing M42 at the transit point.",
+            "points": 15,
+            "visual_evidence": "A screenshot in the trajectory showing the nebula positioned on the meridian line in the sky view."
+        },
+        {
+            "id": "create_automation_plan",
+            "description": "The agent creates the file ~/Desktop/meridian_flip_plan.txt with the required details.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file content: M42/Orion, Nov 15, 2024, and the UTC transit time."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomy software GUI to find the transit time rather than just calculating it via script.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the planetarium software (e.g., Stellarium, KStars, or Cartes du Ciel)."
+        },
+        {
+            "id": "no_hardcoded_answer",
+            "description": "The agent did not simply echo the answer into the text file without first finding it in the software.",
+            "visual_evidence": "The sequence of screenshots shows the software being manipulated to find the transit time before the text file is written."
+        },
+        {
+            "id": "correct_location_context",
+            "description": "The transit time must correspond to the specific Mayhill, NM coordinates provided.",
+            "visual_evidence": "The software's location settings match the task description (32.903 N, 105.528 W)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is M42 (Orion Nebula). The location is Mayhill, NM (32.903 N, 105.528 W). The date is November 15, 2024. For these coordinates, the transit of M42 occurs at approximately 08:33 UTC (give or take a few minutes depending on the specific software's epoch/refraction settings). The agent must produce a file at ~/Desktop/meridian_flip_plan.txt containing: Target: M42/Orion, Date: Nov 15, 2024, and the UTC transit time found."
+}

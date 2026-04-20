@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_stage_area_curve@1",
+    "task_completion": [
+        {
+            "id": "hdf_file_access",
+            "description": "Agent accesses the HDF file at the specified path using Python code.",
+            "points": 10,
+            "visual_evidence": "Code in a terminal or IDE showing 'h5py.File' or similar opening '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf'."
+        },
+        {
+            "id": "geometry_extraction",
+            "description": "Agent extracts station-elevation data for the most upstream cross-section.",
+            "points": 15,
+            "visual_evidence": "Python code or print statements showing navigation of the HDF structure (e.g., 'Geometry/Cross Sections') and identifying the upstream-most station."
+        },
+        {
+            "id": "hydraulic_computation",
+            "description": "Agent implements logic to compute Area, Perimeter, Width, and Radius for 25 elevations.",
+            "points": 30,
+            "visual_evidence": "Python code containing a loop or vectorized operation over 25 elevation steps with geometric formulas for trapezoidal or irregular cross-sections."
+        },
+        {
+            "id": "csv_generation",
+            "description": "Agent saves the computed properties to the specified CSV file with correct columns.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code showing 'df.to_csv' to '/home/ga/Documents/hec_ras_results/stage_area_curve.csv' with columns Stage, FlowArea, WettedPerimeter, TopWidth, and HydraulicRadius."
+        },
+        {
+            "id": "info_text_generation",
+            "description": "Agent saves the River Station ID and point count to the specified text file.",
+            "points": 10,
+            "visual_evidence": "Code or terminal command creating '/home/ga/Documents/hec_ras_results/cross_section_info.txt' containing the station identifier."
+        },
+        {
+            "id": "plot_generation",
+            "description": "Agent generates and saves a 2x2 multi-panel plot of the properties vs. Stage.",
+            "points": 20,
+            "visual_evidence": "Code showing 'plt.subplots(2, 2)' and saving to '/home/ga/Documents/hec_ras_results/stage_area_plot.png', or a screenshot of the generated 4-panel image."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent computes values dynamically rather than hardcoding the final numbers.",
+            "visual_evidence": "The code should show mathematical logic and HDF data extraction, not a pre-written list of 25 results."
+        },
+        {
+            "id": "genuine_python_execution",
+            "description": "Agent uses the specified libraries (h5py, numpy, pandas, matplotlib).",
+            "visual_evidence": "Import statements and library-specific function calls (e.g., np.interp, h5py.File) are visible in the trajectory."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent uses the exact file paths provided in the prompt.",
+            "visual_evidence": "Screenshots show the specific paths '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf' and '/home/ga/Documents/hec_ras_results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The HDF file is located at /home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf. The upstream-most cross-section is typically the one with the highest River Station value in the HDF hierarchy. The agent must calculate 25 points between the thalweg (minimum elevation) and the maximum bank station elevation. The output directory is /home/ga/Documents/hec_ras_results/. The plot must be a 2x2 grid."
+}

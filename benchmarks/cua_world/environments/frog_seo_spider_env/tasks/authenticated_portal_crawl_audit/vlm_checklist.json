@@ -1,0 +1,53 @@
+{
+    "task_id": "authenticated_portal_crawl_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Screaming Frog SEO Spider is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Screaming Frog SEO Spider application window is open and active."
+        },
+        {
+            "id": "auth_config_setup",
+            "description": "Forms Based authentication is configured for the login URL with the specified credentials.",
+            "points": 20,
+            "visual_evidence": "The 'Configuration > Authentication > Forms Based' dialog is shown with 'http://quotes.toscrape.com/login' (or https), username 'admin', and password 'password' entered."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "The crawl of the target URL is initiated and progress is visible.",
+            "points": 15,
+            "visual_evidence": "The address bar contains 'http://quotes.toscrape.com/' (or https) and the progress bar/status indicates the crawl is running or finished."
+        },
+        {
+            "id": "internal_html_export",
+            "description": "The 'Internal > HTML' data is exported to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "The 'Export' dialog or a file explorer window shows a CSV file being saved to '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "report_creation",
+            "description": "A text report is created at the specified path documenting the crawl results.",
+            "points": 30,
+            "visual_evidence": "A text editor or file explorer shows 'auth_success_report.txt' in '~/Documents/SEO/reports/'. The content should mention the presence (or attempt to find) the '/logout/' URL."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI to perform the crawl and configuration rather than just CLI scripts.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and dialog interactions within the Screaming Frog interface."
+        },
+        {
+            "id": "genuine_crawl_data",
+            "description": "The crawl results in the GUI reflect the actual website content (quotes, authors).",
+            "visual_evidence": "The 'Internal' tab in Screaming Frog shows URLs from quotes.toscrape.com and not placeholder or unrelated data."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The CSV export was generated via the application export function, not manually typed into a text editor.",
+            "visual_evidence": "The agent is seen clicking the 'Export' button in the Screaming Frog UI rather than just opening a blank file and typing CSV headers."
+        }
+    ],
+    "privileged_info_for_vlm": "The target site uses HTTPS; the agent may use https://quotes.toscrape.com even if the task says HTTP. Any username/password works for login. Crucially, the '/logout/' endpoint does not actually exist on this site (it returns a 404), so the agent's report should reflect its absence or the result of the crawl attempt for that specific fragment."
+}

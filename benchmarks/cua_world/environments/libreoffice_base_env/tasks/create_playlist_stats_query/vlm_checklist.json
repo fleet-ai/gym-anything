@@ -1,0 +1,62 @@
+{
+    "task_id": "create_playlist_stats_query@1",
+    "task_completion": [
+        {
+            "id": "open_query_design",
+            "description": "The agent opens the LibreOffice Base query design view or SQL view.",
+            "points": 10,
+            "visual_evidence": "A 'Query Design' window or 'SQL Command' window is visible over the main LibreOffice Base interface."
+        },
+        {
+            "id": "tables_added",
+            "description": "The 'Playlist', 'PlaylistTrack', and 'Track' tables are added to the query.",
+            "points": 15,
+            "visual_evidence": "The table design area shows three table boxes labeled 'Playlist', 'PlaylistTrack', and 'Track' with join lines between them."
+        },
+        {
+            "id": "columns_and_aliases",
+            "description": "The query defines the three required columns with correct aliases: 'PlaylistName', 'TrackCount', and 'DurationMinutes'.",
+            "points": 25,
+            "visual_evidence": "In the query grid or SQL text, the aliases 'PlaylistName', 'TrackCount', and 'DurationMinutes' are visible in the 'Alias' row or 'AS' clauses."
+        },
+        {
+            "id": "calculations_and_grouping",
+            "description": "The query includes a count of tracks, a sum of milliseconds divided by 60000.0, and grouping by playlist name.",
+            "points": 25,
+            "visual_evidence": "The 'Function' row in the grid shows 'Count' and 'Sum', or the SQL shows 'COUNT(*)' and 'SUM(Milliseconds) / 60000.0'. The 'Group By' setting is applied to the Playlist Name."
+        },
+        {
+            "id": "sorting_and_execution",
+            "description": "The query is sorted by DurationMinutes in descending order and executed to show results.",
+            "points": 15,
+            "visual_evidence": "The 'Sort' row shows 'Descending' for the duration column, and a result datasheet is visible showing playlist statistics."
+        },
+        {
+            "id": "save_query_name",
+            "description": "The query is saved with the specific name 'PlaylistStats'.",
+            "points": 10,
+            "visual_evidence": "The main LibreOffice Base window shows 'PlaylistStats' listed under the 'Queries' section."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create the query rather than just executing a shell script.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the LibreOffice Query Design or SQL window menus and buttons."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type out the results in a text editor but generated them via a database query.",
+            "points": 0,
+            "visual_evidence": "The results are displayed within the LibreOffice Base 'Data View' grid, not a notepad or terminal."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent is interacting with the Chinook_Sqlite.sqlite database.",
+            "points": 0,
+            "visual_evidence": "The status bar of LibreOffice Base or the title bar shows the connection to the Chinook database file."
+        }
+    ],
+    "privileged_info_for_vlm": "The query must join Playlist (p), PlaylistTrack (pt), and Track (t). The specific logic required is: SELECT p.Name AS PlaylistName, COUNT(pt.TrackId) AS TrackCount, SUM(t.Milliseconds) / 60000.0 AS DurationMinutes. It must include GROUP BY p.Name and ORDER BY DurationMinutes DESC. The final saved object in the 'Queries' tab must be named exactly 'PlaylistStats'."
+}

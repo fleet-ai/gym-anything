@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_osint_proxy_webrtc_setup@1",
+    "task_completion": [
+        {
+            "id": "read_opsec_directive",
+            "description": "Agent opens and reads the OPSEC_Directive.html file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A browser window or text editor displaying the content of ~/Desktop/OPSEC_Directive.html."
+        },
+        {
+            "id": "open_firefox_settings",
+            "description": "Agent navigates to the Firefox Network Settings menu.",
+            "points": 10,
+            "visual_evidence": "The 'Connection Settings' dialog box is visible within Firefox."
+        },
+        {
+            "id": "configure_socks5_proxy",
+            "description": "Agent configures the SOCKS v5 host and port as specified in the directive.",
+            "points": 20,
+            "visual_evidence": "The 'Manual proxy configuration' radio button is selected, and the SOCKS Host field contains the IP/port from the directive with 'SOCKS v5' selected."
+        },
+        {
+            "id": "enable_proxy_dns",
+            "description": "Agent enables the setting to proxy DNS when using SOCKS v5.",
+            "points": 15,
+            "visual_evidence": "The checkbox 'Proxy DNS when using SOCKS v5' is checked in the Connection Settings."
+        },
+        {
+            "id": "disable_webrtc_about_config",
+            "description": "Agent navigates to about:config and sets media.peerconnection.enabled to false.",
+            "points": 25,
+            "visual_evidence": "The about:config page is visible with 'media.peerconnection.enabled' searched and the value set to 'false' (indicated by bold text or a toggle switch)."
+        },
+        {
+            "id": "close_firefox_completely",
+            "description": "Agent closes the Firefox application to flush settings to disk.",
+            "points": 20,
+            "visual_evidence": "The Firefox window is closed, and the desktop or taskbar shows Firefox is no longer the active/running application."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI to change settings rather than editing prefs.js via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Firefox menus, settings dialogs, and about:config toggles."
+        },
+        {
+            "id": "no_config_file_injection",
+            "description": "The agent did not simply overwrite the Firefox profile directory with a pre-made configuration file.",
+            "visual_evidence": "The agent is seen manually typing or clicking through the Firefox UI steps rather than executing a single 'cp' or 'mv' command in a terminal."
+        },
+        {
+            "id": "genuine_directive_access",
+            "description": "The agent actually opened the directive file to find the proxy details instead of guessing common defaults.",
+            "visual_evidence": "A screenshot exists showing the content of OPSEC_Directive.html being displayed before the proxy settings are entered."
+        }
+    ],
+    "privileged_info_for_vlm": "The OPSEC_Directive.html contains the specific SOCKS5 proxy details. The VLM must verify that the IP and Port entered in Firefox match the text found in that HTML file. The WebRTC disablement must be done via the 'media.peerconnection.enabled' preference in about:config. The task is only complete if Firefox is closed at the very end."
+}

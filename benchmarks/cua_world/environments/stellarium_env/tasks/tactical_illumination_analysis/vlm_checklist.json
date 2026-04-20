@@ -1,0 +1,53 @@
+{
+    "task_id": "tactical_illumination_analysis@1",
+    "task_completion": [
+        {
+            "id": "set_location_abbottabad",
+            "description": "Configure Stellarium location to Abbottabad, Pakistan (34.17° N, 73.24° E).",
+            "points": 15,
+            "visual_evidence": "The Stellarium 'Location' window or status bar showing Latitude 34° 10' 12\" N (or 34.17) and Longitude 73° 14' 24\" E (or 73.24)."
+        },
+        {
+            "id": "set_datetime_utc",
+            "description": "Configure Stellarium date and time to May 1, 2011, at 18:00 UTC.",
+            "points": 15,
+            "visual_evidence": "The Stellarium 'Date/Time' window or status bar showing 2011-05-01 and the time adjusted to 18:00:00 (ensure timezone offset is accounted for if not in UTC)."
+        },
+        {
+            "id": "enable_azimuthal_grid",
+            "description": "Enable the azimuthal coordinate grid in the Stellarium view.",
+            "points": 10,
+            "visual_evidence": "A visible grid of lines originating from the zenith and horizontal lines parallel to the horizon overlaid on the sky."
+        },
+        {
+            "id": "capture_sun_moon_positions",
+            "description": "Capture screenshots showing the Sun and Moon relative to the horizon and grid.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the Sun (likely well below the horizon) and the Moon, with their selection info boxes displaying Altitude/Azimuth data."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the tactical illumination report at the specified path with required content.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file /home/ga/Desktop/illumination_report.txt containing the date, location, and specific altitude/elevation values for the Sun and Moon."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Stellarium GUI to set parameters rather than just writing a report from memory.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Stellarium menus (Location, Date/Time) or the search bar."
+        },
+        {
+            "id": "genuine_data_retrieval",
+            "description": "The altitude values in the report match the values shown in the Stellarium UI selection data.",
+            "visual_evidence": "The numerical values for 'Apparent altitude' in the Stellarium screenshot match the text written in the illumination_report.txt."
+        },
+        {
+            "id": "no_precomputed_report",
+            "description": "The report was created during the session, not pre-existing.",
+            "visual_evidence": "Terminal logs or file manager views showing the creation or saving process of illumination_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The required location is 34.17 N, 73.24 E. The required time is 2011-05-01 18:00:00 UTC. At this specific time and location, the Sun is approximately -38 degrees below the horizon (nighttime), and the Moon is approximately -11 degrees below the horizon (New Moon phase occurred on May 3, so the Moon is a very thin waning crescent and below the horizon at this time). The report must be at /home/ga/Desktop/illumination_report.txt."
+}

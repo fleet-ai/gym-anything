@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_landlocked_parcels_buffer@1",
+    "task_completion": [
+        {
+            "id": "load_gis_layers",
+            "description": "Load both subdivision_parcels.geojson and road_network.geojson into a GIS application.",
+            "points": 10,
+            "visual_evidence": "The GIS software (e.g., QGIS) layers panel shows both 'subdivision_parcels' and 'road_network' as active layers."
+        },
+        {
+            "id": "reproject_to_utm",
+            "description": "Reproject the layers to EPSG:32610 (WGS 84 / UTM zone 10N) for accurate metric buffering.",
+            "points": 15,
+            "visual_evidence": "A projection/CRS dialog box or layer properties window showing 'EPSG:32610' or 'UTM zone 10N' being selected or applied."
+        },
+        {
+            "id": "identify_landlocked",
+            "description": "Identify parcels that do not share a boundary with the road network.",
+            "points": 25,
+            "visual_evidence": "Selection highlighting on the map showing exactly two parcels that are not adjacent to the road lines, or an attribute table filtered to these specific features."
+        },
+        {
+            "id": "apply_10m_buffer",
+            "description": "Apply a 10-meter easement buffer to the identified landlocked parcels.",
+            "points": 30,
+            "visual_evidence": "A buffer tool dialog showing a '10' meter distance input, and the resulting map showing expanded polygons around the isolated parcels."
+        },
+        {
+            "id": "save_final_output",
+            "description": "Save the buffered result to the specified export path.",
+            "points": 20,
+            "visual_evidence": "An export or 'Save As' dialog showing the file path '/home/ga/GIS_Data/exports/easement_buffers.geojson' and the format as GeoJSON."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GIS GUI (like QGIS) rather than just executing a single python script in the terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with menus, toolboxes, or map canvases in a GIS application."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent performed spatial analysis rather than manually selecting IDs from a known list.",
+            "visual_evidence": "The use of spatial query tools (e.g., 'Select by Location' or 'Intersection') instead of manual attribute selection of specific IDs."
+        },
+        {
+            "id": "genuine_buffer_operation",
+            "description": "The agent actually ran a buffer operation with the correct parameters.",
+            "visual_evidence": "The 'Buffer' tool window is visible with the distance set to 10 meters and the correct input layer selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves a 3x3 grid of parcels. Exactly 2 parcels (P5 and P8) are landlocked and do not touch the road network. The final output file must contain exactly 2 features. Each buffered feature should have an area of approximately 14,313.65 square meters (based on a 100x100m parcel with a 10m buffer). The projection must be EPSG:32610."
+}

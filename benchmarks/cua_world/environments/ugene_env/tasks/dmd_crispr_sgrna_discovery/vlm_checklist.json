@@ -1,0 +1,59 @@
+{
+    "task_id": "dmd_crispr_sgrna_discovery@1",
+    "task_completion": [
+        {
+            "id": "open_fasta_in_ugene",
+            "description": "Open the dmd_exon51_region.fasta file in the UGENE sequence viewer.",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows a sequence named 'dmd_exon51_region' or similar in the main editor area."
+        },
+        {
+            "id": "configure_find_pattern",
+            "description": "Configure the 'Find Pattern' tool with the SpCas9 N20NGG motif and select both strands.",
+            "points": 15,
+            "visual_evidence": "The 'Find Pattern' dialog box is visible with 'NNNNNNNNNNNNNNNNNNNNNGG' (or equivalent) entered and the 'Both strands' or 'Direct and Complement' option selected."
+        },
+        {
+            "id": "create_annotations",
+            "description": "Save the search results as annotations named 'sgRNA_target'.",
+            "points": 20,
+            "visual_evidence": "The 'Create Annotations' dialog shows the name 'sgRNA_target' being entered, or the sequence view shows multiple annotation tracks labeled 'sgRNA_target'."
+        },
+        {
+            "id": "export_genbank",
+            "description": "Export the annotated sequence to a GenBank file in the results directory.",
+            "points": 15,
+            "visual_evidence": "The 'Export as GenBank' or 'Save As' dialog is visible with the path set to ~/UGENE_Data/crispr/results/dmd_targets.gb."
+        },
+        {
+            "id": "extract_sequences",
+            "description": "Extract the 23-bp sequences from the identified targets.",
+            "points": 20,
+            "visual_evidence": "The agent is seen copying sequences from the UGENE 'Annotations' table or using an export tool to get the raw 23-bp strings."
+        },
+        {
+            "id": "final_report_content",
+            "description": "Create a text report with the total count and at least 5 sequences.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows sgrna_candidates.txt containing a total count and a list of 23-bp sequences ending in GG (forward) or starting with CC (reverse)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform the search and annotation rather than just writing a script.",
+            "visual_evidence": "Screenshots show the UGENE interface, dialog boxes, and sequence highlighting rather than just a terminal window."
+        },
+        {
+            "id": "genuine_search_results",
+            "description": "The number of targets and sequences matches the actual sequence content, not a hallucinated number.",
+            "visual_evidence": "The count in the final report matches the number of annotations visible in the UGENE 'Objects' or 'Annotations' pane."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file paths requested in the task.",
+            "visual_evidence": "Save dialogs or terminal commands show the exact paths: ~/UGENE_Data/crispr/results/dmd_targets.gb and sgrna_candidates.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The sequence dmd_exon51_region.fasta is approximately 1100-1200 bp long. A search for N(21)GG on both strands should yield approximately 130-150 hits. Valid 23-bp sequences must end in 'GG' if on the direct strand or start with 'CC' if on the complement strand (since the complement of NGG at the 3' end is CCN at the 5' end)."
+}

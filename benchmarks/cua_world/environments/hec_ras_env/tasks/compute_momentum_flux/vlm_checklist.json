@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_momentum_flux@1",
+    "task_completion": [
+        {
+            "id": "locate_hdf5_file",
+            "description": "Locate the HEC-RAS HDF5 results file in the Muncie project directory.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing 'Muncie.p04.hdf' (or similar .hdf file) inside '~/Documents/hec_ras_projects/Muncie'."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Create the Python script at the specified path with the required momentum formulas.",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing the creation of '~/Documents/hec_ras_results/compute_momentum_flux.py' containing formulas for M (rho*Q*V) and SF."
+        },
+        {
+            "id": "script_execution",
+            "description": "Execute the Python script to process the HDF5 data.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of 'python3 compute_momentum_flux.py' without errors."
+        },
+        {
+            "id": "verify_csv_output",
+            "description": "Generate the CSV file with all seven required columns.",
+            "points": 25,
+            "visual_evidence": "A file named 'momentum_flux.csv' in '~/Documents/hec_ras_results/' containing headers: River_Station, Q_peak, Velocity, Flow_Area, Depth, M_dynamic, and Specific_Force."
+        },
+        {
+            "id": "verify_summary_report",
+            "description": "Generate the summary text report identifying max Momentum Flux and Specific Force stations.",
+            "points": 25,
+            "visual_evidence": "A file named 'momentum_summary.txt' in '~/Documents/hec_ras_results/' containing text identifying the river stations with maximum values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final values into the script or CSV without processing the HDF5 file.",
+            "visual_evidence": "The Python script should contain h5py or pandas code to read the HDF5 file, not just print statements with pre-calculated numbers."
+        },
+        {
+            "id": "correct_constants",
+            "description": "The agent used the specific constants provided in the prompt (rho=1.94, g=32.2).",
+            "visual_evidence": "The Python script code shows '1.94' and '32.2' used in the calculation logic."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "Screenshots show files saved in '~/Documents/hec_ras_results/' and not the default home or project directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/Documents/hec_ras_projects/Muncie. The results must be saved to /home/ga/Documents/hec_ras_results/. The required CSV columns are: River_Station, Q_peak, Velocity, Flow_Area, Depth, M_dynamic, and Specific_Force. The script must use rho = 1.94 slugs/ft³ and g = 32.2 ft/s². The HDF5 file typically used for plan 04 results is Muncie.p04.hdf."
+}

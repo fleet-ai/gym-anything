@@ -1,0 +1,59 @@
+{
+    "task_id": "hierarchical_rbac_implementation@1",
+    "task_completion": [
+        {
+            "id": "schema_creation",
+            "description": "Create vertex classes (AppUser, AppGroup, AppResource) and edge classes (MemberOf, HasAccess) in the database.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the creation or existence of classes 'AppUser', 'AppGroup', 'AppResource', 'MemberOf', and 'HasAccess' in the database schema view."
+        },
+        {
+            "id": "group_hierarchy_setup",
+            "description": "Define the hierarchy: Engineering_Leads -> Software_Engineers -> Full_Time_Staff.",
+            "points": 15,
+            "visual_evidence": "Graph view or command output showing 'MemberOf' edges connecting 'Engineering_Leads' to 'Software_Engineers' and 'Software_Engineers' to 'Full_Time_Staff'."
+        },
+        {
+            "id": "user_assignment",
+            "description": "Assign sarah.connor to Engineering_Leads and john.smith to Full_Time_Staff.",
+            "points": 15,
+            "visual_evidence": "Database records or graph visualization showing 'sarah.connor' linked to 'Engineering_Leads' and 'john.smith' linked to 'Full_Time_Staff' via 'MemberOf' edges."
+        },
+        {
+            "id": "resource_access_grants",
+            "description": "Grant specific access levels (admin, write, read) to the respective groups for the three resources.",
+            "points": 20,
+            "visual_evidence": "Database records showing 'HasAccess' edges with property 'level' set to 'admin' for aws_prod_keys, 'write' for git_repository, and 'read' for office_wifi."
+        },
+        {
+            "id": "audit_query_execution",
+            "description": "Perform a query to find all resources sarah.connor can access through the hierarchy.",
+            "points": 20,
+            "visual_evidence": "A query (likely SQL or Gremlin) being executed that traverses the 'MemberOf' and 'HasAccess' edges starting from 'sarah.connor'."
+        },
+        {
+            "id": "json_export_file",
+            "description": "Export the audit results to /home/ga/sarah_entitlements.json in the correct format.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of '/home/ga/sarah_entitlements.json' containing a JSON array with keys 'resource', 'permission', and 'via_group'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_json_creation",
+            "description": "The agent did not simply echo the final JSON into a file without querying the database.",
+            "visual_evidence": "The agent must be seen running a database query to fetch the results before the file is written; look for a discrepancy between query results and file content."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the 'demodb' database specifically.",
+            "visual_evidence": "Screenshots should show the database connection string or UI header indicating 'demodb' is the active database."
+        },
+        {
+            "id": "hierarchy_traversal_logic",
+            "description": "The agent used logic to traverse the hierarchy rather than hardcoding Sarah's known permissions.",
+            "visual_evidence": "The query used should include a recursive or multi-hop path (e.g., 'MemberOf.MemberOf') rather than three separate direct lookups."
+        }
+    ],
+    "privileged_info_for_vlm": "Sarah Connor should have 3 entitlements in the final JSON: 1. aws_prod_keys (admin) via Engineering_Leads, 2. git_repository (write) via Software_Engineers, and 3. office_wifi (read) via Full_Time_Staff. The file must be located at /home/ga/sarah_entitlements.json. The database must contain the specific classes AppUser, AppGroup, AppResource, MemberOf, and HasAccess."
+}

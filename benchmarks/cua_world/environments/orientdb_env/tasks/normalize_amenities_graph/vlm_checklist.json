@@ -1,0 +1,53 @@
+{
+    "task_id": "normalize_amenities_graph@1",
+    "task_completion": [
+        {
+            "id": "create_amenity_class",
+            "description": "Create a new Vertex class named 'Amenity' with a 'Name' property of type String.",
+            "points": 15,
+            "visual_evidence": "Screenshot of OrientDB Studio Schema tab showing the 'Amenity' class in the Vertex list and its 'Name' property."
+        },
+        {
+            "id": "create_has_amenity_edge",
+            "description": "Create a new Edge class named 'HasAmenity'.",
+            "points": 10,
+            "visual_evidence": "Screenshot of OrientDB Studio Schema tab showing 'HasAmenity' listed under Edge classes."
+        },
+        {
+            "id": "migrate_amenity_vertices",
+            "description": "Create 'Amenity' vertices for every distinct string in the existing lists.",
+            "points": 25,
+            "visual_evidence": "Query results in OrientDB Studio showing approximately 8 distinct Amenity vertices (e.g., WiFi, Bar, Restaurant, Gym, Spa, Concierge, Valet, Pool)."
+        },
+        {
+            "id": "link_hotels_to_amenities",
+            "description": "Link Hotels to Amenities via 'HasAmenity' edges based on the legacy data.",
+            "points": 30,
+            "visual_evidence": "Graph view or query results showing 'HasAmenity' edges connecting 'Hotels' to 'Amenity' vertices. Total edge count should be 24."
+        },
+        {
+            "id": "drop_legacy_property",
+            "description": "Drop the legacy 'Amenities' property from the 'Hotels' class.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the 'Hotels' class schema showing that the 'Amenities' property (EMBEDDEDLIST) is no longer present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_orientdb_interface",
+            "description": "The agent used OrientDB Studio or Console to perform operations.",
+            "visual_evidence": "Screenshots show the OrientDB Studio web interface (localhost:2480) or the OrientDB command-line console."
+        },
+        {
+            "id": "genuine_data_migration",
+            "description": "The agent performed a migration rather than just deleting data.",
+            "visual_evidence": "Screenshots show SQL commands like 'INSERT INTO Amenity' or 'CREATE EDGE HasAmenity' rather than just 'DROP PROPERTY'."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent explored the data before acting.",
+            "visual_evidence": "Screenshots show an initial query to inspect the 'Hotels' class or the existing 'Amenities' property content."
+        }
+    ],
+    "privileged_info_for_vlm": "The migration should result in exactly 8 distinct Amenity vertices (WiFi, Bar, Restaurant, Gym, Spa, Concierge, Valet, Pool). There should be a total of 24 'HasAmenity' edges created across the 7 hotels. Specifically, 'The Plaza Hotel' should be linked to 4 amenities: WiFi, Gym, Spa, and Concierge."
+}

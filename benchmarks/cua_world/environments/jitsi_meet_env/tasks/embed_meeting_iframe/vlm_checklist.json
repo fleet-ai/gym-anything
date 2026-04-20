@@ -1,0 +1,59 @@
+{
+    "task_id": "embed_meeting_iframe@1",
+    "task_completion": [
+        {
+            "id": "html_file_creation",
+            "description": "The agent creates the HTML file at the specified path /home/ga/Documents/meeting_portal.html.",
+            "points": 10,
+            "visual_evidence": "A text editor (like VS Code or Gedit) or a file manager showing the file 'meeting_portal.html' being created or saved in the Documents folder."
+        },
+        {
+            "id": "iframe_api_script_inclusion",
+            "description": "The HTML code includes the Jitsi External API script from the correct local URL.",
+            "points": 15,
+            "visual_evidence": "Code visible in an editor containing <script src=\"http://localhost:8080/external_api.js\"></script>."
+        },
+        {
+            "id": "container_div_configuration",
+            "description": "The HTML contains a div with id 'jitsi-container' and specific CSS dimensions (100% width, 700px height).",
+            "points": 15,
+            "visual_evidence": "Code visible in an editor showing <div id=\"jitsi-container\"> and styles setting width: 100% and height: 700px."
+        },
+        {
+            "id": "jitsi_api_initialization",
+            "description": "The JavaScript initializes 'JitsiMeetExternalAPI' with the correct domain (localhost:8080) and room name (WeeklyOpsReview).",
+            "points": 20,
+            "visual_evidence": "Code visible in an editor showing 'new JitsiMeetExternalAPI(\"localhost:8080\", { roomName: \"WeeklyOpsReview\", ... })'."
+        },
+        {
+            "id": "meeting_options_config",
+            "description": "The meeting is configured with audio/video muted, the specific subject, and the display name 'Operations Manager'.",
+            "points": 20,
+            "visual_evidence": "Code visible in an editor showing 'startWithAudioMuted: true', 'startWithVideoMuted: true', 'subject: \"Weekly Operations Review - Q4 Planning\"', and 'displayName: \"Operations Manager\"'."
+        },
+        {
+            "id": "firefox_verification",
+            "description": "The agent opens the file in Firefox and the Jitsi interface is visible within the dashboard.",
+            "points": 20,
+            "visual_evidence": "Firefox browser window open showing the address bar with 'file:///home/ga/Documents/meeting_portal.html' and a Jitsi meeting interface loaded inside the page."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI (text editor and browser) rather than just executing background shell scripts to pass the test.",
+            "visual_evidence": "Screenshots show the agent interacting with a text editor UI and the Firefox browser UI."
+        },
+        {
+            "id": "genuine_jitsi_load",
+            "description": "The browser shows an actual Jitsi meeting interface, not just a static image or empty page.",
+            "visual_evidence": "The Firefox screenshot shows the Jitsi toolbar, meeting initials, or loading screen within the 700px tall container."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply create a dummy file that says 'Success' but actually implemented the requested API logic.",
+            "visual_evidence": "The code visible in the editor contains the functional JitsiMeetExternalAPI constructor and configuration object."
+        }
+    ],
+    "privileged_info_for_vlm": "The file must be at /home/ga/Documents/meeting_portal.html. The API script source must be http://localhost:8080/external_api.js. The Jitsi domain is localhost:8080. Room name: WeeklyOpsReview. Subject: 'Weekly Operations Review - Q4 Planning'. Display Name: 'Operations Manager'. The container div must have id 'jitsi-container' and be 700px high. Audio and video must be set to start muted in the config object."
+}

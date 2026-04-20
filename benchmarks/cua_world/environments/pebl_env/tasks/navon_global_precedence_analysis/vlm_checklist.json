@@ -1,0 +1,53 @@
+{
+    "task_id": "navon_global_precedence_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_filtering",
+            "description": "Agent loads navon_data.csv and identifies participants with accuracy below 60% in 'local' blocks.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the loading of ~/pebl/data/navon_data.csv and a filtering step or printout identifying low-accuracy participants (e.g., sub-99)."
+        },
+        {
+            "id": "metric_calculation",
+            "description": "Agent calculates Global Advantage, Global Interference, and Local Interference using correct trials for valid participants.",
+            "points": 25,
+            "visual_evidence": "Code snippets showing the mathematical formulas for Mean RT differences (Local - Global, etc.) and the calculation of group means."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent creates navon_report.json with the required structure (participants list and group_means).",
+            "points": 20,
+            "visual_evidence": "A file explorer showing ~/pebl/analysis/navon_report.json or a terminal 'cat' command displaying the JSON content with 'excluded': true for failed participants."
+        },
+        {
+            "id": "interaction_plot_creation",
+            "description": "Agent generates a bar chart showing the four condition group mean RTs.",
+            "points": 25,
+            "visual_evidence": "Code generating a plot and a file explorer or image viewer showing ~/pebl/analysis/navon_interaction_plot.png."
+        },
+        {
+            "id": "final_file_verification",
+            "description": "Both the JSON report and the PNG plot exist in the ~/pebl/analysis/ directory.",
+            "points": 15,
+            "visual_evidence": "A directory listing (ls) or file manager view showing both navon_report.json and navon_interaction_plot.png in the correct folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final group means or participant exclusions without running analysis code.",
+            "visual_evidence": "The agent's script should show logic for calculating means and filtering, rather than just printing a pre-made JSON string."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually opened and read the CSV file rather than assuming its contents.",
+            "visual_evidence": "Screenshots showing the agent opening the CSV file in a text editor, spreadsheet tool, or loading it via a programming library like pandas."
+        },
+        {
+            "id": "gui_usage",
+            "description": "Agent used the GUI environment (IDE, File Manager, or Plot Viewer) to perform or verify the task.",
+            "visual_evidence": "Screenshots showing the agent interacting with windows, menus, or graphical tools rather than exclusively using a headless terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The participant 'sub-99' is specifically designed to fail the accuracy check (below 60% in local blocks) and must be marked as 'excluded': true in the final JSON. The output files must be saved exactly to ~/pebl/analysis/navon_report.json and ~/pebl/analysis/navon_interaction_plot.png."
+}

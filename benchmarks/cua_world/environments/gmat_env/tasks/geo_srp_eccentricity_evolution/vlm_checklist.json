@@ -1,0 +1,59 @@
+{
+    "task_id": "geo_srp_eccentricity_evolution@1",
+    "task_completion": [
+        {
+            "id": "open_spec_file",
+            "description": "Agent opens the geo_srp_spec.txt file to read satellite specifications.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/geo_srp_spec.txt."
+        },
+        {
+            "id": "gmat_script_creation",
+            "description": "Agent creates the GMAT script with the required force model (SRP, Sun/Moon point masses, no drag).",
+            "points": 20,
+            "visual_evidence": "GMAT interface or text editor showing geo_srp_mission.script with 'SolarRadiationPressure = On', 'Drag = None', and 'PointMasses = {Sun, Luna}'."
+        },
+        {
+            "id": "gmat_propagation_config",
+            "description": "Agent configures the propagation for 365 days with a 1-day step size.",
+            "points": 15,
+            "visual_evidence": "GMAT script or GUI showing a Propagate command with a duration of 365 days and a step size of 86400 seconds (1 day)."
+        },
+        {
+            "id": "run_gmat_simulation",
+            "description": "Agent executes the GMAT script to generate the orbital data.",
+            "points": 15,
+            "visual_evidence": "GMAT execution progress bar or the 'Run' button being pressed, followed by the creation of geo_srp_report.txt."
+        },
+        {
+            "id": "generate_orbital_report",
+            "description": "Agent generates the orbital element report file.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal showing the existence of ~/GMAT_output/geo_srp_report.txt."
+        },
+        {
+            "id": "final_analysis_report",
+            "description": "Agent writes the final analysis report with all required labeled lines.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/srp_eccentricity_analysis.txt containing labels: max_eccentricity, min_eccentricity, ecc_circle_radius, ecc_oscillation_period_days, final_sma_km, and srp_enabled."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical interface for simulation rather than just scripting via terminal.",
+            "visual_evidence": "Screenshots showing the GMAT application window open and active."
+        },
+        {
+            "id": "genuine_data_analysis",
+            "description": "The agent calculated values from the report rather than hallucinating them.",
+            "visual_evidence": "The agent opening geo_srp_report.txt and performing calculations or using a calculator/script before writing the analysis."
+        },
+        {
+            "id": "no_premade_script",
+            "description": "The agent did not use a pre-existing analysis script not mentioned in the task.",
+            "visual_evidence": "The agent is seen typing or constructing the GMAT script and analysis report manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The satellite SATCOM-9 has a Semi-Major Axis (SMA) of 42164.17 km. The SRP parameters are Area = 45.0 m^2 and Cr = 1.2. The simulation must run for 365 days. The analysis report must contain 'srp_enabled: true' and a 'final_sma_km' value near 42164.17. Expected max eccentricity should be approximately 0.0003 to 0.0005 based on these SRP parameters over a year."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "record_slice_animation@1",
+    "task_completion": [
+        {
+            "id": "load_mrhead_dataset",
+            "description": "The MRHead dataset is loaded into 3D Slicer.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows the 'MRHead' volume in the Data module or visible in the slice viewers (Red, Green, Yellow)."
+        },
+        {
+            "id": "open_screen_capture_module",
+            "description": "The agent navigates to the 'Screen Capture' module.",
+            "points": 15,
+            "visual_evidence": "The module selector or module panel shows 'Screen Capture' as the active module."
+        },
+        {
+            "id": "configure_axial_view",
+            "description": "The 'Red' slice viewer (Axial) is selected for capture.",
+            "points": 15,
+            "visual_evidence": "In the Screen Capture module settings, the 'Master view' or 'View' is set to 'Red' or 'Axial'."
+        },
+        {
+            "id": "set_slice_range",
+            "description": "The capture range is set to cover at least 30 slices.",
+            "points": 20,
+            "visual_evidence": "The 'Start' and 'End' slice sliders or numerical inputs in the Screen Capture module show a difference of at least 30 units."
+        },
+        {
+            "id": "select_gif_format",
+            "description": "The output format is set to GIF.",
+            "points": 10,
+            "visual_evidence": "The 'Output format' dropdown or radio button in the Screen Capture module is set to '.gif'."
+        },
+        {
+            "id": "specify_output_path",
+            "description": "The output file path is set to the required directory and filename.",
+            "points": 10,
+            "visual_evidence": "The 'Output directory' and 'File name' fields (or the combined destination path) show '/home/ga/Documents/SlicerData/Exports/brain_axial_sweep.gif'."
+        },
+        {
+            "id": "execute_and_verify_capture",
+            "description": "The recording is initiated and a progress bar or completion message appears.",
+            "points": 20,
+            "visual_evidence": "The 'Capture' button is clicked, and a progress dialog or a file browser showing the saved .gif file in the target directory is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the 3D Slicer GUI rather than executing Python scripts in the terminal to generate the GIF.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with the Screen Capture module UI elements rather than just a terminal window."
+        },
+        {
+            "id": "genuine_software_state",
+            "description": "The agent interacted with the actual 3D Slicer application window.",
+            "visual_evidence": "The 3D Slicer window title bar, menus, and standard layout are visible throughout the process."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply find an existing GIF and rename it.",
+            "visual_evidence": "The Screen Capture module's 'Capture' button is seen being pressed, and the progress bar for frame rendering is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The MRHead dataset contains 130 axial slices. In 3D Slicer, the 'Red' viewer is the standard window for Axial slices. To create an animation, the agent must use the 'Screen Capture' module. The output must be a GIF with at least 30 frames saved to /home/ga/Documents/SlicerData/Exports/brain_axial_sweep.gif."
+}

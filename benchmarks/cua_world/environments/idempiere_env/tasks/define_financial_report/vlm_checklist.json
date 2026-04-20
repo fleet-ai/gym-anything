@@ -1,0 +1,53 @@
+{
+    "task_id": "define_financial_report@1",
+    "task_completion": [
+        {
+            "id": "create_line_set",
+            "description": "Create a Report Line Set named 'Gross Profit Analysis'.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the 'Report Line Set' window in iDempiere with the Name field set to 'Gross Profit Analysis'."
+        },
+        {
+            "id": "configure_line_items",
+            "description": "Configure 'Total Revenue' and 'Total COGS' as Segment Value lines within the Line Set.",
+            "points": 25,
+            "visual_evidence": "The 'Report Line' tab showing two entries: 'Total Revenue' and 'Total COGS', both with the Line Type set to 'Segment Value'."
+        },
+        {
+            "id": "configure_gp_calculation",
+            "description": "Configure 'Gross Profit' as a calculation line (Total Revenue - Total COGS).",
+            "points": 20,
+            "visual_evidence": "A 'Report Line' entry for 'Gross Profit' with Line Type 'Calculation' and a formula or operator indicating the subtraction of the previous two lines."
+        },
+        {
+            "id": "create_column_set",
+            "description": "Create a Report Column Set named 'Current Period Analysis' with a 'Period Actual' column.",
+            "points": 20,
+            "visual_evidence": "The 'Report Column Set' window showing the name 'Current Period Analysis' and a sub-tab 'Report Column' containing 'Period Actual' with Column Type 'Period Balance'."
+        },
+        {
+            "id": "define_financial_report",
+            "description": "Create the 'GP Board Report' and link it to the Line Set and Column Set.",
+            "points": 25,
+            "visual_evidence": "The 'Financial Report' window showing a record named 'GP Board Report' with the 'Report Line Set' field selected as 'Gross Profit Analysis' and 'Report Column Set' field selected as 'Current Period Analysis'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the cursor interacting with iDempiere menus, buttons, and form fields."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the menu tree to find 'Report Line Set', 'Report Column Set', and 'Financial Report'.",
+            "visual_evidence": "The sequence of screenshots shows the Application Tree or Menu Search being used to locate the configuration windows."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually typed or selected the specific names and types required by the task.",
+            "visual_evidence": "Screenshots show the form fields being populated with 'GP Board Report', 'Gross Profit Analysis', etc., within the iDempiere UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if a Financial Report (PA_Report) named 'GP Board Report' exists. It must be linked to a Line Set (PA_ReportLineSet) named 'Gross Profit Analysis' and a Column Set (PA_ReportColumnSet) named 'Current Period Analysis'. The Line Set must contain three lines: 'Total Revenue' (Segment Value), 'Total COGS' (Segment Value), and 'Gross Profit' (Calculation). The Column Set must contain a column 'Period Actual' with type 'Period Balance'."
+}

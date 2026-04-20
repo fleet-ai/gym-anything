@@ -1,0 +1,59 @@
+{
+    "task_id": "sarcopenia_l3_smi@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT scan is loaded into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "A 3D abdominal CT volume is visible in the slice viewers (Axial, Sagittal, Coronal)."
+        },
+        {
+            "id": "identify_l3_level",
+            "description": "The agent navigates to the L3 vertebral level for analysis.",
+            "points": 10,
+            "visual_evidence": "The slice viewer shows the L3 vertebra (identified by the absence of ribs and the presence of the lower lumbar spine structure)."
+        },
+        {
+            "id": "muscle_segmentation_mask",
+            "description": "Skeletal muscle is segmented at the L3 level using the correct HU range (-29 to 150).",
+            "points": 30,
+            "visual_evidence": "A colored segmentation mask (overlay) covers the abdominal wall, psoas, and paraspinal muscles at the L3 slice."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is saved to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal output confirms the creation of '~/Documents/SlicerData/AMOS/l3_muscle_segmentation.nii.gz'."
+        },
+        {
+            "id": "calculate_smi_metrics",
+            "description": "The agent calculates the Skeletal Muscle Area (SMA) and Skeletal Muscle Index (SMI).",
+            "points": 20,
+            "visual_evidence": "A calculator, script output, or report draft shows the calculation: SMI = SMA / (1.68^2)."
+        },
+        {
+            "id": "final_report_generation",
+            "description": "The final JSON report is saved with all required clinical fields.",
+            "points": 15,
+            "visual_evidence": "The file 'sarcopenia_report.json' is displayed containing fields: l3_slice_index, skeletal_muscle_area_cm2, patient_height_m (1.68), patient_sex (male), smi_cm2_m2, sarcopenia_threshold_cm2_m2 (52.4), and sarcopenia_classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the imaging software GUI for segmentation rather than just writing a script to generate a dummy file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with segmentation tools (e.g., 'Segment Editor' in Slicer) and adjusting HU thresholds."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the muscle area from the actual image data rather than copy-pasting values from the task prompt.",
+            "visual_evidence": "The 'Segment Statistics' or 'Quantification' module is visible, showing the calculated area in cm2 or mm2."
+        },
+        {
+            "id": "authentic_software_usage",
+            "description": "The agent interacted with the actual AMOS dataset volume.",
+            "visual_evidence": "The volume name 'amos_0001' or similar is visible in the software's Data Probe or Subject Hierarchy."
+        }
+    ],
+    "privileged_info_for_vlm": "The standard Hounsfield Unit (HU) range for skeletal muscle is -29 to 150. For a male patient, the clinical threshold for sarcopenia (Prado criteria) is an SMI of 52.4 cm²/m². The SMI is calculated as: Muscle Area (cm²) / (Height (m)²). Height is 1.68m."
+}

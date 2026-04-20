@@ -1,0 +1,53 @@
+{
+    "task_id": "merge_and_analyze_captures@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_merge",
+            "description": "Agent opens Wireshark or a similar packet analysis tool to begin the merging process.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing Wireshark application open or a terminal command like 'mergecap' being executed."
+        },
+        {
+            "id": "merge_files_execution",
+            "description": "Agent merges dns.cap and http.cap into merged_traffic.pcapng.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal showing the creation of '/home/ga/Documents/captures/merged_traffic.pcapng'."
+        },
+        {
+            "id": "verify_packet_count",
+            "description": "The merged file contains the correct total number of packets (81).",
+            "points": 20,
+            "visual_evidence": "Wireshark status bar or 'capinfos' output showing exactly 81 packets for the merged file."
+        },
+        {
+            "id": "report_creation_format",
+            "description": "Agent creates merge_report.txt with the exact required headers.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing merge_report.txt with 'Total Packets:', 'Protocols:', 'First Packet:', and 'Last Packet:' labels."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the correct protocol list (including DNS and HTTP) and packet count.",
+            "points": 30,
+            "visual_evidence": "Content of merge_report.txt showing 'Total Packets: 81' and 'Protocols:' listing at least DNS and HTTP."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not create the report before actually opening or processing the capture files.",
+            "visual_evidence": "The trajectory should show the agent inspecting the capture files (via Wireshark or tshark) before writing the final report."
+        },
+        {
+            "id": "genuine_merge_operation",
+            "description": "Agent used a legitimate tool (mergecap, tshark, or Wireshark GUI) to combine files rather than just renaming one.",
+            "visual_evidence": "Command line history or GUI interaction showing the selection of both input files for a merge operation."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent used the specific paths requested in the task description.",
+            "visual_evidence": "Screenshots showing operations performed in '/home/ga/Documents/captures/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The input files are dns.cap (38 packets) and http.cap (43 packets). The merged file 'merged_traffic.pcapng' must contain exactly 81 packets. The report must list 'DNS' and 'HTTP' in the protocols section. The first packet in the merged set is from 2004-05-13."
+}

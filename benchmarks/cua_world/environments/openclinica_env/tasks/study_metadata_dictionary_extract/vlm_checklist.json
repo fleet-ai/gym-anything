@@ -1,0 +1,59 @@
+{
+    "task_id": "study_metadata_dictionary_extract@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into OpenClinica with provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenClinica dashboard or home screen is visible after entering 'root' and 'Admin123!'."
+        },
+        {
+            "id": "select_study",
+            "description": "Agent selects the 'Phase II Diabetes Trial (DM-TRIAL-2024)' study.",
+            "points": 10,
+            "visual_evidence": "The study name 'DM-TRIAL-2024' is visible in the header or study selection dropdown."
+        },
+        {
+            "id": "navigate_to_metadata_export",
+            "description": "Agent navigates to the section for exporting Study Metadata (CDISC ODM XML).",
+            "points": 15,
+            "visual_evidence": "The 'Tasks' menu or 'Extract Data' page is visible, specifically showing options for 'Study Metadata' or 'Download Study Setup'."
+        },
+        {
+            "id": "download_xml",
+            "description": "Agent downloads the CDISC ODM XML file to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal command showing the creation of '/home/ga/study_metadata.xml'."
+        },
+        {
+            "id": "extract_codelists",
+            "description": "Agent parses the XML to find Severity and Relationship code lists.",
+            "points": 25,
+            "visual_evidence": "The agent opening the XML file or using a script/tool to display the code list values for 'Severity' and 'Relationship'."
+        },
+        {
+            "id": "save_json_result",
+            "description": "Agent saves the extracted mappings to /home/ga/ae_codelists.json in the correct format.",
+            "points": 20,
+            "visual_evidence": "A terminal 'cat' command or text editor showing the final JSON file with the correct keys and values at the specified path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenClinica web interface to find and download the metadata.",
+            "visual_evidence": "Screenshots show the browser interacting with the OpenClinica UI, not just a direct 'wget' or 'curl' of the XML file."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the ground truth values into a file without opening the source XML.",
+            "visual_evidence": "The agent is seen opening or processing 'study_metadata.xml' before the JSON file is created."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the live application instance.",
+            "visual_evidence": "The URL bar shows the local OpenClinica instance and the user 'root' is logged in."
+        }
+    ],
+    "privileged_info_for_vlm": "The study OID is 'S_DM2024'. The ground truth mappings for the JSON are: Severity: 1='Grade 1 (Mild - No intervention)', 2='Grade 2 (Moderate - Local intervention)', 3='Grade 3 (Severe - Hospitalization)', 4='Grade 4 (Life-threatening)', 5='Grade 5 (Fatal)'. Relationship: 1='Not Related (Unlikely)', 2='Possibly Related', 3='Probably Related', 4='Definitely Related'. The agent must save these to /home/ga/ae_codelists.json."
+}

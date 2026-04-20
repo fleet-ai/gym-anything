@@ -1,0 +1,53 @@
+{
+    "task_id": "simplify_participant_interface@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "Agent opens the Jitsi configuration file in a text editor.",
+            "points": 10,
+            "visual_evidence": "A text editor (like VS Code, Vim, or Nano) is visible showing a file from /home/ga/.jitsi-meet-cfg/web/, likely config.js."
+        },
+        {
+            "id": "modify_toolbar_buttons",
+            "description": "Agent modifies the 'toolbarButtons' array in the configuration file.",
+            "points": 30,
+            "visual_evidence": "The text editor shows the 'toolbarButtons' list being edited to contain only 'microphone', 'camera', 'chat', and 'hangup'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Agent saves the changes to the configuration file.",
+            "points": 10,
+            "visual_evidence": "The editor shows a save notification, or the terminal shows a write command (e.g., :w in vim) followed by closing the file."
+        },
+        {
+            "id": "access_meeting_url",
+            "description": "Agent navigates to the Jitsi meeting URL to verify changes.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows http://localhost:8080/YogaClass."
+        },
+        {
+            "id": "verify_minimal_toolbar",
+            "description": "The Jitsi interface displays only the four specified buttons.",
+            "points": 40,
+            "visual_evidence": "The Jitsi toolbar at the bottom of the screen shows exactly four icons: Microphone, Camera, Chat, and Hangup. No other buttons (like Settings, Tile View, or Screen Share) are visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_config_edit",
+            "description": "The agent edited the actual configuration file rather than just using browser developer tools to hide elements.",
+            "visual_evidence": "Screenshots show the agent interacting with a file in /home/ga/.jitsi-meet-cfg/web/ via a terminal or text editor."
+        },
+        {
+            "id": "no_forbidden_buttons",
+            "description": "The agent did not leave extra buttons like 'desktop' (screen share) in the toolbar.",
+            "visual_evidence": "The final browser screenshot shows the absence of the screen-sharing icon and other default Jitsi buttons."
+        },
+        {
+            "id": "actual_ui_interaction",
+            "description": "The agent interacted with the Jitsi web interface to confirm the result.",
+            "visual_evidence": "The browser is visible and loaded with the YogaClass meeting, showing the rendered toolbar."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration file is located at /home/ga/.jitsi-meet-cfg/web/config.js. The meeting URL for verification is http://localhost:8080/YogaClass. The ONLY allowed buttons in the toolbarButtons array are 'microphone', 'camera', 'chat', and 'hangup'. Note: Although some internal logic might list 'hangup' as forbidden, the task description explicitly requires it to be present; the task description takes precedence for scoring."
+}

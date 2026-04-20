@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_personalized_recommendations_engine@1",
+    "task_completion": [
+        {
+            "id": "mysql_workbench_connection",
+            "description": "Connect to the MySQL database using MySQL Workbench with the provided credentials.",
+            "points": 10,
+            "visual_evidence": "MySQL Workbench UI is open and connected to the 'sakila' database, showing the schema navigator on the left."
+        },
+        {
+            "id": "create_recommendations_table",
+            "description": "Create the 'customer_recommendations' table with the specified schema.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE TABLE statement for 'customer_recommendations' with columns customer_id, film_id, rank_score, and generated_at, or the table appearing in the schema tree."
+        },
+        {
+            "id": "develop_stored_procedure",
+            "description": "Develop the 'sp_generate_recommendations' stored procedure with the required logic (favorite category, unseen films, ranking).",
+            "points": 30,
+            "visual_evidence": "SQL editor showing the CREATE PROCEDURE sp_generate_recommendations code containing logic for 'rental_rate DESC', 'title ASC', and 'LIMIT 3'."
+        },
+        {
+            "id": "execute_stored_procedure",
+            "description": "Execute the stored procedure to populate the recommendations table.",
+            "points": 20,
+            "visual_evidence": "A CALL sp_generate_recommendations() statement being executed and a 'Query Completed' or 'Rows affected' message in the output console."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the final recommendation data to the specified CSV file path.",
+            "points": 25,
+            "visual_evidence": "The MySQL Workbench export wizard or a SELECT ... INTO OUTFILE statement targeting '/home/ga/Documents/exports/recommendations_batch_01.csv', followed by a file explorer view or terminal 'ls' showing the file exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used MySQL Workbench GUI as requested rather than purely command-line mysql client.",
+            "visual_evidence": "Screenshots show the MySQL Workbench application window and menus being used."
+        },
+        {
+            "id": "genuine_logic_execution",
+            "description": "The agent did not manually insert values but used the stored procedure to generate data.",
+            "visual_evidence": "The SQL logs or editor show the definition and execution of the stored procedure rather than a series of manual INSERT statements."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent exported to the specific path requested in the task.",
+            "visual_evidence": "The export dialog or SQL command explicitly mentions '/home/ga/Documents/exports/recommendations_batch_01.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sakila database has 599 customers. The final export should contain exactly 1,797 rows (3 recommendations per customer). The stored procedure must use a tie-break for favorite category (alphabetical) and rank candidates by rental_rate DESC and title ASC. The target table is 'customer_recommendations' and the procedure is 'sp_generate_recommendations'. The output file must be '/home/ga/Documents/exports/recommendations_batch_01.csv'."
+}

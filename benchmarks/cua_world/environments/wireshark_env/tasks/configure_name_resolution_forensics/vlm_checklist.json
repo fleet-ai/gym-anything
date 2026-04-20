@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_name_resolution_forensics@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Open the smtp.pcap file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'smtp.pcap' in the title bar or file path."
+        },
+        {
+            "id": "configure_name_resolution",
+            "description": "Configure Wireshark's name resolution settings or 'ethers' file to map specific IPs to the required names.",
+            "points": 25,
+            "visual_evidence": "The 'Hosts' file configuration window, Name Resolution preferences, or a manually edited 'ethers'/'hosts' file showing the mapping of 10.10.1.4 to 'Infected_Client' and 74.53.140.153 to 'Corporate_Mail_Server'."
+        },
+        {
+            "id": "verify_resolved_names_in_ui",
+            "description": "Verify that the packet list pane displays the resolved names instead of raw IP addresses.",
+            "points": 20,
+            "visual_evidence": "The 'Source' and 'Destination' columns in the Wireshark packet list showing 'Infected_Client' and 'Corporate_Mail_Server'."
+        },
+        {
+            "id": "select_first_20_packets",
+            "description": "Select or mark the first 20 packets for export.",
+            "points": 15,
+            "visual_evidence": "The Export specified packets dialog showing a range of 1-20 or 'First 20 packets' selected."
+        },
+        {
+            "id": "export_plain_text",
+            "description": "Export the packet summary as a plain text file to the specified path.",
+            "points": 30,
+            "visual_evidence": "The 'Export Packet Dissections' -> 'As Plain Text' dialog showing the destination path /home/ga/Documents/captures/smtp_resolved.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI to perform the task rather than just writing the file via terminal.",
+            "visual_evidence": "Screenshots showing the Wireshark application menus, preference windows, or export dialogs."
+        },
+        {
+            "id": "genuine_resolution",
+            "description": "The agent actually configured name resolution in Wireshark rather than manually typing names into a text editor.",
+            "visual_evidence": "Wireshark's internal packet list pane reflecting the resolved names 'Infected_Client' and 'Corporate_Mail_Server'."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The file was saved to the exact path specified in the task.",
+            "visual_evidence": "The file explorer or the 'Save As' dialog showing the path /home/ga/Documents/captures/smtp_resolved.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The source pcap is located at /home/ga/Documents/captures/smtp.pcap. The Client IP is 10.10.1.4 (must be resolved to 'Infected_Client'). The Server IP is 74.53.140.153 (must be resolved to 'Corporate_Mail_Server'). The final output must be a plain text file containing the first 20 packets with these resolved names visible in the summary lines."
+}

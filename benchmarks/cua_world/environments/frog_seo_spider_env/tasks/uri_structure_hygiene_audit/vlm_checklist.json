@@ -1,0 +1,53 @@
+{
+    "task_id": "uri_structure_hygiene_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Launch Screaming Frog SEO Spider and enter the target URL.",
+            "points": 10,
+            "visual_evidence": "Screaming Frog application window is open with 'https://crawler-test.com/' entered in the 'Enter URL to spider' field."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Execute the crawl of the target website.",
+            "points": 15,
+            "visual_evidence": "The progress bar shows 100% completion and the internal tab is populated with various URLs from crawler-test.com."
+        },
+        {
+            "id": "uri_data_export",
+            "description": "Export the URI data from Screaming Frog to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "The 'Export' dialog or a file explorer window showing the saving of 'uri_analysis.csv' to the '~/Documents/SEO/exports/' directory."
+        },
+        {
+            "id": "data_analysis_process",
+            "description": "Analyze the crawled data for length, casing, and character issues.",
+            "points": 20,
+            "visual_evidence": "The agent interacting with the 'Internal' or 'URL' tabs in Screaming Frog, or using a text editor/spreadsheet to filter for URLs > 115 characters, underscores, or uppercase letters."
+        },
+        {
+            "id": "report_generation",
+            "description": "Generate the remediation report with all required metrics and recommendations.",
+            "points": 35,
+            "visual_evidence": "A text editor showing 'url_hygiene_report.txt' containing: total URL count, count of URLs > 115 chars, count of URLs with uppercase/underscores, a list of the 10 longest URLs, and remediation advice."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_usage",
+            "description": "The agent used the Screaming Frog GUI rather than simulating results via terminal scripts.",
+            "visual_evidence": "Screenshots show active interaction with the Screaming Frog interface (clicking buttons, viewing tabs) rather than just a terminal window generating files."
+        },
+        {
+            "id": "actual_site_crawled",
+            "description": "The data in the report matches the actual site structure of crawler-test.com.",
+            "visual_evidence": "The URLs visible in the Screaming Frog interface and the final report contain paths specific to 'crawler-test.com' (e.g., /urls/long-url, /urls/uppercase)."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The report contains specific data points, not just template text.",
+            "visual_evidence": "The 'url_hygiene_report.txt' shows actual integers for counts and specific URL strings for the '10 longest' section, not placeholders like '[Insert Count Here]'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL is https://crawler-test.com/. The expected export path is /home/ga/Documents/SEO/exports/uri_analysis.csv and the report path is /home/ga/Documents/SEO/reports/url_hygiene_report.txt. The CSV should contain at least 20 rows. The report must include: 1) Total URL count, 2) Count of URLs > 115 chars, 3) Count of URLs with uppercase or underscores, 4) Top 10 longest URLs, 5) Remediation recommendations. Crawler-test.com is designed to have many 'bad' URLs for testing purposes."
+}

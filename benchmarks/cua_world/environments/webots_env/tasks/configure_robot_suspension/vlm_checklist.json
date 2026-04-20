@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_robot_suspension@1",
+    "task_completion": [
+        {
+            "id": "open_webots_interface",
+            "description": "The agent has the Webots simulator open with the DELIVERY_ROVER model visible.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Webots application window and the 3D scene tree containing 'DELIVERY_ROVER'."
+        },
+        {
+            "id": "locate_wheel_joints",
+            "description": "The agent has expanded the robot node to locate the four wheel joints (FL, FR, RL, RR).",
+            "points": 10,
+            "visual_evidence": "The scene tree on the left side of Webots shows the expanded children of the DELIVERY_ROVER, specifically highlighting the HingeJoint nodes for the wheels."
+        },
+        {
+            "id": "configure_suspension_axis",
+            "description": "The agent sets the suspensionAxis to 0 0 1 for the wheel joints.",
+            "points": 20,
+            "visual_evidence": "The field editor or 'Selection' pane in Webots shows 'suspensionAxis' set to '0 0 1' for at least one of the wheel joints."
+        },
+        {
+            "id": "configure_spring_constant",
+            "description": "The agent sets the suspensionSpringConstant to 10000 for the wheel joints.",
+            "points": 25,
+            "visual_evidence": "The field editor in Webots shows 'suspensionSpringConstant' set to 10000 (or a value within 500 units) for the wheel joints."
+        },
+        {
+            "id": "configure_damping_constant",
+            "description": "The agent sets the suspensionDampingConstant to 800 for the wheel joints.",
+            "points": 25,
+            "visual_evidence": "The field editor in Webots shows 'suspensionDampingConstant' set to 800 (or a value within 50 units) for the wheel joints."
+        },
+        {
+            "id": "save_corrected_world",
+            "description": "The agent saves the modified world file to the specific path /home/ga/Desktop/rover_fixed.wbt.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog box showing the path /home/ga/Desktop/rover_fixed.wbt, or a terminal/file explorer view confirming the file exists at that location after the save action."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI to change parameters rather than just using a script to generate the file.",
+            "visual_evidence": "Screenshots showing the mouse cursor or highlighted fields within the Webots scene tree and parameter editor."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered the values into the Webots interface.",
+            "visual_evidence": "Sequential screenshots showing the values 10000 and 800 being typed or appearing in the Webots property fields."
+        },
+        {
+            "id": "no_file_system_bypass",
+            "description": "The agent did not simply rename an existing file or use 'cp' in the terminal to create the output without opening Webots.",
+            "visual_evidence": "The agent is seen actively using the Webots 'File' menu or save icons."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure four joints: FL_WHEEL_JOINT, FR_WHEEL_JOINT, RL_WHEEL_JOINT, and RR_WHEEL_JOINT. Required values: suspensionAxis = [0, 0, 1], suspensionSpringConstant = 10000 (tolerance +/- 500), suspensionDampingConstant = 800 (tolerance +/- 50). The final file must be saved exactly as /home/ga/Desktop/rover_fixed.wbt."
+}

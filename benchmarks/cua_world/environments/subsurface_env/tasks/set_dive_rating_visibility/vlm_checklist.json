@@ -1,0 +1,53 @@
+{
+    "task_id": "set_dive_rating_visibility@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "Subsurface application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is active, showing the dive list and dive details pane."
+        },
+        {
+            "id": "select_dive_two",
+            "description": "Dive #2 in the dive log is selected.",
+            "points": 15,
+            "visual_evidence": "The second entry in the dive list (usually numbered '2') is highlighted or selected."
+        },
+        {
+            "id": "set_rating_four_stars",
+            "description": "The dive rating for dive #2 is set to 4 stars.",
+            "points": 25,
+            "visual_evidence": "In the dive details/notes pane, the 'Rating' star widget shows 4 out of 5 stars filled/selected."
+        },
+        {
+            "id": "set_visibility_three_stars",
+            "description": "The visibility rating for dive #2 is set to 3 stars.",
+            "points": 25,
+            "visual_evidence": "In the dive details/notes pane, the 'Visibility' star widget shows 3 out of 5 stars filled/selected."
+        },
+        {
+            "id": "save_dive_log",
+            "description": "The changes are saved to the specified file path.",
+            "points": 25,
+            "visual_evidence": "The agent clicks 'File' -> 'Save' or 'Save As', or a save confirmation dialog appears. The file path /home/ga/Documents/dives.ssrf may be visible in a file dialog."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to modify the dive data rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the star widgets and menu items in the Subsurface application."
+        },
+        {
+            "id": "no_terminal_cheat",
+            "description": "The agent did not use 'sed' or other CLI tools to bypass the application interface.",
+            "visual_evidence": "The terminal is not used to modify the .ssrf file content directly."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual Subsurface software elements.",
+            "visual_evidence": "The visual state of the application changes (highlighting, star filling) in response to agent actions."
+        }
+    ],
+    "privileged_info_for_vlm": "The dive log file actually contains 29 dives, despite the task description mentioning 8. The VLM should focus on the dive labeled #2 in the list. The target rating is exactly 4 stars and the target visibility is exactly 3 stars. The final save must be directed to /home/ga/Documents/dives.ssrf."
+}

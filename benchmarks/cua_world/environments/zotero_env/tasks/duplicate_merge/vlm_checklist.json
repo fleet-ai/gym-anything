@@ -1,0 +1,53 @@
+{
+    "task_id": "duplicate_merge@1",
+    "task_completion": [
+        {
+            "id": "identify_duplicates_view",
+            "description": "Agent navigates to the 'Duplicate Items' collection in Zotero to identify the pairs.",
+            "points": 10,
+            "visual_evidence": "The 'Duplicate Items' folder is selected in the left sidebar, and the center pane shows a list of duplicate pairs."
+        },
+        {
+            "id": "select_duplicate_pair",
+            "description": "Agent selects a pair of duplicate items to initiate the merge process.",
+            "points": 10,
+            "visual_evidence": "Two items with the same title are highlighted in the center pane, and the right pane shows the 'Merge 2 Items' interface."
+        },
+        {
+            "id": "verify_note_preservation",
+            "description": "Agent ensures that the version with the note is included in the merge or that notes are visible in the merge preview.",
+            "points": 20,
+            "visual_evidence": "The right-hand pane shows a 'Notes' section or a child note attached to one of the items being merged."
+        },
+        {
+            "id": "execute_merges",
+            "description": "Agent performs the merge action for the identified duplicates.",
+            "points": 30,
+            "visual_evidence": "The agent clicks the 'Merge X Items' button in the right pane for multiple pairs."
+        },
+        {
+            "id": "final_count_check",
+            "description": "The library contains exactly 10 unique items after merging.",
+            "points": 30,
+            "visual_evidence": "The 'My Library' view is shown, and the item count (visible in the bottom or by counting) shows 10 items remaining, each with a note icon indicating the note was preserved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI to perform merges rather than deleting items via terminal or database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Zotero buttons and the 'Duplicate Items' sidebar."
+        },
+        {
+            "id": "no_bulk_deletion",
+            "description": "The agent did not simply delete half the library to reach the target count, which would lose the notes.",
+            "visual_evidence": "The merge interface is visible in the right-hand pane during the process, confirming the 'Merge' command was used."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the Zotero application window, not a text-based mock-up.",
+            "visual_evidence": "The standard Zotero 6 or 7 interface elements (title bar, menu, icons) are present in the screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The library starts with 20 items (10 pairs). Each pair consists of 'Copy A' (which has a note) and 'Copy B' (which does not). After a successful merge, there should be exactly 10 items total. Each of these 10 items must have at least one child note. One specific paper title to look for is 'Synaptic Plasticity and Memory: An Evaluation of the Hypothesis' (Authors: Martin, Grimwood, and Morris)."
+}

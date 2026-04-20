@@ -1,0 +1,59 @@
+{
+    "task_id": "terminate_recurring_event_series@1",
+    "task_completion": [
+        {
+            "id": "locate_event_series",
+            "description": "Locate the 'Project Phoenix Standup' event in the calendar application.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Project Phoenix Standup' event visible on the calendar grid or in a search result within the Odoo Calendar app."
+        },
+        {
+            "id": "open_event_editor",
+            "description": "Open the edit dialog for an occurrence of the 'Project Phoenix Standup' series.",
+            "points": 10,
+            "visual_evidence": "An edit window or form view for the event is visible, showing details like name, date, and recurrence options."
+        },
+        {
+            "id": "select_edit_all_occurrences",
+            "description": "Choose to edit the entire series or future occurrences rather than just a single instance.",
+            "points": 15,
+            "visual_evidence": "A pop-up or selection indicating 'Edit all occurrences' or 'Edit this and following' is interacted with, or the recurrence tab is active."
+        },
+        {
+            "id": "modify_recurrence_end_date",
+            "description": "Change the recurrence 'End' setting to a specific date or number of occurrences.",
+            "points": 35,
+            "visual_evidence": "The 'Recurrence' section shows the 'Until' date set to the upcoming Friday's date, or the 'Number of repetitions' adjusted to end on that Friday."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save the modifications to the event series.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' button, and the edit dialog closes, returning to the calendar view."
+        },
+        {
+            "id": "verify_final_state",
+            "description": "Verify that the Friday meeting exists but no occurrences exist in the following week.",
+            "points": 20,
+            "visual_evidence": "The calendar view shows 'Project Phoenix Standup' on the target Friday, but the following Friday (7 days later) is empty of this specific event."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Odoo web interface rather than executing database or terminal commands to modify the event.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and form filling within the browser, not commands like 'psql' or 'curl' in a terminal."
+        },
+        {
+            "id": "no_deletion_of_past",
+            "description": "The agent did not delete the entire series and recreate it, which would destroy past records.",
+            "visual_evidence": "The agent modifies the existing event's recurrence settings rather than using a 'Delete' button followed by 'Create'."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the calendar to find the correct dates.",
+            "visual_evidence": "The VLM sees the agent clicking through calendar months or weeks to reach the target Friday."
+        }
+    ],
+    "privileged_info_for_vlm": "The event is named 'Project Phoenix Standup'. It starts 4 weeks prior to the upcoming Friday and occurs every Friday at 9:00 AM. The goal is to set the 'End' or 'Until' date of the recurrence to the upcoming Friday so that it is the last occurrence in the series. Past occurrences (the previous 4 weeks) must remain in the calendar."
+}

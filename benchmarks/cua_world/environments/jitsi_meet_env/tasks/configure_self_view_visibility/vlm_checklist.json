@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_self_view_visibility@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_jitsi",
+            "description": "Agent navigates to the Jitsi Meet URL and enters the correct room name.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'http://localhost:8080/WebinarPrep' or the Jitsi landing page shows the room name 'WebinarPrep'."
+        },
+        {
+            "id": "join_meeting",
+            "description": "Agent successfully joins the meeting room with the camera enabled.",
+            "points": 20,
+            "visual_evidence": "The meeting interface is visible (buttons for mute, camera, etc.), and the camera icon is not crossed out (active)."
+        },
+        {
+            "id": "open_settings_menu",
+            "description": "Agent opens the 'More actions' (three dots) menu and selects 'Settings'.",
+            "points": 20,
+            "visual_evidence": "The Jitsi settings dialog/modal is visible on the screen."
+        },
+        {
+            "id": "locate_self_view_option",
+            "description": "Agent navigates to the 'More' or 'General' tab within settings to find the 'Hide self view' toggle.",
+            "points": 20,
+            "visual_evidence": "The settings dialog shows a checkbox or toggle labeled 'Hide self view' or similar."
+        },
+        {
+            "id": "toggle_self_view_off",
+            "description": "Agent enables the 'Hide self view' setting and saves/closes the dialog.",
+            "points": 30,
+            "visual_evidence": "The 'Hide self view' toggle is checked/enabled, and subsequently, the small video tile showing the user's own face disappears from the meeting layout while the camera remains active (indicated by the camera icon status)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface rather than executing scripts in the terminal to modify localStorage.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Jitsi settings menu and checkboxes, rather than a terminal window open with 'localStorage.setItem' commands."
+        },
+        {
+            "id": "no_url_shortcuts",
+            "description": "The agent did not simply append config flags to the URL to bypass the UI (e.g., #config.disableSelfView=true).",
+            "visual_evidence": "The URL in the address bar remains 'http://localhost:8080/WebinarPrep' without appended configuration parameters during the settings change."
+        },
+        {
+            "id": "genuine_camera_active",
+            "description": "The agent kept the camera active as requested, rather than just turning off the camera to hide the feed.",
+            "visual_evidence": "The camera icon in the bottom toolbar remains in the 'on' state (not red/crossed out) even after the self-view tile disappears."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi instance is at http://localhost:8080. The room name is 'WebinarPrep'. To hide the self-view via the UI, the agent must go to Settings -> More and check 'Hide self view'. Internally, this sets the 'disableSelfView' key to true in the 'features/base/settings' localStorage object. The camera must remain ON (icon not crossed out) while the user's own video tile is hidden from the grid/corner."
+}

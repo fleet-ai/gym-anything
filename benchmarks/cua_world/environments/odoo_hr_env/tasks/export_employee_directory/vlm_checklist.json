@@ -1,0 +1,59 @@
+{
+    "task_id": "export_employee_directory@1",
+    "task_completion": [
+        {
+            "id": "access_employees_app",
+            "description": "Agent successfully navigates to the Odoo Employees module.",
+            "points": 10,
+            "visual_evidence": "The screen shows the Odoo dashboard or the 'Employees' app interface with a list or kanban view of staff."
+        },
+        {
+            "id": "list_view_selection",
+            "description": "Agent switches to the List view and selects records for export.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'List' icon selected (top right) and checkboxes next to employee names being clicked, or a 'Select all' checkbox enabled."
+        },
+        {
+            "id": "export_dialog_open",
+            "description": "Agent opens the Export dialog from the Action menu.",
+            "points": 15,
+            "visual_evidence": "An 'Export Data' modal/popup is visible over the employee list."
+        },
+        {
+            "id": "field_configuration",
+            "description": "Agent selects exactly Name, Department, Job Position, and Work Phone in the correct order.",
+            "points": 30,
+            "visual_evidence": "The 'Fields to export' list in the modal shows exactly: 1. Name, 2. Department, 3. Job Position, 4. Work Phone. No other fields should be present."
+        },
+        {
+            "id": "export_execution",
+            "description": "Agent clicks the Export button to generate the file.",
+            "points": 15,
+            "visual_evidence": "The cursor is seen clicking the 'Export' button in the modal, and a download notification or file save dialog appears."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "The file is saved to the specified directory with the correct name.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal 'ls' command shows 'hr.employee.xlsx' located in '/home/ga/Downloads'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than database queries or direct file creation via script.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the Odoo browser interface and the Export modal."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type employee data into a spreadsheet.",
+            "visual_evidence": "The agent is seen using the Odoo 'Export' feature rather than copy-pasting rows into a blank Excel-like application."
+        },
+        {
+            "id": "authentic_data_source",
+            "description": "The agent interacted with the local Odoo instance at http://localhost:8069.",
+            "visual_evidence": "The browser address bar shows the correct localhost URL during the export process."
+        }
+    ],
+    "privileged_info_for_vlm": "The Odoo instance contains approximately 20 employees (e.g., Mitchell Admin, Marc Demo). The export must be an XLSX file. The specific field internal names in Odoo 17 for this task are 'Name', 'Department', 'Job Position', and 'Work Phone'. The file must be saved specifically to /home/ga/Downloads/hr.employee.xlsx."
+}

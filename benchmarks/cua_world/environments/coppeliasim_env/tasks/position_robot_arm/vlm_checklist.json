@@ -1,0 +1,59 @@
+{
+    "task_id": "position_robot_arm@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script in the terminal that imports RemoteAPIClient and sets the correct path to the ZMQ library.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing a text editor (like nano or vim) or a 'cat' command output containing 'from zmqRemoteApi import RemoteAPIClient' and the path '/opt/CoppeliaSim/programming/zmqRemoteApi/clients/python/src'."
+        },
+        {
+            "id": "simulation_start_stepping",
+            "description": "The script includes commands to start the simulation and enable stepping mode.",
+            "points": 15,
+            "visual_evidence": "Code in the terminal showing 'sim.startSimulation()' and 'sim.setStepping(True)'."
+        },
+        {
+            "id": "joint_handle_retrieval",
+            "description": "The script retrieves handles for the 7 joints of the blue robot arm.",
+            "points": 15,
+            "visual_evidence": "Code showing a loop or list fetching handles for '/blueRobot/joint' with indices 0 through 6."
+        },
+        {
+            "id": "move_to_config_execution",
+            "description": "The script calls sim.moveToConfig with the specific target degrees converted to radians.",
+            "points": 25,
+            "visual_evidence": "Code showing 'sim.moveToConfig' with the target array [90, 45, 170, -90, 45, 90, 0] (or their radian equivalents: [1.57, 0.785, 2.96, -1.57, 0.785, 1.57, 0])."
+        },
+        {
+            "id": "robot_visual_movement",
+            "description": "The blue robot arm physically moves to the target pose in the CoppeliaSim 3D view.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the CoppeliaSim GUI showing the blue robot arm in a distinct bent configuration compared to its initial state, matching the specified joint angles."
+        },
+        {
+            "id": "save_scene_file",
+            "description": "The script saves the scene to the specified file path.",
+            "points": 10,
+            "visual_evidence": "Code showing 'sim.saveScene('/home/ga/Documents/CoppeliaSim/scenes/robot_positioned.ttt')' and/or a terminal confirmation that the file was created."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI and terminal rather than just outputting text.",
+            "visual_evidence": "Screenshots show the mouse cursor moving, text being typed into a terminal, and the CoppeliaSim application window responding to commands."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply print 'Success' without running the simulation.",
+            "visual_evidence": "The CoppeliaSim simulation timer/status bar shows progress, and the robot arm's visual state changes over multiple frames."
+        },
+        {
+            "id": "correct_robot_selection",
+            "description": "The agent specifically manipulated the blue robot, not the red or green ones.",
+            "visual_evidence": "The 3D view shows the blue robot arm moving while the red and green arms remain in their default positions."
+        }
+    ],
+    "privileged_info_for_vlm": "The target joint configuration in radians is approximately [1.57, 0.785, 2.967, -1.57, 0.785, 1.57, 0]. The blue robot is one of three arms in the 'movementViaRemoteApi' scene. The simulation must be explicitly started via the API for the movement to occur in stepping mode."
+}

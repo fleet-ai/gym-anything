@@ -1,0 +1,53 @@
+{
+    "task_id": "legacy_shipment_sqlloader@1",
+    "task_completion": [
+        {
+            "id": "create_table_ddl",
+            "description": "Create the SHIPMENT_HISTORY table in the Oracle HR database with appropriate data types.",
+            "points": 15,
+            "visual_evidence": "A terminal or SQL tool showing a 'CREATE TABLE SHIPMENT_HISTORY' command being executed successfully."
+        },
+        {
+            "id": "control_file_creation",
+            "description": "Create the SQL*Loader control file at /home/ga/Desktop/load_shipments.ctl with correct field positions and logic.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing the content of /home/ga/Desktop/load_shipments.ctl, including POSITION(1:10), POSITION(11:13), etc., and the 'SKIP 2' directive."
+        },
+        {
+            "id": "sqlloader_logic_implementation",
+            "description": "Implement specific transformations: Date conversion, Cost division by 100, and filtering out Status '99'.",
+            "points": 25,
+            "visual_evidence": "The control file text showing 'TO_DATE', '/100' for the cost field, and a 'WHEN' clause or similar logic to exclude status '99'."
+        },
+        {
+            "id": "execute_sqlloader",
+            "description": "Run the sqlldr utility to load the data from shipment_logs.dat into the database.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the 'sqlldr' command being run and a summary indicating rows were successfully loaded."
+        },
+        {
+            "id": "verify_load_results",
+            "description": "Verify the data load by querying the SHIPMENT_HISTORY table.",
+            "points": 20,
+            "visual_evidence": "A 'SELECT' query (e.g., COUNT(*) or selecting rows) showing data present in the SHIPMENT_HISTORY table."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_insert",
+            "description": "The agent used SQL*Loader rather than manual INSERT statements for the data.",
+            "visual_evidence": "The presence of a .ctl file and the execution of the 'sqlldr' command instead of a long script of INSERT INTO statements."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the actual Oracle instance (XEPDB1).",
+            "visual_evidence": "Connection strings or login prompts showing 'hr/hr123@XEPDB1' or similar database identifiers."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the expected row count without running the load.",
+            "visual_evidence": "The SQL*Loader log or terminal output showing the actual processing of the 45 records."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file /home/ga/Desktop/shipment_logs.dat contains 45 valid records to be loaded after skipping 2 header lines and filtering out records with status '99'. The table name must be SHIPMENT_HISTORY. The cost must be divided by 100 (implied 2 decimals). The control file must be saved to /home/ga/Desktop/load_shipments.ctl."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_exam_input_security@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SEB Server dashboard or main navigation menu after the login screen."
+        },
+        {
+            "id": "create_config_view",
+            "description": "Agent navigates to the section to create or add a new exam configuration.",
+            "points": 10,
+            "visual_evidence": "A form or modal titled 'Create Configuration', 'Add Configuration', or similar is visible."
+        },
+        {
+            "id": "set_config_name",
+            "description": "Agent sets the configuration name to 'Creative Writing Midterm'.",
+            "points": 20,
+            "visual_evidence": "The text 'Creative Writing Midterm' is typed into the Name or Title input field."
+        },
+        {
+            "id": "disable_spell_check",
+            "description": "Agent explicitly disables the spell checking option.",
+            "points": 25,
+            "visual_evidence": "The checkbox or toggle for 'Allow spell checking' (or similar) is shown in an unchecked or 'Off' state."
+        },
+        {
+            "id": "enable_single_app_mode",
+            "description": "Agent explicitly enables the single app mode option.",
+            "points": 25,
+            "visual_evidence": "The checkbox or toggle for 'Use single app mode' (or similar) is shown in a checked or 'On' state."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Agent saves the new configuration and it appears in the list.",
+            "points": 10,
+            "visual_evidence": "A success message is displayed, or 'Creative Writing Midterm' is visible in the list of saved configurations."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database or API commands via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements, clicks on UI elements, and form filling in the browser."
+        },
+        {
+            "id": "no_shortcut_url",
+            "description": "The agent did not bypass the UI by guessing direct internal API endpoints.",
+            "visual_evidence": "The agent is seen navigating through the menu items of the SEB Server web interface."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually entered the configuration details rather than using a script to automate the entire browser session.",
+            "visual_evidence": "Step-by-step interaction with the browser, showing the progression of the form being filled."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration name must be exactly 'Creative Writing Midterm'. 'Allow spell checking' must be FALSE (unchecked). 'Use single app mode' must be TRUE (checked). The agent must use the credentials super-admin / admin at http://localhost:8080."
+}

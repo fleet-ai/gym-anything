@@ -1,0 +1,59 @@
+{
+    "task_id": "sars_cov_2_glycan_shield_mapping@1",
+    "task_completion": [
+        {
+            "id": "fetch_6vxx",
+            "description": "The agent successfully fetches the PDB structure 6VXX from RCSB into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '6VXX' and the 3D viewer displays the protein structure."
+        },
+        {
+            "id": "surface_representation",
+            "description": "The main protein chains are rendered as a surface representation.",
+            "points": 15,
+            "visual_evidence": "The 3D viewer shows a solid, continuous surface (not just ribbons or sticks) for the spike glycoprotein."
+        },
+        {
+            "id": "nag_sphere_representation",
+            "description": "N-acetyl-D-glucosamine (NAG) residues are visualized as spheres.",
+            "points": 20,
+            "visual_evidence": "Small spherical clusters (representing glycans) are visible on the surface of the protein."
+        },
+        {
+            "id": "save_high_res_image",
+            "description": "The agent saves the visualization to the specified path ~/PyMOL_Data/images/glycan_shield.png.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command log shows a 'png' or 'export' command targeting the correct file path, or a file browser shows the image file exists."
+        },
+        {
+            "id": "calculate_nag_counts",
+            "description": "The agent performs selection or counting commands to determine NAG residue counts for the whole complex and specific chains.",
+            "points": 20,
+            "visual_evidence": "The PyMOL command line or log shows selection commands like 'select nag_res, resn NAG' and 'count_states' or 'print' statements showing residue counts."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "A text report is written to ~/PyMOL_Data/glycan_report.txt containing the specific NAG counts.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the content of glycan_report.txt with the total NAG count and counts for Chain A and Chain B."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent used PyMOL commands or GUI menus rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots show the PyMOL interface active with the 6VXX model loaded and commands being typed into the PyMOL console."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent derived the NAG counts from the software rather than copy-pasting them from the prompt or external knowledge.",
+            "visual_evidence": "The PyMOL log shows the output of 'count' or 'select' commands that match the numbers written in the final report."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the task description.",
+            "visual_evidence": "Commands in the terminal or PyMOL log explicitly reference '~/PyMOL_Data/images/glycan_shield.png' and '~/PyMOL_Data/glycan_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "For PDB 6VXX: The total number of unique NAG residues in the complex is 63. The number of unique NAG residues on Chain A is 11. The number of unique NAG residues on Chain B is 11. The image must be saved to ~/PyMOL_Data/images/glycan_shield.png and the report to ~/PyMOL_Data/glycan_report.txt."
+}

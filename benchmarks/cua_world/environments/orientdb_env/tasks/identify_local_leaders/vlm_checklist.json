@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_local_leaders@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a database management tool or terminal connected to 'demodb' with the user 'root'."
+        },
+        {
+            "id": "schema_update",
+            "description": "The 'Profiles' schema is updated to include 'FriendCount' (INTEGER) and 'IsLocalLeader' (BOOLEAN) properties.",
+            "points": 15,
+            "visual_evidence": "SQL commands (ALTER CLASS/PROPERTY) or a GUI schema view showing the two new columns/properties in the Profiles class."
+        },
+        {
+            "id": "calculate_friend_count",
+            "description": "The 'FriendCount' property is populated for all profiles based on outgoing 'HasFriend' edges.",
+            "points": 20,
+            "visual_evidence": "An UPDATE query or script execution that counts edges and assigns the value to FriendCount, or a data grid showing non-zero values in the FriendCount column."
+        },
+        {
+            "id": "identify_local_leaders_logic",
+            "description": "The 'IsLocalLeader' property is set to true for profiles where FriendCount > 0 and greater than the FriendCount of all followed users.",
+            "points": 30,
+            "visual_evidence": "A complex SQL UPDATE statement or script containing the logic to compare a user's FriendCount against the FriendCount of targets of outgoing edges."
+        },
+        {
+            "id": "export_json_file",
+            "description": "A JSON file is created at /home/ga/local_leaders.json containing Name, Surname, and FriendCount, ordered by FriendCount descending.",
+            "points": 25,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'ls') or a file explorer showing the existence of /home/ga/local_leaders.json with the correct JSON structure and descending order."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually type the leader names into the JSON file.",
+            "visual_evidence": "The agent should be seen writing a query or script to export the data, rather than using a text editor to manually type 'John Smith'."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the OrientDB database directly.",
+            "visual_evidence": "Screenshots must show the OrientDB Studio (GUI) or the 'console.sh' / 'orientdb' CLI being used to execute commands."
+        },
+        {
+            "id": "logical_calculation",
+            "description": "The agent performed a comparison logic rather than just selecting all users with friends.",
+            "visual_evidence": "The SQL or script must show a subquery or join that compares the user's FriendCount to their friends' FriendCount."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb' (user: root, pass: GymAnything123!). The expected output file is /home/ga/local_leaders.json. Based on the synthetic data, John Smith (3 friends) is a confirmed Local Leader. Anna Mueller (1 friend) is also a leader because the person she follows has 0 friends. The final JSON must be ordered by FriendCount descending."
+}

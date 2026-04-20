@@ -1,0 +1,59 @@
+{
+    "task_id": "power_down_channels_hardware@1",
+    "task_completion": [
+        {
+            "id": "session_start_synthetic",
+            "description": "Start a 'SYNTHETIC (live)' session in the OpenBCI GUI.",
+            "points": 10,
+            "visual_evidence": "The GUI header or session setup screen shows 'SYNTHETIC (live)' as the active data source."
+        },
+        {
+            "id": "open_hardware_settings",
+            "description": "Access the Hardware Settings menu for the Cyton board.",
+            "points": 10,
+            "visual_evidence": "The 'Hardware Settings' panel or pop-up is visible, showing channel configuration options (On/Off toggles)."
+        },
+        {
+            "id": "disable_channels_1_3",
+            "description": "Power down (turn OFF) Channels 1, 2, and 3.",
+            "points": 25,
+            "visual_evidence": "In the Hardware Settings, the buttons or toggles for Channels 1, 2, and 3 are set to 'Off' or are greyed out/de-selected."
+        },
+        {
+            "id": "verify_channels_4_8_enabled",
+            "description": "Ensure Channels 4 through 8 remain enabled (ON).",
+            "points": 15,
+            "visual_evidence": "In the Hardware Settings, the buttons or toggles for Channels 4, 5, 6, 7, and 8 are set to 'On' or remain highlighted/active."
+        },
+        {
+            "id": "save_settings_dialog",
+            "description": "Open the 'Save' or 'Export' settings dialog to save the configuration.",
+            "points": 15,
+            "visual_evidence": "A file explorer or save dialog window is open within the OpenBCI GUI."
+        },
+        {
+            "id": "save_partial_montage_json",
+            "description": "Save the settings as 'PartialMontage.json' in the correct directory.",
+            "points": 25,
+            "visual_evidence": "The file path in the save dialog or a confirmation message shows the file name 'PartialMontage.json' being saved to '~/Documents/OpenBCI_GUI/Settings/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OpenBCI GUI interface rather than manually creating the JSON file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI buttons and the OpenBCI file dialog, not just a terminal window executing 'echo' or 'cat' to create the file."
+        },
+        {
+            "id": "genuine_session_active",
+            "description": "The agent is interacting with a live GUI session, not a static image or mock-up.",
+            "visual_evidence": "The time-series data or FFT plot in the background of the GUI shows active (synthetic) signal movement during the configuration."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not use a text editor to modify an existing settings file.",
+            "visual_evidence": "No text editors like Gedit, Nano, or VS Code are seen being used to manually type the channel states into a JSON structure."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires configuring an 8-channel Cyton board in 'SYNTHETIC (live)' mode. Channels 1, 2, and 3 (0-indexed as 0, 1, 2 in the backend) must be turned OFF. Channels 4, 5, 6, 7, and 8 (0-indexed as 3, 4, 5, 6, 7) must be ON. The final configuration must be saved specifically to '~/Documents/OpenBCI_GUI/Settings/PartialMontage.json' using the GUI's built-in save functionality."
+}

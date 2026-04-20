@@ -1,0 +1,59 @@
+{
+    "task_id": "scenario_quality_audit@1",
+    "task_completion": [
+        {
+            "id": "access_config_files",
+            "description": "Agent accesses the configuration files in the specified directory to identify errors.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening environment.ini, ownship.ini, or othership.ini in a text editor or terminal."
+        },
+        {
+            "id": "identify_environment_errors",
+            "description": "Agent identifies and corrects invalid values in environment.ini (StartTime, StartMonth, Weather).",
+            "points": 20,
+            "visual_evidence": "Text editor or terminal output showing StartTime changed from 25.5 to 0-24 range, StartMonth from 15 to 1-12 range, and Weather from 200.0 to 0-12 range."
+        },
+        {
+            "id": "identify_location_errors",
+            "description": "Agent identifies and corrects the Ownship latitude to be within the Humber Estuary range.",
+            "points": 20,
+            "visual_evidence": "Text editor showing OwnLat in ownship.ini changed from 42.3601 to a value near 53.6."
+        },
+        {
+            "id": "identify_vessel_errors",
+            "description": "Agent identifies and corrects unrealistic speeds or vessel collisions in ownship.ini or othership.ini.",
+            "points": 20,
+            "visual_evidence": "Text editor showing modifications to Speed or position coordinates in ownship.ini or othership.ini to ensure physical plausibility."
+        },
+        {
+            "id": "save_config_changes",
+            "description": "Agent saves the corrected configuration files back to their original directory.",
+            "points": 10,
+            "visual_evidence": "Screenshots of the 'save' action in an editor or 'cat' commands showing the updated values in the original file paths."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "Agent creates the QA audit report at the specified path with all 8 errors documented.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the file /home/ga/Documents/scenario_audit_report.txt containing a list of 8 faults, including file names, original values, and corrections."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent actually edited the files rather than just creating a report from memory.",
+            "visual_evidence": "Screenshots showing the agent interacting with the .ini files in /opt/bridgecommand/Scenarios/ before the report is finalized."
+        },
+        {
+            "id": "no_hallucinated_errors",
+            "description": "The agent identifies the specific 8 errors mentioned in the task rather than generic or non-existent issues.",
+            "visual_evidence": "The audit report lists specific values like 25.5 (StartTime), 15 (Month), and 200.0 (Weather) as the original invalid values."
+        },
+        {
+            "id": "correct_report_path",
+            "description": "The agent saves the report to the exact path specified in the instructions.",
+            "visual_evidence": "The file manager or terminal showing the file exists at /home/ga/Documents/scenario_audit_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario contains 8 errors. Key invalid values to look for in the agent's audit: environment.ini has StartTime=25.5 (valid 0-24), StartMonth=15 (valid 1-12), and Weather=200.0 (valid 0-12 Beaufort). ownship.ini has OwnLat=42.3601 (Boston), which must be corrected to ~53.6 (Humber Estuary). The agent must document the original invalid value and the correction for all 8 errors in /home/ga/Documents/scenario_audit_report.txt."
+}

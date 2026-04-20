@@ -1,0 +1,59 @@
+{
+    "task_id": "create_crm_dashboard_aggregations@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation_and_tagging",
+            "description": "Create a tiddler titled 'CRM Dashboard' with the tag 'Dashboard'.",
+            "points": 10,
+            "visual_evidence": "A tiddler named 'CRM Dashboard' is open in the TiddlyWiki interface, and the tag 'Dashboard' is visible in the tag area."
+        },
+        {
+            "id": "active_clients_pipeline_header",
+            "description": "Include a '!! Active Clients Pipeline' section.",
+            "points": 5,
+            "visual_evidence": "The text 'Active Clients Pipeline' appears as an H2 heading (!!) within the CRM Dashboard tiddler."
+        },
+        {
+            "id": "dynamic_table_structure",
+            "description": "Implement an HTML table with headers: Client Name, Industry, and Revenue.",
+            "points": 15,
+            "visual_evidence": "An HTML table is visible under the Active Clients Pipeline header with the specific column headers 'Client Name', 'Industry', and 'Revenue'."
+        },
+        {
+            "id": "table_data_and_sorting",
+            "description": "The table must be dynamically populated with 'Active' 'Client' tiddlers sorted by revenue in descending numeric order.",
+            "points": 30,
+            "visual_evidence": "The table rows show client data. The VLM should verify the revenue column is sorted numerically from highest to lowest (e.g., 500000 at the top, followed by 250000, etc.)."
+        },
+        {
+            "id": "pipeline_metrics_header",
+            "description": "Include a '!! Pipeline Metrics' section.",
+            "points": 5,
+            "visual_evidence": "The text 'Pipeline Metrics' appears as an H2 heading (!!) within the CRM Dashboard tiddler."
+        },
+        {
+            "id": "dynamic_metrics_calculation",
+            "description": "Display a bulleted list with dynamically calculated Total Active Revenue, Total Prospect Revenue, and Largest Active Deal.",
+            "points": 35,
+            "visual_evidence": "A bulleted list shows three values. Based on the data mutation, the VLM should see: Total Active Revenue: 1300000, Total Prospect Revenue: 900000, and Largest Active Deal: 500000."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent used widgets and filters rather than typing the final numbers manually.",
+            "visual_evidence": "In the tiddler's 'edit' mode, the VLM should see <$list> widgets and filter operators like [tag[Client]status[Active]sum[]] or similar, rather than static numbers like 1,300,000."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the TiddlyWiki browser interface to create and save the tiddler.",
+            "visual_evidence": "Screenshots show the agent clicking the 'plus' button, typing in the tiddler editor, and clicking the 'check' (save) button."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The dashboard pulls data from existing client tiddlers.",
+            "visual_evidence": "The table rows correspond to the names of client tiddlers present in the wiki sidebar or search results."
+        }
+    ],
+    "privileged_info_for_vlm": "The final dashboard must show the following calculated values due to a data mutation: Total Active Revenue = 1,300,000; Total Prospect Revenue = 900,000; Largest Active Deal = 500,000. The table must be sorted descending by revenue, meaning the client with 500,000 (TechCorp) must be the first row."
+}

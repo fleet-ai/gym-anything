@@ -1,0 +1,59 @@
+{
+    "task_id": "create_mip_visualization@1",
+    "task_completion": [
+        {
+            "id": "load_ct_chest",
+            "description": "The CTChest.nrrd (or CT-chest.nrrd) volume is loaded into 3D Slicer.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows a chest CT scan in the slice viewers; the Data module or volume selector shows 'CTChest' or 'CT-chest'."
+        },
+        {
+            "id": "set_coronal_view",
+            "description": "The agent focuses on or maximizes the Coronal slice viewer (typically the green-bordered slice).",
+            "points": 15,
+            "visual_evidence": "The Coronal slice view is visible and active, or the layout is changed to show the coronal plane prominently."
+        },
+        {
+            "id": "enable_slab_mode",
+            "description": "The slice viewer mode is changed from 'None' to 'Slab' or 'MIP'.",
+            "points": 20,
+            "visual_evidence": "In the slice controller options (often accessed via the pin icon or 'Volumes' module), the rendering mode is set to 'Slab' or 'Maximum Intensity Projection'."
+        },
+        {
+            "id": "set_slab_thickness",
+            "description": "The slab thickness is set to at least 30mm.",
+            "points": 25,
+            "visual_evidence": "A numeric input or slider for 'Slab Thickness' in the slice controller or Volumes module displays a value of 30.0 or greater."
+        },
+        {
+            "id": "verify_mip_appearance",
+            "description": "The coronal view displays a Maximum Intensity Projection (MIP) characteristic (vessels and bones appear brighter/denser through the slab).",
+            "points": 15,
+            "visual_evidence": "The coronal image shows thick-slice characteristics where multiple anatomical structures are projected onto one plane, appearing denser than a standard 1mm slice."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves the coronal MIP view to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog or 'Screen Capture' module is visible with the path '~/Documents/SlicerData/Exports/chest_mip_coronal.png' entered, or a terminal/python console command confirms the save to that specific path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the 3D Slicer GUI elements rather than just executing a single script to finish the task.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to menus, sliders being adjusted, or the 'Volumes' module panel being manipulated."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent did not simply rename an existing image or use a placeholder.",
+            "visual_evidence": "The sequence of screenshots shows the transition from a standard slice view to a thick-slab MIP view within the Slicer application."
+        },
+        {
+            "id": "no_premade_results",
+            "description": "The agent did not navigate to a folder containing a pre-existing 'chest_mip_coronal.png' and claim it as its own.",
+            "visual_evidence": "The agent is seen actively configuring the Slab thickness and orientation settings in the Slicer UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset 'CTChest.nrrd' is often listed in Slicer's Sample Data as 'CT-chest.nrrd'. For a valid MIP, the 'Slab Mode' must be set to 'Max' (Maximum Intensity Projection) and the 'Slab Thickness' must be ≥ 30mm. The coronal view is the green slice viewer."
+}

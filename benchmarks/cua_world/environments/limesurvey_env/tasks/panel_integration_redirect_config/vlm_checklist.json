@@ -1,0 +1,59 @@
+{
+    "task_id": "panel_integration_redirect_config@1",
+    "task_completion": [
+        {
+            "id": "url_parameter_config",
+            "description": "Add a URL parameter named 'rid' to the survey integration settings.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the 'Panel integration' or 'URL parameters' configuration page with 'rid' listed as a parameter name."
+        },
+        {
+            "id": "end_url_configuration",
+            "description": "Set the survey End URL to the specific TechSample complete URL.",
+            "points": 15,
+            "visual_evidence": "The 'Text elements' or 'General settings' page showing the End URL field containing 'https://api.techsample.com/complete?project=9982&rid={PASSTHRU:rid}'."
+        },
+        {
+            "id": "auto_load_end_url",
+            "description": "Enable the 'Automatically load URL when survey complete' setting.",
+            "points": 10,
+            "visual_evidence": "A toggle or checkbox labeled 'Automatically load URL' or 'Auto-load URL' set to 'Yes' or 'On' in the survey settings."
+        },
+        {
+            "id": "quota_creation",
+            "description": "Create a quota named 'Screenout: Non-Decision Makers' for question Q01.",
+            "points": 20,
+            "visual_evidence": "The 'Quotas' management page showing a new quota entry with the exact name 'Screenout: Non-Decision Makers'."
+        },
+        {
+            "id": "quota_logic_limit",
+            "description": "Set the quota limit to 0 and assign it to the 'No' answer for Q01.",
+            "points": 20,
+            "visual_evidence": "The quota details page showing 'Quota limit: 0' and the answer 'No' selected for question Q01 as the trigger."
+        },
+        {
+            "id": "quota_termination_url",
+            "description": "Configure the quota to terminate the survey and auto-load the specific termination URL.",
+            "points": 20,
+            "visual_evidence": "The quota configuration showing 'Quota action' set to 'Terminate survey' and the 'URL' field containing 'https://api.techsample.com/term?project=9982&rid={PASSTHRU:rid}' with auto-load enabled."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI scripts.",
+            "visual_evidence": "Screenshots show the browser navigating through LimeSurvey menus (Panel integration, Quotas, Text elements) and clicking buttons/typing in fields."
+        },
+        {
+            "id": "correct_survey_context",
+            "description": "The agent is working within the 'Enterprise Cloud Adoption 2024' survey.",
+            "visual_evidence": "The survey title 'Enterprise Cloud Adoption 2024' is visible in the top bar or breadcrumbs of the LimeSurvey interface during configuration."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent correctly used the {PASSTHRU:rid} placeholder rather than typing a static value.",
+            "visual_evidence": "The URL fields in the screenshots explicitly show the curly-brace syntax '{PASSTHRU:rid}'."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey name is 'Enterprise Cloud Adoption 2024'. The target question for the quota is 'Q01' (a Yes/No question). The required URL parameter is 'rid'. The success URL must be 'https://api.techsample.com/complete?project=9982&rid={PASSTHRU:rid}'. The termination URL for the quota must be 'https://api.techsample.com/term?project=9982&rid={PASSTHRU:rid}'. The quota must trigger on the 'No' answer with a limit of 0."
+}

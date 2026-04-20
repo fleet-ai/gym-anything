@@ -1,0 +1,59 @@
+{
+    "task_id": "restore_default_display_state@1",
+    "task_completion": [
+        {
+            "id": "load_dicom_file",
+            "description": "The DICOM file 0002.DCM is successfully loaded into the viewer.",
+            "points": 10,
+            "visual_evidence": "The DICOM viewer application is open and displaying an X-ray angiography image (medical imaging of blood vessels)."
+        },
+        {
+            "id": "export_initial_state",
+            "description": "Export the initial baseline view to state_1_initial.jpg.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with an 'Export' or 'Save As' menu/dialog and enters the filename 'state_1_initial.jpg'."
+        },
+        {
+            "id": "apply_transformations",
+            "description": "Apply 90-degree rotation, inverted grayscale, and >300% zoom to the image.",
+            "points": 30,
+            "visual_evidence": "The image in the viewer appears rotated sideways, colors are inverted (blacks are white, whites are black), and the view is significantly zoomed in on a specific area."
+        },
+        {
+            "id": "export_altered_state",
+            "description": "Export the modified view to state_2_altered.jpg.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with the export dialog while the image is in its transformed state and enters the filename 'state_2_altered.jpg'."
+        },
+        {
+            "id": "reset_transformations",
+            "description": "Reset all transformations to restore the default display state.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Reset', 'Default', or 'Restore' button, and the image returns to its original orientation, normal grayscale, and zoom level."
+        },
+        {
+            "id": "export_restored_state",
+            "description": "Export the restored baseline view to state_3_restored.jpg.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with the export dialog for the final time and enters the filename 'state_3_restored.jpg'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the DICOM viewer's GUI to perform transformations and exports rather than CLI commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with viewer buttons, sliders, or menus; no terminal commands like 'cp' or 'mv' are used to create the images."
+        },
+        {
+            "id": "genuine_transformation",
+            "description": "The agent manually applied the specific transformations (zoom, rotate, invert) rather than just renaming files.",
+            "visual_evidence": "Sequential screenshots show the image state changing in the viewer UI before the second export."
+        },
+        {
+            "id": "correct_app_usage",
+            "description": "The agent interacted with the actual medical imaging software provided in the environment.",
+            "visual_evidence": "The window title and UI elements match a standard DICOM viewer (e.g., Aeskulap, Ginkgo CADx, or similar) rather than a generic image editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The DICOM file is 0002.DCM, which is an X-Ray Angiography sample (not a CT scan). The export directory is /home/ga/DICOM/exports. The 'altered' state must specifically show a 90-degree rotation, inverted colors, and high zoom. The 'restored' state must be visually identical to the 'initial' state, with an RMS threshold of 10.0 used for verification."
+}

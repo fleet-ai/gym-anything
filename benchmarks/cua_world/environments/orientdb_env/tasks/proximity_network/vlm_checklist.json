@@ -1,0 +1,59 @@
+{
+    "task_id": "proximity_network@1",
+    "task_completion": [
+        {
+            "id": "create_edge_class",
+            "description": "Create the 'NearBy' edge class extending 'E' in the database.",
+            "points": 10,
+            "visual_evidence": "SQL command or GUI interaction showing 'CREATE CLASS NearBy EXTENDS E' or similar in the database console."
+        },
+        {
+            "id": "define_properties",
+            "description": "Define 'Distance' (DOUBLE) and 'City' (STRING) properties for the 'NearBy' class.",
+            "points": 15,
+            "visual_evidence": "SQL commands like 'CREATE PROPERTY NearBy.Distance DOUBLE' and 'CREATE PROPERTY NearBy.City STRING' or schema view showing these properties."
+        },
+        {
+            "id": "query_locations",
+            "description": "Query Hotel and Restaurant data including coordinates and city names.",
+            "points": 15,
+            "visual_evidence": "SQL SELECT statements targeting 'Hotel' and 'Restaurant' classes to retrieve latitude, longitude, and city."
+        },
+        {
+            "id": "insert_edges",
+            "description": "Insert 'NearBy' edges between Hotels and Restaurants in the same city with calculated distances.",
+            "points": 30,
+            "visual_evidence": "Complex SQL INSERT/CREATE EDGE statement using a JOIN on city and implementing the Haversine formula (sin, cos, atan2) or a script performing these calculations and insertions."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Export the proximity report to /home/ga/proximity_report.txt.",
+            "points": 10,
+            "visual_evidence": "Terminal command or script execution showing output redirection or file writing to '/home/ga/proximity_report.txt'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains the correct format and the 'Total pairs' summary line.",
+            "points": 20,
+            "visual_evidence": "A 'cat' or text editor view of /home/ga/proximity_report.txt showing lines like '{City} | {Hotel} -> {Restaurant} | {Distance} km' and a final line 'Total pairs: {N}'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the 'demodb' database rather than mocking data.",
+            "visual_evidence": "Screenshots showing the database connection string, studio interface, or console logs specific to OrientDB/demodb."
+        },
+        {
+            "id": "haversine_implementation",
+            "description": "The agent actually calculated distances using the Haversine formula (R=6371) rather than hardcoding values.",
+            "visual_evidence": "The presence of the Haversine formula (6371 * c) in the SQL query or the script used to process the data."
+        },
+        {
+            "id": "no_manual_report_creation",
+            "description": "The report was generated via data processing, not by manually typing out the expected output.",
+            "visual_evidence": "Execution of a script or a complex SQL export command that automates the formatting of the report."
+        }
+    ],
+    "privileged_info_for_vlm": "The edge class must be named 'NearBy'. Properties must be 'Distance' (DOUBLE) and 'City' (STRING). The Earth radius for the Haversine formula is exactly 6371 km. The report must be saved to /home/ga/proximity_report.txt. The report format requires a specific pipe-delimited string: '{City} | {Hotel} -> {Restaurant} | {Distance} km' and must end with 'Total pairs: {N}'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "prepare_multi_re_polar_dataset@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "Generate the NACA 4415 airfoil in QBlade.",
+            "points": 10,
+            "visual_evidence": "The QBlade 'Airfoil Design' or 'XFoil Analysis' window shows 'NACA 4415' as the active airfoil profile."
+        },
+        {
+            "id": "xfoil_setup",
+            "description": "Configure XFoil analysis with Re 1M, 3M, 5M, Ncrit 9, and alpha -5 to 20.",
+            "points": 20,
+            "visual_evidence": "The XFoil analysis dialog or setup panel shows Reynolds numbers 1000000, 3000000, and 5000000 entered, Ncrit set to 9, and the alpha range from -5 to 20."
+        },
+        {
+            "id": "polar_generation",
+            "description": "Successfully run the XFoil analysis for all three Reynolds numbers.",
+            "points": 20,
+            "visual_evidence": "The polar plot or polar list in QBlade shows three distinct curves or entries corresponding to Re 1,000,000, 3,000,000, and 5,000,000."
+        },
+        {
+            "id": "viterna_extrapolation",
+            "description": "Extrapolate the polars to 360 degrees using the Viterna method.",
+            "points": 20,
+            "visual_evidence": "The '360° Extrapolation' window is visible with 'Viterna' selected as the method, and the resulting polar plots show data spanning the full -180 to 180 degree range."
+        },
+        {
+            "id": "export_polars",
+            "description": "Export the three extrapolated polars to the specified .dat files in ~/Documents/polars/.",
+            "points": 20,
+            "visual_evidence": "File explorer or export dialogs showing the files NACA4415_1M_360.dat, NACA4415_3M_360.dat, and NACA4415_5M_360.dat being saved to the correct directory."
+        },
+        {
+            "id": "save_project",
+            "description": "Save the QBlade project to ~/Documents/projects/re_dataset_study.wpa.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog or the application title bar shows the project path as ~/Documents/projects/re_dataset_study.wpa."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade graphical user interface rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QBlade menus, buttons, and dialog boxes."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The agent actually ran the XFoil solver rather than importing pre-existing data.",
+            "visual_evidence": "The XFoil console output or progress bars within QBlade are visible during the analysis phase."
+        },
+        {
+            "id": "correct_extrapolation_range",
+            "description": "The agent used the standard 360-degree range (-180 to 180) as per QBlade defaults, not the incorrect metadata values.",
+            "visual_evidence": "The extrapolation settings or the exported data table shows an alpha range from -180 to 180 degrees."
+        }
+    ],
+    "privileged_info_for_vlm": "The NACA 4415 airfoil must be used. XFoil parameters are Re: 1,000,000, 3,000,000, 5,000,000; Ncrit: 9; Alpha: -5 to 20. Viterna extrapolation in QBlade results in a full 360-degree polar, which spans from -180 to +180 degrees (ignore metadata suggesting -170 to 170). Files must be named exactly as specified and saved in the Documents subfolders."
+}

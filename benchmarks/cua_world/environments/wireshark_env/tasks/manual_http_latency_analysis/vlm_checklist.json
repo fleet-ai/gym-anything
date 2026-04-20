@@ -1,0 +1,59 @@
+{
+    "task_id": "manual_http_latency_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Open the 'http.cap' file in Wireshark or a similar packet analysis tool.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Wireshark application window with 'http.cap' loaded in the title bar or file path."
+        },
+        {
+            "id": "identify_handshake_packets",
+            "description": "Locate the initial TCP SYN and SYN-ACK packets to calculate network latency.",
+            "points": 15,
+            "visual_evidence": "The packet list pane showing Frame 1 (SYN) and Frame 2 (SYN-ACK) highlighted or visible."
+        },
+        {
+            "id": "identify_http_packets",
+            "description": "Locate the HTTP GET request and the corresponding HTTP 200 OK response.",
+            "points": 15,
+            "visual_evidence": "The packet list pane showing the GET request (Frame 4) and the 200 OK response (Frame 27) visible."
+        },
+        {
+            "id": "save_latency_screenshot",
+            "description": "Save a screenshot showing the server processing latency measurement to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal output confirming the creation of '/home/ga/Documents/captures/latency_evidence.png' showing the relevant packets."
+        },
+        {
+            "id": "calculate_correct_values",
+            "description": "Calculate the network and server processing latency values accurately.",
+            "points": 25,
+            "visual_evidence": "The agent's terminal or notepad showing the subtraction of timestamps (e.g., 1084443428.222 - 1084443427.311)."
+        },
+        {
+            "id": "create_json_report",
+            "description": "Create the JSON report with the correct keys and measured values at the specified path.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the content of '/home/ga/Documents/captures/latency_report.json' containing 'network_latency_seconds' and 'server_processing_seconds'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI to analyze the packets rather than just running automated scripts.",
+            "visual_evidence": "Screenshots showing the Wireshark GUI window active and being interacted with (e.g., clicking on packets, viewing packet details)."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the ground truth values without showing the calculation or packet inspection.",
+            "visual_evidence": "Evidence of the agent manually inspecting packet timestamps or using the 'Time Since Previous Displayed Packet' column in Wireshark."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent saved the files to the specific directories requested in the task description.",
+            "visual_evidence": "The file paths in the screenshots or terminal commands match '/home/ga/Documents/captures/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth for network latency (SYN to SYN-ACK) is 0.911309958 seconds. The ground truth for server processing latency (GET to 200 OK) is 3.044378042 seconds. The relevant packets in http.cap are: Frame 1 (SYN), Frame 2 (SYN-ACK), Frame 4 (GET), and Frame 27 (200 OK). Accept values within a 0.001s tolerance."
+}

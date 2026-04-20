@@ -1,0 +1,59 @@
+{
+    "task_id": "create_kiosk_launch_script@1",
+    "task_completion": [
+        {
+            "id": "identify_executable",
+            "description": "Agent identifies the Nx Witness Desktop Client executable path or command name.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing a search for 'networkoptix' or 'nxwitness' binaries, or the agent browsing the file system for the application."
+        },
+        {
+            "id": "create_script_file",
+            "description": "A file named 'launch_kiosk.sh' is created on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A file icon labeled 'launch_kiosk.sh' appearing on the Desktop or a text editor showing the file path /home/ga/Desktop/launch_kiosk.sh."
+        },
+        {
+            "id": "script_content_auth",
+            "description": "The script contains the correct authentication credentials (kiosk / Kiosk123!).",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command output showing the strings 'kiosk' and 'Kiosk123!' within the script content, likely following an --auth flag."
+        },
+        {
+            "id": "script_content_layout_fullscreen",
+            "description": "The script includes the 'Lobby Monitor' layout name and fullscreen flags.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command output showing '--layout-name \"Lobby Monitor\"' and a fullscreen flag like '--full-screen' or '-fs'."
+        },
+        {
+            "id": "set_executable_permissions",
+            "description": "The script is made executable using chmod.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'chmod +x /home/ga/Desktop/launch_kiosk.sh' or file properties showing executable permissions."
+        },
+        {
+            "id": "verify_script_execution",
+            "description": "The agent runs the script to verify it launches the client correctly.",
+            "points": 15,
+            "visual_evidence": "The Nx Witness application window opening in fullscreen mode, showing the 'Lobby Monitor' layout without manual login intervention."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply create an empty file or a dummy script to trick the verifier.",
+            "visual_evidence": "The script content must contain the actual command to launch the Nx Witness client, not just echo statements."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the OS to create and permission the file rather than just claiming it was done.",
+            "visual_evidence": "Screenshots showing the use of a text editor (like Gedit, Nano, or Vim) or terminal redirection to write the file."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific path requested in the task.",
+            "visual_evidence": "The file path /home/ga/Desktop/launch_kiosk.sh is visible in the terminal or file manager."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be located at /home/ga/Desktop/launch_kiosk.sh. It must use the username 'kiosk' and password 'Kiosk123!'. It must target the layout 'Lobby Monitor'. Required command-line flags for the Nx Witness client are '--auth', '--layout-name', and a fullscreen flag (e.g., '--full-screen', '--fullscreen', or '-fs')."
+}

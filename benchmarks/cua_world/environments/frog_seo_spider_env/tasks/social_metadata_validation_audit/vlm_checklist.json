@@ -1,0 +1,53 @@
+{
+    "task_id": "social_metadata_validation_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Launch Screaming Frog SEO Spider and enter the target URL.",
+            "points": 10,
+            "visual_evidence": "Screaming Frog GUI is open with 'https://crawler-test.com/' entered in the 'Enter URL to spider' field."
+        },
+        {
+            "id": "configure_custom_extraction",
+            "description": "Configure Custom Extraction to target Open Graph Title and Image tags.",
+            "points": 20,
+            "visual_evidence": "The Configuration > Custom > Extraction window is visible, showing XPath or Regex rules for 'og:title' and 'og:image'."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Execute the crawl of the target website.",
+            "points": 15,
+            "visual_evidence": "The progress bar shows 100% completion and the 'Internal' tab is populated with URLs from crawler-test.com."
+        },
+        {
+            "id": "export_csv_data",
+            "description": "Export the crawl data including custom extraction to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "An export dialog or file explorer shows 'social_tags_export.csv' being saved to '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "create_text_report",
+            "description": "Create a text report with specific crawl statistics and missing tag URLs.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or VS Code) shows 'missing_social_tags.txt' at '~/Documents/SEO/reports/' containing total crawl count, count of missing tags, and at least three URLs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI rather than just CLI commands to generate the report.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and button clicks within the Screaming Frog interface."
+        },
+        {
+            "id": "genuine_extraction",
+            "description": "The agent actually configured extraction rather than manually typing data into a CSV.",
+            "visual_evidence": "The 'Custom Extraction' tab in the main Screaming Frog window shows columns for the OG tags populated with data."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent saved files to the exact directories specified in the prompt.",
+            "visual_evidence": "File save dialogs or terminal 'ls' commands confirm the existence of files in '~/Documents/SEO/exports/' and '~/Documents/SEO/reports/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL is https://crawler-test.com/. Note that many pages on this site, including the root domain, do NOT have Open Graph tags. A valid URL that DOES have OG tags for verification is https://crawler-test.com/social_tags/open_graph_tags. The agent must export to '~/Documents/SEO/exports/social_tags_export.csv' and create a report at '~/Documents/SEO/reports/missing_social_tags.txt'. The report must contain: total URLs crawled, number of URLs missing OG tags, and 3 specific URLs missing them."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_emergency_isochrones@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script that imports sumolib and references the correct network file path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing a Python script with 'import sumolib' and the path '~/SUMO_Scenarios/bologna_acosta/acosta_buslanes.net.xml'."
+        },
+        {
+            "id": "logic_implementation",
+            "description": "The script contains logic to find the longest non-internal edge with outgoing connections and calculate travel time (length/speed).",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing logic for 'edge.getLength() / edge.getSpeed()' and filtering for non-internal edges with connections."
+        },
+        {
+            "id": "isochrone_calculation",
+            "description": "The script implements a traversal (like BFS or Dijkstra) to find edges reachable within 120 seconds.",
+            "points": 25,
+            "visual_evidence": "Code showing a loop or recursion that accumulates travel time and checks against the 120.0 limit."
+        },
+        {
+            "id": "summary_output_generation",
+            "description": "The agent executes the script and generates the isochrone_summary.txt file with the correct start edge and count.",
+            "points": 20,
+            "visual_evidence": "Terminal output or a file viewer showing ~/SUMO_Output/isochrone_summary.txt containing the start edge ID '114' and the count '5'."
+        },
+        {
+            "id": "selection_file_generation",
+            "description": "The agent generates the isochrone_selection.txt file with the correct edge:EDGE_ID format.",
+            "points": 20,
+            "visual_evidence": "A file viewer showing ~/SUMO_Output/isochrone_selection.txt with lines like 'edge:114', 'edge:121', etc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the final values into the text files without running a script.",
+            "visual_evidence": "The trajectory should show the agent writing and executing a Python script, not just using 'echo' or manual text entry for the results."
+        },
+        {
+            "id": "genuine_sumolib_usage",
+            "description": "The agent uses the sumolib library to parse the network rather than manual string parsing.",
+            "visual_evidence": "The Python script should contain 'sumolib.net.readNet' or similar library calls."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent uses the specific file paths provided in the instructions.",
+            "visual_evidence": "The script and terminal commands reference the exact paths in ~/SUMO_Scenarios and ~/SUMO_Output."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct starting edge is '114'. There are exactly 5 reachable edges within the 120-second limit: '114', '121', '203[1]', '203[1]b', and 'm2'. The summary file must show '114' and the count '5'. The selection file must format these 5 IDs as 'edge:ID'."
+}

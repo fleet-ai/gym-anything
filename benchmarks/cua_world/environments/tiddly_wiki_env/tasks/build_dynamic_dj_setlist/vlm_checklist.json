@@ -1,0 +1,59 @@
+{
+    "task_id": "build_dynamic_dj_setlist@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation",
+            "description": "Create a new tiddler with the exact title 'Smith Wedding Setlist'.",
+            "points": 10,
+            "visual_evidence": "A TiddlyWiki tiddler is open or listed in the sidebar with the title 'Smith Wedding Setlist' visible in the header."
+        },
+        {
+            "id": "section_headings",
+            "description": "Include the three required headings: '! Cocktail Hour', '! Dinner', and '! Dance Floor'.",
+            "points": 15,
+            "visual_evidence": "The tiddler content (in edit or view mode) shows the three specific headings in the correct order."
+        },
+        {
+            "id": "cocktail_hour_logic",
+            "description": "Implement the Cocktail Hour list using a <$list> widget with filters for vibe 'Chill', genre 'Jazz' or 'Acoustic', excluding 'DoNotPlay', sorted by title.",
+            "points": 25,
+            "visual_evidence": "The tiddler source code shows a <$list> widget under the Cocktail Hour heading with a filter string containing 'Chill', '[Jazz] [Acoustic]', '-[tag[DoNotPlay]]', and 'sort[title]'."
+        },
+        {
+            "id": "dinner_logic",
+            "description": "Implement the Dinner list using a <$list> widget with filters for vibe 'Romantic', excluding 'DoNotPlay', sorted by the 'artist' field.",
+            "points": 20,
+            "visual_evidence": "The tiddler source code shows a <$list> widget under the Dinner heading with a filter string containing 'Romantic', '-[tag[DoNotPlay]]', and 'sort[artist]'."
+        },
+        {
+            "id": "dance_floor_logic",
+            "description": "Implement the Dance Floor list using a <$list> widget with filters for vibe 'Party', tempo 'Fast', excluding 'DoNotPlay', sorted by title.",
+            "points": 20,
+            "visual_evidence": "The tiddler source code shows a <$list> widget under the Dance Floor heading with a filter string containing 'Party', 'Fast', '-[tag[DoNotPlay]]', and 'sort[title]'."
+        },
+        {
+            "id": "item_formatting",
+            "description": "Format list items as bullet points with a link and transcluded artist field (e.g., * <$link/> by {{!!artist}}).",
+            "points": 10,
+            "visual_evidence": "The tiddler source code shows the template inside the <$list> widgets using the bullet point '*' followed by '<$link/>' and '{{!!artist}}'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit the tiddler.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'plus' button, the edit field, and the 'save' checkmark in the browser."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent used dynamic widgets and transclusions rather than typing out song names manually.",
+            "visual_evidence": "The tiddler editor shows <$list> and {{!!artist}} syntax rather than a static list of song titles and artists."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not use terminal commands like 'sed' or 'echo' to modify the TiddlyWiki database file directly.",
+            "visual_evidence": "The terminal logs (if visible) do not show direct file manipulation of the TiddlyWiki .tid files or database."
+        }
+    ],
+    "privileged_info_for_vlm": "The tiddler must be titled 'Smith Wedding Setlist'. It must contain three specific headings: '! Cocktail Hour', '! Dinner', and '! Dance Floor'. All dynamic lists must include the filter '-[tag[DoNotPlay]]' to exclude restricted songs. The Cocktail Hour list must filter for vibe 'Chill' and genre 'Jazz' OR 'Acoustic'. The Dinner list must sort by the 'artist' field. The Dance Floor list must filter for vibe 'Party' and tempo 'Fast'. Formatting for all items must be '* <$link/> by {{!!artist}}'."
+}

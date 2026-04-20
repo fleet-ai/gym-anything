@@ -1,0 +1,59 @@
+{
+    "task_id": "create_print_layout_export_pdf@1",
+    "task_completion": [
+        {
+            "id": "layers_loaded",
+            "description": "The polygon and point layers are loaded into the QGIS Layers panel.",
+            "points": 10,
+            "visual_evidence": "The Layers panel shows 'sample_polygon' and 'sample_points' with their respective geometry icons."
+        },
+        {
+            "id": "layout_created",
+            "description": "A new Print Layout window is opened with the correct name.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Sample Data Map' is visible, showing the QGIS Layout Designer interface."
+        },
+        {
+            "id": "map_item_added",
+            "description": "A map item is added to the layout showing the loaded GIS data.",
+            "points": 15,
+            "visual_evidence": "A map canvas within the layout shows the spatial features (polygons and points) from the main QGIS window."
+        },
+        {
+            "id": "title_added",
+            "description": "A label item with the specific title text is added to the layout.",
+            "points": 15,
+            "visual_evidence": "A text label showing 'San Francisco Bay Area - GIS Sample Data' is visible on the layout."
+        },
+        {
+            "id": "layout_elements_added",
+            "description": "A north arrow, scale bar, and legend are added to the layout.",
+            "points": 25,
+            "visual_evidence": "The layout contains a north arrow icon, a scale bar with units, and a legend listing the two layers."
+        },
+        {
+            "id": "pdf_export_initiated",
+            "description": "The agent initiates the PDF export process to the specified path.",
+            "points": 25,
+            "visual_evidence": "An 'Export to PDF' dialog or a file browser window is shown pointing to '/home/ga/GIS_Data/exports/sample_map.pdf', or a success message/notification of the export is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QGIS GUI to create the layout rather than just running a python script or terminal command.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, the 'Layout Manager', and dragging items onto the layout canvas."
+        },
+        {
+            "id": "genuine_data_rendering",
+            "description": "The map in the layout shows the actual features from the geojson files, not a placeholder.",
+            "visual_evidence": "The map item displays 2 polygon features and 3 point features as defined in the source data."
+        },
+        {
+            "id": "no_premade_pdf",
+            "description": "The agent did not simply open an existing PDF but went through the layout creation steps.",
+            "visual_evidence": "Sequential screenshots show the progression from an empty layout to one populated with the required map elements."
+        }
+    ],
+    "privileged_info_for_vlm": "The layout name must be 'Sample Data Map'. The title text must be exactly 'San Francisco Bay Area - GIS Sample Data'. The source data consists of 2 polygons in 'sample_polygon.geojson' and 3 points in 'sample_points.geojson'. The final export path is '/home/ga/GIS_Data/exports/sample_map.pdf'. Verify that the legend contains both layer names."
+}

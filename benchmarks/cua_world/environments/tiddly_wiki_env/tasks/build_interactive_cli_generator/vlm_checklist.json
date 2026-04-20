@@ -1,0 +1,53 @@
+{
+    "task_id": "build_interactive_cli_generator@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation_and_title",
+            "description": "Create a new tiddler with the exact title 'Interactive Deployment Generator'.",
+            "points": 10,
+            "visual_evidence": "A tiddler window open or listed in the sidebar with the title 'Interactive Deployment Generator'."
+        },
+        {
+            "id": "tags_applied",
+            "description": "The tiddler must have the tags 'DevOps' and 'Runbook'.",
+            "points": 10,
+            "visual_evidence": "The tags 'DevOps' and 'Runbook' visible in the tiddler's tag area."
+        },
+        {
+            "id": "input_fields_present",
+            "description": "Three input fields for application name, image tag, and port number are visible.",
+            "points": 20,
+            "visual_evidence": "Three distinct text input boxes or edit fields within the tiddler body."
+        },
+        {
+            "id": "docker_command_block",
+            "description": "A code block displaying the Docker run command template with reactive placeholders.",
+            "points": 30,
+            "visual_evidence": "A code block containing 'docker run -d --name <APP> -p <PORT>:80 myregistry.internal/<APP>:<TAG>' where placeholders change when text is typed into inputs."
+        },
+        {
+            "id": "kubernetes_command_block",
+            "description": "A code block displaying the kubectl create deployment command template with reactive placeholders.",
+            "points": 30,
+            "visual_evidence": "A code block containing 'kubectl create deployment <APP> --image=myregistry.internal/<APP>:<TAG> --port=<PORT>' where placeholders change when text is typed into inputs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler rather than just modifying files via terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking 'new tiddler', typing in the editor, and clicking 'save' (the checkmark icon)."
+        },
+        {
+            "id": "reactive_binding_verification",
+            "description": "The agent demonstrated that the code blocks update dynamically by typing values into the input fields.",
+            "visual_evidence": "Sequential screenshots showing text being entered into an input field and the corresponding value appearing instantly in the code blocks below."
+        },
+        {
+            "id": "no_hardcoded_commands",
+            "description": "The code blocks should not be static text; they must reflect the state tiddler values.",
+            "visual_evidence": "The VLM should check if the command text changes when different inputs are provided; if it remains static despite input changes, it is a failure."
+        }
+    ],
+    "privileged_info_for_vlm": "The tiddler must be titled 'Interactive Deployment Generator' with tags 'DevOps' and 'Runbook'. It must use the specific state tiddlers $:/state/deploy/app, $:/state/deploy/tag, and $:/state/deploy/port for data binding. The Docker command must use the format 'myregistry.internal/<APP>:<TAG>' and map the input port to container port 80. The Kubernetes command must use the same registry path and the specified port."
+}

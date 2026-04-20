@@ -1,0 +1,53 @@
+{
+    "task_id": "river_morphometry@1",
+    "task_completion": [
+        {
+            "id": "open_nile_bend",
+            "description": "The agent successfully opens the 'Nile Bend' sample image in ImageJ/Fiji.",
+            "points": 10,
+            "visual_evidence": "A window titled 'NileBend.jpg' or 'Nile Bend' is visible within the ImageJ/Fiji interface."
+        },
+        {
+            "id": "water_area_measurement",
+            "description": "The agent performs a measurement of the total water surface area.",
+            "points": 25,
+            "visual_evidence": "The ImageJ 'Results' table or a summary window shows an 'Area' value, often following a thresholding or selection step (indicated by red overlays or marching ants on the river)."
+        },
+        {
+            "id": "cross_section_widths",
+            "description": "The agent measures the river channel width at three distinct locations (upstream, bend apex, downstream).",
+            "points": 30,
+            "visual_evidence": "The 'Results' table shows at least three distinct length measurements, or the image shows line selections drawn across the river at the three specified locations."
+        },
+        {
+            "id": "sinuosity_calculation",
+            "description": "The agent calculates the sinuosity index (channel length divided by straight-line distance).",
+            "points": 20,
+            "visual_evidence": "The agent is seen using a calculator tool, a macro, or manually typing a formula where one length is divided by another to produce a ratio."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "The agent saves the final measurements to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a terminal command shows the path '~/ImageJ_Data/results/river_morphometry.csv' being targeted for the output."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI tools for measurement rather than just scripting the final answer.",
+            "visual_evidence": "Screenshots show the use of the 'Measure' command (Ctrl+M), the 'Results' window, or manual line/wand selections on the image."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements are derived from the image content, not hardcoded values.",
+            "visual_evidence": "The 'Results' table in ImageJ contains values that correspond to the active selections visible on the Nile Bend image."
+        },
+        {
+            "id": "no_placeholder_data",
+            "description": "The CSV file contains actual numerical data rather than placeholder text.",
+            "visual_evidence": "The final screenshot of the CSV file or the data being saved shows specific floating-point numbers for area, widths, and sinuosity."
+        }
+    ],
+    "privileged_info_for_vlm": "The image 'NileBend.jpg' is a 2048x2048 pixel satellite image. The water area should be between 10,000 and 500,000 pixels squared. Sinuosity is a ratio (Length/Distance) and must be greater than 1.0. The agent must use ImageJ/Fiji's measurement tools (like the Wand tool for area and the Line tool for widths) to generate these values."
+}

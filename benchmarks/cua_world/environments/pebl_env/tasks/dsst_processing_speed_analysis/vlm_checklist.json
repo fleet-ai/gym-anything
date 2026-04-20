@@ -1,0 +1,59 @@
+{
+    "task_id": "dsst_processing_speed_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source data file at ~/pebl/data/dsst_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the content of dsst_data.csv."
+        },
+        {
+            "id": "filtering_logic",
+            "description": "Agent applies the 90-second window filter (elapsed_time_ms <= 90000) to the dataset.",
+            "points": 15,
+            "visual_evidence": "Code snippets or script output showing filtering logic applied to the 'elapsed_time_ms' column."
+        },
+        {
+            "id": "ili_calculation",
+            "description": "Agent calculates the Incidental Learning Index (ILI) using the mean RT of the first 15 vs. last 15 correct trials.",
+            "points": 25,
+            "visual_evidence": "Code or intermediate output showing the calculation of mean rt_ms for the first and last 15 correct trials per participant."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent flags participants with an Accuracy Rate below 0.20 as excluded.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing the identification of participants with low accuracy (specifically sub-err-44)."
+        },
+        {
+            "id": "json_structure",
+            "description": "Agent generates a JSON file with the required keys: participants, group_mean_score, and group_mean_learning_ms.",
+            "points": 15,
+            "visual_evidence": "A preview of the JSON structure in a terminal or editor showing the specified keys."
+        },
+        {
+            "id": "final_report_saved",
+            "description": "The final report is saved to the correct path: ~/pebl/analysis/dsst_report.json.",
+            "points": 20,
+            "visual_evidence": "A terminal command confirming the file exists at the path or a 'save' operation in a script targeting that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the results from the privileged information summary.",
+            "visual_evidence": "The agent's code should show dynamic calculation (e.g., using pandas or math libraries) rather than direct assignment of values for 'sub-err-44' or 'sub-115'."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "Agent actually reads the CSV file rather than simulating a successful run.",
+            "visual_evidence": "Screenshots must show the agent opening or loading the specific file path ~/pebl/data/dsst_data.csv."
+        },
+        {
+            "id": "logical_consistency",
+            "description": "The calculated group means must be derived from the individual participant data shown in the logs.",
+            "visual_evidence": "The values in the final JSON should mathematically align with the intermediate processing steps shown in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 30 participants. Participant 'sub-err-44' must be excluded for accuracy < 0.20. Participants 'sub-115', 'sub-108', and 'sub-122' have fewer than 30 correct trials within the 90s window, so their 'incidental_learning_ms' must be null. The group_mean_learning_ms must ignore these null values. The source file is at /home/ga/pebl/data/dsst_data.csv and the output must be at /home/ga/pebl/analysis/dsst_report.json."
+}

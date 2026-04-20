@@ -1,0 +1,53 @@
+{
+    "task_id": "change_weight_unit@1",
+    "task_completion": [
+        {
+            "id": "login_page_accessed",
+            "description": "The agent navigated to the wger login page.",
+            "points": 10,
+            "visual_evidence": "A login form with username and password fields on the wger application."
+        },
+        {
+            "id": "successful_login",
+            "description": "The agent logged in as 'admin'.",
+            "points": 15,
+            "visual_evidence": "The dashboard or home screen of wger is visible, often showing 'admin' in the user profile or navigation bar."
+        },
+        {
+            "id": "settings_page_navigation",
+            "description": "The agent navigated to the user settings or profile preferences page.",
+            "points": 20,
+            "visual_evidence": "A page titled 'Settings', 'Preferences', or 'User Profile' containing unit configuration options."
+        },
+        {
+            "id": "unit_selection_changed",
+            "description": "The agent selected 'lb' or 'Pounds' in the weight unit dropdown/radio button.",
+            "points": 25,
+            "visual_evidence": "The weight unit field is shown with 'lb' or 'Pounds' selected before or during the form submission."
+        },
+        {
+            "id": "settings_saved_successfully",
+            "description": "The agent saved the changes and the system confirmed the update.",
+            "points": 30,
+            "visual_evidence": "A success message (e.g., 'Settings saved') or the settings page reloading with 'lb' as the active/saved value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "The trajectory shows mouse clicks and typing in the browser, not SQL commands in a terminal."
+        },
+        {
+            "id": "no_url_manipulation_shortcuts",
+            "description": "The agent navigated through the UI menus rather than guessing internal API endpoints.",
+            "visual_evidence": "Screenshots show the agent clicking on profile/settings icons to reach the destination."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the live wger instance at localhost.",
+            "visual_evidence": "The browser address bar shows http://localhost or the local IP throughout the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The wger fitness manager stores weight unit preferences under the user's 'Settings' or 'Preferences' menu. The default unit is typically 'kg'. The task is complete only when the setting is saved and reflects 'lb' (pounds)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "hbb_kalign_multiformat_export@1",
+    "task_completion": [
+        {
+            "id": "open_fasta_file",
+            "description": "Open the hemoglobin_beta_multispecies.fasta file in UGENE showing 8 sequences.",
+            "points": 10,
+            "visual_evidence": "UGENE interface showing the 'hemoglobin_beta_multispecies.fasta' file loaded in the project view or sequence viewer with 8 distinct sequence names (Human, Mouse, etc.)."
+        },
+        {
+            "id": "kalign_algorithm_selection",
+            "description": "Select and run the Kalign alignment algorithm specifically.",
+            "points": 15,
+            "visual_evidence": "The 'Align with Kalign' dialog box open or the Kalign progress bar visible. The VLM should ensure it is not ClustalW or MUSCLE."
+        },
+        {
+            "id": "export_fasta_format",
+            "description": "Export the alignment as hbb_kalign.fasta in the results directory.",
+            "points": 15,
+            "visual_evidence": "The 'Export as Alignment' or 'Save as' dialog showing the filename 'hbb_kalign.fasta' and the destination path '~/UGENE_Data/results/'."
+        },
+        {
+            "id": "export_phylip_clustal_formats",
+            "description": "Export the alignment in PHYLIP (.phy) and ClustalW (.aln) formats.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the export process or the file explorer confirming 'hbb_kalign.phy' and 'hbb_kalign.aln' exist in the results folder."
+        },
+        {
+            "id": "identity_statistics_calculation",
+            "description": "Access the statistics or distance matrix tool to find pairwise identity for the Human sequence.",
+            "points": 20,
+            "visual_evidence": "The UGENE 'Statistics' tab or 'Distance Matrix' window open, showing a table of percentage identities between the Human sequence (P68871) and others."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the identity_report.txt with the required content (8 sequences, alignment length, and 7 pairwise identities).",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing 'identity_report.txt' with the specific text content: '8 sequences', an alignment length (approx 145-150), and the list of 7 identity values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the UGENE GUI rather than command-line tools to perform the alignment.",
+            "visual_evidence": "Screenshots should show mouse cursor movements, menu selections, and UGENE dialog boxes rather than a terminal window running 'kalign' or 'cp' commands."
+        },
+        {
+            "id": "genuine_alignment_process",
+            "description": "The alignment was actually computed within the software.",
+            "visual_evidence": "The sequence viewer should change from unaligned (staggered) to aligned (blocks of conserved residues) after the Kalign process completes."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The report was generated based on the current session's data.",
+            "visual_evidence": "The agent is seen copying or reading values from the UGENE statistics window before typing them into the text report."
+        }
+    ],
+    "privileged_info_for_vlm": "The Kalign alignment for these 8 sequences typically results in an alignment length of 147 or 148 columns. The Human sequence ID is P68871. The results directory is ~/UGENE_Data/results/. The agent must use the Kalign plugin within UGENE, not the standalone CLI version."
+}

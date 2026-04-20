@@ -1,0 +1,53 @@
+{
+    "task_id": "leaf_skeleton_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_leaf_sample",
+            "description": "Open the 'Leaf' sample image in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "The Fiji/ImageJ application window is visible showing an image of a green leaf (File > Open Samples > Leaf)."
+        },
+        {
+            "id": "image_binarization",
+            "description": "Convert the image to a binary (black and white) format suitable for skeletonization.",
+            "points": 15,
+            "visual_evidence": "The leaf image appears as a high-contrast black and white mask (often via Process > Binary > Make Binary or Thresholding)."
+        },
+        {
+            "id": "skeletonize_image",
+            "description": "Apply the skeletonization process to the binary image.",
+            "points": 20,
+            "visual_evidence": "The leaf veins are reduced to 1-pixel wide white lines on a black background (Process > Binary > Skeletonize)."
+        },
+        {
+            "id": "analyze_skeleton",
+            "description": "Perform the 'Analyze Skeleton' command to extract branch and junction data.",
+            "points": 25,
+            "visual_evidence": "The 'Analyze Skeleton' dialog box is used, and a 'Results' or 'Branch information' table appears containing columns like '# Branches' and '# Junctions'."
+        },
+        {
+            "id": "export_results_csv",
+            "description": "Export the analysis results to the specified CSV file path.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' dialog or file explorer shows the results being saved to '~/ImageJ_Data/results/skeleton_analysis.csv' with the required columns."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji/ImageJ GUI rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus (File, Process, Analyze) and dialog windows."
+        },
+        {
+            "id": "genuine_data_generation",
+            "description": "The results in the CSV are derived from the image analysis, not manually typed.",
+            "visual_evidence": "The values in the final CSV or results table match the complexity of the skeletonized image (should have >20 branches and >5 junctions)."
+        },
+        {
+            "id": "correct_sample_usage",
+            "description": "The agent used the specific 'Leaf' sample image as required.",
+            "visual_evidence": "The image window title or the 'Open Samples' menu selection confirms the 'Leaf' image was used."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Leaf' sample is a standard Fiji image. A successful skeletonization of this specific image should yield significantly more than 20 branches and 5 junctions (typically >1000 branches and >700 junctions). The final output must be a CSV file located at /home/ga/ImageJ_Data/results/skeleton_analysis.csv containing columns for '# Branches', '# Junctions', and 'Average Branch Length'."
+}

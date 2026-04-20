@@ -1,0 +1,65 @@
+{
+    "task_id": "crime_scene_sketch@1",
+    "task_completion": [
+        {
+            "id": "open_floorplan",
+            "description": "Open the floorplan.dxf file in LibreCAD.",
+            "points": 10,
+            "visual_evidence": "LibreCAD interface showing the 'floorplan.dxf' file loaded with an existing garage layout."
+        },
+        {
+            "id": "create_layers",
+            "description": "Create 'EVIDENCE' (Red) and 'MEASUREMENTS' (Blue) layers.",
+            "points": 15,
+            "visual_evidence": "Layer list/widget showing 'EVIDENCE' with a red color icon and 'MEASUREMENTS' with a blue color icon."
+        },
+        {
+            "id": "draw_e1_circle",
+            "description": "Draw a circle for Item 1 at (4500, 2500) with radius 50 on the EVIDENCE layer.",
+            "points": 15,
+            "visual_evidence": "A small red circle visible in the drawing area; coordinate display or command history showing center (4500, 2500) and radius 50."
+        },
+        {
+            "id": "draw_e2_line",
+            "description": "Draw a line for Item 2 from (5000, 3000) to (5600, 3200) on the EVIDENCE layer.",
+            "points": 15,
+            "visual_evidence": "A red line segment appearing in the drawing area; coordinate display or command history confirming the start and end points."
+        },
+        {
+            "id": "label_items",
+            "description": "Label items with text 'E1' and 'E2' (height 100) on the EVIDENCE layer.",
+            "points": 15,
+            "visual_evidence": "Red text 'E1' near the circle and 'E2' near the line; text properties showing height 100."
+        },
+        {
+            "id": "draw_triangulation",
+            "description": "Draw blue triangulation lines from (4500, 2500) to (0, 0) and (6000, 0) on the MEASUREMENTS layer.",
+            "points": 20,
+            "visual_evidence": "Two blue lines originating from the center of the red circle and extending to the specified reference points."
+        },
+        {
+            "id": "save_file",
+            "description": "Save the drawing as 'crime_scene.dxf'.",
+            "points": 10,
+            "visual_evidence": "Save dialog or title bar showing the file path '/home/ga/Documents/LibreCAD/crime_scene.dxf'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI tools rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with LibreCAD toolbars, layer menus, and drawing canvas."
+        },
+        {
+            "id": "genuine_drawing",
+            "description": "The agent manually entered coordinates or used snaps rather than script-injecting the DXF content.",
+            "visual_evidence": "Command line history within LibreCAD showing manual entry of coordinates like 4500,2500."
+        },
+        {
+            "id": "correct_color_codes",
+            "description": "The agent used Blue (ACI 5) for measurements, not Cyan (ACI 4).",
+            "visual_evidence": "Layer settings dialog showing the color for 'MEASUREMENTS' is specifically Blue."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific DXF ACI colors: Red is ACI 1 and Blue is ACI 5 (note: Cyan is ACI 4 and is incorrect). The center of Evidence 1 is (4500, 2500). The triangulation lines must start exactly at this center point and terminate at (0,0) and (6000,0). The output filename must be 'crime_scene.dxf' in the specified directory."
+}

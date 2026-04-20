@@ -1,0 +1,53 @@
+{
+    "task_id": "quantify_wind_bat_curtailment@1",
+    "task_completion": [
+        {
+            "id": "import_pysam_and_dataset",
+            "description": "Agent imports PySAM and loads the Wyoming wind resource dataset from the specified path.",
+            "points": 10,
+            "visual_evidence": "Code in a terminal or IDE showing 'import nrel.pysam' (or similar) and the file path '/opt/SAM/2023.12.15/wind_resource/wyoming_wind_resource_dataset.csv' being referenced."
+        },
+        {
+            "id": "configure_wind_single_owner",
+            "description": "Agent initializes the 'Wind Power' and 'Single Owner' configuration in PySAM.",
+            "points": 15,
+            "visual_evidence": "Python code showing the creation of a SAM model using 'WindPower' and 'SingleOwner' modules."
+        },
+        {
+            "id": "implement_curtailment_logic",
+            "description": "Agent implements the specific curtailment rule: Aug-Oct, hours 20:00-05:00, wind speed < 6.0 m/s.",
+            "points": 30,
+            "visual_evidence": "Code showing a loop or conditional logic checking for months 8, 9, 10; hours >= 20 or <= 5; and wind speed < 6.0."
+        },
+        {
+            "id": "calculate_energy_metrics",
+            "description": "Agent calculates baseline energy, curtailed energy, the penalty (difference), and the count of curtailed hours.",
+            "points": 25,
+            "visual_evidence": "Code performing summations of hourly generation and counting the instances where the curtailment rule was triggered."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the results to the specified JSON file path with the required keys.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the creation of '/home/ga/Documents/SAM_Projects/bat_curtailment_analysis.json' containing the keys: baseline_energy_kwh, curtailed_energy_kwh, energy_penalty_kwh, and curtailed_hours_count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final energy values without running a simulation or calculation script.",
+            "visual_evidence": "The agent should be seen writing and executing a Python script that processes the dataset, rather than just writing a JSON file with pre-determined numbers."
+        },
+        {
+            "id": "genuine_dataset_access",
+            "description": "Agent actually accesses the provided CSV file rather than using dummy data.",
+            "visual_evidence": "Terminal or code logs showing the successful loading or reading of the file at /opt/SAM/2023.12.15/wind_resource/wyoming_wind_resource_dataset.csv."
+        },
+        {
+            "id": "proper_pysam_usage",
+            "description": "Agent uses the PySAM library to model the wind farm as requested, not a simplified linear estimation.",
+            "visual_evidence": "Presence of PySAM-specific function calls (e.g., .execute(), .WindPower.default()) in the code screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific logic: Curtailment occurs ONLY in months 8, 9, and 10. The time window is 20:00 to 05:00 inclusive (meaning 20, 21, 22, 23, 0, 1, 2, 3, 4, 5). The wind speed threshold is strictly less than 6.0 m/s. The output must be a JSON file at /home/ga/Documents/SAM_Projects/bat_curtailment_analysis.json with the four specific keys: baseline_energy_kwh, curtailed_energy_kwh, energy_penalty_kwh, and curtailed_hours_count."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "spatial_join_points_to_polygons@1",
+    "task_completion": [
+        {
+            "id": "load_layers",
+            "description": "Load both sample_points.geojson and sample_polygon.geojson into the QGIS Layers panel.",
+            "points": 10,
+            "visual_evidence": "The Layers panel shows 'sample_points' and 'sample_polygon' (or similar names) as active layers in the map project."
+        },
+        {
+            "id": "open_spatial_join_tool",
+            "description": "Open the 'Join Attributes by Location' (Spatial Join) processing tool.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Join Attributes by Location' or 'Spatial Join' is visible on the screen."
+        },
+        {
+            "id": "configure_join_parameters",
+            "description": "Configure the tool with points as the base layer, polygons as the join layer, and select 'name' and 'area_sqkm' as the fields to add.",
+            "points": 25,
+            "visual_evidence": "In the tool dialog, 'sample_points' is selected as the Input Layer, 'sample_polygon' as the Join Layer, and the 'Fields to add' section lists 'name' and 'area_sqkm'."
+        },
+        {
+            "id": "execute_join",
+            "description": "Run the spatial join process to create a temporary or permanent joined layer.",
+            "points": 20,
+            "visual_evidence": "A progress bar completes, or a new layer (often named 'Joined layer') appears in the Layers panel."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "Open the attribute table of the joined layer to verify the presence of polygon data for the points.",
+            "points": 15,
+            "visual_evidence": "An attribute table window is open showing columns for 'name' (e.g., Area A) and 'area_sqkm' (e.g., 10.5) alongside the point data."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the final result to the specific path /home/ga/GIS_Data/exports/points_with_polygon_info.geojson.",
+            "points": 15,
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog shows the file format as GeoJSON and the file path set to /home/ga/GIS_Data/exports/points_with_polygon_info.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the QGIS GUI to perform the spatial join rather than just running a python script or terminal command.",
+            "visual_evidence": "Screenshots show interaction with QGIS menus, processing toolboxes, and dialog windows."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent did not manually type the attribute values into a new file.",
+            "visual_evidence": "The agent is seen using the 'Join Attributes by Location' tool rather than manually editing attribute table cells."
+        },
+        {
+            "id": "actual_file_interaction",
+            "description": "The agent interacted with the files located in /home/ga/GIS_Data/.",
+            "visual_evidence": "The file browser or layer addition dialog shows the agent navigating to the /home/ga/GIS_Data/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The source point layer has 3 features (Point A, B, C). Point A and Point B should map to 'Area A' (area_sqkm: 10.5). The final GeoJSON must be saved at /home/ga/GIS_Data/exports/points_with_polygon_info.geojson and must contain the 'name' and 'area_sqkm' fields from the polygon layer."
+}

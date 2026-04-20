@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_gcr_land_cost_tradeoff@1",
+    "task_completion": [
+        {
+            "id": "pysam_initialization",
+            "description": "Agent initializes a PySAM model (e.g., Pvwattsv8) and loads the Phoenix weather file.",
+            "points": 10,
+            "visual_evidence": "Code in an IDE or terminal showing 'PySAM' imports and the path '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "system_parameter_config",
+            "description": "Agent configures the system parameters: 50,000 kW capacity, 1-axis tracking (array_type 2), and 1.2 DC-to-AC ratio.",
+            "points": 15,
+            "visual_evidence": "Code snippets showing system_capacity=50000, array_type=2, and dc_ac_ratio=1.2."
+        },
+        {
+            "id": "gcr_iteration_loop",
+            "description": "Agent implements a loop or sequence to run simulations for GCR values 0.3, 0.4, 0.5, 0.6, and 0.7.",
+            "points": 20,
+            "visual_evidence": "Code showing a list or loop containing [0.3, 0.4, 0.5, 0.6, 0.7] being assigned to the GCR parameter."
+        },
+        {
+            "id": "lcoe_calculation_logic",
+            "description": "Agent implements the custom LCOE formula incorporating land cost ($60k/acre) and O&M ($750k).",
+            "points": 25,
+            "visual_evidence": "Code showing the calculation: Total Cost = 50M + (Land Area * 60000) and LCOE = (Annualized Cost / energy) * 100."
+        },
+        {
+            "id": "json_export_creation",
+            "description": "Agent saves the results to the specified JSON file path with all required fields.",
+            "points": 30,
+            "visual_evidence": "Terminal command or code execution showing the creation of '/home/ga/Documents/SAM_Projects/gcr_optimization.json' containing the results array."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_execution",
+            "description": "The agent actually runs the PySAM simulation rather than hardcoding energy values.",
+            "visual_evidence": "Terminal output or IDE console showing the execution of a Python script that calls .execute() on a SAM model."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "The agent does not simply write the final JSON without showing the calculation/simulation steps.",
+            "visual_evidence": "The trajectory shows the development of the script and the iterative calculation process, not just a single 'echo' command to a JSON file."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent uses the specific file paths provided in the instructions.",
+            "visual_evidence": "Screenshots show the exact paths /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv and /home/ga/Documents/SAM_Projects/gcr_optimization.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use PySAM to simulate five GCRs: 0.3, 0.4, 0.5, 0.6, and 0.7. Key constants: Module Area = 333,333.33 m²; Land Area (acres) = (Module Area / GCR) / 4046.86; Land Cost = $60,000/acre; Total Capital Cost = $50,000,000 + Land Cost; Annualized Cost = (Total Capital Cost * 0.08) + $750,000. The final JSON must be at /home/ga/Documents/SAM_Projects/gcr_optimization.json and include 'Phoenix, AZ', the optimal GCR (the one with the lowest calculated LCOE), and the full results array."
+}

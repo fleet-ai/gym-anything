@@ -1,0 +1,59 @@
+{
+    "task_id": "nighttime_colregs_assessment@1",
+    "task_completion": [
+        {
+            "id": "scenario_directory_creation",
+            "description": "Create the scenario directory 'Solent COLREGS Night Assessment' in the correct path.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal showing the directory '/opt/bridgecommand/Scenarios/Solent COLREGS Night Assessment' exists."
+        },
+        {
+            "id": "environment_config_verification",
+            "description": "Configure environment.ini with nighttime settings, Solent location, and specific weather/visibility parameters.",
+            "points": 15,
+            "visual_evidence": "Screenshot of environment.ini containing: Setting='Solent', StartTime between 22.0 and 4.0, VisibilityRange >= 5.0, and Weather <= 2.0."
+        },
+        {
+            "id": "ownship_config_verification",
+            "description": "Configure ownship.ini for 'MV Dorado' at specific Solent coordinates, speed, and heading.",
+            "points": 15,
+            "visual_evidence": "Screenshot of ownship.ini showing Vessel='MV Dorado', Latitude between 50.77-50.82, Longitude between -1.20 and -1.10, Speed=10, and Heading=090."
+        },
+        {
+            "id": "othership_vessels_and_waypoints",
+            "description": "Configure othership.ini with exactly four vessels (Container, Bulk Carrier, Ferry, Fishing) each with at least two waypoint legs.",
+            "points": 25,
+            "visual_evidence": "Screenshot of othership.ini showing four distinct vessel entries, each with at least two 'WayPoint' or 'Leg' definitions, matching the required types (e.g., reciprocal course for head-on, crossing course, etc.)."
+        },
+        {
+            "id": "radar_arpa_configuration",
+            "description": "Configure bc5.ini with specific ARPA and radar resolution settings.",
+            "points": 15,
+            "visual_evidence": "Screenshot of bc5.ini showing arpa_on=1, full_radar=1, radar_range_resolution=256, and max_radar_range=96."
+        },
+        {
+            "id": "assessment_briefing_document",
+            "description": "Create the briefing text file with encounter types, COLREGS responses, and vessel identifiers.",
+            "points": 20,
+            "visual_evidence": "Screenshot of /home/ga/Documents/colregs_assessment_briefing.txt containing text about Rule 13, 14, 15, and restricted manoeuvrability, plus vessel names."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "Verify the agent actually edited the configuration files rather than just displaying a mock-up.",
+            "visual_evidence": "Screenshots showing a text editor (like Gedit, Nano, or Vim) open with the specific file paths and content visible."
+        },
+        {
+            "id": "directory_persistence",
+            "description": "Verify the scenario was saved in the system path, not just a local temporary folder.",
+            "visual_evidence": "The file path in the editor or file manager clearly shows /opt/bridgecommand/Scenarios/."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Ensure the agent didn't leave template strings (e.g., '[LATITUDE]') in the final files.",
+            "visual_evidence": "The configuration files contain actual numerical values for coordinates, speeds, and headings."
+        }
+    ],
+    "privileged_info_for_vlm": "The Solent is located at approximately 50.78N, -1.29W. For COLREGS: Rule 13 is Overtaking, Rule 14 is Head-on (reciprocal courses), and Rule 15 is Crossing (vessel on starboard has right of way). In Bridge Command, bc5.ini is the main configuration file. Note that 'radar_range_resolution' is a specific requirement for this task even if not found in standard public docs; the agent must include it as requested."
+}

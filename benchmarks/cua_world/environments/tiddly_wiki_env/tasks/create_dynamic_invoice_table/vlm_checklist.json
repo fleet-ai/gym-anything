@@ -1,0 +1,56 @@
+{
+    "task_id": "create_dynamic_invoice_table@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation_metadata",
+            "description": "Create a tiddler titled 'Invoice Dashboard' with the required tags and description.",
+            "points": 15,
+            "visual_evidence": "A tiddler open in TiddlyWiki with the title 'Invoice Dashboard', tags 'Dashboard' and 'Finance', and the text 'Overview of all client invoices.' visible."
+        },
+        {
+            "id": "table_structure_headers",
+            "description": "The tiddler contains an HTML table with the five specified headers.",
+            "points": 15,
+            "visual_evidence": "A table with headers 'Invoice ID', 'Client', 'Due Date', 'Amount', and 'Status' in that specific order."
+        },
+        {
+            "id": "dynamic_list_implementation",
+            "description": "The table uses the <$list> widget to pull data from tiddlers tagged 'Invoice'.",
+            "points": 25,
+            "visual_evidence": "In the tiddler's edit mode, the code shows <$list filter=\"[tag[Invoice]sortsub:date[due_date]]\"> or similar logic. In view mode, multiple rows of invoice data are visible."
+        },
+        {
+            "id": "field_transclusion_formatting",
+            "description": "Table cells correctly display field values, including the '$' prefix for the amount.",
+            "points": 25,
+            "visual_evidence": "The 'Amount' column shows values starting with a '$' sign (e.g., $4500.00). The 'Invoice ID' column contains clickable links to the individual invoice tiddlers."
+        },
+        {
+            "id": "sorting_verification",
+            "description": "The invoices are sorted by the 'due_date' field in descending order.",
+            "points": 20,
+            "visual_evidence": "The dates in the 'Due Date' column are arranged from the most recent/future date at the top to the oldest date at the bottom."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit the tiddler.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'plus' button, the edit fields, and the 'save' checkmark within the browser."
+        },
+        {
+            "id": "no_hardcoded_rows",
+            "description": "The agent did not manually type out the invoice data into the table.",
+            "points": 0,
+            "visual_evidence": "The edit mode of the tiddler shows TiddlyWiki syntax (widgets/transclusions) rather than static HTML <tr> tags for every single invoice."
+        },
+        {
+            "id": "actual_data_usage",
+            "description": "The table displays real data from the environment's seeded invoices.",
+            "points": 0,
+            "visual_evidence": "The table contains specific client names like 'Altus Health Systems' and 'NovaTech Manufacturing' which exist in the system's database."
+        }
+    ],
+    "privileged_info_for_vlm": "The TiddlyWiki instance is seeded with 15 invoices. Key data points to verify the dynamic table is working: Clients 'Altus Health Systems' and 'NovaTech Manufacturing' should appear. Amounts '4500.00' and '8450.00' should be present. The table must use the <$list> widget filtering for tag 'Invoice' and sorting by 'due_date' descending. The 'Invoice ID' must be a link (usually using <$link> or [[title]] syntax)."
+}

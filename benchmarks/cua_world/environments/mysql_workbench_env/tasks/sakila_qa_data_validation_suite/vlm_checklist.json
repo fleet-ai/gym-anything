@@ -1,0 +1,59 @@
+{
+    "task_id": "sakila_qa_data_validation_suite@1",
+    "task_completion": [
+        {
+            "id": "mysql_workbench_connection",
+            "description": "Connect to MySQL Workbench using the specified credentials.",
+            "points": 10,
+            "visual_evidence": "MySQL Workbench is open and connected to 'localhost' with the 'sakila' schema visible in the Navigator pane."
+        },
+        {
+            "id": "create_results_table",
+            "description": "Create the 'qa_test_results' table with the specified schema.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE TABLE statement for 'qa_test_results' or the table appearing in the schema sidebar with columns: test_id, test_name, test_description, records_found, status, and executed_at."
+        },
+        {
+            "id": "implement_stored_procedure",
+            "description": "Implement the 'sp_run_qa_suite' stored procedure containing the five required data integrity checks.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing the CREATE PROCEDURE 'sp_run_qa_suite' code, including logic for TRUNCATE and the five specific checks (temporal, payment, email, rental duration, replacement cost)."
+        },
+        {
+            "id": "execute_procedure",
+            "description": "Execute the stored procedure to populate the results table.",
+            "points": 15,
+            "visual_evidence": "A 'CALL sp_run_qa_suite();' statement in the editor and a 'Query Completed' message in the Output area."
+        },
+        {
+            "id": "verify_results_content",
+            "description": "Verify the 'qa_test_results' table contains the five test rows with correct status logic.",
+            "points": 15,
+            "visual_evidence": "A result grid showing 5 rows in 'qa_test_results'. Status should be 'FAIL' if records_found > 0 and 'PASS' if 0."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the 'qa_test_results' table to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The MySQL Workbench export wizard or a SELECT INTO OUTFILE command targeting '/home/ga/Documents/exports/qa_test_results.csv', or a file manager showing the file in that directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "Verify the agent used MySQL Workbench GUI rather than just the terminal.",
+            "visual_evidence": "Screenshots show the MySQL Workbench application window, SQL tabs, and result grids."
+        },
+        {
+            "id": "genuine_data_query",
+            "description": "Verify the agent didn't hardcode the 'records_found' values in the procedure.",
+            "visual_evidence": "The stored procedure code should contain SELECT COUNT(*) or similar queries against the rental, payment, customer, film, and film tables."
+        },
+        {
+            "id": "path_integrity",
+            "description": "Verify the export path matches the requirement exactly.",
+            "visual_evidence": "The export dialog or SQL command shows the exact path: /home/ga/Documents/exports/qa_test_results.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected counts for the five checks are: temporal_violation_check (5), negative_payment_check (4), invalid_email_check (3), zero_rental_duration_check (3), and zero_replacement_cost_check (2). All five tests should result in a status of 'FAIL' because records were found for each. The procedure must truncate the table before inserting new results."
+}

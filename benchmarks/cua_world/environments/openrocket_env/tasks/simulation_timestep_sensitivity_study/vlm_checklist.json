@@ -1,0 +1,59 @@
+{
+    "task_id": "simulation_timestep_sensitivity_study@1",
+    "task_completion": [
+        {
+            "id": "open_correct_file",
+            "description": "Open the specified rocket file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket window is visible showing the 'sensitivity_study.ork' file name in the title bar or the rocket design 'three_stage_low_power_rocket' in the component tree."
+        },
+        {
+            "id": "configure_simulations",
+            "description": "Configure three flight simulations with time steps of 0.1s, 0.05s, and 0.01s.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Edit Simulation' dialog for three different simulations where the 'Time step' field is set to 0.1, 0.05, and 0.01 respectively."
+        },
+        {
+            "id": "run_simulations",
+            "description": "Execute the simulations to generate flight data.",
+            "points": 15,
+            "visual_evidence": "The simulation list in OpenRocket shows green checkmarks or 'Finished' status for the simulations corresponding to the three time steps."
+        },
+        {
+            "id": "export_csv_data",
+            "description": "Export the simulation results as CSV files containing Time, Altitude, and Acceleration.",
+            "points": 25,
+            "visual_evidence": "The 'Export data' dialog box is shown with 'Time', 'Altitude', and 'Acceleration' selected in the field list, and the export path directed to '/home/ga/Documents/exports/'."
+        },
+        {
+            "id": "save_modified_design",
+            "description": "Save the modified .ork file with the new simulation configurations.",
+            "points": 10,
+            "visual_evidence": "The agent clicking 'File > Save' or a terminal command/file explorer view showing the updated timestamp for 'sensitivity_study.ork'."
+        },
+        {
+            "id": "generate_sensitivity_report",
+            "description": "Create a sensitivity report at the specified path with max acceleration values.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of '/home/ga/Documents/exports/sensitivity_report.txt' containing the maximum acceleration values for 0.1s, 0.05s, and 0.01s."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to perform simulations and exports rather than just creating dummy files via terminal.",
+            "visual_evidence": "Screenshots show the OpenRocket application window, dialog boxes for simulation settings, and the export wizard."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The report values match the data generated in the GUI.",
+            "visual_evidence": "The acceleration values visible in the OpenRocket 'Plot/Export' or 'Flight Simulations' table match the values written in the final sensitivity_report.txt."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the expected results into a file without opening the software.",
+            "visual_evidence": "Sequential screenshots show the process of opening the file, changing settings, and clicking the 'Run Simulation' buttons."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is 'three_stage_low_power_rocket.ork' renamed to 'sensitivity_study.ork'. The required time steps are exactly 0.1s, 0.05s, and 0.01s. The output directory must be /home/ga/Documents/exports/. The report must be a .txt file containing the maximum acceleration for each of the three steps and a brief evaluation of whether the results change (sensitivity) as the time step gets finer."
+}

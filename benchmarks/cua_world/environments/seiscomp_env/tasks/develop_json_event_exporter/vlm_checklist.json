@@ -1,0 +1,59 @@
+{
+    "task_id": "develop_json_event_exporter@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The Python script 'export_latest_json.py' is created in the ~/Documents directory.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the file path /home/ga/Documents/export_latest_json.py."
+        },
+        {
+            "id": "database_connection_code",
+            "description": "The script contains code to connect to the SeisComP MySQL database using the specified credentials.",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal output showing the string 'mysql://sysop:sysop@localhost/seiscomp' within the script."
+        },
+        {
+            "id": "query_logic",
+            "description": "The script includes logic to query the database for the most recent earthquake event, origin, and magnitude.",
+            "points": 25,
+            "visual_evidence": "Code editor showing SQL queries or ORM calls targeting tables like 'Event', 'Origin', and 'Magnitude'."
+        },
+        {
+            "id": "json_export_implementation",
+            "description": "The script includes logic to export data to 'latest_event.json' following the specified schema.",
+            "points": 20,
+            "visual_evidence": "Code editor showing the construction of a dictionary with keys 'public_id', 'description', 'timestamp', 'location', and 'magnitude', and a json.dump call to 'latest_event.json'."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The file 'latest_event.json' exists in ~/Documents after script execution.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the existence of /home/ga/Documents/latest_event.json."
+        },
+        {
+            "id": "json_content_verification",
+            "description": "The content of 'latest_event.json' matches the required schema and contains valid earthquake data.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command output showing a JSON object with the correct keys and values (e.g., latitude around 37.48, longitude around 137.27)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_data",
+            "description": "The agent did not hardcode the earthquake values directly into the script without querying the database.",
+            "visual_evidence": "The script should contain database connection and query logic, not just a print or write statement with the final values."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent used the IDE or terminal to write and test the script rather than just creating the final JSON file manually.",
+            "visual_evidence": "Screenshots showing the process of writing code in an editor (like VS Code or Mousepad) and executing it in a terminal."
+        },
+        {
+            "id": "correct_source_usage",
+            "description": "The agent used the specified MySQL database as the data source.",
+            "visual_evidence": "The script must reference the localhost MySQL database and not an external API or static XML file."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected earthquake in the database is the Noto earthquake (ID: us6000m0xl). The resulting JSON should have a latitude between 37.1 and 37.7 and a longitude between 136.5 and 137.5. The database connection string must be mysql://sysop:sysop@localhost/seiscomp. The output file must be exactly at /home/ga/Documents/latest_event.json."
+}

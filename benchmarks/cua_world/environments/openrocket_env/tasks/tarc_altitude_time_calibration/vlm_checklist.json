@@ -1,0 +1,59 @@
+{
+    "task_id": "tarc_altitude_time_calibration@1",
+    "task_completion": [
+        {
+            "id": "motor_configuration",
+            "description": "Configure the rocket with a 24mm motor mount and an Estes E12-6 motor.",
+            "points": 15,
+            "visual_evidence": "OpenRocket 'Motors and Configuration' tab showing an Estes E12 motor assigned to a 24mm inner tube."
+        },
+        {
+            "id": "ballast_adjustment",
+            "description": "Add or adjust internal mass components (ballast) to tune the apogee.",
+            "points": 20,
+            "visual_evidence": "OpenRocket component tree showing a 'Mass component' or 'Ballast' item being edited in the configuration dialog."
+        },
+        {
+            "id": "parachute_adjustment",
+            "description": "Adjust the parachute diameter to tune the flight time.",
+            "points": 20,
+            "visual_evidence": "OpenRocket parachute configuration window showing the 'Diameter' field being modified."
+        },
+        {
+            "id": "simulation_results",
+            "description": "Run flight simulations to verify apogee is 244m (±5m) and flight time is 45s (±2s).",
+            "points": 25,
+            "visual_evidence": "OpenRocket 'Flight Simulations' table showing a simulation row with 'Apogee' between 239-249m and 'Flight time' between 43-47s."
+        },
+        {
+            "id": "save_ork_file",
+            "description": "Save the calibrated rocket file to the specified path.",
+            "points": 10,
+            "visual_evidence": "File explorer or OpenRocket 'Save As' dialog showing the path /home/ga/Documents/rockets/tarc_rocket.ork."
+        },
+        {
+            "id": "create_report",
+            "description": "Write the calibration report with final values to the specified text file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command showing /home/ga/Documents/exports/tarc_report.txt containing apogee, flight time, ballast mass, and parachute diameter."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to perform calibrations rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the OpenRocket application window active with mouse cursor interactions on sliders or input fields."
+        },
+        {
+            "id": "no_geometry_cheating",
+            "description": "The agent did not change body tube, nose cone, or fin dimensions to reach targets.",
+            "visual_evidence": "Component edit dialogs for the body tube or fins are either not accessed or show no changes to length/diameter."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The report values match the simulation results shown in the GUI.",
+            "visual_evidence": "The numbers in the final .txt report match the 'Apogee' and 'Flight Time' columns in the OpenRocket simulation UI."
+        }
+    ],
+    "privileged_info_for_vlm": "Target Apogee: 244m (Tolerance: 239-249m). Target Flight Time: 45.0s (Tolerance: 43.0-47.0s). Required Motor: Estes E12-6 in a 24mm mount. Required Files: /home/ga/Documents/rockets/tarc_rocket.ork and /home/ga/Documents/exports/tarc_report.txt. The agent must only use ballast and parachute diameter for tuning."
+}

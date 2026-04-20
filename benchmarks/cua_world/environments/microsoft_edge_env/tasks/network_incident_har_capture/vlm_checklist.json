@@ -1,0 +1,59 @@
+{
+    "task_id": "network_incident_har_capture@1",
+    "task_completion": [
+        {
+            "id": "open_browser_dev_tools",
+            "description": "Open the web browser and the Network tab of Developer Tools to begin recording.",
+            "points": 10,
+            "visual_evidence": "A browser window is open with the 'Network' tab visible in the Developer Tools pane."
+        },
+        {
+            "id": "submit_form_post",
+            "description": "Navigate to and submit the form at https://httpbin.org/forms/post.",
+            "points": 20,
+            "visual_evidence": "The browser shows the httpbin.org/forms/post page, and the Network tab logs a POST request to this URL."
+        },
+        {
+            "id": "trigger_delay_request",
+            "description": "Navigate to https://httpbin.org/delay/3 to capture a slow response.",
+            "points": 20,
+            "visual_evidence": "The browser address bar shows 'httpbin.org/delay/3' and the Network tab shows a request with a significant time duration (approx 3 seconds)."
+        },
+        {
+            "id": "trigger_503_error",
+            "description": "Navigate to https://httpbin.org/status/503 to capture a server error.",
+            "points": 20,
+            "visual_evidence": "The Network tab shows a request to 'httpbin.org/status/503' with a status code of 503 (Service Unavailable) highlighted in red."
+        },
+        {
+            "id": "export_har_file",
+            "description": "Export the captured network activity as a HAR file from the Developer Tools.",
+            "points": 15,
+            "visual_evidence": "The user clicks the 'Export HAR' (down arrow icon) or right-clicks in the Network tab to select 'Save all as HAR with content'."
+        },
+        {
+            "id": "save_to_desktop",
+            "description": "Save the exported file as 'incident_trace.har' to /home/ga/Desktop.",
+            "points": 15,
+            "visual_evidence": "A file save dialog or a file manager view shows 'incident_trace.har' located on the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the browser's GUI and Developer Tools rather than generating a file via script/curl.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser's Network tab and the export menu."
+        },
+        {
+            "id": "genuine_network_activity",
+            "description": "The HAR file must contain actual traffic from the specified URLs, not a dummy file.",
+            "visual_evidence": "The Network tab shows real-time population of requests for 'forms/post', 'delay/3', and 'status/503' with corresponding status codes."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent should not use a text editor to manually create the HAR content.",
+            "visual_evidence": "The agent is seen using the browser's built-in export functionality rather than a text editor like Gedit or VS Code."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires capturing three specific events in one HAR file: a POST request to https://httpbin.org/forms/post, a 3-second delayed response from https://httpbin.org/delay/3, and a 503 error from https://httpbin.org/status/503. The final file must be named 'incident_trace.har' and placed in '/home/ga/Desktop'. Verify that the Network tab is recording throughout all three navigations to ensure a 'combined' trace."
+}

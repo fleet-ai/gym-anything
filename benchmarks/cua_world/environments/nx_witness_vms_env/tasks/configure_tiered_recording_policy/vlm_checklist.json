@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_tiered_recording_policy@1",
+    "task_completion": [
+        {
+            "id": "access_nx_witness",
+            "description": "Access the Nx Witness Web Admin interface or API documentation.",
+            "points": 10,
+            "visual_evidence": "Browser showing the Nx Witness login page or Web Admin dashboard at https://localhost:7001."
+        },
+        {
+            "id": "configure_tier_1_camera",
+            "description": "Configure 'Entrance Camera' with 25 FPS, 4096 kbps, High Quality, and 24/7 recording.",
+            "points": 20,
+            "visual_evidence": "Camera settings or recording schedule screen showing 'Entrance Camera' set to 25 FPS, 4096 kbps, High Quality, and a fully filled (24/7) schedule grid."
+        },
+        {
+            "id": "configure_tier_2_cameras",
+            "description": "Configure 'Parking Lot Camera' and 'Lobby Camera' with 15 FPS, 2048 kbps, Normal Quality, and 24/7 recording.",
+            "points": 20,
+            "visual_evidence": "Camera settings for both cameras showing 15 FPS, 2048 kbps, Normal Quality, and 24/7 recording schedules."
+        },
+        {
+            "id": "configure_tier_3_camera",
+            "description": "Configure 'Server Room Camera' with 10 FPS, 1024 kbps, Low Quality, and 24/7 recording.",
+            "points": 20,
+            "visual_evidence": "Camera settings for 'Server Room Camera' showing 10 FPS, 1024 kbps, Low Quality, and a 24/7 recording schedule."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the compliance report file at /home/ga/recording_policy_report.txt with correct camera details.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the content of /home/ga/recording_policy_report.txt including Name, Tier, FPS, Bitrate, and Quality for all 4 cameras."
+        },
+        {
+            "id": "calculate_storage_estimate",
+            "description": "Calculate and include the Total Daily Storage estimate in GB in the report using the specified formula.",
+            "points": 15,
+            "visual_evidence": "The final line of the report file showing a calculation: (4096+2048+2048+1024) * 86400 / 8 / 1024 / 1024 = ~94.92 GB/day (or similar based on the sum of bitrates)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent interacted with the Nx Witness web interface rather than just simulating file creation.",
+            "visual_evidence": "Screenshots show navigation through the Nx Witness Web Admin menus, dropdowns, and input fields."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report was generated after the configurations were made, not pre-written.",
+            "visual_evidence": "The timestamp of the report creation or the sequence of screenshots shows the report being written after the GUI configuration steps."
+        },
+        {
+            "id": "correct_formula_application",
+            "description": "The storage calculation uses the actual bitrates configured, not placeholder values.",
+            "visual_evidence": "The math in the report matches the sum of the bitrates (9216 kbps total) applied to the provided formula."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires configuring 4 cameras: Entrance (25fps/4096kbps/High), Parking Lot & Lobby (15fps/2048kbps/Normal), and Server Room (10fps/1024kbps/Low). All must be 24/7. The report path is /home/ga/recording_policy_report.txt. The total bitrate for the storage calculation is 9216 kbps (4096 + 2048 + 2048 + 1024). The correct storage calculation is (9216 * 86400) / 8 / 1024 / 1024 = 94.921875 GB/day."
+}

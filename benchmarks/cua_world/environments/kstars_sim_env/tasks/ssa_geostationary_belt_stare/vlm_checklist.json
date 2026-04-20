@@ -1,0 +1,59 @@
+{
+    "task_id": "ssa_geostationary_belt_stare@1",
+    "task_completion": [
+        {
+            "id": "read_tasking_order",
+            "description": "Agent opens and reads the tasking order file at ~/Documents/ssa_tasking_order.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ssa_tasking_order.txt, specifically mentioning RA 21h 15m, Dec -05° 15', and 30s exposures."
+        },
+        {
+            "id": "configure_coordinates",
+            "description": "Agent inputs the correct target coordinates (RA 21:15:00, Dec -05:15:00) into the telescope control software.",
+            "points": 15,
+            "visual_evidence": "The telescope control GUI (e.g., KStars/Ekos or similar) showing the target RA/Dec fields populated with 21h 15m and -05° 15'."
+        },
+        {
+            "id": "disable_sidereal_tracking",
+            "description": "Agent disables sidereal tracking to perform a 'stare' mode observation.",
+            "points": 20,
+            "visual_evidence": "The telescope mount control panel showing 'Tracking: Off' or 'Stare Mode' enabled, or the mount speed set to 0 while the camera is active."
+        },
+        {
+            "id": "configure_camera_settings",
+            "description": "Agent sets the exposure time to 30 seconds and selects the Luminance/Clear filter (Slot 1).",
+            "points": 15,
+            "visual_evidence": "The camera/capture module GUI showing 'Exposure: 30s' and 'Filter: Luminance' or 'Slot 1' selected."
+        },
+        {
+            "id": "capture_sequence",
+            "description": "Agent initiates a sequence of at least 15 exposures.",
+            "points": 20,
+            "visual_evidence": "The capture progress bar or sequence list showing multiple frames (1/15, 2/15, etc.) being acquired."
+        },
+        {
+            "id": "save_ssa_report",
+            "description": "Agent generates and saves the SSA report to ~/Documents/ssa_report.txt.",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal showing the creation of ssa_report.txt in the Documents folder, or a text editor displaying the report content."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI rather than just script-based manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with telescope/camera control software buttons and fields."
+        },
+        {
+            "id": "genuine_capture_process",
+            "description": "The agent waited for the exposures to complete rather than instantly creating a report.",
+            "visual_evidence": "Timestamps in the screenshots show a progression of time consistent with 15 exposures of 30 seconds each (at least 7.5 minutes)."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply 'echo' the final report into existence without performing the observations.",
+            "visual_evidence": "The terminal history or GUI workflow shows the telescope being slewed and the camera being triggered before the report is written."
+        }
+    ],
+    "privileged_info_for_vlm": "The tasking order requires: Target RA 21h 15m 00s (21.25), Target Dec -05° 15' 00\" (-5.25), Filter Slot 1 (Luminance/Clear), Exposure Time 30 seconds, and a minimum of 15 exposures. The 'stare' mode specifically requires sidereal tracking to be OFF so that geostationary satellites appear as dots while stars appear as trails. The final report must be at ~/Documents/ssa_report.txt."
+}

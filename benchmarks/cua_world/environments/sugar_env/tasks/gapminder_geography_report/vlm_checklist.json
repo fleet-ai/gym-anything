@@ -1,0 +1,59 @@
+{
+    "task_id": "gapminder_geography_report@1",
+    "task_completion": [
+        {
+            "id": "open_csv_data",
+            "description": "The agent opens the gapminder.csv file to access the data.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like Gnumeric) or a text editor showing the gapminder.csv file content with columns for country, year, pop, and lifeExp."
+        },
+        {
+            "id": "open_sugar_write",
+            "description": "The agent opens the Sugar Write activity to begin the report.",
+            "points": 10,
+            "visual_evidence": "The Sugar Write interface (word processor) is visible on the screen."
+        },
+        {
+            "id": "data_table_creation",
+            "description": "The report contains a data table with population and life expectancy for Rwanda and Sweden in 1952 and 2007.",
+            "points": 25,
+            "visual_evidence": "A table in the Write activity document containing rows/columns for Rwanda and Sweden across the years 1952 and 2007."
+        },
+        {
+            "id": "accurate_data_entry",
+            "description": "The exact, unrounded population numbers from the dataset are entered into the report.",
+            "points": 25,
+            "visual_evidence": "The document shows Rwanda 1952 pop: 2534927 and Sweden 2007 pop: 9031088."
+        },
+        {
+            "id": "conclusion_calculations",
+            "description": "The report includes a conclusion section with the calculated absolute changes in life expectancy.",
+            "points": 20,
+            "visual_evidence": "Text in the document stating the life expectancy change for Rwanda is 6.242 and for Sweden is 9.024."
+        },
+        {
+            "id": "save_report_file",
+            "description": "The final report is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "The Sugar Write 'Keep' or 'Save As' dialog showing the file path /home/ga/Documents/development_report.odt or the file manager showing the file exists at that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Sugar Write GUI rather than just creating the file via terminal echo/touch.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Sugar Write interface and typing text into the GUI."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The agent actually navigated the CSV to find the values rather than guessing.",
+            "visual_evidence": "Screenshots show the agent scrolling through or filtering the gapminder.csv file to locate the specific rows for Rwanda and Sweden."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not use a single command to generate the entire ODT file content from a pre-known string.",
+            "visual_evidence": "The report is built incrementally in the Write activity, or the agent is seen performing the subtraction calculations."
+        }
+    ],
+    "privileged_info_for_vlm": "Ground truth data from gapminder.csv: Rwanda 1952: pop=2534927, lifeExp=40.0. Rwanda 2007: lifeExp=46.242 (Change=6.242). Sweden 1952: lifeExp=71.86. Sweden 2007: pop=9031088, lifeExp=80.884 (Change=9.024). The final file must be an .odt file at /home/ga/Documents/development_report.odt."
+}

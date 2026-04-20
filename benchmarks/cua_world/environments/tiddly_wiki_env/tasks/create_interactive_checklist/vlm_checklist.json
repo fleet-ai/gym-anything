@@ -1,0 +1,53 @@
+{
+    "task_id": "create_interactive_checklist@1",
+    "task_completion": [
+        {
+            "id": "create_onboarding_tiddler",
+            "description": "A tiddler titled 'Jane Doe Onboarding' exists and is tagged 'Onboarding'.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a tiddler open with the title 'Jane Doe Onboarding' and the tag 'Onboarding' visible in the tag area."
+        },
+        {
+            "id": "checklist_ui_implementation",
+            "description": "The 'Jane Doe Onboarding' tiddler contains a UI with checkboxes or buttons for the four specified tasks.",
+            "points": 30,
+            "visual_evidence": "The tiddler body should display interactive elements (like checkboxes) next to the text for 'Task: Order Laptop', 'Task: Create Email Account', 'Task: Building Access Badge', and 'Task: Benefits Enrollment'."
+        },
+        {
+            "id": "toggle_functionality_logic",
+            "description": "The UI is configured to toggle the 'status' field of the task tiddlers between 'complete' and 'pending'.",
+            "points": 30,
+            "visual_evidence": "The VLM should look for TiddlyWiki code (like <$checkbox>) in the edit mode of the tiddler that references the 'status' field and the values 'complete'/'pending'."
+        },
+        {
+            "id": "mark_laptop_complete",
+            "description": "The 'Task: Order Laptop' item is marked as complete using the interactive UI.",
+            "points": 15,
+            "visual_evidence": "In the 'Jane Doe Onboarding' tiddler, the checkbox or status indicator for 'Task: Order Laptop' is checked/marked as complete."
+        },
+        {
+            "id": "mark_email_complete",
+            "description": "The 'Task: Create Email Account' item is marked as complete using the interactive UI.",
+            "points": 15,
+            "visual_evidence": "In the 'Jane Doe Onboarding' tiddler, the checkbox or status indicator for 'Task: Create Email Account' is checked/marked as complete."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_field_edit",
+            "description": "The agent did not manually edit the 'status' field in the individual task tiddlers' edit mode.",
+            "visual_evidence": "The trajectory should show the agent interacting with the 'Jane Doe Onboarding' UI to change statuses, not opening the 'Task: Order Laptop' tiddler and typing 'complete' into a field."
+        },
+        {
+            "id": "genuine_ui_interaction",
+            "description": "The agent interacted with the TiddlyWiki interface rather than just using terminal commands to modify the underlying files.",
+            "visual_evidence": "Screenshots should show the mouse cursor or focus indicators interacting with the TiddlyWiki browser UI."
+        },
+        {
+            "id": "correct_task_titles",
+            "description": "The agent used the exact task titles provided in the prompt.",
+            "visual_evidence": "The UI must display the exact strings: 'Task: Order Laptop', 'Task: Create Email Account', 'Task: Building Access Badge', and 'Task: Benefits Enrollment'."
+        }
+    ],
+    "privileged_info_for_vlm": "The main tiddler must be titled 'Jane Doe Onboarding' and tagged 'Onboarding'. The four task tiddlers it controls are: 'Task: Order Laptop', 'Task: Create Email Account', 'Task: Building Access Badge', and 'Task: Benefits Enrollment'. The UI must specifically toggle a field named 'status' between the values 'complete' and 'pending'. At the end of the task, 'Order Laptop' and 'Create Email Account' must be set to 'complete' (checked), while the others remain 'pending' (unchecked)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "recist_tumor_measurement@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis medical viewer application is open and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is active, showing the DICOM viewer interface."
+        },
+        {
+            "id": "dicom_loaded",
+            "description": "The CT scan (0002.DCM) is loaded into the viewer.",
+            "points": 15,
+            "visual_evidence": "A medical image (CT/X-ray) is displayed in the central viewport of Weasis."
+        },
+        {
+            "id": "long_axis_measured",
+            "description": "A measurement line representing the long axis of a structure has been drawn.",
+            "points": 20,
+            "visual_evidence": "A linear measurement tool is visible on the image with a numeric value and unit (e.g., mm)."
+        },
+        {
+            "id": "short_axis_measured",
+            "description": "A second measurement line representing the perpendicular short axis has been drawn.",
+            "points": 25,
+            "visual_evidence": "Two intersecting measurement lines are visible on the same anatomical structure, forming a cross-hair pattern."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "The agent exports or saves the viewer screenshot to the specified path.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with a 'Save' or 'Export' dialog, or a terminal command confirms the creation of recist_annotation.png."
+        },
+        {
+            "id": "report_created",
+            "description": "A text report is created with the specific RECIST format and values.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows a file named recist_report.txt containing 'Long Axis:' and 'Short Axis:' with numeric values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI tools to perform measurements rather than just writing a text file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the measurement tool icons in the Weasis toolbar."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report match the values visible on the Weasis screen.",
+            "visual_evidence": "The numeric values in the final recist_report.txt correspond to the labels visible on the measurement lines in the Weasis viewer."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply move a pre-existing screenshot or report into the export folder.",
+            "visual_evidence": "The trajectory shows the active process of drawing lines in the GUI and typing/saving the report."
+        }
+    ],
+    "privileged_info_for_vlm": "The target image is 0002.DCM. The agent must produce two files: a screenshot at ~/DICOM/exports/recist_annotation.png showing intersecting measurement lines, and a text file at ~/DICOM/exports/recist_report.txt. The report must strictly follow the format: 'Long Axis: <value>\\nShort Axis: <value>'. The values in the text file must match the visual labels on the screenshot."
+}

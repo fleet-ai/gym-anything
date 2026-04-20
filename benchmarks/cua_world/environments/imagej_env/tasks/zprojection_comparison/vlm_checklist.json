@@ -1,0 +1,53 @@
+{
+    "task_id": "zprojection_comparison@1",
+    "task_completion": [
+        {
+            "id": "open_mri_stack",
+            "description": "Open the 'MRI Stack' sample image in ImageJ/Fiji.",
+            "points": 10,
+            "visual_evidence": "A window titled 'mri-stack.tif' or 'MRI Stack' showing a grayscale brain scan with a slider at the bottom indicating multiple slices (1/27)."
+        },
+        {
+            "id": "generate_projections",
+            "description": "Generate the five required Z-projections: Max, Average, Min, Sum, and Standard Deviation.",
+            "points": 25,
+            "visual_evidence": "Multiple image windows or a sequence of operations in the 'Z Project' dialog showing the selection of 'Max Intensity', 'Average Intensity', 'Min Intensity', 'Sum Slices', and 'Standard Deviation'."
+        },
+        {
+            "id": "measure_statistics",
+            "description": "Measure Mean, StdDev, Min, and Max for each of the five projections.",
+            "points": 25,
+            "visual_evidence": "The 'Results' table window in ImageJ populated with at least 5 rows of data, containing columns for Mean, StdDev, Min, and Max."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the compiled statistics to '~/ImageJ_Data/results/zprojection_comparison.csv'.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or a 'Save As' dialog showing the path '~/ImageJ_Data/results/zprojection_comparison.csv' being targeted or confirmed."
+        },
+        {
+            "id": "save_tiff_projection",
+            "description": "Save the 'Standard Deviation' projection image as a TIFF file to the specified directory.",
+            "points": 20,
+            "visual_evidence": "The 'Standard Deviation' image window active followed by a 'Save As' dialog targeting '~/ImageJ_Data/results/stddev_projection.tif'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI menus rather than just writing a script or using terminal commands.",
+            "visual_evidence": "Screenshots showing the 'Image > Stacks > Z Project' menu path or the Z-Projection dialog box."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent actually performed the 'Measure' command on the projection images.",
+            "visual_evidence": "The 'Results' window appearing and updating after each projection is generated, rather than a pre-written CSV being moved."
+        },
+        {
+            "id": "correct_stack_dimensions",
+            "description": "The agent is working with the correct MRI Stack dimensions.",
+            "visual_evidence": "The image info bar at the top of the MRI Stack window should show dimensions of 186x226 and 27 slices."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'MRI Stack' sample image has a width of 186 pixels, a height of 226 pixels, and contains 27 slices. The Z-projection tool is found under 'Image > Stacks > Z Project'. The CSV must contain exactly 5 rows of data corresponding to the 5 projection types (Max, Average, Min, Sum, StdDev) with the four requested statistical columns."
+}

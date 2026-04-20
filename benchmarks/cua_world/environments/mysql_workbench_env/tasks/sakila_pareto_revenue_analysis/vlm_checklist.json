@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_pareto_revenue_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the local MySQL server and access the sakila database.",
+            "points": 10,
+            "visual_evidence": "A database client (like MySQL Workbench, DBeaver, or terminal) showing a connection to 'localhost' and the 'sakila' database being active."
+        },
+        {
+            "id": "create_v_customer_ltv",
+            "description": "Create the 'v_customer_ltv' view with customer details and total revenue ordered descending.",
+            "points": 20,
+            "visual_evidence": "SQL code execution or the view appearing in the database navigator showing columns: customer_id, first_name, last_name, and total_revenue."
+        },
+        {
+            "id": "create_v_pareto_revenue",
+            "description": "Create the 'v_pareto_revenue' view using window functions for running totals and cumulative percentage.",
+            "points": 30,
+            "visual_evidence": "SQL code containing 'SUM(...) OVER' or 'running_total' and 'cumulative_pct' calculations, and the successful creation of the view."
+        },
+        {
+            "id": "filter_pareto_80",
+            "description": "Query the data to filter for customers where cumulative_pct is 80.00 or less.",
+            "points": 20,
+            "visual_evidence": "A SELECT statement with a WHERE clause 'cumulative_pct <= 80' or similar, and a results grid showing values up to 80.00."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the filtered results to /home/ga/Documents/exports/vip_whales.csv with headers.",
+            "points": 20,
+            "visual_evidence": "An export dialog, a terminal command (like SELECT ... INTO OUTFILE), or a file manager showing the file 'vip_whales.csv' in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the actual MySQL database rather than just creating a mock file.",
+            "visual_evidence": "Screenshots showing SQL execution logs, database schemas, or result sets within a database tool."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent calculated the Pareto values using SQL window functions rather than hardcoding specific customer IDs.",
+            "visual_evidence": "The SQL query text showing window functions like SUM() OVER (ORDER BY ...) and mathematical expressions for percentage."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific file path requested in the instructions.",
+            "visual_evidence": "The file path '/home/ga/Documents/exports/vip_whales.csv' visible in the export settings or command line."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sakila database does not follow a strict 80/20 distribution. To reach 80% of total revenue, the agent should identify exactly 437 customers. The view 'v_pareto_revenue' must include the specific columns: customer_id, first_name, last_name, total_revenue, running_total, and cumulative_pct. The export must be sorted by total_revenue descending."
+}

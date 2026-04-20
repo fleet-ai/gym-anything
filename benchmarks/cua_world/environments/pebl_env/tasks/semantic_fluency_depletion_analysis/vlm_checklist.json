@@ -1,0 +1,59 @@
+{
+    "task_id": "semantic_fluency_depletion_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw CSV data at ~/pebl/data/semantic_fluency_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the content of semantic_fluency_data.csv with columns: participant, category, word_typed, rt_ms."
+        },
+        {
+            "id": "data_cleaning_logic",
+            "description": "Agent implements data cleaning (lowercase, stripping, removing duplicates, and filtering empty strings)",
+            "points": 15,
+            "visual_evidence": "Code in a script (Python, R, etc.) or terminal commands showing string manipulation and duplicate removal logic based on the first chronological instance."
+        },
+        {
+            "id": "quartile_binning",
+            "description": "Agent bins words into 15-second quartiles (0-15s, 15-30s, 30-45s, 45-60s)",
+            "points": 20,
+            "visual_evidence": "Code or output showing logic for binning rt_ms into four 15000ms intervals."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participant sub-99 from group means",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing a filter for 'sub-99' or a conditional check for the 3000ms robotic timing pattern."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the JSON report with the required structure (participants list and group_means)",
+            "points": 20,
+            "visual_evidence": "A file preview or terminal 'cat' command showing the structure of ~/pebl/analysis/fluency_report.json."
+        },
+        {
+            "id": "group_means_calculation",
+            "description": "Agent calculates group means for total words and each quartile across valid participants",
+            "points": 20,
+            "visual_evidence": "The 'group_means' section of the JSON file containing numerical averages for total_valid_words, Q1, Q2, Q3, and Q4."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final group means without processing the CSV",
+            "visual_evidence": "The agent should be seen executing code or commands that read the CSV file rather than just writing a JSON file with pre-determined numbers."
+        },
+        {
+            "id": "genuine_exclusion_reason",
+            "description": "Agent correctly identifies the reason for sub-99 exclusion in the JSON",
+            "visual_evidence": "The JSON report for sub-99 should contain a 'reason' field related to the robotic/fixed timing (3000ms intervals)."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Agent uses the specific file paths requested in the task description",
+            "visual_evidence": "Screenshots show the agent working with ~/pebl/data/semantic_fluency_data.csv and saving to ~/pebl/analysis/fluency_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "Participant 'sub-99' is a contaminated entry that must be excluded from group averages because its words are spaced at exactly 3000ms intervals (zero variance). The final output must be a JSON file at /home/ga/pebl/analysis/fluency_report.json. Valid words must be lowercase, unique per participant (first occurrence only), and binned into 15000ms increments."
+}

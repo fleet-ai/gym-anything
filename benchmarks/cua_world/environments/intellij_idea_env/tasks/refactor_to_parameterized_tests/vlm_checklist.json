@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_to_parameterized_tests@1",
+    "task_completion": [
+        {
+            "id": "open_test_file",
+            "description": "Open the PasswordValidatorTest.java file in the IDE editor.",
+            "points": 10,
+            "visual_evidence": "The file 'PasswordValidatorTest.java' is visible in an editor tab within the IDE (IntelliJ IDEA)."
+        },
+        {
+            "id": "add_parameterized_test_annotation",
+            "description": "Implement a method annotated with @ParameterizedTest and a data source like @CsvSource.",
+            "points": 20,
+            "visual_evidence": "The code shows '@ParameterizedTest' and '@CsvSource' (or similar JUnit 5 source annotation) above a new test method."
+        },
+        {
+            "id": "include_eight_test_cases",
+            "description": "The parameterized test source contains all eight original test scenarios.",
+            "points": 25,
+            "visual_evidence": "The data source (e.g., @CsvSource) contains 8 distinct rows or entries corresponding to the original test cases (valid, short, no digit, no uppercase, whitespace, empty, null, long)."
+        },
+        {
+            "id": "remove_redundant_methods",
+            "description": "The eight original individual @Test methods are deleted from the class.",
+            "points": 20,
+            "visual_evidence": "The editor shows that the original methods (e.g., testValidPassword, testTooShort, etc.) are no longer present in the file structure or source code."
+        },
+        {
+            "id": "successful_test_execution",
+            "description": "Run the tests and verify that all 8 scenarios pass.",
+            "points": 25,
+            "visual_evidence": "The IDE's 'Run' or 'Test' tool window shows a green checkmark or 'Tests passed: 8' for the refactored test class."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent used the IDE interface to refactor and run tests rather than just executing shell scripts to overwrite the file.",
+            "visual_evidence": "Screenshots show the agent interacting with the code editor and the IDE's built-in test runner UI."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent did not simply comment out the old tests but actually deleted them and replaced them with functional parameterized logic.",
+            "visual_evidence": "The final state of the file in the editor shows the absence of the old method bodies and the presence of the new parameterized logic."
+        },
+        {
+            "id": "actual_test_run",
+            "description": "The test results displayed in the UI match the current state of the code.",
+            "visual_evidence": "The 'Run' window in the IDE shows the execution of the specific test class 'PasswordValidatorTest' with the updated parameterized test name."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/security-utils. The file to refactor is src/test/java/com/security/PasswordValidatorTest.java. There were exactly 8 original test methods: testValidPassword, testTooShort, testNoDigit, testNoUppercase, testHasWhitespace, testEmpty, testNull, and testVeryLongPassword. The refactored solution must use JUnit 5 @ParameterizedTest. A successful run must show 8 passing test cases (often displayed as 8 sub-tests under the parameterized method in the IDE)."
+}

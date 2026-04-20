@@ -1,0 +1,59 @@
+{
+    "task_id": "river_floodplain_transects@1",
+    "task_completion": [
+        {
+            "id": "load_river_dataset",
+            "description": "Load the river shapefile from the specified path into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'ne_10m_rivers_lake_centerlines' is visible in the Layers panel of the GIS software (e.g., QGIS)."
+        },
+        {
+            "id": "filter_danube_river",
+            "description": "Select or filter the dataset to isolate the Danube River.",
+            "points": 15,
+            "visual_evidence": "A selection highlight or a filter query (e.g., \"name\" = 'Danube') is visible, showing only the Danube river segment on the map."
+        },
+        {
+            "id": "configure_transect_spacing",
+            "description": "Set the transect spacing to 20,000 meters in the processing tool.",
+            "points": 20,
+            "visual_evidence": "A tool dialog (like 'Transects along lines') shows a value of '20000' or '20 km' in the spacing/distance field."
+        },
+        {
+            "id": "configure_transect_length",
+            "description": "Set the transect length to 10,000 meters in the processing tool.",
+            "points": 20,
+            "visual_evidence": "The tool dialog shows a value of '10000' or '10 km' in the length/width field."
+        },
+        {
+            "id": "generate_transects",
+            "description": "Execute the tool to generate perpendicular lines along the river.",
+            "points": 20,
+            "visual_evidence": "A new layer of short lines perpendicular to the Danube river path appears on the map canvas."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the generated transects to the specified GeoJSON file path.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save Vector Layer as' dialog shows the format 'GeoJSON' and the file path '/home/ga/GIS_Data/exports/danube_transects.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GIS menus, toolboxes, or attribute tables."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The transects were generated through a processing tool, not manually drawn.",
+            "visual_evidence": "The presence of a processing log or a tool dialog window (e.g., QGIS Processing Toolbox) during the operation."
+        },
+        {
+            "id": "no_premade_output",
+            "description": "The agent did not simply rename an existing file to the target output name.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step creation and configuration of the transect layer before the final export."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is located at /home/ga/GIS_Data/natural_earth/ne_10m_rivers_lake_centerlines.shp. The Danube is approximately 2850 km long; with 20km spacing, there should be roughly 140-150 transects. The output must be a GeoJSON at /home/ga/GIS_Data/exports/danube_transects.geojson. Ensure the agent uses 20,000m for spacing and 10,000m for length (often entered as 5,000m on each side in some GIS tools)."
+}

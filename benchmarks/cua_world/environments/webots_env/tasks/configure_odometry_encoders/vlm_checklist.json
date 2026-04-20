@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_odometry_encoders@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulation environment and the robot scene is visible.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is open showing a 3D robot model or the scene tree on the left."
+        },
+        {
+            "id": "add_left_encoder",
+            "description": "A PositionSensor named 'left_encoder' is added to the left wheel joint's device list.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a configuration dialog shows a PositionSensor node with the name 'left_encoder' under the left wheel joint."
+        },
+        {
+            "id": "add_right_encoder",
+            "description": "A PositionSensor named 'right_encoder' is added to the right wheel joint's device list.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a configuration dialog shows a PositionSensor node with the name 'right_encoder' under the right wheel joint."
+        },
+        {
+            "id": "configure_encoder_resolution",
+            "description": "The resolution for both encoders is set to 0.00153.",
+            "points": 15,
+            "visual_evidence": "The 'resolution' field in the PositionSensor properties for both encoders shows the value 0.00153."
+        },
+        {
+            "id": "update_motor_parameters",
+            "description": "The 'left_motor' and 'right_motor' are updated with maxVelocity 5.0 and maxTorque 25.0.",
+            "points": 20,
+            "visual_evidence": "The property fields for 'maxVelocity' show 5.0 and 'maxTorque' show 25.0 in the RotationalMotor nodes for both wheels."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The updated world is saved to the specific path /home/ga/Desktop/hospital_robot_odometry.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the Webots title bar shows the file path /home/ga/Desktop/hospital_robot_odometry.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify the robot parameters rather than just editing a text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree, field editor, or menus."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not use a python script or sed command to bypass the manual configuration process.",
+            "visual_evidence": "The terminal history (if visible) does not show automated string replacement commands targeting the .wbt file."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent performed a save action within the application.",
+            "visual_evidence": "The File menu is opened or the Save icon is clicked, or a confirmation of the save appears in the Webots console."
+        }
+    ],
+    "privileged_info_for_vlm": "The required configuration values are: PositionSensor resolution = 0.00153; RotationalMotor maxVelocity = 5.0; RotationalMotor maxTorque = 25.0. The final file must be saved exactly as /home/ga/Desktop/hospital_robot_odometry.wbt. Ensure the names 'left_encoder' and 'right_encoder' are used exactly as specified."
+}

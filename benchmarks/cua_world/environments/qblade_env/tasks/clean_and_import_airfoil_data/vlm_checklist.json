@@ -1,0 +1,56 @@
+{
+    "task_id": "clean_and_import_airfoil_data@1",
+    "task_completion": [
+        {
+            "id": "open_input_file",
+            "description": "The agent opens the raw CSV file to inspect the data structure.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of 'project_falcon_foil.csv' with columns like Index, X_Pos, Y_Pos, Z_Pos."
+        },
+        {
+            "id": "data_cleaning_process",
+            "description": "The agent performs data cleaning to remove commas, indices, and Z-values.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing a file with 'Project_Falcon_Foil' on the first line and two columns of whitespace-separated numbers below it."
+        },
+        {
+            "id": "launch_qblade",
+            "description": "The agent successfully launches the QBlade application.",
+            "points": 10,
+            "visual_evidence": "The QBlade main application window is visible on the desktop."
+        },
+        {
+            "id": "import_airfoil_qblade",
+            "description": "The agent imports the cleaned Selig format file into QBlade's Airfoil Design module.",
+            "points": 30,
+            "visual_evidence": "The QBlade 'Airfoil Design' or 'XFoil' module is active, and the 'Project_Falcon_Foil' shape is visible in the plot area."
+        },
+        {
+            "id": "save_qblade_project",
+            "description": "The agent saves the project to the specified path.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window showing 'falcon_design.wpa' in the '~/Documents/projects/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to import and save the project rather than just creating a dummy file via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QBlade menus (e.g., File -> Import, File -> Save Project)."
+        },
+        {
+            "id": "genuine_data_conversion",
+            "description": "The agent actually converted the data rather than using a pre-existing Selig file.",
+            "points": 0,
+            "visual_evidence": "Terminal commands (sed, awk, python) or manual text editing steps are visible in the trajectory before the import."
+        },
+        {
+            "id": "correct_airfoil_geometry",
+            "description": "The imported airfoil matches the expected S809 geometry (approx 54 points).",
+            "points": 0,
+            "visual_evidence": "The airfoil plot in QBlade shows a standard aerodynamic shape, not a random or broken geometry."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file 'project_falcon_foil.csv' contains 54 coordinate points. The cleaned Selig file must have 'Project_Falcon_Foil' on line 1, followed by X and Y coordinates separated by whitespace only (no commas, no Z-values, no indices). The final output must be a QBlade project file named 'falcon_design.wpa' located in '/home/ga/Documents/projects/'."
+}

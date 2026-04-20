@@ -1,0 +1,53 @@
+{
+    "task_id": "ttl_os_fingerprinting@1",
+    "task_completion": [
+        {
+            "id": "open_capture_files",
+            "description": "Agent opens packet capture files from ~/Documents/captures/ in a network analysis tool or terminal.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing Wireshark, tshark, or tcpdump opening .cap, .pcap, or .pcapng files located in the specified directory."
+        },
+        {
+            "id": "extract_ttl_data",
+            "description": "Agent extracts source IP addresses and their corresponding TTL values from the packets.",
+            "points": 20,
+            "visual_evidence": "Terminal output or GUI columns showing a list of Source IPs and TTL values (e.g., 'ip.src' and 'ip.ttl' fields)."
+        },
+        {
+            "id": "calculate_fingerprints",
+            "description": "Agent calculates the most frequent TTL per IP and maps it to the initial TTL (32, 64, 128, 255) and OS family.",
+            "points": 25,
+            "visual_evidence": "Code execution, scripts, or manual calculations showing the logic: Hop Count = Initial TTL - Observed TTL, and OS mapping (e.g., 64 to Linux/Unix)."
+        },
+        {
+            "id": "generate_csv_report",
+            "description": "Agent creates the detailed CSV report sorted by IP address.",
+            "points": 25,
+            "visual_evidence": "A file named 'ttl_fingerprint_report.csv' in ~/Documents/captures/ containing columns for IP, Observed TTL, Initial TTL, Hop Count, and OS Family, sorted numerically/alphabetically by IP."
+        },
+        {
+            "id": "generate_summary_text",
+            "description": "Agent creates the summary text file with specific statistics.",
+            "points": 20,
+            "visual_evidence": "A file named 'ttl_fingerprint_summary.txt' in ~/Documents/captures/ showing total unique IPs, counts per OS family, and IPs with max/min hop counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not simply echo or cat a pre-existing result file without processing the captures.",
+            "visual_evidence": "The agent must be seen running commands like tshark, capinfos, or python scripts that actively parse the binary capture files."
+        },
+        {
+            "id": "genuine_os_mapping",
+            "description": "Agent uses the specific OS mapping provided in the task (32: Windows-9x, 64: Linux/Unix, 128: Windows, 255: Cisco/Solaris).",
+            "visual_evidence": "The generated report or scripts must reflect these specific strings rather than generic or different OS names."
+        },
+        {
+            "id": "directory_consistency",
+            "description": "Agent works within the ~/Documents/captures/ directory as specified.",
+            "visual_evidence": "Command paths and file save dialogs should consistently show the ~/Documents/captures/ path."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture files are located in /home/ga/Documents/captures. The OS mapping must be: 32 = Windows-9x; 64 = Linux/Unix; 128 = Windows; 255 = Cisco/Solaris. Hop count is calculated as (Initial TTL - Observed TTL). The CSV must be sorted by IP address. The summary file must explicitly list the IP addresses for the highest and lowest hop counts, not just the values."
+}

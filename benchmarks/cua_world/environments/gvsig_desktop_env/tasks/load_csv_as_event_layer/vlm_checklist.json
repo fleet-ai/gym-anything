@@ -1,0 +1,53 @@
+{
+    "task_id": "load_csv_as_event_layer@1",
+    "task_completion": [
+        {
+            "id": "open_csv_table",
+            "description": "The CSV file is loaded into the gvSIG project as a table.",
+            "points": 10,
+            "visual_evidence": "A table window or project manager showing 'usgs_earthquakes_2024jan.csv' listed under Tables."
+        },
+        {
+            "id": "configure_event_layer",
+            "description": "The 'Add event layer' dialog is configured with the correct X/Y fields and CRS.",
+            "points": 25,
+            "visual_evidence": "The 'Add event layer' dialog showing 'longitude' selected for X, 'latitude' selected for Y, and EPSG:4326 (or WGS 84) as the coordinate system."
+        },
+        {
+            "id": "event_layer_created",
+            "description": "The event layer is successfully added to the View TOC.",
+            "points": 15,
+            "visual_evidence": "A new layer (likely named after the CSV) appearing in the Table of Contents (TOC) of the 'countries_base' View."
+        },
+        {
+            "id": "export_to_shapefile_dialog",
+            "description": "The agent initiates the 'Export to...' or 'Save as...' shapefile process.",
+            "points": 20,
+            "visual_evidence": "The 'Export to shapefile' wizard or file browser dialog showing the output path set to '/home/ga/gvsig_data/exports/earthquakes.shp'."
+        },
+        {
+            "id": "final_shapefile_verification",
+            "description": "The final shapefile is created and visible in the project or file system.",
+            "points": 30,
+            "visual_evidence": "A success message for the export, or the 'earthquakes.shp' layer appearing in the View TOC after the export process completes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just running shell commands.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections (e.g., View > Add layer), and gvSIG-specific dialog boxes."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create a dummy shapefile using touch or python scripts.",
+            "visual_evidence": "The agent is seen interacting with the gvSIG export wizard rather than a terminal window for the final output creation."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the specific CSV file provided in the task description.",
+            "visual_evidence": "The file path '/home/ga/gvsig_data/earthquakes/usgs_earthquakes_2024jan.csv' is visible in the file selection dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The input CSV contains 44 data rows (plus 1 header). The X field must be 'longitude' and the Y field must be 'latitude'. The coordinate system must be EPSG:4326. The final exported shapefile must be named 'earthquakes.shp' and located in '/home/ga/gvsig_data/exports/'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "dns_latency_profiling@1",
+    "task_completion": [
+        {
+            "id": "open_capture_file",
+            "description": "The agent opens the specified capture file '/home/ga/Documents/captures/dns.cap' in a network analysis tool like Wireshark.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark or a similar tool with 'dns.cap' loaded in the title bar or file path."
+        },
+        {
+            "id": "filter_dns_traffic",
+            "description": "The agent applies a filter to isolate DNS queries and responses to calculate latency.",
+            "points": 15,
+            "visual_evidence": "The display filter bar in Wireshark showing 'dns' or 'dns.time' being applied."
+        },
+        {
+            "id": "calculate_latency_stats",
+            "description": "The agent performs or extracts statistical analysis (Min, Max, Mean, Median) of the DNS response times.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Statistics -> DNS' window, or a terminal/script output calculating these specific values from the pcap."
+        },
+        {
+            "id": "identify_slowest_resolution",
+            "description": "The agent identifies the specific domain name and latency value for the slowest DNS resolution.",
+            "points": 20,
+            "visual_evidence": "The agent highlighting the packet with the highest 'dns.time' value or sorting the packet list by the 'Time' delta column."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the report file at the specified path '/home/ga/Documents/captures/dns_latency_report.txt'.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal showing the creation of 'dns_latency_report.txt'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report file contains the exact required headers and all calculated statistics in the specified format.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command output showing the final report with the 'DNS Latency Profiling Report' header and all data points (Total, Answered, Unanswered, Stats, Slowest)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the values from memory but actually interacted with the data.",
+            "visual_evidence": "Evidence of the agent using Wireshark's 'Statistics' menu, 'tshark' commands, or a script to process the file before writing the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific file path provided in the prompt rather than a generic or sample file.",
+            "visual_evidence": "The file path '/home/ga/Documents/captures/dns.cap' visible in the application or command line."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the GUI or CLI tools rather than just creating the final text file immediately.",
+            "visual_evidence": "Sequential screenshots showing the analysis process (opening Wireshark, filtering, etc.) prior to the report creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture file 'dns.cap' contains 19 total DNS queries, all of which (19) have responses, meaning 0 are unanswered. The minimum latency is 0.387 ms. The VLM should verify that the agent's report matches these specific counts and the 'dns.time' statistics derived from the file."
+}

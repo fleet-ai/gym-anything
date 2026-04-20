@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_event_window_waveforms@1",
+    "task_completion": [
+        {
+            "id": "access_seiscomp_database",
+            "description": "Agent accesses the SeisComP database or event list to identify the Noto Peninsula earthquake origin time.",
+            "points": 10,
+            "visual_evidence": "A GUI window (e.g., scvgm, scolv) or terminal output showing the event list with the Noto Peninsula earthquake (2024-01-01) highlighted."
+        },
+        {
+            "id": "identify_origin_time",
+            "description": "Agent identifies the specific origin time for the earthquake (07:10:09 UTC).",
+            "points": 10,
+            "visual_evidence": "The origin time 2024-01-01 07:10:09 is visible in a terminal command output or a SeisComP event info window."
+        },
+        {
+            "id": "calculate_time_window",
+            "description": "Agent defines the extraction window: 60s before to 600s after the origin time.",
+            "points": 15,
+            "visual_evidence": "Terminal commands (like scart or scevtls) or script parameters showing start time ~07:09:09 and end time ~07:20:09."
+        },
+        {
+            "id": "filter_ge_network",
+            "description": "Agent specifies the 'GE' network for data extraction.",
+            "points": 15,
+            "visual_evidence": "The string 'GE.*' or similar network filtering syntax is visible in a command line argument or configuration file."
+        },
+        {
+            "id": "extract_from_sds",
+            "description": "Agent executes the extraction command targeting the SDS archive path.",
+            "points": 25,
+            "visual_evidence": "A command like 'scart' or 'scevtls' is run, explicitly referencing the archive path /home/ga/seiscomp/var/lib/archive/."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "The final miniSEED file is created at the specified path with the correct name.",
+            "points": 25,
+            "visual_evidence": "A terminal command (ls -l) or file explorer showing /home/ga/noto_event_data.mseed exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_query",
+            "description": "Agent queried the SeisComP database rather than hardcoding the origin time from external knowledge.",
+            "visual_evidence": "Screenshots show the agent opening SeisComP tools or running 'scevtls' to find the event ID/time."
+        },
+        {
+            "id": "no_placeholder_files",
+            "description": "The agent did not simply 'touch' an empty file to satisfy the path requirement.",
+            "visual_evidence": "A file size check (ls -lh) shows the .mseed file has a non-zero size (typically several hundred KB or MB)."
+        },
+        {
+            "id": "correct_archive_source",
+            "description": "The agent used the local SDS archive rather than attempting to download data from the internet.",
+            "visual_evidence": "Command arguments show the path /home/ga/seiscomp/var/lib/archive/ being used as the data source."
+        }
+    ],
+    "privileged_info_for_vlm": "The Noto Peninsula earthquake origin time in the SeisComP database is 2024-01-01T07:10:09 UTC. The extraction window must be 2024-01-01T07:09:09 to 2024-01-01T07:20:09 (total 660 seconds). There are 3 GE network stations available in the local archive: GSI, SANI, and BKB. The output must be a single miniSEED file at /home/ga/noto_event_data.mseed."
+}

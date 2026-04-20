@@ -1,0 +1,59 @@
+{
+    "task_id": "calibrate_arterial_flow@1",
+    "task_completion": [
+        {
+            "id": "identify_target_edge",
+            "description": "Identify the target edge ID from the route file /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio.rou.xml.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the content of pasubio.rou.xml, specifically the first edge ID in the route definition (edge '6')."
+        },
+        {
+            "id": "create_calibrator_file",
+            "description": "Create the calibrator.add.xml file with the correct XML structure and parameters (vehsPerHour='800', speed='13.89', begin='0', end='3600').",
+            "points": 25,
+            "visual_evidence": "A text editor showing the content of /home/ga/SUMO_Scenarios/bologna_pasubio/calibrator.add.xml with the specified flow, speed, and time attributes."
+        },
+        {
+            "id": "configure_output_log",
+            "description": "Ensure the calibrator file is configured to output logs to the specified path.",
+            "points": 15,
+            "visual_evidence": "The calibrator.add.xml file showing the attribute output='/home/ga/SUMO_Output/calibrator_log.xml'."
+        },
+        {
+            "id": "update_sumo_config",
+            "description": "Update run.sumocfg to include the new calibrator.add.xml file in the <additional-files> section.",
+            "points": 20,
+            "visual_evidence": "A text editor showing run.sumocfg with 'calibrator.add.xml' added to the value of the 'additional-files' input."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Run the SUMO simulation using the updated configuration file.",
+            "points": 15,
+            "visual_evidence": "A terminal window or GUI showing the SUMO simulation running or completing without errors."
+        },
+        {
+            "id": "verify_log_generation",
+            "description": "Verify that the calibrator log file has been generated in the output directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal command (like 'ls') showing that /home/ga/SUMO_Output/calibrator_log.xml exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "Verify the agent actually authored the files rather than just claiming they exist.",
+            "visual_evidence": "Screenshots showing the agent typing or saving the XML content in an editor (e.g., Gedit, Nano, or VS Code)."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Verify the simulation was actually executed to produce the logs.",
+            "visual_evidence": "Terminal output showing the 'sumo' command being called or the SUMO-GUI interface active."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "Check that the agent didn't just create an empty log file to pass the check.",
+            "visual_evidence": "The content of the generated calibrator_log.xml should contain XML data consistent with a SUMO run, not just a blank file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target edge ID is '6' (found as the first entry in the 'edges' attribute of pasubio.rou.xml). The calibrator must have: edge='6', vehsPerHour='800', speed='13.89', begin='0', end='3600', and output='/home/ga/SUMO_Output/calibrator_log.xml'. The file run.sumocfg must be modified to include 'calibrator.add.xml' in its additional-files field."
+}

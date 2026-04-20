@@ -1,0 +1,53 @@
+{
+    "task_id": "purge_terminated_employee_records@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_employee_list",
+            "description": "Agent navigates to the employee management or PIM (Personnel Information Management) section of the HR system.",
+            "points": 10,
+            "visual_evidence": "The screen shows an employee list, directory, or a search interface within the HR software."
+        },
+        {
+            "id": "search_target_employee",
+            "description": "Agent searches specifically for 'David Obsolete' or Employee ID 'PURGE001'.",
+            "points": 15,
+            "visual_evidence": "The search bar contains 'David Obsolete' or 'PURGE001', and the results list shows this specific record."
+        },
+        {
+            "id": "select_correct_record",
+            "description": "Agent selects the checkbox or opens the profile for 'David Obsolete' (PURGE001) while ignoring 'David Current' (KEEP001).",
+            "points": 20,
+            "visual_evidence": "A checkmark is visible next to 'David Obsolete' / 'PURGE001', or the detailed profile for 'PURGE001' is opened. 'David Current' remains unselected."
+        },
+        {
+            "id": "initiate_delete_action",
+            "description": "Agent clicks the delete or purge button for the selected record.",
+            "points": 25,
+            "visual_evidence": "A 'Delete', 'Purge', or 'Remove' button is clicked, or a confirmation dialog appears asking to delete the record."
+        },
+        {
+            "id": "confirm_purge_completion",
+            "description": "Agent confirms the deletion and the system indicates the record has been removed.",
+            "points": 30,
+            "visual_evidence": "A success message (e.g., 'Successfully Deleted') appears, or the employee list refreshes and 'David Obsolete' (PURGE001) is no longer visible, while 'David Current' (KEEP001) remains."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the HR system's graphical user interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The trajectory shows mouse movements and clicks within the web browser/HR app, not commands like 'DELETE FROM hs_hr_employee' in a terminal window."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "The agent did not delete the control employee 'David Current'.",
+            "visual_evidence": "The employee list or search results at the end of the task still show 'David Current' or ID 'KEEP001' as an active record."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the application menus rather than jumping directly to a final 'success' URL.",
+            "visual_evidence": "Screenshots show the intermediate steps of logging in (if applicable), clicking the PIM/Employee module, and using the search filters."
+        }
+    ],
+    "privileged_info_for_vlm": "The target for deletion is David Obsolete (Employee ID: PURGE001). There is a similar employee named David Current (Employee ID: KEEP001) who must NOT be deleted. The internal database ID for the target is 9002, while the control is 9001. Verification should ensure only PURGE001 is removed."
+}

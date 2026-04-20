@@ -1,0 +1,53 @@
+{
+    "task_id": "swm_error_tracking@1",
+    "task_completion": [
+        {
+            "id": "locate_clickstream_data",
+            "description": "The agent locates and opens the source data file at ~/pebl/data/swm_clickstream.csv.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the path ~/pebl/data/swm_clickstream.csv or the contents of the CSV file being displayed."
+        },
+        {
+            "id": "implement_error_logic",
+            "description": "The agent writes or executes code that distinguishes between BSE (previous search box) and WSE (current search box) according to the specific rules.",
+            "points": 25,
+            "visual_evidence": "Code snippets (Python, etc.) visible on screen showing logic for 'if click in previous_searches: BSE' and 'elif click in current_search: WSE'."
+        },
+        {
+            "id": "exclude_participant_999",
+            "description": "The agent implements a filter to exclude 'sub-999' from the group-level calculations.",
+            "points": 15,
+            "visual_evidence": "Code or command output showing a conditional statement like 'if participant != \"sub-999\"' or 'df[df.participant != \"sub-999\"]' during group aggregation."
+        },
+        {
+            "id": "calculate_per_participant_totals",
+            "description": "The agent calculates the sum of BSE and WSE for each participant.",
+            "points": 25,
+            "visual_evidence": "Terminal output, a dataframe view, or a draft file showing a list of participants with their respective BSE and WSE counts."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent saves the final results to ~/pebl/analysis/swm_report.json with the required keys.",
+            "points": 25,
+            "visual_evidence": "A terminal command saving the file or a text editor showing the content of ~/pebl/analysis/swm_report.json containing 'participants' and 'group_averages' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the error counts or the exclusion of sub-999 without processing the data.",
+            "visual_evidence": "The agent's code should show data processing logic (e.g., pandas or loops) rather than a dictionary of pre-calculated numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually reads the file from the specified path rather than assuming its contents.",
+            "visual_evidence": "Screenshots show the agent navigating to ~/pebl/data/ or using the absolute path in a script."
+        },
+        {
+            "id": "logical_consistency",
+            "description": "The agent follows the specific rule that a BSE cannot also be a WSE.",
+            "visual_evidence": "The code logic shows an 'if-elif' structure or a subtraction step to ensure no double-counting of errors."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 15 valid participants (sub-01 to sub-15) and one contaminated participant 'sub-999'. Participant 'sub-999' has a WSE count of 587, which is the reason for their exclusion from group averages. The final report must be a JSON file located at ~/pebl/analysis/swm_report.json and must contain both individual participant data and the calculated group averages (excluding sub-999)."
+}

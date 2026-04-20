@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_event_automation@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The Python script 'watchdog.py' exists in the correct directory with the required logic.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing '~/projects/watchdog/watchdog.py' with code that imports 'docker' and defines logic for monitoring 'die' events."
+        },
+        {
+            "id": "event_listener_implementation",
+            "description": "The script implements a listener for Docker 'die' events specifically for the 'payment-gateway' container.",
+            "points": 20,
+            "visual_evidence": "Code in 'watchdog.py' showing a filter for 'container=payment-gateway' and 'event=die' or similar logic using the Docker SDK."
+        },
+        {
+            "id": "restart_and_logging_logic",
+            "description": "The script includes logic to restart the container on non-zero exit codes and log the event with a timestamp.",
+            "points": 20,
+            "visual_evidence": "Code showing 'container.restart()' conditional on 'exitCode > 0' and 'open(\"watchdog.log\", \"a\")' with timestamp formatting."
+        },
+        {
+            "id": "circuit_breaker_logic",
+            "description": "The script implements a rolling window (60s) to detect 3 failures and stop restarts.",
+            "points": 25,
+            "visual_evidence": "Code showing a list or queue of timestamps, a check for 'len(failures) >= 3', and a time delta comparison of 60 seconds."
+        },
+        {
+            "id": "alert_file_generation",
+            "description": "The script writes the specific critical error message to 'alert.txt' when flapping is detected.",
+            "points": 20,
+            "visual_evidence": "Code showing 'with open(\"alert.txt\", \"w\") as f: f.write(\"CRITICAL: Flapping detected\")' or a terminal showing the content of 'alert.txt' after a simulated failure."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the log or alert files to fake completion.",
+            "visual_evidence": "The agent should be seen running the script to generate outputs, rather than just using 'echo' or a text editor to create 'watchdog.log' or 'alert.txt' with the expected content."
+        },
+        {
+            "id": "genuine_docker_interaction",
+            "description": "The agent interacted with the Docker daemon or used the Docker CLI to verify the container name.",
+            "visual_evidence": "Terminal output showing 'docker ps' or 'docker inspect payment-gateway' to confirm the target exists."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent actually executed the python script to test the automation.",
+            "visual_evidence": "A terminal screenshot showing 'python3 watchdog.py' being invoked."
+        }
+    ],
+    "privileged_info_for_vlm": "The project directory is /home/ga/projects/watchdog. The target container is 'payment-gateway'. The script must be named 'watchdog.py'. The circuit breaker threshold is exactly 3 failures within 60 seconds. The specific string for the alert file is 'CRITICAL: Flapping detected'. The log file must record the timestamp and exit code."
+}

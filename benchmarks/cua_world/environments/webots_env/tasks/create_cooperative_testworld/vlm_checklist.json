@@ -1,0 +1,59 @@
+{
+    "task_id": "create_cooperative_testworld@1",
+    "task_completion": [
+        {
+            "id": "open_text_editor_or_webots",
+            "description": "The agent opens a text editor or the Webots IDE to begin creating the world file.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit, VS Code) or the Webots scene tree/text editor is visible on the screen."
+        },
+        {
+            "id": "configure_world_info",
+            "description": "The WorldInfo node is configured with a basicTimeStep of 32 and gravity of -9.81.",
+            "points": 15,
+            "visual_evidence": "The text 'basicTimeStep 32' and 'gravity -9.81' (or similar) is visible in the file content or the Webots scene tree."
+        },
+        {
+            "id": "add_arena_and_environment",
+            "description": "A RectangleArena or Floor (1.0 x 1.0m), TexturedBackground, and light source are added to the file.",
+            "points": 15,
+            "visual_evidence": "Code for 'RectangleArena', 'Floor', 'TexturedBackground', and 'DirectionalLight' (or 'PointLight') is visible in the editor."
+        },
+        {
+            "id": "add_two_epuck_robots",
+            "description": "Two E-puck robots named 'e-puck_1' and 'e-puck_2' are added at the specified coordinates.",
+            "points": 25,
+            "visual_evidence": "The file content shows two E-puck nodes with names 'e-puck_1' at translation [-0.3 0 0] and 'e-puck_2' at translation [0.3 0 0]."
+        },
+        {
+            "id": "add_ball_at_center",
+            "description": "A Ball node is placed at the center (0, 0, 0.04).",
+            "points": 15,
+            "visual_evidence": "The file content shows a 'Ball' node with translation [0 0 0.04]."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world file is saved to the specific path /home/ga/Desktop/cooperative_push.wbt.",
+            "points": 20,
+            "visual_evidence": "The editor's title bar or a 'Save As' dialog shows the path /home/ga/Desktop/cooperative_push.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent manually typed or constructed the file rather than just creating an empty file with the correct name.",
+            "visual_evidence": "Screenshots show the agent typing the VRML/Webots syntax or using the Webots 'Add Node' interface."
+        },
+        {
+            "id": "no_terminal_shortcut_only",
+            "description": "The agent did not simply use a single 'echo' or 'cat' command to dump the entire file without verification.",
+            "visual_evidence": "The agent interacts with the GUI (editor or Webots) to verify the structure of the world."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent saves the file to the Desktop as requested, not a temporary directory.",
+            "visual_evidence": "The file manager or editor shows the file residing on the Desktop."
+        }
+    ],
+    "privileged_info_for_vlm": "The world file must be saved to /home/ga/Desktop/cooperative_push.wbt. Key parameters to verify in the text: basicTimeStep must be 32; gravity must be -9.81; robot names must be 'e-puck_1' (at x=-0.3) and 'e-puck_2' (at x=0.3); the ball must be at (0, 0, 0.04). Note: While the task asks for 0.3 distance, the internal verifier accepts a minimum distance of 0.2m between robots and a ball position within 0.2m of the center."
+}

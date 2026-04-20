@@ -1,0 +1,53 @@
+{
+    "task_id": "warranty_rma_device_swap@1",
+    "task_completion": [
+        {
+            "id": "retire_defective_assets",
+            "description": "LPT-ERR-01, LPT-ERR-02, and LPT-ERR-03 are checked in and set to 'Retired' status.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the status labels for these three specific asset tags updated to 'Retired' in the asset list or individual asset view."
+        },
+        {
+            "id": "append_rma_notes",
+            "description": "The string 'RMA-9988' is appended to the Notes field of the three defective assets.",
+            "points": 15,
+            "visual_evidence": "The 'Notes' column or field for LPT-ERR-01, LPT-ERR-02, and LPT-ERR-03 contains the text 'RMA-9988'."
+        },
+        {
+            "id": "create_replacement_assets",
+            "description": "Three new assets (LPT-REP-01, LPT-REP-02, LPT-REP-03) are created with the correct Serial Numbers.",
+            "points": 20,
+            "visual_evidence": "The asset list shows LPT-REP-01 (NEW-SN-01), LPT-REP-02 (NEW-SN-02), and LPT-REP-03 (NEW-SN-03) as newly created entries."
+        },
+        {
+            "id": "match_original_metadata",
+            "description": "Replacement assets match the Model, Purchase Date, and Purchase Cost of the original defective units.",
+            "points": 25,
+            "visual_evidence": "Comparison of the 'Create Asset' or 'Edit Asset' screens for the REP units against the details of the ERR units, showing identical Model names, dates, and currency values."
+        },
+        {
+            "id": "assign_to_original_users",
+            "description": "Each replacement asset is checked out to the user who originally held the corresponding defective asset.",
+            "points": 20,
+            "visual_evidence": "The 'Checked Out To' field for the LPT-REP assets shows the same usernames (e.g., jdoe, asmith, bwayne) that were associated with the LPT-ERR assets before they were retired."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Snipe-IT web interface rather than executing SQL queries or terminal commands to modify the database.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and form filling within the browser; no terminal windows or database consoles are used for data entry."
+        },
+        {
+            "id": "no_hardcoded_metadata",
+            "description": "The agent actually looked up the Purchase Date and Cost of the original assets instead of guessing.",
+            "visual_evidence": "Screenshots show the agent navigating to the details page of LPT-ERR-01, LPT-ERR-02, and LPT-ERR-03 to retrieve their specific metadata before creating the replacements."
+        },
+        {
+            "id": "genuine_app_interaction",
+            "description": "The agent interacted with the live Snipe-IT instance.",
+            "visual_evidence": "The URL bar shows the expected local or hosted Snipe-IT address, and the UI responds dynamically to the agent's inputs."
+        }
+    ],
+    "privileged_info_for_vlm": "The original assets LPT-ERR-01, LPT-ERR-02, and LPT-ERR-03 are assigned to users jdoe, asmith, and bwayne respectively. Their purchase costs and dates are randomized during setup; the agent must navigate to each asset's detail page to find these values. The replacement assets (LPT-REP-01/02/03) must be checked out to these same three users to be considered correct."
+}

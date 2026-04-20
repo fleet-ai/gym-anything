@@ -1,0 +1,65 @@
+{
+    "task_id": "evaluate_pv_snow_losses@1",
+    "task_completion": [
+        {
+            "id": "open_sam_or_pysam",
+            "description": "Agent opens the System Advisor Model (SAM) GUI or a Python IDE to begin the simulation.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the SAM application interface or a code editor (like VS Code or PyCharm) with PySAM imports."
+        },
+        {
+            "id": "configure_system_parameters",
+            "description": "Agent configures the system for 250 kW DC, 45 degree tilt, and 180 degree azimuth.",
+            "points": 15,
+            "visual_evidence": "SAM input fields or Python code showing 'system_capacity' as 250, 'tilt' as 45, and 'azimuth' as 180."
+        },
+        {
+            "id": "load_anchorage_weather",
+            "description": "Agent selects or loads the specific weather file located at /home/ga/SAM_Weather_Data/Anchorage.epw.",
+            "points": 15,
+            "visual_evidence": "File explorer dialog or code string pointing to the specific path '/home/ga/SAM_Weather_Data/Anchorage.epw'."
+        },
+        {
+            "id": "run_baseline_simulation",
+            "description": "Agent performs a simulation with the snow model disabled to get baseline energy.",
+            "points": 20,
+            "visual_evidence": "SAM results page or console output showing annual energy production without snow losses enabled."
+        },
+        {
+            "id": "run_snow_enabled_simulation",
+            "description": "Agent enables the snow model and performs a second simulation.",
+            "points": 20,
+            "visual_evidence": "SAM 'Losses' page with 'Snow' checked, or Python code setting 'en_snow_model' to 1, followed by a simulation run."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the calculated values to /home/ga/Documents/SAM_Projects/snow_loss_analysis.json with the required keys.",
+            "points": 10,
+            "visual_evidence": "A terminal command (cat) or text editor showing the JSON file with keys: baseline_energy_kwh, snow_model_energy_kwh, snow_loss_kwh, and snow_loss_percentage."
+        },
+        {
+            "id": "save_workflow_evidence",
+            "description": "Agent saves the .py script or .sam project file in the specified directory.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal 'ls' showing a .py or .sam file in /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually ran a simulation rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the SAM 'Results' dashboard or the execution of a Python script that prints/logs simulation progress."
+        },
+        {
+            "id": "correct_weather_source",
+            "description": "Ensure the agent used the provided local EPW file and not a default library file.",
+            "visual_evidence": "The file path /home/ga/SAM_Weather_Data/Anchorage.epw must be visible in the configuration."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Check that the JSON values are derived from the Anchorage data, not just example numbers.",
+            "visual_evidence": "The baseline_energy_kwh in the JSON should be between 200,000 and 270,000."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline energy for a 250kW system in Anchorage with these parameters should be between 200,000 and 270,000 kWh. Crucially, the provided Anchorage.epw file contains 0.0 snow depth data for the entire year; therefore, the 'snow_model_energy_kwh' will likely be identical to the baseline, and 'snow_loss_kwh' and 'snow_loss_percentage' should be 0.0. The agent must save the JSON to /home/ga/Documents/SAM_Projects/snow_loss_analysis.json."
+}

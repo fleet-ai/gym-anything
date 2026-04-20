@@ -1,0 +1,53 @@
+{
+    "task_id": "tree_ring_measurement@1",
+    "task_completion": [
+        {
+            "id": "open_imagej_and_sample",
+            "description": "Open ImageJ and load the 'Tree Rings (48K)' sample image.",
+            "points": 10,
+            "visual_evidence": "The ImageJ application window is visible, and the 'Tree_Rings2.jpg' image (a long, thin horizontal strip of wood grain) is displayed."
+        },
+        {
+            "id": "measure_five_rings",
+            "description": "Measure the width of at least five consecutive growth rings using the measurement tools.",
+            "points": 30,
+            "visual_evidence": "The VLM should see selection lines or point markers across at least five distinct dark/light boundaries on the tree ring image, or a 'Results' table in ImageJ showing at least 5 entries."
+        },
+        {
+            "id": "calculate_summary_stats",
+            "description": "Calculate the Mean, Min, and Max of the measured ring widths.",
+            "points": 20,
+            "visual_evidence": "A 'Summarize' command being run in ImageJ or a table/spreadsheet showing calculated Mean, Min, and Max values based on the measurements."
+        },
+        {
+            "id": "save_csv_file",
+            "description": "Save the measurements and summary to the specified CSV file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog box or a file explorer window showing the path '~/ImageJ_Data/results/tree_ring_measurements.csv' being targeted."
+        },
+        {
+            "id": "verify_csv_content",
+            "description": "The final CSV contains both individual measurements and the summary statistics.",
+            "points": 20,
+            "visual_evidence": "A text editor or spreadsheet view showing the content of 'tree_ring_measurements.csv' with at least 5 rows of data plus Mean, Min, and Max rows."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI to perform measurements rather than just writing a script to generate the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the ImageJ toolbar (e.g., line tool) and the image itself."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements correspond to the actual visual features of the image.",
+            "visual_evidence": "The measurement lines in the GUI align with the actual dark boundaries (latewood) of the tree rings in the sample image."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the expected values into a file via terminal.",
+            "visual_evidence": "The agent is seen using the 'Analyze' or 'Measure' functions within the ImageJ interface rather than just using 'cat' or 'echo' in a terminal to create the CSV."
+        }
+    ],
+    "privileged_info_for_vlm": "The image 'Tree Rings (48K)' refers to 'Tree_Rings2.jpg'. Verified ring widths in this image range from 1.0 to 30.0 pixels, with a mean of approximately 10.1 pixels. The agent must measure at least 5 consecutive rings. The output must be saved to '~/ImageJ_Data/results/tree_ring_measurements.csv'. Note that while some metadata suggests a minimum width of 2.0, actual pixel analysis shows rings as narrow as 1.0 pixel."
+}

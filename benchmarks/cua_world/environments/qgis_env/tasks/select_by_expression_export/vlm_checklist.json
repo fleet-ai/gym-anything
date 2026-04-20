@@ -1,0 +1,59 @@
+{
+    "task_id": "select_by_expression_export@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "The agent loads the 'ne_110m_populated_places_simple.shp' file into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'ne_110m_populated_places_simple' appears in the Layers panel or the map canvas shows point data."
+        },
+        {
+            "id": "open_select_by_expression",
+            "description": "The agent opens the 'Select by Expression' dialog or a similar filtering interface.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Select by Expression' or 'Query Builder' is visible over the main application."
+        },
+        {
+            "id": "input_correct_expression",
+            "description": "The agent enters the expression to filter 'pop_max' > 10,000,000.",
+            "points": 25,
+            "visual_evidence": "The expression editor shows text like \"pop_max\" > 10000000 or similar syntax."
+        },
+        {
+            "id": "features_selected",
+            "description": "The agent executes the selection, resulting in highlighted features on the map or in the attribute table.",
+            "points": 20,
+            "visual_evidence": "A subset of points on the map changes color (usually yellow) or the status bar indicates a number of features selected (e.g., 17 features selected)."
+        },
+        {
+            "id": "export_dialog_geojson",
+            "description": "The agent opens the 'Save Vector Layer as' or 'Export' dialog and selects GeoJSON format.",
+            "points": 15,
+            "visual_evidence": "An export/save dialog is visible with 'GeoJSON' selected in the Format dropdown menu."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "The agent specifies the correct output path and filename for the export.",
+            "points": 15,
+            "visual_evidence": "The file path field in the export dialog shows '/home/ga/GIS_Data/exports/major_megacities.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands to process the data.",
+            "visual_evidence": "Screenshots show interactions with QGIS/GIS menus, buttons, and dialog boxes rather than just a terminal window."
+        },
+        {
+            "id": "genuine_selection",
+            "description": "The agent actually performed the selection logic rather than manually clicking points.",
+            "visual_evidence": "The 'Select by Expression' window is populated with the correct logic before the selection appears on the map."
+        },
+        {
+            "id": "no_hardcoded_export",
+            "description": "The agent did not simply create an empty file or copy a pre-existing file via terminal.",
+            "visual_evidence": "The export process is visible through the GIS software's 'Save As' or 'Export' workflow."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is located at /home/ga/GIS_Data/ne_110m_populated_places_simple/ne_110m_populated_places_simple.shp. The required filter expression is \"pop_max\" > 10000000. This should result in approximately 17 features being selected (including cities like Tokyo, Delhi, and New York). The final output must be a GeoJSON file saved specifically to /home/ga/GIS_Data/exports/major_megacities.geojson."
+}

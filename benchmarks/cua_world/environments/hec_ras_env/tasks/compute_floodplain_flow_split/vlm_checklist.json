@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_floodplain_flow_split@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_muncie",
+            "description": "Open the HEC-RAS software and load the Muncie project.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window is visible with 'Muncie' project loaded in the project path."
+        },
+        {
+            "id": "access_unsteady_results",
+            "description": "Navigate to the unsteady flow simulation results for plan p04.",
+            "points": 15,
+            "visual_evidence": "The 'Unsteady Flow Analysis' window or 'Detailed Output Tables' window is open, showing Plan 'p04'."
+        },
+        {
+            "id": "identify_peak_timestep",
+            "description": "Locate the timestep with the peak total flow across cross-sections.",
+            "points": 20,
+            "visual_evidence": "The agent is viewing a table or profile plot where flow values are sorted or scanned to find the maximum total flow time."
+        },
+        {
+            "id": "extract_flow_distribution_data",
+            "description": "Extract flow values for LOB, Main Channel, and ROB for each cross-section at the peak timestep.",
+            "points": 25,
+            "visual_evidence": "The 'Detailed Output Table' or 'Profile Output Table' is visible showing columns for 'Flow LOB', 'Flow Channel', and 'Flow ROB'."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Export the calculated flow percentages to flow_distribution.csv with the required columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal window shows the creation of '/home/ga/Documents/hec_ras_results/flow_distribution.csv'."
+        },
+        {
+            "id": "generate_summary_txt",
+            "description": "Generate the summary text file with the peak timestep index and the cross-section with highest overbank flow.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command displays the contents of '/home/ga/Documents/hec_ras_results/flow_split_summary.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HEC-RAS GUI to analyze results rather than just writing a script to parse the HDF5 file directly.",
+            "visual_evidence": "Screenshots show the HEC-RAS application windows (Main, Tables, or Plots) being interacted with."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final results into files without navigating the software.",
+            "visual_evidence": "The trajectory shows the process of opening the specific plan (p04) and viewing the output tables."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific paths defined in the task for output.",
+            "visual_evidence": "The save dialogs or terminal commands show the exact paths: /home/ga/Documents/hec_ras_results/flow_distribution.csv and flow_split_summary.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/Documents/hec_ras_projects/Muncie. The specific results file to analyze is Muncie.p04.hdf. The agent must find the timestep with the maximum total flow and calculate percentages for Left Overbank (LOB), Channel, and Right Overbank (ROB) for all cross-sections. Outputs must be saved to /home/ga/Documents/hec_ras_results/."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "insulin_motif_annotation@1",
+    "task_completion": [
+        {
+            "id": "open_insulin_sequence",
+            "description": "Open the human insulin gene sequence file in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows 'human_insulin_gene.gb' loaded in the Project View or Sequence View."
+        },
+        {
+            "id": "motif_search_configuration",
+            "description": "Configure and run motif searches for TATA_box, E_box, GC_box, polyA_signal, and CArG_box using the specified patterns and modes.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Search in Sequence' dialog or 'Find Pattern' interface with the specified strings (e.g., 'CANNTG', 'CC[AT]{6}GG') and search modes (Exact, IUPAC, or Regexp) being applied."
+        },
+        {
+            "id": "annotate_motifs",
+            "description": "Annotate the found motifs using the exact motif names as the annotation name/group.",
+            "points": 20,
+            "visual_evidence": "The Sequence View shows color-coded annotations labeled with the motif names (e.g., 'E_box', 'GC_box') on the sequence tracks."
+        },
+        {
+            "id": "export_genbank",
+            "description": "Export the annotated sequence to the specified GenBank file path.",
+            "points": 15,
+            "visual_evidence": "The 'Export as GenBank' dialog is visible with the output path set to '~/UGENE_Data/results/insulin_motifs_annotated.gb'."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Create a text report containing sequence details, motif counts, hit positions, and biological interpretation.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal view shows 'motif_report.txt' containing the sequence name, length, hit counts for all 5 motifs, start..end positions, and a 2-4 sentence interpretation regarding pancreatic beta cells."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI for sequence analysis and annotation rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being actively used."
+        },
+        {
+            "id": "genuine_search_results",
+            "description": "The motif counts in the report match the actual search results from the loaded file.",
+            "visual_evidence": "The hit counts in the final report correspond to the number of annotations visible in the UGENE sequence track."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The agent did not simply copy a pre-existing report file.",
+            "visual_evidence": "The agent is seen typing or saving the report content within the environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses sequence NM_000207.3 (mRNA) by default. Because this is mRNA and not genomic DNA, the TATA_box and CArG_box (promoter elements) will likely have 0 hits. Expected counts for NM_000207.3 are: TATA_box: 0, GC_box: 1, polyA_signal: 1, E_box: 6, and CArG_box: 0. If the agent finds 0 for TATA or CArG, this is biologically correct for the provided file and should not be penalized."
+}

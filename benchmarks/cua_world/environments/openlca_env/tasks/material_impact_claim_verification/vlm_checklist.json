@@ -1,0 +1,53 @@
+{
+    "task_id": "material_impact_claim_verification@1",
+    "task_completion": [
+        {
+            "id": "import_lca_data",
+            "description": "Agent imports the USLCI database and TRACI 2.1 LCIA method into the LCA software.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the import dialog or the 'uslci_database.zip' and 'lcia_methods.zip' files being loaded into the application interface."
+        },
+        {
+            "id": "select_aluminum_process",
+            "description": "Agent selects the 'Aluminum, primary ingot, at plant' process from the USLCI database.",
+            "points": 15,
+            "visual_evidence": "The LCA software interface showing the specific 'Aluminum, primary ingot, at plant' process highlighted or opened for analysis."
+        },
+        {
+            "id": "configure_traci_method",
+            "description": "Agent selects TRACI 2.1 as the impact assessment method for the calculation.",
+            "points": 15,
+            "visual_evidence": "The calculation setup screen showing 'TRACI 2.1' selected in the method dropdown or selection panel."
+        },
+        {
+            "id": "calculate_gwp_impact",
+            "description": "Agent runs the calculation and identifies the 'Global Warming Air' (GWP) impact value.",
+            "points": 25,
+            "visual_evidence": "The results screen of the LCA software displaying a numerical value for 'Global Warming Air' or 'Global Warming Potential' in kg CO2 eq."
+        },
+        {
+            "id": "create_result_file",
+            "description": "Agent creates the text file at ~/LCA_Results/claim_verification.txt with the required content.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file content: a numerical GWP value on line 1 and 'VERDICT: REJECTED' on line 2 (since US average is significantly higher than 2.0)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the LCA software GUI rather than just manipulating text files or using terminal scripts to bypass the simulation.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with LCA software buttons, menus, and result tables."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The GWP value in the final report matches the value shown in the software's result UI.",
+            "visual_evidence": "Comparison between the numerical value in the LCA software's 'Results' tab and the value written in claim_verification.txt."
+        },
+        {
+            "id": "no_precomputed_shortcuts",
+            "description": "Agent did not simply search for the answer online or copy it from a notes file without performing the LCA steps.",
+            "visual_evidence": "The trajectory shows the sequential steps of importing data, selecting the process, and clicking 'Calculate'."
+        }
+    ],
+    "privileged_info_for_vlm": "The US industry average for primary aluminum (USLCI) typically ranges from 4.0 to 20.0 kg CO2 eq/kg depending on the specific grid mix, but it is consistently much higher than the 2.0 kg claim. A 20% tolerance of 2.0 kg is 1.6-2.4 kg. Since the US average is >4.0, it is not within 20% of the claim. The correct verdict is 'VERDICT: REJECTED'. The VLM should verify the GWP value in the text file matches the software output."
+}

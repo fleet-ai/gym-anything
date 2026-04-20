@@ -1,0 +1,62 @@
+{
+    "task_id": "refactor_loops_to_streams@1",
+    "task_completion": [
+        {
+            "id": "open_analytics_service",
+            "description": "The agent opens AnalyticsService.java in the IDE editor.",
+            "points": 10,
+            "visual_evidence": "A tab or window showing the file content of AnalyticsService.java in IntelliJ IDEA or a similar editor."
+        },
+        {
+            "id": "refactor_find_active_users",
+            "description": "Refactor findActiveUsers to use a Stream pipeline (filter and collect).",
+            "points": 20,
+            "visual_evidence": "Code in findActiveUsers method showing users.stream().filter(...).collect(Collectors.toList()) or .toList()."
+        },
+        {
+            "id": "refactor_get_emails_premium",
+            "description": "Refactor getEmailsOfPremiumUsers to use a Stream pipeline (filter, map, and collect).",
+            "points": 20,
+            "visual_evidence": "Code in getEmailsOfPremiumUsers showing users.stream().filter(...).map(User::getEmail).collect(...)."
+        },
+        {
+            "id": "refactor_count_logins_region",
+            "description": "Refactor countLoginsByRegion to use a Stream pipeline (filter and count).",
+            "points": 20,
+            "visual_evidence": "Code in countLoginsByRegion showing users.stream().filter(...).count()."
+        },
+        {
+            "id": "refactor_has_user_id",
+            "description": "Refactor hasUserWithId to use a Stream pipeline (anyMatch).",
+            "points": 20,
+            "visual_evidence": "Code in hasUserWithId showing users.stream().anyMatch(u -> u.getId().equals(id))."
+        },
+        {
+            "id": "run_tests_success",
+            "description": "Execute the unit tests and verify they pass.",
+            "points": 10,
+            "visual_evidence": "A test runner window (e.g., JUnit tab) showing green checkmarks for all 5 tests in AnalyticsServiceTest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test file to force a pass.",
+            "points": 0,
+            "visual_evidence": "The AnalyticsServiceTest.java file remains unchanged or is not edited in the trajectory."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "The agent used the IDE's code editing features rather than just terminal commands.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the cursor, code completion, or manual typing within the IDE editor pane."
+        },
+        {
+            "id": "stream_api_usage",
+            "description": "The agent actually used Java Streams instead of just cleaning up the for-loops.",
+            "points": 0,
+            "visual_evidence": "The code visible in the editor must contain keywords like '.stream()', '.filter', and '.collect'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/user-analytics. The target file for refactoring is src/main/java/com/analytics/AnalyticsService.java. There are 4 specific methods to refactor: findActiveUsers, getEmailsOfPremiumUsers, countLoginsByRegion, and hasUserWithId. The test file is src/test/java/com/analytics/AnalyticsServiceTest.java and contains 5 test methods that must all pass using Java 17 syntax."
+}

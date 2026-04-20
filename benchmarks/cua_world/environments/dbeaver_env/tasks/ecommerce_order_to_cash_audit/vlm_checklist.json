@@ -1,0 +1,53 @@
+{
+    "task_id": "ecommerce_order_to_cash_audit@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connection",
+            "description": "Connect to the ecommerce.db database in DBeaver as 'EcommerceAudit'.",
+            "points": 10,
+            "visual_evidence": "DBeaver window showing a connection named 'EcommerceAudit' and the 12 tables listed in the Database Navigator (products, customers, orders, etc.)."
+        },
+        {
+            "id": "sql_investigation",
+            "description": "Execute SQL queries to identify the four specific financial anomalies described.",
+            "points": 25,
+            "visual_evidence": "SQL Editor in DBeaver showing queries involving JOINs between orders, payments, refunds, and promotions, with results visible in the data grid."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save all investigation SQL queries to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A text editor or DBeaver showing the file '/home/ga/Documents/scripts/audit_queries.sql' containing the logic for the four anomaly checks."
+        },
+        {
+            "id": "export_anomaly_report",
+            "description": "Export the detailed anomaly report CSV with the required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or CSV viewer showing '/home/ga/Documents/exports/anomaly_report.csv' with headers: RecordType, RecordId, AnomalyCategory, ExpectedValue, ActualValue, Discrepancy."
+        },
+        {
+            "id": "export_audit_summary",
+            "description": "Export the audit summary CSV with the required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or CSV viewer showing '/home/ga/Documents/exports/audit_summary.csv' with headers: Category, Count, TotalImpact."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the DBeaver GUI for database interaction rather than just command-line sqlite3.",
+            "visual_evidence": "Screenshots show the DBeaver application window, SQL editor, and result grids."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent actually ran queries against the database rather than hardcoding values into the CSVs.",
+            "visual_evidence": "The DBeaver 'Execution Log' or 'Results' tab shows row counts and data retrieved from the ecommerce.db tables."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The files were saved to the specific paths requested in the prompt.",
+            "visual_evidence": "File paths in the header of the text editor or the 'Save As' dialogs match /home/ga/Documents/exports/ and /home/ga/Documents/scripts/."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains 12 tables. Anomaly 1 (Pricing) requires checking (subtotal + tax_amount + shipping_fee) against 'total' for orders where status is not 'Cancelled'. Anomaly 2 (Payment) requires summing 'amount' from the payments table per order_id and comparing to the order 'total'. Anomaly 3 (Refund) requires comparing refund 'amount' to the sum of successful payments for that order. Anomaly 4 (Promotion) requires checking order_date against promotion start/end dates and order subtotal against min_order_amount."
+}

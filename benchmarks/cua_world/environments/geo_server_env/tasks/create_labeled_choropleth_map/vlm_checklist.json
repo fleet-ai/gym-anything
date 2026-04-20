@@ -1,0 +1,59 @@
+{
+    "task_id": "create_labeled_choropleth_map@1",
+    "task_completion": [
+        {
+            "id": "geoserver_login",
+            "description": "Log into the GeoServer web interface using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The GeoServer admin dashboard is visible, showing 'Logged in as admin'."
+        },
+        {
+            "id": "create_sld_style",
+            "description": "Create a new SLD style named 'population_choropleth' within the 'ne' workspace.",
+            "points": 15,
+            "visual_evidence": "The 'Styles' page shows a new style entry with the name 'population_choropleth' and workspace 'ne'."
+        },
+        {
+            "id": "configure_classification_rules",
+            "description": "Configure five classification rules for the 'pop_est' attribute with specific hex colors.",
+            "points": 30,
+            "visual_evidence": "The SLD editor shows XML or a rule builder with 5 rules using filters for 'pop_est' and Fill parameters: #ffffb2, #fecc5c, #fd8d3c, #f03b20, and #bd0026."
+        },
+        {
+            "id": "configure_labels_and_borders",
+            "description": "Add text labels for 'name' and gray borders to the style configuration.",
+            "points": 20,
+            "visual_evidence": "The SLD code or editor shows a 'TextSymbolizer' for 'name' (SansSerif, size 10, halo) and a 'Stroke' color of #999999 with width 0.5."
+        },
+        {
+            "id": "set_default_style",
+            "description": "Assign 'population_choropleth' as the default style for the 'ne:ne_countries' layer.",
+            "points": 10,
+            "visual_evidence": "The 'Layers' configuration page for 'ne_countries' shows 'population_choropleth' selected as the Default Style."
+        },
+        {
+            "id": "export_wms_map",
+            "description": "Generate and export the final WMS map image to the specified output path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal view confirms the existence of '/home/ga/output/population_map.png', or a Layer Preview shows the styled map."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the browser navigating through GeoServer's Workspace, Style, and Layer menus."
+        },
+        {
+            "id": "manual_sld_entry",
+            "description": "The agent actually input the SLD parameters (colors, filters, labels) into the GeoServer UI.",
+            "visual_evidence": "Screenshots show the SLD editor window with the specific hex codes and population thresholds typed or pasted in."
+        },
+        {
+            "id": "genuine_preview",
+            "description": "The final image is a result of GeoServer rendering, not a pre-existing file.",
+            "visual_evidence": "The 'Layer Preview' or 'OpenLayers' view in GeoServer shows the map with the expected choropleth colors before export."
+        }
+    ],
+    "privileged_info_for_vlm": "The style must be named 'population_choropleth' in the 'ne' workspace. The five classification colors are #ffffb2 (<1M), #fecc5c (1M-10M), #fd8d3c (10M-100M), #f03b20 (100M-500M), and #bd0026 (>=500M). Borders must be #999999 (width 0.5). Labels must use the 'name' attribute, SansSerif font, size 10, color #333333, with a white (#ffffff) halo of radius 2. The output file must be exactly at /home/ga/output/population_map.png."
+}

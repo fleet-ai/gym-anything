@@ -1,0 +1,54 @@
+{
+    "task_id": "uci_student_performance_analysis@1",
+    "task_completion": [
+        {
+            "id": "extract_dataset",
+            "description": "Extract the student.zip file into the /home/ga/Documents/student_data/ directory.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output showing the contents of /home/ga/Documents/student_data/ including 'student-por.csv'."
+        },
+        {
+            "id": "create_script",
+            "description": "Create a Python script named grade_analysis.py in /home/ga/Documents/.",
+            "points": 15,
+            "visual_evidence": "A text editor or IDE showing the file /home/ga/Documents/grade_analysis.py being written or saved."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script contains logic to read student-por.csv with a semicolon delimiter and calculate G3 averages for GP and MS schools.",
+            "points": 25,
+            "visual_evidence": "Code visible in a text editor showing 'sep=';'' or similar, and logic filtering by 'school' and averaging 'G3'."
+        },
+        {
+            "id": "run_script",
+            "description": "Execute the Python script to perform the analysis.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the execution of 'python3 /home/ga/Documents/grade_analysis.py' or similar command."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "The file /home/ga/Documents/school_comparison.txt is created and contains the calculated averages.",
+            "points": 30,
+            "visual_evidence": "The contents of /home/ga/Documents/school_comparison.txt displayed, showing numerical averages for GP and MS rounded to at least one decimal place."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final averages directly into the script without calculation.",
+            "points": 0,
+            "visual_evidence": "The Python script should show data processing logic (e.g., pandas or csv module) rather than just print statements of the final numbers."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent used the provided student-por.csv file rather than external data or synthetic placeholders.",
+            "visual_evidence": "The script path points to the extracted file in /home/ga/Documents/student_data/student-por.csv."
+        },
+        {
+            "id": "proper_delimiter_handling",
+            "description": "The agent correctly identified and handled the semicolon delimiter required for this specific CSV.",
+            "visual_evidence": "The code explicitly handles the ';' delimiter, which is necessary for the real UCI dataset to be parsed correctly."
+        }
+    ],
+    "privileged_info_for_vlm": "The verified average G3 grade for school 'GP' is approximately 12.58 (rounded to 12.6) and for school 'MS' is approximately 10.65 (rounded to 10.7). The student-por.csv file is semicolon-delimited (;). The agent must extract student.zip to find the CSV."
+}

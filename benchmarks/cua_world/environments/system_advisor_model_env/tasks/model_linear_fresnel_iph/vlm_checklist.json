@@ -1,0 +1,53 @@
+{
+    "task_id": "model_linear_fresnel_iph@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "Python script created at /home/ga/Documents/SAM_Projects/linear_fresnel_iph.py using PySAM's LinearFresnelDsgIph module.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing the file exists at the specified path, or an editor showing the code with 'import PySAM.LinearFresnelDsgIph'."
+        },
+        {
+            "id": "weather_file_config",
+            "description": "Script is configured to use a Phoenix, AZ weather file from the SAM solar_resource directory.",
+            "points": 15,
+            "visual_evidence": "Code showing a path to a weather file containing 'Phoenix' and 'solar_resource'."
+        },
+        {
+            "id": "model_parameters_config",
+            "description": "Script configures aperture area (~10,000 m2), outlet temp (250 C), inlet temp (150 C), and pressure (25 bar).",
+            "points": 25,
+            "visual_evidence": "Code snippets showing variable assignments: area ~ 10000, T_out = 250, T_in = 150, and pressure = 25 (or 2500 kPa)."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The script is executed without errors to generate the thermal energy estimate.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running to completion or the creation of the results JSON file."
+        },
+        {
+            "id": "results_json_generation",
+            "description": "Results saved to /home/ga/Documents/SAM_Projects/linear_fresnel_iph_results.json with all required keys.",
+            "points": 25,
+            "visual_evidence": "The content of the JSON file displayed, showing keys: annual_energy_kwh, capacity_factor_percent, solar_field_aperture_m2, design_outlet_temp_c, design_inlet_temp_c, operating_pressure_bar, latitude, longitude, and weather_file_used."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final energy values without running a simulation.",
+            "visual_evidence": "The script should contain logic to execute the PySAM model (e.g., .execute()) rather than just printing a static JSON string."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent used the actual PySAM library rather than mocking the output.",
+            "visual_evidence": "Presence of 'import PySAM' and specific module calls in the code editor or terminal history."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the specific directory and filenames requested in the prompt.",
+            "visual_evidence": "Screenshots show the path /home/ga/Documents/SAM_Projects/ being used for both the script and the output."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation for a 10,000 m2 field in Phoenix should yield an annual energy between 3,000,000 and 30,000,000 kWh (typically ~10.6 GWh) and a capacity factor between 10% and 50% (typically ~24%). Note: While the prompt asks for 250°C outlet temperature at 25 bar, the saturation temperature of steam at 25 bar is ~224°C; the agent should attempt to set the requested 250°C in the code even if the physical model might cap it or require superheating logic."
+}

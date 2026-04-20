@@ -1,0 +1,53 @@
+{
+    "task_id": "scenario_library_maintenance@1",
+    "task_completion": [
+        {
+            "id": "identify_invalid_ownship",
+            "description": "Identify and move scenarios with missing ownship models to the Quarantine directory.",
+            "points": 20,
+            "visual_evidence": "Terminal output or file manager showing 'Legacy_Fatal_Error' (or similar) being moved to /home/ga/Quarantine/."
+        },
+        {
+            "id": "repair_othership_models",
+            "description": "Replace missing Type(N) models in othership.ini with 'Tug', 'Ferry', or 'Coaster' based on naming logic.",
+            "points": 25,
+            "visual_evidence": "Text editor or 'cat' command showing othership.ini files where Type values have been updated to 'Tug', 'Ferry', or 'Coaster'."
+        },
+        {
+            "id": "ensure_description_files",
+            "description": "Verify or create description.txt in remaining scenarios with the specific legacy text.",
+            "points": 20,
+            "visual_evidence": "File content of description.txt showing the exact string: 'Legacy scenario restored by automated audit.'"
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "Create a comprehensive report of all actions taken at the specified path.",
+            "points": 15,
+            "visual_evidence": "File manager or terminal showing the existence of /home/ga/Documents/audit_report.txt."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The audit report contains details of moved scenarios and modified files.",
+            "points": 20,
+            "visual_evidence": "Content of /home/ga/Documents/audit_report.txt listing the specific scenarios quarantined and the othership types repaired."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_bypass",
+            "description": "The agent did not simply create the report without performing the file operations.",
+            "visual_evidence": "Screenshots must show the agent actively opening, editing, or moving files in /opt/bridgecommand/Scenarios before the report is finalized."
+        },
+        {
+            "id": "directory_existence",
+            "description": "The agent interacted with the actual system paths provided.",
+            "visual_evidence": "Command line paths or file explorer address bars showing /opt/bridgecommand/Scenarios and /home/ga/Quarantine."
+        },
+        {
+            "id": "logic_accuracy",
+            "description": "The agent followed the specific naming logic for repairs (Tug/Ferry/Coaster).",
+            "visual_evidence": "The othership.ini edits show 'Tug' for names containing 'Tug', not a generic replacement for all."
+        }
+    ],
+    "privileged_info_for_vlm": "The valid models in /opt/bridgecommand/Models are Coaster, Ferry, Tug, and Yacht. The scenario 'Legacy_Fatal_Error' has an invalid ownship and must be moved to /home/ga/Quarantine/. Scenarios like 'Legacy_Missing_Tug' require othership.ini updates. The description.txt must contain exactly: 'Legacy scenario restored by automated audit.' The final report must be at /home/ga/Documents/audit_report.txt."
+}

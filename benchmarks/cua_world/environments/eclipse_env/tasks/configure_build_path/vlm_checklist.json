@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_build_path@1",
+    "task_completion": [
+        {
+            "id": "open_properties_dialog",
+            "description": "The agent opens the Java Build Path properties for the 'DataProcessor' project.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Properties for DataProcessor' is visible, with 'Java Build Path' selected in the left sidebar."
+        },
+        {
+            "id": "add_jars_to_classpath",
+            "description": "The agent adds the three JAR files from the lib/ folder to the Libraries tab.",
+            "points": 25,
+            "visual_evidence": "The 'Libraries' tab in the Build Path dialog shows 'commons-lang3-3.14.0.jar', 'gson-2.10.1.jar', and 'slf4j-api-2.0.9.jar' listed under Classpath or Modulepath."
+        },
+        {
+            "id": "configure_source_folder",
+            "description": "The agent ensures 'src/main/java' is set as a source folder.",
+            "points": 15,
+            "visual_evidence": "The 'Source' tab in the Build Path dialog shows 'DataProcessor/src/main/java' as a source folder."
+        },
+        {
+            "id": "apply_build_settings",
+            "description": "The agent applies the changes and triggers a project rebuild.",
+            "points": 10,
+            "visual_evidence": "The agent clicks 'Apply and Close' in the Properties dialog, and a progress bar for 'Building workspace' may briefly appear."
+        },
+        {
+            "id": "verify_no_errors_package_explorer",
+            "description": "The red error icons (X) disappear from the project and source files in the Package Explorer.",
+            "points": 20,
+            "visual_evidence": "The 'DataProcessor' project, 'src/main/java' folder, and files 'App.java', 'JsonTransformer.java', and 'TextAnalyzer.java' no longer have red 'X' decorators in the Package Explorer."
+        },
+        {
+            "id": "verify_clean_problems_view",
+            "description": "The Problems view shows zero errors related to compilation or build path.",
+            "points": 20,
+            "visual_evidence": "The 'Problems' tab at the bottom of Eclipse shows '0 errors' or no entries related to 'The project cannot be built' or 'cannot be resolved to a type'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent uses the Eclipse GUI to configure the build path rather than editing hidden files via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with the Eclipse Properties dialog and menus, not just running 'sed' or 'echo' commands in a terminal to modify .classpath."
+        },
+        {
+            "id": "genuine_dependency_resolution",
+            "description": "The agent resolves errors by fixing the build path, not by deleting the problematic code.",
+            "visual_evidence": "The contents of App.java, JsonTransformer.java, and TextAnalyzer.java remain intact with their logic, but the red underlines disappear."
+        },
+        {
+            "id": "no_manual_mocking",
+            "description": "The agent does not create dummy classes to satisfy imports.",
+            "visual_evidence": "The Package Explorer does not show new, manually created files that mimic the library classes (e.g., creating a fake Gson.java)."
+        }
+    ],
+    "privileged_info_for_vlm": "The project name is 'DataProcessor'. The required JARs located in the 'lib' folder are: commons-lang3-3.14.0.jar, gson-2.10.1.jar, and slf4j-api-2.0.9.jar. The source folder must be 'src/main/java'. Success is defined by the removal of all red error markers from the Package Explorer and the Problems view for the files App.java, JsonTransformer.java, and TextAnalyzer.java."
+}

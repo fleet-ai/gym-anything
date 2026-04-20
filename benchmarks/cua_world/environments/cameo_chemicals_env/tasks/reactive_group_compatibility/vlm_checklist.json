@@ -1,0 +1,53 @@
+{
+    "task_id": "reactive_group_compatibility@1",
+    "task_completion": [
+        {
+            "id": "read_query_file",
+            "description": "Agent opens and reads the chemical list from ~/Desktop/storage_compatibility_query.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of storage_compatibility_query.txt on the desktop."
+        },
+        {
+            "id": "search_h2o2_cameo",
+            "description": "Agent searches for Hydrogen Peroxide (>60%) on the CAMEO Chemicals website using the provided CAS or UN number.",
+            "points": 15,
+            "visual_evidence": "Browser showing the CAMEO Chemicals search page or the specific datasheet for 'Hydrogen Peroxide, Aqueous Solution, Stabilized, with More than 60% Hydrogen Peroxide' (UN 2015)."
+        },
+        {
+            "id": "identify_reactive_groups",
+            "description": "Agent identifies the reactive groups for Hydrogen Peroxide (>60%) from the CAMEO datasheet.",
+            "points": 15,
+            "visual_evidence": "Browser showing the 'Reactive Groups' section of the H2O2 datasheet, specifically listing 'Oxidizing Agents, Strong' and 'Water and Aqueous Solutions'."
+        },
+        {
+            "id": "compatibility_tool_usage",
+            "description": "Agent uses the CAMEO 'MyChemicals' or 'Compatibility' tool to compare H2O2 with the chemicals from the query list.",
+            "points": 30,
+            "visual_evidence": "Browser showing the CAMEO Compatibility Chart or a list of chemicals added to the 'MyChemicals' collection for comparison."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Agent saves the final report to ~/Documents/h2o2_compatibility_report.txt with all required sections.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the file /home/ga/Documents/h2o2_compatibility_report.txt containing H2O2 reactive groups, incompatible groups, specific matches from the list, and storage recommendations."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent interacted with the CAMEO Chemicals website rather than hallucinating data.",
+            "visual_evidence": "Screenshots show active navigation, clicking, and scrolling on the cameochemicals.noaa.gov domain."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply create the report without performing the search and compatibility analysis.",
+            "visual_evidence": "The trajectory shows the step-by-step process of adding chemicals to the compatibility tool before the report is written."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent used the web browser GUI to perform the research as intended.",
+            "visual_evidence": "Visible browser window with the CAMEO Chemicals interface, not just background curl/wget commands in a terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The target chemical is 'Hydrogen Peroxide, Aqueous Solution, Stabilized, with More than 60% Hydrogen Peroxide' (UN 2015, CAS 7722-84-1). Its primary reactive groups in CAMEO are 'Oxidizing Agents, Strong' and 'Water and Aqueous Solutions'. The agent must identify these groups and use the CAMEO compatibility tool to find conflicts with the chemicals listed in ~/Desktop/storage_compatibility_query.txt. The final report must be saved to ~/Documents/h2o2_compatibility_report.txt and include: H2O2 reactive groups, incompatible reactive groups, specific matches from the query list, and storage recommendations (e.g., keep away from organics, reducers, and combustibles)."
+}

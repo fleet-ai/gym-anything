@@ -1,0 +1,53 @@
+{
+    "task_id": "delete_obsolete_tags@1",
+    "task_completion": [
+        {
+            "id": "open_zotero",
+            "description": "The agent successfully opens the Zotero application.",
+            "points": 10,
+            "visual_evidence": "The Zotero application window is visible on the desktop."
+        },
+        {
+            "id": "locate_tag_selector",
+            "description": "The agent locates the tag selector pane (usually bottom-left) to view existing tags.",
+            "points": 10,
+            "visual_evidence": "The tag selector pane in the bottom-left corner of Zotero is visible and populated with tags."
+        },
+        {
+            "id": "delete_junk_tags",
+            "description": "The agent deletes the specified obsolete tags: 'imported', 'to-read-maybe', 'uncategorized', 'DUPLICATE', '_temp', and 'needs-review'.",
+            "points": 40,
+            "visual_evidence": "Screenshots show the agent right-clicking tags and selecting 'Delete Tag...' or the tag selector pane no longer showing these specific tags after deletion actions."
+        },
+        {
+            "id": "preserve_good_tags",
+            "description": "The agent ensures 'deep-learning', 'computer-science', 'information-theory', 'physics', and 'NLP' remain in the library.",
+            "points": 20,
+            "visual_evidence": "The tag selector pane still displays the five specified 'good' tags after the cleanup is complete."
+        },
+        {
+            "id": "verify_item_retention",
+            "description": "The agent does not delete any library items (papers) while cleaning tags.",
+            "points": 20,
+            "visual_evidence": "The central library pane still shows a list of papers/items; the item count or list remains populated."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI to manage tags rather than executing SQL commands or scripts in the terminal.",
+            "visual_evidence": "The cursor is seen interacting with the Zotero tag pane or context menus; no terminal window is used for database manipulation."
+        },
+        {
+            "id": "genuine_deletion_flow",
+            "description": "The agent followed the standard software flow for tag deletion (e.g., right-click context menu and confirmation dialogs).",
+            "visual_evidence": "Confirmation dialogs for 'Are you sure you want to delete the selected tag?' are visible during the process."
+        },
+        {
+            "id": "no_item_deletion",
+            "description": "The agent did not use the 'Move Item to Trash' or 'Delete Item from Library' functions.",
+            "visual_evidence": "The agent avoids selecting items in the center pane and pressing Delete; interactions are focused on the tag selector area."
+        }
+    ],
+    "privileged_info_for_vlm": "The junk tags to be deleted are: 'imported', 'to-read-maybe', 'uncategorized', 'DUPLICATE', '_temp', and 'needs-review'. The tags that must be preserved are: 'deep-learning', 'computer-science', 'information-theory', 'physics', and 'NLP'. The task is performed on a local Zotero SQLite database. Success is defined by the absence of the junk tags and the presence of the good tags in the Zotero tag selector pane."
+}

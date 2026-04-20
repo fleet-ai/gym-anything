@@ -1,0 +1,59 @@
+{
+    "task_id": "export_event_bulletin_scbulletin@1",
+    "task_completion": [
+        {
+            "id": "open_terminal",
+            "description": "The agent opens a terminal to access the SeisComP command line tools.",
+            "points": 10,
+            "visual_evidence": "A terminal window is visible on the desktop."
+        },
+        {
+            "id": "command_construction",
+            "description": "The agent types the scbulletin command with the correct database connection string and time parameters.",
+            "points": 20,
+            "visual_evidence": "The terminal shows a command containing '/home/ga/seiscomp/bin/scbulletin', '-d mysql://sysop:sysop@localhost/seiscomp', '--begin \"2024-01-01 00:00:00\"', and '--end \"2024-12-31 23:59:59\"'."
+        },
+        {
+            "id": "output_redirection",
+            "description": "The agent directs the output of the scbulletin command to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The command includes a redirection operator '>' or '-o' pointing to '/home/ga/Desktop/noto_bulletin.txt'."
+        },
+        {
+            "id": "execution_success",
+            "description": "The command is executed without fatal database connection errors.",
+            "points": 15,
+            "visual_evidence": "The terminal returns to a prompt or shows progress logs without 'Access denied' or 'Connection failed' errors."
+        },
+        {
+            "id": "verify_file_existence",
+            "description": "The output file is created on the desktop.",
+            "points": 10,
+            "visual_evidence": "An icon for 'noto_bulletin.txt' appears on the Desktop or is listed in the directory via 'ls'."
+        },
+        {
+            "id": "verify_content_noto",
+            "description": "The generated bulletin contains the Noto Peninsula earthquake details (approx. Jan 1, 2024).",
+            "points": 30,
+            "visual_evidence": "The agent opens 'noto_bulletin.txt' and the text shows an event around 2024-01-01 with a magnitude near 7.5 and phase arrivals (P/S waves)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_typing",
+            "description": "The agent did not manually type out a fake bulletin in a text editor.",
+            "visual_evidence": "The content in the text editor is clearly the structured output of a tool, not a short manual summary, and the terminal history shows the scbulletin command was run."
+        },
+        {
+            "id": "correct_database_usage",
+            "description": "The agent used the local SeisComP database rather than searching for the bulletin online.",
+            "visual_evidence": "The command line explicitly uses the mysql://sysop:sysop@localhost/seiscomp connection string."
+        },
+        {
+            "id": "proper_tool_path",
+            "description": "The agent used the specific binary path requested.",
+            "visual_evidence": "The terminal shows the full path /home/ga/seiscomp/bin/scbulletin being invoked."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using the scbulletin tool at /home/ga/seiscomp/bin/scbulletin. The database connection is mysql://sysop:sysop@localhost/seiscomp. The time range must be the full year 2024. The output must be saved to /home/ga/Desktop/noto_bulletin.txt. The key event to look for in the output file is the Noto Peninsula earthquake, which occurred on 2024-01-01 with a magnitude of approximately 7.5."
+}

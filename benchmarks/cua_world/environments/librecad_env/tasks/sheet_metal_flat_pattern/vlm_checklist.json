@@ -1,0 +1,62 @@
+{
+    "task_id": "sheet_metal_flat_pattern@1",
+    "task_completion": [
+        {
+            "id": "open_work_order",
+            "description": "Agent opens and reads the work order file in a text editor or terminal.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of 'work_order_001.txt' with dimensions like 120mm, 80mm, and 25mm."
+        },
+        {
+            "id": "librecad_interface_active",
+            "description": "LibreCAD is launched and the drawing environment is prepared.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD application window is visible and active on the screen."
+        },
+        {
+            "id": "layer_creation",
+            "description": "The required layers (CUT_EXTERIOR, BEND_LINES, CUT_HOLES) are created in the Layer List.",
+            "points": 20,
+            "visual_evidence": "The Layer List widget in LibreCAD shows the names 'CUT_EXTERIOR', 'BEND_LINES', and 'CUT_HOLES'."
+        },
+        {
+            "id": "geometry_construction",
+            "description": "The flat pattern geometry (outer boundary and internal bend lines) is drawn according to specifications.",
+            "points": 30,
+            "visual_evidence": "A rectangular flat pattern with four internal bend lines forming a central base (120x80) and four flanges (25mm) is visible in the CAD workspace."
+        },
+        {
+            "id": "mounting_holes_placement",
+            "description": "Four mounting holes are placed at the corners relative to the bend lines.",
+            "points": 20,
+            "visual_evidence": "Four circles are visible in the drawing, positioned 15mm from the intersections of the bend lines."
+        },
+        {
+            "id": "save_dxf_file",
+            "description": "The drawing is saved as 'chassis_flat_pattern.dxf' in the correct directory.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD title bar or a 'Save As' dialog shows the file path '~/Documents/LibreCAD/chassis_flat_pattern.dxf'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just generating a file via script.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD tools (line, circle, layer settings) and manual drawing activity."
+        },
+        {
+            "id": "no_premade_copy",
+            "description": "The agent did not simply copy a pre-existing DXF file from another location.",
+            "points": 10,
+            "visual_evidence": "The trajectory shows the step-by-step construction of lines and circles within the CAD interface."
+        },
+        {
+            "id": "correct_layer_assignment",
+            "description": "The agent actively switches between layers while drawing different elements.",
+            "points": 10,
+            "visual_evidence": "The layer selection dropdown or layer list highlights different layers (e.g., BEND_LINES) as corresponding elements are drawn."
+        }
+    ],
+    "privileged_info_for_vlm": "The final flat pattern must have a total outer boundary of 170mm x 130mm (Base 120x80 + 25mm flanges on all sides). The CUT_EXTERIOR layer should be White (Index 7). The BEND_LINES layer should be Yellow (Index 2). There are 4 mounting holes, each 6mm in diameter, offset 15mm from the bend line intersections. The file must be saved as 'chassis_flat_pattern.dxf' in '~/Documents/LibreCAD/'."
+}

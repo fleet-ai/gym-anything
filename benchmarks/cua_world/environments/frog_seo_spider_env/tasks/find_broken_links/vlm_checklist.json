@@ -1,0 +1,59 @@
+{
+    "task_id": "find_broken_links@1",
+    "task_completion": [
+        {
+            "id": "open_screaming_frog",
+            "description": "The Screaming Frog SEO Spider application is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Screaming Frog GUI window is open, showing the main interface with the 'Enter URL to spider' field."
+        },
+        {
+            "id": "input_target_url",
+            "description": "The target URL is entered into the address bar of Screaming Frog.",
+            "points": 10,
+            "visual_evidence": "The URL 'https://crawler-test.com/links/broken_links' (or the functional variants like /links/broken_links_internal) is typed into the top address bar."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "The agent initiates the crawl and the progress bar indicates activity.",
+            "points": 15,
+            "visual_evidence": "The 'Start' button is clicked, and the progress bar at the top right shows a percentage or '100%' completion."
+        },
+        {
+            "id": "identify_404_error",
+            "description": "The agent identifies at least one 404 error in the crawl results.",
+            "points": 25,
+            "visual_evidence": "The 'Response Codes' tab is selected, and at least one row shows a 'Status Code' of 404."
+        },
+        {
+            "id": "filter_client_errors",
+            "description": "The agent filters or selects the Client Error (4xx) report for export.",
+            "points": 15,
+            "visual_evidence": "The 'Response Codes' tab is active, and the filter dropdown is set to 'Client Error (4xx)'."
+        },
+        {
+            "id": "export_report",
+            "description": "The agent initiates the export process for the 4xx report.",
+            "points": 25,
+            "visual_evidence": "A file save dialog is visible, showing the destination path '/home/ga/Documents/broken_links.csv' being entered or confirmed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Screaming Frog GUI rather than just terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and interactions within the Screaming Frog interface rather than just a terminal window."
+        },
+        {
+            "id": "genuine_crawl",
+            "description": "The results shown in the GUI match the expected site structure of crawler-test.com.",
+            "visual_evidence": "The internal tab shows URLs containing 'crawler-test.com' and specific paths like '/links/not_found/'."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a CSV file using a text editor or 'touch' command.",
+            "visual_evidence": "The export process is seen through the Screaming Frog 'Export' button and file dialog, not a text editor like Gedit or Vim."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL provided in the prompt (https://crawler-test.com/links/broken_links) returns a 404 error itself. To successfully find broken links *on* the site, the agent may need to crawl the functional versions: https://crawler-test.com/links/broken_links_internal or https://crawler-test.com/links/broken_links_external. A successful crawl will show broken links such as those under the path '/links/not_found/foo*'. The final report must be a CSV located at /home/ga/Documents/broken_links.csv."
+}

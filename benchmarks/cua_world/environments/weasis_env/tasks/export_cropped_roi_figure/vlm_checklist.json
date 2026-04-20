@@ -1,0 +1,59 @@
+{
+    "task_id": "export_cropped_roi_figure@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image is successfully loaded into the viewer application.",
+            "points": 10,
+            "visual_evidence": "The DICOM viewer (e.g., Weasis) is open and displaying a medical image or the synthetic 1024x1024 test pattern."
+        },
+        {
+            "id": "zoom_applied",
+            "description": "The agent applies a significant zoom to the image.",
+            "points": 20,
+            "visual_evidence": "The magnification level indicator in the UI shows a value of at least 300%, or the image features appear significantly enlarged compared to the initial view."
+        },
+        {
+            "id": "off_center_quadrant_centered",
+            "description": "The view is panned to center an off-center quadrant/feature.",
+            "points": 25,
+            "visual_evidence": "The viewport shows a specific sub-region of the original image (one of the quadrants) centered in the main display area."
+        },
+        {
+            "id": "export_dialog_opened",
+            "description": "The agent initiates the export process via the application menu.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' dialog box is visible over the main application window."
+        },
+        {
+            "id": "export_settings_configured",
+            "description": "The agent selects JPEG format and specifies the correct output path.",
+            "points": 15,
+            "visual_evidence": "The export dialog shows 'JPEG' or '.jpg' selected as the file type and the path '~/DICOM/exports/figure_roi.jpg' (or equivalent) typed into the destination field."
+        },
+        {
+            "id": "successful_export_confirmation",
+            "description": "The export process is completed successfully.",
+            "points": 15,
+            "visual_evidence": "A progress bar completes, a 'Success' notification appears, or the export dialog closes, returning focus to the main viewer."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to perform the crop and export rather than just using terminal commands to move/rename files.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and interaction with the DICOM viewer's zoom/pan tools and export dialogs."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor or terminal to manually create a dummy JPEG file.",
+            "visual_evidence": "The trajectory does not show 'touch', 'cp', or 'echo' commands being used to create the target file in the terminal."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual DICOM viewer software interface.",
+            "visual_evidence": "The application window (e.g., Weasis) is the active window during the zoom and export operations."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is a 1024x1024 synthetic DICOM. The agent must reach at least 300% magnification. The final output must be a JPEG saved specifically to /home/ga/DICOM/exports/figure_roi.jpg. Verification should focus on the zoom level indicator in the GUI and the file path entered in the export dialog."
+}

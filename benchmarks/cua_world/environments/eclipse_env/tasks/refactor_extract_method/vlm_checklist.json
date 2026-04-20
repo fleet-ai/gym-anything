@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_extract_method@1",
+    "task_completion": [
+        {
+            "id": "open_report_service",
+            "description": "Open the ReportService.java file in the IDE editor.",
+            "points": 10,
+            "visual_evidence": "The file 'ReportService.java' is visible in an editor tab, showing the package 'com.corp.reporting'."
+        },
+        {
+            "id": "create_append_report_header",
+            "description": "Define a new method named 'appendReportHeader' in the ReportService class.",
+            "points": 20,
+            "visual_evidence": "Code showing 'private void appendReportHeader(StringBuilder ...)' or similar signature in the editor."
+        },
+        {
+            "id": "move_header_logic",
+            "description": "Move the common header strings (ACME CORP, Confidentiality) into the new method.",
+            "points": 20,
+            "visual_evidence": "The strings 'ACME CORP - INTERNAL REPORT' and 'Confidentiality: RESTRICTED ACCESS' appear inside the 'appendReportHeader' method."
+        },
+        {
+            "id": "update_report_methods",
+            "description": "Update 'generateDailyReport' and 'generateWeeklyReport' to call 'appendReportHeader'.",
+            "points": 25,
+            "visual_evidence": "The methods 'generateDailyReport' and 'generateWeeklyReport' no longer contain the raw header strings and instead show a call to 'appendReportHeader()'."
+        },
+        {
+            "id": "run_junit_tests",
+            "description": "Execute the project's JUnit tests to verify the refactoring.",
+            "points": 25,
+            "visual_evidence": "A JUnit view or terminal output showing test execution results, ideally with green bars or 'Tests passed' indicators."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's graphical interface for editing and refactoring rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the agent clicking in the editor, using context menus, or typing directly into the Java file in the IDE."
+        },
+        {
+            "id": "no_hardcoded_test_results",
+            "description": "The agent ran actual tests rather than printing fake success messages.",
+            "visual_evidence": "The JUnit runner interface or a standard build tool (like Maven/Gradle) output is visible, showing dynamic execution."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent manually performed the extraction or used IDE refactoring tools, not just deleting the file content.",
+            "visual_evidence": "Intermediate steps show the code being modified or the 'Extract Method' dialog being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/CorporateReporting. The target file is src/main/java/com/corp/reporting/ReportService.java. The specific strings that must be moved into the new 'appendReportHeader' method are 'ACME CORP - INTERNAL REPORT' and 'Confidentiality: RESTRICTED ACCESS'. The method name must be exactly 'appendReportHeader'."
+}

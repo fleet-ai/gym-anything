@@ -1,0 +1,53 @@
+{
+    "task_id": "dispensing_trajectory_profiling@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_interface_open",
+            "description": "The agent has opened the CoppeliaSim simulation environment.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible, showing a robot arm and a 3D scene."
+        },
+        {
+            "id": "script_implementation",
+            "description": "The agent writes or modifies a script to define the rectangular path and flow rate logic.",
+            "points": 20,
+            "visual_evidence": "A code editor or script dialog is visible containing logic for a 4-corner path and the formula 'flow_rate = velocity * 5.0'."
+        },
+        {
+            "id": "robot_motion_execution",
+            "description": "The robot arm moves in a rectangular pattern in the XY plane.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots show the robot end-effector tracing a rectangular shape above the engine block/work surface."
+        },
+        {
+            "id": "csv_file_generation",
+            "description": "The agent saves the trajectory data to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "A terminal command or file explorer shows the creation of '/home/ga/Documents/CoppeliaSim/exports/dispensing_profile.csv' with the required 12 columns."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the summary report to the specified JSON path.",
+            "points": 25,
+            "visual_evidence": "A terminal command or file explorer shows '/home/ga/Documents/CoppeliaSim/exports/dispensing_report.json' containing fields like total_path_length_m and total_volume_ml."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "The agent actually ran the simulation rather than just creating files manually.",
+            "visual_evidence": "The simulation 'Play' button is toggled or the simulation time counter in the GUI is increasing during the trajectory."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculates values based on motion rather than hardcoding the final report.",
+            "visual_evidence": "The script shows variables for velocity and distance being updated dynamically during the loop."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacts with the CoppeliaSim interface to observe or trigger the motion.",
+            "visual_evidence": "Mouse cursor movements or highlights over the CoppeliaSim scene or play controls."
+        }
+    ],
+    "privileged_info_for_vlm": "The rectangular path must span at least 0.15m in X and 0.10m in Y. The flow rate constant K must be exactly 5.0 (flow_rate = speed * 5.0). The CSV must contain at least 100 rows of data. The required output paths are /home/ga/Documents/CoppeliaSim/exports/dispensing_profile.csv and /home/ga/Documents/CoppeliaSim/exports/dispensing_report.json."
+}

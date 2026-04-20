@@ -1,0 +1,59 @@
+{
+    "task_id": "seb_server_admin_audit@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the SEB Server at http://localhost:8080 using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the login page followed by the SEB Server dashboard or main navigation menu."
+        },
+        {
+            "id": "navigate_institutions_users",
+            "description": "Agent navigates to the Institutions and User Accounts sections to collect data.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'Institutions' list and the 'User Accounts' table in the SEB Server UI."
+        },
+        {
+            "id": "navigate_lms_setups",
+            "description": "Agent navigates to the LMS Setups section to identify configured systems.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'LMS Setups' or 'LMS Integrations' view."
+        },
+        {
+            "id": "navigate_configs_exams",
+            "description": "Agent navigates to the SEB Exam Configurations and Exams sections.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the list of SEB Exam Configurations (with status column) and the list of Exams."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent creates the audit report file with the exact required header and structure.",
+            "points": 20,
+            "visual_evidence": "A terminal screenshot or text editor showing the content of /home/ga/seb_audit_report.txt starting with 'SEB SERVER AUDIT REPORT'."
+        },
+        {
+            "id": "data_accuracy",
+            "description": "The report contains the correct counts and names for all five required categories.",
+            "points": 20,
+            "visual_evidence": "The final content of the report file matches the system state: 1 Institution, 1 User, 3 LMS Setups, 1 Config, and 2 Exams."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser to gather information rather than querying the database directly via terminal.",
+            "visual_evidence": "Screenshots must show a web browser (e.g., Firefox/Chrome) navigating the SEB Server UI."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the final report without visiting the relevant pages in the UI.",
+            "visual_evidence": "The trajectory must include sequential screenshots of the different SEB Server modules (Institutions, Users, etc.)."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the actual SEB Server instance at localhost:8080.",
+            "visual_evidence": "The browser address bar should show http://localhost:8080 during the audit process."
+        }
+    ],
+    "privileged_info_for_vlm": "The SEB Server contains: 1 Institution ('ETH Zürich'), 1 User Account ('super-admin' with role 'ADMIN'), 3 LMS Setups ('test', 'Open edX Ralph', 'Moodle'), 1 SEB Exam Configuration ('test' with status 'IN_USE'), and 2 Exams ('quiz1', 'quiz6'). The report must be saved to /home/ga/seb_audit_report.txt and follow the exact template provided in the instructions."
+}

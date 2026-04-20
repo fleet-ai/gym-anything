@@ -1,0 +1,59 @@
+{
+    "task_id": "remove_stocks_from_watchlist@1",
+    "task_completion": [
+        {
+            "id": "open_jstock_app",
+            "description": "The JStock application is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The JStock main window is open, showing stock market data or watchlists."
+        },
+        {
+            "id": "select_united_states",
+            "description": "The country/market is set to United States.",
+            "points": 10,
+            "visual_evidence": "A flag icon for the United States or the text 'United States' is selected in the country dropdown/tab."
+        },
+        {
+            "id": "select_my_watchlist",
+            "description": "The 'My Watchlist' tab or category is active.",
+            "points": 10,
+            "visual_evidence": "The 'My Watchlist' tab is highlighted or selected in the watchlist pane."
+        },
+        {
+            "id": "identify_target_stocks",
+            "description": "The stocks GOOGL and AMZN are visible in the list before removal.",
+            "points": 10,
+            "visual_evidence": "Rows containing 'GOOGL' (Alphabet) and 'AMZN' (Amazon) are visible in the watchlist table."
+        },
+        {
+            "id": "remove_googl_amzn",
+            "description": "The agent initiates the removal of GOOGL and AMZN.",
+            "points": 30,
+            "visual_evidence": "The agent right-clicks or selects GOOGL and AMZN and chooses a 'Remove' or 'Delete' option from a menu."
+        },
+        {
+            "id": "verify_removal_gui",
+            "description": "GOOGL and AMZN are no longer present in the JStock GUI watchlist.",
+            "points": 30,
+            "visual_evidence": "The watchlist table no longer contains GOOGL or AMZN, while AAPL, MSFT, and NVDA remain visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the JStock GUI to remove stocks rather than editing the CSV file via a terminal.",
+            "visual_evidence": "Screenshots show mouse movements and menu interactions within the JStock application window, not a text editor or terminal command like 'sed' or 'rm'."
+        },
+        {
+            "id": "no_manual_csv_edit",
+            "description": "The agent did not simply overwrite the CSV file using a command line tool.",
+            "visual_evidence": "The agent is seen interacting with the JStock 'Remove' buttons or context menus."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual JStock software interface.",
+            "visual_evidence": "The JStock interface elements (buttons, tables, menus) respond to the agent's clicks."
+        }
+    ],
+    "privileged_info_for_vlm": "The target watchlist is 'My Watchlist' under the 'United States' market. The stocks to be removed are GOOGL and AMZN. After removal, the watchlist should contain exactly 3 stocks: AAPL, MSFT, and NVDA. The changes must be reflected in the GUI to ensure the underlying file at ~/.jstock/1.0.7/UnitedState/watchlist/My Watchlist/realtimestock.csv is updated by the application."
+}

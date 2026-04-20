@@ -1,0 +1,59 @@
+{
+    "task_id": "medical_licensing_exam_workflow@1",
+    "task_completion": [
+        {
+            "id": "import_quiz",
+            "description": "Import a quiz from the Assessment Tool into the SEB Server.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the 'Import' process from the Assessment Tool or a newly listed quiz in the SEB Server quiz repository."
+        },
+        {
+            "id": "create_exam_instance",
+            "description": "Create a new exam instance based on the imported quiz.",
+            "points": 15,
+            "visual_evidence": "The SEB Server interface showing a new exam instance entry, likely named after the USMLE Step 1 or the imported quiz."
+        },
+        {
+            "id": "configure_latency_monitor",
+            "description": "Add the 'Latency Monitor' indicator directly to the exam instance with specific thresholds.",
+            "points": 20,
+            "visual_evidence": "The exam instance configuration page showing a monitoring indicator named 'Latency Monitor' with type 'Last Ping Time', warning threshold 4000, and danger threshold 10000."
+        },
+        {
+            "id": "configure_integrity_alert",
+            "description": "Add the 'Integrity Alert' indicator directly to the exam instance with specific thresholds.",
+            "points": 20,
+            "visual_evidence": "The exam instance configuration page showing a monitoring indicator named 'Integrity Alert' with type 'Warning-Log Counter', warning threshold 2, and danger threshold 5."
+        },
+        {
+            "id": "create_proctor_account",
+            "description": "Create a user account for David Kim with the specified username and email.",
+            "points": 15,
+            "visual_evidence": "The User Management screen showing a user with username 'med.proctor', name 'David Kim', and email 'd.kim@nbme.gov'."
+        },
+        {
+            "id": "activate_proctor_role",
+            "description": "Assign the 'Exam Supporter' role to the new account and ensure it is active.",
+            "points": 15,
+            "visual_evidence": "The user details or list view showing 'med.proctor' assigned the 'Exam Supporter' role and an 'Active' status (e.g., a green checkmark or 'Enabled' toggle)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SEB Server web interface rather than executing direct database queries via terminal.",
+            "visual_evidence": "Screenshots show the browser navigating the SEB Server UI (localhost:8080) and clicking buttons/filling forms."
+        },
+        {
+            "id": "no_template_shortcut",
+            "description": "The indicators were added directly to the exam instance, not via a pre-existing template.",
+            "visual_evidence": "Screenshots show the 'Add Indicator' process within the specific exam instance settings rather than the global 'Templates' section."
+        },
+        {
+            "id": "genuine_user_creation",
+            "description": "The proctor account was manually created through the 'Add User' form.",
+            "visual_evidence": "Screenshots show the 'Create User' form being filled with David Kim's specific details."
+        }
+    ],
+    "privileged_info_for_vlm": "The SEB Server is at http://localhost:8080. The required username is 'med.proctor' for David Kim (d.kim@nbme.gov). Two specific indicators must be added to the exam instance (not a template): 'Latency Monitor' (Last Ping Time, 4000/10000) and 'Integrity Alert' (Warning-Log Counter, 2/5). The role for the user must be 'Exam Supporter'."
+}

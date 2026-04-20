@@ -1,0 +1,59 @@
+{
+    "task_id": "optimize_swarm_performance@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulation environment and located the WorldInfo node.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the Webots application open with a scene tree visible on the left containing a 'WorldInfo' node."
+        },
+        {
+            "id": "set_basic_timestep",
+            "description": "The basicTimeStep in WorldInfo is set to 32.",
+            "points": 20,
+            "visual_evidence": "The 'basicTimeStep' field under the WorldInfo node in the scene tree or the selection field shows the value '32'."
+        },
+        {
+            "id": "set_optimal_thread_count",
+            "description": "The optimalThreadCount in WorldInfo is set to 8.",
+            "points": 20,
+            "visual_evidence": "The 'optimalThreadCount' field under the WorldInfo node in the scene tree or the selection field shows the value '8'."
+        },
+        {
+            "id": "set_fps",
+            "description": "The FPS (display refresh rate) is set to 20.",
+            "points": 15,
+            "visual_evidence": "The 'FPS' field under the WorldInfo node in the scene tree or the selection field shows the value '20'."
+        },
+        {
+            "id": "disable_directional_light_shadows",
+            "description": "The castShadows property of the DirectionalLight is set to FALSE.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows a 'DirectionalLight' node expanded, and the 'castShadows' checkbox is unchecked or the value is explicitly set to 'FALSE'."
+        },
+        {
+            "id": "save_optimized_world",
+            "description": "The world is saved to the specific path /home/ga/Desktop/optimized_training_env.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a file explorer window shows the file being saved to '/home/ga/Desktop/optimized_training_env.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree fields and property editors."
+        },
+        {
+            "id": "no_terminal_shortcut",
+            "description": "The agent did not simply use 'sed' or 'echo' in the terminal to create the file without opening the simulator.",
+            "visual_evidence": "The trajectory shows the Webots application window active during the modification process, not just a terminal window."
+        },
+        {
+            "id": "authentic_save_process",
+            "description": "The agent used the File menu or shortcut within Webots to save the file.",
+            "visual_evidence": "The Webots 'File' menu is seen open or the 'Save World As...' dialog is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values in the Webots WorldInfo node: basicTimeStep=32, optimalThreadCount=8, and FPS=20. In the DirectionalLight node, castShadows must be FALSE. The final file must be saved exactly to /home/ga/Desktop/optimized_training_env.wbt. Note: While the task description asks for optimalThreadCount 8, the internal verification logic accepts any value >= 4; however, the agent should ideally match the requested '8'."
+}

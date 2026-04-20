@@ -1,0 +1,59 @@
+{
+    "task_id": "export_calendar_events@1",
+    "task_completion": [
+        {
+            "id": "access_odoo_calendar",
+            "description": "Agent navigates to the Odoo Calendar module at http://localhost:8069.",
+            "points": 10,
+            "visual_evidence": "The browser URL bar shows localhost:8069 and the Odoo Calendar interface (grid or list view) is visible."
+        },
+        {
+            "id": "switch_to_list_view",
+            "description": "Agent switches to the List view to facilitate selecting multiple records for export.",
+            "points": 10,
+            "visual_evidence": "The Odoo interface changes from a calendar grid to a table/list view of events."
+        },
+        {
+            "id": "select_all_events",
+            "description": "Agent selects all calendar events in the list.",
+            "points": 15,
+            "visual_evidence": "Checkboxes next to the calendar events are ticked, or a 'Select All' checkbox at the top of the list is checked."
+        },
+        {
+            "id": "open_export_dialog",
+            "description": "Agent triggers the Export action from the Action menu.",
+            "points": 15,
+            "visual_evidence": "An 'Export Data' modal or dialog box appears over the Odoo interface."
+        },
+        {
+            "id": "configure_export_fields",
+            "description": "Agent selects the required fields: Subject/Name, Start, and End/Stop.",
+            "points": 25,
+            "visual_evidence": "The export dialog shows 'Subject' (or 'Name'), 'Start', and 'End' (or 'Stop') in the 'Fields to export' list."
+        },
+        {
+            "id": "save_csv_to_destination",
+            "description": "Agent saves the exported CSV file to the specific path /home/ga/Documents/calendar_export.csv.",
+            "points": 25,
+            "visual_evidence": "A file manager window or a terminal 'ls' command shows the file 'calendar_export.csv' exists in the /home/ga/Documents/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Odoo web interface to perform the export rather than querying the database directly via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking buttons and menus within the Odoo browser interface."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually type the event data into a text editor to create the CSV.",
+            "visual_evidence": "The agent is seen using the Odoo 'Export' button and a 'Save As' dialog rather than a text editor like Gedit or Vim to input event details."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The data being exported matches the synthetic events populated in the Odoo instance.",
+            "visual_evidence": "The list view in Odoo shows approximately 21 events before the export is triggered."
+        }
+    ],
+    "privileged_info_for_vlm": "The Odoo database contains exactly 21 calendar events. The export must be a CSV file saved to /home/ga/Documents/calendar_export.csv. Required columns in the CSV are 'Subject' (may appear as 'Name'), 'Start' (may appear as 'Start Date'), and 'End' (may appear as 'Stop' or 'End Date')."
+}

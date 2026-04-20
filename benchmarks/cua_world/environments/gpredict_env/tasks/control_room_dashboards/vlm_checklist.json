@@ -1,0 +1,65 @@
+{
+    "task_id": "control_room_dashboards@1",
+    "task_completion": [
+        {
+            "id": "delete_amateur_module",
+            "description": "Delete the default 'Amateur' module from the GPredict interface.",
+            "points": 10,
+            "visual_evidence": "The 'Amateur' tab or window is no longer visible in the GPredict workspace."
+        },
+        {
+            "id": "create_miami_ground_station",
+            "description": "Add a new ground station named 'Miami_NHC' with coordinates 25.7543 N, 80.3823 W and Altitude 2m.",
+            "points": 20,
+            "visual_evidence": "The 'Ground Stations' configuration dialog or the station selection list shows 'Miami_NHC' with Latitude 25.7543, Longitude -80.3823, and Altitude 2."
+        },
+        {
+            "id": "create_geo_wx_module",
+            "description": "Create a module named 'GEO_WX' using the 'Miami_NHC' ground station and 'Map' layout.",
+            "points": 20,
+            "visual_evidence": "A module tab or window titled 'GEO_WX' is visible. The layout is a world map view."
+        },
+        {
+            "id": "configure_geo_wx_satellites",
+            "description": "Add GOES 16, GOES 18, and METEOSAT 11 to the 'GEO_WX' module.",
+            "points": 15,
+            "visual_evidence": "The 'GEO_WX' module displays the names or icons for GOES 16, GOES 18, and METEOSAT 11 on the map."
+        },
+        {
+            "id": "create_leo_wx_module",
+            "description": "Create a module named 'LEO_WX' using the 'Miami_NHC' ground station and 'Polar' layout.",
+            "points": 20,
+            "visual_evidence": "A module tab or window titled 'LEO_WX' is visible. The layout is a circular polar (radar-style) plot."
+        },
+        {
+            "id": "configure_leo_wx_satellites",
+            "description": "Add NOAA 19, METOP-C, and SUOMI NPP to the 'LEO_WX' module.",
+            "points": 10,
+            "visual_evidence": "The 'LEO_WX' module displays the names or icons for NOAA 19, METOP-C, and SUOMI NPP."
+        },
+        {
+            "id": "set_utc_time",
+            "description": "Configure GPredict to display UTC time.",
+            "points": 5,
+            "visual_evidence": "The time display in the GPredict status bar or module headers shows 'UTC' instead of local time."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to configure settings rather than editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GPredict menus (e.g., Edit -> Preferences or Module -> Configure) and dialog boxes."
+        },
+        {
+            "id": "genuine_module_creation",
+            "description": "The modules were created within the application, not just renamed.",
+            "visual_evidence": "The transition from the default layout to the new 'GEO_WX' and 'LEO_WX' tabs is visible in the trajectory."
+        },
+        {
+            "id": "no_hardcoded_overlay",
+            "description": "The satellite data is live/rendered by the app, not a static image overlay.",
+            "visual_evidence": "Satellite positions or timestamps change slightly between screenshots, indicating the software is running."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground station 'Miami_NHC' must be set to Latitude 25.7543, Longitude -80.3823 (West is negative in GPredict), and Altitude 2m. The NORAD IDs for verification are: GOES 16 (41866), GOES 18 (51850), METEOSAT 11 (40732) for the GEO_WX Map module; and NOAA 19 (33591), METOP-C (43689), SUOMI NPP (37849) for the LEO_WX Polar module."
+}

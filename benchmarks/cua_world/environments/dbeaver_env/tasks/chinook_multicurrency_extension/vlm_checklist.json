@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_multicurrency_extension@1",
+    "task_completion": [
+        {
+            "id": "create_currencies_table",
+            "description": "Create and populate the 'currencies' table with the specified columns and 6 currency records.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing CREATE TABLE and INSERT statements for 'currencies', or the DBeaver Database Navigator showing the 'currencies' table under the 'ChinookExtended' connection."
+        },
+        {
+            "id": "alter_invoices_table",
+            "description": "Add the 'CurrencyCode' column to the 'invoices' table with a default value of 'USD'.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing 'ALTER TABLE invoices ADD COLUMN CurrencyCode' or the table properties/columns view in DBeaver showing the new column."
+        },
+        {
+            "id": "update_invoice_currencies",
+            "description": "Update the 'CurrencyCode' in the 'invoices' table based on the 'BillingCountry' mapping (EUR, GBP, CAD, BRL, AUD).",
+            "points": 20,
+            "visual_evidence": "SQL editor showing UPDATE statements with CASE logic or multiple WHERE clauses mapping countries to currency codes."
+        },
+        {
+            "id": "create_revenue_view",
+            "description": "Create the 'currency_revenue_summary' view with the calculated columns (TotalLocalRevenue and TotalRevenueUSD).",
+            "points": 20,
+            "visual_evidence": "SQL editor showing 'CREATE VIEW currency_revenue_summary' with the join between invoices and currencies and the calculation 'Total * ExchangeRate'."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the view results to /home/ga/Documents/exports/currency_revenue.csv.",
+            "points": 15,
+            "visual_evidence": "DBeaver export wizard dialog showing the target path '/home/ga/Documents/exports/currency_revenue.csv' or a success message for the export."
+        },
+        {
+            "id": "save_migration_script",
+            "description": "Save the SQL migration script to /home/ga/Documents/scripts/multicurrency_migration.sql.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the file explorer showing the SQL script saved at the specified path '/home/ga/Documents/scripts/multicurrency_migration.sql'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DBeaver GUI to perform database operations rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the DBeaver application window, SQL editor tabs, and Database Navigator tree being used."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent connected to the specific database file and connection name requested.",
+            "visual_evidence": "The Database Navigator shows a connection named 'ChinookExtended' pointing to '/home/ga/Documents/databases/chinook_extended.db'."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The CSV export was generated via the database tool, not manually typed in a text editor.",
+            "visual_evidence": "Presence of the DBeaver Data Export wizard or SQL 'COPY'/'EXPORT' command execution."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook_extended.db. The 'EUR' currency must be applied to: Austria, Belgium, Finland, France, Germany, Ireland, Italy, Netherlands, Portugal, and Spain. Exchange rates to USD: EUR (1.08), GBP (1.27), CAD (0.74), BRL (0.20), AUD (0.65). The view 'currency_revenue_summary' must use the formula 'Total * ExchangeRate' for TotalRevenueUSD and be ordered by this value descending."
+}

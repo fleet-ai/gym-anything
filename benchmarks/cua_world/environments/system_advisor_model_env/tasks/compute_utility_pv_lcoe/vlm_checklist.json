@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_utility_pv_lcoe@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent locates the Arizona TMY weather file path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or a directory listing of that path containing Arizona weather files."
+        },
+        {
+            "id": "script_creation",
+            "description": "Agent creates the Python script at the specified path with PySAM logic.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation of /home/ga/Documents/SAM_Projects/compute_lcoe.py containing 'import PySAM.Pvwattsv8' or similar."
+        },
+        {
+            "id": "parameter_configuration",
+            "description": "The script includes the specific technical and financial parameters required (100MW, 1.3 DC/AC, tracking, 0.0713 FCR).",
+            "points": 25,
+            "visual_evidence": "Code visible in screenshots showing system_capacity=100000, dc_ac_ratio=1.3, array_type=2, and fixed_charge_rate=0.0713."
+        },
+        {
+            "id": "script_execution",
+            "description": "Agent executes the Python script to run the simulation.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'python3 /home/ga/Documents/SAM_Projects/compute_lcoe.py' being run without errors."
+        },
+        {
+            "id": "json_output_generation",
+            "description": "The JSON result file is created at the correct path with the required keys.",
+            "points": 30,
+            "visual_evidence": "File explorer or terminal showing /home/ga/Documents/SAM_Projects/utility_pv_lcoe_result.json with keys: annual_energy_kwh, capacity_factor_pct, lcoe_cents_per_kwh, and weather_file_used."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final values into the script without running a simulation.",
+            "visual_evidence": "The Python script should show calls to PySAM modules (e.g., pvsamv1, pvwattsv8, lcoefcr) rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_weather_usage",
+            "description": "The agent used the weather file from the specified directory rather than a default or dummy file.",
+            "visual_evidence": "The script or JSON output should reference a specific .csv or .tm2/.tm3 file found in the solar_resource_dir path."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the prompt for both the script and the output.",
+            "visual_evidence": "Screenshots confirm the files are in /home/ga/Documents/SAM_Projects/ and not the current working directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation uses Phoenix TMY3 data. Expected values: annual_energy_kwh should be between 170,000,000 and 270,000,000 (approx 212M); capacity_factor_pct should be between 19.0 and 31.0 (approx 24.2%); lcoe_cents_per_kwh should be between 2.8 and 6.0 (approx 4.0-4.5 cents). The weather_file_used must be the basename of a file from the Arizona directory."
+}

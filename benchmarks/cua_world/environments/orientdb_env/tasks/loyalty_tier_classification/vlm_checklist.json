@@ -1,0 +1,53 @@
+{
+    "task_id": "loyalty_tier_classification@1",
+    "task_completion": [
+        {
+            "id": "create_loyalty_tiers_class",
+            "description": "Create the 'LoyaltyTiers' vertex class with properties TierName, MinSpend, and Benefits.",
+            "points": 15,
+            "visual_evidence": "OrientDB Studio or console showing the creation of the 'LoyaltyTiers' class and its schema properties."
+        },
+        {
+            "id": "populate_tier_data",
+            "description": "Populate the LoyaltyTiers class with the four specified tiers (Platinum, Gold, Silver, Bronze) and their respective values.",
+            "points": 15,
+            "visual_evidence": "A query result or table view in OrientDB showing four records in the LoyaltyTiers class with the correct MinSpend and Benefits."
+        },
+        {
+            "id": "modify_profiles_and_edges",
+            "description": "Add 'LoyaltyTier' property to the Profiles class and create the 'BelongsToTier' edge class.",
+            "points": 15,
+            "visual_evidence": "Schema view showing the new property in 'Profiles' and the existence of the 'BelongsToTier' edge class."
+        },
+        {
+            "id": "classify_and_update_profiles",
+            "description": "Calculate spending and update each Profile's LoyaltyTier property and create BelongsToTier edges.",
+            "points": 30,
+            "visual_evidence": "Database records showing Profiles with populated 'LoyaltyTier' strings and graph visualizations showing edges connecting Profiles to LoyaltyTiers."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Save a summary report to /home/ga/loyalty_report.txt with tier counts and Platinum member names.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output showing the content of '/home/ga/loyalty_report.txt' containing the tier counts and names."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "database_interaction",
+            "description": "The agent interacted with the OrientDB database (demodb) using the specified credentials.",
+            "visual_evidence": "Screenshots showing the OrientDB Studio login or connection strings in a terminal using 'root' and 'GymAnything123!'."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent performed actual queries to calculate spending rather than hardcoding values.",
+            "visual_evidence": "SQL/Gremlin queries visible in the trajectory that traverse Profile, Customer, and Order classes."
+        },
+        {
+            "id": "report_generation_source",
+            "description": "The report content matches the data state in the database.",
+            "visual_evidence": "The counts and names in the final report file correspond to the results of the database queries shown in previous steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The credentials are root/GymAnything123!. The classification thresholds are: Platinum (>=3000), Gold (>=1500), Silver (>=500), Bronze (<500). Note: Due to a known issue in the seed data, 'HasOrder' edges might be missing; the agent is expected to attempt the traversal (Profile <- HasProfile - Customer - HasOrder -> Order) as described. If the traversal yields no results, the report should reflect the actual state of the database after the agent's attempt."
+}

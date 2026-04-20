@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_test_subset@1",
+    "task_completion": [
+        {
+            "id": "open_source_db",
+            "description": "Open the source Chinook database in a database management tool (e.g., DBeaver).",
+            "points": 10,
+            "visual_evidence": "A database tool window showing a connection to '/home/ga/Documents/databases/chinook.db' and the list of tables."
+        },
+        {
+            "id": "filter_brazil_customers",
+            "description": "Identify or query customers where Country is 'Brazil'.",
+            "points": 15,
+            "visual_evidence": "An SQL editor or data grid showing a query like 'SELECT * FROM Customer WHERE Country = \"Brazil\"' or a filtered view showing 5 customer records."
+        },
+        {
+            "id": "create_target_db",
+            "description": "Create the new SQLite database file 'chinook_brazil_test.db'.",
+            "points": 15,
+            "visual_evidence": "A file explorer showing the new .db file at the specified path or a new connection in the DB tool for 'chinook_brazil_test.db'."
+        },
+        {
+            "id": "schema_replication",
+            "description": "Create the 9 required tables in the target database with matching schemas.",
+            "points": 20,
+            "visual_evidence": "The target database 'chinook_brazil_test.db' showing the tables: customers, employees, invoices, invoice_items, tracks, albums, artists, genres, and media_types."
+        },
+        {
+            "id": "data_extraction_logic",
+            "description": "Execute the extraction logic to insert referentially consistent data for Brazilian customers.",
+            "points": 25,
+            "visual_evidence": "SQL execution logs or progress bars showing INSERT statements into the target tables, specifically filtering by CustomerId or related foreign keys."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL extraction script (DDL and INSERTs) to the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or file explorer showing 'brazil_subset_extraction.sql' saved at '/home/ga/Documents/scripts/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GUI-based database tool (like DBeaver) rather than just executing a single opaque shell script.",
+            "visual_evidence": "Screenshots showing the DBeaver interface, SQL editor, and table navigation."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The agent didn't just create empty tables; it actually queried the source data.",
+            "visual_evidence": "SQL queries showing JOINs or subqueries involving 'Country = \"Brazil\"' and actual data visible in the target table grids."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent interacted with the file system to save the script and database.",
+            "visual_evidence": "Save dialogs or file explorer views confirming the existence of the new files in the specified directories."
+        }
+    ],
+    "privileged_info_for_vlm": "The source database is at /home/ga/Documents/databases/chinook.db. There are exactly 5 customers from Brazil. A correct subset should contain: 5 Customers, 35 Invoices, and 190 Invoice Items. The target database must be named 'chinook_brazil_test.db' and the script 'brazil_subset_extraction.sql'. The 9 required tables are: customers, employees, invoices, invoice_items, tracks, albums, artists, genres, and media_types (note: source DB may use PascalCase like 'InvoiceLine', but task asks for specific names)."
+}

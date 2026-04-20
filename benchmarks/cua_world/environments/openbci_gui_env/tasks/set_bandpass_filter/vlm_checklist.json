@@ -1,0 +1,53 @@
+{
+    "task_id": "set_bandpass_filter@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_visible",
+            "description": "The OpenBCI GUI application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the OpenBCI GUI window, likely showing EEG channel waveforms and a control panel."
+        },
+        {
+            "id": "locate_filter_settings",
+            "description": "The agent locates and interacts with the filter settings or the 'Filters' widget/dropdown.",
+            "points": 20,
+            "visual_evidence": "The cursor is positioned over a 'Filters' button, a dropdown menu, or a settings gear icon associated with signal processing."
+        },
+        {
+            "id": "open_filter_selection",
+            "description": "The agent opens the selection menu for the Bandpass filter.",
+            "points": 20,
+            "visual_evidence": "A dropdown menu or modal window appears listing various frequency ranges (e.g., 1-50 Hz, 5-50 Hz, 7-13 Hz)."
+        },
+        {
+            "id": "select_target_filter",
+            "description": "The agent selects the '1-50 Hz' option from the available filter ranges.",
+            "points": 30,
+            "visual_evidence": "The '1-50 Hz' option is highlighted or clicked within the filter selection menu."
+        },
+        {
+            "id": "verify_filter_applied",
+            "description": "The GUI reflects that the active bandpass filter is now set to 1-50 Hz.",
+            "points": 20,
+            "visual_evidence": "The text label in the GUI (often near the top of the Time Series widget or in the Filter settings) explicitly displays '1-50 Hz' instead of '5-50 Hz'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical interface rather than terminal commands to change the filter.",
+            "visual_evidence": "The screenshots show mouse movements and menu interactions within the OpenBCI GUI; no terminal/CLI commands are used to modify the application state."
+        },
+        {
+            "id": "no_image_manipulation",
+            "description": "The change in the filter value is a result of software interaction, not manual text editing of the screenshot.",
+            "visual_evidence": "The UI elements (buttons, highlights, dropdowns) show consistent state changes and hover effects during the selection process."
+        },
+        {
+            "id": "active_session_maintained",
+            "description": "The agent interacted with the running synthetic session without closing the application or resetting the data stream.",
+            "visual_evidence": "The EEG waveforms continue to scroll or update in the background while the filter change is being made."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenBCI GUI v5.2.2 contains a configurable Bandpass filter. Valid filter options include 1-50 Hz and 5-50 Hz. The task is successfully completed when the GUI's filter status indicator or dropdown menu clearly displays '1-50 Hz' as the active selection."
+}

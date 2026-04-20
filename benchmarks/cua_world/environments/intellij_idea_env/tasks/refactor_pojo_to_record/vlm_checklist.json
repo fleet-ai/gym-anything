@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_pojo_to_record@1",
+    "task_completion": [
+        {
+            "id": "open_transaction_event",
+            "description": "Open TransactionEvent.java in the IDE to begin refactoring.",
+            "points": 10,
+            "visual_evidence": "The file 'TransactionEvent.java' is visible in an editor tab within the IDE (IntelliJ/VS Code)."
+        },
+        {
+            "id": "refactor_to_record_syntax",
+            "description": "Convert the class declaration to a record and remove boilerplate (getters, equals, hashCode, toString).",
+            "points": 25,
+            "visual_evidence": "The code shows 'public record TransactionEvent(...)' and the removal of explicit getter methods and standard overrides."
+        },
+        {
+            "id": "preserve_validation_logic",
+            "description": "Implement a compact or canonical constructor in the record to ensure 'amount > 0' validation is preserved.",
+            "points": 20,
+            "visual_evidence": "A constructor block within the record containing 'if (amount <= 0)' or similar logic throwing an exception."
+        },
+        {
+            "id": "update_audit_service",
+            "description": "Update AuditService.java to use record-style accessors (e.g., event.amount() instead of event.getAmount()).",
+            "points": 20,
+            "visual_evidence": "AuditService.java is open and shows calls to TransactionEvent fields using method syntax without the 'get' prefix."
+        },
+        {
+            "id": "verify_test_pass",
+            "description": "Run the TransactionEventTest and ensure all tests pass.",
+            "points": 25,
+            "visual_evidence": "A test runner console or IDE panel showing green checkmarks or 'BUILD SUCCESS' for TransactionEventTest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_test_bypass",
+            "description": "The agent actually ran the tests rather than just claiming they passed in the terminal.",
+            "visual_evidence": "Screenshots show the execution of a test command (e.g., mvn test, gradle test) or clicking the 'Run' button in the IDE."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent edited the files manually or used IDE refactoring tools rather than deleting and recreating files with static content.",
+            "visual_evidence": "The undo history or intermediate steps show the transition from the old POJO structure to the record structure."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's graphical interface for navigation and editing.",
+            "visual_evidence": "The cursor is visible in the editor, or IDE menus/context menus are used to perform actions."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/banking-events. The target file is src/main/java/com/bank/events/TransactionEvent.java. The client file needing update is src/main/java/com/bank/service/AuditService.java. The test file is src/test/java/com/bank/events/TransactionEventTest.java. The record must maintain a check for 'amount > 0' and use standard record accessors (id(), amount(), currency(), timestamp()) instead of getX() methods."
+}

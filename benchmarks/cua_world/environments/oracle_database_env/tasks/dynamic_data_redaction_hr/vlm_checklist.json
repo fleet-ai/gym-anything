@@ -1,0 +1,53 @@
+{
+    "task_id": "dynamic_data_redaction_hr@1",
+    "task_completion": [
+        {
+            "id": "create_qa_tester_user",
+            "description": "Create the user 'QA_TESTER' with the specified password and grant CONNECT and SELECT privileges on HR.EMPLOYEES.",
+            "points": 15,
+            "visual_evidence": "SQL commands or GUI dialogs showing 'CREATE USER QA_TESTER IDENTIFIED BY QaUser#2024' and 'GRANT CONNECT, SELECT ON HR.EMPLOYEES TO QA_TESTER'."
+        },
+        {
+            "id": "configure_full_redaction",
+            "description": "Configure Oracle Data Redaction policies for SALARY and COMMISSION_PCT using the FULL redaction type (resulting in 0).",
+            "points": 25,
+            "visual_evidence": "Execution of DBMS_REDACT.ADD_POLICY or DBMS_REDACT.ALTER_POLICY showing function_type => DBMS_REDACT.FULL for columns SALARY and COMMISSION_PCT."
+        },
+        {
+            "id": "configure_partial_phone_redaction",
+            "description": "Configure partial redaction for PHONE_NUMBER to show only the last 4 digits.",
+            "points": 20,
+            "visual_evidence": "SQL code showing DBMS_REDACT.PARTIAL for PHONE_NUMBER with a mask string or parameters indicating only the last 4 characters are visible."
+        },
+        {
+            "id": "configure_partial_email_redaction",
+            "description": "Configure partial redaction for EMAIL to show only the first letter followed by asterisks.",
+            "points": 20,
+            "visual_evidence": "SQL code showing DBMS_REDACT.PARTIAL for EMAIL with a mask string or parameters indicating the first character is preserved followed by '*'."
+        },
+        {
+            "id": "verify_redacted_output",
+            "description": "Verify that when logged in as 'QA_TESTER', the query results from HR.EMPLOYEES show redacted data.",
+            "points": 20,
+            "visual_evidence": "A query result table where the user is QA_TESTER: SALARY/COMMISSION are 0, PHONE_NUMBER shows 'XXXX.4321' (or similar), and EMAIL shows 'S*******'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with an actual Oracle Database interface (SQL Developer, SQL*Plus, or Enterprise Manager).",
+            "visual_evidence": "Presence of standard Oracle tool UI elements, command prompts, or connection status indicators rather than just a text editor."
+        },
+        {
+            "id": "no_hardcoded_mock_results",
+            "description": "The agent did not simply print a fake table to the terminal but actually executed a SELECT statement against the DB.",
+            "visual_evidence": "The query execution output should be within the context of a database client (e.g., SQL> prompt or a grid in SQL Developer)."
+        },
+        {
+            "id": "user_context_verification",
+            "description": "The agent verified the redaction specifically as the QA_TESTER user, not the HR or SYSTEM user.",
+            "visual_evidence": "Screenshots showing 'SHOW USER' as QA_TESTER or a connection profile named QA_TESTER being used for the final verification query."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires Oracle Data Redaction on HR.EMPLOYEES. Verified requirements: 1. User 'QA_TESTER' must be created with password 'QaUser#2024'. 2. SALARY and COMMISSION_PCT must use FULL redaction (appearing as 0). 3. PHONE_NUMBER must show only the last 4 digits. 4. EMAIL must show only the first letter followed by asterisks. 5. The 'HR' user must still see the original, unredacted data (the policy should be expression-based, typically checking SYS_CONTEXT('USERENV', 'SESSION_USER') = 'QA_TESTER')."
+}

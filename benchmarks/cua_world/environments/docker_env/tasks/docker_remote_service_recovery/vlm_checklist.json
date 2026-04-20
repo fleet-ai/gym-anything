@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_remote_service_recovery@1",
+    "task_completion": [
+        {
+            "id": "create_docker_context",
+            "description": "Create a Docker context named 'staging' pointing to tcp://staging-node:2375",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker context create staging --docker \"host=tcp://staging-node:2375\"' or 'docker context ls' showing the 'staging' context."
+        },
+        {
+            "id": "use_docker_context",
+            "description": "Switch to the 'staging' Docker context",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker context use staging' or an asterisk next to 'staging' in 'docker context ls'."
+        },
+        {
+            "id": "diagnose_failure",
+            "description": "Inspect the existing 'web-proxy' container to identify the failure cause (missing environment variable)",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'docker inspect web-proxy' or 'docker logs web-proxy' showing an error related to the missing UPSTREAM_TARGET variable."
+        },
+        {
+            "id": "remove_failed_container",
+            "description": "Remove the non-functional 'web-proxy' container",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker rm -f web-proxy'."
+        },
+        {
+            "id": "deploy_new_container",
+            "description": "Run a new 'web-proxy' container using 'nginx:alpine', mapping port 8080:80, and including the UPSTREAM_TARGET environment variable",
+            "points": 30,
+            "visual_evidence": "Terminal output showing 'docker run' command with '-d', '--name web-proxy', '-p 8080:80', '-e UPSTREAM_TARGET=...', and 'nginx:alpine'."
+        },
+        {
+            "id": "verify_running_status",
+            "description": "Verify the new container is running and healthy",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'docker ps' with 'web-proxy' status as 'Up' and port mapping '0.0.0.0:8080->80/tcp'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_ssh_usage",
+            "description": "Ensure the agent did not attempt to SSH into staging-node",
+            "visual_evidence": "The command history should not contain 'ssh staging-node'. All interactions must be via the Docker CLI using the remote context."
+        },
+        {
+            "id": "genuine_diagnosis",
+            "description": "Agent actually inspected the container before replacing it",
+            "visual_evidence": "Screenshots show 'docker inspect' or 'docker logs' output before the 'docker run' command is executed."
+        },
+        {
+            "id": "correct_image_usage",
+            "description": "Agent used the specific requested image",
+            "visual_evidence": "The 'docker run' command or 'docker ps' output specifically shows 'nginx:alpine', not just 'nginx' or 'latest'."
+        }
+    ],
+    "privileged_info_for_vlm": "The remote host is 'staging-node' on port 2375. The required environment variable that was missing in the original container is 'UPSTREAM_TARGET'. The new container must be named 'web-proxy', use the 'nginx:alpine' image, and map host port 8080 to container port 80. The agent must use a Docker context named 'staging' to perform these actions."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_location_data@1",
+    "task_completion": [
+        {
+            "id": "open_logbook_file",
+            "description": "Agent opens the dive logbook file (SampleDivesV2.ssrf) in a logbook management application or text editor.",
+            "points": 10,
+            "visual_evidence": "A logbook application or text editor is visible on screen showing dive site names like 'Sund Rock' or 'Yellow House'."
+        },
+        {
+            "id": "identify_location_errors",
+            "description": "Agent identifies dive sites with missing or incorrect GPS coordinates (outside the 47.3-47.5°N, 123.0-123.2°W range).",
+            "points": 15,
+            "visual_evidence": "The agent selects or highlights dive sites such as 'Sund Rock' (missing GPS) or 'Yellow House' (incorrect GPS)."
+        },
+        {
+            "id": "fix_garbled_site_name",
+            "description": "Agent corrects the misspelled or garbled dive site name to a valid Hood Canal location.",
+            "points": 15,
+            "visual_evidence": "The agent is seen typing or editing a site name field to correct a misspelled entry."
+        },
+        {
+            "id": "correct_gps_coordinates",
+            "description": "Agent updates the GPS coordinates for all erroneous sites to values within the Hood Canal range (approx. 47.4°N, 123.1°W).",
+            "points": 30,
+            "visual_evidence": "The agent enters new latitude and longitude values into the coordinate fields for Sund Rock and Yellow House."
+        },
+        {
+            "id": "save_kml_file",
+            "description": "Agent exports or saves the corrected data as a KML file to the specific path /home/ga/Documents/corrected_logbook.kml.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' or 'Export' dialog is visible showing the file path /home/ga/Documents/corrected_logbook.kml."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the logbook application's GUI rather than just writing a script to generate the KML.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with buttons, text fields, and menus within a dive log software interface."
+        },
+        {
+            "id": "genuine_search",
+            "description": "The agent performs a search or uses provided context to find the correct coordinates for Hood Canal sites.",
+            "visual_evidence": "A web browser or local documentation is opened to verify the coordinates for Sund Rock or other Hood Canal sites."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent does not simply echo the final KML content into a file via terminal without opening the source data.",
+            "visual_evidence": "The agent is seen inspecting the original SampleDivesV2.ssrf file before creating the KML."
+        }
+    ],
+    "privileged_info_for_vlm": "The dive sites are located in Hood Canal, WA. Correct coordinates should be approximately 47.44N, 123.12W. Specifically: 1) Sund Rock has missing GPS data in the source file. 2) Yellow House has incorrect GPS data. 3) All corrected coordinates must fall within the range 47.3-47.5°N and 123.0-123.2°W. The final output must be a KML file at /home/ga/Documents/corrected_logbook.kml."
+}

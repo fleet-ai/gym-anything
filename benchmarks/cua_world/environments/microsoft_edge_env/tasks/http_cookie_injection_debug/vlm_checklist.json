@@ -1,0 +1,59 @@
+{
+    "task_id": "http_cookie_injection_debug@1",
+    "task_completion": [
+        {
+            "id": "open_edge_browser",
+            "description": "Microsoft Edge browser is opened and active.",
+            "points": 10,
+            "visual_evidence": "The Microsoft Edge window is visible on the desktop with its characteristic UI elements."
+        },
+        {
+            "id": "navigate_to_httpbin",
+            "description": "The browser is navigated to httpbin.org.",
+            "points": 10,
+            "visual_evidence": "The address bar shows 'httpbin.org' and the page content for the httpbin service is visible."
+        },
+        {
+            "id": "set_debug_session_id_cookie",
+            "description": "The cookie 'debug_session_id' is set with the value '8849-alpha-test'.",
+            "points": 20,
+            "visual_evidence": "The Edge DevTools 'Application' tab or a cookie management extension shows a cookie named 'debug_session_id' with value '8849-alpha-test' for the domain httpbin.org."
+        },
+        {
+            "id": "set_ui_variant_cookie_with_flags",
+            "description": "The cookie 'ui_variant' is set with value 'dark_v2' and marked as Secure and HttpOnly.",
+            "points": 30,
+            "visual_evidence": "The Edge DevTools 'Application' tab shows 'ui_variant' with value 'dark_v2'. The 'Secure' and 'HttpOnly' columns/checkboxes for this cookie are checked/marked."
+        },
+        {
+            "id": "verify_cookies_on_server",
+            "description": "The agent navigates to https://httpbin.org/cookies to see the server-side reflection.",
+            "points": 15,
+            "visual_evidence": "The browser displays the JSON response from https://httpbin.org/cookies containing both 'debug_session_id' and 'ui_variant'."
+        },
+        {
+            "id": "save_json_file",
+            "description": "The JSON response is saved to the specified path on the Desktop.",
+            "points": 15,
+            "visual_evidence": "A file named 'cookie_verification.json' is visible on the Desktop or in a file explorer at '/home/ga/Desktop/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Edge browser GUI to set cookies rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with Edge DevTools, settings, or browser extensions, not just a terminal window."
+        },
+        {
+            "id": "genuine_server_response",
+            "description": "The JSON file content matches the live browser view of httpbin.org/cookies.",
+            "visual_evidence": "The text in the saved file (if opened) or the browser window matches the specific cookie values required, not placeholder text."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create the JSON file manually without visiting the website.",
+            "visual_evidence": "The trajectory shows the browser navigating to the URL and the 'Save As' dialog or a copy-paste from the browser window."
+        }
+    ],
+    "privileged_info_for_vlm": "The target domain is httpbin.org. Required cookies: 1) 'debug_session_id' = '8849-alpha-test'. 2) 'ui_variant' = 'dark_v2' (must have Secure=True and HttpOnly=True). The final output must be a JSON file at /home/ga/Desktop/cookie_verification.json containing the response from https://httpbin.org/cookies."
+}

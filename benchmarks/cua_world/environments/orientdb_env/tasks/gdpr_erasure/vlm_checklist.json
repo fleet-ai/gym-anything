@@ -1,0 +1,59 @@
+{
+    "task_id": "gdpr_erasure@1",
+    "task_completion": [
+        {
+            "id": "locate_user_profile",
+            "description": "Locate the user profile for 'john.smith@example.com' in the database management interface.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a search result or record for 'john.smith@example.com' in the demodb database."
+        },
+        {
+            "id": "anonymize_profile_fields",
+            "description": "Update Name to 'Erased', Surname to 'User', and Email to 'erased_john_smith@agency.local'.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the record edit form or a 'SELECT' query result showing the updated Name, Surname, and Email fields."
+        },
+        {
+            "id": "clear_demographic_fields",
+            "description": "Clear the Gender, Birthday, and Nationality properties of the user.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the Gender, Birthday, and Nationality fields are now null, empty, or deleted in the database UI."
+        },
+        {
+            "id": "delete_friend_edges",
+            "description": "Delete all incoming and outgoing 'HasFriend' edges connected to the user.",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the deletion of edges (e.g., a graph view with missing connections or a console output confirming 'DELETE EDGE HasFriend' for the user's RID)."
+        },
+        {
+            "id": "preserve_stay_edges",
+            "description": "Ensure 'HasStayed' edges remain intact for the user.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing 'HasStayed' edges still associated with the user's Record ID (RID) after the friendship deletion."
+        },
+        {
+            "id": "create_audit_log",
+            "description": "Create an audit log at /home/ga/gdpr_audit.txt with the specific text including the user's RID.",
+            "points": 20,
+            "visual_evidence": "Screenshot of a text editor or terminal showing the content of /home/ga/gdpr_audit.txt as 'Processed erasure for RID <rid>' where <rid> is the actual database ID (e.g., #12:34)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI (e.g., OrientDB Studio) rather than just executing shell scripts.",
+            "visual_evidence": "Screenshots showing the browser/GUI interface being used to navigate and edit records."
+        },
+        {
+            "id": "no_hardcoded_rid_guess",
+            "description": "The agent retrieved the RID from the system before writing the audit log.",
+            "visual_evidence": "Screenshots showing the agent viewing the record details to find the RID before creating the text file."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The audit log was created via the file system/editor, not just echoed in a terminal without saving.",
+            "visual_evidence": "Screenshot showing the file being saved or the file existing in the directory via a file explorer or 'cat' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The target user is john.smith@example.com. The new email must be erased_john_smith@agency.local. The audit log must be at /home/ga/gdpr_audit.txt and must contain the user's specific Record ID (RID) from the demodb database (typically in the format #<cluster>:<position>). 'HasStayed' edges must not be deleted."
+}

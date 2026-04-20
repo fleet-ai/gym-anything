@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_arm_motor_params@1",
+    "task_completion": [
+        {
+            "id": "open_webots_simulation",
+            "description": "The agent has the Webots simulation environment open and the PALLETIZING_ARM is visible.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Webots application window with a 3-DOF robotic arm in the 3D view."
+        },
+        {
+            "id": "select_shoulder_motor",
+            "description": "The agent has navigated the scene tree to the SHOULDER_JOINT and selected its motor to modify maxVelocity.",
+            "points": 15,
+            "visual_evidence": "The scene tree on the left shows SHOULDER_JOINT > RotationalMotor selected, with fields visible in the inspector."
+        },
+        {
+            "id": "set_shoulder_velocity",
+            "description": "The shoulder_motor maxVelocity is set to 2.094 rad/s.",
+            "points": 15,
+            "visual_evidence": "The inspector panel shows the 'maxVelocity' field for the shoulder motor set to 2.094."
+        },
+        {
+            "id": "set_elbow_params",
+            "description": "The elbow_motor (ELBOW_JOINT) maxVelocity is set to 3.14 rad/s and maxTorque is set to 56.0 N·m.",
+            "points": 20,
+            "visual_evidence": "The inspector panel for the elbow motor shows 'maxVelocity' as 3.14 and 'maxTorque' as 56."
+        },
+        {
+            "id": "set_wrist_positions",
+            "description": "The wrist_motor (WRIST_JOINT) minPosition is set to -6.28 rad and maxPosition is set to 6.28 rad.",
+            "points": 20,
+            "visual_evidence": "The inspector panel for the wrist motor shows 'minPosition' as -6.28 and 'maxPosition' as 6.28."
+        },
+        {
+            "id": "save_configured_world",
+            "description": "The agent saves the world to the specific path /home/ga/Desktop/palletizing_arm_configured.wbt.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog box or a terminal command confirming the file is saved to /home/ga/Desktop/palletizing_arm_configured.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI/Inspector to change parameters rather than just editing the text file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields in the Webots Scene Tree and Inspector panel."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not leave the original placeholder values in the final saved file.",
+            "visual_evidence": "The inspector fields show the new values (2.094, 3.14, 56.0, etc.) instead of default or placeholder integers."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved a new file rather than overwriting the original simulation file.",
+            "visual_evidence": "The file path in the save dialog or the top of the Webots window shows 'palletizing_arm_configured.wbt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure three specific motors: Shoulder (maxVelocity: 2.094), Elbow (maxVelocity: 3.14, maxTorque: 56.0), and Wrist (minPosition: -6.28, maxPosition: 6.28). The final file must be saved exactly to /home/ga/Desktop/palletizing_arm_configured.wbt. Verify these specific numerical values in the Webots Inspector panel screenshots."
+}

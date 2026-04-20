@@ -1,0 +1,59 @@
+{
+    "task_id": "bulk_import_ingredients_csv@1",
+    "task_completion": [
+        {
+            "id": "access_wger_login",
+            "description": "Agent navigates to the wger login page at http://localhost.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger login screen with fields for username and password."
+        },
+        {
+            "id": "successful_login",
+            "description": "Agent logs into the application using the provided credentials (admin/adminadmin).",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or main navigation menu is visible, indicating a successful session."
+        },
+        {
+            "id": "open_csv_file",
+            "description": "Agent opens or reads the CSV file to view the ingredient data.",
+            "points": 15,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output displays the contents of ~/Documents/supplier_ingredients.csv."
+        },
+        {
+            "id": "navigate_to_ingredients",
+            "description": "Agent navigates to the 'Ingredients' or 'Nutrition' section of the wger application.",
+            "points": 10,
+            "visual_evidence": "The screen shows the ingredient list or the 'Add Ingredient' interface."
+        },
+        {
+            "id": "entry_of_ingredients",
+            "description": "Agent begins entering the data for the ingredients from the CSV.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent filling out the 'Add Ingredient' form with names like 'Bulk Whey Protein Isolate' or 'Organic Rolled Oats'."
+        },
+        {
+            "id": "verify_all_ingredients_imported",
+            "description": "All 12 ingredients from the CSV are present in the wger database list.",
+            "points": 30,
+            "visual_evidence": "The ingredient list view in wger shows 12 entries matching the CSV names (e.g., Hemp Hearts, Pumpkin Seeds, etc.) with their respective macro values visible or confirmed in detail views."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface to add ingredients rather than direct database manipulation via terminal.",
+            "visual_evidence": "The trajectory shows mouse movements, typing into form fields, and clicking 'Save' buttons in the browser."
+        },
+        {
+            "id": "no_manual_shortcut",
+            "description": "The agent did not simply create a dummy file or skip the data entry process.",
+            "visual_evidence": "The agent is seen mapping specific values (Energy, Protein, Carbs, Fat) from the CSV to the corresponding UI fields."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the wger menus to find the correct module.",
+            "visual_evidence": "The screenshots show the progression from the dashboard to the nutrition/ingredient management section."
+        }
+    ],
+    "privileged_info_for_vlm": "The CSV contains 12 ingredients. Key data points to verify: 'Bulk Whey Protein Isolate' (377 kcal, 90g Protein, 1.5g Carbs, 1g Fat), 'Organic Rolled Oats' (379 kcal, 13g Protein, 68g Carbs, 6.5g Fat), and 'Pumpkin Seeds' (559 kcal, 30g Protein, 11g Carbs, 49g Fat). Ensure all 12 items listed in the CSV are present in the final wger ingredient list."
+}

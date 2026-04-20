@@ -1,0 +1,53 @@
+{
+    "task_id": "measure_angle_tool@1",
+    "task_completion": [
+        {
+            "id": "weasis_opened",
+            "description": "The Weasis DICOM viewer is launched and displaying the CT image.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Weasis application window active with a medical image (CT/Angiography) loaded in the main viewport."
+        },
+        {
+            "id": "angle_tool_selected",
+            "description": "The agent selects the three-point angle measurement tool from the toolbar.",
+            "points": 15,
+            "visual_evidence": "The angle measurement icon in the Weasis toolbar is highlighted or active, or the cursor is shown interacting with the tool menu."
+        },
+        {
+            "id": "angle_measured_on_image",
+            "description": "The agent uses the tool to place three points on the image to define an angle.",
+            "points": 30,
+            "visual_evidence": "The image viewport shows a three-point angle annotation (two lines meeting at a vertex) with a numerical degree value displayed next to it."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "The agent saves a screenshot of the viewer showing the measurement to the specified path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or terminal command showing the creation of /home/ga/DICOM/exports/angle_measurement.png, or the 'Save' dialog in Weasis pointing to that path."
+        },
+        {
+            "id": "report_created",
+            "description": "The agent creates a text report with the specific required format and values.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output showing the file /home/ga/DICOM/exports/angle_report.txt containing 'Angle: [value]', 'Unit: degrees', and 'Location: CT slice structure alignment'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_measurement",
+            "description": "The measurement was performed using the Weasis GUI tools, not simulated via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Weasis measurement tools and the annotation appearing dynamically on the DICOM image."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent did not simply create a fake report without opening the DICOM file.",
+            "visual_evidence": "The Weasis viewer must be visible with the specific image (0002.DCM) loaded before the report is generated."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not copy-paste the report content from a hidden source without performing the measurement.",
+            "visual_evidence": "The angle value in the text report should match the numerical value visible in the Weasis measurement annotation on the screen."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the Weasis three-point angle tool. The expected angle value should be between 1.0 and 179.0 degrees. The screenshot must be saved to /home/ga/DICOM/exports/angle_measurement.png and be at least 5000 bytes. The report must be at /home/ga/DICOM/exports/angle_report.txt with exactly three lines: 'Angle: <value>', 'Unit: degrees', and 'Location: CT slice structure alignment'."
+}

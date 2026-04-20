@@ -1,0 +1,53 @@
+{
+    "task_id": "calculate_physics_problems@1",
+    "task_completion": [
+        {
+            "id": "open_calculation_tool",
+            "description": "Agent opens either the Calculate activity or the Terminal activity from the Sugar home view.",
+            "points": 10,
+            "visual_evidence": "The Sugar desktop transitions from the home view to an active window showing the Calculate interface or a Terminal prompt."
+        },
+        {
+            "id": "perform_calculations",
+            "description": "Agent performs the mathematical operations for the five physics problems using the chosen tool.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the input of formulas or numbers (e.g., 0.5 * 9.8 * 3.5^2) and the resulting outputs in the Calculate activity or Terminal."
+        },
+        {
+            "id": "create_text_file",
+            "description": "Agent initiates the creation of the file at /home/ga/Documents/physics_answers.txt.",
+            "points": 15,
+            "visual_evidence": "Terminal commands like 'touch', 'nano', or 'echo' targeting the specific path, or a text editor opening to that location."
+        },
+        {
+            "id": "format_answers_correctly",
+            "description": "Agent enters the answers into the text file using the required 'Problem X: <answer>' format.",
+            "points": 20,
+            "visual_evidence": "The text editor or terminal output shows the specific labels 'Problem 1:' through 'Problem 5:' followed by numeric values."
+        },
+        {
+            "id": "verify_final_content",
+            "description": "The final file contains the correct calculated values rounded to 2 decimal places.",
+            "points": 25,
+            "visual_evidence": "A 'cat' command or a visible text editor showing the values: 60.03, 28.80, 2521.50, 123.48, and 21.82."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation_process",
+            "description": "Agent actually calculates the values rather than just writing a pre-known list.",
+            "visual_evidence": "The trajectory should show the step-by-step entry of the physics formulas into the Calculate activity or Terminal before the file is written."
+        },
+        {
+            "id": "correct_environment_interaction",
+            "description": "Agent uses the Sugar desktop environment activities as requested.",
+            "visual_evidence": "The agent interacts with the Sugar frame, activity icons, or the specific Sugar Terminal/Calculate UI."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent does not simply echo the final answers into a file without showing the work in a calculation tool.",
+            "visual_evidence": "Absence of a single command that writes all five answers instantly without prior calculation steps in the logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct numerical answers for the five problems are: Problem 1: 60.03 (from 0.5*9.8*3.5^2); Problem 2: 28.80 (from 2.4*12); Problem 3: 2521.50 (from 0.5*75*8.2^2); Problem 4: 123.48 (from 4.5*9.8*2.8); Problem 5: 21.82 (from (14.7+9.3)/(0.65+0.45)). Ensure the agent saves these to /home/ga/Documents/physics_answers.txt with the exact 'Problem X: ' prefix."
+}

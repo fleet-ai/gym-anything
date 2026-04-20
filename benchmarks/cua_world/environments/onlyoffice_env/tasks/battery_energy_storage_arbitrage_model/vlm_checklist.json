@@ -1,0 +1,59 @@
+{
+    "task_id": "battery_energy_storage_arbitrage_model@1",
+    "task_completion": [
+        {
+            "id": "open_source_data",
+            "description": "Agent opens the source CSV file containing the hourly pricing data.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application or text editor showing 'caiso_sp15_2023_8760.csv' with hourly price data."
+        },
+        {
+            "id": "daily_analysis_sheet_setup",
+            "description": "Agent creates a new Excel workbook with a sheet named 'Daily Analysis'.",
+            "points": 10,
+            "visual_evidence": "Excel or LibreOffice Calc window showing a tab named 'Daily Analysis' at the bottom."
+        },
+        {
+            "id": "daily_min_max_logic",
+            "description": "The model identifies daily minimum and maximum prices for 365 days.",
+            "points": 20,
+            "visual_evidence": "Columns in the spreadsheet showing 365 rows of data with formulas or values identifying daily price extremes."
+        },
+        {
+            "id": "incorporate_efficiency_and_degradation",
+            "description": "The model applies the 85% round-trip efficiency and the $200 cycle degradation cost in its profit calculations.",
+            "points": 25,
+            "visual_evidence": "Formulas in the spreadsheet showing (Max Price * 20) - (Min Price * (20 / 0.85)) or similar, and a subtraction of 200 for degradation."
+        },
+        {
+            "id": "conditional_dispatch_logic",
+            "description": "The model only counts a cycle if the net revenue exceeds the $200 degradation cost.",
+            "points": 20,
+            "visual_evidence": "IF statements or filtered data where profit is only calculated/realized if (Revenue - Cost) > 200."
+        },
+        {
+            "id": "summary_metrics_and_save",
+            "description": "The workbook contains Total Annual Profit and Total Cycles and is saved to the correct path.",
+            "points": 15,
+            "visual_evidence": "Cells labeled 'Total Annual Profit' and 'Total Cycles' with aggregated values, and a 'Save As' dialog or file manager showing 'bess_arbitrage_model.xlsx' in ~/Documents/Spreadsheets/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a spreadsheet application GUI rather than just generating the file via a python script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with LibreOffice Calc or Excel menus and cells."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not hardcode the final totals but used formulas to derive them from the 365 days of data.",
+            "visual_evidence": "The formula bar showing cell references (e.g., =SUM(G2:G366)) when a total cell is selected."
+        },
+        {
+            "id": "data_source_consistency",
+            "description": "The agent used the provided CSV data rather than external or hallucinated pricing.",
+            "visual_evidence": "The values in the 'Daily Analysis' sheet match the price trends seen in the opened 'caiso_sp15_2023_8760.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The pricing data in 'caiso_sp15_2023_8760.csv' is synthetic. The model must use exactly 20 MWh for discharge and 23.529 MWh (20 / 0.85) for charging. A cycle only occurs if (Daily Max Price * 20) - (Daily Min Price * 23.529) > 200. The final file must be an .xlsx file named 'bess_arbitrage_model.xlsx' in the specified directory."
+}

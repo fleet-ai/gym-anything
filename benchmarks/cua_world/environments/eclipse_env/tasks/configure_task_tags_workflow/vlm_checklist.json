@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_task_tags_workflow@1",
+    "task_completion": [
+        {
+            "id": "open_project_properties",
+            "description": "Agent opens the Properties dialog for the 'LegacyAuth' project.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Properties for LegacyAuth' is visible on the screen."
+        },
+        {
+            "id": "navigate_to_task_tags",
+            "description": "Agent navigates to the Java Compiler > Task Tags settings page.",
+            "points": 10,
+            "visual_evidence": "The 'Task Tags' section is selected in the left sidebar of the Properties window, and the 'Enable project specific settings' checkbox is checked."
+        },
+        {
+            "id": "configure_security_tag",
+            "description": "Agent adds the 'SECURITY' tag with High priority.",
+            "points": 20,
+            "visual_evidence": "The Task Tags list shows 'SECURITY' with a priority of 'High'."
+        },
+        {
+            "id": "configure_perf_tag",
+            "description": "Agent adds the 'PERF' tag with Low priority.",
+            "points": 20,
+            "visual_evidence": "The Task Tags list shows 'PERF' with a priority of 'Low'."
+        },
+        {
+            "id": "locate_backdoor_in_userdao",
+            "description": "Agent opens UserDAO.java and locates the code marked with the SECURITY tag.",
+            "points": 15,
+            "visual_evidence": "The file 'UserDAO.java' is open in the editor, showing the comment '// SECURITY: Hardcoded backdoor' and the subsequent 'if' statement."
+        },
+        {
+            "id": "remove_backdoor_code",
+            "description": "Agent deletes the hardcoded backdoor logic and the SECURITY tag comment.",
+            "points": 25,
+            "visual_evidence": "The editor shows 'UserDAO.java' without the 'superuser' check or the SECURITY comment; the file is saved (no asterisk on the tab)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_settings",
+            "description": "The agent used the Eclipse GUI to configure task tags rather than editing preference files via terminal.",
+            "visual_evidence": "Screenshots show the Properties dialog and Task Tags configuration UI being interacted with."
+        },
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited the file in the IDE editor rather than using 'sed' or 'echo' in the terminal.",
+            "visual_evidence": "The cursor is visible in the Java editor, and the code is highlighted or deleted within the IDE interface."
+        },
+        {
+            "id": "task_view_usage",
+            "description": "The agent uses the 'Tasks' view to find the markers after configuring them.",
+            "visual_evidence": "The 'Tasks' view at the bottom of the IDE is visible and populated with the newly configured SECURITY and PERF tags."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/LegacyAuth. The specific file to edit is src/main/java/com/legacy/auth/UserDAO.java. The backdoor to be removed is a check for 'superuser' and 'pass123'. The task tags must be project-specific, meaning 'Enable project specific settings' must be active in the Eclipse Java Compiler Task Tags menu."
+}

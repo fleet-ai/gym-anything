@@ -1,0 +1,53 @@
+{
+    "task_id": "inverted_anatomy_presentation@1",
+    "task_completion": [
+        {
+            "id": "open_weasis_dicom",
+            "description": "The Weasis DICOM viewer is launched and a DICOM image from the samples directory is loaded into the viewport.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible with a medical scan (CT or MR) displayed in the central viewing area."
+        },
+        {
+            "id": "invert_contrast",
+            "description": "The contrast of the DICOM image has been inverted (Photometric Interpretation change).",
+            "points": 25,
+            "visual_evidence": "The image appears as a 'negative'; typically, bones or dense structures that were white are now black, and the background is light/white."
+        },
+        {
+            "id": "add_line_measurement",
+            "description": "A line measurement tool has been used to draw a measurement across a structure in the image.",
+            "points": 25,
+            "visual_evidence": "A graphical line overlay is visible on the DICOM image, accompanied by a numeric value and unit (e.g., mm or cm)."
+        },
+        {
+            "id": "export_jpeg_file",
+            "description": "The agent navigates the export menu to save the current view as a JPEG named lecture_slide.jpg.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer window shows the path ~/DICOM/exports/lecture_slide.jpg being entered or saved."
+        },
+        {
+            "id": "create_measurement_text",
+            "description": "A text file is created containing the exact measured length and unit from the GUI.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command shows the creation of measurement.txt with the content 'Measured Length: <value> <unit>' matching the GUI measurement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_measurement",
+            "description": "The measurement was performed using the Weasis GUI tools, not simulated.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the measurement toolbar icon and dragging the line across the anatomy."
+        },
+        {
+            "id": "genuine_inversion",
+            "description": "The inversion was applied via the software's image processing tools.",
+            "visual_evidence": "The 'Invert' button in the Weasis 'Display' or 'Image Tool' panel is highlighted or toggled."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply move a pre-existing result file into the export folder.",
+            "visual_evidence": "The trajectory shows the active process of drawing the line and using the 'Export' or 'Save As' dialog within Weasis."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses real CT/MR DICOM samples. The final output must be a JPEG at ~/DICOM/exports/lecture_slide.jpg showing an inverted (negative) image with a visible measurement line. The text file ~/DICOM/exports/measurement.txt must contain the string 'Measured Length: ' followed by the exact numeric value and unit seen in the Weasis GUI measurement overlay."
+}

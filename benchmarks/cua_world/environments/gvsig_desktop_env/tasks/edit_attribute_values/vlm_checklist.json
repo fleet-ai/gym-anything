@@ -1,0 +1,65 @@
+{
+    "task_id": "edit_attribute_values@1",
+    "task_completion": [
+        {
+            "id": "open_attribute_table",
+            "description": "Open the attribute table for the 'ne_110m_admin_0_countries' layer.",
+            "points": 10,
+            "visual_evidence": "A table window or panel titled 'Attribute table' or similar is visible, showing columns like 'NAME' and 'POP_EST'."
+        },
+        {
+            "id": "enable_editing_mode",
+            "description": "Toggle the editing mode for the layer to allow data modification.",
+            "points": 10,
+            "visual_evidence": "The 'Start Editing' icon (often a pencil) is active, or the table cells appear editable (white background/cursor focus)."
+        },
+        {
+            "id": "update_usa_brazil",
+            "description": "Update population values for USA and Brazil in the POP_EST field.",
+            "points": 20,
+            "visual_evidence": "The POP_EST column shows 334233854 for 'United States of America' and 216422446 for 'Brazil'."
+        },
+        {
+            "id": "update_japan_germany",
+            "description": "Update population values for Japan and Germany in the POP_EST field.",
+            "points": 20,
+            "visual_evidence": "The POP_EST column shows 123294513 for 'Japan' and 84482267 for 'Germany'."
+        },
+        {
+            "id": "update_australia",
+            "description": "Update population value for Australia in the POP_EST field.",
+            "points": 15,
+            "visual_evidence": "The POP_EST column shows 26638544 for 'Australia'."
+        },
+        {
+            "id": "save_edits",
+            "description": "Save the changes made to the attribute table.",
+            "points": 15,
+            "visual_evidence": "The 'Save Edits' button is clicked, or a confirmation dialog for saving changes appears."
+        },
+        {
+            "id": "finalize_session",
+            "description": "Stop the editing session to finalize the changes.",
+            "points": 10,
+            "visual_evidence": "The 'Stop Editing' button is clicked, and the table returns to a read-only state (cells grayed out or pencil icon deactivated)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the attribute table and toolbar icons."
+        },
+        {
+            "id": "no_manual_dbf_edit",
+            "description": "The agent did not use an external text editor or terminal to modify the .dbf file directly.",
+            "visual_evidence": "The modifications are seen happening within the gvSIG/GIS application interface."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent navigated to the specific rows for the countries rather than just typing values randomly.",
+            "visual_evidence": "The attribute table is scrolled or filtered to show the specific target countries during the editing process."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is located at /home/ga/gvsig_data/countries/ne_110m_admin_0_countries.dbf. The key field for identifying countries is 'NAME' and the field to be updated is 'POP_EST'. The exact required values are: USA (334233854), Brazil (216422446), Japan (123294513), Germany (84482267), and Australia (26638544). A tolerance of 1 is allowed, but values should ideally match exactly."
+}

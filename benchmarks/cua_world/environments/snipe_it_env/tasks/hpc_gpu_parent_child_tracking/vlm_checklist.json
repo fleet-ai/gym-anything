@@ -1,0 +1,53 @@
+{
+    "task_id": "hpc_gpu_parent_child_tracking@1",
+    "task_completion": [
+        {
+            "id": "check_in_legacy_gpus",
+            "description": "Check in legacy GPUs (GPU-H100-001 and GPU-H100-002) from 'AI-CHASSIS-LEGACY'.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'Checkin' action for assets GPU-H100-001 and GPU-H100-002, or their status changing to 'Ready to Deploy'."
+        },
+        {
+            "id": "create_new_gpu_assets",
+            "description": "Create or verify the existence of new GPU assets GPU-H100-101 and GPU-H100-102 with status 'Ready to Deploy'.",
+            "points": 15,
+            "visual_evidence": "Asset list or creation screens showing GPU-H100-101 and GPU-H100-102 as 'NVIDIA H100 Tensor Core 80GB' with 'Ready to Deploy' status."
+        },
+        {
+            "id": "checkout_gpus_to_chassis",
+            "description": "Perform asset-to-asset checkout of all four GPUs to the parent chassis 'AI-CHASSIS-01'.",
+            "points": 40,
+            "visual_evidence": "Checkout screens or asset history showing GPU-H100-001, 002, 101, and 102 being checked out to the asset 'AI-CHASSIS-01'."
+        },
+        {
+            "id": "update_chassis_location",
+            "description": "Deploy the 'Compute Node Alpha' (AI-CHASSIS-01) to 'Data Center - Rack 42'.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' or 'Checkout' screen for AI-CHASSIS-01 showing the location field set to 'Data Center - Rack 42'."
+        },
+        {
+            "id": "verify_final_assembly",
+            "description": "Verify the final state of the chassis with all four GPUs assigned.",
+            "points": 10,
+            "visual_evidence": "The 'Components' or 'Assigned Assets' tab of AI-CHASSIS-01 showing all four H100 GPUs listed as children/assigned assets."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Snipe-IT web interface rather than executing database or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, form filling, and button clicks within the browser, not a terminal window."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the menu system rather than jumping directly to final confirmation URLs.",
+            "visual_evidence": "The trajectory shows the agent clicking through the sidebar (Assets, Create New, etc.) or using the search bar."
+        },
+        {
+            "id": "genuine_asset_selection",
+            "description": "The agent selected the specific assets from the database dropdowns/search results.",
+            "visual_evidence": "Dropdown menus or search result lists are visible when selecting the chassis and GPUs."
+        }
+    ],
+    "privileged_info_for_vlm": "The target chassis is 'AI-CHASSIS-01' (Compute Node Alpha). The four required GPUs are 'GPU-H100-101', 'GPU-H100-102' (new), 'GPU-H100-001', and 'GPU-H100-002' (legacy). Legacy GPUs must be checked in before they can be checked out to the new chassis. The final location must be 'Data Center - Rack 42'. All GPUs are model 'NVIDIA H100 Tensor Core 80GB'."
+}

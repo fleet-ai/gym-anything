@@ -1,0 +1,62 @@
+{
+    "task_id": "open_data_government_spending_research@1",
+    "task_completion": [
+        {
+            "id": "usaspending_search_filters",
+            "description": "Agent navigates to USASpending.gov and applies filters for Department of Defense (DOD) and Fiscal Year 2023.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the USASpending.gov search interface with 'Department of Defense' selected in the Agency filter and '2023' selected in the Fiscal Year filter."
+        },
+        {
+            "id": "csv_download_initiated",
+            "description": "Agent initiates a download of a CSV file containing at least 100 rows of DOD contract search results.",
+            "points": 15,
+            "visual_evidence": "A download dialog or progress bar on USASpending.gov indicating a CSV export, or the file appearing in the browser's download manager."
+        },
+        {
+            "id": "cross_reference_fpds_data",
+            "description": "Agent visits FPDS.gov or Data.gov to cross-reference DOD spending data.",
+            "points": 15,
+            "visual_evidence": "Browser tabs or windows showing fpds.gov or data.gov with search queries related to DOD FY2023 spending."
+        },
+        {
+            "id": "firefox_bookmarks_created",
+            "description": "Agent creates a bookmark folder named 'Government Spending Research' in Firefox with at least 3 pages from usaspending.gov.",
+            "points": 15,
+            "visual_evidence": "Firefox bookmark menu or sidebar showing the folder 'Government Spending Research' containing at least three USASpending.gov URLs."
+        },
+        {
+            "id": "csv_file_exists",
+            "description": "A CSV file with DOD contract data exists in the ~/Downloads/ directory.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output showing a .csv file in /home/ga/Downloads/ with DOD-related naming."
+        },
+        {
+            "id": "research_notes_content",
+            "description": "The research notes file contains the total DOD contract spending (in billions), top 3 contractors, 2+ data source URLs, and a 2-3 sentence summary.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) showing the content of ~/Documents/dod_spending_research.txt with the specific required data points and summary."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "Agent used the web browser GUI to find data rather than just generating the file via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots must show active navigation, clicking, and scrolling on USASpending.gov and FPDS.gov."
+        },
+        {
+            "id": "no_hallucinated_data",
+            "description": "The spending figures in the text file match the figures visible in the browser screenshots.",
+            "points": 0,
+            "visual_evidence": "Comparison between the numbers shown on the USASpending DOD profile page and the numbers written in the research notes file."
+        },
+        {
+            "id": "genuine_download",
+            "description": "The CSV was actually downloaded from the website, not manually created.",
+            "points": 0,
+            "visual_evidence": "Browser download history or the 'Save As' dialog showing the source URL as usaspending.gov."
+        }
+    ],
+    "privileged_info_for_vlm": "For FY2023, the Department of Defense (DOD) total budgetary resources were approximately $1.64 Trillion, but 'Contract Awards' (Obligations) are typically around $470-$490 Billion. The top 3 contractors for DOD are consistently Lockheed Martin, Raytheon (RTX), and General Dynamics. The research notes must be located at /home/ga/Documents/dod_spending_research.txt and the bookmark folder must be exactly named 'Government Spending Research'."
+}

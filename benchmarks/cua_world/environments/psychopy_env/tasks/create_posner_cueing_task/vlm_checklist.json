@@ -1,0 +1,59 @@
+{
+    "task_id": "create_posner_cueing_task@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create posner_conditions.csv with required columns and at least 12 rows.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing a file named 'posner_conditions.csv' with columns: cue_direction, target_location, validity, correct_resp, and soa, containing at least 12 rows of data."
+        },
+        {
+            "id": "experiment_structure_flow",
+            "description": "Build the PsychoPy experiment flow with instructions, fixation, cue, target, feedback, and conclusion.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder 'Flow' pane at the bottom of the screen showing routines for instructions, fixation, cue, target, feedback, and a final message routine."
+        },
+        {
+            "id": "cue_and_target_logic",
+            "description": "Configure cue and target routines to use variables from the conditions file.",
+            "points": 25,
+            "visual_evidence": "Component properties dialogs in PsychoPy showing '$cue_direction' for the cue stimulus and '$target_location' (or +/- 0.5 X-coordinates) for the target stimulus."
+        },
+        {
+            "id": "response_and_accuracy_setup",
+            "description": "Set up keyboard component to record 'z'/'m' and use $correct_resp for accuracy.",
+            "points": 20,
+            "visual_evidence": "The Keyboard component properties window showing 'Allowed keys' as 'z', 'm' and 'Store correct' checked with '$correct_resp' in the 'Correct answer' field."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "Implement a practice loop and a main trials loop referencing the conditions file.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Flow showing two loop brackets (e.g., 'practice_loop' and 'trials'), with the trials loop properties dialog showing 'posner_conditions.csv' as the conditions file."
+        },
+        {
+            "id": "file_saving",
+            "description": "Save the experiment file to the specific directory.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing 'posner_cueing.psyexp' saved in '/home/ga/PsychoPyExperiments/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI rather than just writing raw Python code in a terminal.",
+            "visual_evidence": "Screenshots showing the PsychoPy Builder interface (Flow, Routine, and Component panes) being actively manipulated."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent manually entered parameters into component dialogs.",
+            "visual_evidence": "Screenshots of property dialog boxes (e.g., Polygon or Keyboard properties) with values being typed or selected."
+        },
+        {
+            "id": "no_placeholder_shortcuts",
+            "description": "The agent did not simply create empty files or skip the visual layout of the experiment.",
+            "visual_evidence": "The 'Flow' pane must contain multiple distinct routines, not just a single empty trial."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved as /home/ga/PsychoPyExperiments/posner_cueing.psyexp and the conditions as /home/ga/PsychoPyExperiments/posner_conditions.csv. The CSV must have exactly these columns: cue_direction, target_location, validity, correct_resp, soa. The target must appear at X-coordinates +0.5 or -0.5. The SOA values in the CSV must be 0.3 and 0.8. Static placeholders (e.g., squares or circles) must be visible at both potential target locations throughout the trial."
+}

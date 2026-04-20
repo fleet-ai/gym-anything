@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_spherical_mobile_mapping@1",
+    "task_completion": [
+        {
+            "id": "worldinfo_gps_config",
+            "description": "Update WorldInfo node with WGS84 coordinate system and specific GPS reference coordinates.",
+            "points": 15,
+            "visual_evidence": "The WorldInfo node in the scene tree shows gpsCoordinateSystem set to 'WGS84' and gpsReference set to 37.7749 -122.4194 15.0."
+        },
+        {
+            "id": "pano_camera_projection_fov",
+            "description": "Set pano_camera projection to spherical and fieldOfView to 6.28318.",
+            "points": 20,
+            "visual_evidence": "In the pano_camera node properties, projection is 'spherical' and fieldOfView is 6.28318."
+        },
+        {
+            "id": "pano_camera_resolution",
+            "description": "Set pano_camera width to 4096 and height to 2048.",
+            "points": 15,
+            "visual_evidence": "In the pano_camera node properties, width is 4096 and height is 2048."
+        },
+        {
+            "id": "roof_lidar_layers",
+            "description": "Upgrade roof_lidar to 64 layers.",
+            "points": 15,
+            "visual_evidence": "In the roof_lidar node properties, the numberOfLayers or layers field is set to 64."
+        },
+        {
+            "id": "roof_lidar_fov_resolution",
+            "description": "Set roof_lidar fieldOfView to 6.28318 and horizontalResolution to 2048.",
+            "points": 20,
+            "visual_evidence": "In the roof_lidar node properties, fieldOfView is 6.28318 and horizontalResolution is 2048."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specified path on the Desktop.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the window title bar shows the file path /home/ga/Desktop/spherical_mapping.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node parameters rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the scene tree and field editor in the Webots application."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered or selected the specific values required for the task.",
+            "visual_evidence": "Sequential screenshots show the values (like 6.28318 or 4096) being typed or updated in the property fields."
+        },
+        {
+            "id": "file_system_save",
+            "description": "The agent used the 'Save World As' menu option to create the new file.",
+            "visual_evidence": "The File menu is opened and the 'Save World As...' option is highlighted or the resulting file dialog is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The required values are: WorldInfo (gpsCoordinateSystem: 'WGS84', gpsReference: 37.7749 -122.4194 15.0); pano_camera (projection: 'spherical', fieldOfView: 6.28318, width: 4096, height: 2048); roof_lidar (numberOfLayers: 64, fieldOfView: 6.28318, horizontalResolution: 2048). The output file must be /home/ga/Desktop/spherical_mapping.wbt."
+}

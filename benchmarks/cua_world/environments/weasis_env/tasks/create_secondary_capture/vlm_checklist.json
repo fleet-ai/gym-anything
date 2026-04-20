@@ -1,0 +1,59 @@
+{
+    "task_id": "create_secondary_capture@1",
+    "task_completion": [
+        {
+            "id": "load_mr_image",
+            "description": "The agent successfully opens the DICOM viewer and loads the MR image.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer application is visible on screen displaying an MR image (e.g., brain, spine, or joints)."
+        },
+        {
+            "id": "select_arrow_tool",
+            "description": "The agent selects the arrow annotation tool from the application toolbar.",
+            "points": 10,
+            "visual_evidence": "The arrow tool icon in the toolbar is highlighted, or the cursor changes to a crosshair/drawing mode."
+        },
+        {
+            "id": "draw_arrow_annotation",
+            "description": "The agent draws an arrow pointing to a specific anatomical structure on the MR image.",
+            "points": 20,
+            "visual_evidence": "A visible arrow graphic is overlaid on the MR image, pointing at a specific feature."
+        },
+        {
+            "id": "initiate_export_dialog",
+            "description": "The agent opens the export or 'Save As' menu to create a Secondary Capture.",
+            "points": 15,
+            "visual_evidence": "An export dialog box or 'Save As' window is visible over the main application."
+        },
+        {
+            "id": "configure_secondary_capture",
+            "description": "The agent selects 'Secondary Capture' or ensures 'Burn-in Annotations' is enabled in the export settings.",
+            "points": 20,
+            "visual_evidence": "The export settings show 'Secondary Capture' selected as the format or a checkbox for 'Burn-in' is checked."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "The agent enters the specific file path and name for the export.",
+            "points": 25,
+            "visual_evidence": "The file path field in the save dialog contains '~/DICOM/exports/finding_sc.dcm' or '/home/ga/DICOM/exports/finding_sc.dcm'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the DICOM viewer's GUI to perform the task rather than using terminal commands to move or create files.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks, and dialog interactions within the DICOM viewer software."
+        },
+        {
+            "id": "genuine_annotation",
+            "description": "The arrow was manually placed on an anatomical structure, not randomly placed in the black background.",
+            "visual_evidence": "The tip of the arrow is positioned on a visible tissue or structure within the MR scan area."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply find a pre-existing file and rename it.",
+            "visual_evidence": "The sequence of screenshots shows the active creation of the annotation and the export process flow."
+        }
+    ],
+    "privileged_info_for_vlm": "The exported file must be saved exactly to '/home/ga/DICOM/exports/finding_sc.dcm'. The export must use the 'Secondary Capture Image Storage' SOP Class (UID prefix 1.2.840.10008.5.1.4.1.1.7), which in most medical imaging software is triggered by selecting 'Secondary Capture' or 'Export with Annotations' in the GUI."
+}

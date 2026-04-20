@@ -1,0 +1,53 @@
+{
+    "task_id": "link_nearby_restaurants_and_attractions@1",
+    "task_completion": [
+        {
+            "id": "login_and_db_access",
+            "description": "Agent successfully logs into OrientDB Studio and accesses the 'demodb' database.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the OrientDB Studio login screen followed by the 'demodb' dashboard or schema view."
+        },
+        {
+            "id": "identify_entities",
+            "description": "Agent queries or browses the Restaurant and Attraction classes to identify city locations.",
+            "points": 15,
+            "visual_evidence": "SQL query results or class browser views showing lists of restaurants and attractions with their 'City' properties."
+        },
+        {
+            "id": "create_proximity_edges",
+            "description": "Agent creates ProximityLink edges between restaurants and attractions in the same city.",
+            "points": 30,
+            "visual_evidence": "SQL 'CREATE EDGE' commands or Graph Editor interactions showing the creation of edges between matching city pairs (e.g., Rome to Rome)."
+        },
+        {
+            "id": "set_edge_properties",
+            "description": "Agent ensures the ProximityLink edges have the 'MatchBasis' property set.",
+            "points": 15,
+            "visual_evidence": "SQL commands showing 'SET MatchBasis = ...' or the property editor in the GUI showing the MatchBasis field populated."
+        },
+        {
+            "id": "create_manifest_records",
+            "description": "Agent creates a RecommendationManifest vertex for every link created.",
+            "points": 30,
+            "visual_evidence": "SQL 'CREATE VERTEX RecommendationManifest' commands or the Browse tab showing new records in the RecommendationManifest class."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than executing scripts via a terminal.",
+            "visual_evidence": "Screenshots show the browser with the OrientDB Studio URL and interactions with the web-based SQL console or Graph editor."
+        },
+        {
+            "id": "genuine_querying",
+            "description": "The agent actually queried the database to find matches rather than guessing from the task description.",
+            "visual_evidence": "Screenshots show SELECT queries being run to filter by City or browse class contents."
+        },
+        {
+            "id": "no_cross_city_links",
+            "description": "The agent did not create links between entities in different cities.",
+            "visual_evidence": "Query results or graph views showing that only entities with matching 'City' attributes are connected."
+        }
+    ],
+    "privileged_info_for_vlm": "There are 8 expected city-matched pairs: 1 in Rome (Da Enzo al 29 -> Colosseum), 1 in Berlin (Lorenz Adlon Esszimmer -> Brandenburg Gate), 1 in Paris (Le Cinq -> Eiffel Tower), 1 in London (Sketch -> Big Ben), 1 in New York (Per Se -> Statue of Liberty), 1 in Tokyo (Narisawa -> Tokyo Tower), and 2 in Athens (Spondi -> Parthenon AND Spondi -> Acropolis Museum). Total edges and RecommendationManifest records should be 8."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_storage@1",
+    "task_completion": [
+        {
+            "id": "access_storage_management",
+            "description": "Navigate to the Storage Management section of the Nx Witness Web Admin interface.",
+            "points": 10,
+            "visual_evidence": "The browser shows the Nx Witness Web Admin interface (localhost:7001) with the 'Storage Management' tab or section active."
+        },
+        {
+            "id": "add_primary_storage",
+            "description": "Add the primary storage path /opt/nx_storage/primary to the server.",
+            "points": 20,
+            "visual_evidence": "A storage entry for '/opt/nx_storage/primary' is visible in the storage list."
+        },
+        {
+            "id": "configure_primary_main_50gb",
+            "description": "Set the primary storage as MAIN (Standard) with a reserved space limit of 50 GB.",
+            "points": 25,
+            "visual_evidence": "The entry for '/opt/nx_storage/primary' shows the type as 'Main' or 'Standard' and the reserved space/limit is set to '50 GB'."
+        },
+        {
+            "id": "add_backup_storage",
+            "description": "Add the backup storage path /opt/nx_storage/backup to the server.",
+            "points": 20,
+            "visual_evidence": "A storage entry for '/opt/nx_storage/backup' is visible in the storage list."
+        },
+        {
+            "id": "configure_backup_archive_20gb",
+            "description": "Set the backup storage as BACKUP (Archive) with a reserved space limit of 20 GB.",
+            "points": 25,
+            "visual_evidence": "The entry for '/opt/nx_storage/backup' shows the type as 'Backup' or 'Archive' and the reserved space/limit is set to '20 GB'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Nx Witness Web Admin GUI to configure storage rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the web interface elements (buttons, input fields) and the configuration reflecting in the UI."
+        },
+        {
+            "id": "actual_server_interaction",
+            "description": "The agent interacted with the live server at localhost:7001.",
+            "visual_evidence": "The browser address bar shows 'localhost:7001' or '127.0.0.1:7001' during the configuration process."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply display a success message without performing the actions.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step addition and configuration of the storage paths, not just a final 'done' screen."
+        }
+    ],
+    "privileged_info_for_vlm": "The primary storage path is /opt/nx_storage/primary and must be set to MAIN/Standard with a 50 GB limit (53,687,091,200 bytes). The backup storage path is /opt/nx_storage/backup and must be set to BACKUP/Archive with a 20 GB limit (21,474,836,480 bytes). A 5% tolerance is acceptable for the space limits if displayed in bytes, but the UI should ideally show '50 GB' and '20 GB' respectively."
+}

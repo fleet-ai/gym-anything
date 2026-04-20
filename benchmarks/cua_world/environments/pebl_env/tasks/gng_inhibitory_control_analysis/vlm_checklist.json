@@ -1,0 +1,53 @@
+{
+    "task_id": "gng_inhibitory_control_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw GNG data file at ~/pebl/data/gng_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a text editor showing the contents of gng_data.csv."
+        },
+        {
+            "id": "data_processing_script",
+            "description": "Agent writes or executes code to calculate SDT metrics and apply the 0.5/N correction",
+            "points": 25,
+            "visual_evidence": "Code snippets in a terminal or editor showing the 0.5/N adjustment logic and d-prime calculation (Z(Hit) - Z(FA))."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent identifies and excludes participants based on the criteria (FA Rate ≥ 0.90 or Mean RT < 100ms)",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the identification of sub-99 as an outlier or the application of the exclusion filters."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the final JSON report at ~/pebl/analysis/gng_report.json",
+            "points": 15,
+            "visual_evidence": "A terminal command showing the creation of the file or the file appearing in a file manager."
+        },
+        {
+            "id": "report_content_validation",
+            "description": "The report contains individual metrics for participants and a 'group_means' section with all six required metrics",
+            "points": 30,
+            "visual_evidence": "A screenshot of the gng_report.json file showing 'participants' (with id, omission_errors, commission_errors, hit_rate, false_alarm_rate, mean_hit_rt_ms, d_prime) and 'group_means' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation",
+            "description": "Agent performs actual data analysis rather than hardcoding values from the task description",
+            "visual_evidence": "Presence of data processing code (Python/R) that reads the CSV and performs math, rather than a single echo command writing a pre-made JSON."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent uses the specific file paths provided in the instructions",
+            "visual_evidence": "Commands or code referencing ~/pebl/data/gng_data.csv and ~/pebl/analysis/gng_report.json."
+        },
+        {
+            "id": "handling_corrupted_record",
+            "description": "Agent correctly identifies the corrupted record (sub-99) through analysis",
+            "visual_evidence": "Terminal output or code comments specifically flagging sub-99 for exclusion based on the 0.90 FA rate or low RT."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 25 valid participants (sub-01 to sub-25) and one corrupted participant (sub-99). sub-99 has a 100% response rate (FA Rate = 1.0) and an average RT of ~17.5ms, which triggers both exclusion criteria (FA Rate ≥ 0.90 and RT < 100ms). The agent must apply the 0.5/N correction to Hit/FA rates of 0 or 1 before calculating Z-scores for d-prime. The final report must be at ~/pebl/analysis/gng_report.json."
+}

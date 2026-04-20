@@ -1,0 +1,65 @@
+{
+    "task_id": "t_intersection_plan@1",
+    "task_completion": [
+        {
+            "id": "layer_setup",
+            "description": "Create the required layers: ROAD_EDGE, CURB_RETURN, CENTER_LINE, and ANNOTATIONS.",
+            "points": 10,
+            "visual_evidence": "The Layer List widget in LibreCAD shows all four specific layer names."
+        },
+        {
+            "id": "main_road_geometry",
+            "description": "Draw the Main Road edges at y=-6 and y=6 from x=-25 to x=25 on the ROAD_EDGE layer.",
+            "points": 15,
+            "visual_evidence": "Two horizontal lines representing the main road boundaries, positioned symmetrically around the x-axis."
+        },
+        {
+            "id": "branch_road_geometry",
+            "description": "Draw the Branch Road edges at x=-4 and x=4 extending from y=6 to y=31 on the ROAD_EDGE layer.",
+            "points": 15,
+            "visual_evidence": "Two vertical lines extending upwards from the top edge of the main road."
+        },
+        {
+            "id": "curb_return_arcs",
+            "description": "Draw two 8m radius curb return arcs at the NW and NE corners on the CURB_RETURN layer.",
+            "points": 20,
+            "visual_evidence": "Two curved lines connecting the vertical branch road edges to the horizontal main road edges."
+        },
+        {
+            "id": "center_lines",
+            "description": "Draw center lines for both roads along y=0 and x=0 on the CENTER_LINE layer.",
+            "points": 15,
+            "visual_evidence": "A horizontal line bisecting the main road and a vertical line bisecting the branch road."
+        },
+        {
+            "id": "annotations_and_dimensions",
+            "description": "Add text labels 'MAIN ROAD' and 'BRANCH ROAD' and dimension lines (12m and 8m) on the ANNOTATIONS layer.",
+            "points": 15,
+            "visual_evidence": "Visible text labels and dimension arrows/values indicating the widths of the roads in the drawing area."
+        },
+        {
+            "id": "file_saved",
+            "description": "Save the drawing as t_intersection.dxf in the specified directory.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD title bar or a 'Save As' dialog shows the path /home/ga/Documents/LibreCAD/t_intersection.dxf."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just writing a script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars, menus, or the command line input within the app."
+        },
+        {
+            "id": "genuine_drawing_process",
+            "description": "The drawing was constructed step-by-step.",
+            "visual_evidence": "Sequential screenshots show the progression from an empty canvas to a completed intersection."
+        },
+        {
+            "id": "no_file_injection",
+            "description": "The agent did not simply move a pre-existing DXF file into the folder via terminal.",
+            "visual_evidence": "The agent is seen actively using drawing tools (line, circle/arc, layer creator) within the LibreCAD interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The drawing must be centered at (0,0). Main Road: y=-6 to y=6 (width 12), x=-25 to 25. Branch Road: x=-4 to x=4 (width 8), y=6 to 31. Curb arcs must have a radius of 8.0 (tolerance 7.5-8.5). Required layers: ROAD_EDGE, CURB_RETURN, CENTER_LINE, ANNOTATIONS. Required text: 'MAIN ROAD' and 'BRANCH ROAD'. File path: /home/ga/Documents/LibreCAD/t_intersection.dxf."
+}

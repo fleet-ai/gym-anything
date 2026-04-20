@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_hydraulic_geometry@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the Muncie HEC-RAS project and access the Geometric Data editor.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window showing the 'Muncie' project path and the 'Geometric Data' window open."
+        },
+        {
+            "id": "identify_upstream_xs",
+            "description": "Identify the cross-section with the highest River Station value (15696.24).",
+            "points": 15,
+            "visual_evidence": "Cross Section Data window showing 'River Station' set to '15696.24' or the list of stations sorted to show the highest value."
+        },
+        {
+            "id": "extract_geometry_data",
+            "description": "Access the station-elevation table or the HDF5 file to retrieve geometry points.",
+            "points": 15,
+            "visual_evidence": "A table showing 'Station' and 'Elevation' columns for the selected cross-section or a script reading the .g04/HDF file."
+        },
+        {
+            "id": "calculate_hydraulic_properties",
+            "description": "Perform calculations for Area, Wetted Perimeter, and Hydraulic Radius at 0.5-ft increments.",
+            "points": 30,
+            "visual_evidence": "A spreadsheet, script output, or calculator tool showing calculations starting from the thalweg (approx 936.99 ft) in 0.5 ft steps."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Save the calculated properties to the specified CSV path with correct columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing 'hydraulic_properties.csv' in /home/ga/Documents/hec_ras_results/ with columns: Elevation_ft, Area_sqft, WettedPerimeter_ft, HydraulicRadius_ft, TopWidth_ft."
+        },
+        {
+            "id": "save_summary_text",
+            "description": "Save the summary text file with the River Station and station count.",
+            "points": 15,
+            "visual_evidence": "The file 'cross_section_summary.txt' opened or listed in the results directory containing '15696.24' and the count of points (134)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_geometry_access",
+            "description": "Verify the agent actually accessed the HEC-RAS geometry data rather than guessing values.",
+            "visual_evidence": "Screenshots must show the Geometric Data editor, the Cross Section Data table, or a script parsing the .g04/HDF file."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't simply write a file with pre-known values without calculation steps.",
+            "visual_evidence": "Evidence of a calculation process (Python script execution, Excel formulas, or manual table interpolation) in the trajectory."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "Verify the agent used the specific paths provided in the task rather than default or temporary folders.",
+            "visual_evidence": "File save dialogs or terminal commands explicitly referencing /home/ga/Documents/hec_ras_results/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Muncie project's most upstream River Station (RS) is 15696.24. This cross-section contains exactly 134 station-elevation points. The thalweg (minimum elevation) is 936.99 ft. Calculations must start at this elevation and increase by 0.5 ft increments. The output files must be located in /home/ga/Documents/hec_ras_results/."
+}

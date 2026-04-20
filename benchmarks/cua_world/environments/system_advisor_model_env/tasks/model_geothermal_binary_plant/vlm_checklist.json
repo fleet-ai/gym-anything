@@ -1,0 +1,59 @@
+{
+    "task_id": "model_geothermal_binary_plant@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_data",
+            "description": "Locate the weather directory path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Write the PySAM modeling script to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A text editor or IDE (like VS Code) showing code being written to /home/ga/Documents/SAM_Projects/geothermal_model.py."
+        },
+        {
+            "id": "configure_geothermal_parameters",
+            "description": "Set the resource temperature to 175°C and conversion type to 0 (Binary) in the script.",
+            "points": 20,
+            "visual_evidence": "Code in the editor showing parameters like 'resource_temp' set to 175 and 'conversion_type' set to 0."
+        },
+        {
+            "id": "configure_financial_model",
+            "description": "Implement the LCOE Calculator financial model and set the nameplate capacity to 15 MW (15000 kW).",
+            "points": 20,
+            "visual_evidence": "Code showing the initialization of the 'lcoe_calculator' and setting 'analysis_period' or 'system_capacity' to 15000."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Run the Python script to perform the geothermal simulation.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the execution of 'python3 geothermal_model.py' without errors."
+        },
+        {
+            "id": "verify_json_output",
+            "description": "Save the simulation results to the specified JSON file with all required keys.",
+            "points": 20,
+            "visual_evidence": "The file /home/ga/Documents/SAM_Projects/geothermal_results.json being opened or printed, containing keys: resource_temp_c, conversion_type, nameplate_kw, annual_energy_kwh, capacity_factor, lcoe_cents_per_kwh, num_wells, and weather_file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library and didn't hardcode the final JSON.",
+            "visual_evidence": "The Python script should contain 'import PySAM' or specific modules like 'PySAM.Geothermal' and 'PySAM.LcoeCalculator'."
+        },
+        {
+            "id": "weather_file_source",
+            "description": "Verify the weather file used is from the directory specified in the text file.",
+            "visual_evidence": "The 'weather_file' path in the JSON output or script should match the directory found in /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "Ensure the agent didn't simply echo a pre-made JSON string.",
+            "visual_evidence": "The agent should be seen writing logic to extract results from the PySAM 'Outputs' attributes into the JSON dictionary."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 15 MW (15000 kW) binary-cycle (0) hydrothermal (0) plant with a 175°C resource. The script must be at /home/ga/Documents/SAM_Projects/geothermal_model.py and results at /home/ga/Documents/SAM_Projects/geothermal_results.json. Expected nameplate_kw should be approximately 15000. Expected annual_energy_kwh is typically between 50,000,000 and 150,000,000. The weather directory is found in /home/ga/.SAM/solar_resource_dir.txt."
+}

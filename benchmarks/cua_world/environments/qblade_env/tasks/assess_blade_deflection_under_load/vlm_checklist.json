@@ -1,0 +1,53 @@
+{
+    "task_id": "assess_blade_deflection_under_load@1",
+    "task_completion": [
+        {
+            "id": "open_project",
+            "description": "Open the 'HAWT_Test.wpa' project in the simulation software.",
+            "points": 10,
+            "visual_evidence": "The simulation software GUI is visible with 'HAWT_Test.wpa' displayed in the title bar or project explorer."
+        },
+        {
+            "id": "set_wind_speed",
+            "description": "Configure the wind speed parameter to 12 m/s for the simulation.",
+            "points": 15,
+            "visual_evidence": "An input field or parameter setting window showing '12' or '12 m/s' associated with wind speed or velocity."
+        },
+        {
+            "id": "run_fsi_simulation",
+            "description": "Execute the fluid-structure interaction (FSI) assessment.",
+            "points": 25,
+            "visual_evidence": "A progress bar, 'Running' status, or terminal output indicating the solver is calculating aerodynamic loads and structural response."
+        },
+        {
+            "id": "extract_results",
+            "description": "Locate and display the deflection and root moment results within the software.",
+            "points": 25,
+            "visual_evidence": "A results panel, plot, or summary table showing numerical values for 'Max Deflection' and 'Root Moment'."
+        },
+        {
+            "id": "create_report",
+            "description": "Create the report file at the specified path with the required content and format.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '/home/ga/Documents/deflection_report.txt' containing the exact labels 'Wind Speed:', 'Max Deflection:', and 'Root Moment:' with their respective values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the simulation software's GUI rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with simulation software menus, buttons, and input fields."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The results in the report match the values displayed in the software's output windows.",
+            "visual_evidence": "The numerical values for deflection and moment in the final text file match the values shown in the simulation software's results UI."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not create the report before the simulation finished.",
+            "visual_evidence": "The timestamp of the report creation or the sequence of screenshots shows the report being written after the simulation results are visible in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The project file is located at /home/ga/Documents/sample_projects/HAWT_Test.wpa. The target wind speed is exactly 12 m/s. The report must be saved to /home/ga/Documents/deflection_report.txt. Valid Max Deflection values should typically fall between 0.001 m and 20.0 m. The Root Moment must be greater than 1.0 Nm to be considered a valid simulation result."
+}

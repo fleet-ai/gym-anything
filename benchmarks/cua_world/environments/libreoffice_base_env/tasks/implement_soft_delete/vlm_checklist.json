@@ -1,0 +1,59 @@
+{
+    "task_id": "implement_soft_delete@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "Open the chinook.odb database in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base application window is visible showing 'chinook.odb' in the title bar or recent files."
+        },
+        {
+            "id": "add_is_deleted_column",
+            "description": "Add a boolean column named 'IsDeleted' to the 'Track' table.",
+            "points": 20,
+            "visual_evidence": "The Table Design view or an ALTER TABLE SQL command window shows the 'Track' table with a new column 'IsDeleted' of type Boolean or Yes/No."
+        },
+        {
+            "id": "initialize_is_deleted_false",
+            "description": "Initialize IsDeleted to FALSE for all records.",
+            "points": 15,
+            "visual_evidence": "An SQL execution window showing 'UPDATE \"Track\" SET \"IsDeleted\" = FALSE' (or 0) or a table datasheet view where the IsDeleted column is populated with unchecked boxes/FALSE for non-Metal tracks."
+        },
+        {
+            "id": "mark_metal_tracks_deleted",
+            "description": "Mark all tracks with the Genre 'Metal' as deleted (IsDeleted = TRUE).",
+            "points": 25,
+            "visual_evidence": "An SQL execution window showing an UPDATE statement joining Track and Genre where Genre.Name = 'Metal' to set IsDeleted = TRUE, or a filtered table view showing Metal tracks with IsDeleted checked/TRUE."
+        },
+        {
+            "id": "create_active_tracks_view",
+            "description": "Create a View named 'ActiveTracks' that filters for IsDeleted = FALSE.",
+            "points": 20,
+            "visual_evidence": "The 'Views' section of LibreOffice Base shows a new entry named 'ActiveTracks', or a Query/View definition window shows 'SELECT * FROM \"Track\" WHERE \"IsDeleted\" = FALSE'."
+        },
+        {
+            "id": "save_database",
+            "description": "Save the changes to the database file.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the Save icon, or the status bar indicates changes are saved, or the file menu shows the save action being performed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to perform tasks rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the LibreOffice Base interface, table designers, or SQL command windows within the application."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent used SQL or bulk tools to update records rather than manually clicking 374 checkboxes.",
+            "visual_evidence": "Presence of an SQL Execute dialog or a query window containing UPDATE statements."
+        },
+        {
+            "id": "actual_file_path",
+            "description": "The agent is working on the file located at /home/ga/chinook.odb.",
+            "visual_evidence": "The file path is visible in the title bar, the 'Open' dialog, or the 'Save As' dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Track' table contains 3503 total rows. There are 374 tracks with the genre 'Metal'. The database file is located at /home/ga/chinook.odb. The column to be added is 'IsDeleted' (Boolean) and the view to be created is 'ActiveTracks'."
+}

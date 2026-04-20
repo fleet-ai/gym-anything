@@ -1,0 +1,59 @@
+{
+    "task_id": "detect_port_scan_recon@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark",
+            "description": "The agent opens Wireshark and loads the specified capture file.",
+            "points": 10,
+            "visual_evidence": "Wireshark window is visible showing the file 'recon_investigation.pcapng' loaded."
+        },
+        {
+            "id": "identify_scanner_ip",
+            "description": "The agent identifies the source IP address responsible for the high volume of connection attempts.",
+            "points": 15,
+            "visual_evidence": "The agent applies a filter or views statistics (e.g., Conversations or Endpoints) highlighting 192.168.50.10."
+        },
+        {
+            "id": "identify_scan_type",
+            "description": "The agent determines the scan type by analyzing the TCP flags in the packet list.",
+            "points": 15,
+            "visual_evidence": "The agent inspects packets showing [SYN] flags followed by [RST, ACK] or [SYN, ACK] from the target, or applies a filter like 'tcp.flags.syn == 1'."
+        },
+        {
+            "id": "identify_open_ports",
+            "description": "The agent identifies which ports on the target responded with a SYN-ACK.",
+            "points": 25,
+            "visual_evidence": "The agent filters for 'tcp.flags == 0x012' (SYN-ACK) to see successful connections to specific ports."
+        },
+        {
+            "id": "distinguish_background_traffic",
+            "description": "The agent identifies the non-malicious background protocol.",
+            "points": 15,
+            "visual_evidence": "The agent views HTTP traffic (port 8080) and distinguishes it from the port scan traffic."
+        },
+        {
+            "id": "create_forensic_report",
+            "description": "The agent creates the final forensic report with all required fields at the specified path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal shows the file '/home/ga/Documents/scan_forensic_report.txt' containing the Scanner IP, Target IP, Scan Type, Open Ports, and Background Protocol."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses Wireshark's GUI for analysis rather than just command-line tools like tshark.",
+            "visual_evidence": "Screenshots show the Wireshark graphical interface being used to filter and inspect packets."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent does not simply echo the ground truth without performing analysis.",
+            "visual_evidence": "The agent is seen interacting with packet details or statistics windows before writing the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saves the report to the exact path specified in the instructions.",
+            "visual_evidence": "The file path '/home/ga/Documents/scan_forensic_report.txt' is visible during the save or cat operation."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture file is located at /home/ga/Documents/captures/recon_investigation.pcapng. The scanner IP is 192.168.50.10 and the target IP is 192.168.50.20. The scan type is a SYN scan. The background protocol is HTTP (port 8080). The final report must be saved to /home/ga/Documents/scan_forensic_report.txt."
+}

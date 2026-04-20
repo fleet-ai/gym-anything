@@ -1,0 +1,53 @@
+{
+    "task_id": "set_notch_filter_50hz@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_active",
+            "description": "The OpenBCI GUI is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is visible, showing the 'Time Series' widget and EEG data streams."
+        },
+        {
+            "id": "synthetic_session_running",
+            "description": "The GUI is in an active Synthetic EEG session with data streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Start Data Stream' button is in its active state (usually showing 'Stop Data Stream') and moving waveforms are visible in the Time Series widget."
+        },
+        {
+            "id": "locate_notch_setting",
+            "description": "The Notch filter setting is located within the Time Series widget.",
+            "points": 15,
+            "visual_evidence": "The cursor or a dropdown menu is interacting with the 'Notch' button/label in the Time Series control bar."
+        },
+        {
+            "id": "set_notch_to_50hz",
+            "description": "The Notch filter is successfully changed to 50 Hz.",
+            "points": 40,
+            "visual_evidence": "The Notch filter button or dropdown in the Time Series widget explicitly displays '50 Hz'."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the result is saved to the specified path.",
+            "points": 20,
+            "visual_evidence": "A terminal command or file explorer window shows the creation of /tmp/notch_filter_result.png, or the final state of the GUI is captured as requested."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the GUI elements rather than just using terminal scripts to bypass the interface.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to the Notch filter setting or the dropdown menu being expanded in the GUI."
+        },
+        {
+            "id": "genuine_synthetic_data",
+            "description": "The agent is using the actual OpenBCI GUI synthetic mode, not a static image or mockup.",
+            "visual_evidence": "The waveforms in the Time Series widget show dynamic, non-repeating patterns characteristic of the OpenBCI synthetic generator."
+        },
+        {
+            "id": "no_config_file_manipulation",
+            "description": "The agent did not simply edit a configuration file via terminal to change the setting without opening the GUI.",
+            "visual_evidence": "The visual state of the GUI changes from the default (usually 60 Hz) to 50 Hz during the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The Notch filter setting is located in the top control bar of the 'Time Series' widget. The default value is typically 60 Hz; the target value is 50 Hz. The session must be in 'Synthetic' mode, and the data stream must be active (moving waveforms) when the screenshot is taken."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_pv_mounting_thermal_derating@1",
+    "task_completion": [
+        {
+            "id": "read_weather_path",
+            "description": "Agent reads the weather file directory path from /home/ga/.SAM/solar_resource_dir.txt.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or a script reading this path."
+        },
+        {
+            "id": "script_initialization",
+            "description": "Agent writes a Python script importing PySAM.Pvwattsv8 and setting the required parameters (100kW, 20 tilt, 180 azimuth, 14% loss, 1.2 DC/AC, 96% efficiency).",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing Python code with 'Pvwattsv8.new()', 'system_capacity = 100', 'tilt = 20', and 'inv_eff = 96'."
+        },
+        {
+            "id": "array_type_configuration",
+            "description": "The script explicitly configures array_type 0 (Open Rack) and array_type 1 (Roof Mount) for comparison.",
+            "points": 20,
+            "visual_evidence": "Python code showing 'array_type = 0' and 'array_type = 1' being set or looped over."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script successfully without errors.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running to completion or printing the calculated results."
+        },
+        {
+            "id": "json_output_creation",
+            "description": "The agent saves the results to /home/ga/Documents/SAM_Projects/thermal_derating_comparison.json with the correct structure.",
+            "points": 30,
+            "visual_evidence": "A file explorer showing the JSON file in the specified directory or a terminal 'cat' command displaying the JSON content with keys like 'thermal_derating_penalty_percent'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final energy values or penalty percentage without running the simulation.",
+            "visual_evidence": "The Python script should show calls to 'module.execute()' rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent uses the PySAM library rather than manual estimations or external websites.",
+            "visual_evidence": "Code showing 'import PySAM' and usage of PySAM-specific objects and methods."
+        },
+        {
+            "id": "path_integrity",
+            "description": "The agent uses the weather file path found in the specified text file rather than a default or hardcoded path.",
+            "visual_evidence": "Code or terminal logs showing the agent accessing the path retrieved from /home/ga/.SAM/solar_resource_dir.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected output file is /home/ga/Documents/SAM_Projects/thermal_derating_comparison.json. For a Phoenix TMY file, the mean cell temperature should be between 10.0 and 45.0 degrees Celsius (typically ~28-29°C). The thermal derating penalty percentage (difference between open rack and roof mount energy) should be between 0.5% and 5.0% (typically ~0.88%). The system capacity must be exactly 100.0 kW."
+}

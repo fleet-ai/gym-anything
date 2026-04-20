@@ -1,0 +1,56 @@
+{
+    "task_id": "add_fft_widget@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_running",
+            "description": "The OpenBCI GUI application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is visible, showing the standard interface with 'OpenBCI_GUI' in the title bar or header."
+        },
+        {
+            "id": "active_session",
+            "description": "The GUI is in an active session with data streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Stop Data' button is visible (indicating data is currently streaming) and the Time Series widget shows moving waveforms."
+        },
+        {
+            "id": "widget_dropdown_accessed",
+            "description": "The agent interacts with a widget selection dropdown menu in one of the panels.",
+            "points": 20,
+            "visual_evidence": "A dropdown menu is visible over one of the widget panels, typically triggered by clicking the small arrow/name in the top-left corner of a panel."
+        },
+        {
+            "id": "fft_plot_selected",
+            "description": "The 'FFT Plot' option is selected from the widget list.",
+            "points": 25,
+            "visual_evidence": "The cursor is over 'FFT Plot' in the dropdown menu, or the menu is highlighted on that specific option."
+        },
+        {
+            "id": "fft_plot_displayed",
+            "description": "The FFT Plot widget is successfully rendered in one of the panels.",
+            "points": 30,
+            "visual_evidence": "A panel now displays a graph with 'FFT Plot' in its header. The graph must show frequency (Hz) on the x-axis and amplitude on the y-axis, with color-coded peaks corresponding to the EEG channels."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use a terminal to force configuration changes via scripts.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows the agent clicking the GUI elements rather than typing commands into a terminal window to modify config files."
+        },
+        {
+            "id": "genuine_ui_interaction",
+            "description": "The agent interacted with the widget selection menu specifically.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor moving to the widget selection area and the dropdown menu appearing."
+        },
+        {
+            "id": "active_data_integrity",
+            "description": "The FFT Plot shows live, dynamic data rather than a static placeholder image.",
+            "points": 0,
+            "visual_evidence": "The FFT peaks should show slight variations across frames if multiple screenshots of the final state are available, consistent with a synthetic EEG stream."
+        }
+    ],
+    "privileged_info_for_vlm": "The application is OpenBCI GUI v5.2.2. The task starts with the FFT Plot missing (replaced by a Head Plot). To succeed, the agent must click the widget selection dropdown (top-left of any widget panel) and select 'FFT Plot'. The final state must show a live frequency spectrum graph with Hz on the x-axis."
+}

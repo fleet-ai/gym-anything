@@ -1,0 +1,59 @@
+{
+    "task_id": "insulin_utr_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "The agent opens the human_insulin_gene.gb file in UGENE or a similar bioinformatics GUI.",
+            "points": 10,
+            "visual_evidence": "A window showing the UGENE interface with 'human_insulin_gene.gb' loaded, displaying the sequence or annotations."
+        },
+        {
+            "id": "identify_cds_coordinates",
+            "description": "The agent identifies the CDS (Coding Sequence) coordinates to determine UTR boundaries.",
+            "points": 15,
+            "visual_evidence": "The CDS feature is highlighted or selected in the sequence view, showing coordinates 60..392."
+        },
+        {
+            "id": "extract_5_utr",
+            "description": "The agent isolates and saves the 5' UTR sequence (bases 1-59) to 5_utr.fasta.",
+            "points": 20,
+            "visual_evidence": "A 'Save' or 'Export' dialog box showing the destination ~/UGENE_Data/results/5_utr.fasta with the selected 5' region."
+        },
+        {
+            "id": "extract_3_utr",
+            "description": "The agent isolates and saves the 3' UTR sequence (bases 393-465) to 3_utr.fasta.",
+            "points": 20,
+            "visual_evidence": "A 'Save' or 'Export' dialog box showing the destination ~/UGENE_Data/results/3_utr.fasta with the selected 3' region."
+        },
+        {
+            "id": "calculate_utr_statistics",
+            "description": "The agent calculates the length and GC content for both UTR regions.",
+            "points": 20,
+            "visual_evidence": "The 'Statistics' panel or 'Sequence Information' window in UGENE showing GC content and length for the selected UTR segments."
+        },
+        {
+            "id": "generate_report",
+            "description": "The agent creates the final statistical report at ~/UGENE_Data/results/utr_analysis_report.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or file explorer showing the content of utr_analysis_report.txt including CDS coordinates, lengths, and GC percentages."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI to perform biological analysis rather than just using terminal commands.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and sequence highlighting within the UGENE application window."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent derived the GC content and length from the software's analysis tools rather than hardcoding known values.",
+            "visual_evidence": "The VLM should see the 'Statistics' or 'Report' tabs being accessed in the GUI before the text report is written."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent saves files to the specific requested directory (~/UGENE_Data/results/).",
+            "visual_evidence": "File save dialogs or terminal 'ls' commands showing the files in the correct subdirectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is NM_000207.3. The CDS coordinates are 60 to 392. The 5' UTR is bases 1-59 (Length: 59 bp, GC: ~57.6%). The 3' UTR is bases 393-465 (Length: 73 bp, GC: ~65.8%). Ensure the agent uses these specific coordinates for extraction and reporting."
+}

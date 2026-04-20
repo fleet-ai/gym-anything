@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_station_binding_scconfig@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig",
+            "description": "The SeisComP Configuration (scconfig) application is opened and visible.",
+            "points": 10,
+            "visual_evidence": "A window titled 'SeisComP Configuration' or showing the scconfig interface is visible."
+        },
+        {
+            "id": "navigate_to_bindings",
+            "description": "The agent navigates to the 'Bindings' tab or section within scconfig.",
+            "points": 10,
+            "visual_evidence": "The 'Bindings' tab is selected and the station tree (e.g., networks like GE) is visible."
+        },
+        {
+            "id": "locate_station_ge_toli",
+            "description": "The agent locates and selects station TOLI under the GE network.",
+            "points": 15,
+            "visual_evidence": "The station 'TOLI' (under network 'GE') is highlighted or expanded in the station list."
+        },
+        {
+            "id": "add_global_binding",
+            "description": "The agent creates a new binding for the 'global' module for station GE.TOLI.",
+            "points": 30,
+            "visual_evidence": "A dialog or menu shows the selection of the 'global' module to be added to station TOLI, or 'global' appears in the list of bindings for that station."
+        },
+        {
+            "id": "save_configuration",
+            "description": "The agent saves the configuration changes.",
+            "points": 35,
+            "visual_evidence": "The agent clicks the 'Save' button (often a floppy disk icon or File > Save) and a confirmation message or progress bar for 'Saving configuration' or 'Writing keys' appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the scconfig GUI to perform the task rather than just using the terminal.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the scconfig window rather than just executing 'seiscomp' commands in a terminal."
+        },
+        {
+            "id": "genuine_station_selection",
+            "description": "The agent manually navigated the station tree to find GE.TOLI.",
+            "visual_evidence": "Sequential screenshots show the expansion of the 'GE' network node to reveal 'TOLI'."
+        },
+        {
+            "id": "no_pre_existing_binding",
+            "description": "The agent didn't just take a screenshot of an already configured system.",
+            "visual_evidence": "Early screenshots show the 'global' binding missing from GE.TOLI before the agent performs the addition."
+        }
+    ],
+    "privileged_info_for_vlm": "The target station is GE.TOLI and the module to bind is 'global'. In scconfig, this is done in the Bindings tab. Successful completion involves adding the 'global' module to the TOLI station and clicking 'Save'. Note: SeisComP saves these bindings internally as files like 'etc/key/global/station_GE_TOLI', but the VLM should focus on the GUI actions of adding the 'global' profile to the station."
+}

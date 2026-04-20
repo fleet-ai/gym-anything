@@ -1,0 +1,65 @@
+{
+    "task_id": "model_bess_degradation_and_warranty@1",
+    "task_completion": [
+        {
+            "id": "model_selection",
+            "description": "Select the Standalone Battery (Single Owner) model in SAM.",
+            "points": 10,
+            "visual_evidence": "The SAM 'Configuration' or 'New Project' screen showing 'Standalone Battery' and 'Single Owner' selected."
+        },
+        {
+            "id": "system_capacity_config",
+            "description": "Configure the battery system for 10 MW / 40 MWh capacity.",
+            "points": 15,
+            "visual_evidence": "The 'Battery System' page showing Nameplate capacity or Power/Energy inputs set to 10 MW and 40 MWh."
+        },
+        {
+            "id": "degradation_models_enabled",
+            "description": "Enable both Calendar Life and Cycle Life degradation models.",
+            "points": 15,
+            "visual_evidence": "The 'Battery Life' page showing checkboxes or selections for both 'Calendar Life' and 'Cycle Life' degradation models enabled."
+        },
+        {
+            "id": "manual_dispatch_schedule",
+            "description": "Configure manual dispatch: Charge 00:00-04:00 and Discharge 16:00-20:00 at max capacity.",
+            "points": 20,
+            "visual_evidence": "The 'Battery Dispatch' page showing a schedule grid or table with charging (negative power) during hours 0-4 and discharging (positive power) during hours 16-20."
+        },
+        {
+            "id": "analysis_period_set",
+            "description": "Set the analysis period to 20 years.",
+            "points": 10,
+            "visual_evidence": "The 'Financial Parameters' or 'System Costs' page showing 'Analysis Period' set to 20 years."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Run the simulation to generate degradation data.",
+            "points": 10,
+            "visual_evidence": "The 'Results' page or a progress bar indicating the simulation has completed successfully."
+        },
+        {
+            "id": "data_extraction_and_save",
+            "description": "Extract annual State of Health and save to the specified JSON file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the file '/home/ga/Documents/SAM_Projects/battery_degradation_report.json' with the correct JSON structure, 20 SOH values, and the year crossing 80%."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to configure the model rather than just writing a script to generate the JSON.",
+            "visual_evidence": "Screenshots showing the agent navigating through SAM's tabs (Battery System, Battery Life, Dispatch) and clicking buttons."
+        },
+        {
+            "id": "genuine_results_extraction",
+            "description": "The agent extracted results from the SAM 'Results' or 'Data Tables' tab.",
+            "visual_evidence": "Screenshots showing the agent viewing the 'Battery State of Health' or 'Capacity' time series/annual data within the SAM results interface."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply echo the final JSON into a file without performing the simulation steps.",
+            "visual_evidence": "The trajectory shows a logical progression from configuration to simulation to data extraction."
+        }
+    ],
+    "privileged_info_for_vlm": "The analysis period must be exactly 20 years. The output file must be /home/ga/Documents/SAM_Projects/battery_degradation_report.json. The 'year_crossing_80_pct' must be the first year the State of Health drops below 80.0%. The chemistry is Lithium-ion NMC. The dispatch must show 4 hours of charging at the start of the day and 4 hours of discharging in the late afternoon."
+}

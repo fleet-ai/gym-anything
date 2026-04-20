@@ -1,0 +1,59 @@
+{
+    "task_id": "suborbital_splashdown_dispersion@1",
+    "task_completion": [
+        {
+            "id": "read_specifications",
+            "description": "Agent opens and reads the payload_range_safety_spec.txt file on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/payload_range_safety_spec.txt."
+        },
+        {
+            "id": "gmat_setup_coordinate_system",
+            "description": "Agent configures GMAT with EarthFixed coordinate system and SphericalAZFPA state type.",
+            "points": 15,
+            "visual_evidence": "GMAT GUI windows showing 'EarthFixed' selected in Coordinate System and 'SphericalAZFPA' in the Spacecraft state representation."
+        },
+        {
+            "id": "gmat_drag_configuration",
+            "description": "Agent configures the Force Model to include Earth gravity and atmospheric drag.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagator' or 'ForceModel' configuration panel showing 'Atmosphere' (e.g., JacchiaRoberts or MSISE90) and 'Gravity' enabled."
+        },
+        {
+            "id": "gmat_parameter_sweep",
+            "description": "Agent performs simulations for the three specified drag coefficients (Cd = 2.2, 1.2, 3.2).",
+            "points": 25,
+            "visual_evidence": "GMAT script editor or GUI showing the Cd value being modified or a script loop iterating through 2.2, 1.2, and 3.2."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the simulation script to the specified output directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing 'splashdown_sim.script' exists in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Agent creates the dispersion_results.txt file with the required formatting and data for all three cases.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing 'dispersion_results.txt' with CASE 1, 2, and 3 headers, including Latitude, Longitude, and Time of Flight values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical interface for the simulation rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the GMAT application window active and being interacted with (e.g., Mission Tree, Resource Tree)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not simply copy the 'privileged' bounds but derived specific values from the simulation.",
+            "visual_evidence": "The final report contains specific decimal values (e.g., 31.7) rather than just the range bounds (25.0-36.0)."
+        },
+        {
+            "id": "no_hardcoding_results",
+            "description": "The agent did not create the results file before running the GMAT simulation.",
+            "visual_evidence": "The timestamp of the GMAT execution/output in the console precedes the final saving of dispersion_results.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use EarthFixed/SphericalAZFPA. Verified splashdown values should fall within these ranges: Latitude [25.0, 36.0] and Longitude [-73.0, -60.0]. Case 2 (Cd=1.2) should result in the furthest downrange impact (most negative longitude), while Case 3 (Cd=3.2) should result in the shortest time of flight and impact closest to the launch point."
+}

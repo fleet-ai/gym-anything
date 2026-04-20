@@ -1,0 +1,59 @@
+{
+    "task_id": "loc_historical_poster_archival@1",
+    "task_completion": [
+        {
+            "id": "loc_search_navigation",
+            "description": "Agent navigates to loc.gov and searches for WPA posters related to 'Travel' or 'National Parks'.",
+            "points": 10,
+            "visual_evidence": "Browser showing loc.gov with search terms like 'WPA travel posters' or 'National Parks posters' in the search bar."
+        },
+        {
+            "id": "poster_selection_criteria",
+            "description": "Agent identifies three distinct posters dated between the 1930s and 1950s.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the selection of three different poster item pages with dates visible (e.g., 1936, 1938, 1940)."
+        },
+        {
+            "id": "download_highest_res_jpeg",
+            "description": "Agent selects and downloads the highest resolution JPEG available for each of the three posters.",
+            "points": 30,
+            "visual_evidence": "Screenshots of the download dropdown menu on loc.gov showing 'JPEG (highest resolution)' or 'JPEG (large)' being selected for each item."
+        },
+        {
+            "id": "file_storage_location",
+            "description": "The three JPEG files are saved in the directory ~/Pictures/WPA_Travel/.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output showing three .jpg files inside the /home/user/Pictures/WPA_Travel/ folder."
+        },
+        {
+            "id": "manifest_file_creation",
+            "description": "A manifest.json file is created in the specified directory.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal showing 'manifest.json' exists in ~/Pictures/WPA_Travel/."
+        },
+        {
+            "id": "manifest_content_accuracy",
+            "description": "The manifest.json contains an array of objects with keys 'title', 'year', 'url', and 'filename' for all three items.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command displaying the JSON content with the correct keys and data matching the downloaded posters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to find and download the posters rather than just using 'wget' or 'curl' in the terminal.",
+            "visual_evidence": "Screenshots showing the browser window, clicking on download links, and navigating the loc.gov UI."
+        },
+        {
+            "id": "genuine_source_verification",
+            "description": "The agent interacted with the actual Library of Congress website and not a cached or local version.",
+            "visual_evidence": "The URL bar in the browser consistently shows loc.gov domains during the search and download process."
+        },
+        {
+            "id": "no_hardcoded_manifest",
+            "description": "The agent did not create the manifest file before actually finding the posters.",
+            "visual_evidence": "The timeline of screenshots shows the manifest being created after the posters have been identified and downloaded."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified WPA posters for this task include 'See America. Visit the national parks' (1936-1940), 'The national parks preserve wild life' (1936-1939), and 'Yellowstone National Park' (c. 1938). Most posters in this collection were produced between 1936 and 1943. The highest resolution JPEG on loc.gov is typically labeled as 'JPEG (large)' or 'JPEG (90kb+)' depending on the specific item viewer version."
+}

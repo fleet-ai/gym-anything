@@ -1,0 +1,59 @@
+{
+    "task_id": "ttfb_bottleneck_analysis@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Launch Screaming Frog SEO Spider and enter the target URL.",
+            "points": 10,
+            "visual_evidence": "Screaming Frog GUI is visible with 'https://books.toscrape.com/' entered in the address bar."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Initiate and complete the crawl of the website.",
+            "points": 15,
+            "visual_evidence": "The progress bar shows 100% or the 'Start' button has toggled back from 'Pause/Resume', and the internal tab is populated with URLs."
+        },
+        {
+            "id": "export_internal_html",
+            "description": "Export the Internal HTML data including response times to a CSV.",
+            "points": 20,
+            "visual_evidence": "The 'Export' dialog is visible, or the 'Internal' tab is filtered to 'HTML' before clicking export, with the file path pointing to '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "csv_file_verification",
+            "description": "Verify the CSV file exists in the correct directory with sufficient data.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal window shows a CSV file in /home/ga/Documents/SEO/exports/ containing at least 20 rows of data."
+        },
+        {
+            "id": "report_generation_content",
+            "description": "Create a text report with the required metrics: total URLs, average TTFB, and top 5 slowest URLs.",
+            "points": 25,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) shows a file containing specific numbers for total URLs, an average response time, and a list of 5 specific slow URLs."
+        },
+        {
+            "id": "report_analysis_recommendations",
+            "description": "Include identified patterns and at least three optimization recommendations in the report.",
+            "points": 15,
+            "visual_evidence": "The text report at ~/Documents/SEO/reports/ttfb_analysis.txt contains a section for 'Patterns' and a list of at least 3 distinct optimization suggestions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the Screaming Frog GUI rather than simulating the crawl via CLI scripts.",
+            "visual_evidence": "Screenshots show active mouse interaction with the Screaming Frog interface, menus, and export buttons."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The report data matches the data visible in the Screaming Frog application.",
+            "visual_evidence": "The response times and URL counts in the final text report correspond to the values shown in the Screaming Frog 'Response Time' column and 'Summary' tab."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Save dialogs or file explorer windows show the paths /home/ga/Documents/SEO/exports/ and /home/ga/Documents/SEO/reports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL is https://books.toscrape.com/. The agent must export a CSV to /home/ga/Documents/SEO/exports/ with at least 20 rows. The final report must be at /home/ga/Documents/SEO/reports/ttfb_analysis.txt, be at least 400 characters long, and include: total URLs crawled, average response time, 5 slowest URLs, patterns of slowness, and 3+ optimization recommendations."
+}

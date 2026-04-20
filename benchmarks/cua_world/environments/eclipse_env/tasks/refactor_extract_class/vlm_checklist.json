@@ -1,0 +1,59 @@
+{
+    "task_id": "refactor_extract_class@1",
+    "task_completion": [
+        {
+            "id": "open_radiation_treatment_unit",
+            "description": "Open the RadiationTreatmentUnit.java file in the Eclipse editor.",
+            "points": 10,
+            "visual_evidence": "The file 'RadiationTreatmentUnit.java' is visible in an editor tab and the Package Explorer shows it under com.medtech.device."
+        },
+        {
+            "id": "initiate_extract_class",
+            "description": "Initiate the 'Extract Class' refactoring wizard for the network fields.",
+            "points": 15,
+            "visual_evidence": "The 'Extract Class' dialog box is open, showing fields like ipAddress, port, protocol, and connectionTimeout selected for extraction."
+        },
+        {
+            "id": "configure_new_class",
+            "description": "Configure the new class name as 'NetworkConfiguration' and the field name as 'networkConfig'.",
+            "points": 15,
+            "visual_evidence": "In the Extract Class dialog, 'NetworkConfiguration' is entered as the class name and 'networkConfig' is entered as the field name."
+        },
+        {
+            "id": "verify_new_class_content",
+            "description": "Verify the creation of NetworkConfiguration.java with the extracted fields and getters/setters.",
+            "points": 25,
+            "visual_evidence": "NetworkConfiguration.java is visible in the editor containing private fields (ipAddress, port, protocol, connectionTimeout) and their corresponding public get/set methods."
+        },
+        {
+            "id": "verify_refactored_original_class",
+            "description": "Verify RadiationTreatmentUnit.java now uses the networkConfig object instead of direct fields.",
+            "points": 15,
+            "visual_evidence": "RadiationTreatmentUnit.java shows a field 'private NetworkConfiguration networkConfig;' and the original individual fields are removed."
+        },
+        {
+            "id": "run_junit_tests",
+            "description": "Run the JUnit tests to ensure the refactoring didn't break functionality.",
+            "points": 20,
+            "visual_evidence": "The JUnit view is visible showing a green bar or a list of passed tests for the MedTechCore project."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_eclipse_refactoring_ui",
+            "description": "The agent used the Eclipse Refactor menu/dialogs rather than manually typing all changes or using the terminal.",
+            "visual_evidence": "Screenshots show the 'Extract Class' refactoring wizard dialog box."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually executed the tests within the IDE rather than just claiming they passed.",
+            "visual_evidence": "The Eclipse 'JUnit' view tab is active and displays test results."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent used the refactoring tool to generate the new class rather than creating a blank file and copy-pasting.",
+            "visual_evidence": "The 'Extract Class' dialog is seen with the 'OK' or 'Finish' button being clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/MedTechCore. The source class is com.medtech.device.RadiationTreatmentUnit. The four fields to extract are ipAddress (String), port (int), protocol (String), and connectionTimeout (int). The new class must be named NetworkConfiguration and the field in the original class must be named networkConfig. The refactoring is successful only if the JUnit tests pass (green bar)."
+}

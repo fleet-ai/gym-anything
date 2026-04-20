@@ -1,0 +1,53 @@
+{
+    "task_id": "infer_favorite_destination@1",
+    "task_completion": [
+        {
+            "id": "access_orientdb_studio",
+            "description": "Agent successfully accesses the OrientDB Studio web interface at localhost:2480 and logs into the 'demodb' database.",
+            "points": 10,
+            "visual_evidence": "Browser showing the OrientDB Studio login page or the dashboard for the 'demodb' database."
+        },
+        {
+            "id": "create_property_schema",
+            "description": "Agent creates the 'FavoriteDestination' property of type STRING in the 'Profiles' vertex class.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE PROPERTY Profiles.FavoriteDestination STRING' in the console or the 'Profiles' schema view showing the new property."
+        },
+        {
+            "id": "query_stay_history",
+            "description": "Agent executes a query to aggregate 'HasStayed' edges to determine the most frequent country for each profile.",
+            "points": 25,
+            "visual_evidence": "SQL queries involving 'SELECT', 'OUT(\"HasStayed\")', 'GROUP BY', or 'COUNT()' visible in the query editor."
+        },
+        {
+            "id": "update_profiles_data",
+            "description": "Agent executes UPDATE commands to populate the 'FavoriteDestination' property with the calculated country names.",
+            "points": 30,
+            "visual_evidence": "SQL 'UPDATE Profiles SET FavoriteDestination = ...' commands being executed in the Studio console."
+        },
+        {
+            "id": "verify_final_results",
+            "description": "Agent displays the 'Profiles' table or a SELECT query showing the 'FavoriteDestination' column populated with country names.",
+            "points": 20,
+            "visual_evidence": "A data grid or query result set showing Profile records with the 'FavoriteDestination' field containing values like 'USA', 'France', etc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface rather than just executing scripts in a hidden terminal.",
+            "visual_evidence": "Screenshots show the browser with OrientDB Studio (localhost:2480) active and being interacted with."
+        },
+        {
+            "id": "no_manual_hardcoding",
+            "description": "Agent derived the destination from the database relationships rather than manually typing values without querying.",
+            "visual_evidence": "Presence of complex SQL queries linking Profiles to Hotels via HasStayed edges in the command history."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent is logged in as 'root' and interacting with the 'demodb' database.",
+            "visual_evidence": "The OrientDB header or connection settings showing user 'root' and database 'demodb'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is OrientDB, accessible at http://localhost:2480. The database name is 'demodb'. The credentials are root / GymAnything123!. The schema requires adding a STRING property 'FavoriteDestination' to the 'Profiles' class. The logic must follow: Profiles -> HasStayed (edge) -> Hotels -> Country. The 'FavoriteDestination' should be the country appearing most frequently in a user's 'HasStayed' history."
+}

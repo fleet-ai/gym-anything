@@ -1,0 +1,53 @@
+{
+    "task_id": "gas_alarm_setpoint_calculation@1",
+    "task_completion": [
+        {
+            "id": "cameo_website_access",
+            "description": "Agent navigates to the CAMEO Chemicals website in a browser.",
+            "points": 10,
+            "visual_evidence": "Browser window showing cameochemicals.noaa.gov."
+        },
+        {
+            "id": "chemical_data_retrieval",
+            "description": "Agent searches for and views the chemical reports for Methane, Propane, Hydrogen, and Acetone.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the search results or individual chemical data pages on the CAMEO website."
+        },
+        {
+            "id": "lel_identification",
+            "description": "Agent identifies the correct LEL (%) values from the NIOSH section of the chemical reports.",
+            "points": 20,
+            "visual_evidence": "The agent highlighting or scrolling to the 'NIOSH Pocket Guide' or 'Explosive Limits' section on the website."
+        },
+        {
+            "id": "file_creation",
+            "description": "Agent creates a text file at the specified path /home/ga/Documents/alarm_setpoints.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the file path /home/ga/Documents/alarm_setpoints.txt."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the correct chemical names, LEL percentages, and calculated setpoints in ppm.",
+            "points": 40,
+            "visual_evidence": "The final content of the file showing: Methane | 5.0 | 5000; Propane | 2.1 | 2100; Hydrogen | 4.0 | 4000; Acetone | 2.5 or 2.6 | 2500 or 2600."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_navigation",
+            "description": "Agent actually browsed the CAMEO site rather than guessing values.",
+            "visual_evidence": "Browser history or sequential screenshots showing the search and retrieval process on the NOAA website."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the final values without visiting the source.",
+            "visual_evidence": "Absence of the final report content appearing in the terminal before the browser was opened."
+        },
+        {
+            "id": "correct_conversion_logic",
+            "description": "Agent performed the math (10% of LEL * 10,000) rather than copying a pre-made table.",
+            "visual_evidence": "Calculations visible in terminal, scratchpad, or logical progression in the report creation."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified LEL values from CAMEO/NIOSH: Methane = 5.0% (Setpoint: 5000 ppm); Propane = 2.1% (Setpoint: 2100 ppm); Hydrogen = 4.0% (Setpoint: 4000 ppm); Acetone = 2.5% or 2.6% (Setpoint: 2500 or 2600 ppm). Note: Acetone has a known discrepancy between 2.5% and 2.6% in NIOSH/CAMEO sources; either is acceptable if it matches the source viewed. Conversion formula: (LEL % * 0.10) * 10,000."
+}

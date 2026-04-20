@@ -1,0 +1,59 @@
+{
+    "task_id": "export_quakeml_fdsn@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_interface",
+            "description": "The agent opens the SeisComP database management or event tool (e.g., scvgm, scolv, or a database explorer).",
+            "points": 10,
+            "visual_evidence": "A SeisComP application window or a database query interface showing earthquake event lists is visible."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "The agent identifies and selects the 2024 Noto Peninsula earthquake event within the database.",
+            "points": 15,
+            "visual_evidence": "The event list shows a selection or highlight on an entry corresponding to the Noto Peninsula, Japan, dated around January 1, 2024."
+        },
+        {
+            "id": "configure_export_settings",
+            "description": "The agent initiates an export process and selects QuakeML 1.2 as the output format.",
+            "points": 20,
+            "visual_evidence": "An export dialog or command-line utility shows 'QuakeML' or 'FDSN' selected as the format."
+        },
+        {
+            "id": "set_output_path",
+            "description": "The agent specifies the correct file path for the export.",
+            "points": 15,
+            "visual_evidence": "The text '/home/ga/exports/noto_quakeml.xml' is typed into a 'Save As' dialog or a terminal command."
+        },
+        {
+            "id": "verify_xml_structure",
+            "description": "The agent opens or displays the exported file to confirm the QuakeML 1.2 schema and namespaces.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal shows the file content starting with <quakeml xmlns=\"http://quakeml.org/xmlns/quakeml/1.2\"> and containing <eventParameters>."
+        },
+        {
+            "id": "verify_event_data",
+            "description": "The exported XML contains the origin (lat, long, depth) and magnitude for the Noto event.",
+            "points": 20,
+            "visual_evidence": "The XML file content shows <origin> tags with latitude/longitude and <magnitude> tags with a value (approx 7.5-7.6)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the SeisComP system rather than just creating a dummy file from scratch.",
+            "visual_evidence": "Screenshots show the agent navigating the SeisComP GUI or using SeisComP-specific CLI tools (like scxmldump) rather than just using 'echo' to write the file."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply copy the privileged information from the task prompt into a file.",
+            "visual_evidence": "The agent is seen querying the database or using export tools rather than copy-pasting a large block of XML text directly from an external source."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent uses the specified local path for the export.",
+            "visual_evidence": "The file manager or terminal confirms the file exists at /home/ga/exports/noto_quakeml.xml."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the 2024 Noto Peninsula earthquake (USGS ID us6000m0xl). The output must be at /home/ga/exports/noto_quakeml.xml. The XML must use namespaces 'http://quakeml.org/xmlns/quakeml/1.2' and 'http://quakeml.org/xmlns/bed/1.2'. Expected coordinates are approximately 37.3N, 137.2E (tolerance 1.0 degree) and magnitude is approximately 7.5-7.6 (tolerance 0.5)."
+}

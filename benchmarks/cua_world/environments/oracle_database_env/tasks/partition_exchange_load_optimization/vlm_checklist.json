@@ -1,0 +1,59 @@
+{
+    "task_id": "partition_exchange_load_optimization@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A SQL tool or terminal showing a successful connection to 'localhost' as user 'hr' or a 'Connected' status message."
+        },
+        {
+            "id": "verify_staging_data",
+            "description": "Agent checks the row count or content of SALES_STAGING_DEC11 before the exchange.",
+            "points": 10,
+            "visual_evidence": "A SELECT COUNT(*) query or data grid showing records in the SALES_STAGING_DEC11 table."
+        },
+        {
+            "id": "execute_partition_exchange",
+            "description": "Agent executes the ALTER TABLE EXCHANGE PARTITION command.",
+            "points": 30,
+            "visual_evidence": "SQL command: 'ALTER TABLE SALES_FACT EXCHANGE PARTITION P_2011_12 WITH TABLE SALES_STAGING_DEC11' followed by a 'Table altered' or success message."
+        },
+        {
+            "id": "verify_staging_empty",
+            "description": "Agent verifies that the staging table is now empty after the exchange.",
+            "points": 15,
+            "visual_evidence": "A SELECT query on SALES_STAGING_DEC11 showing 0 rows or an empty result set."
+        },
+        {
+            "id": "verify_partition_data",
+            "description": "Agent verifies that the data has moved to the SALES_FACT partition.",
+            "points": 15,
+            "visual_evidence": "A SELECT COUNT(*) query on SALES_FACT PARTITION (P_2011_12) showing the transferred records."
+        },
+        {
+            "id": "verify_index_status",
+            "description": "Agent checks that both global and local indexes are in a VALID/USABLE state.",
+            "points": 20,
+            "visual_evidence": "A query against USER_INDEXES or USER_IND_PARTITIONS showing 'VALID' or 'USABLE' for IDX_SALES_CUSTOMER and IDX_SALES_INVOICE."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_insertion",
+            "description": "The agent did not use INSERT INTO or manual data entry to move the data.",
+            "visual_evidence": "The command history should show an 'EXCHANGE PARTITION' statement, not a series of INSERT or MERGE statements."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with a real SQL interface rather than just echoing text to a terminal.",
+            "visual_evidence": "Screenshots show a database IDE (like SQL Developer) or a live SQL*Plus/SQLcl session with system-generated timestamps or row counts."
+        },
+        {
+            "id": "index_maintenance_check",
+            "description": "The agent specifically checked index status rather than assuming they remained valid.",
+            "visual_evidence": "Queries targeting the 'STATUS' column of metadata views like ALL_INDEXES or DBA_IND_PARTITIONS."
+        }
+    ],
+    "privileged_info_for_vlm": "The target partition is P_2011_12 in table SALES_FACT. The staging table is SALES_STAGING_DEC11. There is one global index (IDX_SALES_CUSTOMER) and one local index (IDX_SALES_INVOICE). For the exchange to be successful and indexes to remain valid, the agent may need to use the 'INCLUDING INDEXES' and 'UPDATE GLOBAL INDEXES' clauses in the ALTER TABLE statement."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "inventory_network_expansion_scconfig@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig_gui",
+            "description": "Open the SeisComP configuration tool (scconfig).",
+            "points": 10,
+            "visual_evidence": "A window titled 'scconfig' or 'SeisComP Configurator' is visible on the desktop."
+        },
+        {
+            "id": "navigate_to_modules",
+            "description": "Navigate to the module configuration section for scconfig, scautopick, and scamp.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'Modules' tab or a list of modules including 'scconfig', 'scautopick', and 'scamp' in the left-hand navigation pane."
+        },
+        {
+            "id": "configure_stations_hrv_kono",
+            "description": "Configure settings specifically for stations HRV and KONO within the GE and IU networks.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the agent selecting or entering 'HRV' and 'KONO' within the configuration bindings or station-specific settings for the required modules."
+        },
+        {
+            "id": "save_configuration_changes",
+            "description": "Save the changes within the scconfig interface.",
+            "points": 20,
+            "visual_evidence": "The agent clicking a 'Save' button or a 'File -> Save' menu option within the scconfig GUI."
+        },
+        {
+            "id": "export_xml_file",
+            "description": "Save/Export the resulting configuration to the specific path /home/ga/seiscomp_config.xml.",
+            "points": 25,
+            "visual_evidence": "A file dialog or terminal command showing the output path /home/ga/seiscomp_config.xml being specified for the configuration export."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "Verify the agent used the scconfig GUI rather than just manually writing an XML file via terminal.",
+            "visual_evidence": "Screenshots must show the scconfig graphical interface being interacted with (mouse clicks, typing in GUI fields)."
+        },
+        {
+            "id": "genuine_module_selection",
+            "description": "Verify the agent specifically accessed scconfig, scautopick, and scamp modules.",
+            "visual_evidence": "The VLM should see these specific module names highlighted or opened in the GUI sidebar."
+        },
+        {
+            "id": "no_premade_file_copy",
+            "description": "Ensure the agent didn't simply copy a pre-existing config file to the destination.",
+            "visual_evidence": "The agent should be seen navigating the GUI to generate the configuration rather than just running 'cp' in a terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires configuring SeisComP modules for stations HRV and KONO. These stations belong to the IU network (found in /home/ga/Desktop/iu_stations.xml) and the GE network. The agent must use the 'scconfig' GUI to manage these bindings and export the final result to /home/ga/seiscomp_config.xml."
+}

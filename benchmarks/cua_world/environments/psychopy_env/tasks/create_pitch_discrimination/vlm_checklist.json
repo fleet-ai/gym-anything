@@ -1,0 +1,59 @@
+{
+    "task_id": "create_pitch_discrimination@1",
+    "task_completion": [
+        {
+            "id": "conditions_csv_creation",
+            "description": "Create a 10-row conditions CSV at the specified path with correct frequencies and responses.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing a CSV file at /home/ga/PsychoPyExperiments/conditions/pitch_conditions.csv with 10 rows of data including 440Hz and deviant frequencies (442, 445, 450, 460, 480)."
+        },
+        {
+            "id": "trial_routine_setup",
+            "description": "Set up a trial routine in PsychoPy Builder with two sound components and a keyboard component.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder interface showing a 'trial' routine containing at least two Sound components and one Keyboard component ('1', '2')."
+        },
+        {
+            "id": "tone_and_gap_timing",
+            "description": "Configure sound components for 400ms duration and a 600ms silent gap.",
+            "points": 20,
+            "visual_evidence": "Properties window for Sound components showing 'Start' and 'Duration' values: Sound 1 (Start: 0.0, Dur: 0.4), Sound 2 (Start: 1.0, Dur: 0.4) to account for the 0.6s gap."
+        },
+        {
+            "id": "feedback_routine_logic",
+            "description": "Create a feedback routine that displays 'Correct!' or 'Wrong' based on the response.",
+            "points": 20,
+            "visual_evidence": "A 'feedback' routine in the Builder timeline containing a Text component with a variable like $msg or code component logic for 'Correct!'/'Wrong'."
+        },
+        {
+            "id": "loop_and_conditions_link",
+            "description": "Insert a loop around the trial/feedback routines and link the conditions CSV.",
+            "points": 15,
+            "visual_evidence": "The 'Insert Loop' dialog or 'trials' loop properties showing the conditions file path linked to the created CSV."
+        },
+        {
+            "id": "save_psyexp_file",
+            "description": "Save the experiment file to the specified location.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing 'pitch_discrimination.psyexp' saved in /home/ga/PsychoPyExperiments/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing raw XML/Python code.",
+            "visual_evidence": "Screenshots showing the agent clicking components, dragging routines, and using the Builder interface."
+        },
+        {
+            "id": "genuine_csv_generation",
+            "description": "The agent manually created or scripted the CSV content rather than using a placeholder file.",
+            "visual_evidence": "The agent typing the CSV content or using a terminal command to generate the specific 10-row frequency pairings."
+        },
+        {
+            "id": "no_hardcoded_feedback",
+            "description": "The feedback logic uses variables/code components to react to input, not just static text.",
+            "visual_evidence": "The Text component in the feedback routine contains a variable (starting with $) or there is a Code component visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must use a 440Hz base frequency. Deviants are 442, 445, 450, 460, and 480 Hz. The CSV must have 10 rows (5 deviants x 2 orders). Tone duration is 0.4s; gap is 0.6s (meaning the second tone starts at 1.0s). Responses are '1' and '2'. Files must be at /home/ga/PsychoPyExperiments/pitch_discrimination.psyexp and /home/ga/PsychoPyExperiments/conditions/pitch_conditions.csv."
+}

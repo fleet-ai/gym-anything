@@ -1,0 +1,59 @@
+{
+    "task_id": "random_sampling_points_export@1",
+    "task_completion": [
+        {
+            "id": "load_geojson_input",
+            "description": "Load the source GeoJSON file containing European country boundaries into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer 'european_countries' or similar is visible in the Layers panel, and the map canvas shows country outlines."
+        },
+        {
+            "id": "select_target_countries",
+            "description": "Select the specific countries (Austria, Switzerland, and Czechia) for point generation.",
+            "points": 15,
+            "visual_evidence": "The polygons for Austria, Switzerland, and Czechia are highlighted/selected on the map or in the attribute table."
+        },
+        {
+            "id": "generate_random_points",
+            "description": "Use a tool to generate 5 random points within each of the three selected countries.",
+            "points": 25,
+            "visual_evidence": "A new point layer appears in the Layers panel, and approximately 15 points are visible within the boundaries of the three target countries."
+        },
+        {
+            "id": "add_coordinate_fields",
+            "description": "Ensure the point layer attribute table includes 'longitude' and 'latitude' fields.",
+            "points": 20,
+            "visual_evidence": "The attribute table for the sampling points layer is open, showing columns explicitly named 'longitude' and 'latitude' with decimal degree values."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the generated points to the specified GeoJSON path.",
+            "points": 15,
+            "visual_evidence": "An export or 'Save Vector Layer As' dialog is visible with the format set to GeoJSON and the file path set to /home/ga/GIS_Data/exports/sampling_points.geojson."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the attribute table to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "An export dialog is visible with the format set to Comma Separated Value [CSV] and the file path set to /home/ga/GIS_Data/exports/sampling_coordinates.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with menus, toolboxes (e.g., 'Random points inside polygons'), and dialog boxes."
+        },
+        {
+            "id": "genuine_point_generation",
+            "description": "The points were generated using GIS tools, not manually placed or hardcoded.",
+            "visual_evidence": "The 'Random points inside polygons' or equivalent tool window is shown with the 'Points count' set to 5 and 'Selected features only' checked."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the task rather than default or temporary locations.",
+            "visual_evidence": "The file browser or path input fields in the export dialogs show the full paths in /home/ga/GIS_Data/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is /home/ga/GIS_Data/european_countries.geojson. The agent must generate exactly 15 points (5 per country for Austria, Switzerland, and Czechia). The output files must be /home/ga/GIS_Data/exports/sampling_points.geojson and /home/ga/GIS_Data/exports/sampling_coordinates.csv. The attribute table must contain 'longitude' and 'latitude' fields. Longitude values should be roughly between 5.0 and 19.0, and Latitude between 45.0 and 51.5."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "pac_limit_hierarchy_audit@1",
+    "task_completion": [
+        {
+            "id": "cameo_navigation",
+            "description": "Agent navigates to the CAMEO Chemicals website (cameochemicals.noaa.gov).",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search interface."
+        },
+        {
+            "id": "chemical_search_execution",
+            "description": "Agent searches for the specified chemicals (Chlorine, Cyclohexane, Methyl Mercaptan, Sodium Hydroxide, and Acetone).",
+            "points": 15,
+            "visual_evidence": "Screenshots show the agent typing chemical names into the search bar and viewing search results."
+        },
+        {
+            "id": "pac_data_retrieval",
+            "description": "Agent accesses the 'Response Recommendations' or 'Air Concentrations' section for each chemical to find PAC/AEGL/ERPG/TEEL values.",
+            "points": 25,
+            "visual_evidence": "The VLM sees the agent viewing the specific data pages for the chemicals where PAC or AEGL tables are displayed."
+        },
+        {
+            "id": "hierarchy_application",
+            "description": "Agent correctly identifies the PAC-2 value based on the DOE hierarchy (AEGL > ERPG > TEEL).",
+            "points": 30,
+            "visual_evidence": "The agent is seen selecting or noting the AEGL value when available (e.g., for Chlorine) or falling back to TEEL only when AEGL/ERPG are absent."
+        },
+        {
+            "id": "report_creation",
+            "description": "Agent saves the final report to ~/Desktop/pac_audit_results.txt with all 5 chemicals and their sources.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command shows the creation of 'pac_audit_results.txt' on the desktop containing the chemical names, PAC-2 values, and source bases."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_direct_file_creation",
+            "description": "Agent did not simply create the file using 'echo' with pre-known values without browsing.",
+            "visual_evidence": "The trajectory must show browser interaction and data retrieval from CAMEO Chemicals before the file is saved."
+        },
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent interacted with the CAMEO Chemicals UI rather than using a search engine snippet or cached data.",
+            "visual_evidence": "Screenshots show the agent clicking through the CAMEO Chemicals database specifically."
+        },
+        {
+            "id": "hierarchy_logic_check",
+            "description": "Agent did not just pick the first number seen; it followed the AEGL > ERPG > TEEL hierarchy.",
+            "visual_evidence": "The final report or intermediate notes show the correct source basis (e.g., AEGL for Chlorine, TEEL for Cyclohexane)."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified PAC-2 values and sources: 1. Chlorine: 2.0 ppm (Source: AEGL-2). 2. Cyclohexane: 1700 ppm (Source: TEEL-2). 3. Methyl Mercaptan: 23 ppm (Source: AEGL-2; note that ERPG-2 is 25 ppm but AEGL takes precedence). 4. Sodium Hydroxide: 5 mg/m3 (Source: TEEL-2). 5. Acetone: 3200 ppm (Source: AEGL-2). Ensure the agent uses the 60-minute AEGL value where applicable."
+}

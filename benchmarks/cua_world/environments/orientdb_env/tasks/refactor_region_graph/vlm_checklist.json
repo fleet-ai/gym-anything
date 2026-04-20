@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_region_graph@1",
+    "task_completion": [
+        {
+            "id": "create_regions_class",
+            "description": "Create a new Vertex class named 'Regions' with a String property 'Name'.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the OrientDB schema/studio with 'Regions' listed as a class and a property 'Name' of type 'STRING'."
+        },
+        {
+            "id": "create_unique_index",
+            "description": "Create a UNIQUE index on the 'Name' property of the 'Regions' class.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the 'Regions' class configuration or indexes tab showing a UNIQUE index on the 'Name' property."
+        },
+        {
+            "id": "create_inregion_edge",
+            "description": "Create a new Edge class named 'InRegion'.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing 'InRegion' listed under the Edge classes in the database schema."
+        },
+        {
+            "id": "migrate_region_vertices",
+            "description": "Create 'Regions' vertices for every unique 'Type' found in 'Countries'.",
+            "points": 25,
+            "visual_evidence": "Screenshot of a query result (e.g., 'SELECT FROM Regions') showing 4 records: European, American, Asian, and Oceanian."
+        },
+        {
+            "id": "migrate_inregion_edges",
+            "description": "Connect each country to its corresponding region vertex via an 'InRegion' edge.",
+            "points": 40,
+            "visual_evidence": "Screenshot of a graph visualization or query (e.g., 'SELECT count(*) FROM InRegion') showing 12 edges connecting Country vertices to Region vertices."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the browser with OrientDB Studio (typically port 2480) being used to execute commands or browse the schema."
+        },
+        {
+            "id": "no_duplicate_regions",
+            "description": "The agent ensured no duplicate Region vertices were created during migration.",
+            "visual_evidence": "Query results for 'Regions' show exactly 4 unique records despite there being 12 countries."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent queried the existing 'Countries' table to identify the types before migration.",
+            "visual_evidence": "Screenshots show a SELECT query on the 'Countries' class to inspect the 'Type' column."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' database contains 12 countries. There are 4 unique regions to be created in the 'Regions' class: 'European', 'American', 'Asian', and 'Oceanian'. After migration, there should be exactly 4 Region vertices and 12 InRegion edges (one for each country). The credentials are User: root, Pass: GymAnything123!."
+}

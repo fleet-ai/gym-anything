@@ -1,0 +1,59 @@
+{
+    "task_id": "tote_bag_pattern@1",
+    "task_completion": [
+        {
+            "id": "layer_creation",
+            "description": "Create the three required layers: STITCH_LINE, SEAM_ALLOWANCE, and FOLD_LINE with correct colors.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget in LibreCAD shows 'STITCH_LINE' (White/Black), 'SEAM_ALLOWANCE' (Red), and 'FOLD_LINE' (Cyan)."
+        },
+        {
+            "id": "stitch_line_rectangle",
+            "description": "Draw the 350x400mm rectangle starting at (100, 100) on the STITCH_LINE layer.",
+            "points": 20,
+            "visual_evidence": "A rectangle is visible on the canvas. The status bar or coordinate display shows dimensions near 350x400 or coordinates starting at 100,100 when the mouse hovers over the corner."
+        },
+        {
+            "id": "bottom_chamfers",
+            "description": "Apply 30mm chamfers to the two bottom corners of the bag body.",
+            "points": 15,
+            "visual_evidence": "The bottom two corners of the main rectangle are angled (diagonal cuts) rather than 90-degree intersections."
+        },
+        {
+            "id": "seam_allowance_offset",
+            "description": "Create a 15mm offset outside the bag body on the SEAM_ALLOWANCE layer.",
+            "points": 20,
+            "visual_evidence": "A second, larger red outline is visible surrounding the white/black stitch line, following the same shape including the chamfers."
+        },
+        {
+            "id": "fold_line_hem",
+            "description": "Draw a horizontal hem line 40mm below the top edge on the FOLD_LINE layer.",
+            "points": 15,
+            "visual_evidence": "A cyan horizontal line is visible inside the bag body, positioned near the top (at Y=460 if the top is Y=500)."
+        },
+        {
+            "id": "save_file",
+            "description": "Save the drawing to the specified path: /home/ga/Documents/LibreCAD/tote_bag_pattern.dxf",
+            "points": 15,
+            "visual_evidence": "The LibreCAD title bar shows the file path or a 'Save As' dialog is seen with the correct path and filename entered."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to draw the pattern rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (Line, Offset, Chamfer) and the Layer menu."
+        },
+        {
+            "id": "genuine_geometry_construction",
+            "description": "The agent manually set dimensions or used the command line within LibreCAD to specify coordinates.",
+            "visual_evidence": "The command history area at the bottom of the LibreCAD window shows inputs like '100,100', '350', '400', or '30'."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use the Linux terminal to move a pre-made file to the destination.",
+            "visual_evidence": "The terminal is not used to execute 'mv' or 'cp' commands for a .dxf file; the work happens inside the CAD interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The bag body (STITCH_LINE) is a rectangle from (100,100) to (450,500). Bottom corners (100,100) and (450,100) must have 30mm chamfers. The SEAM_ALLOWANCE is a 15mm external offset (Red/Color 1). The FOLD_LINE (Cyan/Color 4) is a horizontal line at Y=460 (40mm below the top edge of 500). The final file must be saved as /home/ga/Documents/LibreCAD/tote_bag_pattern.dxf."
+}

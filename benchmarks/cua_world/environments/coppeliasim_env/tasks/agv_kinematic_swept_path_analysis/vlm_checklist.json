@@ -1,0 +1,53 @@
+{
+    "task_id": "agv_kinematic_swept_path_analysis@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_initialization",
+            "description": "CoppeliaSim is launched and the AGV chassis (2.0m x 1.0m) is visible in the scene.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the CoppeliaSim GUI open with a rectangular cuboid representing the AGV at the origin (0,0,0)."
+        },
+        {
+            "id": "animation_execution",
+            "description": "The AGV is programmatically animated performing a 90-degree counter-clockwise turn.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots or a clear trajectory trail showing the AGV moving from the X-axis to the Y-axis along a curved path."
+        },
+        {
+            "id": "path_tangency",
+            "description": "The AGV maintains tangency to the 3.0m radius path throughout the maneuver.",
+            "points": 15,
+            "visual_evidence": "Visual confirmation that the vehicle's heading rotates from +X to +Y, staying aligned with the direction of travel along the arc."
+        },
+        {
+            "id": "csv_export",
+            "description": "The corner trajectories are exported to the specified CSV file path with correct columns.",
+            "points": 20,
+            "visual_evidence": "Terminal output or a file explorer/text editor showing 'swept_corners.csv' in /home/ga/Documents/CoppeliaSim/exports/ with columns like front_left_x, front_left_y, etc."
+        },
+        {
+            "id": "summary_report_generation",
+            "description": "A summary report JSON is saved with the calculated kinematic values.",
+            "points": 30,
+            "visual_evidence": "A text editor or cat command showing 'swept_report.json' containing vehicle dimensions and calculated radii (outer_radius_m, inner_radius_m, swept_width_m)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation",
+            "description": "The agent used the CoppeliaSim API/ZMQ port rather than hardcoding values into a file.",
+            "visual_evidence": "Code snippets showing the use of 'sim' or 'zmqRemoteApi' to control the simulation and retrieve object positions."
+        },
+        {
+            "id": "dynamic_calculation",
+            "description": "The agent calculated the swept width from simulation data rather than just typing the expected values.",
+            "visual_evidence": "Script logic showing the recording of corner coordinates during the simulation loop and subsequent math operations."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The files were actually created in the specified directory.",
+            "visual_evidence": "Screenshots showing the file path /home/ga/Documents/CoppeliaSim/exports/ in the file manager or terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The AGV dimensions are 2.0m (length) x 1.0m (width) on a 3.0m turning radius. The mathematically verified values the agent should report are: Outer Radius = 3.64m (±0.05m), Inner Radius = 2.50m (±0.05m), and Swept Width = 1.14m (±0.05m). The CSV file must contain at least 15 rows of data to be considered a valid trajectory record."
+}

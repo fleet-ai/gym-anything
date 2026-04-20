@@ -1,0 +1,59 @@
+{
+    "task_id": "tumor_infiltration_pattern@1",
+    "task_completion": [
+        {
+            "id": "load_mri_sequences",
+            "description": "Load T1ce and FLAIR MRI sequences into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing both T1ce and FLAIR volumes loaded in the data module or visible in the slice viewers."
+        },
+        {
+            "id": "compare_sequences_side_by_side",
+            "description": "Compare T1ce and FLAIR sequences to identify the tumor core and the surrounding edema/infiltration.",
+            "points": 15,
+            "visual_evidence": "The agent using a side-by-side view, a flicker/compare tool, or switching between T1ce and FLAIR layers in the same view."
+        },
+        {
+            "id": "measure_infiltration_radius",
+            "description": "Perform at least 3 measurements of the infiltration radius (distance from T1ce enhancement to FLAIR hyperintensity boundary).",
+            "points": 20,
+            "visual_evidence": "Ruler or markup line tools visible on the MRI slices measuring the distance between the tumor core and the outer edge of the FLAIR signal."
+        },
+        {
+            "id": "calculate_volumes",
+            "description": "Calculate or estimate the volumes of the T1ce enhancing core and the FLAIR hyperintensity to determine the infiltration index.",
+            "points": 20,
+            "visual_evidence": "Use of a 'Segment Statistics' module, volume rendering, or manual calculation visible in the terminal or a notepad based on segmentation results."
+        },
+        {
+            "id": "save_markups_json",
+            "description": "Save the measurement markups to the specified file path: ~/Documents/SlicerData/BraTS/infiltration_markups.mrk.json.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog box showing the specific file path and filename, or a terminal command confirming the file move/save to that location."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "Create the final report JSON with all required fields: border_characterization, infiltrated_structures, max_infiltration_radius_mm, infiltration_index, and infiltration_grade.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the content of ~/Documents/SlicerData/BraTS/infiltration_report.json containing the specific keys and calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging GUI to perform measurements rather than just scripting the output.",
+            "visual_evidence": "Mouse cursor movements, active tool selection in the Slicer toolbar, and visual placement of markup points on the MRI slices."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual evidence in the screenshots.",
+            "visual_evidence": "The 'max_infiltration_radius_mm' in the JSON matches the length of the longest ruler tool visible in the measurement screenshots."
+        },
+        {
+            "id": "no_predefined_answer_copying",
+            "description": "The agent did not simply echo a pre-existing result file without opening the images.",
+            "visual_evidence": "The agent must be seen interacting with the specific BraTS2021_00000 volume data before generating the report."
+        }
+    ],
+    "privileged_info_for_vlm": "For BraTS 2021 data: T1ce (post-contrast) shows the enhancing tumor core (Label 4). FLAIR shows the peritumoral edema/infiltration (Label 2). The infiltration index is the ratio of the total FLAIR abnormal volume to the T1ce enhancing volume. The infiltration radius is the distance from the edge of the T1ce enhancement to the furthest edge of the FLAIR signal."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "packet_size_distribution_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Open the capture file '200722_tcp_anon.pcapng' in Wireshark or a similar GUI tool.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing Wireshark open with '200722_tcp_anon.pcapng' displayed in the title bar or file path."
+        },
+        {
+            "id": "access_packet_length_stats",
+            "description": "Access the Packet Lengths statistics window to analyze distribution.",
+            "points": 15,
+            "visual_evidence": "A 'Packet Lengths' statistics window or dialog box visible over the main application."
+        },
+        {
+            "id": "calculate_summary_stats",
+            "description": "Identify total packet count, min, max, and average packet sizes.",
+            "points": 20,
+            "visual_evidence": "The statistics window showing values for 'Count', 'Average', 'Min Val', and 'Max Val'."
+        },
+        {
+            "id": "analyze_bucket_distribution",
+            "description": "Identify packet counts and percentages for the specified size buckets (0-79, 80-159, etc.).",
+            "points": 25,
+            "visual_evidence": "The statistics window showing a breakdown of ranges (e.g., 0-79, 80-159) with corresponding counts and percentages."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the report file at the specified path with the required content.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '/home/ga/Documents/captures/packet_size_report.txt' with the exact headers and data points requested."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to find statistics rather than just using command-line tools like tshark.",
+            "visual_evidence": "Screenshots showing the Wireshark GUI and the 'Statistics' menu or 'Packet Lengths' window being interacted with."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final report without showing the source of the data.",
+            "visual_evidence": "Screenshots showing the intermediate step of viewing the statistics in the application before writing the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the correct pcap file from the specified directory.",
+            "visual_evidence": "The file path '~/Documents/captures/200722_tcp_anon.pcapng' is visible during the file opening process."
+        }
+    ],
+    "privileged_info_for_vlm": "The pcap file '200722_tcp_anon.pcapng' contains exactly 35 packets. The total file size is 12,800 bytes. The VLM should verify that the 'Total Packets' in the report is 35. The statistics must be derived from the Wireshark 'Packet Lengths' tool. The report must be saved specifically to /home/ga/Documents/captures/packet_size_report.txt."
+}

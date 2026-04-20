@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_language_spellcheck@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SEB Server dashboard or home page after the login screen, indicating successful authentication."
+        },
+        {
+            "id": "create_exam_name",
+            "description": "Create a new exam configuration named 'French 305 Midterm'.",
+            "points": 15,
+            "visual_evidence": "A text input field or a header showing the name 'French 305 Midterm' within the exam configuration creation/edit view."
+        },
+        {
+            "id": "disable_spell_grammar",
+            "description": "Disable both 'Allow Spell Check' and 'Allow Grammar Check' settings.",
+            "points": 25,
+            "visual_evidence": "Checkboxes or toggles for 'Allow Spell Check' and 'Allow Grammar Check' must be in the unchecked or 'Off' state."
+        },
+        {
+            "id": "enable_dictionary",
+            "description": "Enable the 'Allow Dictionary Search' setting.",
+            "points": 20,
+            "visual_evidence": "A checkbox or toggle for 'Allow Dictionary Search' must be in the checked or 'On' state."
+        },
+        {
+            "id": "set_language_french",
+            "description": "Set the main browser language to French ('fr' or 'fr-FR').",
+            "points": 20,
+            "visual_evidence": "A language selection dropdown or text field showing 'fr' or 'fr-FR' as the configured browser language."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the changes to the exam configuration.",
+            "points": 10,
+            "visual_evidence": "The agent clicking a 'Save', 'Create', or 'Submit' button, followed by a success message or the configuration appearing in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than terminal commands to modify the database.",
+            "visual_evidence": "Screenshots should show mouse movements, clicks, and typing within the browser at http://localhost:8080, not SQL commands in a terminal."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the SEB Server menus to find the correct settings.",
+            "visual_evidence": "Sequential screenshots showing the agent clicking through the SEB Server UI tabs (e.g., Exams, Settings) to reach the configuration page."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not use pre-written scripts to automate the API calls.",
+            "visual_evidence": "The VLM should see the agent manually interacting with the UI elements (toggles, text fields) rather than just a single script execution."
+        }
+    ],
+    "privileged_info_for_vlm": "The exam name must be exactly 'French 305 Midterm'. The specific settings required are: Spell Check = Disabled (False), Grammar Check = Disabled (False), Dictionary Search = Enabled (True), and Browser Language = 'fr' or 'fr-FR'. Credentials for login are super-admin / admin."
+}

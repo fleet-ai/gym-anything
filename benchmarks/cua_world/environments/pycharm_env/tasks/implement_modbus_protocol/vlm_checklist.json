@@ -1,0 +1,62 @@
+{
+    "task_id": "implement_modbus_protocol@1",
+    "task_completion": [
+        {
+            "id": "crc_implementation",
+            "description": "Implementation of CRC-16 calculation using polynomial 0xA001",
+            "points": 15,
+            "visual_evidence": "Python code in modbus/crc.py or similar showing the CRC-16 logic with the 0xA001 polynomial."
+        },
+        {
+            "id": "frame_construction",
+            "description": "Implementation of Modbus RTU frame construction and parsing logic",
+            "points": 20,
+            "visual_evidence": "Python code in the modbus/ package showing byte-level manipulation to build and unpack RTU frames (Slave ID, Function Code, Data, CRC)."
+        },
+        {
+            "id": "function_codes_logic",
+            "description": "Implementation of Function Codes 01, 03, 06, and 16",
+            "points": 25,
+            "visual_evidence": "Code blocks or switch/if-else logic handling Read Coils (01), Read Holding Registers (03), Write Single Register (06), and Write Multiple Registers (16)."
+        },
+        {
+            "id": "exception_responses",
+            "description": "Implementation of Modbus exception response handling",
+            "points": 15,
+            "visual_evidence": "Code showing the addition of 0x80 to the function code and returning error codes for invalid requests."
+        },
+        {
+            "id": "test_execution",
+            "description": "Execution of the pytest suite against the implementation",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'pytest' being run from the project directory /home/ga/PycharmProjects/modbus_rtu."
+        },
+        {
+            "id": "test_passing_results",
+            "description": "The test suite shows passing results (at least 60% pass rate)",
+            "points": 15,
+            "visual_evidence": "Pytest summary showing passed tests. Note: There are 19 total tests; look for at least 12+ passes to meet the 60% threshold."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_third_party_libs",
+            "description": "Verify no third-party Modbus libraries (like pymodbus) were used",
+            "points": 0,
+            "visual_evidence": "Check imports in the modbus/ package; there should be no 'import pymodbus' or 'import minimalmodbus'."
+        },
+        {
+            "id": "no_test_modification",
+            "description": "Verify the agent did not modify files in the tests/ directory",
+            "points": 0,
+            "visual_evidence": "The agent should not be seen opening or editing files within the tests/ folder in the IDE or terminal."
+        },
+        {
+            "id": "genuine_implementation",
+            "description": "Verify the agent wrote actual logic rather than hardcoding test outputs",
+            "points": 0,
+            "visual_evidence": "The code in modbus/ should contain algorithmic logic (loops, bitwise shifts for CRC) rather than simple return statements matching test cases."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/modbus_rtu. The correct CRC-16 polynomial is 0xA001. Although some documentation might mention 20 tests, there are actually only 19 tests in the suite. A score of 60% (at least 12/19 tests passing) is the minimum threshold for success."
+}

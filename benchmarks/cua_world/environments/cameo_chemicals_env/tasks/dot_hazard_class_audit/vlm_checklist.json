@@ -1,0 +1,53 @@
+{
+    "task_id": "dot_hazard_class_audit@1",
+    "task_completion": [
+        {
+            "id": "open_draft_manifest",
+            "description": "The agent opens the draft_manifest.csv file on the Desktop to identify the 5 chemicals and their listed classes.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet or text editor window showing draft_manifest.csv with 5 rows of chemical data."
+        },
+        {
+            "id": "search_cameo_database",
+            "description": "The agent navigates to the CAMEO Chemicals website and searches for the chemicals using their UN Numbers.",
+            "points": 20,
+            "visual_evidence": "A web browser showing the CAMEO Chemicals search page or search results for UN Numbers like 1203 or 1824."
+        },
+        {
+            "id": "verify_hazard_classes",
+            "description": "The agent identifies the official DOT Hazard Class for each chemical from the CAMEO database.",
+            "points": 25,
+            "visual_evidence": "Browser screenshots showing the 'DOT Hazard Label' or 'Hazard Class' section for the searched UN numbers (e.g., Class 3 for UN 1203)."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "The agent creates the manifest_audit_report.csv file in the Documents folder with the required columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer showing manifest_audit_report.csv in ~/Documents or a text editor/spreadsheet app with the file open."
+        },
+        {
+            "id": "accurate_report_content",
+            "description": "The final report contains all 5 items with correct UN Numbers, Listed Classes, Official Classes, and PASS/FAIL statuses based on strict matching.",
+            "points": 30,
+            "visual_evidence": "A view of the final CSV showing 5 rows. Specifically: UN 1203 must show Official Class '3', Listed Class '5.1', and Status 'FAIL'; UN 1824 must show Official Class '8', Listed Class '8', and Status 'PASS'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to find information rather than just guessing or using terminal-based scraping if not specified.",
+            "visual_evidence": "Screenshots show the browser window active and navigating the CAMEO Chemicals website."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the ground truth into a file without visiting the source website.",
+            "visual_evidence": "The trajectory shows a sequence of searching each UN number individually on the NOAA website."
+        },
+        {
+            "id": "strict_matching_logic",
+            "description": "The agent correctly applied strict matching as requested in the prompt.",
+            "visual_evidence": "The audit report shows 'FAIL' for any discrepancy between the listed and official class, even if they are sub-classes."
+        }
+    ],
+    "privileged_info_for_vlm": "For UN 1203 (Gasoline): Official Class is '3', Listed Class is '5.1', Status must be 'FAIL'. For UN 1824 (Sodium hydroxide solution): Official Class is '8', Listed Class is '8', Status must be 'PASS'. The final report must be at ~/Documents/manifest_audit_report.csv and contain exactly 5 entries with columns: UN_Number, Listed_Class, Official_Class, and Status."
+}

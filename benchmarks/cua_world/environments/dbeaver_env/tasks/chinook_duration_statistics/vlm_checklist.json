@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_duration_statistics@1",
+    "task_completion": [
+        {
+            "id": "db_connection",
+            "description": "Connect to the Chinook database at the specified path using a database management tool.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a database tool (like DBeaver) connected to '/home/ga/Documents/databases/chinook.db' with the connection name 'Chinook'."
+        },
+        {
+            "id": "sql_query_execution",
+            "description": "Write and execute SQL queries to calculate genre statistics and identify outliers.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing queries involving 'Track', 'Genre', and aggregate functions (AVG, STDDEV, etc.) with a filter for TrackCount >= 10."
+        },
+        {
+            "id": "export_genre_stats",
+            "description": "Export the statistical profile to genre_duration_stats.csv with correct columns and sorting.",
+            "points": 25,
+            "visual_evidence": "A CSV file or data grid showing columns: GenreName, TrackCount, MinDurationSec, MaxDurationSec, AvgDurationSec, MedianDurationSec, StdDevDurationSec, and CoeffOfVariation, sorted by CoeffOfVariation descending."
+        },
+        {
+            "id": "export_outliers",
+            "description": "Export statistical outliers to duration_outliers.csv with correct columns and ZScore sorting.",
+            "points": 25,
+            "visual_evidence": "A CSV file or data grid showing columns: TrackName, GenreName, DurationSec, GenreAvgSec, ZScore, and OutlierType, sorted by absolute ZScore descending."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL queries to the specified script path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or text editor showing the file '/home/ga/Documents/scripts/duration_stats.sql' containing the logic used for the exports."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used a GUI-based database tool or spreadsheet application rather than just terminal commands.",
+            "visual_evidence": "Screenshots show interaction with DBeaver, LibreOffice Calc, or similar GUI windows."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent derived values from the database rather than hardcoding values from the prompt.",
+            "visual_evidence": "SQL results grid showing data that matches the Chinook schema (e.g., Milliseconds converted to seconds by dividing by 1000.0)."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent used export features or script-based saving rather than manually typing out the CSV content in a text editor.",
+            "visual_evidence": "Use of 'Export' wizards in the DB tool or SQL 'INTO OUTFILE' / 'COPY' commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. The 'Track' table contains 'Milliseconds' which must be divided by 1000.0 to get 'DurationSec'. Only genres with >= 10 tracks should be in the stats file. Outliers are defined as |ZScore| > 2. ZScore is (Duration - Mean) / StdDev. Stats must be 1 decimal place; ZScores must be 2 decimal places. Required files: /home/ga/Documents/exports/genre_duration_stats.csv, /home/ga/Documents/exports/duration_outliers.csv, and /home/ga/Documents/scripts/duration_stats.sql."
+}

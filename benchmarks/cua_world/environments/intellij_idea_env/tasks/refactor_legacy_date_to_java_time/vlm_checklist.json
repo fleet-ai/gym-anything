@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_legacy_date_to_java_time@1",
+    "task_completion": [
+        {
+            "id": "open_project_files",
+            "description": "Open the target Java files in the IDE to begin refactoring.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing Flight.java and FlightScheduler.java open in the editor tabs of the IDE."
+        },
+        {
+            "id": "refactor_flight_model",
+            "description": "Update Flight.java to use java.time.LocalDateTime instead of java.util.Date.",
+            "points": 20,
+            "visual_evidence": "Code in Flight.java showing 'import java.time.LocalDateTime;' and fields/getters/setters using 'LocalDateTime' instead of 'Date'."
+        },
+        {
+            "id": "refactor_flight_scheduler_logic",
+            "description": "Update FlightScheduler.java to use java.time.LocalDateTime and its methods for time calculations.",
+            "points": 25,
+            "visual_evidence": "Code in FlightScheduler.java showing the removal of java.util.Calendar/Date and the use of LocalDateTime methods (e.g., plusHours, isBefore, or Duration)."
+        },
+        {
+            "id": "maven_compilation",
+            "description": "The project compiles successfully after the refactoring changes.",
+            "points": 20,
+            "visual_evidence": "Terminal or IDE build output showing 'BUILD SUCCESS' or a successful compilation message from Maven."
+        },
+        {
+            "id": "test_execution_pass",
+            "description": "Run the tests in FlightSchedulerTest.java and ensure they pass.",
+            "points": 25,
+            "visual_evidence": "Test runner window or terminal output showing that all tests in FlightSchedulerTest.java passed (e.g., green checkmarks or 'Tests run: X, Failures: 0')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_legacy_imports",
+            "description": "Ensure java.util.Date and java.util.Calendar are no longer imported in the refactored files.",
+            "visual_evidence": "The import sections of Flight.java and FlightScheduler.java do not contain 'java.util.Date' or 'java.util.Calendar'."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "The agent used the IDE's code editing and build tools rather than just echoing text into files.",
+            "visual_evidence": "Screenshots showing the agent typing in the IDE, using refactoring tools, or clicking the 'Run'/'Build' buttons."
+        },
+        {
+            "id": "test_verification",
+            "description": "The agent actually executed the tests rather than just claiming they passed.",
+            "visual_evidence": "A visible test execution report or console output specifically referencing FlightSchedulerTest."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/flight-scheduler. The specific files to be modified are src/main/java/com/airlines/model/Flight.java and src/main/java/com/airlines/service/FlightScheduler.java. The legacy classes to be removed are java.util.Date and java.util.Calendar, to be replaced by java.time.LocalDateTime. Success is defined by a successful Maven build and passing tests in src/test/java/com/airlines/service/FlightSchedulerTest.java."
+}

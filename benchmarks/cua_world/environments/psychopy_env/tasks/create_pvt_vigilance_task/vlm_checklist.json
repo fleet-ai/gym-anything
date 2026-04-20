@@ -1,0 +1,59 @@
+{
+    "task_id": "create_pvt_vigilance_task@1",
+    "task_completion": [
+        {
+            "id": "create_conditions_csv",
+            "description": "Create the conditions file with specific ISI values at the correct path.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet or text editor showing /home/ga/PsychoPyExperiments/conditions/pvt_trials.csv with columns containing 2.0, 5.0, 3.5, 8.0, and 4.0."
+        },
+        {
+            "id": "setup_routines",
+            "description": "Create the four required routines: instructions, isi_wait, reaction_test, and feedback.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Builder interface showing four distinct routine tabs or icons in the flow named 'instructions', 'isi_wait', 'reaction_test', and 'feedback'."
+        },
+        {
+            "id": "isi_wait_logic",
+            "description": "Configure the isi_wait routine to use the ISI variable from the conditions file.",
+            "points": 15,
+            "visual_evidence": "A properties dialog for a component (like a blank text or polygon) within the 'isi_wait' routine showing the duration field set to a variable like '$ISI'."
+        },
+        {
+            "id": "reaction_test_counter",
+            "description": "Create a red millisecond counter that updates every frame and stops on SPACE.",
+            "points": 25,
+            "visual_evidence": "A Code Component or Text Component properties window showing color set to 'red' and code logic for a timer/counter, plus a Keyboard component set to 'space'."
+        },
+        {
+            "id": "feedback_logic",
+            "description": "Implement conditional feedback for 'FALSE START' (<150ms) vs recorded time.",
+            "points": 20,
+            "visual_evidence": "A Code Component in the 'feedback' routine showing an 'if' statement checking if the reaction time is less than 0.15 (or 150) and setting text to 'FALSE START'."
+        },
+        {
+            "id": "loop_and_save",
+            "description": "Connect the routines with a loop using the conditions file and save the experiment.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Flow showing a loop surrounding the trial routines, the loop properties pointing to 'pvt_trials.csv', and the window title showing 'pvt_task.psyexp'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing a raw Python script.",
+            "visual_evidence": "Screenshots showing the agent interacting with the PsychoPy Builder interface (adding components, routines, and loops) rather than just a text editor."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent manually entered or generated the CSV data rather than using a pre-existing file.",
+            "visual_evidence": "Screenshots of the agent typing the ISI values into a spreadsheet or using a terminal command to echo the specific values into the CSV."
+        },
+        {
+            "id": "no_hardcoded_feedback",
+            "description": "The feedback routine uses logic to determine the display text rather than a static string.",
+            "visual_evidence": "The PsychoPy component properties showing a variable (e.g., $msg) in the text field rather than a fixed word."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/pvt_task.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/conditions/pvt_trials.csv and contain exactly 5 trials with these ISI values: 2.0, 5.0, 3.5, 8.0, 4.0. The 'FALSE START' threshold is strictly 150ms (0.15s)."
+}

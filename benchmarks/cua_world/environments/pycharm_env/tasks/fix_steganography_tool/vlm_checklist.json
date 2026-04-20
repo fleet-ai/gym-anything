@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_steganography_tool@1",
+    "task_completion": [
+        {
+            "id": "open_lsb_file",
+            "description": "Agent opens the file /home/ga/PycharmProjects/stego_toolkit/lsb.py in an editor.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the file 'lsb.py' open in PyCharm or a text editor."
+        },
+        {
+            "id": "fix_destructive_masking",
+            "description": "Agent fixes the bitwise masking logic in the encoding function (changing 0x00 to 0xFE or similar).",
+            "points": 25,
+            "visual_evidence": "Code in lsb.py showing a bitwise AND operation with 0xFE (or 254) instead of 0x00 to preserve high bits."
+        },
+        {
+            "id": "fix_base_conversion",
+            "description": "Agent fixes the decoding logic to interpret binary strings as base 2 instead of base 10.",
+            "points": 25,
+            "visual_evidence": "Code in lsb.py showing int(byte_string, 2) or equivalent logic in the decoding section."
+        },
+        {
+            "id": "fix_null_terminator",
+            "description": "Agent implements logic to stop decoding when a null terminator (00000000) is encountered.",
+            "points": 20,
+            "visual_evidence": "Code in lsb.py showing a break condition or check for a null byte ('\\0' or 0) during the message extraction loop."
+        },
+        {
+            "id": "run_tests_pass",
+            "description": "Agent executes the test suite in the tests/ directory and the output shows passing results.",
+            "points": 20,
+            "visual_evidence": "A terminal or IDE test runner window showing 'OK' or 'PASSED' for the tests in the /tests folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "visual_evidence": "The file paths being edited in the IDE tabs or terminal commands should only include lsb.py, not files in the tests/ directory."
+        },
+        {
+            "id": "genuine_code_edit",
+            "description": "The agent manually edited the code rather than just printing the solution to the terminal.",
+            "visual_evidence": "Screenshots showing the editor cursor or the process of typing/saving changes in lsb.py."
+        },
+        {
+            "id": "no_utils_modification",
+            "description": "The agent did not modify utils.py as per the instructions.",
+            "visual_evidence": "The agent's activity is focused on lsb.py; utils.py is not seen being edited in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/stego_toolkit. There are three specific bugs in lsb.py: 1) Destructive masking (using 0x00 instead of 0xFE), which ruins image quality. 2) Wrong base conversion (using base 10 instead of base 2 for binary strings). 3) Missing null terminator handling (the decoder doesn't stop at '00000000'). A successful fix requires addressing these in lsb.py so that the existing tests pass."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "diagnose_station_anomaly_scrttv@1",
+    "task_completion": [
+        {
+            "id": "open_scrttv",
+            "description": "Open the scrttv application to visualize seismic waveforms.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scrttv' or showing real-time seismic traces for stations like TOLI, GSI, KWP, SANI, and BKB is visible."
+        },
+        {
+            "id": "identify_kwp_anomaly",
+            "description": "Identify that station GE.KWP is the one producing anomalous data (noise spikes or gaps).",
+            "points": 25,
+            "visual_evidence": "The scrttv interface shows erratic spikes or flat lines (gaps) specifically for the GE.KWP trace, while other stations appear normal."
+        },
+        {
+            "id": "open_scconfig",
+            "description": "Open the SeisComP configuration tool (scconfig) to manage station bindings.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scconfig' or 'SeisComP Configuration' is visible on the desktop."
+        },
+        {
+            "id": "disable_kwp_bindings",
+            "description": "Disable the processing module bindings for station GE.KWP.",
+            "points": 30,
+            "visual_evidence": "In scconfig, the 'Bindings' tab or a similar configuration panel shows the GE.KWP station with its active profiles/bindings removed or unchecked."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save or apply the changes in scconfig to ensure the station is removed from the pipeline.",
+            "points": 10,
+            "visual_evidence": "A 'Save' confirmation dialog, a progress bar for 'Update Configuration', or the 'Apply' button being clicked in scconfig."
+        },
+        {
+            "id": "create_report",
+            "description": "Create the operator log at the specified path with the required details.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the file '/home/ga/Desktop/station_anomaly_report.txt' containing the station name (KWP), symptoms (noise/gaps), and action taken (disabled bindings)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the SeisComP GUI tools (scrttv/scconfig) rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the graphical interfaces of scrttv and scconfig being interacted with (mouse cursor, highlighted menus)."
+        },
+        {
+            "id": "genuine_diagnosis",
+            "description": "The agent actually viewed the waveforms before identifying the station.",
+            "visual_evidence": "The scrttv window is opened and the KWP trace is visible/inspected before the report is written or bindings are disabled."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create the report file immediately without investigating the system.",
+            "visual_evidence": "The timeline of screenshots shows a logical progression from visualization to configuration to documentation."
+        }
+    ],
+    "privileged_info_for_vlm": "The anomalous station is GE.KWP. It exhibits noise spikes and data gaps. The agent must use scrttv to see these anomalies and scconfig to disable the bindings for GE.KWP. The final report must be located at /home/ga/Desktop/station_anomaly_report.txt and specifically mention KWP."
+}

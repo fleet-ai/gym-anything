@@ -1,0 +1,59 @@
+{
+    "task_id": "it_asset_inventory_validation@1",
+    "task_completion": [
+        {
+            "id": "survey_creation",
+            "description": "Create a survey titled 'IT Asset Audit 2025'",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the survey list or survey settings page with the title 'IT Asset Audit 2025'."
+        },
+        {
+            "id": "question_group_creation",
+            "description": "Create a question group named 'Hardware Details'",
+            "points": 10,
+            "visual_evidence": "Screenshot of the survey structure or group list showing a group titled 'Hardware Details'."
+        },
+        {
+            "id": "asset_tag_setup",
+            "description": "Create 'Asset Tag' question (Code: AssetTag) with regex validation and user tip",
+            "points": 25,
+            "visual_evidence": "Question settings for 'Asset Tag' showing type 'Short Free Text', code 'AssetTag', a regex pattern like 'IT-[0-9]{5}', and the help text 'Format: IT-12345'."
+        },
+        {
+            "id": "mac_address_setup",
+            "description": "Create 'MAC Address' question (Code: MacAddr) with regex validation and user tip",
+            "points": 25,
+            "visual_evidence": "Question settings for 'MAC Address' showing type 'Short Free Text', code 'MacAddr', a regex pattern for hex pairs separated by colons, and the help text 'Format: XX:XX:XX:XX:XX:XX'."
+        },
+        {
+            "id": "purchase_year_setup",
+            "description": "Create 'Purchase Year' question (Code: PurchYear)",
+            "points": 10,
+            "visual_evidence": "Question settings showing type 'Numerical Input' and code 'PurchYear'."
+        },
+        {
+            "id": "warranty_expiry_setup",
+            "description": "Create 'Warranty Expiry Year' question (Code: WarrYear) with validation logic and tip",
+            "points": 20,
+            "visual_evidence": "Question settings for 'WarrYear' showing type 'Numerical Input', a validation equation (e.g., WarrYear >= PurchYear), and the help text 'Warranty expiry cannot be before purchase year'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI",
+            "visual_evidence": "Screenshots show the browser interacting with the LimeSurvey admin UI, including clicking buttons and typing in fields."
+        },
+        {
+            "id": "no_placeholder_skipping",
+            "description": "The agent did not leave default question codes or titles",
+            "visual_evidence": "The question codes (AssetTag, MacAddr, PurchYear, WarrYear) are explicitly set in the UI fields."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the survey structure menus",
+            "visual_evidence": "Screenshots show the progression from Survey list -> Group creation -> Question creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey title must be 'IT Asset Audit 2025'. The group name must be 'Hardware Details'. Question codes must be exactly: AssetTag, MacAddr, PurchYear, WarrYear. AssetTag regex must match 'IT-12345' (e.g., /^IT-[0-9]{5}$/). MacAddr regex must match standard MAC format (e.g., /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/). The WarrYear validation equation must ensure WarrYear >= PurchYear."
+}

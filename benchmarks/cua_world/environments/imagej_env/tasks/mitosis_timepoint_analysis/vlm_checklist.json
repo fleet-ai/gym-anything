@@ -1,0 +1,53 @@
+{
+    "task_id": "mitosis_timepoint_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_mitosis_sample",
+            "description": "Open the 'Mitosis (5D stack)' sample image in Fiji.",
+            "points": 10,
+            "visual_evidence": "Fiji window showing an image titled 'mitosis' or 'Mitosis (5D stack)' with dimensions 171x196, 2 channels, 5 slices, and 51 frames."
+        },
+        {
+            "id": "z_projection_generation",
+            "description": "Generate a Maximum Intensity Z-Projection for the time series.",
+            "points": 20,
+            "visual_evidence": "A new image window titled 'MAX_mitosis' or similar, showing a flattened version of the stack where mitotic spindles/chromosomes are bright."
+        },
+        {
+            "id": "thresholding_application",
+            "description": "Apply thresholding to the projected image to isolate mitotic objects.",
+            "points": 20,
+            "visual_evidence": "The image or a duplicate showing a red overlay (mask) or a binary (black and white) representation of the cells/nuclei."
+        },
+        {
+            "id": "analyze_particles_execution",
+            "description": "Run 'Analyze Particles' or a similar measurement tool on all time frames.",
+            "points": 20,
+            "visual_evidence": "The 'Results' table window in Fiji populated with multiple rows (ideally 51) containing 'Area' and 'Count' data."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the analysis results to the specified CSV path.",
+            "points": 30,
+            "visual_evidence": "A file explorer window or terminal command showing the existence of '~/ImageJ_Data/results/mitosis_timeseries.csv' or a 'Save As' dialog pointing to that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform the analysis rather than just writing a script or using terminal commands.",
+            "visual_evidence": "Screenshots showing the Fiji menu being navigated (e.g., Image > Stacks > Z Project) and dialog boxes for Threshold or Analyze Particles."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent did not manually type the CSV content or copy-paste it from a hidden source.",
+            "visual_evidence": "The Results table in Fiji matches the values being saved to the CSV; the number of rows corresponds to the 51 time frames."
+        },
+        {
+            "id": "correct_sample_usage",
+            "description": "The agent used the specific 'Mitosis (5D stack)' sample provided in Fiji.",
+            "visual_evidence": "The image metadata in the Fiji status bar shows 51 frames and 5 Z-slices."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Mitosis (5D stack)' sample in Fiji has exactly 51 time frames and 5 Z-slices. The image dimensions are 171x196 pixels with 2 channels. Channel 2 typically highlights the chromosomes/mitotic events better for thresholding. The final CSV must contain 51 rows of data (one for each time point) and be saved specifically to ~/ImageJ_Data/results/mitosis_timeseries.csv."
+}

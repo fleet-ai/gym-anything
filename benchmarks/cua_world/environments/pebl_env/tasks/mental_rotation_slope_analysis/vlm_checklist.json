@@ -1,0 +1,59 @@
+{
+    "task_id": "mental_rotation_slope_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the mental rotation dataset at ~/pebl/data/mental_rotation_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal window or file explorer showing the CSV file being opened or read."
+        },
+        {
+            "id": "data_filtering",
+            "description": "Agent filters the data to include only 'same' trials where the response was correct for the regression analysis.",
+            "points": 15,
+            "visual_evidence": "Code snippets (Python/R) or data manipulation steps showing filtering logic for 'correct' and 'same' trial types."
+        },
+        {
+            "id": "individual_metrics_calculation",
+            "description": "Agent calculates slope, intercept, r-squared, and accuracy for each participant.",
+            "points": 25,
+            "visual_evidence": "Execution of regression functions (e.g., linregress, lm) and accuracy calculations visible in a script or notebook."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participant s99 from the group-level statistics.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a conditional statement or filter specifically removing 's99' before calculating group means."
+        },
+        {
+            "id": "group_metrics_calculation",
+            "description": "Agent calculates group-level mean slope, SD of slope, and mean accuracy for valid participants.",
+            "points": 15,
+            "visual_evidence": "Output or code showing the aggregation of individual metrics into group-level statistics."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final report to ~/pebl/analysis/mental_rotation_report.json with the required structure.",
+            "points": 20,
+            "visual_evidence": "A terminal command or code block saving the JSON file, or a view of the generated JSON file content containing the specified keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates values from the data rather than hardcoding values from the prompt or external sources.",
+            "visual_evidence": "The agent's code should show dynamic calculation logic (e.g., df.mean()) rather than print statements with pre-determined numbers."
+        },
+        {
+            "id": "genuine_analysis_tooling",
+            "description": "Agent uses appropriate data analysis libraries (like pandas, numpy, scipy, or statsmodels) to perform the regression.",
+            "visual_evidence": "Import statements and function calls for standard data science libraries in the agent's workspace."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Agent interacts with the specified file paths rather than creating dummy data.",
+            "visual_evidence": "Commands or code referencing the specific paths ~/pebl/data/mental_rotation_data.csv and ~/pebl/analysis/mental_rotation_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset is synthetically generated. Participant 's99' is a known outlier with a flat RT distribution and must be excluded from group statistics but included in the individual list with 'excluded: true'. The regression must only use 'same' trials that were answered correctly. The final output must be a JSON file at /home/ga/pebl/analysis/mental_rotation_report.json."
+}

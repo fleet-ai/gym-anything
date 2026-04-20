@@ -1,0 +1,65 @@
+{
+    "task_id": "lunar_orbit_insertion_design@1",
+    "task_completion": [
+        {
+            "id": "read_mission_spec",
+            "description": "Agent opens and reads the mission specification file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/lunar_mission_spec.txt."
+        },
+        {
+            "id": "gmat_interface_open",
+            "description": "Agent launches the GMAT (General Mission Analysis Tool) software.",
+            "points": 10,
+            "visual_evidence": "The GMAT GUI window is visible on the screen."
+        },
+        {
+            "id": "script_configuration",
+            "description": "Agent creates or modifies a GMAT script including a multi-body force model and impulsive burns (TLI and LOI).",
+            "points": 20,
+            "visual_evidence": "The GMAT script editor showing 'ImpulsiveBurn' definitions and 'ForceModel' settings with Point Masses (Earth, Moon)."
+        },
+        {
+            "id": "targeting_sequence_setup",
+            "description": "Agent implements a targeting sequence using a DifferentialCorrector or Optimizer in the GMAT Mission Tree.",
+            "points": 20,
+            "visual_evidence": "The GMAT Mission Tree showing a 'Target' sequence containing 'Vary', 'Propagate', and 'Achieve' commands."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the GMAT script to simulate the transfer.",
+            "points": 15,
+            "visual_evidence": "The GMAT 'Output' log showing the simulation running or a 3D graphics window showing the trajectory from Earth to Moon."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified location.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal showing lunar_transfer.script exists in ~/Documents/missions/."
+        },
+        {
+            "id": "record_results_file",
+            "description": "Agent records the final mission results (DeltaV, Transfer Time, Altitude) in the specified output file.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the contents of ~/GMAT_output/lunar_transfer_results.txt with the required parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT GUI to perform the simulation rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the GMAT application window active and being interacted with (buttons clicked, mission tree modified)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The results in the output file match the simulation output and are not just placeholder values.",
+            "visual_evidence": "The values in lunar_transfer_results.txt correspond to the values seen in the GMAT 'Message Window' or 'ReportFile' output after the run."
+        },
+        {
+            "id": "no_hardcoding_from_spec",
+            "description": "The agent actually configured the orbit parameters from the spec file into GMAT.",
+            "visual_evidence": "GMAT Spacecraft hardware/orbit panel showing SMA 6556.14 km and Inclination 28.5 deg."
+        }
+    ],
+    "privileged_info_for_vlm": "The mission specification requires a LEO parking orbit with Semi-Major Axis (SMA) of 6556.14 km and Inclination of 28.5 degrees. Expected TLI Delta-V should be between 2800 and 3500 m/s, and LOI Delta-V should be at least 500 m/s. The final output file must be at ~/GMAT_output/lunar_transfer_results.txt and the script at ~/Documents/missions/lunar_transfer.script."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "epub_metadata_extractor@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script at /home/ga/Documents/build_catalog.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation/saving of 'build_catalog.py' in the specified directory."
+        },
+        {
+            "id": "use_zipfile_module",
+            "description": "The script uses the built-in 'zipfile' module to handle EPUB files without external libraries like 'ebooklib'.",
+            "points": 15,
+            "visual_evidence": "The code in the script contains 'import zipfile' and logic to open .epub files as ZipFile objects."
+        },
+        {
+            "id": "metadata_extraction_logic",
+            "description": "The script contains logic to locate the .opf file and parse <dc:title> and <dc:creator> tags.",
+            "points": 25,
+            "visual_evidence": "The code shows string parsing or XML handling targeting '.opf' and the specific Dublin Core tags 'dc:title' and 'dc:creator'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the command 'python3 /home/ga/Documents/build_catalog.py' or similar being run."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The script generates the output file /home/ga/Documents/library_catalog.txt with the required metadata.",
+            "points": 30,
+            "visual_evidence": "The file 'library_catalog.txt' is opened or displayed, showing a list of filenames, titles (e.g., Frankenstein, Pride and Prejudice, A Tale of Two Cities, Alice's Adventures in Wonderland), and authors (e.g., Shelley, Austen, Dickens, Carroll)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_metadata",
+            "description": "The agent did not hardcode the book titles and authors directly into the script or the output file.",
+            "visual_evidence": "The Python script should show dynamic file scanning (os.listdir or glob) and zipfile parsing logic rather than a static list of book names."
+        },
+        {
+            "id": "no_external_epub_libraries",
+            "description": "The agent did not install or use external EPUB parsing libraries.",
+            "visual_evidence": "The script does not import 'ebooklib', 'epub', or use 'pip install'. It relies on 'zipfile' and 'xml' or 're'."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the files in /home/ga/Documents/library/ rather than just printing the expected output.",
+            "visual_evidence": "The terminal or file manager shows the agent navigating to or listing the contents of the 'library' directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The library contains EPUB files for 'Frankenstein' (Mary Shelley), 'Pride and Prejudice' (Jane Austen), 'A Tale of Two Cities' (Charles Dickens), and 'Alice's Adventures in Wonderland' (Lewis Carroll). The script must use the 'zipfile' module to find the .opf file inside the EPUB (which is a ZIP) and extract the <dc:title> and <dc:creator> tags. The final output must be saved to /home/ga/Documents/library_catalog.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "viral_churn_risk_analysis@1",
+    "task_completion": [
+        {
+            "id": "create_filed_ticket_edge",
+            "description": "Create the 'FiledTicket' edge class in OrientDB.",
+            "points": 10,
+            "visual_evidence": "SQL command 'CREATE CLASS FiledTicket EXTENDS E' or the 'FiledTicket' class appearing in the OrientDB Studio schema/sidebar."
+        },
+        {
+            "id": "link_profiles_to_tickets",
+            "description": "Link 'Profiles' to 'Tickets' where email addresses match using the 'FiledTicket' edge.",
+            "points": 20,
+            "visual_evidence": "An 'INSERT INTO FiledTicket' or 'CREATE EDGE FiledTicket' command using a subquery or JOIN on email fields, or a graph visualization showing edges between Profile and Ticket nodes."
+        },
+        {
+            "id": "identify_high_severity_profiles",
+            "description": "Identify profiles associated with 'High' severity tickets.",
+            "points": 15,
+            "visual_evidence": "A query filtering Tickets by severity = 'High' and traversing to the connected Profile (e.g., john.smith@example.com)."
+        },
+        {
+            "id": "update_churn_risk_property",
+            "description": "Set 'ChurnRisk' boolean property to true for friends of high-severity ticket holders.",
+            "points": 25,
+            "visual_evidence": "An 'UPDATE' command targeting Profiles connected via 'HasFriend' to high-risk users, setting 'ChurnRisk = true', or a property view showing ChurnRisk: true for maria.garcia@example.com."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Export the list of emails for at-risk friends to ~/at_risk_users.json.",
+            "points": 30,
+            "visual_evidence": "A terminal command or script execution showing the export of a JSON array containing emails (specifically maria.garcia@example.com) to the file /home/ga/at_risk_users.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the OrientDB Studio or console rather than just creating a file manually.",
+            "visual_evidence": "Screenshots showing the OrientDB Studio web interface or the 'orientdb>' command-line prompt with active queries."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the at-risk users through database traversal rather than hardcoding the known target email.",
+            "visual_evidence": "SQL queries showing traversals like 'out(\"HasFriend\")' or 'in(\"FiledTicket\")' rather than a simple echo of the email address."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific file path requested in the task.",
+            "visual_evidence": "The path '/home/ga/at_risk_users.json' (or '~/at_risk_users.json') visible in the export command or file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The high-severity ticket is linked to john.smith@example.com. His friend, who should be marked with ChurnRisk=true and exported, is maria.garcia@example.com. David.jones@example.com has a 'Low' severity ticket, so his friend sophie.martin@example.com should NOT be marked as a churn risk or included in the export."
+}

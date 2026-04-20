@@ -1,0 +1,53 @@
+{
+    "task_id": "sample_voxel_intensities@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the abdominal CT scan into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "A 3D or multi-planar (axial, sagittal, coronal) view of an abdominal CT scan is visible in the application workspace."
+        },
+        {
+            "id": "probe_aorta",
+            "description": "The agent positions the cursor or a probe over the aorta to sample the intensity.",
+            "points": 20,
+            "visual_evidence": "The cursor or a measurement tool is positioned over the descending or abdominal aorta (the large circular vessel near the spine)."
+        },
+        {
+            "id": "probe_liver",
+            "description": "The agent positions the cursor or a probe over the liver parenchyma.",
+            "points": 20,
+            "visual_evidence": "The cursor or a measurement tool is positioned over the large organ on the patient's right side (left side of the screen in axial view)."
+        },
+        {
+            "id": "probe_spleen",
+            "description": "The agent positions the cursor or a probe over the spleen.",
+            "points": 20,
+            "visual_evidence": "The cursor or a measurement tool is positioned over the organ on the patient's left side (right side of the screen in axial view)."
+        },
+        {
+            "id": "save_measurements_file",
+            "description": "The agent creates and saves the intensity_measurements.txt file with the required content.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows the file ~/Documents/SlicerData/intensity_measurements.txt containing the formatted strings for Aorta, Liver, Spleen, and Interpretation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to find values rather than just guessing.",
+            "visual_evidence": "Screenshots show the mouse cursor moving over the anatomical regions and the 'Data Probe' or 'Value' display in the GUI updating."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the privileged information ranges without performing measurements.",
+            "visual_evidence": "The values in the text file should be specific integers (e.g., 182 HU) rather than ranges (e.g., 150-250 HU)."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the specific requested directory.",
+            "visual_evidence": "The file path ~/Documents/SlicerData/intensity_measurements.txt is visible in the save dialog or terminal command."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected Hounsfield Unit (HU) ranges for this specific CT (amos_0001) are: Aorta (150-250 HU), Liver (40-80 HU), and Spleen (40-60 HU). Allow for a tolerance of +/- 30 HU. The agent must record specific values found at these landmarks, not the ranges themselves."
+}

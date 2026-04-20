@@ -1,0 +1,59 @@
+{
+    "task_id": "enrich_customer_profile_from_signature@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_leasing_mailbox",
+            "description": "Agent navigates to the 'Leasing Office' mailbox in the help desk interface.",
+            "points": 10,
+            "visual_evidence": "The sidebar or header shows 'Leasing Office' as the active mailbox."
+        },
+        {
+            "id": "open_lease_renewal_ticket",
+            "description": "Agent locates and opens the ticket with the subject 'Lease Renewal Question'.",
+            "points": 15,
+            "visual_evidence": "The ticket list shows 'Lease Renewal Question' selected, or the ticket view displays this subject line."
+        },
+        {
+            "id": "identify_signature_details",
+            "description": "Agent views the email body to identify the sender's full name, phone number, and job title in the signature.",
+            "points": 15,
+            "visual_evidence": "The email content is visible on screen, showing a signature block with contact details."
+        },
+        {
+            "id": "access_customer_profile_edit",
+            "description": "Agent navigates to the customer profile or edit screen for the sender of the email.",
+            "points": 15,
+            "visual_evidence": "The interface shows a 'Customer Profile', 'Edit User', or 'Profile' sidebar/page for the specific tenant."
+        },
+        {
+            "id": "update_profile_fields",
+            "description": "Agent enters the Full Name, Phone Number, and Job Title into the corresponding profile fields.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the text fields for Name, Phone, and Job Title populated with data matching the email signature."
+        },
+        {
+            "id": "save_profile_changes",
+            "description": "Agent clicks the save or update button to commit the changes to the customer profile.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Update', or 'Submit' button, often followed by a success notification or the profile returning to a read-only view with updated info."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the FreeScout web interface rather than using terminal commands or database manipulation.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and typing within a web browser; no terminal windows are used to execute SQL or scripts."
+        },
+        {
+            "id": "no_hallucinated_data",
+            "description": "The agent used only information found in the email signature and did not invent details.",
+            "visual_evidence": "The data entered into the profile fields matches the text visible in the email signature screenshot exactly."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the mailbox and ticket list rather than jumping directly to a profile URL if not previously known.",
+            "visual_evidence": "Screenshots show the sequence of clicking the mailbox, then the ticket, then the profile."
+        }
+    ],
+    "privileged_info_for_vlm": "The target mailbox is named 'Leasing Office'. The specific ticket to find is titled 'Lease Renewal Question'. The agent must extract the Full Name, Phone Number, and Job Title from the signature at the bottom of that specific email. Because the data is synthetic, the VLM must verify that the values typed into the profile match the text visible in the email signature in the screenshots."
+}

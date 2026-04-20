@@ -1,0 +1,53 @@
+{
+    "task_id": "export_database@1",
+    "task_completion": [
+        {
+            "id": "open_database_manager",
+            "description": "The agent opens the database management interface and navigates to the 'demodb' database.",
+            "points": 10,
+            "visual_evidence": "A database management GUI (like OrientDB Studio) is visible, showing 'demodb' as the active database."
+        },
+        {
+            "id": "authenticate_database",
+            "description": "The agent authenticates using the provided credentials (root / GymAnything123!).",
+            "points": 15,
+            "visual_evidence": "Login screen or credential input fields being filled with 'root' and the password, followed by a successful login state."
+        },
+        {
+            "id": "navigate_to_export",
+            "description": "The agent navigates to the export or backup section of the database management tool.",
+            "points": 15,
+            "visual_evidence": "The 'Export' tab, 'Backup' utility, or a similar command interface within the GUI is active."
+        },
+        {
+            "id": "configure_export_settings",
+            "description": "The agent configures the export to include the full database (schema and data) and sets the output format/path.",
+            "points": 25,
+            "visual_evidence": "Export settings showing 'JSON' format selected and the target path '/home/ga/exports/demodb_export.json.gz' typed into a file path field."
+        },
+        {
+            "id": "execute_and_verify_export",
+            "description": "The agent triggers the export process and a success message or the resulting file is visible.",
+            "points": 35,
+            "visual_evidence": "A 'Success' notification, a progress bar reaching 100%, or a file manager window showing 'demodb_export.json.gz' at the specified path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the database management GUI rather than just executing a single terminal command to bypass the UI.",
+            "visual_evidence": "Screenshots show interactions with buttons, tabs, and forms in a web browser or database client application."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create an empty file or a fake file using 'touch' or a text editor.",
+            "visual_evidence": "The export process is seen being triggered from within the database software, not just a terminal command creating the file."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual 'demodb' structure containing specific classes.",
+            "visual_evidence": "The GUI displays database classes such as 'Hotels', 'Profiles', 'Restaurants', or 'Countries' during the export process."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' database contains specific classes: Countries, Profiles, Hotels, and Restaurants. Key data markers include 'Hotel Artemide', 'Hotel Adlon Kempinski', and 'Italy'. The export must be a gzipped JSON file (.json.gz) located specifically at /home/ga/exports/demodb_export.json.gz. Credentials for the database are root / GymAnything123!."
+}

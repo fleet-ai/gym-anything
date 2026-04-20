@@ -1,0 +1,59 @@
+{
+    "task_id": "election_1860_swing_states_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_dataset",
+            "description": "The agent locates or opens the source dataset file at /home/ga/Documents/election_1860.csv.",
+            "points": 10,
+            "visual_evidence": "A file manager window or text editor showing the CSV file with headers: State, Lincoln, Douglas, Breckinridge, Bell."
+        },
+        {
+            "id": "create_python_script",
+            "description": "The agent creates a Python script named analyze_1860.py in /home/ga/Documents/.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or VS Code) showing a file named 'analyze_1860.py' being saved in the Documents folder."
+        },
+        {
+            "id": "implement_margin_logic",
+            "description": "The Python script contains the correct mathematical logic for the margin calculation: ((Winner - Runner_up) / Total) * 100 < 5.0.",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing the specific formula and the 5.0 threshold applied to the election data."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent runs the Python script to process the data and generate the output.",
+            "points": 15,
+            "visual_evidence": "A terminal window or IDE console showing the execution of 'python3 analyze_1860.py' without errors."
+        },
+        {
+            "id": "verify_html_output",
+            "description": "The agent generates the HTML file swing_states_1860.html in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A file manager showing 'swing_states_1860.html' in /home/ga/Documents/ or the file being opened in a browser/editor."
+        },
+        {
+            "id": "check_html_content",
+            "description": "The HTML file contains a <table> element listing the correct swing states (California, Oregon, Virginia, Missouri, Illinois).",
+            "points": 20,
+            "visual_evidence": "A web browser or text editor showing the HTML content with a <table> tag and the specific state names: California, Oregon, Virginia, Missouri, and Illinois."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply write the HTML file manually with the answers without writing/running a script.",
+            "visual_evidence": "The trajectory must show the creation and execution of the Python script, not just the final HTML file creation."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI environment (text editors, file managers) rather than performing all actions via a hidden background shell.",
+            "visual_evidence": "Screenshots show mouse movements, window focus changes, and typing within GUI applications."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent actually referenced the provided CSV file rather than using internal knowledge of the 1860 election.",
+            "visual_evidence": "The Python code should show a command to open or read '/home/ga/Documents/election_1860.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be at /home/ga/Documents/analyze_1860.py and the HTML at /home/ga/Documents/swing_states_1860.html. The margin formula is ((Winner - Runner_up) / Total) * 100. Based on the dataset, the only states that should appear in the final HTML table are: California, Oregon, Virginia, Missouri, and Illinois. States like New York, Ohio, Texas, Pennsylvania, and Massachusetts must NOT be in the table as their margins exceed 5%."
+}

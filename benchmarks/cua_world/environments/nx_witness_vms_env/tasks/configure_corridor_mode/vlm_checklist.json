@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_corridor_mode@1",
+    "task_completion": [
+        {
+            "id": "login_nx_witness",
+            "description": "Log into the Nx Witness VMS web or desktop client using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Nx Witness dashboard or camera resource tree after the login screen."
+        },
+        {
+            "id": "rename_server_room_camera",
+            "description": "Rename 'Server Room Camera' to 'Server Room Camera [Corridor]'.",
+            "points": 15,
+            "visual_evidence": "The camera name in the resource tree or settings dialog must explicitly show 'Server Room Camera [Corridor]'."
+        },
+        {
+            "id": "rotate_server_room_camera",
+            "description": "Rotate the 'Server Room Camera' 90 degrees clockwise.",
+            "points": 25,
+            "visual_evidence": "In the Camera Settings (General or Image tab), the rotation value should be set to '90' or '90°'."
+        },
+        {
+            "id": "rename_entrance_camera",
+            "description": "Rename 'Entrance Camera' to 'Entrance Camera [Corridor]'.",
+            "points": 15,
+            "visual_evidence": "The camera name in the resource tree or settings dialog must explicitly show 'Entrance Camera [Corridor]'."
+        },
+        {
+            "id": "rotate_entrance_camera",
+            "description": "Rotate the 'Entrance Camera' 270 degrees counter-clockwise (or equivalent 90 degrees clockwise/270 setting).",
+            "points": 25,
+            "visual_evidence": "In the Camera Settings, the rotation value for this camera should be set to '270' or '270°'."
+        },
+        {
+            "id": "save_settings",
+            "description": "Apply or Save the changes for both cameras.",
+            "points": 10,
+            "visual_evidence": "The 'Apply' or 'OK' buttons being clicked, or a 'Settings saved' notification appearing."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Nx Witness GUI rather than executing scripts in a terminal to modify the database.",
+            "visual_evidence": "Screenshots should show mouse movements and clicks within the Nx Witness interface, not a terminal window running SQL or API commands."
+        },
+        {
+            "id": "no_hardcoded_url_bypass",
+            "description": "The agent navigated through the application menus to find camera settings.",
+            "visual_evidence": "The trajectory shows the agent right-clicking cameras or clicking the 'Settings' gear icon, rather than jumping directly to a final state screenshot."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually typed or pasted the suffix into the name field.",
+            "visual_evidence": "The cursor should be visible in the camera name text field during the renaming process."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific configurations for two cameras: 'Server Room Camera' must be renamed to 'Server Room Camera [Corridor]' and rotated 90 degrees. 'Entrance Camera' must be renamed to 'Entrance Camera [Corridor]' and rotated 270 degrees. Both cameras are managed via the Nx Witness VMS at localhost:7001."
+}

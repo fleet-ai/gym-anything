@@ -1,0 +1,59 @@
+{
+    "task_id": "transonic_drag_optimization@1",
+    "task_completion": [
+        {
+            "id": "open_baseline_and_simulate",
+            "description": "Open the baseline .ork file in OpenRocket and run the initial simulation.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing OpenRocket open with 'transonic_rocket.ork' loaded and the simulation results table showing baseline Max Velocity and Max Altitude."
+        },
+        {
+            "id": "modify_fin_cross_sections",
+            "description": "Change the cross-section of all fin sets (booster and sustainer) to 'Airfoil'.",
+            "points": 20,
+            "visual_evidence": "The component configuration dialog for each fin set showing the 'Cross section' dropdown set to 'Airfoil'."
+        },
+        {
+            "id": "modify_surface_finish",
+            "description": "Change the Surface Finish of all external components (Nose Cone, Body Tubes, Transitions, Fin Sets) to 'Polished'.",
+            "points": 25,
+            "visual_evidence": "The 'Appearance' or 'General' tab in the configuration dialogs for these components showing 'Surface finish' set to 'Polished'."
+        },
+        {
+            "id": "rerun_simulation",
+            "description": "Re-run the simulation to calculate the new performance metrics.",
+            "points": 15,
+            "visual_evidence": "The simulation list in OpenRocket showing a fresh run with updated (higher) Max Velocity and Max Altitude values."
+        },
+        {
+            "id": "save_optimized_design",
+            "description": "Save the modified design as 'transonic_rocket_optimized.ork'.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the window title bar showing the file path /home/ga/Documents/rockets/transonic_rocket_optimized.ork."
+        },
+        {
+            "id": "write_summary_report",
+            "description": "Create a text report comparing the before and after simulation results.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing /home/ga/Documents/exports/aerodynamic_report.txt containing both baseline and optimized velocity/altitude data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the OpenRocket GUI to change component properties, not just edit the XML file directly via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with OpenRocket dialog boxes and dropdown menus."
+        },
+        {
+            "id": "genuine_simulation_results",
+            "description": "The report must contain values derived from the actual simulation run, not placeholder or hallucinated numbers.",
+            "visual_evidence": "The numbers in the final .txt report must match the numbers visible in the OpenRocket simulation results table in previous screenshots."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent must save files to the specific paths requested in the instructions.",
+            "visual_evidence": "The file manager or save dialogs showing the exact paths: /home/ga/Documents/rockets/ and /home/ga/Documents/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline rocket has 'Rough' finish and 'Square' fins. Changing to 'Polished' and 'Airfoil' significantly reduces the drag coefficient (Cd), resulting in a higher Max Velocity and Max Altitude. The VLM should verify that the 'Airfoil' setting is applied to BOTH the sustainer fin set and the booster fin set."
+}

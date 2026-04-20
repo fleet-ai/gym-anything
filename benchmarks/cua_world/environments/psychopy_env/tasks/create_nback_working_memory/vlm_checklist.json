@@ -1,0 +1,59 @@
+{
+    "task_id": "create_nback_working_memory@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a CSV conditions file at the specified path with at least 60 trials and correct columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer or spreadsheet view showing '/home/ga/PsychoPyExperiments/conditions/nback_conditions.csv' with columns 'letter', 'trial_type', and 'correct_response'."
+        },
+        {
+            "id": "conditions_logic_validation",
+            "description": "The conditions file contains uppercase consonants, 20-40% targets, and the first two trials are non-targets.",
+            "points": 20,
+            "visual_evidence": "A view of the CSV content showing uppercase consonants (no vowels), 'target' appearing in 12-24 rows out of 60+, and the first two rows having 'trial_type' as 'non-target'."
+        },
+        {
+            "id": "psychopy_routines_setup",
+            "description": "The PsychoPy Builder experiment contains 'Instructions', 'Trial', and 'End' routines.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Builder interface showing three distinct routine tabs or icons in the Flow timeline named 'Instructions', 'Trial', and 'End'."
+        },
+        {
+            "id": "trial_routine_components",
+            "description": "The 'Trial' routine includes a text component for letters and a keyboard component for responses.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy 'Trial' routine view showing a Text component with the text field set to '$letter' and a Keyboard component with 'space' listed in the allowed keys."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "A sequential loop surrounds the 'Trial' routine using the conditions file with nReps set to 1.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy 'Loop Properties' dialog box showing 'loopType' as 'sequential', 'nReps' as '1', and the 'conditions' field pointing to the created CSV file."
+        },
+        {
+            "id": "experiment_file_saved",
+            "description": "The experiment is saved at the correct file path.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file saved as '/home/ga/PsychoPyExperiments/nback_task.psyexp'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing code scripts.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with PsychoPy Builder components, dialog boxes, and the Flow timeline."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The conditions file was manually created or generated via script and verified, not just simulated.",
+            "visual_evidence": "Screenshots of a text editor, spreadsheet tool, or terminal command (like 'cat' or 'head') showing the actual content of the CSV file."
+        },
+        {
+            "id": "no_placeholder_logic",
+            "description": "The agent did not use placeholder text for the 2-back logic but implemented the specific target/non-target requirements.",
+            "visual_evidence": "The CSV file content showing a specific sequence of letters where 'target' rows actually match the letter from two rows prior."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be at /home/ga/PsychoPyExperiments/nback_task.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/conditions/nback_conditions.csv. The conditions file must have >= 60 trials. Valid letters are uppercase consonants only (BCDFGHJKLMNPQRSTVWXZ). Target rate must be 20-40% (12-24 targets for 60 trials). The first two trials must be non-targets. In the Trial routine, the text component must use '$letter' and the keyboard component must accept 'space'."
+}

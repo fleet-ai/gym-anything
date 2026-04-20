@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_security_vulnerabilities@1",
+    "task_completion": [
+        {
+            "id": "codebase_audit",
+            "description": "Agent audits the codebase in /home/ga/PycharmProjects/inventory_api to identify vulnerabilities.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening files like app/auth.py, app/items.py, or app/main.py in an editor or using cat/grep in the terminal."
+        },
+        {
+            "id": "fix_sql_injection",
+            "description": "Remediate SQL injection vulnerability by using parameterized queries or an ORM.",
+            "points": 25,
+            "visual_evidence": "Code editor showing the replacement of string formatting/f-strings in SQL queries with parameterized placeholders (e.g., using '?' or ':param') in app/items.py."
+        },
+        {
+            "id": "fix_hardcoded_secret",
+            "description": "Remove hardcoded secrets/keys and implement environment variable or config-based management.",
+            "points": 20,
+            "visual_evidence": "Code editor showing the removal of a hardcoded string assigned to a variable like SECRET_KEY or API_KEY in app/auth.py, replaced by os.getenv() or similar."
+        },
+        {
+            "id": "fix_idor_and_traversal",
+            "description": "Remediate IDOR (missing ownership checks) and Path Traversal vulnerabilities.",
+            "points": 25,
+            "visual_evidence": "Code editor showing added logic to verify user ownership before data access and sanitization of file paths (e.g., using os.path.basename) in app/items.py."
+        },
+        {
+            "id": "verify_test_suite",
+            "description": "Run the test suite using pytest to ensure functional behavior is maintained.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the command 'python -m pytest tests/ -v' being executed and returning a 'passed' status for the tests."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_code_editing",
+            "description": "Agent manually edits the code rather than just overwriting files with pre-known solutions.",
+            "visual_evidence": "Screenshots showing the agent navigating the file system, highlighting specific lines of code, and typing or applying targeted diffs."
+        },
+        {
+            "id": "test_execution_integrity",
+            "description": "Agent actually runs the pytest command and waits for results rather than mocking the output.",
+            "visual_evidence": "Terminal showing the real-time execution of pytest with individual test case names and a final summary line."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "Agent does not modify the test files to force a pass.",
+            "visual_evidence": "The agent should be seen editing files in the 'app/' directory, not modifying files within the 'tests/' directory to delete assertions."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/inventory_api. There are exactly 4 vulnerabilities to fix: 1) SQL Injection in app/items.py, 2) Hardcoded SECRET_KEY in app/auth.py, 3) IDOR (Insecure Direct Object Reference) in app/items.py where ownership isn't checked, and 4) Path Traversal in file-handling endpoints. A passing score requires fixing at least 3 of these (60 points threshold in the internal verifier). The agent must use admin/password123 if authentication is required during testing."
+}

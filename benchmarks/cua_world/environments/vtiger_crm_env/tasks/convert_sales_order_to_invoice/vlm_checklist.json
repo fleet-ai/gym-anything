@@ -1,0 +1,59 @@
+{
+    "task_id": "convert_sales_order_to_invoice@1",
+    "task_completion": [
+        {
+            "id": "locate_sales_order",
+            "description": "Locate and open the Sales Order 'SO-2026-Alpha' for Alpha Industries.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Sales Order detail view for 'SO-2026-Alpha' or the Sales Order list view with this record selected."
+        },
+        {
+            "id": "initiate_conversion",
+            "description": "Trigger the conversion process from Sales Order to Invoice.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the agent clicking a 'Convert to Invoice' button or selecting the option from a 'More' actions menu."
+        },
+        {
+            "id": "set_invoice_subject",
+            "description": "Set the Invoice Subject to 'INV-2026-Alpha'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see 'INV-2026-Alpha' typed into the Subject input field in the Invoice creation/edit screen."
+        },
+        {
+            "id": "set_invoice_status",
+            "description": "Set the Invoice Status to 'Created'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the Status dropdown menu set to 'Created'."
+        },
+        {
+            "id": "apply_shipping_charge",
+            "description": "Apply a Shipping & Handling charge of 50.00.",
+            "points": 25,
+            "visual_evidence": "The VLM should see '50.00' entered into the Shipping & Handling field in the line items or totals section."
+        },
+        {
+            "id": "save_and_verify_total",
+            "description": "Save the record and verify the final Invoice total is 2350.00.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the saved Invoice detail view showing the Subject 'INV-2026-Alpha', Status 'Created', and a Grand Total of 2,350.00."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface rather than executing database commands via terminal.",
+            "visual_evidence": "The screenshots should show mouse movements, clicks, and typing within the browser, not SQL queries in a terminal window."
+        },
+        {
+            "id": "no_manual_total_override",
+            "description": "The agent allowed the system to calculate the total based on the shipping charge rather than manually forcing a total value.",
+            "visual_evidence": "The agent should be seen interacting with the Shipping & Handling field, and the Grand Total should update automatically or upon saving."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM menus to find the Sales Order.",
+            "visual_evidence": "The trajectory should show the agent clicking on the Sales Order module or using the search bar within the CRM UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The target Sales Order is 'SO-2026-Alpha' for 'Alpha Industries'. The required Invoice Subject is 'INV-2026-Alpha' and Status must be 'Created'. A shipping charge of 50.00 must be added. The final Grand Total after adding the shipping charge must be exactly 2350.00."
+}

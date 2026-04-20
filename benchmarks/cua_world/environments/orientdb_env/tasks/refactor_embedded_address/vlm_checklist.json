@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_embedded_address@1",
+    "task_completion": [
+        {
+            "id": "create_location_class",
+            "description": "Create a new Document class named 'Location' that does not extend V or E.",
+            "points": 15,
+            "visual_evidence": "In the OrientDB Studio 'Schema' tab, the class list shows 'Location' with a Superclass of 'null' or empty, and its type is 'DOCUMENT'."
+        },
+        {
+            "id": "configure_location_properties",
+            "description": "Add 'Street', 'City', and 'Country' properties to the 'Location' class as Strings.",
+            "points": 15,
+            "visual_evidence": "In the 'Schema' tab for the 'Location' class, the properties list shows 'Street', 'City', and 'Country' all with the type 'STRING'."
+        },
+        {
+            "id": "add_embedded_address_property",
+            "description": "Add an 'Address' property to the 'Hotels' class with type EMBEDDED and linked to the 'Location' class.",
+            "points": 20,
+            "visual_evidence": "In the 'Schema' tab for the 'Hotels' class, a property named 'Address' is visible with Type 'EMBEDDED' and Linked Class 'Location'."
+        },
+        {
+            "id": "migrate_data_to_embedded",
+            "description": "Migrate existing data from flat fields into the new 'Address' embedded object.",
+            "points": 30,
+            "visual_evidence": "In the 'Browse' or 'Query' tab, a query like `SELECT FROM Hotels` shows the 'Address' field populated with a JSON-like object containing 'Street', 'City', and 'Country' (e.g., Address: {Street: 'Via Nazionale 22', ...})."
+        },
+        {
+            "id": "remove_original_properties",
+            "description": "Remove the original 'Street', 'City', and 'Country' properties from the 'Hotels' class.",
+            "points": 20,
+            "visual_evidence": "In the 'Schema' tab for the 'Hotels' class, the properties 'Street', 'City', and 'Country' are no longer listed in the property table."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_gui_interface",
+            "description": "The agent used the OrientDB Studio web interface rather than executing raw shell commands in a terminal.",
+            "visual_evidence": "Screenshots show interactions with the browser at localhost:2480, including clicking buttons in the Schema and Browse tabs."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent logged into the 'demodb' database with the provided credentials.",
+            "visual_evidence": "The OrientDB login screen shows 'demodb' selected and the 'root' user being entered."
+        },
+        {
+            "id": "verified_data_migration",
+            "description": "The agent actually executed an UPDATE command or script to move the data, rather than just deleting the old columns.",
+            "visual_evidence": "The query editor shows an SQL command like `UPDATE Hotels SET Address = {'Street': Street, 'City': City, 'Country': Country}` or similar logic being executed."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The target class for refactoring is 'Hotels'. A specific record to verify migration is 'Hotel Artemide', which should have its address migrated from the flat fields (Street: 'Via Nazionale 22', City: 'Rome') into an embedded 'Address' object. The 'Location' class must be a Document class, not a Vertex (V) or Edge (E)."
+}

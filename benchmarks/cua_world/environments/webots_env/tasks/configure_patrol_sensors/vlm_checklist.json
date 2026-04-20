@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_patrol_sensors@1",
+    "task_completion": [
+        {
+            "id": "open_webots_interface",
+            "description": "The agent has opened the Webots simulation environment.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is visible, showing a 3D scene and a scene tree on the left."
+        },
+        {
+            "id": "configure_radar_parameters",
+            "description": "The 'patrol_radar' node parameters (maxRange, horizontalFieldOfView, maxSpeed) are updated.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a pop-up dialog shows 'patrol_radar' with maxRange: 50.0, horizontalFieldOfView: 2.094, and maxSpeed: 30.0."
+        },
+        {
+            "id": "configure_rangefinder_parameters",
+            "description": "The 'obstacle_rangefinder' node parameters (width, height, maxRange) are updated.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a pop-up dialog shows 'obstacle_rangefinder' with width: 256, height: 128, and maxRange: 10.0."
+        },
+        {
+            "id": "move_robot_translation",
+            "description": "The robot's translation is set to the patrol starting corner (5.0 0.1 5.0).",
+            "points": 20,
+            "visual_evidence": "The robot node's 'translation' field in the scene tree is edited to '5 0.1 5' or the robot is seen positioned at those coordinates in the status bar/inspector."
+        },
+        {
+            "id": "save_configured_world",
+            "description": "The world is saved to the specific path /home/ga/Desktop/patrol_robot_configured.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog is visible with the path /home/ga/Desktop/patrol_robot_configured.wbt entered, or a file manager shows the new file on the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the Webots GUI to modify parameters rather than just executing a script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree, field editors, or menu bars."
+        },
+        {
+            "id": "no_terminal_shortcut",
+            "description": "The agent did not simply use 'sed' or 'echo' in the terminal to create the .wbt file without opening Webots.",
+            "visual_evidence": "The Webots application is the primary active window during the configuration process."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually typed or selected the specific values required for the sensors.",
+            "visual_evidence": "Sequential screenshots show the values being entered into the Webots property fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values: Radar (maxRange: 50.0, hFOV: 2.094, maxSpeed: 30.0), Rangefinder (width: 256, height: 128, maxRange: 10.0), and Robot Translation (5.0 0.1 5.0). The final file must be saved exactly as /home/ga/Desktop/patrol_robot_configured.wbt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "identify_flood_safe_cities@1",
+    "task_completion": [
+        {
+            "id": "load_layers",
+            "description": "Load the cities and rivers shapefiles into the gvSIG project.",
+            "points": 10,
+            "visual_evidence": "The Table of Contents (TOC) or Layer Manager shows 'ne_110m_populated_places' and 'ne_110m_rivers_lake_centerlines' as active layers."
+        },
+        {
+            "id": "filter_south_america_cities",
+            "description": "Filter cities to include only those in South America with POP_MAX > 1,000,000.",
+            "points": 15,
+            "visual_evidence": "The 'Filter' or 'Query' dialog showing the expression (CONTINENT = 'South America' AND POP_MAX > 1000000) or a selection of points specifically over the South American continent."
+        },
+        {
+            "id": "create_river_buffer",
+            "description": "Create a 0.5-degree buffer around the rivers layer.",
+            "points": 25,
+            "visual_evidence": "The Geoprocessing wizard showing 'Buffer' tool with a distance of 0.5 and the rivers layer as input. A new polygon layer representing the buffer appears in the view."
+        },
+        {
+            "id": "export_buffer_shp",
+            "description": "Save the river buffer to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The 'Save' or 'Export' dialog showing the file path /home/ga/gvsig_data/exports/river_buffer_05deg.shp."
+        },
+        {
+            "id": "spatial_selection_safe_cities",
+            "description": "Select cities that are outside the 0.5-degree river buffer.",
+            "points": 20,
+            "visual_evidence": "The 'Select by Layer' or 'Spatial Query' dialog showing a selection of cities that do not intersect or are 'disjoint' from the river buffer layer."
+        },
+        {
+            "id": "export_final_cities",
+            "description": "Export the final selection of safe cities to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The 'Export to shp' dialog or a success message showing the file path /home/ga/gvsig_data/exports/safe_cities.shp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gvSIG GUI to perform spatial operations rather than just executing shell scripts.",
+            "visual_evidence": "Screenshots show the gvSIG application window, menus, and geoprocessing toolboxes being interacted with."
+        },
+        {
+            "id": "genuine_selection",
+            "description": "The agent performed a real spatial query rather than manually selecting points.",
+            "visual_evidence": "The presence of the 'Spatial Query' or 'Select by Layer' dialog box with parameters filled in."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply type the names of the cities into a text file without performing the GIS analysis.",
+            "visual_evidence": "The agent is seen using the attribute table and selection tools within the GIS software."
+        }
+    ],
+    "privileged_info_for_vlm": "The final exported file 'safe_cities.shp' must contain Santiago, Lima, Bogota, and Caracas. It must NOT contain Paris or New York (wrong continent). Manaus is not present in this specific 110m dataset and should not be expected. The buffer distance must be exactly 0.5 degrees. The output paths must strictly match /home/ga/gvsig_data/exports/river_buffer_05deg.shp and /home/ga/gvsig_data/exports/safe_cities.shp."
+}

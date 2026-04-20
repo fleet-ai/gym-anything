@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_waveform_availability_report@1",
+    "task_completion": [
+        {
+            "id": "access_sds_archive",
+            "description": "Agent accesses the SeisComP Data Structure (SDS) archive directory at /home/ga/seiscomp/var/lib/archive.",
+            "points": 10,
+            "visual_evidence": "A terminal window or file manager showing the contents of /home/ga/seiscomp/var/lib/archive or subdirectories containing 2024 miniSEED files."
+        },
+        {
+            "id": "extract_waveform_metadata",
+            "description": "Agent uses tools (e.g., msview, scimeta, or custom scripts) to read metadata from the 2024 miniSEED files.",
+            "points": 25,
+            "visual_evidence": "Terminal output or tool windows displaying Stream IDs, start/end times, and sample rates for specific seismic files."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the CSV file at the specified path ~/reports/waveform_manifest.csv.",
+            "points": 15,
+            "visual_evidence": "A command like 'touch' or a file save dialog showing the creation of /home/ga/reports/waveform_manifest.csv."
+        },
+        {
+            "id": "verify_csv_headers",
+            "description": "The CSV file contains the exact required header row: StreamID,StartTime,EndTime,SampleRate.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command output showing the first line of the CSV file with the correct headers."
+        },
+        {
+            "id": "populate_waveform_data",
+            "description": "The CSV is populated with data including Stream IDs (Net.Sta.Loc.Cha), ISO-like timestamps, and sample rates in Hz.",
+            "points": 35,
+            "visual_evidence": "A view of the CSV content showing multiple rows of seismic data with timestamps in YYYY-MM-DD HH:MM:SS format and numeric sample rates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the final CSV content without actually inspecting the archive files.",
+            "visual_evidence": "The trajectory should show the agent listing files in the archive or running a loop/tool to process the miniSEED files individually."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The agent used seismic-specific tools or libraries to read the binary miniSEED headers rather than guessing metadata.",
+            "visual_evidence": "Commands involving 'obspy', 'libmseed', 'msdump', or SeisComP utilities being executed in the terminal."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the absolute or relative paths specified in the prompt rather than creating files in arbitrary locations.",
+            "visual_evidence": "The file path /home/ga/reports/waveform_manifest.csv is visible in the final save or move command."
+        }
+    ],
+    "privileged_info_for_vlm": "The SDS archive is located at /home/ga/seiscomp/var/lib/archive. The output must be a CSV at /home/ga/reports/waveform_manifest.csv. Required headers are exactly: StreamID,StartTime,EndTime,SampleRate. The data concerns the 2024 Noto earthquake; timestamps must be in ISO-like format (YYYY-MM-DD HH:MM:SS) and reflect actual file boundaries, not just the event time."
+}

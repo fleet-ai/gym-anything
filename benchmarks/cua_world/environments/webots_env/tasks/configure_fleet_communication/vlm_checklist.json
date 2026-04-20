@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_fleet_communication@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots application and loads the warehouse environment containing ROBOT_A, ROBOT_B, and ROBOT_C.",
+            "points": 10,
+            "visual_evidence": "Webots GUI is visible showing a 3D warehouse scene with three robot models in the scene tree."
+        },
+        {
+            "id": "configure_robot_a_b_receivers",
+            "description": "The Receiver nodes for ROBOT_A and ROBOT_B are updated to channel 1.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a pop-up dialog shows the 'channel' field of the Receiver nodes under ROBOT_A and ROBOT_B set to 1."
+        },
+        {
+            "id": "update_emitter_ranges",
+            "description": "The range values for all Emitter nodes on ROBOT_A and ROBOT_B are set to 15.0.",
+            "points": 20,
+            "visual_evidence": "The 'range' field in the Emitter node properties for the robots is visible and set to 15.0."
+        },
+        {
+            "id": "add_receiver_robot_c",
+            "description": "A new Receiver node is added to ROBOT_C's children list.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows a new 'Receiver' node under ROBOT_C's children or device list."
+        },
+        {
+            "id": "configure_robot_c_receiver",
+            "description": "The new Receiver on ROBOT_C is set to channel 1 and positioned correctly.",
+            "points": 15,
+            "visual_evidence": "The properties for ROBOT_C's Receiver show 'channel' as 1 and 'translation' as 3, 3 (or similar coordinate fields)."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The corrected world is saved to the specific path /home/ga/Desktop/warehouse_comms.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the file explorer shows the file being saved to /home/ga/Desktop/warehouse_comms.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots scene tree and property panels rather than just using terminal scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots GUI property editor."
+        },
+        {
+            "id": "no_premade_file_copy",
+            "description": "The agent manually edited the node values rather than simply moving a pre-existing file to the desktop.",
+            "visual_evidence": "Sequential screenshots show the process of clicking on nodes and typing values (1, 15.0) into the Webots interface."
+        },
+        {
+            "id": "genuine_webots_usage",
+            "description": "The agent is using the actual Webots simulation software interface.",
+            "visual_evidence": "The standard Webots menu bar, 3D view, and scene tree sidebar are visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values: all Receivers (including the new one on ROBOT_C) must be on channel 1. All Emitters must have a range of 15.0. ROBOT_C's new Receiver must be at position (3,3). The final file must be saved exactly as /home/ga/Desktop/warehouse_comms.wbt. Verify these specific numerical values in the Webots property inspector screenshots."
+}

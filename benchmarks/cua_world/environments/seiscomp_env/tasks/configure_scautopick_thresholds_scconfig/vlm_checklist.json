@@ -1,0 +1,65 @@
+{
+    "task_id": "configure_scautopick_thresholds_scconfig@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig",
+            "description": "Open the SeisComP configuration GUI (scconfig).",
+            "points": 10,
+            "visual_evidence": "The 'scconfig' window is visible, showing the SeisComP configuration interface with a navigation panel on the left."
+        },
+        {
+            "id": "navigate_to_scautopick",
+            "description": "Navigate to the 'scautopick' module configuration section.",
+            "points": 10,
+            "visual_evidence": "The 'scautopick' module is selected in the left-hand navigation tree (usually under Modules) and its configuration parameters are displayed in the main panel."
+        },
+        {
+            "id": "set_waveform_filter",
+            "description": "Update the waveform filter to BW(4,4,20).",
+            "points": 20,
+            "visual_evidence": "The text field for 'filter' in the scautopick configuration contains the exact string 'BW(4,4,20)'."
+        },
+        {
+            "id": "set_trigon_threshold",
+            "description": "Update the STA/LTA trigger-on threshold to 3.5.",
+            "points": 20,
+            "visual_evidence": "The field for 'thresholds.trigOn' (or similar label under thresholds) is set to '3.5'."
+        },
+        {
+            "id": "set_trigoff_threshold",
+            "description": "Update the STA/LTA trigger-off threshold to 1.5.",
+            "points": 20,
+            "visual_evidence": "The field for 'thresholds.trigOff' (or similar label under thresholds) is set to '1.5'."
+        },
+        {
+            "id": "set_aic_snr",
+            "description": "Update the AIC picker minimum SNR to 2.0.",
+            "points": 10,
+            "visual_evidence": "The field for 'picker.AIC.minSNR' (or similar label under picker/AIC) is set to '2.0'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the updated configuration to the file system.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the 'Save' button (often a floppy disk icon or File > Save) and a confirmation message or status bar update indicating 'Configuration saved' or similar is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "Verify the agent used the scconfig GUI rather than editing configuration files via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor interaction with the scconfig window and text entry into GUI fields rather than 'vi', 'nano', or 'sed' commands in a terminal."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "Verify the agent did not run a pre-made script to apply changes.",
+            "visual_evidence": "The agent is seen manually navigating the scconfig tree and typing values into the specific parameter fields."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "Verify the agent interacted with the actual SeisComP software.",
+            "visual_evidence": "The window decorations, icons, and specific SeisComP module hierarchy (Modules -> scautopick) are consistent with the real scconfig application."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the scconfig GUI to update the scautopick module. Required values: filter = BW(4,4,20), thresholds.trigOn = 3.5, thresholds.trigOff = 1.5, and picker.AIC.minSNR = 2.0. The agent must save the configuration within the GUI for the task to be complete."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "model_weather_degraded_driving@1",
+    "task_completion": [
+        {
+            "id": "create_vtypes_xml",
+            "description": "Create the modified vehicle definition file with specific rain parameters.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the file /home/ga/SUMO_Output/pasubio_vtypes_rain.add.xml containing <vType> elements with tau=\"1.8\", minGap=\"4.0\", and speedFactor=\"0.8\"."
+        },
+        {
+            "id": "run_baseline_simulation",
+            "description": "Execute the baseline SUMO simulation to generate tripinfo data.",
+            "points": 20,
+            "visual_evidence": "Terminal output or GUI showing 'sumo' or 'sumo-gui' running with the baseline configuration, resulting in the creation of /home/ga/SUMO_Output/tripinfo_baseline.xml."
+        },
+        {
+            "id": "run_rain_simulation",
+            "description": "Execute the rain simulation using the modified vehicle types.",
+            "points": 25,
+            "visual_evidence": "Terminal output or GUI showing 'sumo' or 'sumo-gui' running with a configuration that references pasubio_vtypes_rain.add.xml, resulting in the creation of /home/ga/SUMO_Output/tripinfo_rain.xml."
+        },
+        {
+            "id": "calculate_time_loss",
+            "description": "Extract average time loss from both tripinfo files and calculate the percentage increase.",
+            "points": 20,
+            "visual_evidence": "Terminal commands (like grep, awk, or python scripts) or manual calculations shown in a text editor processing the 'timeLoss' values from the XML files."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "Save the results to the specified text file in the required format.",
+            "points": 20,
+            "visual_evidence": "A view of /home/ga/SUMO_Output/weather_impact.txt containing three lines: Baseline Average Time Loss, Rain Average Time Loss, and Percentage Increase with the '%' symbol."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the SUMO simulations rather than inventing numbers.",
+            "visual_evidence": "Screenshots must show the SUMO execution process (progress bars, simulation steps, or log outputs) and the existence of the generated XML tripinfo files."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't just write the final report without performing the intermediate XML parsing.",
+            "visual_evidence": "Evidence of the agent opening, reading, or programmatically parsing the tripinfo_baseline.xml and tripinfo_rain.xml files before writing the final report."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Verify the agent used the exact file paths specified in the task.",
+            "visual_evidence": "The file paths /home/ga/SUMO_Output/pasubio_vtypes_rain.add.xml and /home/ga/SUMO_Output/weather_impact.txt must be visible in the commands or editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must modify <vType> tags to include tau=\"1.8\", minGap=\"4.0\", and speedFactor=\"0.8\". The baseline config is in /home/ga/SUMO_Scenarios/bologna_pasubio/. The output report must be at /home/ga/SUMO_Output/weather_impact.txt and contain exactly three lines with the labels: 'Baseline Average Time Loss:', 'Rain Average Time Loss:', and 'Percentage Increase:' followed by the value and a '%' sign."
+}

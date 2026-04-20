@@ -1,0 +1,56 @@
+{
+    "task_id": "fix_deduplication_utility@1",
+    "task_completion": [
+        {
+            "id": "locate_and_inspect_code",
+            "description": "Locate and open smart_dedup.py to identify the reported bugs.",
+            "points": 10,
+            "visual_evidence": "The VLM should see smart_dedup.py open in an editor (like PyCharm or VSCode) or displayed via 'cat' in a terminal."
+        },
+        {
+            "id": "fix_partial_hashing",
+            "description": "Modify the hashing logic to read the entire file or a sufficient amount to prevent data loss from false positives.",
+            "points": 25,
+            "visual_evidence": "Code changes in smart_dedup.py showing the removal of the 2048-byte limit or an implementation of a full-file hash loop."
+        },
+        {
+            "id": "fix_size_filter",
+            "description": "Remove or adjust the minimum size constraint (1024 bytes) that prevents small files from being deduplicated.",
+            "points": 20,
+            "visual_evidence": "Code changes in smart_dedup.py showing the removal of 'if size < 1024' or similar logic that skips small files."
+        },
+        {
+            "id": "fix_link_crash",
+            "description": "Ensure the target file is removed or handled before calling os.link to prevent FileExistsError.",
+            "points": 25,
+            "visual_evidence": "Code changes in smart_dedup.py showing 'os.remove(path)' or 'os.unlink(path)' being called immediately before 'os.link(source, path)'."
+        },
+        {
+            "id": "verify_test_pass",
+            "description": "Run the provided test suite and confirm all tests pass.",
+            "points": 20,
+            "visual_evidence": "A terminal showing the output of 'pytest tests/test_dedup.py' or 'python3 tests/test_dedup.py' with a 'passed' or 'OK' status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "points": 0,
+            "visual_evidence": "The VLM should check that 'tests/test_dedup.py' was not edited in the file explorer or via terminal commands."
+        },
+        {
+            "id": "genuine_code_editing",
+            "description": "The agent manually edited the source code rather than just deleting the file and replacing it with a pre-written version.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the agent interacting with the editor, typing, or using sed/patch commands."
+        },
+        {
+            "id": "functional_verification",
+            "description": "The agent actually executed the tests to verify the fix.",
+            "points": 0,
+            "visual_evidence": "Terminal output showing the execution of the test command and the resulting output."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/smart_dedup. The original code has three specific bugs: 1) It only hashes the first 2048 bytes of a file (partial_hashing). 2) It crashes with FileExistsError because it doesn't delete the duplicate file before calling os.link (link_crash). 3) It ignores files smaller than 1024 bytes (size_filter). A successful fix must address all three in smart_dedup.py and result in 'tests/test_dedup.py' passing."
+}

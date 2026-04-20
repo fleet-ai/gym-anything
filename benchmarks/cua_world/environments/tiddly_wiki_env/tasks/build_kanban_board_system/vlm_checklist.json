@@ -1,0 +1,62 @@
+{
+    "task_id": "build_kanban_board_system@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation",
+            "description": "A new tiddler titled 'Kanban Dashboard' has been created and is open in the story river.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a tiddler with the title 'Kanban Dashboard' in the TiddlyWiki interface."
+        },
+        {
+            "id": "three_column_table",
+            "description": "The dashboard contains a table with exactly three columns labeled 'To Do', 'In Progress', and 'Done'.",
+            "points": 15,
+            "visual_evidence": "A wikitext table or layout with three distinct vertical sections or table headers matching these specific names."
+        },
+        {
+            "id": "dynamic_task_counts",
+            "description": "Each column header displays a numerical count of the tasks in that state.",
+            "points": 20,
+            "visual_evidence": "Numbers appearing next to or under the column headers (e.g., 'To Do (2)') that correspond to the number of items listed in that column."
+        },
+        {
+            "id": "task_listing",
+            "description": "The body of each column lists the titles of tiddlers tagged with 'Task' and filtered by their 'kanban-status'.",
+            "points": 20,
+            "visual_evidence": "Lists of task titles appearing within the columns. The VLM should verify these are not just static text but appear to be a list of tiddler links."
+        },
+        {
+            "id": "transition_buttons_todo_progress",
+            "description": "Tasks in 'To Do' have a 'Start' button; tasks in 'In Progress' have 'Complete' and 'Revert' buttons.",
+            "points": 20,
+            "visual_evidence": "Buttons labeled 'Start' inside the first column, and buttons labeled 'Complete' and 'Revert' inside the second column."
+        },
+        {
+            "id": "transition_buttons_done",
+            "description": "Tasks in the 'Done' column have a 'Reopen' button.",
+            "points": 15,
+            "visual_evidence": "Buttons labeled 'Reopen' appearing next to task titles in the third column."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler rather than just modifying the underlying filesystem via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the Tiddler edit mode, typing wikitext into the editor, and clicking the 'save' (checkmark) button."
+        },
+        {
+            "id": "no_hardcoded_counts",
+            "description": "The counts in the headers are dynamic, not hardcoded text.",
+            "points": 0,
+            "visual_evidence": "If the agent is seen typing '<$count' in the editor rather than just a static number like '2'."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated the TiddlyWiki sidebar or search to verify the existence of 'Task' tagged items.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the agent searching for 'Task' or looking at the 'Recent' tab to confirm data exists."
+        }
+    ],
+    "privileged_info_for_vlm": "The dashboard must be titled 'Kanban Dashboard'. It must use the field 'kanban-status' to track states. The three required states are 'To Do', 'In Progress', and 'Done'. Required buttons are: 'Start' (To Do -> In Progress), 'Complete' (In Progress -> Done), 'Revert' (In Progress -> To Do), and 'Reopen' (Done -> To Do). The implementation must use <$count> for headers and <$list> for column content."
+}

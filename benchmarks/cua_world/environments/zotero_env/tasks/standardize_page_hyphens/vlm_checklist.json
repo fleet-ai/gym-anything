@@ -1,0 +1,53 @@
+{
+    "task_id": "standardize_page_hyphens@1",
+    "task_completion": [
+        {
+            "id": "open_zotero_gui",
+            "description": "The agent has opened the Zotero application and the library is visible.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Zotero application window with a list of research papers."
+        },
+        {
+            "id": "locate_turing_paper",
+            "description": "The agent has selected the paper 'On Computable Numbers, with an Application to the Entscheidungsproblem'.",
+            "points": 10,
+            "visual_evidence": "The Turing paper is highlighted in the center pane, and its metadata is visible in the right-hand 'Info' pane."
+        },
+        {
+            "id": "fix_turing_pages",
+            "description": "The 'Pages' field for the Turing paper is updated to use a single hyphen.",
+            "points": 25,
+            "visual_evidence": "In the right-hand Info pane for the Turing paper, the 'Pages' field shows '230-265' (not '230--265')."
+        },
+        {
+            "id": "fix_shannon_pages",
+            "description": "The 'Pages' field for 'A Mathematical Theory of Communication' is updated to use a single hyphen.",
+            "points": 25,
+            "visual_evidence": "In the right-hand Info pane for the Shannon paper, the 'Pages' field shows '379-423' (not '379–423' with an en-dash)."
+        },
+        {
+            "id": "fix_he_pages",
+            "description": "The 'Pages' field for 'Deep Residual Learning for Image Recognition' is updated to use a single hyphen.",
+            "points": 30,
+            "visual_evidence": "In the right-hand Info pane for the He et al. paper, the 'Pages' field shows the page range separated by a single '-' (standardizing from double hyphens or en-dashes)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Zotero GUI to edit fields rather than modifying the underlying database via terminal.",
+            "visual_evidence": "Screenshots show the cursor interacting with the Zotero 'Info' pane text fields or the keyboard typing into the GUI."
+        },
+        {
+            "id": "no_bulk_database_edit",
+            "description": "The agent did not use external scripts or SQL commands to batch update the library.",
+            "visual_evidence": "Absence of terminal windows running sqlite3 commands or python scripts targeting the Zotero database."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent manually selected each of the three specific papers mentioned in the task.",
+            "visual_evidence": "Sequential screenshots showing the selection and focus shifting between the three target papers in the Zotero library."
+        }
+    ],
+    "privileged_info_for_vlm": "The target papers and their correct single-hyphen page ranges are: 1. 'On Computable Numbers, with an Application to the Entscheidungsproblem' (230-265). 2. 'A Mathematical Theory of Communication' (379-423). 3. 'Deep Residual Learning for Image Recognition' (770-778). The agent must replace '--' (double hyphen) or '–' (en-dash) with a single '-' (hyphen-minus)."
+}

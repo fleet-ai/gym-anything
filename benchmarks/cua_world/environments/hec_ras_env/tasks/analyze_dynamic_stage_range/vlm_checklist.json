@@ -1,0 +1,53 @@
+{
+    "task_id": "analyze_dynamic_stage_range@1",
+    "task_completion": [
+        {
+            "id": "open_hdf_file",
+            "description": "Open the HEC-RAS project and access the unsteady flow results file 'Muncie.p04.hdf'.",
+            "points": 10,
+            "visual_evidence": "The HEC-RAS main window or a data viewer showing 'Muncie.p04.hdf' as the active or selected results file."
+        },
+        {
+            "id": "extract_wse_data",
+            "description": "Extract or view the Minimum WSE, Maximum WSE, and Channel Invert Elevation for the cross-sections.",
+            "points": 20,
+            "visual_evidence": "A table, profile plot, or data export window within HEC-RAS showing columns for Min WSE, Max WSE, and Invert Elevation."
+        },
+        {
+            "id": "save_summary_csv",
+            "description": "Save the summary CSV to the specified path with the required columns and sorted by River Station.",
+            "points": 25,
+            "visual_evidence": "A file explorer window or terminal output showing the creation of '/home/ga/Documents/hec_ras_results/stage_fluctuation_summary.csv' or the file content with columns: River_Station, Invert_Elev_ft, Min_WSE_ft, Max_WSE_ft, and Fluctuation_Range_ft."
+        },
+        {
+            "id": "record_max_fluctuation",
+            "description": "Identify the River Station with the largest fluctuation and save it to the specified text file.",
+            "points": 20,
+            "visual_evidence": "The file '/home/ga/Documents/hec_ras_results/max_fluctuation_location.txt' being written or displayed with the format 'Station: <ID>, Range: <Value>'."
+        },
+        {
+            "id": "generate_envelope_plot",
+            "description": "Generate and save the profile plot showing Invert, Min WSE, and Max WSE envelopes.",
+            "points": 25,
+            "visual_evidence": "A plot window in HEC-RAS or a saved image file '/home/ga/Documents/hec_ras_results/wse_envelope_plot.png' showing three distinct lines (Invert, Min, Max) plotted against River Station."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HEC-RAS GUI or specialized data tools rather than just creating files via terminal scripts.",
+            "visual_evidence": "Screenshots showing the HEC-RAS software interface, profile plotters, or HDF5 viewers being navigated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent calculated the Fluctuation Range (Max - Min) rather than hardcoding values.",
+            "visual_evidence": "Evidence of data manipulation, such as spreadsheet formulas, script execution, or calculator use visible in the trajectory."
+        },
+        {
+            "id": "correct_station_identification",
+            "description": "The agent identified the correct station based on the actual data in the HDF file.",
+            "visual_evidence": "The value in the final .txt file matches the data processed in the screenshots (Station 1174.213)."
+        }
+    ],
+    "privileged_info_for_vlm": "The HEC-RAS project is located at /home/ga/Documents/hec_ras_projects/Muncie. The specific results file is Muncie.p04.hdf. Based on the simulation data, the maximum water surface elevation fluctuation occurs at River Station 1174.213. The output plot must be saved as wse_envelope_plot.png and should be larger than 5KB."
+}

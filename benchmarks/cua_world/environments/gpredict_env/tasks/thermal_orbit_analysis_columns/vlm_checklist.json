@@ -1,0 +1,59 @@
+{
+    "task_id": "thermal_orbit_analysis_columns@1",
+    "task_completion": [
+        {
+            "id": "imperial_units_set",
+            "description": "Global application preferences are set to Imperial units.",
+            "points": 10,
+            "visual_evidence": "In the GPredict preferences window or the main interface, units for altitude (Alt) should be shown in 'mi' (miles) instead of 'km'."
+        },
+        {
+            "id": "amateur_module_deleted",
+            "description": "The default 'Amateur' module has been removed from the workspace.",
+            "points": 15,
+            "visual_evidence": "The tab or window titled 'Amateur' is no longer visible in the GPredict main interface."
+        },
+        {
+            "id": "thermal_monitor_created",
+            "description": "A new module named 'Thermal_Monitor' has been created and is active.",
+            "points": 15,
+            "visual_evidence": "A tab or window titled 'Thermal_Monitor' is visible in the GPredict interface."
+        },
+        {
+            "id": "correct_satellites_tracked",
+            "description": "The module tracks ISS (ZARYA) and CSS (TIANHE).",
+            "points": 20,
+            "visual_evidence": "The names 'ISS (ZARYA)' and 'CSS (TIANHE)' appear as rows in the module's list view."
+        },
+        {
+            "id": "list_view_only",
+            "description": "The module displays only the List View, with Map and Polar views removed.",
+            "points": 20,
+            "visual_evidence": "The 'Thermal_Monitor' module area contains only a spreadsheet-like list; no world map or circular polar plot is visible within that module."
+        },
+        {
+            "id": "column_configuration",
+            "description": "The list view contains specific columns (Name, Vis, Orbit, Alt, Footp) and excludes antenna columns (Az, El, Dir).",
+            "points": 20,
+            "visual_evidence": "The table headers show 'Name', 'Vis', 'Orbit', 'Alt', and 'Footp'. Headers for 'Az', 'El', and 'Dir' are absent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to configure settings rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GPredict menus, module configuration dialogs, or preference windows."
+        },
+        {
+            "id": "genuine_app_state",
+            "description": "The application shows dynamic data consistent with a running simulation.",
+            "visual_evidence": "The 'Alt' and 'Footp' values in the list view should be non-zero and may change slightly between frames if the simulation is running."
+        },
+        {
+            "id": "no_terminal_shortcut",
+            "description": "The agent did not simply use 'sed' or 'echo' in a terminal to overwrite the .mod files without opening the app.",
+            "visual_evidence": "The GPredict application window is the primary focus of the trajectory, not a full-screen terminal window."
+        }
+    ],
+    "privileged_info_for_vlm": "The required module name is 'Thermal_Monitor'. It must track NORAD IDs 25544 (ISS (ZARYA)) and 48274 (CSS (TIANHE)). The list view must strictly show Name, Vis, Orbit, Alt, and Footp. The columns Az, El, and Dir must be hidden. Global units must be Imperial (look for 'mi' in the Alt column). The 'Amateur' module must be deleted."
+}

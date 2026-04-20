@@ -1,0 +1,53 @@
+{
+    "task_id": "historical_map_optimization_html@1",
+    "task_completion": [
+        {
+            "id": "open_source_image",
+            "description": "The agent opens the source_map.jpg file in an image editor or viewer.",
+            "points": 10,
+            "visual_evidence": "A window showing the 1689 van Schagen World Map (or the synthetic gradient fallback) in an application like GIMP, Pinta, or an image viewer."
+        },
+        {
+            "id": "image_slicing_process",
+            "description": "The agent performs actions to divide the image into four equal quadrants.",
+            "points": 25,
+            "visual_evidence": "Visual evidence of cropping, using guides, or using a 'Slice' tool in an image editor to isolate the NW, NE, SW, and SE sections."
+        },
+        {
+            "id": "save_quadrant_files",
+            "description": "The agent saves the four individual quadrant files with the correct names in /home/ga/Documents/.",
+            "points": 20,
+            "visual_evidence": "A file manager window or 'Save As' dialogs showing map_nw.jpg, map_ne.jpg, map_sw.jpg, and map_se.jpg being created."
+        },
+        {
+            "id": "html_table_construction",
+            "description": "The agent writes HTML code for a 2x2 table to display the images.",
+            "points": 25,
+            "visual_evidence": "A text editor (like Gedit or VS Code) showing HTML code containing a <table> with <tr> and <td> tags referencing the four quadrant filenames."
+        },
+        {
+            "id": "verify_map_viewer",
+            "description": "The agent opens map_viewer.html in a web browser to verify the seamless reconstruction.",
+            "points": 20,
+            "visual_evidence": "A web browser window displaying the four quadrants perfectly aligned as a single map without visible gaps or borders."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used GUI-based tools for image processing rather than just executing silent terminal commands.",
+            "visual_evidence": "Screenshots show interaction with an image editor (e.g., GIMP) or a text editor GUI rather than only a terminal prompt."
+        },
+        {
+            "id": "genuine_slicing",
+            "description": "The agent actually performed the crop/slice operations rather than just renaming existing files.",
+            "visual_evidence": "The VLM should see the active selection or cropping process in the image editor software."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply copy a pre-made HTML file from a hidden directory.",
+            "visual_evidence": "The agent is seen typing or constructing the HTML structure in a text editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is located at /home/ga/Documents/source_map.jpg. Due to environment constraints, this image may appear as a synthetic blue-green gradient instead of the historical map. The agent must produce four specific files: map_nw.jpg, map_ne.jpg, map_sw.jpg, and map_se.jpg. The final HTML file must be at /home/ga/Documents/map_viewer.html and must use a 2x2 table to align the images seamlessly."
+}

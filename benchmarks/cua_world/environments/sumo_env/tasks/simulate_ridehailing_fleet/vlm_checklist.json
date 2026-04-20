@@ -1,0 +1,53 @@
+{
+    "task_id": "simulate_ridehailing_fleet@1",
+    "task_completion": [
+        {
+            "id": "generate_passenger_requests",
+            "description": "Generate approximately 50 passenger requests for taxi mode ending at 50 seconds in persons.rou.xml.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing a file 'persons.rou.xml' containing <person> elements with <ride lines=\"taxi\"/> and depart times up to 50s."
+        },
+        {
+            "id": "define_taxi_fleet",
+            "description": "Create a fleet of 15 taxis with vType 'taxi', vClass 'taxi', and taxi device enabled in taxis.add.xml.",
+            "points": 15,
+            "visual_evidence": "Text editor showing 'taxis.add.xml' with 15 <vehicle> entries, vType='taxi', vClass='taxi', and a parameter or device attribute for 'taxi'."
+        },
+        {
+            "id": "configure_sumo_cfg",
+            "description": "Create taxi.sumocfg referencing the Bologna network, the route/additional files, and setting the greedy dispatch algorithm.",
+            "points": 20,
+            "visual_evidence": "Text editor showing 'taxi.sumocfg' with <net-file value=\"...pasubio_buslanes.net.xml\"/> and <device.taxi.dispatch-algorithm value=\"greedy\"/>."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation for the specified duration (3600s).",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'sumo' or 'sumo-gui' running with the config file, or a screenshot of the SUMO GUI active with the Pasubio network loaded."
+        },
+        {
+            "id": "calculate_average_wait",
+            "description": "Extract trip information and save the average waiting time to average_wait.txt.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a calculation (e.g., via python script or grep) and a final 'average_wait.txt' file containing a single numeric value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_result",
+            "description": "The agent did not simply echo a random number into average_wait.txt without running a simulation.",
+            "visual_evidence": "The trajectory must show the execution of a SUMO command and the processing of an output file (like tripinfo.xml) before the creation of average_wait.txt."
+        },
+        {
+            "id": "correct_network_usage",
+            "description": "The agent used the specific Bologna Pasubio network file provided.",
+            "visual_evidence": "The file path '/home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_buslanes.net.xml' is visible in the configuration file or command line arguments."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent created the XML files manually or via script rather than using pre-existing files.",
+            "visual_evidence": "Screenshots show the agent typing content into an editor or running a python/bash script to generate the .xml files."
+        }
+    ],
+    "privileged_info_for_vlm": "The working directory is /home/ga/SUMO_Scenarios/ridehailing. The required network file is located at /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_buslanes.net.xml. The simulation must use the 'greedy' dispatch algorithm for the taxi device. The final output in average_wait.txt must be a single number derived from the simulation's trip statistics."
+}

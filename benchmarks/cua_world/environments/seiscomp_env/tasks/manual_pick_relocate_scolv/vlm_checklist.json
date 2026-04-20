@@ -1,0 +1,53 @@
+{
+    "task_id": "manual_pick_relocate_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv_picker",
+            "description": "Open the scolv application and navigate to the Picker view for the Noto Peninsula event.",
+            "points": 10,
+            "visual_evidence": "The scolv window is visible, showing the 'Picker' tab or a waveform window with multiple station traces."
+        },
+        {
+            "id": "locate_station_toli",
+            "description": "Locate and display the vertical (Z) component for station GE.TOLI in the picker.",
+            "points": 15,
+            "visual_evidence": "The station label 'GE.TOLI' and the component 'Z' are visible in the waveform list or trace header."
+        },
+        {
+            "id": "manual_p_pick",
+            "description": "Manually place a P-wave arrival pick on the GE.TOLI Z-trace.",
+            "points": 25,
+            "visual_evidence": "A vertical marker labeled 'P' is placed on the GE.TOLI waveform at the arrival time."
+        },
+        {
+            "id": "relocate_event",
+            "description": "Trigger the relocation of the earthquake using the new manual pick.",
+            "points": 25,
+            "visual_evidence": "The 'Relocate' button is clicked, and the 'Location' tab shows updated residuals or a new origin calculation."
+        },
+        {
+            "id": "commit_preferred_origin",
+            "description": "Commit the new solution to the database and set it as the preferred origin.",
+            "points": 25,
+            "visual_evidence": "The 'Commit' button is clicked, and a confirmation dialog or a status message indicating the origin was saved/set as preferred appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the scolv GUI to perform picks and relocation rather than CLI scripts.",
+            "visual_evidence": "Screenshots show mouse cursor interaction with scolv buttons and waveform picking, not just terminal commands."
+        },
+        {
+            "id": "genuine_waveform_interaction",
+            "description": "The agent interacted with the actual waveform data for GE.TOLI.",
+            "visual_evidence": "The picker window shows the GE.TOLI trace being zoomed or selected before the pick is placed."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply type the pick time into a terminal but used the visual interface.",
+            "visual_evidence": "The pick marker appears via mouse click on the waveform rather than appearing instantly via a script log."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires picking a P-wave for station GE.TOLI in scolv. Note: While the instructions suggest a 13-14 minute arrival, the physical P-wave travel time for this distance (39.3 deg) is approximately 7.5 minutes. Crucially, the SDS archive in the environment is missing the .mseed data for GE.TOLI; the VLM should check if the agent successfully handles or bypasses this data absence to fulfill the relocation and commit requirements."
+}

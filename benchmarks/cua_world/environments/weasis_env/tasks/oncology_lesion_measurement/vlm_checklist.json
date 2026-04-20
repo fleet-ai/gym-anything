@@ -1,0 +1,53 @@
+{
+    "task_id": "oncology_lesion_measurement@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_viewer",
+            "description": "Open the DICOM viewer and load the CT scan from the specified directory.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer (e.g., Weasis) is open showing the CT scan from /home/ga/DICOM/studies/oncology_ct/."
+        },
+        {
+            "id": "measure_lesion_1",
+            "description": "Identify and measure the longest diameter of a target lesion in the upper or mid-abdomen.",
+            "points": 25,
+            "visual_evidence": "A measurement line with a millimeter (mm) value is visible over a lesion in the abdominal region of the CT scan."
+        },
+        {
+            "id": "measure_lesion_2",
+            "description": "Identify and measure the longest diameter of a second target lesion at a different anatomical location.",
+            "points": 25,
+            "visual_evidence": "A second measurement line with a mm value is visible on a different slice or anatomical area from the first lesion."
+        },
+        {
+            "id": "export_images",
+            "description": "Export the CT slices with measurements to the specified PNG files.",
+            "points": 15,
+            "visual_evidence": "The agent uses the 'Export' or 'Save' dialog to save images as recist_lesion1.png and recist_lesion2.png in /home/ga/DICOM/exports/."
+        },
+        {
+            "id": "generate_report",
+            "description": "Create a RECIST report with anatomical locations, diameters, SLD, and baseline assessment.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal shows a report containing: two anatomical locations, two diameters in mm, the Sum of Longest Diameters (SLD), and a 'baseline assessment' statement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_measurement_tools",
+            "description": "The agent used the GUI measurement tools rather than manually typing values into a report.",
+            "visual_evidence": "Screenshots show the measurement tool (ruler/caliper) active in the DICOM viewer UI and lines drawn on the scan."
+        },
+        {
+            "id": "genuine_file_export",
+            "description": "The agent exported images from the viewer software rather than using terminal 'cp' or 'mv' commands for existing files.",
+            "visual_evidence": "The agent is seen interacting with the 'Export' or 'Save' menu within the DICOM viewer application."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The SLD in the report matches the sum of the measurements seen in the GUI.",
+            "visual_evidence": "The mm values displayed in the DICOM viewer UI match the values written in the final recist_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use RECIST 1.1 standards. The CT scan is located at /home/ga/DICOM/studies/oncology_ct/. The soft tissue window settings should be Window Width (WW) 400 and Window Level (WL) 50. Two distinct lesions must be measured. The final outputs must be recist_lesion1.png, recist_lesion2.png, and recist_report.txt in the /home/ga/DICOM/exports/ directory."
+}

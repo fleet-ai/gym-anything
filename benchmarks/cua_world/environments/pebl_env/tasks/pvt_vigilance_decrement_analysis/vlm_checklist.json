@@ -1,0 +1,59 @@
+{
+    "task_id": "pvt_vigilance_decrement_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the PVT session data file.",
+            "points": 10,
+            "visual_evidence": "A terminal command or file explorer showing the opening of '~/pebl/data/pvt_session_data.csv'."
+        },
+        {
+            "id": "identify_fabricated_participant",
+            "description": "Agent identifies P00 as the fabricated participant based on RT variability (SD < 5ms).",
+            "points": 15,
+            "visual_evidence": "Code output, a script, or a notebook cell showing the calculation of standard deviation for P00 and its subsequent exclusion."
+        },
+        {
+            "id": "calculate_individual_metrics",
+            "description": "Agent calculates mean, median, lapses, and false starts for valid participants.",
+            "points": 20,
+            "visual_evidence": "Code execution or dataframes showing columns for 'mean_rt_ms', 'median_rt_ms', 'lapses', and 'false_starts' for participants P01-P15."
+        },
+        {
+            "id": "vigilance_slope_calculation",
+            "description": "Agent calculates the vigilance slope using linear regression across five 24-trial quintiles.",
+            "points": 25,
+            "visual_evidence": "Code showing the division of 120 trials into 5 quintiles and the application of a linear regression to find the slope."
+        },
+        {
+            "id": "group_level_aggregation",
+            "description": "Agent computes group-level means and the sleep deprivation effect.",
+            "points": 15,
+            "visual_evidence": "Summary statistics or variables showing 'group_means' and 'sleep_deprivation_effect_ms' (deprived - rested)."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Agent saves the final analysis to the specified JSON path.",
+            "points": 15,
+            "visual_evidence": "A terminal command or code block saving the output to '~/pebl/analysis/pvt_report.json'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_p00",
+            "description": "Agent did not hardcode the exclusion of P00 without calculating the SD.",
+            "visual_evidence": "The code must show a calculation of standard deviation or variance for all participants, not just a manual drop of 'P00'."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "Agent processed the CSV file rather than using pre-calculated values.",
+            "visual_evidence": "Screenshots should show the agent reading the CSV and performing operations on the resulting data structure (e.g., pandas DataFrame)."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Agent used the specific file paths provided in the task description.",
+            "visual_evidence": "The file paths '~/pebl/data/pvt_session_data.csv' and '~/pebl/analysis/pvt_report.json' are visible in the code."
+        }
+    ],
+    "privileged_info_for_vlm": "The fabricated participant is P00, who has an extremely low RT variability (SD < 5ms) because their RTs are synthetically generated between 148ms and 156ms. The final report must be saved to /home/ga/pebl/analysis/pvt_report.json and must exclude P00 from the group-level means and sleep deprivation effect calculations."
+}

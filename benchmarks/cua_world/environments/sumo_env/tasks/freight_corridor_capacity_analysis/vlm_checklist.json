@@ -1,0 +1,59 @@
+{
+    "task_id": "freight_corridor_capacity_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_sumo_scenario",
+            "description": "Agent loads the Bologna Acosta scenario files from the specified directory into SUMO.",
+            "points": 10,
+            "visual_evidence": "SUMO-GUI or terminal showing the loading of files from /home/ga/SUMO_Scenarios/bologna_acosta/."
+        },
+        {
+            "id": "baseline_simulation",
+            "description": "Agent runs the baseline simulation to gather initial performance metrics.",
+            "points": 15,
+            "visual_evidence": "SUMO-GUI showing simulation progress or terminal output displaying simulation end-time/statistics for the baseline run."
+        },
+        {
+            "id": "modify_traffic_demand",
+            "description": "Agent adds 80 heavy trucks (>=12t, >=10m) to the simulation demand for the 7:00-9:00 AM window.",
+            "points": 25,
+            "visual_evidence": "Code or text editor showing modification of .rou.xml files or a script adding 80 vehicle entries with heavy truck parameters."
+        },
+        {
+            "id": "run_modified_simulation",
+            "description": "Agent runs the simulation with the additional 80 trucks to evaluate the impact.",
+            "points": 20,
+            "visual_evidence": "SUMO-GUI or terminal showing the simulation running with the modified traffic demand."
+        },
+        {
+            "id": "generate_csv_report",
+            "description": "Agent creates the corridor_capacity_report.csv with the required metrics and columns.",
+            "points": 20,
+            "visual_evidence": "A file viewer or terminal 'cat' command showing /home/ga/SUMO_Output/corridor_capacity_report.csv with columns: metric, baseline_value, with_trucks_value, and delta_pct."
+        },
+        {
+            "id": "provide_recommendation",
+            "description": "Agent writes a professional recommendation based on the 300s travel time threshold.",
+            "points": 10,
+            "visual_evidence": "A file viewer or terminal 'cat' command showing the content of /home/ga/SUMO_Output/corridor_recommendation.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the SUMO simulation rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the SUMO-GUI progress bar moving or terminal logs showing simulation steps (Step #) being processed."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check that the values in the CSV report match the outputs seen in the simulation logs.",
+            "visual_evidence": "The numbers in the final CSV should correspond to the 'Reason' or 'Statistics' output visible in the SUMO terminal/log window."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "Ensure the recommendation is not a generic template but references the specific 300s limit and the truck count.",
+            "visual_evidence": "The recommendation text should explicitly mention the Acosta corridor and the impact of the 80 trucks."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires adding exactly 80 heavy trucks (length >= 10m, weight >= 12t) to the Bologna Acosta scenario. The critical threshold for the recommendation is an average travel time of 300 seconds; if the 'with_trucks_value' for avg_travel_time exceeds 300, the recommendation should likely be negative or suggest mitigation. The report must be at /home/ga/SUMO_Output/corridor_capacity_report.csv and include the specific metrics: avg_travel_time, avg_speed, total_vehicles_completed, avg_waiting_time, and truck_avg_travel_time."
+}

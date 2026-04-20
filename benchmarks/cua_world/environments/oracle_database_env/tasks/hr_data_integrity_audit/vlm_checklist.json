@@ -1,0 +1,53 @@
+{
+    "task_id": "hr_data_integrity_audit@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Terminal output or GUI showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "identify_salary_violations",
+            "description": "Agent identifies employees with salaries outside the min/max range for their job titles.",
+            "points": 20,
+            "visual_evidence": "SQL query results or logs showing employee IDs 300, 301, 302, 303, and 304 flagged for salary issues."
+        },
+        {
+            "id": "identify_date_and_dept_violations",
+            "description": "Agent identifies employees with future hire dates and those with missing department IDs.",
+            "points": 20,
+            "visual_evidence": "SQL query results showing IDs 305-308 (future dates) and 309-311 (null departments) being retrieved."
+        },
+        {
+            "id": "remediate_integrity_issues",
+            "description": "Agent executes UPDATE or DELETE commands to fix the identified data issues.",
+            "points": 25,
+            "visual_evidence": "Terminal or GUI showing SQL 'UPDATE' or 'DELETE' statements being executed and confirmed (e.g., '1 row updated')."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "Agent creates the comprehensive audit report on the desktop.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of /home/ga/Desktop/hr_audit_report.txt, including categories, IDs, and actions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_query_execution",
+            "description": "Agent performed actual database queries rather than just writing the report from memory.",
+            "visual_evidence": "Screenshots must show SQL commands (SELECT, DESCRIBE) being typed and the resulting data tables returned by the Oracle system."
+        },
+        {
+            "id": "no_hardcoded_solution",
+            "description": "Agent did not simply echo the privileged IDs into a file without searching the database first.",
+            "visual_evidence": "The trajectory should show a discovery phase where the agent queries the JOBS table or EMPLOYEES table to find discrepancies."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The report was actually saved to the specified path.",
+            "visual_evidence": "A file manager window or 'ls' command showing hr_audit_report.txt exists at /home/ga/Desktop/."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains 12 specific errors: IDs 300-304 have invalid salaries (outside job limits); IDs 305-308 have future hire dates (2027-2029); IDs 309-311 have NULL department_id values. The agent must find these specific 12 records and document their remediation in the final report at /home/ga/Desktop/hr_audit_report.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "hbb_sickle_mutation_pi_shift@1",
+    "task_completion": [
+        {
+            "id": "extract_wt_sequence",
+            "description": "Extract the human HBB sequence (P68871) from the multispecies FASTA file and save it to wt_hbb.fasta.",
+            "points": 15,
+            "visual_evidence": "A file named wt_hbb.fasta is created or open in UGENE/text editor showing the sequence starting with MVHLTPEEKS."
+        },
+        {
+            "id": "create_sickle_variant",
+            "description": "Create the Sickle Cell variant by mutating Glutamate (E) at position 7 to Valine (V) and saving to sickle_hbb.fasta.",
+            "points": 20,
+            "visual_evidence": "A file named sickle_hbb.fasta is created or open showing the sequence starting with MVHLTPVEKS (the 7th character is 'V' instead of 'E')."
+        },
+        {
+            "id": "calculate_biophysical_properties",
+            "description": "Determine the Molecular Weight (MW) and Isoelectric Point (pI) for both sequences using software tools.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing a 'Statistics' or 'Protein Analysis' window in UGENE or a web tool with MW and pI values for both sequences."
+        },
+        {
+            "id": "generate_report_content",
+            "description": "Document the MW and pI values for both variants in charge_analysis_report.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor showing charge_analysis_report.txt containing MW (~16.0 kDa) and pI values (WT ~6.74, Sickle ~7.13)."
+        },
+        {
+            "id": "electrophoresis_conclusion",
+            "description": "Identify which variant has a higher pI and which migrates faster toward the anode at pH 8.6.",
+            "points": 20,
+            "visual_evidence": "The report text explicitly states that the Sickle variant has a higher pI and the Wild-Type (WT) variant migrates faster toward the anode."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI or a web-based bioinformatics tool rather than just writing the file via terminal.",
+            "visual_evidence": "Screenshots show the UGENE application window, sequence editor, or protein analysis dialogs being actively used."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the privileged information into a file without performing the analysis.",
+            "visual_evidence": "The agent is seen using the 'Statistics' or 'Report' features in UGENE to derive the pI and MW values."
+        },
+        {
+            "id": "correct_mutation_site",
+            "description": "The agent correctly identified the 7th residue for mutation.",
+            "visual_evidence": "The sequence editor shows the cursor or highlight at the 7th position (E to V) of the HBB sequence."
+        }
+    ],
+    "privileged_info_for_vlm": "The Wild-Type (WT) sequence starts with MVHLTPEEKS (pI ~6.74, MW ~15,998 Da). The Sickle variant (E7V) starts with MVHLTPVEKS (pI ~7.13, MW ~15,968 Da). Because the WT has a lower pI, it is more negatively charged at pH 8.6 and will migrate faster toward the positive anode than the Sickle variant. The Sickle variant has the higher pI."
+}

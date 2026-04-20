@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_transcript_service@1",
+    "task_completion": [
+        {
+            "id": "locate_project_files",
+            "description": "Agent locates and opens the project directory and the target file services/transcript.py.",
+            "points": 10,
+            "visual_evidence": "The file explorer or an editor tab shows /home/ga/PycharmProjects/transcript_engine/services/transcript.py open."
+        },
+        {
+            "id": "identify_n_plus_one",
+            "description": "Agent examines the code or runs the test to confirm the current query count exceeds the limit.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing test failure in tests/test_transcript.py or code comments identifying loops making database calls."
+        },
+        {
+            "id": "refactor_sql_queries",
+            "description": "Agent modifies services/transcript.py to use optimized queries (e.g., JOINs or IN clauses) to fetch data in bulk.",
+            "points": 35,
+            "visual_evidence": "Code editor showing changes in generate_student_transcript function, specifically replacing individual queries inside loops with bulk fetching logic."
+        },
+        {
+            "id": "verify_functional_correctness",
+            "description": "Agent runs the test suite to ensure the JSON output remains identical to the original.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing that functional assertions in tests/test_transcript.py are passing."
+        },
+        {
+            "id": "verify_performance_constraint",
+            "description": "Agent confirms that the total number of SQL queries is now fewer than 10.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'PASSED' for the performance test in tests/test_transcript.py, specifically the assertion for query_count < 10."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "Agent did not modify the test file to lower the bar for passing.",
+            "visual_evidence": "The file tests/test_transcript.py is either not edited in the IDE or 'git diff' (if used) shows no changes to the test file."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "Agent actually optimized the logic rather than hardcoding the expected JSON output.",
+            "visual_evidence": "The code in services/transcript.py contains dynamic database fetching logic (SQL/ORM) rather than a static return of a JSON string."
+        },
+        {
+            "id": "no_schema_changes",
+            "description": "Agent did not modify the database schema to solve the performance issue.",
+            "visual_evidence": "No SQL commands like 'ALTER TABLE' or 'CREATE INDEX' are seen in the terminal or code files."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/transcript_engine. The target file for optimization is services/transcript.py. The primary success criterion is passing tests/test_transcript.py, which strictly enforces a limit of fewer than 10 SQL queries per transcript generation. The database is a synthetic SQLite file named university.db."
+}

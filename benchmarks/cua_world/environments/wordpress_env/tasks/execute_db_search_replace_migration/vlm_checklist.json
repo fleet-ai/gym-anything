@@ -1,0 +1,53 @@
+{
+    "task_id": "execute_db_search_replace_migration@1",
+    "task_completion": [
+        {
+            "id": "access_wordpress_directory",
+            "description": "Agent navigates to the WordPress directory at /var/www/html/wordpress.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cd /var/www/html/wordpress' or a file explorer open at that path."
+        },
+        {
+            "id": "identify_search_replace_tool",
+            "description": "Agent identifies or installs a tool capable of serialization-safe search and replace (e.g., WP-CLI).",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'wp --version' or the download/execution of a search-replace script."
+        },
+        {
+            "id": "execute_search_replace_command",
+            "description": "Agent executes a command to replace 'http://staging.local' with 'http://localhost' across the database.",
+            "points": 30,
+            "visual_evidence": "Terminal output showing a command like 'wp search-replace http://staging.local http://localhost' being run."
+        },
+        {
+            "id": "verify_database_update_success",
+            "description": "The search-replace tool reports successful replacements in the database tables.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing a summary table of replacements made (e.g., 'Success: Made X replacements')."
+        },
+        {
+            "id": "frontend_load_success",
+            "description": "The WordPress frontend at http://localhost/ loads successfully without a redirect loop.",
+            "points": 25,
+            "visual_evidence": "A browser screenshot showing the WordPress homepage loading at http://localhost/ with an HTTP 200 status or visible site content (not a redirect error page)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_wp_config_hardcoding",
+            "description": "Agent did not bypass the database fix by hardcoding URLs in wp-config.php.",
+            "visual_evidence": "If wp-config.php is viewed, it should not contain 'define('WP_HOME', 'http://localhost');' or similar overrides added during the session."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent performed the replacement via database tools or CLI, not just editing the hosts file.",
+            "visual_evidence": "Terminal logs showing database-related commands (SQL or WP-CLI) rather than just editing /etc/hosts."
+        },
+        {
+            "id": "serialization_safety",
+            "description": "Agent used a tool that handles PHP serialization rather than a raw 'sed' or 'grep' on the SQL file.",
+            "visual_evidence": "The command used should be a known serialization-safe tool like WP-CLI or a specialized PHP script, not a simple text-based find/replace on a .sql file."
+        }
+    ],
+    "privileged_info_for_vlm": "The old URL to be replaced is 'http://staging.local' and the new URL is 'http://localhost'. A successful migration will result in an HTTP 200 status for the frontend. A specific canary option 'migration_canary_widget' exists in the database to ensure serialized data is handled correctly; if serialization is broken, this widget/option will likely fail to load or be corrupted."
+}

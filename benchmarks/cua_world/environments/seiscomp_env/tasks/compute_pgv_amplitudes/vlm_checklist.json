@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_pgv_amplitudes@1",
+    "task_completion": [
+        {
+            "id": "seiscomp_config_pgv",
+            "description": "Reconfigure SeisComP to enable PGV amplitude computation.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the SeisComP configuration tool (scconfig) or a configuration file where 'PGV' is selected or added to the list of amplitudes to be computed."
+        },
+        {
+            "id": "database_archive_connection",
+            "description": "Configure the system to use the specified MySQL database and SDS archive path.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the database URI 'mysql://sysop:sysop@localhost/seiscomp' and the archive path 'sdsarchive:///home/ga/seiscomp/var/lib/archive' being entered into SeisComP settings or command arguments."
+        },
+        {
+            "id": "reprocess_noto_event",
+            "description": "Reprocess the Noto Peninsula earthquake event to generate new amplitudes.",
+            "points": 25,
+            "visual_evidence": "The VLM should see a processing window (e.g., scmag or scevent) or a terminal execution showing the reprocessing of the 2024-01-01 event data."
+        },
+        {
+            "id": "verify_pgv_amplitudes",
+            "description": "Verify that PGV amplitudes were successfully calculated for the event.",
+            "points": 25,
+            "visual_evidence": "A SeisComP GUI (like scolv) showing an 'Amplitudes' tab with entries specifically labeled as 'PGV' for various stations."
+        },
+        {
+            "id": "csv_report_creation",
+            "description": "Create the final CSV report at the specified location with correct headers.",
+            "points": 20,
+            "visual_evidence": "A file manager or text editor showing a file at '~/Documents/pgv_report.csv' containing columns for 'Station' and 'Amplitude' with PGV values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not simply type the CSV content from memory without running SeisComP.",
+            "visual_evidence": "The VLM should see the agent interacting with SeisComP modules or database queries before the CSV file is generated."
+        },
+        {
+            "id": "genuine_software_interaction",
+            "description": "The agent used the SeisComP suite rather than just echo-ing text to a file.",
+            "visual_evidence": "Screenshots must show SeisComP windows (scconfig, scolv, or scart) or specific SeisComP CLI tools being invoked."
+        },
+        {
+            "id": "correct_event_context",
+            "description": "The data processed matches the 2024-01-01 Noto Peninsula earthquake.",
+            "visual_evidence": "The VLM should check that timestamps or event IDs in the software interface correspond to the January 1st, 2024 date."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful only if the amplitude type is 'PGV'. The required database is 'mysql://sysop:sysop@localhost/seiscomp' and the archive is 'sdsarchive:///home/ga/seiscomp/var/lib/archive'. The final output must be a CSV file located at '/home/ga/Documents/pgv_report.csv' containing Station and PGV Amplitude columns."
+}

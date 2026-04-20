@@ -1,0 +1,53 @@
+{
+    "task_id": "it_helpdesk_sla_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_onlyoffice_csv",
+            "description": "Open the source file q3_incidents.csv in ONLYOFFICE Spreadsheet.",
+            "points": 10,
+            "visual_evidence": "ONLYOFFICE Spreadsheet window is visible showing a table with columns like 'Created_At', 'Resolved_At', and 'Priority'."
+        },
+        {
+            "id": "calculate_resolution_hours",
+            "description": "Calculate 'Resolution_Hours' as the absolute difference between Created_At and Resolved_At.",
+            "points": 20,
+            "visual_evidence": "A new column 'Resolution_Hours' is visible with numerical values representing the time difference."
+        },
+        {
+            "id": "identify_sla_breaches",
+            "description": "Identify 'SLA_Breached' tickets based on priority targets (P1:4, P2:8, P3:24, P4:48).",
+            "points": 25,
+            "visual_evidence": "A column 'SLA_Breached' or similar logic is visible, showing TRUE/FALSE or 1/0 based on the priority-specific hour limits."
+        },
+        {
+            "id": "create_summary_table",
+            "description": "Create a summary table showing Total, Breached, and Compliance % for each priority level.",
+            "points": 25,
+            "visual_evidence": "A summary section or separate sheet showing a table with rows for P1, P2, P3, P4 and columns for 'Total Tickets', 'Total Breached', and 'SLA Compliance %'."
+        },
+        {
+            "id": "save_as_xlsx",
+            "description": "Save the final analysis as an Excel workbook (.xlsx) at the specified path.",
+            "points": 20,
+            "visual_evidence": "The ONLYOFFICE title bar or a 'Save As' dialog shows the filename 'q3_sla_performance.xlsx' in the '~/Documents/Spreadsheets/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the ONLYOFFICE GUI to perform calculations rather than just using the terminal to generate the file.",
+            "visual_evidence": "Screenshots show the agent clicking cells, entering formulas (e.g., =B2-A2), or using spreadsheet features rather than just a terminal prompt."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent processed the full dataset (1200 rows) rather than manually typing a few summary numbers.",
+            "visual_evidence": "The spreadsheet scrollbar or row count indicates a large dataset is present; formulas are applied across many rows."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "The agent did not simply copy-paste the final summary table from an external source.",
+            "visual_evidence": "The agent is seen constructing the summary table using pivot tables or COUNTIF/SUMIF formulas within ONLYOFFICE."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file contains exactly 1200 incident records. The SLA targets are strictly: P1 = 4 hours, P2 = 8 hours, P3 = 24 hours, and P4 = 48 hours. Compliance % must be calculated as (Total - Breached) / Total. The final output must be in .xlsx format, not .csv."
+}

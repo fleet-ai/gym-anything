@@ -1,0 +1,59 @@
+{
+    "task_id": "solent_anchorage_capacity_planning@1",
+    "task_completion": [
+        {
+            "id": "read_input_files",
+            "description": "Agent opens and reads anchorage_request.txt and anchorage_zone.txt to retrieve ship data and boundary coordinates.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the content of /home/ga/Documents/anchorage_request.txt and /home/ga/Documents/anchorage_zone.txt in a text editor or terminal."
+        },
+        {
+            "id": "calculate_positions",
+            "description": "Agent performs calculations for swing radii and coordinates for 6 vessels based on the provided formulas.",
+            "points": 20,
+            "visual_evidence": "Evidence of calculations being performed (e.g., in a calculator app, spreadsheet, or scratchpad) or a list of 6 distinct coordinates being drafted."
+        },
+        {
+            "id": "create_scenario_directory",
+            "description": "Agent creates the specific scenario directory in the Bridge Command path.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal showing the creation of /opt/bridgecommand/Scenarios/p) St Helens Storm Anchorage/."
+        },
+        {
+            "id": "configure_environment_ini",
+            "description": "Agent creates environment.ini with Weather=5.0 and Setting=Solent.",
+            "points": 15,
+            "visual_evidence": "A text editor showing environment.ini with the lines 'Weather=5.0' and 'Setting=Solent' inside the correct scenario folder."
+        },
+        {
+            "id": "configure_othership_ini",
+            "description": "Agent creates othership.ini containing 6 vessels with Speed=0 and the calculated coordinates.",
+            "points": 25,
+            "visual_evidence": "A text editor showing othership.ini with 6 distinct ship entries, each having Speed=0 and coordinates within the 50.7-50.74N / -1.09 to -1.01W range."
+        },
+        {
+            "id": "verify_zone_and_separation",
+            "description": "The final coordinates in othership.ini are strictly within the zone bounds and spaced to avoid overlapping swing circles.",
+            "points": 20,
+            "visual_evidence": "The VLM should verify the 6 sets of coordinates in the final othership.ini file fall between Lat 50.7 to 50.74 and Long -1.09 to -1.01, and are not identical."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "Agent did not simply copy a pre-existing scenario file but manually entered or generated the data.",
+            "visual_evidence": "The agent is seen typing or programmatically generating the .ini files rather than just moving an existing file from a hidden directory."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacted with the file system to create the scenario.",
+            "visual_evidence": "Screenshots show the use of a text editor (like Gedit, Nano, or VS Code) or terminal commands (like 'cat' or 'echo') to write the files."
+        },
+        {
+            "id": "formula_application",
+            "description": "The swing radii used for spacing reflect the formula R = (Length * 1.5 / 1852) + 0.15.",
+            "visual_evidence": "The agent's notes or terminal output show the use of the 1.5 multiplier and 0.15 nm buffer as specified in the privileged info."
+        }
+    ],
+    "privileged_info_for_vlm": "The anchorage zone is bounded by Latitude [50.7, 50.74] and Longitude [-1.09, -1.01]. The safety formula for the swing radius (R) in nautical miles is R = (Ship_Length_Meters * 1.5 / 1852) + 0.15. The agent must place 6 ships in 'othership.ini' with Speed=0. The environment.ini must have Weather=5.0 and Setting=Solent. The scenario folder name must be exactly 'p) St Helens Storm Anchorage'."
+}

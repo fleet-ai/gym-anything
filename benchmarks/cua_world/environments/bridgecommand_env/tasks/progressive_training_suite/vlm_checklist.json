@@ -1,0 +1,59 @@
+{
+    "task_id": "progressive_training_suite@1",
+    "task_completion": [
+        {
+            "id": "scenario_directories_created",
+            "description": "Creation of the three specific scenario directories under /opt/bridgecommand/Scenarios/",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing directories: 'p) Cadet Module L1 Familiarisation', 'q) Cadet Module L2 Night Traffic', and 'r) Cadet Module L3 Restricted Vis'."
+        },
+        {
+            "id": "bc5_ini_configuration",
+            "description": "Configuration of bc5.ini with specific radar and ARPA settings",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command output showing bc5.ini with radar_range_resolution=256, max_radar_range=72, full_radar=1, and arpa_on=1."
+        },
+        {
+            "id": "scenario_l1_parameters",
+            "description": "L1 scenario configuration: Daytime 10:00, 10nm visibility, weather 0, 2 traffic vessels, Solent environment, valid coordinates.",
+            "points": 20,
+            "visual_evidence": "Content of the L1 scenario file showing 'Solent', time 10.0, visibility 10.0, weather 0.0, 2 OtherShip entries, and Lat/Long within 50.7-50.8 / -1.3 to -1.0."
+        },
+        {
+            "id": "scenario_l2_parameters",
+            "description": "L2 scenario configuration: Night 22:00, 8nm visibility, weather 3, 4 traffic vessels, Solent environment, valid coordinates.",
+            "points": 20,
+            "visual_evidence": "Content of the L2 scenario file showing 'Solent', time 22.0, visibility 8.0, weather 3.0, 4 OtherShip entries, and Lat/Long within 50.7-50.8 / -1.3 to -1.0."
+        },
+        {
+            "id": "scenario_l3_parameters",
+            "description": "L3 scenario configuration: Dawn 06:00, 1.5nm visibility, weather 5 with rain, 6 traffic vessels, Solent environment, valid coordinates.",
+            "points": 20,
+            "visual_evidence": "Content of the L3 scenario file showing 'Solent', time 06.0, visibility 1.5, weather 5.0, rain 1 (or similar), 6 OtherShip entries, and Lat/Long within 50.7-50.8 / -1.3 to -1.0."
+        },
+        {
+            "id": "syllabus_documentation",
+            "description": "Creation of a 500+ word syllabus at /home/ga/Documents/cadet_module_syllabus.txt referencing COLREGS.",
+            "points": 15,
+            "visual_evidence": "File content of cadet_module_syllabus.txt showing a long text (approx 500 words) explicitly mentioning Rules 5, 6, 7, and 19."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent actually wrote the files rather than just displaying intended content.",
+            "visual_evidence": "Screenshots showing 'save' actions in editors or successful execution of redirection/write commands in the terminal."
+        },
+        {
+            "id": "coordinate_validity",
+            "description": "The agent used unique, valid coordinates for each scenario rather than placeholders.",
+            "visual_evidence": "Scenario files showing specific decimal coordinates within the 50.7-50.8 / -1.3 to -1.0 range."
+        },
+        {
+            "id": "traffic_vessel_waypoints",
+            "description": "Each traffic vessel must have at least two waypoint legs.",
+            "visual_evidence": "Scenario file contents showing at least two 'Waypoint' entries for every 'OtherShip' defined."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires three specific scenarios in the 'Solent' environment. L1: 10:00, 10nm vis, weather 0, 2 ships. L2: 22:00, 8nm vis, weather 3, 4 ships. L3: 06:00, 1.5nm vis, weather 5, 6 ships. All ships need 2+ waypoints. Own ship must be between Lat 50.7-50.8 and Long -1.3 to -1.0. bc5.ini must have radar_range_resolution=256, max_radar_range=72, full_radar=1, arpa_on=1. Syllabus must be >500 words and cite COLREGS Rules 5, 6, 7, and 19."
+}

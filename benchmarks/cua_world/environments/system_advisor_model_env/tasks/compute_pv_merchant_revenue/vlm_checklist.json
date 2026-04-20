@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_pv_merchant_revenue@1",
+    "task_completion": [
+        {
+            "id": "pysam_import_and_setup",
+            "description": "Agent imports PySAM.Pvwattsv8 and initializes the model in a script or notebook.",
+            "points": 10,
+            "visual_evidence": "Code showing 'import PySAM.Pvwattsv8' or 'from PySAM.Pvwattsv8 import new' in an editor or terminal."
+        },
+        {
+            "id": "configure_pv_parameters",
+            "description": "Agent configures the PV system parameters: 50,000 kW capacity, Array Type 2, DC/AC ratio 1.2, and 14% losses.",
+            "points": 15,
+            "visual_evidence": "Code setting system_capacity=50000, array_type=2, dc_ac_ratio=1.2, and losses=14 (or 0.14)."
+        },
+        {
+            "id": "load_weather_and_lmp_data",
+            "description": "Agent loads the Phoenix weather file and the CAISO LMP CSV file.",
+            "points": 15,
+            "visual_evidence": "Code referencing '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv' and '/home/ga/Documents/SAM_Projects/caiso_sp15_2022_lmp.csv'."
+        },
+        {
+            "id": "execute_simulation_and_revenue_calc",
+            "description": "Agent runs the simulation and performs the element-wise multiplication of hourly generation and LMP.",
+            "points": 25,
+            "visual_evidence": "Code executing the model (e.g., .execute()) and logic multiplying the generation array by the price array."
+        },
+        {
+            "id": "calculate_final_metrics",
+            "description": "Agent calculates annual energy, simple average LMP, total revenue, and generation-weighted price.",
+            "points": 20,
+            "visual_evidence": "Code or print statements showing the calculation of total revenue (sum of hourly revenue) and weighted price (total revenue / total energy)."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the results to the specified JSON file with the correct keys.",
+            "points": 15,
+            "visual_evidence": "Code saving to '/home/ga/Documents/SAM_Projects/merchant_revenue_analysis.json' with keys: system_capacity_kw, annual_energy_mwh, simple_average_lmp_usd_per_mwh, total_merchant_revenue_usd, and generation_weighted_realized_price_usd_per_mwh."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final revenue or energy values without running calculations.",
+            "visual_evidence": "The script must show the logic for multiplication and summation, not just a dictionary with pre-filled numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Agent actually uses the PySAM library rather than estimating values manually.",
+            "visual_evidence": "Presence of PySAM function calls and object attribute assignments in the code."
+        },
+        {
+            "id": "file_path_integrity",
+            "description": "Agent uses the specific file paths provided in the instructions.",
+            "visual_evidence": "The code explicitly points to the /home/ga/... paths mentioned in the task description."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected system_capacity_kw is 50000. The annual_energy_mwh should be between 105,000 and 140,000 (specifically around 111,304 MWh). The weather file is at /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv and the LMP file is at /home/ga/Documents/SAM_Projects/caiso_sp15_2022_lmp.csv. The output must be a JSON file at /home/ga/Documents/SAM_Projects/merchant_revenue_analysis.json."
+}

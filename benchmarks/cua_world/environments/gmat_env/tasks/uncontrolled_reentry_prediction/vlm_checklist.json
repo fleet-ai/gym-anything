@@ -1,0 +1,59 @@
+{
+    "task_id": "uncontrolled_reentry_prediction@1",
+    "task_completion": [
+        {
+            "id": "read_ssa_bulletin",
+            "description": "Agent opens and reads the orbital elements from ~/Desktop/ssa_bulletin_59001.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ssa_bulletin_59001.txt with orbital parameters (SMA, ECC, INC)."
+        },
+        {
+            "id": "gmat_setup_spacecraft",
+            "description": "Agent configures the Spacecraft in GMAT with the orbital elements and physical properties from the bulletin.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Spacecraft' properties window showing the input of SMA (6621.14), ECC (0.0012), and INC (41.47)."
+        },
+        {
+            "id": "gmat_drag_model_config",
+            "description": "Agent configures the Force Model to use JacchiaRoberts or MSISE atmospheric drag with F10.7 set to 150.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagator' or 'ForceModel' dialog showing 'Atmosphere Model' as JacchiaRoberts/MSISE and 'F10.7' set to 150."
+        },
+        {
+            "id": "gmat_reentry_stopping_condition",
+            "description": "Agent sets a propagation stopping condition for an altitude of 120 km.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Propagate' command sequence showing a stopping condition where 'Spacecraft.Earth.Altitude = 120'."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the simulation script to the specified output path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing 'reentry_sim.script' exists in the ~/GMAT_output/ directory."
+        },
+        {
+            "id": "generate_prediction_report",
+            "description": "Agent generates a report containing the six required reentry parameters.",
+            "points": 25,
+            "visual_evidence": "A text editor showing 'reentry_prediction_report.txt' with fields: reentry_utc, elapsed_days, reentry_latitude_deg, reentry_longitude_deg, reentry_altitude_km, and final_period_min."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical user interface to configure the simulation rather than just writing a script manually.",
+            "visual_evidence": "Screenshots showing the GMAT application window, resource tree, and mission sequence being manipulated."
+        },
+        {
+            "id": "genuine_simulation_run",
+            "description": "The agent actually executed the simulation in GMAT to derive the results.",
+            "visual_evidence": "GMAT 'Mission Tree' showing the 'Run' command being triggered or a progress bar/output log indicating simulation execution."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply echo the expected values into a file without running GMAT.",
+            "visual_evidence": "The report generation should follow the simulation run in the trajectory, and the report content should match GMAT's output format."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial orbital elements for NORAD 59001 are: Semi-Major Axis (SMA) = 6621.14 km, Eccentricity (ECC) = 0.0012, and Inclination (INC) = 41.47 degrees. The simulation must use an F10.7 solar flux value of 150 and stop at an altitude of 120 km. The final report must be located at ~/GMAT_output/reentry_prediction_report.txt and the script at ~/GMAT_output/reentry_sim.script."
+}

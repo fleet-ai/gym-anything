@@ -1,0 +1,59 @@
+{
+    "task_id": "inspect_raw_voxels_interpolation@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis DICOM viewer is open and a CT scan is loaded in the main viewport.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible with medical imaging data (CT scan) displayed in the central viewing area."
+        },
+        {
+            "id": "interpolation_menu_access",
+            "description": "The agent accesses the display settings or right-click menu to change interpolation.",
+            "points": 15,
+            "visual_evidence": "A context menu or settings panel is visible showing interpolation options (e.g., Bicubic, Bilinear, Nearest Neighbor)."
+        },
+        {
+            "id": "nearest_neighbor_set",
+            "description": "The display interpolation is explicitly set to 'Nearest' or 'Nearest Neighbor'.",
+            "points": 25,
+            "visual_evidence": "The 'Nearest' or 'Nearest Neighbor' option is selected/checked in the menu, or the image rendering appears noticeably 'blocky' rather than smooth."
+        },
+        {
+            "id": "zoom_level_achieved",
+            "description": "The view is zoomed in to at least 400% on a specific structure.",
+            "points": 25,
+            "visual_evidence": "The zoom indicator in the Weasis UI (usually in the corner of the view or status bar) shows a value of 400% or higher."
+        },
+        {
+            "id": "export_dialog_active",
+            "description": "The agent initiates the export process for the current view.",
+            "points": 10,
+            "visual_evidence": "An 'Export' or 'Save As' dialog box is visible over the Weasis interface."
+        },
+        {
+            "id": "file_exported_correctly",
+            "description": "The image is saved to the specific path ~/DICOM/exports/nearest_neighbor.png.",
+            "points": 15,
+            "visual_evidence": "The file browser or export dialog shows the path /home/ga/DICOM/exports/ and the filename nearest_neighbor.png before confirmation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to change settings and export, rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and the Weasis export dialog, not just a terminal window."
+        },
+        {
+            "id": "genuine_rendering",
+            "description": "The image in the viewer shows the characteristic 'pixelated' look of Nearest Neighbor interpolation at high zoom.",
+            "visual_evidence": "The CT scan pixels appear as sharp, distinct squares (blocks) rather than blurred or smoothed gradients."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply find an existing file and rename it.",
+            "visual_evidence": "The agent is seen navigating the Weasis menus to perform the 'Export' action manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires 'Nearest Neighbor' interpolation at >400% zoom. This specific combination results in a 'blocky' visual appearance where at least 25% of adjacent pixels are identical. The final output must be saved exactly to /home/ga/DICOM/exports/nearest_neighbor.png. The source DICOM is synthetic noise/gradients, so if the image looks smooth at 400% zoom, the agent failed to set the interpolation to Nearest Neighbor."
+}

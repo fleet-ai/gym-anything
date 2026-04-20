@@ -1,0 +1,59 @@
+{
+    "task_id": "oseti_high_cadence_subframing@1",
+    "task_completion": [
+        {
+            "id": "read_protocol_file",
+            "description": "Agent opens and reads the seti_alert_protocol.txt file to identify the target and parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/seti_alert_protocol.txt, specifically mentioning KIC 8462852."
+        },
+        {
+            "id": "configure_target_coordinates",
+            "description": "Agent inputs the correct RA/Dec coordinates for the target into the telescope control software.",
+            "points": 15,
+            "visual_evidence": "The GUI of the telescope control software showing RA 20h 06m 15.45s and Dec +44d 27m 24.6s (or decimal equivalents 20.1043, 44.4568) entered into the target fields."
+        },
+        {
+            "id": "set_exposure_time",
+            "description": "Agent sets the camera exposure time to exactly 1.0 second.",
+            "points": 15,
+            "visual_evidence": "The camera control interface showing an 'Exposure' or 'Exptime' field set to 1.0."
+        },
+        {
+            "id": "configure_roi_subframing",
+            "description": "Agent configures the CCD Region of Interest (ROI) to 512x512 pixels.",
+            "points": 20,
+            "visual_evidence": "The camera settings GUI showing 'Width' and 'Height' or 'ROI' fields set to 512 and 512."
+        },
+        {
+            "id": "execute_high_cadence_sequence",
+            "description": "Agent initiates a sequence to capture multiple repeating pulses (at least 20 frames).",
+            "points": 20,
+            "visual_evidence": "The software showing a progress bar or a sequence counter indicating multiple frames (e.g., 'Frame 20 of 20') being captured."
+        },
+        {
+            "id": "verify_output_directory",
+            "description": "Agent saves the FITS files to the specific directory required by the protocol.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal showing .fits files located in /home/ga/Images/oseti/kic8462852."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface for telescope and camera control rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with buttons and input fields in the astronomical control software."
+        },
+        {
+            "id": "genuine_data_capture",
+            "description": "The agent did not simply rename existing files but actually triggered a capture sequence.",
+            "visual_evidence": "The GUI status changing from 'Idle' to 'Exposing' or 'Downloading' during the trajectory."
+        },
+        {
+            "id": "no_manual_fits_creation",
+            "description": "The agent did not use a python script to manually generate FITS headers to bypass the software.",
+            "visual_evidence": "Absence of code blocks in the terminal that manually define NAXIS or EXPTIME headers outside of the control software."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: KIC 8462852 (Boyajian's Star). Coordinates: RA 20.1043 (20h 06m 15.45s), Dec 44.4568 (+44d 27m 24.6s). Required Exposure: 1.0s. Required ROI: 512x512. Minimum frames: 20. Output Directory: /home/ga/Images/oseti/kic8462852. Coordinate tolerance is 30 arcminutes."
+}

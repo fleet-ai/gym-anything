@@ -1,0 +1,59 @@
+{
+    "task_id": "export_v2x_mobility_traces@1",
+    "task_completion": [
+        {
+            "id": "sumo_execution",
+            "description": "Run SUMO simulation on the Bologna Acosta scenario with a 10-minute (600s) limit and FCD output enabled.",
+            "points": 20,
+            "visual_evidence": "Terminal command showing 'sumo -c /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg --fcd-output /home/ga/SUMO_Output/acosta_fcd.xml --end 600' or similar execution logs."
+        },
+        {
+            "id": "fcd_file_creation",
+            "description": "Verify the creation of the FCD export XML file.",
+            "points": 10,
+            "visual_evidence": "File explorer or 'ls' command showing /home/ga/SUMO_Output/acosta_fcd.xml exists with a non-zero file size."
+        },
+        {
+            "id": "trace_exporter_conversion",
+            "description": "Use traceExporter.py to convert the FCD file into NS2 mobility and activity formats.",
+            "points": 30,
+            "visual_evidence": "Terminal command showing 'traceExporter.py' with arguments '--fcd-input /home/ga/SUMO_Output/acosta_fcd.xml --ns2mobility-output /home/ga/SUMO_Output/ns2_mobility.tcl --ns2activity-output /home/ga/SUMO_Output/ns2_activity.tcl'."
+        },
+        {
+            "id": "ns2_files_verification",
+            "description": "Verify both NS2 mobility and activity files exist in the output directory.",
+            "points": 15,
+            "visual_evidence": "File listing or terminal output showing both 'ns2_mobility.tcl' and 'ns2_activity.tcl' in /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "line_count_calculation",
+            "description": "Calculate the total line count of the generated NS2 mobility file.",
+            "points": 10,
+            "visual_evidence": "Terminal command like 'wc -l /home/ga/SUMO_Output/ns2_mobility.tcl' showing a specific numeric result."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "Create the trace_summary.txt file with the correctly formatted line count.",
+            "points": 15,
+            "visual_evidence": "Content of /home/ga/SUMO_Output/trace_summary.txt displayed, showing 'total_mobility_lines=' followed by a number."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation",
+            "description": "Verify the agent actually ran the simulation rather than creating empty files.",
+            "visual_evidence": "SUMO execution logs showing 'Step #600.00' or 'Simulation ended at time: 600.00'."
+        },
+        {
+            "id": "no_hardcoded_summary",
+            "description": "Ensure the line count in trace_summary.txt was derived from the actual generated file.",
+            "visual_evidence": "The agent executing 'wc -l' or a similar command on the mobility file before writing to the summary file."
+        },
+        {
+            "id": "correct_paths",
+            "description": "Verify the agent used the specific paths requested in the task rather than default or temporary directories.",
+            "visual_evidence": "Commands and file paths in the terminal matching /home/ga/SUMO_Output/ and /home/ga/SUMO_Scenarios/."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must end at 600 seconds (10 minutes). The primary input is /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg. The required outputs are acosta_fcd.xml, ns2_mobility.tcl, and ns2_activity.tcl. The final summary file /home/ga/SUMO_Output/trace_summary.txt must contain the exact line count of ns2_mobility.tcl in the format 'total_mobility_lines=XXXX'."
+}

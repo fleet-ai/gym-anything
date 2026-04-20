@@ -1,0 +1,53 @@
+{
+    "task_id": "git_history_revert@1",
+    "task_completion": [
+        {
+            "id": "identify_buggy_commit",
+            "description": "Identify the specific commit that introduced the regression in the factorial method.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent using 'git bisect', 'git log -p', or a git history GUI to find the commit where 'factorial(n - 1)' was changed to 'factorial(n - 2)'."
+        },
+        {
+            "id": "revert_specific_commit",
+            "description": "Revert only the identified buggy commit while preserving subsequent changes.",
+            "points": 30,
+            "visual_evidence": "A terminal command 'git revert <commit_hash>' or a GUI action showing a revert of a single commit, followed by a git log showing a new revert commit."
+        },
+        {
+            "id": "verify_code_fix",
+            "description": "Verify that the factorial method in MathUtils.java has been restored to the correct logic.",
+            "points": 20,
+            "visual_evidence": "The file 'src/main/java/com/example/MathUtils.java' displayed in an editor or via 'cat' showing 'return n * factorial(n - 1);'."
+        },
+        {
+            "id": "preserve_subsequent_work",
+            "description": "Ensure that changes made after the buggy commit (like Fibonacci tests or other methods) are still present.",
+            "points": 15,
+            "visual_evidence": "The git log or file contents showing that commits/code added after the bug (e.g., Fibonacci related code) still exist in the repository."
+        },
+        {
+            "id": "run_unit_tests",
+            "description": "Execute the unit tests to verify the fix.",
+            "points": 20,
+            "visual_evidence": "A terminal showing the execution of a test command (e.g., 'mvn test' or 'gradle test') and a 'BUILD SUCCESS' or 'Tests passed' message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_code_edit_only",
+            "description": "Verify the agent used git revert rather than just manually editing the file to fix the bug.",
+            "visual_evidence": "The git log must show a specific 'Revert ...' commit entry, not just a manual edit commit."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "Verify the agent actually ran the tests and didn't just claim they passed.",
+            "visual_evidence": "Screenshots of the terminal output showing the test runner execution and the specific test class 'com.example.MathUtilsTest' being invoked."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Verify the agent didn't just overwrite the file with a known good version without investigating the history.",
+            "visual_evidence": "Evidence of the agent exploring 'git log' or using 'git bisect' to find the specific commit hash."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/git-bisect-lab. The bug was introduced in a commit that changed 'factorial(n - 1)' to 'factorial(n - 2)' in 'src/main/java/com/example/MathUtils.java'. The correct code should be 'return n * factorial(n - 1);'. The agent must use 'git revert' to fix this. After the revert, the total commit count should be at least 9. The relevant test class is 'com.example.MathUtilsTest'."
+}

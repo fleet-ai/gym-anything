@@ -1,0 +1,53 @@
+{
+    "task_id": "reproject_view_crs@1",
+    "task_completion": [
+        {
+            "id": "open_project",
+            "description": "Open the initial gvSIG project 'countries_base'",
+            "points": 10,
+            "visual_evidence": "The gvSIG application window is open, and the project manager or title bar shows 'countries_base' or the project contains a view with country boundaries."
+        },
+        {
+            "id": "access_view_properties",
+            "description": "Open the View properties or CRS selection dialog for the active view",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'View properties' or 'CRS' is visible over the main gvSIG interface."
+        },
+        {
+            "id": "select_epsg_3857",
+            "description": "Search for and select EPSG:3857 (Web Mercator)",
+            "points": 30,
+            "visual_evidence": "The CRS selection dialog shows '3857' entered in a search/filter box, and 'EPSG:3857', 'Pseudo-Mercator', or 'Web Mercator' is highlighted in the list."
+        },
+        {
+            "id": "apply_crs_change",
+            "description": "Confirm the CRS change so the map projection updates",
+            "points": 20,
+            "visual_evidence": "The map view updates its appearance (the world map should look stretched vertically at high latitudes compared to WGS84) and the status bar or view properties now reflect EPSG:3857."
+        },
+        {
+            "id": "save_as_new_project",
+            "description": "Save the project to the specific path /home/ga/gvsig_data/projects/mercator_project.gvsproj",
+            "points": 25,
+            "visual_evidence": "The 'Save as' dialog is shown with the path '/home/ga/gvsig_data/projects/mercator_project.gvsproj' typed in, or a success message/title bar confirms the project is now saved under that name."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just executing shell commands",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with gvSIG menus, buttons, and dialog boxes."
+        },
+        {
+            "id": "genuine_crs_selection",
+            "description": "The agent actually navigated the CRS database within the software",
+            "visual_evidence": "Screenshots show the CRS selector window with the EPSG list populated and filtered for 3857."
+        },
+        {
+            "id": "file_system_save",
+            "description": "The agent used the software's 'Save As' functionality",
+            "visual_evidence": "The gvSIG file browser or save dialog is visible with the target filename entered."
+        }
+    ],
+    "privileged_info_for_vlm": "The target CRS is EPSG:3857. In gvSIG, this may appear under aliases: 'Pseudo-Mercator', 'Web Mercator', 'Popular Visualisation CRS', or 'Google Mercator'. The final project must be saved specifically to '/home/ga/gvsig_data/projects/mercator_project.gvsproj'. Visual confirmation of the projection change: WGS84 (4326) looks like a flat rectangle (equirectangular), while Web Mercator (3857) significantly distorts/enlarges areas near the poles (e.g., Greenland looks huge)."
+}

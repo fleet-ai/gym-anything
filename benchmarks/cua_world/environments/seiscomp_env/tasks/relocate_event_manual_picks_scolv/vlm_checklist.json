@@ -1,0 +1,59 @@
+{
+    "task_id": "relocate_event_manual_picks_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv_event",
+            "description": "Open the scolv application and select the 2024 Noto Peninsula earthquake event.",
+            "points": 10,
+            "visual_evidence": "The scolv window is visible, showing the event list or the specific event '2024 Noto Peninsula' (or M7.5 event on 2024-01-01) highlighted."
+        },
+        {
+            "id": "load_waveforms",
+            "description": "Access the Picker view to load waveforms for stations GE.GSI, GE.BKB, and GE.SANI.",
+            "points": 15,
+            "visual_evidence": "The 'Picker' tab or window is open, showing waveform traces labeled with station codes GSI, BKB, and SANI."
+        },
+        {
+            "id": "manual_p_picks",
+            "description": "Manually place or refine P-wave arrival picks for the three specified stations.",
+            "points": 30,
+            "visual_evidence": "Vertical markers (usually green or labeled 'P') are placed on the waveform traces for GE.GSI, GE.BKB, and GE.SANI in the Picker window."
+        },
+        {
+            "id": "relocate_solution",
+            "description": "Trigger a relocation of the event based on the new manual picks.",
+            "points": 20,
+            "visual_evidence": "The 'Locate' button is pressed, and a new origin/hypocenter solution appears in the 'Location' tab of scolv."
+        },
+        {
+            "id": "set_manual_mode",
+            "description": "Ensure the evaluation mode for the new origin is set to 'manual'.",
+            "points": 10,
+            "visual_evidence": "In the Location or Origin details tab, the 'Evaluation' or 'Mode' field is set to 'manual'."
+        },
+        {
+            "id": "commit_to_db",
+            "description": "Commit the updated solution to the SeisComP database.",
+            "points": 15,
+            "visual_evidence": "The 'Commit' button is clicked, or a confirmation dialog for database commit is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the scolv GUI for picking and relocating rather than just executing SQL commands in a terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the scolv waveform picker and location tabs."
+        },
+        {
+            "id": "genuine_waveform_analysis",
+            "description": "The agent zoomed into the waveforms to identify the P-wave onset.",
+            "visual_evidence": "Waveform traces are shown at a high enough zoom level to distinguish the arrival time from background noise."
+        },
+        {
+            "id": "correct_station_usage",
+            "description": "The agent specifically interacted with GE.GSI, GE.BKB, and GE.SANI.",
+            "visual_evidence": "The station labels GSI, BKB, and SANI are visible and active in the picker interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the 2024 Noto Peninsula Earthquake (M7.5). The agent must use the 'scolv' GUI. Required stations for P-wave picking are GE.GSI, GE.BKB, and GE.SANI. The final origin must have its evaluation mode explicitly set to 'manual' before being committed to the database."
+}

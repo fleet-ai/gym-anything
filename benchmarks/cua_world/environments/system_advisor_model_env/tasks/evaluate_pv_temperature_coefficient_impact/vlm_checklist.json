@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_pv_temperature_coefficient_impact@1",
+    "task_completion": [
+        {
+            "id": "import_pysam_and_weather",
+            "description": "Agent imports PySAM (Pvwattsv8) and loads the Phoenix weather data file.",
+            "points": 10,
+            "visual_evidence": "Code in the editor or terminal showing 'import PySAM.Pvwattsv8' and the path '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "configure_system_parameters",
+            "description": "Agent configures the 50 MW DC plant with 1-axis tracking, 1.25 DC/AC ratio, 96% inverter efficiency, and 14.08% losses.",
+            "points": 15,
+            "visual_evidence": "Code setting system_capacity=50000, array_type=2 (tracking), dc_ac_ratio=1.25, inv_eff=96.0, and losses=14.08."
+        },
+        {
+            "id": "model_premium_silicon",
+            "description": "Agent runs the simulation for Premium Crystalline Silicon (module_type 1).",
+            "points": 15,
+            "visual_evidence": "Code setting 'module_type' to 1 and executing the Pvwattsv8 model."
+        },
+        {
+            "id": "model_thin_film",
+            "description": "Agent runs the simulation for Thin Film (module_type 2).",
+            "points": 15,
+            "visual_evidence": "Code setting 'module_type' to 2 and executing the Pvwattsv8 model."
+        },
+        {
+            "id": "calculate_seasonal_metrics",
+            "description": "Agent calculates annual, summer (Jun-Aug), and winter (Dec-Feb) energy for both types and the percentage gain.",
+            "points": 25,
+            "visual_evidence": "Code logic summing hourly/monthly outputs for specific months (indices 5-7 for summer, 11, 0, 1 for winter) and calculating the percentage difference."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves all required keys to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "Code showing the creation of '/home/ga/Documents/SAM_Projects/temp_coef_comparison.json' with all 8 required keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Agent actually uses the PySAM library rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the execution of Python scripts or interactive sessions involving PySAM function calls, not just a print statement of the final numbers."
+        },
+        {
+            "id": "weather_file_access",
+            "description": "Agent accesses the specific Phoenix TMY file provided.",
+            "visual_evidence": "The file path '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv' appears in the code or terminal logs."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent does not copy-paste the final JSON from an external source.",
+            "visual_evidence": "The agent is seen writing the logic for the calculations (e.g., summing energy arrays) rather than just creating a dictionary with static numbers."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation uses Pvwattsv8. Expected annual energy for Premium (type 1) is ~105,036,513 kWh and for Thin Film (type 2) is ~105,945,414 kWh. Summer energy (June, July, August) should account for approximately 30.7-30.8% of annual production. Winter energy (December, January, February) should account for approximately 15-18% of annual production. Thin Film should show a positive percentage gain over Premium in the summer due to the lower temperature coefficient."
+}

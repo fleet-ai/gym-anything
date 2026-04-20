@@ -1,0 +1,53 @@
+{
+    "task_id": "manufacturing_bom_cost_rollup@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver, SQL Developer, or terminal) showing a successful connection to 'XEPDB1' or the 'hr' schema."
+        },
+        {
+            "id": "recursive_query_execution",
+            "description": "Agent writes and executes a recursive SQL query (likely using CONNECT BY or WITH RECURSIVE) to calculate the BOM cost rollup.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing a query that joins MFG_PARTS and MFG_BOM and performs a hierarchical summation of costs."
+        },
+        {
+            "id": "view_creation",
+            "description": "Agent creates the view named 'ASSEMBLY_COST_ANALYSIS' in the database.",
+            "points": 20,
+            "visual_evidence": "SQL command 'CREATE VIEW ASSEMBLY_COST_ANALYSIS' being executed or the view appearing in the database navigator tree."
+        },
+        {
+            "id": "top_5_query",
+            "description": "Agent queries the view to identify the top 5 most expensive parts.",
+            "points": 15,
+            "visual_evidence": "SQL query selecting from ASSEMBLY_COST_ANALYSIS with an ORDER BY TOTAL_UNIT_COST DESC and a limit/fetch of 5 rows."
+        },
+        {
+            "id": "csv_export_file",
+            "description": "Agent exports the results to the specific file path /home/ga/Desktop/top_expensive_products.csv.",
+            "points": 30,
+            "visual_evidence": "An export dialog, a 'spool' command, or a file explorer window showing the CSV file created on the Desktop with the correct name."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually type the final costs from the task instructions into the CSV or SQL.",
+            "visual_evidence": "The SQL queries should show logic (SUM, JOIN, START WITH) rather than hardcoded values like '1476.0'."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "Agent interacted with the database schema rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots showing the database tool's UI, schema browser, or query execution logs."
+        },
+        {
+            "id": "correct_headers",
+            "description": "The exported file or the query generating it uses the specific headers requested.",
+            "visual_evidence": "The CSV file content or the SQL 'AS' aliases showing 'PART_NAME' and 'TOTAL_UNIT_COST'."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named 'ASSEMBLY_COST_ANALYSIS'. The output file must be '/home/ga/Desktop/top_expensive_products.csv'. The expected top 5 parts and their costs are: Server X1 (1476.0), CPU Module (404.0), RAM Stick (164.0), Case Frame (7.0), and Motherboard PCB (4.0). The agent must use a recursive query to handle the 'ASSEMBLY' vs 'RAW' part logic."
+}

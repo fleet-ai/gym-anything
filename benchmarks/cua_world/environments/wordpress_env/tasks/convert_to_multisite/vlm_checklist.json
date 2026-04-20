@@ -1,0 +1,59 @@
+{
+    "task_id": "convert_to_multisite@1",
+    "task_completion": [
+        {
+            "id": "enable_multisite_constant",
+            "description": "Enable the multisite setup feature in wp-config.php",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the addition of 'define( 'WP_ALLOW_MULTISITE', true );' in the wp-config.php file or the 'Network Setup' menu item appearing under 'Tools' in the WordPress dashboard."
+        },
+        {
+            "id": "network_setup_configuration",
+            "description": "Configure the network as a Sub-directory installation",
+            "points": 15,
+            "visual_evidence": "Screenshot of the 'Create a Network of WordPress Sites' page with the 'Sub-directories' radio button selected."
+        },
+        {
+            "id": "multisite_constants_added",
+            "description": "Add the required multisite constants to wp-config.php to finalize the network",
+            "points": 20,
+            "visual_evidence": "Screenshot of wp-config.php containing 'MULTISITE', 'SUBDOMAIN_INSTALL' (set to false), 'DOMAIN_CURRENT_SITE', and 'PATH_CURRENT_SITE'."
+        },
+        {
+            "id": "network_admin_access",
+            "description": "Access the newly created Network Admin dashboard",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 'My Sites > Network Admin' menu in the WordPress top bar."
+        },
+        {
+            "id": "create_biology_subsite",
+            "description": "Provision the new departmental sub-site with correct details",
+            "points": 25,
+            "visual_evidence": "Screenshot of the 'Add New Site' form filled with Site Address: 'biology', Site Title: 'Biology Department', and Admin Email: 'admin@example.com'."
+        },
+        {
+            "id": "verify_subsite_existence",
+            "description": "Verify the sub-site is listed and accessible in the Sites dashboard",
+            "points": 20,
+            "visual_evidence": "Screenshot of the 'Sites' screen in Network Admin showing the '/biology/' path with the title 'Biology Department' in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress dashboard for configuration and site creation",
+            "visual_evidence": "Screenshots showing the mouse cursor or highlighted elements within the WordPress web interface rather than only executing SQL commands in a terminal."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo a success message without showing the site list",
+            "visual_evidence": "The agent must navigate to the 'Sites' list in the dashboard to confirm the site exists, not just state that it was created."
+        },
+        {
+            "id": "authentic_config_edit",
+            "description": "The agent edited the actual configuration files on the server",
+            "visual_evidence": "Screenshots showing a text editor (like nano, vim, or a file manager) opening /var/www/html/wordpress/wp-config.php."
+        }
+    ],
+    "privileged_info_for_vlm": "The multisite network must be configured as a Sub-directory install (SUBDOMAIN_INSTALL must be false). The specific sub-site requirements are: Path: /biology/, Title: Biology Department, Admin Email: admin@example.com. The constants WP_ALLOW_MULTISITE, MULTISITE, and SUBDOMAIN_INSTALL are mandatory in wp-config.php."
+}

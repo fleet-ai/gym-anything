@@ -1,0 +1,59 @@
+{
+    "task_id": "musical_scale_wav_generator@1",
+    "task_completion": [
+        {
+            "id": "python_script_creation",
+            "description": "The agent writes a Python script that uses sine wave synthesis and the wave module (or similar) to generate audio.",
+            "points": 15,
+            "visual_evidence": "A text editor or IDE showing Python code with 'import wave', 'math.sin', and frequency calculations."
+        },
+        {
+            "id": "frequency_calculation_logic",
+            "description": "The script contains the correct frequency values or the formula for A440 equal temperament (C4 ≈ 261.63Hz to C5 ≈ 523.25Hz).",
+            "points": 15,
+            "visual_evidence": "Code showing a list of frequencies or a loop calculating 440 * 2^((n-9)/12) for the C major scale."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script in the terminal or IDE without errors.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the command 'python3' followed by the script name, with no traceback or error messages."
+        },
+        {
+            "id": "wav_file_generation",
+            "description": "The WAV file is created at the specified path /home/ga/Documents/c_major_scale.wav.",
+            "points": 25,
+            "visual_evidence": "A file manager window or 'ls' command output showing 'c_major_scale.wav' exists in /home/ga/Documents/."
+        },
+        {
+            "id": "txt_file_generation",
+            "description": "The reference text file is created at /home/ga/Documents/note_frequencies.txt.",
+            "points": 10,
+            "visual_evidence": "A file manager window or 'ls' command output showing 'note_frequencies.txt' exists in /home/ga/Documents/."
+        },
+        {
+            "id": "verify_txt_content",
+            "description": "The note_frequencies.txt file contains 8 notes and their correct frequencies.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command output showing 8 lines with notes (C4, D4, E4, F4, G4, A4, B4, C5) and frequencies matching approximately: 261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually type the frequencies into the text file without running a script.",
+            "visual_evidence": "The agent must be seen running a Python script that outputs the file, rather than just opening a text editor and typing the values from memory."
+        },
+        {
+            "id": "genuine_synthesis",
+            "description": "The agent did not download an existing WAV file from the internet.",
+            "visual_evidence": "The browser history or terminal commands should not show 'wget' or 'curl' from external audio repositories; the code must show synthesis logic."
+        },
+        {
+            "id": "correct_parameters",
+            "description": "The agent used the specific parameters requested (44100Hz, 16-bit, 0.5s per note).",
+            "visual_evidence": "The Python code should explicitly show '44100', '0.5', and '2' (for 16-bit/2 bytes) as parameters."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected frequencies for the C major scale (C4 to C5) using A440 tuning are: C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25. The WAV file must be 16-bit mono PCM at 44100 Hz. Each of the 8 notes must last 0.5 seconds, totaling a 4-second audio file."
+}

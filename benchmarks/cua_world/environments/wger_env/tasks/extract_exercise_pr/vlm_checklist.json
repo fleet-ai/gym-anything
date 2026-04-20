@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_exercise_pr@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger fitness manager dashboard.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger dashboard or home page with 'admin' visible as the logged-in user."
+        },
+        {
+            "id": "navigate_to_log",
+            "description": "Agent navigates to the workout log or weight diary section.",
+            "points": 15,
+            "visual_evidence": "The browser displays a list of past workouts, a calendar, or a log history page."
+        },
+        {
+            "id": "filter_exercise",
+            "description": "Agent searches for or filters the logs specifically for 'Competition Barbell Squat'.",
+            "points": 20,
+            "visual_evidence": "The screen shows the text 'Competition Barbell Squat' within a filtered view or search result of the workout logs."
+        },
+        {
+            "id": "identify_max_weight",
+            "description": "Agent identifies the highest raw weight entry among the logged sets for that exercise.",
+            "points": 30,
+            "visual_evidence": "The agent scrolls through or examines the weight column for 'Competition Barbell Squat' entries to find the maximum value."
+        },
+        {
+            "id": "save_result_file",
+            "description": "Agent saves the numerical value to the specified text file in the Documents folder.",
+            "points": 25,
+            "visual_evidence": "A terminal window or text editor shows the command `echo [value] > ~/Documents/squat_pr.txt` or the file being saved with only the number."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the web interface to find the data rather than querying the database directly via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking through the wger web application menus and tables."
+        },
+        {
+            "id": "no_hardcoded_guess",
+            "description": "Agent did not simply create the file without first navigating to the exercise logs.",
+            "visual_evidence": "The trajectory shows the agent viewing the specific 'Competition Barbell Squat' log entries before the file creation step."
+        },
+        {
+            "id": "correct_file_content",
+            "description": "The output file contains only the numerical value as requested.",
+            "visual_evidence": "The final file content shown in a 'cat' command or editor contains only a number, no units or extra text."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must find the 'Competition Barbell Squat' exercise. The data is synthetically injected into the wger database. The agent must extract the 'raw weight' (the weight actually lifted in a set) and not the '1RM' (One Rep Max) estimate. The final answer must be saved to /home/ga/Documents/squat_pr.txt."
+}

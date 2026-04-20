@@ -1,0 +1,59 @@
+{
+    "task_id": "convert_oneway_reroute@1",
+    "task_completion": [
+        {
+            "id": "read_circulation_plan",
+            "description": "Agent reads the circulation_plan.txt file to identify the target edge ID.",
+            "points": 10,
+            "visual_evidence": "Terminal output or text editor showing the content of circulation_plan.txt (likely containing edge ID '118')."
+        },
+        {
+            "id": "create_modified_net",
+            "description": "Agent creates acosta_oneway.net.xml by modifying the original network to make the specified edge one-way.",
+            "points": 25,
+            "visual_evidence": "Terminal command (e.g., netconvert or xml editing) or a file explorer showing acosta_oneway.net.xml exists in the directory."
+        },
+        {
+            "id": "update_traffic_routes",
+            "description": "Agent generates acosta_oneway.rou.xml with updated traffic routes compatible with the one-way change.",
+            "points": 20,
+            "visual_evidence": "Terminal command (e.g., duarouter) or file explorer showing acosta_oneway.rou.xml exists."
+        },
+        {
+            "id": "create_sumo_config",
+            "description": "Agent creates run_oneway.sumocfg referencing the new network and route files.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command showing run_oneway.sumocfg with tags <net-file value=\"acosta_oneway.net.xml\"/> and <route-files value=\"acosta_oneway.rou.xml\"/>."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent executes the SUMO simulation using the new configuration file.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'sumo -c run_oneway.sumocfg' or the SUMO GUI running the simulation."
+        },
+        {
+            "id": "generate_trip_info",
+            "description": "The simulation successfully generates the tripinfos_oneway.xml output file.",
+            "points": 15,
+            "visual_evidence": "File explorer showing tripinfos_oneway.xml or terminal output showing the file's content/existence after simulation completion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_xml_spoofing",
+            "description": "Verify the agent didn't just create an empty file or manually type a fake tripinfo result.",
+            "visual_evidence": "The tripinfos_oneway.xml file should contain a large number of <tripinfo> entries consistent with a real simulation run."
+        },
+        {
+            "id": "correct_file_referencing",
+            "description": "Ensure the agent didn't just rename the old output file.",
+            "visual_evidence": "The run_oneway.sumocfg must explicitly point to the new .net and .rou files, not the original ones."
+        },
+        {
+            "id": "working_directory_consistency",
+            "description": "Agent performs actions within the /home/ga/SUMO_Scenarios/bologna_acosta directory.",
+            "visual_evidence": "Terminal prompts or file manager paths showing the correct working directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The target edge ID specified in circulation_plan.txt is '118'. The agent must derive acosta_oneway.net.xml from acosta_buslanes.net.xml. The simulation configuration run_oneway.sumocfg must be a modified version of run.sumocfg that points to acosta_oneway.net.xml and acosta_oneway.rou.xml, and it must produce tripinfos_oneway.xml upon execution."
+}

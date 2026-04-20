@@ -1,0 +1,53 @@
+{
+    "task_id": "rfid_json_analytics@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database tool (like SQL Developer, DBeaver, or terminal) showing a successful connection to XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "create_flat_view",
+            "description": "Create the 'RFID_EVENTS_FLAT' view extracting JSON fields from the 'EVENT_DATA' column.",
+            "points": 20,
+            "visual_evidence": "SQL code or a 'View Created' message showing the extraction of fields like EVENT_ID, TAG_ID, and RSSI_DBM from JSON_VALUE or JSON_TABLE."
+        },
+        {
+            "id": "create_summary_view",
+            "description": "Create the 'ZONE_TRAFFIC_SUMMARY' view with specific aggregations (TOTAL_READS, UNIQUE_TAGS, etc.).",
+            "points": 25,
+            "visual_evidence": "SQL code showing GROUP BY FACILITY, ZONE and aggregate functions like COUNT, COUNT(DISTINCT), and ROUND(AVG(...), 1)."
+        },
+        {
+            "id": "create_plsql_function",
+            "description": "Develop the 'GET_TAG_HISTORY' PL/SQL function with pipe-delimited output and error handling.",
+            "points": 25,
+            "visual_evidence": "PL/SQL block showing 'CREATE OR REPLACE FUNCTION GET_TAG_HISTORY', the use of '|' as a delimiter, and the return string 'NO_EVENTS_FOUND'."
+        },
+        {
+            "id": "export_report_file",
+            "description": "Export the zone traffic summary to /home/ga/Desktop/warehouse_report.txt with headers.",
+            "points": 20,
+            "visual_evidence": "A file explorer showing 'warehouse_report.txt' on the Desktop or a command output showing the file content with headers and aggregated data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle database rather than just creating a dummy text file.",
+            "visual_evidence": "Screenshots showing SQL execution results, table schemas, or database metadata panels."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report content was generated from a query, not manually typed into a text editor.",
+            "visual_evidence": "The agent running an export command or 'SPOOL' in a terminal/IDE rather than opening Gedit and typing the data."
+        },
+        {
+            "id": "proper_json_parsing",
+            "description": "The agent used Oracle JSON path expressions to extract data.",
+            "visual_evidence": "SQL syntax containing 'JSON_VALUE', 'JSON_TABLE', or the dot-notation (e.g., e.event_data.TAG_ID)."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific naming: Views must be 'RFID_EVENTS_FLAT' and 'ZONE_TRAFFIC_SUMMARY'. The function must be 'GET_TAG_HISTORY'. The flat view must include exactly 13 columns including RSSI_DBM and UNIT_VALUE_USD. The summary view must round AVG_SIGNAL_STRENGTH to 1 decimal place. The function must return 'NO_EVENTS_FOUND' if a tag is missing and use a pipe '|' delimiter for history strings."
+}

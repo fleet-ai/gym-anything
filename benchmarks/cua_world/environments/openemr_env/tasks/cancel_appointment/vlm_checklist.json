@@ -1,0 +1,62 @@
+{
+    "task_id": "cancel_appointment@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenEMR system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenEMR dashboard or main calendar view is visible after the login screen."
+        },
+        {
+            "id": "locate_appointment",
+            "description": "Agent navigates to the correct date (December 20, 2024) and identifies Sarah Borer's 10:00 AM appointment.",
+            "points": 20,
+            "visual_evidence": "The calendar view shows December 20, 2024, with an entry for 'Sarah Borer' at '10:00'."
+        },
+        {
+            "id": "open_edit_dialog",
+            "description": "Agent opens the appointment modification/edit dialog for the specific appointment.",
+            "points": 15,
+            "visual_evidence": "An 'Edit Appointment' or 'Edit Event' pop-up window/modal is visible over the calendar."
+        },
+        {
+            "id": "set_status_cancelled",
+            "description": "Agent changes the appointment status to 'cancelled' (represented by 'x' or '%' in OpenEMR).",
+            "points": 25,
+            "visual_evidence": "The status dropdown or field in the edit dialog is set to 'Cancelled' or shows the code 'x' or '%'."
+        },
+        {
+            "id": "add_cancellation_reason",
+            "description": "Agent enters the specific reason 'Patient requested cancellation - work conflict' into the notes or comments field.",
+            "points": 20,
+            "visual_evidence": "The text 'Patient requested cancellation - work conflict' is typed into a 'Brief Note', 'Comments', or 'Reason' field within the dialog."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent saves the changes without deleting the record.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' or 'Update' button, and the dialog closes, returning to the calendar view where the record still exists but with an updated status indicator."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands or scripts.",
+            "points": 0,
+            "visual_evidence": "Screenshots show mouse cursor movements, clicking buttons, and typing into browser forms."
+        },
+        {
+            "id": "no_record_deletion",
+            "description": "The agent did not use a 'Delete' or 'Remove' function to clear the appointment.",
+            "points": 0,
+            "visual_evidence": "The appointment entry remains visible on the calendar (likely with a different color or status code) rather than disappearing entirely."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the application menus to find the patient/calendar.",
+            "points": 0,
+            "visual_evidence": "Sequential screenshots show the transition from the login page to the calendar and then to the specific date."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Sarah Borer (DOB: 1954-07-22). The target appointment is December 20, 2024, at 10:00 AM. In OpenEMR, the status code for 'Cancelled' is typically 'x' or '%'. The agent must not delete the record, only update the status and add the note: 'Patient requested cancellation - work conflict'."
+}

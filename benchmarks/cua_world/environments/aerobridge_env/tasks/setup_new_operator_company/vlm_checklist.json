@@ -1,0 +1,53 @@
+{
+    "task_id": "setup_new_operator_company@1",
+    "task_completion": [
+        {
+            "id": "admin_login",
+            "description": "Agent successfully logged into the Aerobridge admin panel.",
+            "points": 10,
+            "visual_evidence": "The screenshot shows the Aerobridge Django administration dashboard with 'Welcome, admin' or similar logout/user links visible."
+        },
+        {
+            "id": "company_creation_form",
+            "description": "Agent navigated to the 'Add Company' form and entered the required details.",
+            "points": 15,
+            "visual_evidence": "A form titled 'Add company' or 'Change company' showing fields for Full Name, Common Name, Role, and Country being filled."
+        },
+        {
+            "id": "company_details_correct",
+            "description": "The Company record contains the exact specified details: BlueSky Robotics Pvt Ltd, BlueSky, Operator, INDIA, info@bluesky.in, and http://www.bluesky.in.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the saved Company record or the form showing: Full Name='BlueSky Robotics Pvt Ltd', Common Name='BlueSky', Role='Operator' (or value 2), Country='INDIA' (or 'IN'), Email='info@bluesky.in', and Website='http://www.bluesky.in'."
+        },
+        {
+            "id": "operator_creation_form",
+            "description": "Agent navigated to the 'Add Operator' form and linked it to the newly created company.",
+            "points": 15,
+            "visual_evidence": "A form titled 'Add operator' showing a dropdown or search field where 'BlueSky Robotics Pvt Ltd' is selected as the Company."
+        },
+        {
+            "id": "operator_details_correct",
+            "description": "The Operator record contains the specified type, activities, and authorizations.",
+            "points": 35,
+            "visual_evidence": "A screenshot of the Operator record showing: Operator Type='Non-LUC' (or value 2), Authorized Activities='photographing' and 'videotaping', and Operational Authorizations='SORA'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show the browser interacting with the Django admin UI; no terminal windows showing direct SQL or Django management shell commands."
+        },
+        {
+            "id": "no_prefilled_data",
+            "description": "The agent actually typed or pasted the data into the forms rather than the data already existing.",
+            "visual_evidence": "Sequential screenshots show the forms being empty and then progressively filled with the 'BlueSky' information."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the Aerobridge menu system.",
+            "visual_evidence": "Screenshots show the agent clicking on 'Companies' and 'Operators' links in the sidebar or main dashboard."
+        }
+    ],
+    "privileged_info_for_vlm": "The company must be named 'BlueSky Robotics Pvt Ltd' (Common Name: 'BlueSky'). The Role must be 'Operator' (internal ID 2) and Country must be 'INDIA' (internal ID 'IN'). The Operator record must be linked to this company with Operator Type 'Non-LUC' (internal ID 2), Authorized Activities including 'photographing' and 'videotaping', and Operational Authorizations set to 'SORA'."
+}

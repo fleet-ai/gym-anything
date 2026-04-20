@@ -1,0 +1,53 @@
+{
+    "task_id": "hiv_drug_target_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the HIV-1 reference GenBank file in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows the file 'HIV1_reference.gb' loaded, with the sequence and annotations (like gag-pol) visible in the sequence view."
+        },
+        {
+            "id": "locate_mat_peptides",
+            "description": "Identify and select the protease, reverse transcriptase, and integrase mature peptides within the genome annotations.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the agent highlighting or selecting regions labeled as 'aspartic peptidase' (protease), 'p66 subunit' (RT), or 'integrase' in the annotations panel."
+        },
+        {
+            "id": "export_fasta_files",
+            "description": "Export the translated amino acid sequences for the three enzymes as individual .fasta files in the correct directory.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the 'Export' or 'Save' dialogs for protease.fasta, reverse_transcriptase.fasta, and integrase.fasta targeting the ~/UGENE_Data/virology/targets/ folder."
+        },
+        {
+            "id": "verify_fasta_content",
+            "description": "The exported FASTA files contain the correct amino acid sequences.",
+            "points": 25,
+            "visual_evidence": "A text editor or UGENE view showing the contents of the FASTA files. Protease should start with PQVTLW, RT should contain YMDD, and Integrase should contain FLDG."
+        },
+        {
+            "id": "create_summary_file",
+            "description": "Create the target_lengths.txt file with the correct enzyme names and lengths.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the file ~/UGENE_Data/virology/targets/target_lengths.txt showing: Protease: 99, Reverse Transcriptase: 560, Integrase: 288."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE graphical interface to extract sequences rather than just using terminal commands to write the files.",
+            "visual_evidence": "Screenshots show the UGENE application active, mouse movements over sequence annotations, and the use of UGENE's export/translation menus."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the expected lengths into a file without opening the source data.",
+            "visual_evidence": "The agent is seen interacting with the HIV1_reference.gb file and using the software's measurement or annotation tools to determine lengths."
+        },
+        {
+            "id": "genuine_translation",
+            "description": "The agent performed a translation of the DNA sequence to protein within the software.",
+            "visual_evidence": "The UGENE interface shows the 'Translate' option or the protein sequence view being active for the selected regions."
+        }
+    ],
+    "privileged_info_for_vlm": "The HIV-1 reference (NC_001802.1) contains the following mature peptides with specific lengths and motifs: 1. Protease (aspartic peptidase): 99 amino acids, starts with PQVTLW and contains DTG. 2. Reverse Transcriptase (p66 subunit): 560 amino acids, contains the YMDD motif. 3. Integrase: 288 amino acids, contains FLDG and DD motifs. The files must be saved in ~/UGENE_Data/virology/targets/."
+}

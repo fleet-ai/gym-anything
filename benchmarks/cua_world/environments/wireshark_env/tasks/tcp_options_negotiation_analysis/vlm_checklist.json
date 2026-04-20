@@ -1,0 +1,53 @@
+{
+    "task_id": "tcp_options_negotiation_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the specified pcapng file in Wireshark or a terminal-based analyzer.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing Wireshark or a terminal window with '200722_tcp_anon.pcapng' loaded."
+        },
+        {
+            "id": "filter_syn_packets",
+            "description": "The agent applies a filter to isolate initial SYN packets (SYN=1, ACK=0).",
+            "points": 15,
+            "visual_evidence": "A display filter like 'tcp.flags.syn == 1 && tcp.flags.ack == 0' or equivalent tshark command visible in the UI."
+        },
+        {
+            "id": "extract_tcp_options",
+            "description": "The agent inspects or extracts TCP options (MSS, Window Scale, SACK, Timestamps) for the filtered packets.",
+            "points": 25,
+            "visual_evidence": "The 'Transmission Control Protocol' tree expanded in Wireshark showing 'Options' or a tshark command specifying fields like 'tcp.options.mss'."
+        },
+        {
+            "id": "create_csv_report",
+            "description": "The agent creates the CSV report with the required 10 columns and header.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the content of '/home/ga/Documents/tcp_options_report.csv' with the specified headers and data rows."
+        },
+        {
+            "id": "create_summary_file",
+            "description": "The agent creates the summary text file with the 7 specific labeled lines.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the content of '/home/ga/Documents/tcp_options_summary.txt' with the correct labels and calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "The agent performs actual analysis rather than just creating files with hardcoded values.",
+            "visual_evidence": "Screenshots showing the agent interacting with Wireshark, tshark, or a script that processes the pcap file before the output files are created."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent saves the files to the exact paths specified in the prompt.",
+            "visual_evidence": "File explorer or terminal output showing the files exist at /home/ga/Documents/tcp_options_report.csv and /home/ga/Documents/tcp_options_summary.txt."
+        },
+        {
+            "id": "no_hallucinated_packets",
+            "description": "The agent identifies the correct number of packets (2) rather than guessing a large number.",
+            "visual_evidence": "The summary file or terminal output showing 'total_syn_packets: 2'."
+        }
+    ],
+    "privileged_info_for_vlm": "The pcap file contains exactly 2 initial SYN packets (Frame 1 and Frame 9). Both packets have: MSS = 1460, Window Scale = 8, SACK Permitted = yes, and Timestamps = no. The summary file should reflect: total_syn_packets: 2; unique_mss_values: 1460; unique_window_scale_values: 8; sack_permitted_percentage: 100%; timestamp_present_percentage: 0%; most_common_mss: 1460; most_common_dst_port: 80 (both packets target port 80)."
+}

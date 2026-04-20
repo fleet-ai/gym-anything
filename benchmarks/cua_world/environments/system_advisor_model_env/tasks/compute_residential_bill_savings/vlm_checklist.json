@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_residential_bill_savings@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent identifies the correct Phoenix TMY weather file path from the specified solar resource directory file.",
+            "points": 10,
+            "visual_evidence": "Terminal output or editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or a directory listing of the solar resource folder."
+        },
+        {
+            "id": "script_creation",
+            "description": "Agent writes the PySAM Python script with the required modules (Pvwattsv8, Utilityrate5, Cashloan) and parameters.",
+            "points": 20,
+            "visual_evidence": "An open editor (like VS Code or Vim) showing the script content at /home/ga/Documents/SAM_Projects/bill_savings_analysis.py with the specified 7kW capacity and tiered rates."
+        },
+        {
+            "id": "utility_rate_config",
+            "description": "The script correctly implements the 3-tier rate structure and $12.50 fixed charge.",
+            "points": 20,
+            "visual_evidence": "Code snippets in the script showing the ur_ec_tou_mat or similar rate arrays with values 0.0925, 0.1115, and 0.1378."
+        },
+        {
+            "id": "script_execution",
+            "description": "Agent executes the Python script successfully without errors.",
+            "points": 15,
+            "visual_evidence": "Terminal showing the command 'python3 /home/ga/Documents/SAM_Projects/bill_savings_analysis.py' and a successful exit or print statements."
+        },
+        {
+            "id": "json_output_generation",
+            "description": "The script generates the JSON results file at the specified path.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'ls' command confirming the existence of /home/ga/Documents/SAM_Projects/phoenix_bill_savings.json."
+        },
+        {
+            "id": "verify_json_content",
+            "description": "The JSON file contains all six required keys with realistic values.",
+            "points": 20,
+            "visual_evidence": "A 'cat' or editor view of the JSON file showing keys: annual_energy_kwh, annual_bill_without_solar_dollars, annual_bill_with_solar_dollars, first_year_savings_dollars, npv_25yr_dollars, and simple_payback_years."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write a JSON file with hardcoded values without running a simulation.",
+            "visual_evidence": "The agent must be seen writing and executing a Python script that imports 'PySAM' modules."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent uses the actual PySAM library rather than a mock calculation.",
+            "visual_evidence": "The script should contain 'import PySAM.Pvwattsv8', 'import PySAM.Utilityrate5', and 'import PySAM.Cashloan'."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent uses the specific file paths requested in the instructions.",
+            "visual_evidence": "The script and JSON file paths in the terminal/editor match /home/ga/Documents/SAM_Projects/ exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation should yield an annual energy production between 10,000 and 13,500 kWh. The annual bill without solar should be between $1,100 and $1,900. The script must use the Pvwattsv8, Utilityrate5, and Cashloan modules. The weather file path must be retrieved from /home/ga/.SAM/solar_resource_dir.txt. The system capacity is 7.0 kW and the ITC is 30%."
+}

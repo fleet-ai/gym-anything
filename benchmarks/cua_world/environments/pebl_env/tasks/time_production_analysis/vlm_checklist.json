@@ -1,0 +1,59 @@
+{
+    "task_id": "time_production_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source data file at ~/pebl/data/time_production_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command like 'cat', 'head', or a script opening the CSV file in a text editor or data frame."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "Agent implements logic to calculate CE, AE, and CV (using sample standard deviation N-1) for the specified durations.",
+            "points": 25,
+            "visual_evidence": "Code snippets or script execution showing formulas for mean(produced-target), mean(abs(diff)), and std(ddof=1)/mean."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent identifies and excludes participant sub-99 from the group statistics calculation.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing a filter for 'sub-99' or a conditional statement marking it for exclusion/reasoning."
+        },
+        {
+            "id": "json_structure_creation",
+            "description": "Agent formats the results into the required JSON structure with 'participants' and 'group_means'.",
+            "points": 20,
+            "visual_evidence": "A preview of the JSON object in a terminal, editor, or script output showing the nested dictionary structure."
+        },
+        {
+            "id": "file_generation",
+            "description": "Agent saves the final report to ~/pebl/analysis/timing_report.json.",
+            "points": 10,
+            "visual_evidence": "A terminal command like 'ls ~/pebl/analysis/' showing the file exists or a 'write' operation in a script."
+        },
+        {
+            "id": "final_content_verification",
+            "description": "The final JSON contains correct keys for all 4 durations (500, 1000, 2000, 3000) and valid metrics.",
+            "points": 20,
+            "visual_evidence": "A 'cat' or 'jq' command displaying the content of timing_report.json with 'ce_ms', 'ae_ms', and 'cv' values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the final group means without processing the CSV.",
+            "visual_evidence": "The agent should be seen running code that reads the CSV file rather than just writing a string directly to the JSON file."
+        },
+        {
+            "id": "genuine_exclusion",
+            "description": "Agent explicitly handles sub-99 as an exclusion case as per instructions.",
+            "visual_evidence": "The JSON file should show 'excluded': true for sub-99, and the group means should be derived from the other 15 participants."
+        },
+        {
+            "id": "correct_cv_formula",
+            "description": "Agent uses sample standard deviation (N-1) for CV calculation.",
+            "visual_evidence": "Look for 'ddof=1' in Python/Pandas or equivalent logic in the calculation script."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 16 participants (sub-01 to sub-15, and sub-99). Participant sub-99 is a 'cheater' with extremely low variance (std dev ~2.0ms) and must be excluded from 'group_means' but included in the 'participants' list with 'excluded': true. Target durations are exactly 500, 1000, 2000, and 3000. CV must be calculated as sample standard deviation (N-1) divided by the mean. The output must be a JSON file at ~/pebl/analysis/timing_report.json."
+}

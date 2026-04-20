@@ -1,0 +1,59 @@
+{
+    "task_id": "enforce_data_retention@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "Open the Chinook database file in LibreOffice Base",
+            "points": 10,
+            "visual_evidence": "LibreOffice Base window is open showing 'chinook.odb' in the title bar or recent files."
+        },
+        {
+            "id": "identify_classical_tracks",
+            "description": "Identify tracks or InvoiceLines associated with the 'Classical' genre",
+            "points": 15,
+            "visual_evidence": "The agent views the 'Genre' table, 'Track' table, or runs a query involving GenreId 24 or the name 'Classical'."
+        },
+        {
+            "id": "filter_old_invoices",
+            "description": "Identify Invoices dated before January 1, 2011",
+            "points": 15,
+            "visual_evidence": "The agent views the 'Invoice' table or runs a query filtering by InvoiceDate < '2011-01-01'."
+        },
+        {
+            "id": "cross_reference_legal_hold",
+            "description": "Identify which old invoices must be preserved due to containing Classical tracks",
+            "points": 25,
+            "visual_evidence": "The agent performs a join or cross-references Invoice IDs with Track IDs belonging to the Classical genre to ensure they are not deleted."
+        },
+        {
+            "id": "delete_invoice_lines",
+            "description": "Delete the associated InvoiceLines for the targeted invoices",
+            "points": 15,
+            "visual_evidence": "The agent executes a delete command or uses the GUI to remove rows from the 'InvoiceLine' table."
+        },
+        {
+            "id": "delete_invoices",
+            "description": "Delete the targeted Invoices from the Invoice table",
+            "points": 20,
+            "visual_evidence": "The agent executes a delete command or uses the GUI to remove rows from the 'Invoice' table that meet the criteria (pre-2011 and no Classical tracks)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to perform database operations",
+            "visual_evidence": "Screenshots show the LibreOffice Base interface, table views, or the SQL query tool within the application rather than just a terminal."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type in a list of IDs to delete without querying first",
+            "visual_evidence": "The agent is seen performing SELECT queries or filtering tables to identify records before executing deletions."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent interacted with the file at /home/ga/chinook.odb",
+            "visual_evidence": "The file path /home/ga/chinook.odb is visible in the file picker or application title bar."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The 'Classical' genre has GenreId 24. Note: The actual database data may contain zero invoices dated before 2011-01-01 (earliest records are 2021). If the agent correctly identifies that zero records match the deletion criteria after checking, this is a valid completion. The agent must verify both the date (< 2011-01-01) and the absence of Classical tracks (GenreId 24) before concluding."
+}

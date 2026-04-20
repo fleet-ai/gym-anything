@@ -1,0 +1,59 @@
+{
+    "task_id": "gnss_timing_calibration_setup@1",
+    "task_completion": [
+        {
+            "id": "add_tle_source",
+            "description": "Add the CelesTrak GNSS TLE data source to GPredict preferences.",
+            "points": 15,
+            "visual_evidence": "In the Preferences -> TLE Update -> Sources dialog, the URL 'https://celestrak.org/NORAD/elements/gnss.txt' is added to the list of TLE sources."
+        },
+        {
+            "id": "update_satellite_db",
+            "description": "Update the satellite database from the network.",
+            "points": 10,
+            "visual_evidence": "A progress bar or dialog showing 'Updating TLE data' or a 'TLE update finished' notification/log entry."
+        },
+        {
+            "id": "create_ground_station",
+            "description": "Create the 'NIST_Boulder' ground station with specific coordinates and altitude.",
+            "points": 20,
+            "visual_evidence": "The Ground Stations configuration dialog shows a station named 'NIST_Boulder' with Latitude: 39.9936 N, Longitude: 105.2618 W (or -105.2618), and Altitude: 1655 m."
+        },
+        {
+            "id": "set_default_ground_station",
+            "description": "Set 'NIST_Boulder' as the default ground station.",
+            "points": 10,
+            "visual_evidence": "In the GPredict preferences or ground station list, 'NIST_Boulder' is marked as the default (often indicated by a checkmark or selection in the General preferences)."
+        },
+        {
+            "id": "configure_utc_time",
+            "description": "Set the application to display time in UTC.",
+            "points": 15,
+            "visual_evidence": "In Preferences -> Interface -> Time, the 'Display time in UTC' option is selected, or the main clock in the GPredict status bar shows 'UTC'."
+        },
+        {
+            "id": "create_gnss_module",
+            "description": "Create a new module named 'GNSS_Timing' with the four specified satellites.",
+            "points": 30,
+            "visual_evidence": "A new module window or tab titled 'GNSS_Timing' is visible, containing the satellites NAVSTAR 82 (55268), NAVSTAR 81 (48859), GALILEO 22 (43058), and GALILEO 26 (43565)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to configure settings rather than editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GPredict menus, preference dialogs, and module creation wizards."
+        },
+        {
+            "id": "genuine_tle_update",
+            "description": "The agent actually triggered a TLE update rather than just naming a module.",
+            "visual_evidence": "The 'Update TLE' dialog or log messages showing network activity to celestrak.org."
+        },
+        {
+            "id": "manual_coordinate_entry",
+            "description": "The agent manually entered the NIST coordinates into the ground station dialog.",
+            "visual_evidence": "Screenshots show the Ground Station editor with the specific values 39.9936, -105.2618, and 1655 typed into the fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The TLE URL must be exactly https://celestrak.org/NORAD/elements/gnss.txt. The ground station 'NIST_Boulder' must have Latitude 39.9936 N, Longitude 105.2618 W, and Altitude 1655. The module 'GNSS_Timing' must contain exactly four satellites with NORAD IDs: 55268, 48859, 43058, and 43565. Time display must be set to UTC."
+}

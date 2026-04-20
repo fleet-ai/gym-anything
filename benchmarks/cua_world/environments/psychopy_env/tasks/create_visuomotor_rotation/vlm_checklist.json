@@ -1,0 +1,59 @@
+{
+    "task_id": "create_visuomotor_rotation@1",
+    "task_completion": [
+        {
+            "id": "create_conditions_file",
+            "description": "Create the targets.csv file with 4 targets at distance 0.4",
+            "points": 10,
+            "visual_evidence": "A spreadsheet or text editor showing targets.csv with columns for coordinates (e.g., 0.4, 0; -0.4, 0; 0, 0.4; 0, -0.4) at the path ~/PsychoPyExperiments/motor_task/targets.csv."
+        },
+        {
+            "id": "setup_psychopy_components",
+            "description": "Add Mouse, Polygon (cursor), and Code components to the PsychoPy Builder routine",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Builder interface showing icons for a Mouse component, a visual stimulus (likely a circle), and a Code component in the routine timeline."
+        },
+        {
+            "id": "configure_loop_conditions",
+            "description": "Link the targets.csv file to the experiment loop",
+            "points": 10,
+            "visual_evidence": "The 'Loop Properties' dialog box in PsychoPy showing the conditions file path pointing to targets.csv."
+        },
+        {
+            "id": "implement_rotation_logic",
+            "description": "Write the 45-degree clockwise rotation formula in the Code Component",
+            "points": 35,
+            "visual_evidence": "The Code Component editor showing Python code implementing x_new = x*cos(theta) - y*sin(theta) and y_new = x*sin(theta) + y*cos(theta) with theta set to -45 degrees (or -pi/4) for clockwise rotation."
+        },
+        {
+            "id": "hide_system_cursor",
+            "description": "Hide the system mouse cursor via the Code Component",
+            "points": 10,
+            "visual_evidence": "The Code Component (likely in 'Begin Routine') containing the command 'win.mouseVisible = False' or 'mouse.setVisible(0)'."
+        },
+        {
+            "id": "save_experiment_file",
+            "description": "Save the experiment to the specified path",
+            "points": 20,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing 'rotation_task.psyexp' saved in '~/PsychoPyExperiments/motor_task/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI rather than just writing a script via terminal",
+            "visual_evidence": "Screenshots showing the PsychoPy Builder interface, component dialogs, and the routine timeline being manipulated."
+        },
+        {
+            "id": "genuine_code_entry",
+            "description": "The agent manually entered or configured the rotation formula in the Code Component",
+            "visual_evidence": "The Code Component dialog box open with the specific rotation math visible."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The agent created the directory structure as requested",
+            "visual_evidence": "File explorer or terminal output showing the creation of the /motor_task/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at ~/PsychoPyExperiments/motor_task/rotation_task.psyexp. The conditions file targets.csv must contain 4 targets (Up, Down, Left, Right) at a distance of 0.4 from the center. The rotation is 45 degrees clockwise; in the formula provided, clockwise rotation in a standard Cartesian system usually implies a negative angle (theta = -45 degrees or -0.785 radians) if using the standard rotation matrix, or the agent may swap signs to achieve the clockwise effect."
+}

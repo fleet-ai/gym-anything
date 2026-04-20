@@ -1,0 +1,65 @@
+{
+    "task_id": "compare_fixed_vs_variable_aep@1",
+    "task_completion": [
+        {
+            "id": "load_project",
+            "description": "Load the 'HAWT_Review.wpa' project in QBlade.",
+            "points": 10,
+            "visual_evidence": "The QBlade window title or project explorer shows 'HAWT_Review.wpa' is open."
+        },
+        {
+            "id": "configure_fixed_turbine",
+            "description": "Set 'Fixed_Turbine' to Fixed Rotational Speed at 30 RPM.",
+            "points": 15,
+            "visual_evidence": "Rotor simulation settings for 'Fixed_Turbine' showing 'Fixed' control mode and a value of 30 in the RPM field."
+        },
+        {
+            "id": "run_fixed_simulation",
+            "description": "Run the 'Sim_Fixed' simulation for the 3-25 m/s range.",
+            "points": 15,
+            "visual_evidence": "Simulation progress bar or a completed simulation entry named 'Sim_Fixed' in the results list."
+        },
+        {
+            "id": "configure_variable_turbine",
+            "description": "Set 'Variable_Turbine' to Variable Rotational Speed (Optimized Cp) with a Design TSR of 7.0.",
+            "points": 20,
+            "visual_evidence": "Rotor simulation settings for 'Variable_Turbine' showing 'Variable (Optimized Cp)' and a Design TSR value of 7.0."
+        },
+        {
+            "id": "run_variable_simulation",
+            "description": "Run the 'Sim_Variable' simulation for the 3-25 m/s range.",
+            "points": 15,
+            "visual_evidence": "Simulation progress bar or a completed simulation entry named 'Sim_Variable' in the results list."
+        },
+        {
+            "id": "export_fixed_results",
+            "description": "Export Power vs Wind Speed and Rotational Speed for the fixed simulation to the specified path.",
+            "points": 12,
+            "visual_evidence": "Export dialog or file explorer showing 'fixed_power_curve.txt' being saved to /home/ga/Documents/."
+        },
+        {
+            "id": "export_variable_results",
+            "description": "Export Power vs Wind Speed and Rotational Speed for the variable simulation to the specified path.",
+            "points": 13,
+            "visual_evidence": "Export dialog or file explorer showing 'variable_power_curve.txt' being saved to /home/ga/Documents/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to configure and run simulations rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QBlade menus, buttons, and input fields."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The agent actually executed the simulations rather than just opening existing result files.",
+            "visual_evidence": "Presence of simulation progress bars or the 'Run' button being clicked in the QBlade interface."
+        },
+        {
+            "id": "correct_paths",
+            "description": "The agent used the exact file paths specified in the task rather than default locations.",
+            "visual_evidence": "The export file path in the 'Save As' dialog matches /home/ga/Documents/."
+        }
+    ],
+    "privileged_info_for_vlm": "The project file is 'HAWT_Review.wpa'. For 'Fixed_Turbine', the RPM must be exactly 30. For 'Variable_Turbine', the control must be 'Optimized Cp' with a Design TSR of 7.0. Both simulations must cover the 3-25 m/s wind speed range. Output files must be named 'fixed_power_curve.txt' and 'variable_power_curve.txt' located in /home/ga/Documents/."
+}

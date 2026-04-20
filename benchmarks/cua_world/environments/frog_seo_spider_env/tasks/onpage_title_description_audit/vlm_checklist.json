@@ -1,0 +1,53 @@
+{
+    "task_id": "onpage_title_description_audit@1",
+    "task_completion": [
+        {
+            "id": "access_target_url",
+            "description": "Agent navigates to https://books.toscrape.com/ to begin the audit.",
+            "points": 10,
+            "visual_evidence": "Browser address bar shows 'books.toscrape.com' and the page content (books, categories) is visible."
+        },
+        {
+            "id": "crawl_audit_execution",
+            "description": "Agent performs an audit or crawl of the site to identify title and description issues.",
+            "points": 20,
+            "visual_evidence": "Screenshots show an SEO tool, script, or browser inspection identifying multiple pages and their metadata status."
+        },
+        {
+            "id": "export_title_csv",
+            "description": "Agent exports title issue data to a CSV file in the specified directory with 'title' in the name.",
+            "points": 20,
+            "visual_evidence": "File manager or terminal shows a file like 'title_issues.csv' in ~/Documents/SEO/exports/."
+        },
+        {
+            "id": "export_description_csv",
+            "description": "Agent exports meta description issue data to a CSV file in the specified directory with 'description' in the name.",
+            "points": 20,
+            "visual_evidence": "File manager or terminal shows a file like 'description_audit.csv' in ~/Documents/SEO/exports/."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent creates the summary report at the specified path with the required metrics and recommendation.",
+            "points": 30,
+            "visual_evidence": "Text editor or 'cat' command shows ~/Documents/SEO/reports/onpage_audit_report.txt containing a page count, missing description count, and an SEO recommendation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the website rather than hallucinating data.",
+            "visual_evidence": "Screenshots show the browser rendering the actual 'Books to Scrape' site and not just a blank page or a different domain."
+        },
+        {
+            "id": "file_system_adherence",
+            "description": "Agent used the specific directory structure requested rather than default folders.",
+            "visual_evidence": "File paths in screenshots explicitly show the 'SEO/exports' and 'SEO/reports' subdirectories."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply create empty files to pass checks.",
+            "visual_evidence": "CSV files or the report shown in screenshots contain actual data (e.g., book titles or specific counts) derived from the site."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://books.toscrape.com/. It contains 1000 books across 50 pages. The site is a sandbox and intentionally lacks meta descriptions on many pages. The agent must save CSVs to /home/ga/Documents/SEO/exports/ and the report to /home/ga/Documents/SEO/reports/onpage_audit_report.txt. The report must include a total page count (approx 50 or 1000 depending on if they count index pages or product pages), a count of missing descriptions, and one recommendation."
+}

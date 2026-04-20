@@ -1,0 +1,59 @@
+{
+    "task_id": "remove_dives_from_trips@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "Subsurface application is opened and the dive log is loaded.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible showing a list of dives and trips."
+        },
+        {
+            "id": "locate_sund_rock_dive_4",
+            "description": "The agent locates Dive #4 within the 'Sund Rock' trip grouping.",
+            "points": 15,
+            "visual_evidence": "Dive #4 is highlighted or selected under the 'Sund Rock' trip header in the dive list."
+        },
+        {
+            "id": "remove_dive_4_from_trip",
+            "description": "Dive #4 is removed from the 'Sund Rock' trip grouping.",
+            "points": 25,
+            "visual_evidence": "Dive #4 appears as a standalone entry in the list, no longer indented or nested under the 'Sund Rock' trip header."
+        },
+        {
+            "id": "locate_yellow_house_dive_8",
+            "description": "The agent locates Dive #8 within the 'Yellow House' trip grouping.",
+            "points": 15,
+            "visual_evidence": "Dive #8 is highlighted or selected under the 'Yellow House' trip header."
+        },
+        {
+            "id": "remove_dive_8_from_trip",
+            "description": "Dive #8 is removed from the 'Yellow House' trip grouping.",
+            "points": 25,
+            "visual_evidence": "Dive #8 appears as a standalone entry in the list, no longer nested under the 'Yellow House' trip header."
+        },
+        {
+            "id": "save_dive_log",
+            "description": "The updated dive log is saved to the specified location.",
+            "points": 10,
+            "visual_evidence": "The 'File' menu is accessed and 'Save As' or 'Save' is clicked, or a file dialog shows the path /home/ga/Documents/dives.ssrf."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to modify the trips rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Subsurface dive list and context menus (e.g., 'Remove from trip')."
+        },
+        {
+            "id": "no_mass_deletion",
+            "description": "The agent did not delete other dives or trips to simplify the view.",
+            "visual_evidence": "Other dives (like Dive #1 and Dive #5) remain visible and grouped in their respective trips in the final screenshots."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent performed a save operation within the software.",
+            "visual_evidence": "The save dialog or the status bar indicating a save operation is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves 29 total dives. The verifier specifically checks that Dive #4 (chronological index 3) and Dive #8 (chronological index 7) are moved to standalone status. It also verifies that Dive #1 (index 0) and Dive #5 (index 4) remain grouped to ensure the agent didn't accidentally ungroup all dives. The final file must be saved to /home/ga/Documents/dives.ssrf."
+}

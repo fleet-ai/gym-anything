@@ -1,0 +1,53 @@
+{
+    "task_id": "edit_stage_probabilities@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_crm_settings",
+            "description": "Navigate to the CRM pipeline or stage configuration settings.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of CRM stages (New, Qualified, Proposition, Won) in an editable configuration view or settings panel."
+        },
+        {
+            "id": "update_new_stage",
+            "description": "Update 'New' stage to 5% probability and set the specific requirements text.",
+            "points": 20,
+            "visual_evidence": "Screenshot shows the 'New' stage with '5' in the probability field and 'Initial contact established. Lead source identified.' in the requirements/description field."
+        },
+        {
+            "id": "update_qualified_stage",
+            "description": "Update 'Qualified' stage to 30% probability and set the specific requirements text.",
+            "points": 25,
+            "visual_evidence": "Screenshot shows the 'Qualified' stage with '30' in the probability field and 'Budget confirmed. Decision maker identified. Need established. Timeline defined.' in the requirements field."
+        },
+        {
+            "id": "update_proposition_stage",
+            "description": "Update 'Proposition' stage to 65% probability and set the specific requirements text.",
+            "points": 25,
+            "visual_evidence": "Screenshot shows the 'Proposition' stage with '65' in the probability field and 'Proposal delivered. Pricing reviewed by customer. Legal or procurement involved.' in the requirements field."
+        },
+        {
+            "id": "update_won_stage",
+            "description": "Update 'Won' stage to 100% probability and set the specific requirements text.",
+            "points": 20,
+            "visual_evidence": "Screenshot shows the 'Won' stage with '100' in the probability field and 'Contract signed. Purchase order received.' in the requirements field."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the CRM web interface rather than direct database manipulation or terminal scripts.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and typing within the browser-based CRM settings pages."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply edit a local config file or use a 'cheat' command to bypass the UI.",
+            "visual_evidence": "The VLM should see the agent actively navigating the CRM menus and opening individual stage edit modals/forms."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or pasted the specific requirements text into the correct fields.",
+            "visual_evidence": "The VLM should see the text appearing in the CRM's input fields before the 'Save' or 'Update' button is clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires updating four specific CRM stages. Verified values: 'New' (5%, 'Initial contact established. Lead source identified.'), 'Qualified' (30%, 'Budget confirmed. Decision maker identified. Need established. Timeline defined.'), 'Proposition' (65%, 'Proposal delivered. Pricing reviewed by customer. Legal or procurement involved.'), and 'Won' (100%, 'Contract signed. Purchase order received.'). The VLM should verify that both the probability number and the exact requirement strings are present in the final configuration."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_and_list_low_stock_items@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_inventory",
+            "description": "Navigate to the 'General Chemicals' repository in the inventory section.",
+            "points": 10,
+            "visual_evidence": "The screen shows the 'General Chemicals' repository with a list of chemical items and their stock amounts."
+        },
+        {
+            "id": "tag_low_stock_items",
+            "description": "Apply the 'Restock Needed' tag to all items with stock strictly less than 10 (Acetone, Methanol, DMSO, Hexane).",
+            "points": 25,
+            "visual_evidence": "The 'General Chemicals' list shows the tag 'Restock Needed' next to Acetone, Methanol, DMSO, and Hexane."
+        },
+        {
+            "id": "navigate_to_purchasing",
+            "description": "Navigate to the 'Purchasing' experiment within the 'Lab Administration' project.",
+            "points": 15,
+            "visual_evidence": "The breadcrumbs or header indicate the user is in Project: Lab Administration > Experiment: Purchasing."
+        },
+        {
+            "id": "create_requisition_task",
+            "description": "Create a new task named 'Weekly Requisition' inside the Purchasing experiment.",
+            "points": 20,
+            "visual_evidence": "A task titled 'Weekly Requisition' is visible in the task list or task board of the Purchasing experiment."
+        },
+        {
+            "id": "verify_task_description",
+            "description": "The description of the 'Weekly Requisition' task contains the names of the four low-stock chemicals.",
+            "points": 30,
+            "visual_evidence": "The task details view for 'Weekly Requisition' shows a description field containing the text: 'Acetone', 'Methanol', 'DMSO', and 'Hexane'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SciNote web interface rather than executing direct database queries or terminal commands to modify data.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI elements, and form filling within the browser."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually opened the General Chemicals repository to identify stock levels rather than navigating directly to task creation with pre-known values.",
+            "visual_evidence": "The trajectory includes screenshots of the 'General Chemicals' inventory page before the task is created."
+        },
+        {
+            "id": "authentic_tagging",
+            "description": "The agent used the built-in tagging system in the inventory UI.",
+            "visual_evidence": "Screenshots show the tag selection menu or the process of typing 'Restock Needed' into the tag field for the specific items."
+        }
+    ],
+    "privileged_info_for_vlm": "The low-stock items (stock < 10) are exactly: Acetone (4), Methanol (3), DMSO (8), and Hexane (2). All other items like Ethanol, PBS Buffer, Chloroform, and Deionized Water have stock >= 10 and should NOT be tagged or listed. The required tag name is 'Restock Needed' and the required task name is 'Weekly Requisition' located in Lab Administration > Purchasing."
+}

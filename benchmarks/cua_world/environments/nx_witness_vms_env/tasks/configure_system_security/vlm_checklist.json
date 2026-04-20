@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_system_security@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the Nx Witness VMS Web Admin interface",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Nx Witness login page followed by the main dashboard or settings menu, showing the user is authenticated as 'admin'."
+        },
+        {
+            "id": "navigate_to_settings",
+            "description": "Navigate to the System Settings or Security configuration section",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent clicking on 'Settings', 'System Settings', or 'Security' tabs within the web interface."
+        },
+        {
+            "id": "configure_session_and_discovery",
+            "description": "Set sessionLimitMinutes to 15 and disable autoDiscoveryEnabled",
+            "points": 20,
+            "visual_evidence": "A settings page showing a numeric input for session timeout set to '15' and a toggle or checkbox for 'Auto Discovery' in the OFF/unchecked position."
+        },
+        {
+            "id": "configure_encryption_and_stats",
+            "description": "Force traffic encryption and disable statistics collection",
+            "points": 20,
+            "visual_evidence": "A toggle for 'Force Traffic Encryption' (or similar) set to ON/checked, and 'Allow Statistics' or 'Anonymous Usage' set to OFF/unchecked."
+        },
+        {
+            "id": "disable_deprecated_api",
+            "description": "Disable insecure/deprecated API access",
+            "points": 20,
+            "visual_evidence": "A checkbox or toggle for 'Insecure Deprecated API' or 'Legacy API' set to the OFF/disabled state."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Create the security hardening report at the specified path",
+            "points": 20,
+            "visual_evidence": "A terminal window or text editor showing the creation/saving of a file at '/home/ga/security_hardening_report.txt' containing a list of the five changes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Verify the agent used the Web UI for configuration rather than just CLI scripts",
+            "visual_evidence": "Screenshots must show the browser interacting with https://localhost:7001 and clicking UI elements, not just a terminal executing curl commands."
+        },
+        {
+            "id": "actual_save_action",
+            "description": "Verify the agent clicked 'Save' or 'Apply' after changing settings",
+            "visual_evidence": "A screenshot showing the 'Save' button being clicked or a 'Settings saved' confirmation message appearing in the UI."
+        },
+        {
+            "id": "report_content_authenticity",
+            "description": "Verify the report was typed or generated based on the session, not pre-existing",
+            "visual_evidence": "The agent should be seen opening a text editor or using a 'echo' command to write the specific values configured during the session."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness VMS is hosted at https://localhost:7001. Credentials are admin / Admin1234!. The five specific settings to verify in the UI are: sessionLimitMinutes (15), autoDiscoveryEnabled (false), trafficEncryptionForced (true), statisticsAllowed (false), and insecureDeprecatedApiEnabled (false). The final report must be located exactly at /home/ga/security_hardening_report.txt."
+}

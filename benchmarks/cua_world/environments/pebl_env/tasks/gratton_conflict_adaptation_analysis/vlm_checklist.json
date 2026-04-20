@@ -1,0 +1,59 @@
+{
+    "task_id": "gratton_conflict_adaptation_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_data_file",
+            "description": "Locate and open the Simon Task data file at ~/pebl/data/simon_data.csv",
+            "points": 10,
+            "visual_evidence": "A file explorer or text editor showing the contents of simon_data.csv with columns participant_id, block, trial, congruency, acc, and rt_ms."
+        },
+        {
+            "id": "exclude_sub_999",
+            "description": "Identify and exclude participant 'sub-999' from the analysis calculations",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing a filter or conditional statement specifically targeting 'sub-999' for exclusion."
+        },
+        {
+            "id": "filter_post_error_trials",
+            "description": "Implement logic to exclude the first trial of each block, current error trials, and post-error trials",
+            "points": 25,
+            "visual_evidence": "Code snippets showing logic that checks the 'acc' of the current trial (n) and the 'acc' of the previous trial (n-1), and ensures trial > 1."
+        },
+        {
+            "id": "calculate_cell_means",
+            "description": "Calculate mean RTs for the four sequence transitions (cC, cI, iC, iI) for valid participants",
+            "points": 25,
+            "visual_evidence": "Execution output or code showing the grouping of trials by previous-congruency and current-congruency to find mean RTs."
+        },
+        {
+            "id": "compute_gratton_effect",
+            "description": "Calculate the Gratton Effect using the formula (rt_cI - rt_cC) - (rt_iI - rt_iC)",
+            "points": 15,
+            "visual_evidence": "Code or intermediate output showing the subtraction of the incongruent-congruent difference from the congruent-congruent difference."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Produce the final JSON report at ~/pebl/analysis/gratton_report.json with all required fields",
+            "points": 15,
+            "visual_evidence": "A view of the gratton_report.json file containing 'participants' list, 'sub-999' exclusion details (excluded: true, reason), and 'group_mean_gratton'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent did not hardcode the final group mean without performing calculations",
+            "visual_evidence": "The agent's script should contain logic for data processing (e.g., pandas or csv module) rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Verify the agent actually read the source CSV file",
+            "visual_evidence": "Terminal commands like 'cat', 'head', or python code opening '~/pebl/data/simon_data.csv'."
+        },
+        {
+            "id": "correct_exclusion_reasoning",
+            "description": "Verify the exclusion reason for sub-999 is documented as requested",
+            "visual_evidence": "The JSON report must contain a string explaining that sub-999 was an automated bot artifact."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is located at /home/ga/pebl/data/simon_data.csv. The participant 'sub-999' must be excluded with the reason 'automated bot artifact'. The analysis must strictly exclude: 1) the first trial of every block, 2) trials where acc == 0, and 3) trials immediately following a trial where acc == 0. The final output must be a JSON file at /home/ga/pebl/analysis/gratton_report.json. Note that transition keys in the report should be cC, cI, iC, and iI."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "dhfr_electron_density_validation@1",
+    "task_completion": [
+        {
+            "id": "load_structure_and_map",
+            "description": "Load PDB 1RX2 and the 2Fo-Fc electron density map into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list (right panel) shows '1RX2' and a map object (e.g., '1rx2_2fofc')."
+        },
+        {
+            "id": "create_isomesh",
+            "description": "Create an isomesh representation of the electron density map.",
+            "points": 15,
+            "visual_evidence": "A mesh/grid-like structure is visible in the viewer, and a new mesh object appears in the object list."
+        },
+        {
+            "id": "contour_and_carve",
+            "description": "Contour the mesh at 1.0-1.5 sigma and carve it to within 1.6-2.0A of the ligand.",
+            "points": 25,
+            "visual_evidence": "The electron density mesh is tightly localized around the ligand shape rather than covering the whole protein; the PyMOL command history may show 'isomesh' with 'carve=' and 'level=' parameters."
+        },
+        {
+            "id": "display_sticks",
+            "description": "Show the ligand and contacting residues (within 4.0A) as sticks.",
+            "points": 20,
+            "visual_evidence": "The central ligand and surrounding amino acid sidechains are rendered in 'sticks' mode, while the rest of the protein is hidden or in a different representation (like cartoon)."
+        },
+        {
+            "id": "save_session_and_image",
+            "description": "Save the PyMOL session (.pse) and render a high-resolution PNG.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command history shows 'save /home/ga/PyMOL_Data/sessions/dhfr_mtx_density.pse' and 'png /home/ga/PyMOL_Data/images/dhfr_mtx_density.png' or 'ray' commands."
+        },
+        {
+            "id": "generate_report",
+            "description": "Write a text report with heavy atom count and contact residues.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the creation of 'dhfr_mtx_report.txt' containing a heavy atom count and at least 3 residue numbers."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line interface directly.",
+            "visual_evidence": "Screenshots show the PyMOL application window, active cursor movements, or commands being typed into the PyMOL internal prompt."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent derived the report data from the session, not just copying the prompt.",
+            "visual_evidence": "The agent uses commands like 'select' or 'count_atoms' to determine the heavy atom count and identify nearby residues before writing the report."
+        },
+        {
+            "id": "ligand_identification_discrepancy",
+            "description": "The agent handles the fact that 1RX2 contains FOL (Folate), not MTX (Methotrexate).",
+            "visual_evidence": "The agent may search for 'MTX' and find it missing, or proceed using 'FOL' as the ligand in 1RX2, or note the discrepancy in the report."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB structure 1RX2 actually contains Folate (residue name FOL), not Methotrexate (MTX), despite the task description. The heavy atom count for Methotrexate (MTX) is 33. The agent should ideally identify the ligand present in 1RX2 (FOL) to perform the carving and contact analysis. Verified paths: Session at /home/ga/PyMOL_Data/sessions/dhfr_mtx_density.pse, Image at /home/ga/PyMOL_Data/images/dhfr_mtx_density.png, Report at /home/ga/PyMOL_Data/dhfr_mtx_report.txt."
+}

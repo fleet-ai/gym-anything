@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_memory_leak_audit@1",
+    "task_completion": [
+        {
+            "id": "open_memory_panel",
+            "description": "Open the Firefox Developer Tools and navigate to the Memory panel.",
+            "points": 10,
+            "visual_evidence": "The Firefox DevTools pane is visible with the 'Memory' tab selected/active."
+        },
+        {
+            "id": "capture_baseline_snapshot",
+            "description": "Take the first heap snapshot (baseline).",
+            "points": 15,
+            "visual_evidence": "A snapshot entry appears in the left sidebar of the Memory panel, typically labeled 'Snapshot 1'."
+        },
+        {
+            "id": "save_baseline_file",
+            "description": "Save the baseline snapshot to the specified directory.",
+            "points": 20,
+            "visual_evidence": "The 'Save' button/icon is clicked for the first snapshot, and a file dialog or confirmation shows the path ~/Documents/baseline.fxsnapshot."
+        },
+        {
+            "id": "trigger_leak_interaction",
+            "description": "Interact with the app by clicking 'Load High-Res Gallery' then 'Destroy Gallery'.",
+            "points": 20,
+            "visual_evidence": "The cursor is seen clicking the 'Load High-Res Gallery' button, followed by the 'Destroy Gallery' button in the web page area."
+        },
+        {
+            "id": "capture_leaked_snapshot",
+            "description": "Take the second heap snapshot after the interaction.",
+            "points": 15,
+            "visual_evidence": "A second snapshot entry (e.g., 'Snapshot 2') appears in the Memory panel sidebar."
+        },
+        {
+            "id": "save_leaked_file",
+            "description": "Save the second snapshot to the specified directory.",
+            "points": 20,
+            "visual_evidence": "The 'Save' button/icon is clicked for the second snapshot, and a file dialog or confirmation shows the path ~/Documents/leaked.fxsnapshot."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI to capture and save snapshots rather than CLI commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the DevTools 'Take snapshot' and 'Save' buttons."
+        },
+        {
+            "id": "actual_app_interaction",
+            "description": "The agent interacted with the buttons inside the localhost:8080 webpage.",
+            "visual_evidence": "The browser viewport shows the 'Load High-Res Gallery' and 'Destroy Gallery' buttons being highlighted or clicked."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a terminal to 'touch' or create dummy snapshot files.",
+            "visual_evidence": "The trajectory does not show a terminal window being used to create files in ~/Documents."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using the Firefox DevTools Memory panel specifically. The baseline snapshot must be taken before clicking the gallery buttons. The 'Load High-Res Gallery' button must be clicked before 'Destroy Gallery'. Files should be saved to ~/Documents/; Firefox may append an extra .fxsnapshot extension (e.g., baseline.fxsnapshot.fxsnapshot), which is acceptable per instructions."
+}

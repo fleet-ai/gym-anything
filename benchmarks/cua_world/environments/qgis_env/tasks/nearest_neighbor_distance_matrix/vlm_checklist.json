@@ -1,0 +1,59 @@
+{
+    "task_id": "nearest_neighbor_distance_matrix@1",
+    "task_completion": [
+        {
+            "id": "load_geojson",
+            "description": "Load the western US capitals GeoJSON file into QGIS.",
+            "points": 10,
+            "visual_evidence": "The layer 'us_western_capitals' is visible in the QGIS Layers panel and points are rendered on the map canvas."
+        },
+        {
+            "id": "open_nn_analysis_tool",
+            "description": "Open the 'Distance to nearest hub' or 'Distance matrix' tool from the Processing Toolbox.",
+            "points": 15,
+            "visual_evidence": "A dialog window for a distance analysis tool (e.g., 'Distance to nearest hub' or 'Distance matrix') is open on the screen."
+        },
+        {
+            "id": "configure_nn_parameters",
+            "description": "Configure the tool to calculate the nearest neighbor (k=1) for each capital.",
+            "points": 20,
+            "visual_evidence": "The tool settings show the input layer as 'us_western_capitals', the target layer as 'us_western_capitals', and the output type set to a linear/matrix format."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "Review the generated distance matrix attribute table to ensure correct calculations.",
+            "points": 20,
+            "visual_evidence": "An attribute table is visible showing columns for the source capital, the nearest neighbor capital, and a distance value. There should be 17 rows."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the resulting matrix to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "The 'Save Vector Layer as' or 'Export' dialog is shown with the format set to CSV and the file path set to /home/ga/GIS_Data/exports/capital_distance_matrix.csv."
+        },
+        {
+            "id": "save_qgz_project",
+            "description": "Save the QGIS project to the specified location.",
+            "points": 15,
+            "visual_evidence": "The 'Save Project' dialog or the QGIS title bar shows the project path as /home/ga/GIS_Data/projects/distance_analysis.qgz."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QGIS GUI to perform the analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, toolbox, and dialog windows."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The distance values are derived from the software's spatial analysis, not manually entered.",
+            "visual_evidence": "The attribute table shows calculated floating-point numbers for distances (e.g., ~156km for Denver-Cheyenne) consistent with GIS tool output."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply create a text file with the expected answers.",
+            "visual_evidence": "The process of using the 'Distance Matrix' or 'Distance to Nearest Hub' tool is documented in the trajectory screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file contains 17 features. Key nearest neighbor pairs and distances to verify in the attribute table or CSV: Denver and Cheyenne (approx 156.4 km / 1.407 degrees), Bismarck and Pierre (approx 273.4 km / 2.459 degrees), and Lincoln and Topeka. The final output must be a CSV at /home/ga/GIS_Data/exports/capital_distance_matrix.csv and a project file at /home/ga/GIS_Data/projects/distance_analysis.qgz."
+}

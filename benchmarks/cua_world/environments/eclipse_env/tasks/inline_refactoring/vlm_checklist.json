@@ -1,0 +1,59 @@
+{
+    "task_id": "inline_refactoring@1",
+    "task_completion": [
+        {
+            "id": "open_eclipse_project",
+            "description": "The agent has opened the Eclipse IDE and the 'DataProcessor' project is visible in the Package Explorer.",
+            "points": 10,
+            "visual_evidence": "Eclipse IDE window showing 'DataProcessor' in the Project/Package Explorer on the left sidebar."
+        },
+        {
+            "id": "inline_string_processor",
+            "description": "The methods 'trimInput' and 'checkEmpty' in StringProcessor.java have been inlined and removed.",
+            "points": 20,
+            "visual_evidence": "Screenshots of StringProcessor.java showing the absence of 'trimInput' and 'checkEmpty' method definitions, or the 'Inline' refactoring dialog being used on these methods."
+        },
+        {
+            "id": "inline_math_helper",
+            "description": "The methods 'addValues' and 'computeAbsolute' in MathHelper.java have been inlined and removed.",
+            "points": 20,
+            "visual_evidence": "Screenshots of MathHelper.java showing the absence of 'addValues' and 'computeAbsolute' method definitions."
+        },
+        {
+            "id": "inline_data_pipeline",
+            "description": "The methods 'invokeValidation' and 'wrapResult' in DataPipeline.java have been inlined and removed.",
+            "points": 20,
+            "visual_evidence": "Screenshots of DataPipeline.java showing the absence of 'invokeValidation' and 'wrapResult' method definitions."
+        },
+        {
+            "id": "project_compilation_test",
+            "description": "The project compiles successfully and all tests pass after refactoring.",
+            "points": 20,
+            "visual_evidence": "The JUnit view showing a green bar or the Console output showing 'BUILD SUCCESS' or 'Tests run: X, Failures: 0'."
+        },
+        {
+            "id": "refactoring_report_created",
+            "description": "A text file named 'refactoring_report.txt' exists in the project root documenting the removed methods.",
+            "points": 10,
+            "visual_evidence": "A text editor window showing 'refactoring_report.txt' containing the names of the six removed methods: trimInput, checkEmpty, addValues, computeAbsolute, invokeValidation, wrapResult."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "use_eclipse_refactoring",
+            "description": "The agent used Eclipse's built-in refactoring tools rather than just manually deleting code.",
+            "visual_evidence": "Presence of the 'Inline Method' dialog box or the 'Refactor' menu being accessed in screenshots."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use terminal commands like 'sed' or 'rm' to modify the source code files directly.",
+            "visual_evidence": "The agent's primary interactions are within the Eclipse GUI (editor, menus, dialogs) rather than a terminal window."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually ran the tests rather than just creating a report claiming they passed.",
+            "visual_evidence": "The JUnit tab or a terminal showing the execution of a test runner (like Maven or Gradle) with actual test results."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/eclipse-workspace/DataProcessor. The specific methods to be inlined and removed are: StringProcessor.trimInput (calls s.strip()), StringProcessor.checkEmpty (calls s.isEmpty()), MathHelper.addValues (calls a + b), MathHelper.computeAbsolute (calls Math.abs(x)), DataPipeline.invokeValidation (calls Validator.isValid(data)), and DataPipeline.wrapResult (calls '[' + result + ']'). The refactoring_report.txt must be in the project root and list these six methods."
+}

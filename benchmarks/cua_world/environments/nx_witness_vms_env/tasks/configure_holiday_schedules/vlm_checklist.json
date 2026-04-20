@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_holiday_schedules@1",
+    "task_completion": [
+        {
+            "id": "api_authentication",
+            "description": "Agent successfully authenticates with the Nx Witness API or Web Admin interface.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a successful login to the Nx Witness interface at https://localhost:7001 or terminal output showing a successful auth token retrieval using admin/Admin1234!."
+        },
+        {
+            "id": "entrance_lobby_config",
+            "description": "Configure Entrance and Lobby cameras for 24h 'always' mode, high quality, 25 FPS.",
+            "points": 20,
+            "visual_evidence": "Camera settings or API request payloads showing 'Entrance Camera' and 'Lobby Camera' with recording type 'always', quality 'high', and fps '25' for all hours."
+        },
+        {
+            "id": "parking_dock_business_hours",
+            "description": "Configure Parking Lot and Loading Dock cameras for business hours (08:00-22:00) at 15 FPS 'always' mode.",
+            "points": 20,
+            "visual_evidence": "Schedule grid or API data for 'Parking Lot Camera' and 'Loading Dock Camera' showing 'always' recording from 08:00 to 22:00 at 15 FPS and 'high' quality."
+        },
+        {
+            "id": "parking_dock_overnight_hours",
+            "description": "Configure Parking Lot and Loading Dock cameras for overnight hours (22:00-08:00) at 10 FPS 'motionOnly' mode.",
+            "points": 20,
+            "visual_evidence": "Schedule grid or API data for 'Parking Lot Camera' and 'Loading Dock Camera' showing 'motionOnly' recording from 22:00 to 08:00 at 10 FPS and 'normal' quality."
+        },
+        {
+            "id": "server_room_config",
+            "description": "Configure Server Room Camera for 'always' (Mon-Fri) and 'motionOnly' (Sat-Sun) at 5 FPS low quality.",
+            "points": 20,
+            "visual_evidence": "Schedule grid for 'Server Room Camera' showing a distinction between weekdays (always) and weekends (motionOnly), both at 5 FPS and 'low' quality."
+        },
+        {
+            "id": "report_generation",
+            "description": "Export the summary report to the specified file path.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'ls') or a text editor showing the content of /home/ga/recording_schedule_report.txt containing the configured schedules."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_interaction",
+            "description": "The agent interacted with the actual Nx Witness API/Service rather than just creating a fake text file.",
+            "visual_evidence": "Screenshots must show HTTP requests (curl/Postman) or the Nx Witness Web UI, not just the final text file creation."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply echo the task description into the report file without querying the system.",
+            "visual_evidence": "Evidence of the agent fetching camera IDs or current settings from the API before writing the report."
+        },
+        {
+            "id": "credential_usage",
+            "description": "The agent used the provided credentials (admin/Admin1234!) to access the system.",
+            "visual_evidence": "Terminal logs or UI login screens showing the use of the specified username and password."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness API is at https://localhost:7001. Credentials: admin / Admin1234!. Cameras involved: Entrance Camera, Lobby Camera, Parking Lot Camera, Loading Dock Camera, Server Room Camera. Report path: /home/ga/recording_schedule_report.txt. Specifics: Entrance/Lobby (24/7, Always, High, 25FPS); Parking/Dock (08-22 Always/High/15FPS, 22-08 Motion/Normal/10FPS); Server Room (Mon-Fri Always/Low/5FPS, Sat-Sun Motion/Low/5FPS)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "trust_safety_reviewer_suspension@1",
+    "task_completion": [
+        {
+            "id": "identify_bot_users",
+            "description": "Identify users with 3 or more 1-star reviews in the database.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing a query (SQL or visual) counting reviews per user, specifically identifying bot.alpha@spamnet.com and bot.beta@spamnet.com as having 3+ 1-star reviews."
+        },
+        {
+            "id": "update_profiles_schema",
+            "description": "Update the Profiles class schema to include a STRING property named AccountStatus.",
+            "points": 15,
+            "visual_evidence": "The OrientDB 'Schema' or 'Classes' tab showing the 'Profiles' class with a new property 'AccountStatus' of type 'STRING'."
+        },
+        {
+            "id": "create_suspension_classes",
+            "description": "Create the SuspensionLog vertex class and HasSuspensionLog edge class.",
+            "points": 20,
+            "visual_evidence": "The OrientDB 'Schema' tab showing 'SuspensionLog' listed under Classes (Vertex) and 'HasSuspensionLog' listed under Classes (Edge)."
+        },
+        {
+            "id": "suspend_offenders",
+            "description": "Update the AccountStatus of identified offenders to 'Suspended'.",
+            "points": 20,
+            "visual_evidence": "A 'Browse' or 'Query' result showing the Profiles for bot.alpha@spamnet.com and bot.beta@spamnet.com with the AccountStatus column set to 'Suspended'."
+        },
+        {
+            "id": "create_suspension_logs",
+            "description": "Create SuspensionLog vertices with Reason 'Review Bombing' for each suspended user.",
+            "points": 15,
+            "visual_evidence": "A query result from the 'SuspensionLog' class showing two records with the Reason property set to 'Review Bombing'."
+        },
+        {
+            "id": "link_logs_to_profiles",
+            "description": "Link the suspended Profiles to their respective SuspensionLog via HasSuspensionLog edges.",
+            "points": 15,
+            "visual_evidence": "The OrientDB Graph editor or a query showing an edge of type 'HasSuspensionLog' connecting the Profile vertex to the SuspensionLog vertex for the bot accounts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the browser window with the OrientDB Studio UI (Studio, Query, Schema, or Graph tabs)."
+        },
+        {
+            "id": "no_data_deletion",
+            "description": "The agent did not delete the 1-star reviews or the user profiles.",
+            "visual_evidence": "The review count for the bot users remains the same in queries before and after the suspension actions."
+        },
+        {
+            "id": "selective_suspension",
+            "description": "The agent did not suspend innocent users (those with fewer than 3 1-star reviews).",
+            "visual_evidence": "Query results showing 'innocent.user@normal.com' still has a null or active AccountStatus, not 'Suspended'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The users to be suspended are 'bot.alpha@spamnet.com' and 'bot.beta@spamnet.com' because they have 3 or more 1-star reviews. 'innocent.user@normal.com' should NOT be suspended. The required schema changes are: Profiles.AccountStatus (STRING), SuspensionLog (Vertex class), and HasSuspensionLog (Edge class). The reason in the log must be exactly 'Review Bombing' and the status must be exactly 'Suspended'."
+}

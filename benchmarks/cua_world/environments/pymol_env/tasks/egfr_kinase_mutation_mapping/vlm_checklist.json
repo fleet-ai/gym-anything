@@ -1,0 +1,59 @@
+{
+    "task_id": "egfr_kinase_mutation_mapping@1",
+    "task_completion": [
+        {
+            "id": "pdb_load_1m17",
+            "description": "Load the PDB structure 1M17 into the molecular viewer.",
+            "points": 10,
+            "visual_evidence": "The molecular viewer (e.g., PyMOL) shows a protein structure, and the object name '1M17' is visible in the internal GUI list."
+        },
+        {
+            "id": "identify_erlotinib",
+            "description": "Identify the ligand erlotinib (AQ4) within the structure.",
+            "points": 10,
+            "visual_evidence": "The agent selects or highlights the ligand; the command history or selection label shows the 3-letter code 'AQ4'."
+        },
+        {
+            "id": "measure_ca_distance",
+            "description": "Measure the distance between the C-alpha atoms of residues T790 and L858.",
+            "points": 25,
+            "visual_evidence": "A measurement line (dashed line) is visible between two residues in the structure, with a distance label displayed in the viewport (approx 23-24 Angstroms)."
+        },
+        {
+            "id": "binding_pocket_selection",
+            "description": "Select protein residues within 4.0 Angstroms of the erlotinib molecule.",
+            "points": 20,
+            "visual_evidence": "A cluster of residues surrounding the ligand (AQ4) is highlighted or selected, often indicated by pink squares or a specific selection name like 'pocket' in the GUI."
+        },
+        {
+            "id": "visualization_generation",
+            "description": "Create a high-quality visualization with specific styling (cartoon protein, sticks for drug, spheres/sticks for mutations).",
+            "points": 20,
+            "visual_evidence": "The viewport shows the protein in cartoon representation, the ligand AQ4 as sticks, and residues 790 and 858 highlighted in a distinct style (e.g., spheres)."
+        },
+        {
+            "id": "report_and_file_output",
+            "description": "Save the image to the specified path and write the quantitative report with required data.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or file explorer show the creation of '/home/ga/PyMOL_Data/images/egfr_mutations.png' and '/home/ga/PyMOL_Data/egfr_report.txt' containing the ligand code AQ4 and the distance."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the molecular viewer's GUI or command line interface rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots show the PyMOL/molecular viewer window active with the 1M17 structure loaded and manipulated."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The distance measurement was performed using the software's measurement tool.",
+            "visual_evidence": "The measurement label and dashed line are visible in the 3D canvas, not just typed into a report."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the privileged ligand code or distance without first loading the PDB.",
+            "visual_evidence": "The sequence of screenshots shows the PDB being fetched/loaded before the report is written."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 1M17. The 3-letter ligand code for Erlotinib is AQ4. The measured CA-CA distance between Thr790 and Leu858 in this structure is approximately 23.3 Angstroms. The binding pocket residues (within 4A of AQ4) include Leu718, Val726, Ala743, Met793, and Leu844 among others. The output image must be saved to /home/ga/PyMOL_Data/images/egfr_mutations.png and the text report to /home/ga/PyMOL_Data/egfr_report.txt."
+}

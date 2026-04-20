@@ -1,0 +1,53 @@
+{
+    "task_id": "patient_entity_resolution_match@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection message to localhost:1521/XEPDB1 or a prompt indicating the 'hr' user is active."
+        },
+        {
+            "id": "table_creation",
+            "description": "Agent creates the 'PATIENT_LINKAGE' table with the specified schema (INTAKE_ID, MPI_ID, MATCH_SCORE).",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE TABLE PATIENT_LINKAGE' or a confirmation message like 'Table created' in the console/GUI."
+        },
+        {
+            "id": "similarity_logic_implementation",
+            "description": "Agent uses UTL_MATCH.JARO_WINKLER_SIMILARITY on First and Last names with the 90 threshold and exact DOB/Gender matches.",
+            "points": 30,
+            "visual_evidence": "SQL code visible in a text editor or terminal containing 'UTL_MATCH', 'JARO_WINKLER_SIMILARITY', '>= 90', and joins on DOB and Gender."
+        },
+        {
+            "id": "data_insertion",
+            "description": "Agent populates the 'PATIENT_LINKAGE' table with the results of the probabilistic match.",
+            "points": 20,
+            "visual_evidence": "SQL command 'INSERT INTO PATIENT_LINKAGE' or a 'SELECT' query showing rows populated in the PATIENT_LINKAGE table."
+        },
+        {
+            "id": "csv_export",
+            "description": "Agent exports the 'PATIENT_LINKAGE' table to the specified file path, ordered by match score descending.",
+            "points": 25,
+            "visual_evidence": "A command or GUI action exporting to '/home/ga/Desktop/linkage_report.csv' and a file manager or terminal showing the file exists at that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually type or hardcode the linkage results into the CSV or table.",
+            "visual_evidence": "The agent should be seen writing a SQL query that joins MASTER_PATIENT_INDEX and CLINIC_INTAKE rather than using 'VALUES' clauses with specific patient IDs."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle database environment rather than just creating a mock CSV file.",
+            "visual_evidence": "Screenshots showing a SQL interface (SQL*Plus, SQL Developer, or a programming IDE with a DB driver) and actual execution of SQL commands."
+        },
+        {
+            "id": "correct_similarity_package",
+            "description": "The agent used the Oracle-specific UTL_MATCH package as requested.",
+            "visual_evidence": "The string 'UTL_MATCH' must appear in the code used to generate the matches."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires an exact match on DOB and Gender. The similarity threshold is 90, calculated as the average of Jaro-Winkler scores for First Name and Last Name. The required table name is 'PATIENT_LINKAGE' with columns INTAKE_ID, MPI_ID, and MATCH_SCORE. The final output must be a CSV at /home/ga/Desktop/linkage_report.csv ordered by MATCH_SCORE DESC. Connection: hr/hr123@localhost:1521/XEPDB1."
+}

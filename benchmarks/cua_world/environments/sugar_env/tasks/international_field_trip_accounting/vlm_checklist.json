@@ -1,0 +1,59 @@
+{
+    "task_id": "international_field_trip_accounting@1",
+    "task_completion": [
+        {
+            "id": "access_source_files",
+            "description": "Agent opens or reads the source data files (rates.json and field_trip_expenses.csv).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening the files in a text editor, spreadsheet viewer, or displaying their contents in a terminal/IDE."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Agent creates a Python script named 'trip_calculator.py' in the '/home/ga/Documents/' directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or IDE showing 'trip_calculator.py' exists in the specified path."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The Python script contains logic to parse JSON/CSV, perform currency conversion to USD, and aggregate by category.",
+            "points": 25,
+            "visual_evidence": "Code visible in an editor showing 'import json', 'import csv', math for exchange rates, and the four required categories (Transport, Accommodation, Food, Activities)."
+        },
+        {
+            "id": "execute_script",
+            "description": "Agent runs the 'trip_calculator.py' script successfully.",
+            "points": 15,
+            "visual_evidence": "A terminal or IDE console showing the execution of 'python3 trip_calculator.py' without errors."
+        },
+        {
+            "id": "generate_summary_file",
+            "description": "The script generates the 'trip_financial_summary.txt' file in the correct directory.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal showing 'trip_financial_summary.txt' exists in '/home/ga/Documents/'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The final report follows the exact required format and includes the total cost and category breakdown rounded to 2 decimal places.",
+            "points": 20,
+            "visual_evidence": "A screenshot of 'trip_financial_summary.txt' showing the '=== FIELD TRIP FINANCIAL SUMMARY ===' header and the specific category lines with dollar signs and values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the final totals directly into the script or text file without calculation.",
+            "visual_evidence": "The Python script code should show variables and logic for calculation rather than just print statements with the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the actual files provided in the environment rather than creating dummy data.",
+            "visual_evidence": "Screenshots showing the agent navigating to /home/ga/Documents/ to access the specific source files."
+        },
+        {
+            "id": "proper_tool_usage",
+            "description": "The agent used an IDE or text editor to write the script rather than just echoing text into a file via terminal (if a GUI is available).",
+            "visual_evidence": "Visuals of a text editor (like Gedit, VS Code, or Mousepad) being used to compose the Python script."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be located at /home/ga/Documents/trip_calculator.py and the output at /home/ga/Documents/trip_financial_summary.txt. The required categories for aggregation are exactly: Transport, Accommodation, Food, and Activities. The data is synthetic and randomized (especially JPY rates), so the VLM must verify that the agent actually reads rates.json and field_trip_expenses.csv to perform the math, rather than using pre-known values."
+}

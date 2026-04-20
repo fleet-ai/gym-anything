@@ -1,0 +1,56 @@
+{
+    "task_id": "hicks_law_information_processing@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "The agent accesses the raw data file at ~/pebl/data/hicks_law_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pd.read_csv) or a file explorer showing the contents of hicks_law_data.csv."
+        },
+        {
+            "id": "data_cleaning_logic",
+            "description": "The agent implements the filtering logic: accuracy < 60% for exclusion, and 150ms <= RT <= 3000ms for correct trials.",
+            "points": 20,
+            "visual_evidence": "Code snippets in a script or notebook showing filtering conditions for accuracy, correct == 1, and the RT range."
+        },
+        {
+            "id": "hicks_law_modeling",
+            "description": "The agent calculates Information Entropy (log2(N)) and performs linear regression for each valid participant.",
+            "points": 25,
+            "visual_evidence": "Code showing the calculation of log2(N) and a regression call (e.g., scipy.stats.linregress or np.polyfit) to find slope and intercept."
+        },
+        {
+            "id": "group_statistics",
+            "description": "The agent computes the group mean slope and group mean intercept across all valid participants.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the calculation of the average slope and average intercept from the individual participant results."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the final analysis to ~/pebl/analysis/hicks_report.json with the required structure.",
+            "points": 30,
+            "visual_evidence": "A terminal command showing 'cat' of the generated JSON file, or code saving the dictionary to the specified path. The JSON must show 'participants' with 'id', 'mean_rt_by_n', 'hicks_slope_ms_per_bit', and 'hicks_intercept_ms', or exclusion reasons."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not hardcode the final group means or participant statuses without running analysis code.",
+            "points": 0,
+            "visual_evidence": "The agent's script should show dynamic calculation logic rather than a pre-written JSON string containing the final numbers."
+        },
+        {
+            "id": "correct_exclusion_handling",
+            "description": "The agent correctly identifies and excludes sub-99 based on the data, not just by name.",
+            "points": 0,
+            "visual_evidence": "Code showing the calculation of accuracy per participant and a conditional check that leads to the exclusion of sub-99."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the specific file paths requested in the task description.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent working within ~/pebl/data/ and saving to ~/pebl/analysis/."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 20 valid participants and one contaminated participant, 'sub-99'. 'sub-99' must be excluded because their accuracy is ~22% (below the 60% threshold) due to random responding. The final report must be saved to /home/ga/pebl/analysis/hicks_report.json and must include specific keys for both valid and excluded participants."
+}

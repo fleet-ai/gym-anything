@@ -1,0 +1,59 @@
+{
+    "task_id": "dual_robot_welding_cell_commissioning@1",
+    "task_completion": [
+        {
+            "id": "scene_setup_verification",
+            "description": "CoppeliaSim scene contains two UR5 robots facing each other with a steel plate and 12 dummy markers at specified coordinates.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the CoppeliaSim 3D viewport showing two UR5 models, a central rectangular plate, and dummy objects (markers) arranged in two 3x2 grids."
+        },
+        {
+            "id": "reachability_audit_execution",
+            "description": "The agent performs a reachability check for all 12 weld points and generates the weld_audit.csv file.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of 'weld_audit.csv' in the specified directory, or code execution logs showing positional error calculations."
+        },
+        {
+            "id": "sequential_mode_execution",
+            "description": "Robot A completes its 6 welds followed by Robot B, with data recorded in sequential_cycle.csv.",
+            "points": 20,
+            "visual_evidence": "CoppeliaSim simulation running where robots move one after the other; presence of 'sequential_cycle.csv' in the exports folder."
+        },
+        {
+            "id": "coordinated_mode_interlock",
+            "description": "Both robots move simultaneously with a distance-based interlock (0.15m) active, recorded in coordinated_cycle.csv.",
+            "points": 25,
+            "visual_evidence": "Simulation showing both robots moving at once; 'coordinated_cycle.csv' showing 'ee_clearance_m' and 'interlock_active' columns."
+        },
+        {
+            "id": "data_export_verification",
+            "description": "All four required files (weld_audit.csv, sequential_cycle.csv, coordinated_cycle.csv, commissioning_report.json) are exported to the correct path.",
+            "points": 10,
+            "visual_evidence": "File manager or 'ls' command showing all four files in /home/ga/Documents/CoppeliaSim/exports/."
+        },
+        {
+            "id": "final_report_content",
+            "description": "The commissioning_report.json contains all required fields including speedup_pct and safety_violations.",
+            "points": 15,
+            "visual_evidence": "Text editor or cat command displaying the JSON content with fields like 'speedup_pct', 'interlock_activations', and 'min_clearance_coordinated_m'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI or API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim application window active with the specific robot/plate configuration, not just a text editor."
+        },
+        {
+            "id": "dynamic_data_validation",
+            "description": "The CSV files contain varying coordinate data consistent with robot movement.",
+            "visual_evidence": "Preview of CSV files showing changing floating-point values for end-effector positions across timesteps."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The speedup percentage and cycle times are calculated from simulation results, not pre-written.",
+            "visual_evidence": "The commissioning_report.json values should correspond logically to the durations observed in the simulation logs/CSV rows."
+        }
+    ],
+    "privileged_info_for_vlm": "The robots are UR5s located at (0, -0.5, 0) and (0, 0.5, 0). The plate is at (0.4, 0, 0.15). Weld points are at X=[0.2, 0.4, 0.6], Y=[±0.04, ±0.10], Z=0.16. The interlock threshold is 0.15m. The VLM should verify that the 'interlock_active' flag in coordinated_cycle.csv triggers when 'ee_clearance_m' is less than 0.15."
+}

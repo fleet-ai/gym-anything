@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_code@1",
+    "task_completion": [
+        {
+            "id": "open_calculator_file",
+            "description": "The agent has opened Calculator.java in the IntelliJ IDEA editor.",
+            "points": 10,
+            "visual_evidence": "A tab named 'Calculator.java' is visible in the editor area, and the file content shows the org.lable.oss.helloworld package."
+        },
+        {
+            "id": "rename_calc_method",
+            "description": "The 'calc' method has been renamed to 'calculate'.",
+            "points": 15,
+            "visual_evidence": "The method signature in the editor shows 'public ... calculate(...)' instead of 'calc'."
+        },
+        {
+            "id": "rename_parameters",
+            "description": "Parameters 'x', 'y', and 'o' have been renamed to 'firstOperand', 'secondOperand', and 'operation'.",
+            "points": 20,
+            "visual_evidence": "The method signature and body show the new parameter names: 'firstOperand', 'secondOperand', and 'operation'."
+        },
+        {
+            "id": "extract_log_method",
+            "description": "A helper method named 'logOperation' has been created and contains the logging logic.",
+            "points": 30,
+            "visual_evidence": "A new method 'private void logOperation(...)' is visible in the class, and the logging calls inside 'calculate' are replaced by calls to this method."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project compiles successfully after the refactoring changes.",
+            "points": 25,
+            "visual_evidence": "The 'Build' output window or a terminal running 'mvn compile' shows a 'BUILD SUCCESS' message or no red error underlines in the IDE project tree/editor."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_ide_features",
+            "description": "The agent used IntelliJ's refactoring tools (Rename, Extract Method) rather than just manual typing.",
+            "visual_evidence": "Screenshots show refactoring dialogs (e.g., 'Rename' or 'Extract Method' popup windows) or the right-click Refactor menu."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use 'sed' or 'echo' in the terminal to overwrite the file content directly.",
+            "visual_evidence": "The terminal history (if visible) does not show stream editor commands used to modify Calculator.java; changes appear in the IDE editor."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the GUI elements of the IDE.",
+            "visual_evidence": "The mouse cursor is seen hovering over IDE menus, or IDE-specific UI elements (like the Project tool window) are active."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/refactor-demo/. The target file is src/main/java/org/lable/oss/helloworld/Calculator.java. The original code contains a calc(int x, int y, String o) method with four branches of repeated logging. The refactoring is successful only if the method name, all three parameters, and the logging extraction (logOperation) are completed and the Maven build passes."
+}

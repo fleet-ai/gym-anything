@@ -1,0 +1,59 @@
+{
+    "task_id": "ivc_diameter_assessment@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT volume (amos_0001) is loaded into the 3D Slicer viewer.",
+            "points": 10,
+            "visual_evidence": "3D Slicer interface showing axial, sagittal, and coronal slices of an abdominal CT scan."
+        },
+        {
+            "id": "intrahepatic_measurement_action",
+            "description": "The agent performs a diameter measurement at the intrahepatic level of the IVC.",
+            "points": 20,
+            "visual_evidence": "A ruler or markup line tool placed across the IVC in a slice where the liver is visible, with a measurement value displayed near 22.0 mm."
+        },
+        {
+            "id": "infrarenal_measurement_action",
+            "description": "The agent performs a diameter measurement at the infrarenal level of the IVC.",
+            "points": 20,
+            "visual_evidence": "A ruler or markup line tool placed across the IVC in a slice below the renal veins, with a measurement value displayed near 18.0 mm."
+        },
+        {
+            "id": "save_markups_json",
+            "description": "The agent saves the measurement markups to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog or terminal command showing the path ~/Documents/SlicerData/AMOS/ivc_measurements.mrk.json."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "The agent creates the final report JSON with all required clinical fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing ivc_report.json with fields: intrahepatic_diameter_mm, infrarenal_diameter_mm, classification, morphology, and clinical_interpretation."
+        },
+        {
+            "id": "report_accuracy",
+            "description": "The reported values in the JSON match the measurements taken in the GUI.",
+            "points": 15,
+            "visual_evidence": "The values in the final report (e.g., 22.0 and 18.0) match the labels seen on the 3D Slicer canvas during the measurement steps."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the 3D Slicer GUI tools to measure rather than just writing a file manually.",
+            "visual_evidence": "Screenshots show the mouse cursor or active markup tools interacting with the CT slices in the Slicer interface."
+        },
+        {
+            "id": "no_hardcoded_shortcut",
+            "description": "The agent did not simply echo the ground truth values into a file without opening the image.",
+            "visual_evidence": "The trajectory shows the CT scan being navigated (scrolling through slices) before the report is generated."
+        },
+        {
+            "id": "authentic_software_usage",
+            "description": "The agent used the Markups module or Ruler tool within Slicer.",
+            "visual_evidence": "The Slicer 'Markups' or 'Data' module panel is visible and populated with measurement nodes."
+        }
+    ],
+    "privileged_info_for_vlm": "For case amos_0001, the ground truth IVC label is 9. The expected intrahepatic diameter is approximately 22.0 mm and the infrarenal diameter is approximately 18.0 mm. The agent must save results to ~/Documents/SlicerData/AMOS/ivc_measurements.mrk.json and ~/Documents/SlicerData/AMOS/ivc_report.json."
+}

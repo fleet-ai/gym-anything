@@ -1,0 +1,53 @@
+{
+    "task_id": "rib_vertebral_localization@1",
+    "task_completion": [
+        {
+            "id": "load_ct_and_locate_nodule",
+            "description": "The agent successfully loads the chest CT and identifies the pre-placed 'Nodule' fiducial.",
+            "points": 10,
+            "visual_evidence": "Slicer 3D interface showing a loaded CT volume and a visible fiducial marker labeled 'Nodule' in the 2D or 3D views."
+        },
+        {
+            "id": "rib_counting_navigation",
+            "description": "The agent scrolls through the CT slices to count ribs and identify anatomical variants.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent navigating through axial, sagittal, or coronal slices, specifically focusing on the costovertebral junctions."
+        },
+        {
+            "id": "place_vertebral_fiducials",
+            "description": "The agent places reference fiducials at the centers of T1, T6, and T12 vertebral bodies.",
+            "points": 25,
+            "visual_evidence": "Three new fiducial markers visible in the Markups list or 3D view, ideally labeled T1, T6, and T12, positioned within the vertebral bodies."
+        },
+        {
+            "id": "save_markups_json",
+            "description": "The agent saves the vertebral landmarks to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save' dialog box or a terminal command showing the path ~/Documents/SlicerData/LIDC/vertebral_landmarks.mrk.json being used."
+        },
+        {
+            "id": "export_rib_report",
+            "description": "The agent exports a report with the required fields (rib counts, variants, nodule level).",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output showing the content of ~/Documents/SlicerData/LIDC/rib_count_report.json containing fields like total_rib_pairs, anatomical_variants, and nodule_vertebral_level."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI to place markers rather than just writing a script to generate the file.",
+            "visual_evidence": "Mouse cursor movements, active markup placement tools in the Slicer toolbar, and manual clicking on vertebral bodies."
+        },
+        {
+            "id": "genuine_localization",
+            "description": "The agent actually navigated to the nodule location to determine its level.",
+            "visual_evidence": "The slice viewer coordinates changing to center on the 'Nodule' fiducial before the report is written."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the privileged information into the report without looking at the scan.",
+            "visual_evidence": "The agent performing measurements or scrolling through the spine to verify the T1-T12 span."
+        }
+    ],
+    "privileged_info_for_vlm": "The standard anatomy for LIDC-IDRI-0001 contains 12 pairs of ribs. The distance between the T1 and T12 fiducials should be between 200mm and 320mm. The report must include specific fields: total_rib_pairs (expected 12), anatomical_variants (cervical_rib, lumbar_rib, bifid_rib), and the nodule_vertebral_level."
+}

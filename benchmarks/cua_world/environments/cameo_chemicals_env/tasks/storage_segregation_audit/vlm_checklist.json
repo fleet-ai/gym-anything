@@ -1,0 +1,53 @@
+{
+    "task_id": "storage_segregation_audit@1",
+    "task_completion": [
+        {
+            "id": "access_inventory",
+            "description": "Agent opens and reads the facility chemical inventory file.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing 'facility_chemical_inventory.csv' open in a text editor, spreadsheet viewer, or terminal output."
+        },
+        {
+            "id": "cameo_research",
+            "description": "Agent uses the CAMEO Chemicals website to research reactivity and compatibility.",
+            "points": 15,
+            "visual_evidence": "Browser screenshots showing the CAMEO Chemicals website (cameochemicals.noaa.gov) with searches for chemicals from the inventory."
+        },
+        {
+            "id": "identify_dangerous_pairs",
+            "description": "Agent identifies specific incompatible chemical pairs based on their locations in the facility.",
+            "points": 25,
+            "visual_evidence": "Notes, scratchpads, or draft reports showing the identification of Sulfuric Acid/Sodium Cyanide and Hydrogen Peroxide/Acetone as hazardous pairs."
+        },
+        {
+            "id": "report_generation_structure",
+            "description": "Agent creates the audit report file with the required sections (locations, hazards, severity, standards).",
+            "points": 20,
+            "visual_evidence": "Screenshot of 'storage_audit_report.txt' being written with headers for 'Severity', 'Hazardous Reactions', and 'Corrective Actions'."
+        },
+        {
+            "id": "technical_accuracy",
+            "description": "The report correctly identifies the specific chemical reactions (HCN gas and explosive peroxides) and NFPA/OSHA violations.",
+            "points": 30,
+            "visual_evidence": "The final content of 'storage_audit_report.txt' contains the terms 'HCN', 'Hydrogen Cyanide', 'TATP', or 'Organic Peroxides' and references to OSHA/NFPA."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_cameo_usage",
+            "description": "Agent actually used the CAMEO database rather than relying on internal knowledge.",
+            "visual_evidence": "Screenshots must show the 'MyChemicals' or 'Reactivity Worksheet' features on the CAMEO website."
+        },
+        {
+            "id": "no_precomputed_copy_paste",
+            "description": "Agent did not copy the final report from a hidden source or pre-existing file.",
+            "visual_evidence": "The agent is seen typing or incrementally building the report in the text editor."
+        },
+        {
+            "id": "inventory_data_usage",
+            "description": "The report uses the specific building/bay locations found in the CSV file.",
+            "visual_evidence": "The final report correctly maps Sulfuric Acid to Building B/Bay 2 and Sodium Cyanide to Building C/Bay 1 (or relevant pairs found in the CSV)."
+        }
+    ],
+    "privileged_info_for_vlm": "The audit must identify at least two critical hazards: 1) Sulfuric Acid (Bldg B, Bay 2) and Sodium Cyanide (Bldg C, Bay 1) which react to form lethal Hydrogen Cyanide (HCN) gas. 2) Hydrogen Peroxide >60% (Bldg A, Bay 7) and Acetone (Bldg A, Bay 5) which can form explosive organic peroxides like TATP. The report must be saved to ~/Documents/storage_audit_report.txt and include severity ratings (Critical/High/Medium) and corrective actions (e.g., physical segregation, secondary containment, or climate control)."
+}

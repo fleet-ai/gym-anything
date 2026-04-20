@@ -1,0 +1,62 @@
+{
+    "task_id": "music_catalog_royalty_reconciliation@1",
+    "task_completion": [
+        {
+            "id": "open_source_csv",
+            "description": "The agent opens the source file q3_streaming_export.csv in a spreadsheet application.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like LibreOffice Calc) is visible showing the raw CSV data from ~/Documents/Spreadsheets/."
+        },
+        {
+            "id": "create_rates_sheet",
+            "description": "A 'Rates' sheet is created with the specific per-stream values for all five platforms.",
+            "points": 15,
+            "visual_evidence": "A tab named 'Rates' is visible containing Tidal ($0.01250), Apple Music ($0.00735), Spotify ($0.00437), Amazon Music ($0.00402), and YouTube ($0.00069)."
+        },
+        {
+            "id": "calculate_royalties",
+            "description": "The main data sheet includes calculated columns for Gross_Royalty, Artist_Share, and Label_Share.",
+            "points": 25,
+            "visual_evidence": "Columns titled 'Gross_Royalty', 'Artist_Share', and 'Label_Share' are visible with populated numerical values."
+        },
+        {
+            "id": "summary_sheet_aggregation",
+            "description": "A 'Summary' sheet is created showing Total Gross Royalty aggregated by Platform.",
+            "points": 20,
+            "visual_evidence": "A tab named 'Summary' is visible showing a table or pivot table with the five platforms and their respective total royalty sums."
+        },
+        {
+            "id": "top_5_tracks",
+            "description": "The 'Summary' sheet lists the Top 5 earning tracks by Total Gross Royalty.",
+            "points": 20,
+            "visual_evidence": "A list or table on the 'Summary' sheet showing exactly 5 track names ranked by their total earnings."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "The workbook is saved with the correct filename in the specified directory.",
+            "points": 10,
+            "visual_evidence": "The application title bar or a file explorer window shows the file saved as 'royalty_statement_Q3.xlsx' in ~/Documents/Spreadsheets/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the spreadsheet GUI to perform calculations and formatting rather than just terminal commands.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with spreadsheet cells, formulas, or menu items."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not manually type in final totals but used formulas or pivot tables.",
+            "points": 0,
+            "visual_evidence": "The formula bar shows cell references (e.g., =A2*Rates.B1) when a royalty cell is selected."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename the source CSV or move a pre-existing file.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows the step-by-step process of adding sheets and defining the rates."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains 500 records across 5 platforms. Verified rates: Tidal (0.0125), Apple Music (0.00735), Spotify (0.00437), Amazon Music (0.00402), YouTube (0.00069). Artist and Label shares must each be exactly 50% of the Gross_Royalty. The final file must be an .xlsx file named royalty_statement_Q3.xlsx."
+}

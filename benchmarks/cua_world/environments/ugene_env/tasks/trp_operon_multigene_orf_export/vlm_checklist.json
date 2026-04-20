@@ -1,0 +1,53 @@
+{
+    "task_id": "trp_operon_multigene_orf_export@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the trp_operon.gb file in UGENE",
+            "points": 10,
+            "visual_evidence": "The UGENE interface shows the 'trp_operon.gb' file loaded in the Project View or Sequence View."
+        },
+        {
+            "id": "identify_orfs",
+            "description": "Identify Open Reading Frames (ORFs) of at least 200 bp using the bacterial genetic code",
+            "points": 20,
+            "visual_evidence": "The UGENE 'ORF Finder' or 'Find ORFs' dialog/panel is visible with settings for 'Bacterial' code and '200' bp minimum length."
+        },
+        {
+            "id": "translate_to_protein",
+            "description": "Translate identified ORFs into protein sequences starting with Methionine",
+            "points": 20,
+            "visual_evidence": "The UGENE interface shows protein sequences (amino acids) generated from the DNA sequence, or the 'Translate' context menu/dialog is active."
+        },
+        {
+            "id": "export_fasta_files",
+            "description": "Export five individual FASTA files (trpE, trpD, trpC, trpB, trpA) to the results directory",
+            "points": 25,
+            "visual_evidence": "The 'Export as FASTA' dialog or a file explorer window shows the files trpE_protein.fasta, trpD_protein.fasta, trpC_protein.fasta, trpB_protein.fasta, and trpA_protein.fasta being saved to ~/UGENE_Data/ecoli_trp_operon/results/."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Create a summary report (trp_operon_report.txt) with gene names, positions, lengths, and coding density",
+            "points": 25,
+            "visual_evidence": "A text editor or UGENE internal editor shows 'trp_operon_report.txt' containing the required metrics (start/stop, lengths, coding density percentage)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI rather than just terminal commands",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being actively used."
+        },
+        {
+            "id": "genuine_translation",
+            "description": "Protein sequences were derived from the software's translation tool",
+            "visual_evidence": "The UGENE translation interface or sequence view showing the mapping of DNA to Amino Acids is visible."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The summary report was manually typed or generated during the session",
+            "visual_evidence": "The agent is seen interacting with a text editor or saving a new file, rather than just moving a pre-existing file."
+        }
+    ],
+    "privileged_info_for_vlm": "The source GenBank file (V00368.1) provided in the environment is only 1,565 bp long. This sequence contains the full trpE gene but is truncated, containing only a fragment of trpD and missing trpC, trpB, and trpA entirely. While the task asks for all five genes, the agent will only be able to find the full sequence for trpE in the provided file. The VLM should reward the agent for correctly identifying what is present in the file provided, even if the file itself is insufficient to fulfill the biological reality of a full operon."
+}

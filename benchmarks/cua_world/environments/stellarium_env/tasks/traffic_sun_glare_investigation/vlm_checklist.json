@@ -1,0 +1,59 @@
+{
+    "task_id": "traffic_sun_glare_investigation@1",
+    "task_completion": [
+        {
+            "id": "stellarium_location_config",
+            "description": "Set Stellarium location to Manhattan (40.750° N, -73.996° W).",
+            "points": 10,
+            "visual_evidence": "The Stellarium 'Location' window or status bar showing New York/Manhattan coordinates (approx 40.75N, 73.99W)."
+        },
+        {
+            "id": "stellarium_datetime_config",
+            "description": "Set Stellarium date and time to July 13, 2023, at 00:20:00 UTC.",
+            "points": 10,
+            "visual_evidence": "The Stellarium 'Date/Time' window or status bar showing 2023-07-13 and the correct time (note: local time in NYC would be 20:20:00 on July 12)."
+        },
+        {
+            "id": "visual_elements_enabled",
+            "description": "Enable atmosphere, landscape (ground), azimuthal grid, and cardinal directions.",
+            "points": 15,
+            "visual_evidence": "The main Stellarium view showing a grid over the sky, 'N/S/E/W' markers on the horizon, a visible ground/landscape, and atmospheric rendering."
+        },
+        {
+            "id": "screenshot_capture",
+            "description": "Capture a screenshot of the sun's position relative to the azimuthal grid in the specified directory.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal output showing a screenshot saved to /home/ga/Pictures/stellarium/."
+        },
+        {
+            "id": "sun_azimuth_identification",
+            "description": "Identify the sun's azimuth at the specified time and location.",
+            "points": 25,
+            "visual_evidence": "The Stellarium interface showing the Sun selected with information text on screen indicating its Azimuth (approx 298°-300°)."
+        },
+        {
+            "id": "forensic_report_creation",
+            "description": "Write the forensic report to the desktop with city, azimuth, and glare conclusion.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/Desktop/glare_investigation_report.txt containing 'Manhattan', the azimuth, and a conclusion (likely 'Plausible' as the sun azimuth ~299° matches the driver's bearing 299°)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the Stellarium GUI to find information rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing the Stellarium application window active and being manipulated (menus open, clicking objects)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The azimuth in the report matches the visual data in the screenshot.",
+            "visual_evidence": "The azimuth value written in the text file matches the 'Az/Alt' data shown in the Stellarium UI screenshot."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The report contains specific forensic conclusions, not template text.",
+            "visual_evidence": "The report text specifically mentions if the glare was possible based on the 299° bearing."
+        }
+    ],
+    "privileged_info_for_vlm": "At 40.750° N, -73.996° W on 2023-07-13 00:20:00 UTC (which is July 12, 20:20 local time), the Sun is very low on the horizon (Altitude ~0° to 1°) at an Azimuth of approximately 299.5°. Since the driver's bearing was 299°, the sun was directly in their line of sight. The claim of sun glare is highly plausible. The agent must enable the azimuthal grid and cardinal points in Stellarium."
+}

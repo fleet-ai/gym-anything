@@ -1,0 +1,59 @@
+{
+    "task_id": "prp_bottleneck_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "The agent successfully opens or loads the dataset 'prp_dual_task_data.csv' from the specified directory.",
+            "points": 10,
+            "visual_evidence": "A code editor, terminal output, or spreadsheet viewer showing the contents of ~/pebl/data/prp_dual_task_data.csv with columns like participant_id, soa_ms, and rt2_ms."
+        },
+        {
+            "id": "exclude_p99",
+            "description": "The agent implements logic to exclude participant P99 from the analysis.",
+            "points": 15,
+            "visual_evidence": "Code showing a filter like `df[df['participant_id'] != 'P99']` or a log message indicating P99 was dropped."
+        },
+        {
+            "id": "filter_correct_trials",
+            "description": "The agent filters the data to include only trials where both t1_correct and t2_correct are 1 (or true).",
+            "points": 15,
+            "visual_evidence": "Code showing a filter for both tasks being correct (e.g., `t1_correct == 1 & t2_correct == 1`)."
+        },
+        {
+            "id": "calculate_soa_means",
+            "description": "The agent calculates mean RT1 and RT2 for each SOA (50, 150, 300, 500, 900) for individuals and the group.",
+            "points": 25,
+            "visual_evidence": "Code or output showing a groupby operation on 'soa_ms' and 'participant_id' calculating the mean of 'rt1_ms' and 'rt2_ms'."
+        },
+        {
+            "id": "calculate_prp_magnitude",
+            "description": "The agent calculates the PRP effect magnitude (Mean RT2 at 50ms SOA minus Mean RT2 at 900ms SOA) for each participant.",
+            "points": 20,
+            "visual_evidence": "Code or intermediate output showing the subtraction of RT2 at 900ms from RT2 at 50ms."
+        },
+        {
+            "id": "save_json_report",
+            "description": "The agent saves the final analysis to ~/pebl/analysis/prp_report.json with the required structure.",
+            "points": 15,
+            "visual_evidence": "A terminal command or code execution showing the creation of prp_report.json, or a view of the JSON file containing 'participants', 'excluded_participants', and 'group_soa_means'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final means or PRP effects without performing the calculations.",
+            "visual_evidence": "The code should show dynamic calculation logic (e.g., using pandas or numpy) rather than a dictionary of pre-calculated numbers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent actually read the CSV file rather than guessing the content based on the task description.",
+            "visual_evidence": "Screenshots showing the agent opening, reading, or printing the head of the actual CSV file."
+        },
+        {
+            "id": "proper_exclusion_reason",
+            "description": "The agent correctly identifies the reason for P99's exclusion as requested.",
+            "visual_evidence": "The final JSON or code comments should explicitly mention 'non-compliance' or 'Task 1 accuracy' for P99."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 20 valid participants (P1-P20) and one non-compliant participant (P99). SOAs are exactly [50, 150, 300, 500, 900]. P99 must be excluded because their Task 1 accuracy is ~50%. The PRP effect is calculated as (RT2 at 50ms) - (RT2 at 900ms). The final output must be a JSON file at ~/pebl/analysis/prp_report.json."
+}

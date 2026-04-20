@@ -1,0 +1,59 @@
+{
+    "task_id": "subtract_segment_boolean@1",
+    "task_completion": [
+        {
+            "id": "segment_editor_active",
+            "description": "The Segment Editor module is open and the 'TumorSegmentation' node is selected.",
+            "points": 10,
+            "visual_evidence": "The module selector shows 'Segment Editor' and the 'Segmentation' dropdown menu displays 'TumorSegmentation'."
+        },
+        {
+            "id": "logical_operators_selected",
+            "description": "The 'Logical operators' effect is selected within the Segment Editor tools.",
+            "points": 15,
+            "visual_evidence": "The 'Logical operators' icon is highlighted in the effects palette."
+        },
+        {
+            "id": "operation_subtract_selected",
+            "description": "The operation mode is set to 'Subtract' within the Logical operators options.",
+            "points": 15,
+            "visual_evidence": "The radio button or dropdown for 'Operation' is set to 'Subtract'."
+        },
+        {
+            "id": "modifier_segment_selected",
+            "description": "The 'NecroticCore' segment is selected as the modifier/source for the subtraction.",
+            "points": 20,
+            "visual_evidence": "The 'Modifier segment' or 'Segment B' dropdown/list shows 'NecroticCore' selected."
+        },
+        {
+            "id": "target_segment_active",
+            "description": "The 'WholeTumor' segment is selected as the target to be modified.",
+            "points": 10,
+            "visual_evidence": "The 'WholeTumor' row in the segment list is highlighted or selected as the active segment."
+        },
+        {
+            "id": "apply_operation",
+            "description": "The subtraction operation is executed.",
+            "points": 30,
+            "visual_evidence": "The 'Apply' button is clicked, and the visual representation of 'WholeTumor' in the 2D/3D viewers changes to show a hole or reduction where 'NecroticCore' was located."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface rather than executing background scripts.",
+            "visual_evidence": "The mouse cursor is visible interacting with the Segment Editor buttons and the 'Apply' button is seen being pressed."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The task was not completed by simply typing python commands in the Slicer Interactor to modify the labelmap.",
+            "visual_evidence": "The Python Interactor console is either hidden or does not contain code snippets that perform the boolean subtraction."
+        },
+        {
+            "id": "genuine_segment_selection",
+            "description": "The agent manually selected the specific segments required by the task from the existing list.",
+            "visual_evidence": "Screenshots show the dropdown menus being opened and 'WholeTumor' and 'NecroticCore' being explicitly picked."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves the BraTS 2021 dataset. The target segment 'WholeTumor' (WT) must be modified by subtracting the 'NecroticCore' (NCR) segment. This is performed in the 'Segment Editor' module using the 'Logical operators' tool with the operation set to 'Subtract'."
+}

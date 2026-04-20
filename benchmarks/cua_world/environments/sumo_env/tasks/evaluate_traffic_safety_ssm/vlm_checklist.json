@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_traffic_safety_ssm@1",
+    "task_completion": [
+        {
+            "id": "modify_sumo_config",
+            "description": "The agent modifies the SUMO configuration file to include SSM device parameters.",
+            "points": 15,
+            "visual_evidence": "Terminal output or text editor showing the addition of 'device.ssm' parameters (probability 1.0, measures 'TTC DRAC', thresholds '5.0 3.0') to a configuration file."
+        },
+        {
+            "id": "save_new_config",
+            "description": "The agent saves the modified configuration to the specific path /home/ga/SUMO_Scenarios/bologna_pasubio/run_ssm.sumocfg.",
+            "points": 10,
+            "visual_evidence": "A 'save as' dialog, a 'cp' command, or a text editor showing the file path /home/ga/SUMO_Scenarios/bologna_pasubio/run_ssm.sumocfg."
+        },
+        {
+            "id": "run_headless_simulation",
+            "description": "The agent executes the SUMO simulation headlessly using the new configuration.",
+            "points": 25,
+            "visual_evidence": "Terminal command showing 'sumo -c /home/ga/SUMO_Scenarios/bologna_pasubio/run_ssm.sumocfg' (without 'sumo-gui') or logs indicating simulation progress."
+        },
+        {
+            "id": "verify_ssm_output_generation",
+            "description": "The agent confirms the creation of the ssm.xml output file.",
+            "points": 15,
+            "visual_evidence": "Terminal command like 'ls /home/ga/SUMO_Output/ssm.xml' or a file explorer showing the file exists."
+        },
+        {
+            "id": "count_conflict_elements",
+            "description": "The agent counts the number of <conflict> tags within the ssm.xml file.",
+            "points": 25,
+            "visual_evidence": "Terminal command such as 'grep -c \"<conflict\" /home/ga/SUMO_Output/ssm.xml' or a script outputting a large integer."
+        },
+        {
+            "id": "write_final_count",
+            "description": "The agent writes the integer count to /home/ga/SUMO_Output/conflict_count.txt.",
+            "points": 10,
+            "visual_evidence": "Terminal command 'echo [count] > /home/ga/SUMO_Output/conflict_count.txt' or a text editor showing the integer in that file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_count",
+            "description": "The agent should not write the final count without first processing the ssm.xml file.",
+            "visual_evidence": "The trajectory should show the agent inspecting or parsing ssm.xml before writing to conflict_count.txt, rather than writing the number immediately after the simulation starts."
+        },
+        {
+            "id": "genuine_simulation_execution",
+            "description": "The agent must actually run the SUMO simulation rather than just creating a dummy file.",
+            "visual_evidence": "Terminal logs showing SUMO version info, simulation steps, and 'Success' or 'Closed' messages from the SUMO engine."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent uses the specific file paths requested in the instructions.",
+            "visual_evidence": "Commands and editor windows show the exact paths: /home/ga/SUMO_Scenarios/bologna_pasubio/run_ssm.sumocfg and /home/ga/SUMO_Output/ssm.xml."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation is deterministic. The correct configuration must use device.ssm.probability=1.0, device.ssm.measures='TTC DRAC', and device.ssm.thresholds='5.0 3.0'. The resulting ssm.xml file contains exactly 193,055 <conflict> elements. The file /home/ga/SUMO_Output/conflict_count.txt must contain only the integer 193055."
+}

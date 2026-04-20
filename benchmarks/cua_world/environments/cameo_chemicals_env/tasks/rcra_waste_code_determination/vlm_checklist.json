@@ -1,0 +1,59 @@
+{
+    "task_id": "rcra_waste_code_determination@1",
+    "task_completion": [
+        {
+            "id": "cameo_search_navigation",
+            "description": "Agent navigates to CAMEO Chemicals website and searches for the specified chemicals.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the CAMEO Chemicals homepage or search results for Acetone, Acetic Acid, Thionyl Chloride, etc."
+        },
+        {
+            "id": "data_extraction_acetone",
+            "description": "Agent identifies Flash Point, Corrosivity, and Water Reactivity for Acetone.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the Acetone chemical datasheet on CAMEO showing Flash Point (0°F) and hazard labels."
+        },
+        {
+            "id": "data_extraction_acetic_acid",
+            "description": "Agent identifies Flash Point, Corrosivity, and Water Reactivity for Acetic Acid, Glacial.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the Acetic Acid, Glacial datasheet showing Flash Point (104°F) and Corrosive status."
+        },
+        {
+            "id": "data_extraction_thionyl_chloride",
+            "description": "Agent identifies Flash Point, Corrosivity, and Water Reactivity for Thionyl Chloride.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the Thionyl Chloride datasheet showing Water Reactivity (reacts violently) and Corrosive status."
+        },
+        {
+            "id": "rcra_code_application",
+            "description": "Agent applies the logic: D001 (FP < 140), D002 (Corrosive), D003 (Water Reactive).",
+            "points": 20,
+            "visual_evidence": "Screenshots of the agent's notes or the draft CSV showing the correct assignment of codes based on the extracted data."
+        },
+        {
+            "id": "csv_file_creation",
+            "description": "Agent creates the CSV file at the specified path with all required columns.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the file manager or a terminal 'cat' command showing the file at /home/ga/Documents/waste_classification.csv with columns: Chemical Name, Flash Point (F), Corrosive?, Water Reactive?, and RCRA Codes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually visited the CAMEO website rather than hallucinating data.",
+            "visual_evidence": "Browser address bar showing cameochemicals.noaa.gov and distinct page layouts for different chemicals."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent did not simply write the final CSV without showing the research steps.",
+            "visual_evidence": "Sequential screenshots showing the search and data extraction process for multiple chemicals before the file is saved."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent saved the file in the specific directory requested.",
+            "visual_evidence": "The file path /home/ga/Documents/waste_classification.csv is visible in the saving interface or terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "Correct values from CAMEO: 1. Acetone: FP 0°F, Corrosive: No, Water Reactive: No, RCRA: D001. 2. Acetic Acid, Glacial: FP 104°F, Corrosive: Yes, Water Reactive: No, RCRA: D001; D002. 3. Thionyl Chloride: FP: None/NA, Corrosive: Yes, Water Reactive: Yes (reacts violently), RCRA: D002; D003. 4. Hydrochloric Acid: FP: None, Corrosive: Yes, Water Reactive: No, RCRA: D002. 5. Ethylene Glycol: FP 232°F, Corrosive: No, Water Reactive: No, RCRA: None. Note: D001 is for FP < 140°F."
+}

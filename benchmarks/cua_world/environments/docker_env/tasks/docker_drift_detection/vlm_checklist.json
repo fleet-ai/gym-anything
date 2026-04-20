@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_drift_detection@1",
+    "task_completion": [
+        {
+            "id": "config_extraction",
+            "description": "Legitimate configuration files are extracted to the specified project directories.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file manager showing files inside '~/projects/container-configs/webserver/', '~/projects/container-configs/appserver/', and '~/projects/container-configs/taskrunner/'."
+        },
+        {
+            "id": "drift_report_creation",
+            "description": "A drift report is written to the Desktop documenting unauthorized changes.",
+            "points": 15,
+            "visual_evidence": "A file named 'drift_report.txt' visible on the Desktop or its contents displayed in a text editor/terminal."
+        },
+        {
+            "id": "stop_drifted_containers",
+            "description": "The original drifted containers (acme-webserver, acme-appserver, acme-taskrunner) are stopped.",
+            "points": 20,
+            "visual_evidence": "Output of 'docker ps' showing the original containers are no longer running, or 'docker ps -a' showing them in 'Exited' status."
+        },
+        {
+            "id": "deploy_clean_containers",
+            "description": "Clean replacement containers are deployed with the '-clean' suffix.",
+            "points": 25,
+            "visual_evidence": "Output of 'docker ps' showing 'acme-webserver-clean', 'acme-appserver-clean', and 'acme-taskrunner-clean' in 'Up' status."
+        },
+        {
+            "id": "verify_clean_config_mounts",
+            "description": "The clean containers are deployed using the original base images and mounting the preserved configurations.",
+            "points": 25,
+            "visual_evidence": "Terminal commands showing 'docker run' or 'docker inspect' referencing the correct images (e.g., nginx:1.24-alpine) and volume mounts from '~/projects/container-configs/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not create the drift report without first inspecting the containers.",
+            "visual_evidence": "Screenshots must show the agent executing 'docker exec', 'docker diff', or 'docker cp' commands before the report is finalized."
+        },
+        {
+            "id": "genuine_container_interaction",
+            "description": "The agent interacted with the Docker CLI or a GUI Docker management tool rather than just creating empty files.",
+            "visual_evidence": "Terminal history showing active docker commands (ps, stop, run, inspect) rather than just 'touch' or 'echo' commands for the report."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific paths requested in the prompt, not default or temporary directories.",
+            "visual_evidence": "Commands or file explorer showing the exact paths: '~/projects/container-configs/' and '~/Desktop/drift_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The original containers are 'acme-webserver' (nginx:1.24-alpine), 'acme-appserver' (python:3.11-slim), and 'acme-taskrunner' (alpine:3.18). A known drift in 'acme-webserver' is the unauthorized installation of '/usr/bin/curl'. The agent must extract configs to '~/projects/container-configs/[container_name]/' and create a report at '/home/ga/Desktop/drift_report.txt'. Clean containers must be named with the '-clean' suffix."
+}

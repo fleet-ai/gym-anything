@@ -1,0 +1,59 @@
+{
+    "task_id": "segment_ct_tissue_types@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT volume is loaded into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan of an abdomen is visible in the slice viewers (Red/Green/Yellow views)."
+        },
+        {
+            "id": "create_segments",
+            "description": "Three distinct segments named 'Bone', 'Soft Tissue', and 'Air' are created in the segmentation list.",
+            "points": 15,
+            "visual_evidence": "A list or table showing three segment entries with the specific names 'Bone', 'Soft Tissue', and 'Air'."
+        },
+        {
+            "id": "apply_bone_threshold",
+            "description": "The 'Bone' segment is defined using a threshold minimum of 300 HU.",
+            "points": 20,
+            "visual_evidence": "The threshold tool interface showing a minimum value of 300 (or 300 to maximum) and the resulting mask highlighting skeletal structures."
+        },
+        {
+            "id": "apply_soft_tissue_threshold",
+            "description": "The 'Soft Tissue' segment is defined using a threshold range of 0 to 100 HU.",
+            "points": 20,
+            "visual_evidence": "The threshold tool interface showing a range of 0 to 100 and the resulting mask highlighting organs/muscles."
+        },
+        {
+            "id": "apply_air_threshold",
+            "description": "The 'Air' segment is defined using a threshold maximum of -500 HU.",
+            "points": 20,
+            "visual_evidence": "The threshold tool interface showing a maximum value of -500 (or minimum to -500) and the resulting mask highlighting the background/bowel gas."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is exported/saved to the specific file path ~/Documents/SlicerData/Exports/tissue_segmentation.seg.nrrd.",
+            "points": 15,
+            "visual_evidence": "A 'Save' or 'Export' dialog box showing the file name 'tissue_segmentation.seg.nrrd' and the correct directory path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the software GUI to perform segmentation rather than just running a script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor, threshold sliders, and segment lists."
+        },
+        {
+            "id": "genuine_segmentation_process",
+            "description": "The agent did not simply rename existing segments or load a pre-made file.",
+            "visual_evidence": "Sequential screenshots showing the manual adjustment of threshold sliders and the progressive filling of the segments."
+        },
+        {
+            "id": "correct_application_context",
+            "description": "The agent interacted with a medical imaging suite (like 3D Slicer) and not a generic image editor.",
+            "visual_evidence": "The application window title and layout correspond to 3D Slicer or similar medical DICOM viewers."
+        }
+    ],
+    "privileged_info_for_vlm": "The required Hounsfield Unit (HU) thresholds are: Bone (Minimum 300), Soft Tissue (Range 0 to 100), and Air (Maximum -500). The final output must be a .seg.nrrd file saved in the ~/Documents/SlicerData/Exports/ directory."
+}

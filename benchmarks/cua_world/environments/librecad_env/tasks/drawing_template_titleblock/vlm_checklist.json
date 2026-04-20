@@ -1,0 +1,53 @@
+{
+    "task_id": "drawing_template_titleblock@1",
+    "task_completion": [
+        {
+            "id": "layer_creation",
+            "description": "Create three specific layers: 'Border' (White), 'TitleBlock' (Cyan), and 'Text' (Green).",
+            "points": 15,
+            "visual_evidence": "The Layer List widget in LibreCAD shows 'Border', 'TitleBlock', and 'Text' with their respective color icons (White/Black, Cyan, Green)."
+        },
+        {
+            "id": "border_geometry",
+            "description": "Draw the outer paper border (0,0 to 420,297) and inner margin (10,10 to 410,287) on the Border layer.",
+            "points": 20,
+            "visual_evidence": "Two concentric rectangles are visible. The status bar or coordinate display shows values near 420,297 when the cursor is at the top-right corner."
+        },
+        {
+            "id": "title_block_geometry",
+            "description": "Draw the title block box (240,10 to 410,50) with internal dividers on the TitleBlock layer.",
+            "points": 25,
+            "visual_evidence": "A rectangular box in the bottom right of the inner margin, divided into a top row and two bottom cells by a horizontal and vertical line."
+        },
+        {
+            "id": "text_annotations",
+            "description": "Add 5mm high text: 'RESIDENTIAL FLOOR PLAN', 'Drawn: A. Torres', and 'Scale: 1:50' on the Text layer.",
+            "points": 25,
+            "visual_evidence": "Green text is visible within the title block cells. The text content matches the required strings exactly."
+        },
+        {
+            "id": "file_saved",
+            "description": "Save the drawing as /home/ga/Documents/LibreCAD/a3_template.dxf.",
+            "points": 15,
+            "visual_evidence": "The LibreCAD title bar shows 'a3_template.dxf' and the save dialog or file explorer confirms the path /home/ga/Documents/LibreCAD/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD tools (Line, Rectangle, Text) and the Layer menu."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not simply echo DXF code into a file via the terminal.",
+            "visual_evidence": "The terminal history does not show large blocks of DXF code being piped into a file; instead, it shows the application being launched."
+        },
+        {
+            "id": "genuine_layer_usage",
+            "description": "The agent actually switched between layers while drawing.",
+            "visual_evidence": "The Layer List shows different layers being highlighted/selected as different parts of the drawing are constructed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific coordinates and colors: Border layer (White/Black) has rectangles at (0,0)-(420,297) and (10,10)-(410,287). TitleBlock layer (Cyan) has a box at (240,10)-(410,50), a horizontal line at Y=30, and a vertical line at X=325 (between Y=10 and Y=30). Text layer (Green) must have 5mm text: 'RESIDENTIAL FLOOR PLAN' (top), 'Drawn: A. Torres' (bottom-left), 'Scale: 1:50' (bottom-right). The final file must be saved at /home/ga/Documents/LibreCAD/a3_template.dxf."
+}

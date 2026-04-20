@@ -1,0 +1,59 @@
+{
+    "task_id": "create_leave_allocation@1",
+    "task_completion": [
+        {
+            "id": "odoo_login",
+            "description": "Log into the Odoo dashboard using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo home screen or app drawer after the login page, showing the user 'admin' is logged in."
+        },
+        {
+            "id": "navigate_to_time_off",
+            "description": "Navigate to the Time Off application and the Allocations view.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'Time Off' app open, specifically the 'Allocations' menu item selected under 'Approvals' or 'Management'."
+        },
+        {
+            "id": "create_allocation_form",
+            "description": "Open a new allocation creation form.",
+            "points": 10,
+            "visual_evidence": "A new, empty or partially filled 'Allocation' form is visible with fields for Employee, Time Off Type, and Duration."
+        },
+        {
+            "id": "set_employee_and_type",
+            "description": "Set the employee to 'Randall Lewis' and Time Off Type to 'Paid Time Off'.",
+            "points": 20,
+            "visual_evidence": "The 'Employee' field contains 'Randall Lewis' and the 'Time Off Type' field contains 'Paid Time Off' in the form."
+        },
+        {
+            "id": "set_duration_and_allocation_type",
+            "description": "Set the duration to 15 days and select the allocation type.",
+            "points": 25,
+            "visual_evidence": "The 'Duration' field shows '15.00' days. Note: Per system constraints, the agent should select 'Regular' or the equivalent UI option for 'Fixed by HR'."
+        },
+        {
+            "id": "validate_allocation",
+            "description": "Save and validate/approve the allocation.",
+            "points": 20,
+            "visual_evidence": "The allocation record status changes from 'Draft' to 'To Approve' or 'Approved' (usually a green badge), and the 'Validate' button is clicked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements, clicking buttons, and typing into form fields within the browser."
+        },
+        {
+            "id": "no_manual_url_bypass",
+            "description": "The agent navigated through the UI rather than jumping directly to a final success URL.",
+            "visual_evidence": "The trajectory shows the sequence of clicking the Time Off app icon and the Create button."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent manually entered the specific values for Randall Lewis and 15 days.",
+            "visual_evidence": "The VLM should see the dropdown selection or typing of 'Randall Lewis' and '15' into the respective fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The employee name must be 'Randall Lewis'. The leave type must be 'Paid Time Off'. The duration must be exactly 15 days. Note: While the task asks for 'Fixed by HR', in Odoo 17.0+, this corresponds to the 'Regular' allocation type (as opposed to 'Accrual'). The allocation is only 'validated' once it moves past the 'Draft' state, typically indicated by a status badge or the 'Validate' button being pressed by the admin."
+}

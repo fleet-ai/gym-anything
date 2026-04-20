@@ -1,0 +1,59 @@
+{
+    "task_id": "export_risk_register@1",
+    "task_completion": [
+        {
+            "id": "access_eramba_interface",
+            "description": "The agent successfully navigates to the Eramba GRC web interface.",
+            "points": 10,
+            "visual_evidence": "The browser shows the Eramba login page or dashboard."
+        },
+        {
+            "id": "navigate_to_risk_management",
+            "description": "The agent navigates to the Risk Management or Risk Register section of the application.",
+            "points": 15,
+            "visual_evidence": "The UI displays a table or list titled 'Risk Register' or 'Asset Risk Management'."
+        },
+        {
+            "id": "verify_phishing_data",
+            "description": "The agent confirms the presence of 'Phishing Attacks on Employees' in the risk list.",
+            "points": 20,
+            "visual_evidence": "The text 'Phishing Attacks on Employees' is visible within the Eramba risk table."
+        },
+        {
+            "id": "initiate_export_process",
+            "description": "The agent locates and clicks the export button (CSV or Excel).",
+            "points": 20,
+            "visual_evidence": "An export menu is open, or a 'Download'/'Export' button is being clicked."
+        },
+        {
+            "id": "configure_download_path",
+            "description": "The agent ensures the file is saved to /home/ga/Downloads.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a browser download notification shows the destination directory as /home/ga/Downloads."
+        },
+        {
+            "id": "confirm_file_download",
+            "description": "The agent completes the download and verifies the file exists in the target directory.",
+            "points": 20,
+            "visual_evidence": "A file manager window (Nautilus) or terminal 'ls' output shows a .csv or .xlsx file in /home/ga/Downloads."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Eramba GUI to perform the export rather than manually creating a file via terminal.",
+            "visual_evidence": "Screenshots show mouse movements and clicks on Eramba UI elements (Export buttons) rather than just 'touch' or 'echo' commands in a terminal."
+        },
+        {
+            "id": "genuine_software_use",
+            "description": "The agent interacted with the actual Eramba web application.",
+            "visual_evidence": "The browser URL bar shows a local or network address corresponding to the Eramba instance, and the UI responds dynamically to clicks."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type the risk data into a new file to simulate an export.",
+            "visual_evidence": "The file is generated through the application's export trigger, not by the agent opening a text editor and typing 'Phishing Attacks'."
+        }
+    ],
+    "privileged_info_for_vlm": "The Eramba GRC instance contains exactly three seeded risks: 'Phishing Attacks on Employees', 'Ransomware Attack on Corporate Network', and 'Insider Threat - Unauthorized Data Exfiltration'. The target directory for the export is /home/ga/Downloads. The export must be a CSV or Excel file containing the 'Phishing' and 'Ransomware' keywords."
+}

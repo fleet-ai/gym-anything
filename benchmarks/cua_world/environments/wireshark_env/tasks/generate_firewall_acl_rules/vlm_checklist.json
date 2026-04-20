@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_firewall_acl_rules@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_in_wireshark",
+            "description": "Open the specified PCAP file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'smtp.pcap' loaded in the title bar or file list."
+        },
+        {
+            "id": "identify_client_ip",
+            "description": "Identify the Client IP address (10.10.1.4) that sent the EHLO/HELO command.",
+            "points": 20,
+            "visual_evidence": "Wireshark packet list showing a packet with 'EHLO' or 'HELO' in the Info column, with Source IP 10.10.1.4 selected."
+        },
+        {
+            "id": "generate_acl_rules_tool",
+            "description": "Use the Wireshark 'Firewall ACL Rules' tool to generate the rules.",
+            "points": 20,
+            "visual_evidence": "The 'Firewall ACL Rules' dialog box open in Wireshark, showing rules for IP 10.10.1.4."
+        },
+        {
+            "id": "save_cisco_rule",
+            "description": "Save the Cisco IOS rule to the specified text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing '~/Documents/cisco_block_rule.txt' containing 'access-list [number] deny host 10.10.1.4' or similar Cisco syntax."
+        },
+        {
+            "id": "save_iptables_rule",
+            "description": "Save the Netfilter (iptables) rule to the specified text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing '~/Documents/iptables_block_rule.txt' containing 'iptables -A INPUT -s 10.10.1.4/32 -j DROP' or similar iptables syntax."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the Wireshark GUI to analyze the traffic and generate rules.",
+            "visual_evidence": "Screenshots show the Wireshark application window and the 'Firewall ACL Rules' dialog, rather than just terminal output."
+        },
+        {
+            "id": "correct_ip_source",
+            "description": "Ensure the agent identified the correct sender IP (10.10.1.4) and not the server IP (74.53.140.153).",
+            "visual_evidence": "The generated rules and Wireshark selection must specifically reference 10.10.1.4."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "Verify the agent created the files during the session.",
+            "visual_evidence": "The agent is seen typing, saving, or redirecting output to the specified file paths in the Documents folder."
+        }
+    ],
+    "privileged_info_for_vlm": "The suspicious Client IP address in 'smtp.pcap' that sends the EHLO command is 10.10.1.4. The server IP is 74.53.140.153. The Cisco IOS rule should deny host 10.10.1.4. The iptables rule should drop traffic from source 10.10.1.4/32. Files must be saved exactly to ~/Documents/cisco_block_rule.txt and ~/Documents/iptables_block_rule.txt."
+}

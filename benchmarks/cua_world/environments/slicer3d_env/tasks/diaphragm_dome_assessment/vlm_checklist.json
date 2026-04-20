@@ -1,0 +1,59 @@
+{
+    "task_id": "diaphragm_dome_assessment@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the chest/abdominal CT scan into the medical imaging software (3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan is visible in the 2D slice viewers and/or 3D view of the application."
+        },
+        {
+            "id": "place_right_fiducial",
+            "description": "A fiducial marker labeled 'Right' is placed at the apex of the right hemidiaphragm.",
+            "points": 20,
+            "visual_evidence": "A marker or point labeled 'Right' is visible at the highest point of the right diaphragm dome in the coronal or sagittal view."
+        },
+        {
+            "id": "place_left_fiducial",
+            "description": "A fiducial marker labeled 'Left' is placed at the apex of the left hemidiaphragm.",
+            "points": 20,
+            "visual_evidence": "A marker or point labeled 'Left' is visible at the highest point of the left diaphragm dome in the coronal or sagittal view."
+        },
+        {
+            "id": "save_fiducial_json",
+            "description": "The agent saves the markers to the specified path: ~/Documents/SlicerData/AMOS/diaphragm_markers.mrk.json.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog box showing the specific file path and filename, or a terminal/console log confirming the file write to that path."
+        },
+        {
+            "id": "generate_report_content",
+            "description": "The agent calculates the required metrics (vertebral levels, Z-positions, differences) for the report.",
+            "points": 20,
+            "visual_evidence": "A text editor, python console, or report window showing the calculated values for right/left dome levels and height differences."
+        },
+        {
+            "id": "save_report_json",
+            "description": "The agent saves the final report to ~/Documents/SlicerData/AMOS/diaphragm_report.json with all required fields.",
+            "points": 15,
+            "visual_evidence": "A file explorer or text editor showing the saved 'diaphragm_report.json' containing fields like 'right_dome_vertebral_level' and 'clinical_interpretation'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to place markers rather than just writing a script to generate coordinates.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'Markups' module or clicking directly on the CT slices."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent derived Z-positions from the actual image coordinate system in the software.",
+            "visual_evidence": "The software's coordinate display (RAS/LPS) changes as the agent moves the mouse or places markers."
+        },
+        {
+            "id": "no_precomputed_copy_paste",
+            "description": "The agent did not simply copy-paste the final JSON content from an external source without performing the assessment.",
+            "visual_evidence": "The agent is seen navigating through slices to find the apex before placing markers or recording values."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is performed on AMOS 2022 dataset case 'amos_0001'. The right diaphragm dome is typically higher than the left in normal anatomy. The Z-position values are computed at runtime based on the Slicer coordinate system. The maximum allowable error for fiducial placement is 10.0mm, and for height difference calculation is 5.0mm."
+}

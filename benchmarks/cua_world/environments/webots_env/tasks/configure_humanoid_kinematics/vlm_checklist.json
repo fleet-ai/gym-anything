@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_humanoid_kinematics@1",
+    "task_completion": [
+        {
+            "id": "set_worldinfo_timestep",
+            "description": "Set the global basicTimeStep to 8 in the WorldInfo node.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree shows 'WorldInfo' selected with 'basicTimeStep' set to 8 in the field editor."
+        },
+        {
+            "id": "enable_self_collision",
+            "description": "Enable selfCollision for the BIPED_ROBOT node.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows the 'BIPED_ROBOT' node (Robot) with the 'selfCollision' field set to TRUE."
+        },
+        {
+            "id": "configure_left_knee",
+            "description": "Set minStop, maxStop, and dampingConstant for the LEFT_KNEE HingeJoint.",
+            "points": 25,
+            "visual_evidence": "The scene tree shows 'LEFT_KNEE' (HingeJoint) -> 'device' or 'jointParameters' with minStop: 0.0, maxStop: 2.5, and dampingConstant: 0.5 visible in the editor."
+        },
+        {
+            "id": "configure_right_knee",
+            "description": "Set minStop, maxStop, and dampingConstant for the RIGHT_KNEE HingeJoint.",
+            "points": 25,
+            "visual_evidence": "The scene tree shows 'RIGHT_KNEE' (HingeJoint) -> 'device' or 'jointParameters' with minStop: 0.0, maxStop: 2.5, and dampingConstant: 0.5 visible in the editor."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specific path /home/ga/Desktop/biped_kinematics.wbt.",
+            "points": 20,
+            "visual_evidence": "The Webots 'Save As' dialog or the window title bar shows the file path /home/ga/Desktop/biped_kinematics.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "genuine_webots_usage",
+            "description": "The agent interacted with the actual Webots application interface.",
+            "visual_evidence": "The Webots application window, 3D viewport, and scene tree are visible and active."
+        },
+        {
+            "id": "no_scripted_bypass",
+            "description": "The agent did not use a python script or sed command to bypass the manual configuration requirement.",
+            "visual_evidence": "The terminal history (if visible) does not show commands that programmatically modify the .wbt file."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot DEF name is BIPED_ROBOT. The specific joints to modify are LEFT_KNEE and RIGHT_KNEE. Required values: basicTimeStep = 8, selfCollision = TRUE, minStop = 0.0, maxStop = 2.5, dampingConstant = 0.5. The final file must be saved exactly to /home/ga/Desktop/biped_kinematics.wbt."
+}

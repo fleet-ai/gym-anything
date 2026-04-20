@@ -1,0 +1,53 @@
+{
+    "task_id": "ip_camera_network_provisioning@1",
+    "task_completion": [
+        {
+            "id": "read_manifest",
+            "description": "Agent opens and reads the deployment manifest file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of 'camera_network_config.txt' with MAC addresses, IPs, and notes for CAM-0101 through CAM-0106."
+        },
+        {
+            "id": "update_functional_metadata",
+            "description": "Agent updates MAC addresses, IP addresses, and deployment notes for CAM-0101 through CAM-0105 in Snipe-IT.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the 'Edit Asset' pages for CAM-0101 to CAM-0105 showing the form fields for MAC, IP, and Notes being populated with data from the manifest."
+        },
+        {
+            "id": "checkout_functional_cameras",
+            "description": "Agent checks out CAM-0101 through CAM-0105 to the 'Chicago Facility' location.",
+            "points": 25,
+            "visual_evidence": "The 'Checkout Asset' screen for each functional camera showing 'Chicago Facility' selected as the target location and a success message or updated status."
+        },
+        {
+            "id": "update_defective_status",
+            "description": "Agent updates the status of CAM-0106 to 'Defective'.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' page for CAM-0106 showing the 'Status' dropdown set to 'Defective'."
+        },
+        {
+            "id": "update_defective_notes",
+            "description": "Agent adds the DOA note from the manifest to the notes field for CAM-0106.",
+            "points": 20,
+            "visual_evidence": "The 'Edit Asset' or 'Asset Details' page for CAM-0106 showing the specific DOA note (e.g., 'cracked lens') in the notes field."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Snipe-IT web interface rather than direct database manipulation or CLI scripts.",
+            "visual_evidence": "Screenshots showing the browser, mouse cursor movements, and form filling within the Snipe-IT UI."
+        },
+        {
+            "id": "manifest_source_verification",
+            "description": "The agent actually opened the manifest file to retrieve the data.",
+            "visual_evidence": "The agent navigating to ~/Desktop and opening camera_network_config.txt before entering data into the browser."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not skip the checkout process by manually typing the location in a text field if a dropdown/search was required.",
+            "visual_evidence": "The agent interacting with the location search/dropdown menu in the Snipe-IT checkout interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The manifest file is located at /home/ga/Desktop/camera_network_config.txt. Functional assets are CAM-0101, CAM-0102, CAM-0103, CAM-0104, and CAM-0105; these must be checked out to 'Chicago Facility'. The defective asset is CAM-0106, which must have its status set to 'Defective' and include the DOA note (specifically mentioning a 'cracked lens') from the manifest."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "blade_mesh_independence_study@1",
+    "task_completion": [
+        {
+            "id": "open_initial_project",
+            "description": "Open the initial project file 'start_turbine.wpa' in the simulation software.",
+            "points": 10,
+            "visual_evidence": "The software window shows 'start_turbine.wpa' in the title bar or file path indicator."
+        },
+        {
+            "id": "baseline_simulation_parameters",
+            "description": "Configure the baseline BEM simulation with Wind Speed=10m/s, TSR=7, and Pitch=0.",
+            "points": 15,
+            "visual_evidence": "Input fields or sliders for Wind Speed, TSR (Tip Speed Ratio), and Pitch Angle showing values 10, 7, and 0 respectively."
+        },
+        {
+            "id": "baseline_cp_calculation",
+            "description": "Run the simulation and obtain the baseline Power Coefficient (Cp).",
+            "points": 15,
+            "visual_evidence": "A results table, graph, or output console showing a calculated Cp value for the initial mesh."
+        },
+        {
+            "id": "refine_blade_discretization",
+            "description": "Increase the blade discretization/mesh elements to at least 50 sections.",
+            "points": 20,
+            "visual_evidence": "A mesh settings dialog or blade geometry table showing the number of sections or elements set to a value of 50 or higher."
+        },
+        {
+            "id": "refined_simulation_run",
+            "description": "Repeat the simulation with the refined mesh using the same parameters (10m/s, TSR 7, Pitch 0).",
+            "points": 15,
+            "visual_evidence": "The simulation interface showing a second run or updated results with the higher section count."
+        },
+        {
+            "id": "save_refined_project",
+            "description": "Save the modified project to the specified path 'refined_turbine.wpa'.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog box or a success message indicating the file was saved to /home/ga/Documents/projects/refined_turbine.wpa."
+        },
+        {
+            "id": "create_report",
+            "description": "Create a report file 'mesh_study_report.txt' containing both Cp values.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing a file named mesh_study_report.txt containing two distinct Cp values (baseline and refined)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the simulation software's GUI rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the simulation software's buttons, menus, and input fields."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The Cp values in the report are derived from the software output, not fabricated.",
+            "visual_evidence": "The Cp values visible in the software's result window match the values written in the final report file."
+        },
+        {
+            "id": "mesh_refinement_verification",
+            "description": "The agent actually changed the discretization setting in the software.",
+            "visual_evidence": "A screenshot explicitly shows the 'sections' or 'elements' count being edited to 50 or more."
+        }
+    ],
+    "privileged_info_for_vlm": "The starting project is /home/ga/Documents/projects/start_turbine.wpa. The target simulation parameters are Wind Speed=10, TSR=7, and Pitch=0. The refined mesh must have at least 50 sections (though the internal verifier may accept 48, the task instruction to the agent is 50). The final project must be saved as /home/ga/Documents/projects/refined_turbine.wpa and the report as /home/ga/Documents/projects/mesh_study_report.txt."
+}

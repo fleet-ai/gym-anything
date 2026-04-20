@@ -1,0 +1,53 @@
+{
+    "task_id": "stain_deconvolution_quantification@1",
+    "task_completion": [
+        {
+            "id": "open_ihc_image",
+            "description": "Open the image ihc_tissue_sample.tif in ImageJ/Fiji.",
+            "points": 10,
+            "visual_evidence": "The image ihc_tissue_sample.tif is visible in an ImageJ window showing a breast cancer tissue biopsy with blue and brown staining."
+        },
+        {
+            "id": "stain_deconvolution_execution",
+            "description": "Perform color deconvolution using the H DAB vector setting.",
+            "points": 20,
+            "visual_evidence": "The 'Colour Deconvolution' dialog box is seen with 'H DAB' selected, or three separate grayscale/color-separated channel windows (Colour_1, Colour_2, Colour_3) are visible."
+        },
+        {
+            "id": "dab_thresholding",
+            "description": "Apply a threshold to the DAB channel to isolate the brown positive area.",
+            "points": 20,
+            "visual_evidence": "A thresholding dialog (e.g., 'Threshold' window) is open and the DAB channel image shows a red overlay or binary mask indicating selected positive regions."
+        },
+        {
+            "id": "area_measurement",
+            "description": "Measure the DAB-positive area and mean intensity using the 'Measure' or 'Analyze Particles' function.",
+            "points": 25,
+            "visual_evidence": "The ImageJ 'Results' table is visible containing columns for 'Area' and 'Mean' (intensity) for the DAB channel."
+        },
+        {
+            "id": "save_results_csv",
+            "description": "Save the final results table to the specified CSV path with required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal window shows the file 'stain_separation_results.csv' created in '~/ImageJ_Data/results/', or the agent is seen saving the Results table to that specific path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ/Fiji GUI to perform the analysis rather than just writing a script or using terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (Analyze > Color Deconvolution) and dialog boxes."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The results in the CSV or Results table are derived from the image pixels, not hardcoded.",
+            "visual_evidence": "The 'Results' window in ImageJ shows values that correspond to the thresholded area visible on the screen."
+        },
+        {
+            "id": "no_premade_results",
+            "description": "The agent did not simply copy a pre-existing results file.",
+            "visual_evidence": "The trajectory shows the step-by-step process of opening the image, deconvolving, and measuring before the file is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The image source is scikit-image immunohistochemistry data. The correct stain vector for deconvolution is 'H DAB'. The expected DAB area fraction should be between 1.0% and 80.0% (specifically around 45% for this sample). The total image area is 262,144 pixels (512x512). The output must be saved to ~/ImageJ_Data/results/stain_separation_results.csv and must include DAB area, DAB mean intensity, and DAB area fraction as a percentage."
+}

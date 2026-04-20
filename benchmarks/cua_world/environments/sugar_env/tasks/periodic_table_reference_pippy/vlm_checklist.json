@@ -1,0 +1,59 @@
+{
+    "task_id": "periodic_table_reference_pippy@1",
+    "task_completion": [
+        {
+            "id": "open_pippy_activity",
+            "description": "The agent opens the Pippy programming activity in the Sugar interface.",
+            "points": 10,
+            "visual_evidence": "The Pippy editor window is visible on the screen."
+        },
+        {
+            "id": "write_python_script",
+            "description": "The agent writes a Python script in Pippy that reads elements.csv and processes the required elements.",
+            "points": 20,
+            "visual_evidence": "Python code is visible in the Pippy editor referencing '/home/ga/Documents/elements.csv' and the list of elements (H, O, C, N, Fe, Cu, Au, Ag)."
+        },
+        {
+            "id": "execute_script_pippy",
+            "description": "The agent executes the script within the Pippy environment.",
+            "points": 15,
+            "visual_evidence": "The 'Run' button (usually a play icon) is clicked, and the output console shows execution or no errors."
+        },
+        {
+            "id": "save_script_file",
+            "description": "The script is saved to the specific path /home/ga/Documents/periodic_lookup.py.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal command confirms the existence of 'periodic_lookup.py' in the Documents folder."
+        },
+        {
+            "id": "generate_report_content",
+            "description": "The script generates a report with reference cards for the 8 specified elements including Symbol, Name, Atomic Number, Atomic Mass, Group, and Period.",
+            "points": 20,
+            "visual_evidence": "The content of 'element_report.txt' is displayed, showing formatted cards for Hydrogen, Oxygen, Carbon, Nitrogen, Iron, Copper, Gold, and Silver."
+        },
+        {
+            "id": "calculate_molecular_weights",
+            "description": "The report includes the calculated molecular weights for H2O and CO2.",
+            "points": 20,
+            "visual_evidence": "The text file 'element_report.txt' shows H2O weight (approx 18.015) and CO2 weight (approx 44.009)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "use_pippy_gui",
+            "description": "The agent must use the Pippy activity GUI to write and run the code, not just the terminal.",
+            "visual_evidence": "Screenshots show the Pippy editor interface being used for coding and execution."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent should not hardcode the molecular weights if the script is visible; it should derive them from the CSV data.",
+            "visual_evidence": "The Python code in Pippy shows logic for summing atomic masses (e.g., 2*H + O) rather than just printing a static string."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent saves files to the exact paths specified in the instructions.",
+            "visual_evidence": "The file paths /home/ga/Documents/periodic_lookup.py and /home/ga/Documents/element_report.txt are visible in the UI or terminal checks."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected molecular weight for Water (H2O) is 18.015 (based on H=1.008, O=15.999). The expected molecular weight for Carbon Dioxide (CO2) is 44.009 (based on C=12.011, O=15.999). The script must process exactly 8 elements: Hydrogen, Oxygen, Carbon, Nitrogen, Iron, Copper, Gold, and Silver."
+}

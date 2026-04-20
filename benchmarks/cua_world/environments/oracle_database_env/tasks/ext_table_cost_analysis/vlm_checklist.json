@@ -1,0 +1,53 @@
+{
+    "task_id": "ext_table_cost_analysis@1",
+    "task_completion": [
+        {
+            "id": "create_ext_country_costs",
+            "description": "Create the 'EXT_COUNTRY_COSTS' external table using the ORACLE_LOADER driver and 'country_cost_indices.csv'.",
+            "points": 15,
+            "visual_evidence": "SQL command or database explorer showing the creation of EXT_COUNTRY_COSTS with ORGANIZATION EXTERNAL and TYPE ORACLE_LOADER."
+        },
+        {
+            "id": "create_ext_market_salaries",
+            "description": "Create the 'EXT_MARKET_SALARIES' external table using the ORACLE_LOADER driver and 'market_salary_benchmarks.csv'.",
+            "points": 15,
+            "visual_evidence": "SQL command or database explorer showing the creation of EXT_MARKET_SALARIES referencing the correct CSV file in EXT_DATA_DIR."
+        },
+        {
+            "id": "create_analysis_view",
+            "description": "Create the 'EMPLOYEE_COST_ANALYSIS' view joining EMPLOYEES with the two external tables.",
+            "points": 25,
+            "visual_evidence": "SQL code for CREATE VIEW EMPLOYEE_COST_ANALYSIS showing joins on Country ID and Job ID."
+        },
+        {
+            "id": "verify_view_calculations",
+            "description": "The view must include the specific calculated columns: SALARY_VS_MARKET_PCT and COST_ADJUSTED_SALARY.",
+            "points": 25,
+            "visual_evidence": "SQL code showing the formulas: (salary/market_median)*100 and salary*(100/cost_index)."
+        },
+        {
+            "id": "export_report_file",
+            "description": "Export the view data to '/home/ga/Desktop/cost_analysis_report.txt'.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., spool, sqluldr2, or redirection) or a GUI export wizard showing the destination path /home/ga/Desktop/cost_analysis_report.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle database (SQLPlus, SQL Developer, or DBeaver) rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots of a database client or terminal connected to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the data into the report file.",
+            "visual_evidence": "The agent should be seen executing a query or export command, not using a text editor to type out employee rows."
+        },
+        {
+            "id": "directory_object_usage",
+            "description": "The agent used the existing EXT_DATA_DIR directory object as required.",
+            "visual_evidence": "The SQL DDL for external tables should explicitly mention 'DEFAULT DIRECTORY EXT_DATA_DIR'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires creating two external tables (EXT_COUNTRY_COSTS, EXT_MARKET_SALARIES) from CSVs in EXT_DATA_DIR. These CSVs have no headers. The view EMPLOYEE_COST_ANALYSIS must join EMPLOYEES with these tables. Expected row count in the final view is approximately 80. The output file must be exactly /home/ga/Desktop/cost_analysis_report.txt. Database credentials: hr/hr123 at localhost:1521/XEPDB1."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "pal_episodic_memory_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_data_file",
+            "description": "The agent locates and opens the raw data file at ~/pebl/data/pal_raw_data.csv.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the path ~/pebl/data/pal_raw_data.csv or the file content being displayed."
+        },
+        {
+            "id": "filter_low_rt_participants",
+            "description": "The agent identifies and excludes participants with a global average reaction time < 200 ms (specifically PAL-999).",
+            "points": 20,
+            "visual_evidence": "Code or logs showing a filtering operation where mean_rt_ms is averaged per participant and compared against the 200ms threshold."
+        },
+        {
+            "id": "calculate_max_stage",
+            "description": "The agent calculates the 'max_stage_completed' for each valid participant based on the highest stage where 'passed' is 1.",
+            "points": 20,
+            "visual_evidence": "Code snippets or data processing outputs showing a grouping by participant_id and finding the maximum stage value where passed == 1."
+        },
+        {
+            "id": "calculate_memory_score_and_errors",
+            "description": "The agent calculates 'first_attempt_memory_score' (sum of patterns_correct on attempt 1) and 'total_errors' (sum of all errors).",
+            "points": 25,
+            "visual_evidence": "Code or intermediate tables showing summation of patterns_correct filtered by attempt 1 and a global sum of the errors column per participant."
+        },
+        {
+            "id": "save_json_report",
+            "description": "The agent saves the final clinical metrics for all valid participants to /home/ga/pebl/analysis/pal_report.json.",
+            "points": 25,
+            "visual_evidence": "A terminal command or code execution showing the creation of /home/ga/pebl/analysis/pal_report.json with the calculated metrics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the results for PAL-999 or other participants without processing the CSV.",
+            "visual_evidence": "The code should show logic (e.g., pandas or csv module) reading the file rather than a dictionary containing pre-calculated values."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent used the file provided in the task description rather than creating a dummy dataset.",
+            "visual_evidence": "The file path ~/pebl/data/pal_raw_data.csv is explicitly referenced in the agent's scripts or commands."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "The agent correctly applied the exclusion criteria based on the average RT across all attempts.",
+            "visual_evidence": "The final report or intermediate logs should show that PAL-999 is missing from the valid participant list."
+        }
+    ],
+    "privileged_info_for_vlm": "The raw data contains a dummy participant 'PAL-999' who has a mean reaction time below 200ms and must be excluded from the final report. The final output must be a JSON file located specifically at /home/ga/pebl/analysis/pal_report.json. The 'first_attempt_memory_score' is specifically the sum of 'patterns_correct' only when 'attempt' equals 1."
+}

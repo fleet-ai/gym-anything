@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_pbr_synthetic_data@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots application and loads the 'recycling_sort.wbt' world file.",
+            "points": 10,
+            "visual_evidence": "Webots interface is visible showing a scene with a metal can, plastic bottle, and cardboard box."
+        },
+        {
+            "id": "configure_metal_can_pbr",
+            "description": "The METAL_CAN object is updated to PBRAppearance with baseColor [0.8, 0.8, 0.8], metalness 1.0, and roughness 0.2.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a pop-up dialog shows 'DEF METAL_CAN' -> 'appearance PBRAppearance' with baseColor 0.8 0.8 0.8, metalness 1, and roughness 0.2."
+        },
+        {
+            "id": "configure_plastic_bottle_pbr",
+            "description": "The PLASTIC_BOTTLE object is updated to PBRAppearance with baseColor [0.2, 0.6, 1.0], metalness 0.0, and roughness 0.1.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a pop-up dialog shows 'DEF PLASTIC_BOTTLE' -> 'appearance PBRAppearance' with baseColor 0.2 0.6 1, metalness 0, and roughness 0.1."
+        },
+        {
+            "id": "configure_cardboard_box_pbr",
+            "description": "The CARDBOARD_BOX object is updated to PBRAppearance with baseColor [0.7, 0.5, 0.3], metalness 0.0, and roughness 0.9.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a pop-up dialog shows 'DEF CARDBOARD_BOX' -> 'appearance PBRAppearance' with baseColor 0.7 0.5 0.3, metalness 0, and roughness 0.9."
+        },
+        {
+            "id": "save_new_world_file",
+            "description": "The modified world is saved to the specific path /home/ga/Desktop/recycling_pbr.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the Webots title bar shows the file path /home/ga/Desktop/recycling_pbr.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree or Field Editor."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not simply run a python/bash script to overwrite the .wbt file content.",
+            "visual_evidence": "The agent is seen manually expanding nodes (Appearance -> PBRAppearance) in the Webots sidebar."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent used the 'File > Save World As...' menu or shortcut within the Webots application.",
+            "visual_evidence": "The Webots 'Save As' file browser window is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires converting legacy 'Appearance' nodes to 'PBRAppearance'. Target values: METAL_CAN (baseColor: 0.8 0.8 0.8, metalness: 1.0, roughness: 0.2); PLASTIC_BOTTLE (baseColor: 0.2 0.6 1.0, metalness: 0.0, roughness: 0.1); CARDBOARD_BOX (baseColor: 0.7 0.5 0.3, metalness: 0.0, roughness: 0.9). The final file must be saved as /home/ga/Desktop/recycling_pbr.wbt."
+}

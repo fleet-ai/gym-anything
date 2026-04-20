@@ -1,0 +1,53 @@
+{
+    "task_id": "add_multicurrency_support@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_currencies",
+            "description": "Navigate to the Currency settings section of the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Currencies' management page or settings menu open in the CRM interface."
+        },
+        {
+            "id": "add_eur_currency",
+            "description": "Add 'Euro' (EUR) to the list of currencies.",
+            "points": 20,
+            "visual_evidence": "A dialog or form showing 'Euro' or 'EUR' being selected or added to the currency list."
+        },
+        {
+            "id": "set_eur_rate_and_status",
+            "description": "Set the conversion rate for EUR to 0.92 and ensure it is active.",
+            "points": 25,
+            "visual_evidence": "The value '0.92' entered in the conversion rate field for EUR and the status set to 'Active' (checkbox or dropdown)."
+        },
+        {
+            "id": "add_gbp_currency",
+            "description": "Add 'Great Britain, Pounds' (GBP) to the list of currencies.",
+            "points": 20,
+            "visual_evidence": "A dialog or form showing 'Great Britain, Pounds' or 'GBP' being selected or added to the currency list."
+        },
+        {
+            "id": "set_gbp_rate_and_status",
+            "description": "Set the conversion rate for GBP to 0.79 and ensure it is active.",
+            "points": 25,
+            "visual_evidence": "The value '0.79' entered in the conversion rate field for GBP and the status set to 'Active' (checkbox or dropdown)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the CRM graphical user interface to add currencies.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons like 'Add New' or 'Save', and text entry within the browser, rather than just terminal commands."
+        },
+        {
+            "id": "no_database_manipulation",
+            "description": "The agent did not use SQL or backend scripts to inject the currencies.",
+            "visual_evidence": "The agent does not open a terminal to run 'mysql' or 'psql' commands to modify the 'vtiger_currency_info' table directly."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the settings menu rather than jumping to a direct URL if not provided.",
+            "visual_evidence": "The VLM should see the agent clicking through 'Settings' or 'Configuration' menus to reach the Currency section."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must add two specific currencies: Euro (EUR) with a conversion rate of exactly 0.92, and Great Britain, Pounds (GBP) with a conversion rate of exactly 0.79. Both must be set to 'Active' status. A tolerance of 0.005 is acceptable for the rates, but the agent should ideally input the exact values specified."
+}

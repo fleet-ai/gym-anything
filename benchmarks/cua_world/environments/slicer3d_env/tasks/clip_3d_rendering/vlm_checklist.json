@@ -1,0 +1,59 @@
+{
+    "task_id": "clip_3d_rendering@1",
+    "task_completion": [
+        {
+            "id": "volume_loaded",
+            "description": "The BraTS T1ce MRI volume is loaded into the 3D Slicer application.",
+            "points": 10,
+            "visual_evidence": "The 'Data' module or 'Volume' selector shows a volume name containing 'BraTS' and 't1ce' or '00000'."
+        },
+        {
+            "id": "volume_rendering_enabled",
+            "description": "Volume rendering is activated for the loaded MRI volume.",
+            "points": 15,
+            "visual_evidence": "The 'Volume Rendering' module is open, the visibility (eye icon) is toggled on, and a 3D representation of the brain appears in the 3D view (usually the blue/purple background panel)."
+        },
+        {
+            "id": "roi_node_active",
+            "description": "An ROI (Region of Interest) box is created and visible in the 3D view.",
+            "points": 15,
+            "visual_evidence": "A bounding box with colored handles (ROI) is visible surrounding or intersecting the 3D brain volume."
+        },
+        {
+            "id": "clipping_enabled",
+            "description": "The 'Display' settings in the Volume Rendering module have 'Clip' enabled.",
+            "points": 20,
+            "visual_evidence": "The 'Clip' checkbox is checked in the Volume Rendering module, and the 3D volume appears cut or sliced where the ROI intersects it."
+        },
+        {
+            "id": "meaningful_cutaway",
+            "description": "The ROI is positioned to remove 30-50% of the brain surface to reveal internal structures.",
+            "points": 25,
+            "visual_evidence": "The 3D view shows a significant portion (roughly half) of the brain surface removed, exposing internal cross-sections or tumor structures rather than just the outer shell."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "The agent saves the rendering to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog or file browser shows the path '~/Documents/SlicerData/Screenshots/clipped_brain_rendering.png' or a terminal/Python console command confirms the save to that specific path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform the rendering and clipping.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer modules (Volume Rendering, ROI widgets) rather than just executing a single script that automates the entire process."
+        },
+        {
+            "id": "genuine_data_usage",
+            "description": "The agent used the actual BraTS dataset provided.",
+            "visual_evidence": "The file paths in the 'Add Data' dialog or the 'Data' module match the directory /home/ga/Documents/SlicerData/BraTS/."
+        },
+        {
+            "id": "no_premade_screenshot",
+            "description": "The screenshot was generated during the session, not copied from a ground truth folder.",
+            "visual_evidence": "The 3D view orientation and ROI placement show unique positioning consistent with the agent's manual mouse movements in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is located at /home/ga/Documents/SlicerData/BraTS (BraTS2021_00000). The final output must be saved to /home/ga/Documents/SlicerData/Screenshots/clipped_brain_rendering.png. To be correct, the 3D view must show a 'clipped' or 'cutaway' brain where the ROI box has removed a substantial portion (30-50%) of the outer surface to reveal the interior."
+}

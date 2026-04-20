@@ -1,0 +1,53 @@
+{
+    "task_id": "delete_pipeline_stage@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_crm",
+            "description": "Navigate to the CRM application and view the pipeline.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Odoo CRM dashboard with various pipeline stages (e.g., New, Initial Review)."
+        },
+        {
+            "id": "locate_opportunities",
+            "description": "Locate 'Acme Corp Server Upgrade' and 'GlobalTech Cloud Migration' in the 'Initial Review' stage.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the two specific opportunity cards listed under the 'Initial Review' column."
+        },
+        {
+            "id": "move_acme_to_new",
+            "description": "Move 'Acme Corp Server Upgrade' to the 'New' stage.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the 'Acme Corp Server Upgrade' card being dragged to or appearing in the 'New' column."
+        },
+        {
+            "id": "move_globaltech_to_new",
+            "description": "Move 'GlobalTech Cloud Migration' to the 'New' stage.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the 'GlobalTech Cloud Migration' card being dragged to or appearing in the 'New' column."
+        },
+        {
+            "id": "delete_initial_review_stage",
+            "description": "Delete the 'Initial Review' stage from the CRM pipeline.",
+            "points": 35,
+            "visual_evidence": "The VLM should see the user clicking the settings/gear icon on the 'Initial Review' column and selecting 'Delete' or 'Archive', followed by the column disappearing from the view."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo graphical user interface rather than executing database commands via terminal.",
+            "visual_evidence": "The screenshots should show mouse movements, clicks on UI elements like columns and cards, and Odoo modal dialogs."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the UI rather than guessing and typing direct URLs for deletion.",
+            "visual_evidence": "The trajectory shows the agent interacting with the pipeline view settings rather than just jumping to a success page."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the specific opportunities mentioned in the task.",
+            "visual_evidence": "The screenshots show the specific names 'Acme Corp Server Upgrade' and 'GlobalTech Cloud Migration' being manipulated."
+        }
+    ],
+    "privileged_info_for_vlm": "The CRM contains a stage named 'Initial Review' which must be deleted. Before deletion, two opportunities ('Acme Corp Server Upgrade' and 'GlobalTech Cloud Migration') must be moved from 'Initial Review' to the 'New' stage. The task is only complete if both opportunities are in 'New' and the 'Initial Review' column is no longer visible in the pipeline."
+}

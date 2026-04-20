@@ -1,0 +1,53 @@
+{
+    "task_id": "payload_com_identification@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_scene_setup",
+            "description": "CoppeliaSim is launched and a scene is constructed containing a base, a force/torque sensor, and a payload.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the CoppeliaSim GUI showing a 3D scene with a base, a sensor (usually a small cylinder/disc), and a payload object."
+        },
+        {
+            "id": "zmq_api_connection",
+            "description": "The agent writes and executes a script that connects to CoppeliaSim via the ZMQ Remote API.",
+            "points": 15,
+            "visual_evidence": "Terminal or IDE showing Python code importing 'coppelia_sim_remote_api' or 'zmqRemoteApi' and calling 'sim.startSimulation()'."
+        },
+        {
+            "id": "orthogonal_orientations_execution",
+            "description": "The robot/base is rotated into at least three distinct, orthogonal orientations to collect data.",
+            "points": 25,
+            "visual_evidence": "Sequence of screenshots or a script log showing the base/payload at different angles (e.g., 0, 90 degrees on different axes) while the simulation is running."
+        },
+        {
+            "id": "csv_data_export",
+            "description": "The agent saves the force/torque measurements to the specified CSV file path.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'ls' or 'cat' of /home/ga/Documents/CoppeliaSim/exports/ft_measurements.csv with columns for pose_id, forces, and torques."
+        },
+        {
+            "id": "json_results_export",
+            "description": "The agent saves the final mass and CoM identification results to the specified JSON file path.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing the content of /home/ga/Documents/CoppeliaSim/exports/payload_identification.json containing estimated_mass_kg and estimated_com fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim simulation rather than hardcoding values.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim 'Play' button active (highlighted) and the simulation time counter increasing during data collection."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The identification results are derived from measurements, not just copied from the prompt's requirements.",
+            "visual_evidence": "The Python script should contain mathematical logic for mass/CoM calculation (e.g., using gravity constants or matrix inversion) rather than just print statements of fixed numbers."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the instructions for exports.",
+            "visual_evidence": "Code or terminal commands showing the specific paths /home/ga/Documents/CoppeliaSim/exports/ft_measurements.csv and payload_identification.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use at least 3 orthogonal orientations. The required output files are /home/ga/Documents/CoppeliaSim/exports/ft_measurements.csv (10 specific columns) and /home/ga/Documents/CoppeliaSim/exports/payload_identification.json (9 specific fields). Note: A 'verifier.py' script is known to be missing from the environment, so the agent's success must be judged solely on the creation and content of the CSV and JSON files and the visual state of the CoppeliaSim scene."
+}

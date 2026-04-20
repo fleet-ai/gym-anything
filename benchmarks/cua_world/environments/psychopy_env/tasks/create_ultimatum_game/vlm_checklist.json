@@ -1,0 +1,59 @@
+{
+    "task_id": "create_ultimatum_game@1",
+    "task_completion": [
+        {
+            "id": "csv_creation",
+            "description": "Create the conditions CSV file with 'offer' and 'keep' columns and 5 rows summing to 10.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet editor or text editor showing /home/ga/PsychoPyExperiments/ug_conditions.csv with headers 'offer', 'keep' and 5 rows of data."
+        },
+        {
+            "id": "instruction_routine",
+            "description": "Create an instruction routine in the PsychoPy Builder interface.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder 'Flow' pane showing a routine named 'instruction' or similar at the start."
+        },
+        {
+            "id": "trial_routine_setup",
+            "description": "Create a trial routine containing text components for 'offer' and 'keep' and a keyboard component for 'y'/'n'.",
+            "points": 25,
+            "visual_evidence": "The PsychoPy Builder 'Routine' pane for the trial showing text components (referencing $offer and $keep) and a keyboard component restricted to 'y', 'n'."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "Add a loop around the trial routine linked to the conditions CSV file.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Flow showing a loop around the trial routine; the Loop Properties dialog showing the conditions file path pointing to ug_conditions.csv."
+        },
+        {
+            "id": "feedback_logic",
+            "description": "Implement code or logic to calculate earnings and feedback message based on the response.",
+            "points": 25,
+            "visual_evidence": "A Code Component in the trial or feedback routine showing Python logic (e.g., if key_resp.keys == 'y': msg = ...) or a feedback text component using a variable for earnings."
+        },
+        {
+            "id": "save_psyexp",
+            "description": "Save the experiment file to the specified path.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file manager showing 'ultimatum_game.psyexp' saved in /home/ga/PsychoPyExperiments/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing raw XML/code via terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with PsychoPy menus, component icons, and the Flow/Routine panes."
+        },
+        {
+            "id": "genuine_csv_generation",
+            "description": "The agent manually created or saved the CSV file rather than it pre-existing.",
+            "visual_evidence": "Screenshots of the agent using a CSV editor, LibreOffice Calc, or a text editor to input the 5 rows of data."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The trial routine uses variables from the CSV rather than hardcoded values.",
+            "visual_evidence": "Component property fields in PsychoPy showing '$offer' or '$keep' with the 'set every repeat' option selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/ultimatum_game.psyexp. The conditions file /home/ga/PsychoPyExperiments/ug_conditions.csv must have exactly 5 rows (excluding header) with columns 'offer' and 'keep' where each row sums to 10. The trial must accept 'y' and 'n' keys and calculate earnings: if 'y', earnings = offer; if 'n', earnings = 0."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "walker_constellation_setup@1",
+    "task_completion": [
+        {
+            "id": "read_pdr_specs",
+            "description": "Agent opens and reads the constellation_pdr.txt file on the Desktop to retrieve orbital parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/constellation_pdr.txt."
+        },
+        {
+            "id": "gmat_satellite_setup",
+            "description": "Agent configures the six satellites (TS_1A through TS_3B) in the GMAT interface with the correct orbital elements.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Resources' tree showing six spacecraft named TS_1A, TS_1B, TS_2A, TS_2B, TS_3A, and TS_3B."
+        },
+        {
+            "id": "propagator_configuration",
+            "description": "Agent configures a propagator using Earth point mass and J2 gravity model.",
+            "points": 15,
+            "visual_evidence": "GMAT Propagator configuration window showing 'PointMass' and 'J2' selected in the gravity field settings."
+        },
+        {
+            "id": "mission_sequence_propagation",
+            "description": "Agent sets up the Mission tree to propagate the satellites for one full orbital period.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Mission' tab showing a 'Propagate' command configured for the satellites."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing walker_constellation.script exists in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_verification_report",
+            "description": "Agent creates the constellation_report.txt containing the required orbital data and Walker notation.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/constellation_report.txt containing SMA (~7071 km), INC (~98.19 deg), ECC, RAAN, TA, orbital period in minutes, and the string '6/3/1'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "The agent used the GMAT graphical user interface for modeling rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots showing the GMAT application window, Resource tree, and Mission sequence being manipulated."
+        },
+        {
+            "id": "genuine_report_generation",
+            "description": "The report values should reflect the propagation results, not just a copy-paste of the PDR.",
+            "visual_evidence": "The report file contains calculated orbital period and final state vectors that match GMAT's output format."
+        },
+        {
+            "id": "no_hardcoding_values",
+            "description": "The agent should be seen interacting with the PDR file to find the values rather than knowing them a priori.",
+            "visual_evidence": "Sequence of screenshots showing the PDR file being opened before the GMAT configuration begins."
+        }
+    ],
+    "privileged_info_for_vlm": "The target orbital parameters from the PDR are: Semi-Major Axis (SMA) = 7071.14 km, Inclination (INC) = 98.19 degrees, and Eccentricity (ECC) target is 0.001 (must be < 0.01). The constellation is a Walker-Delta 6/3/1. The output files must be located at /home/ga/GMAT_output/walker_constellation.script and /home/ga/GMAT_output/constellation_report.txt."
+}

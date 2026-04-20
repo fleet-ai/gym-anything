@@ -1,0 +1,59 @@
+{
+    "task_id": "simplify_geometries_web_export@1",
+    "task_completion": [
+        {
+            "id": "load_source_shapefile",
+            "description": "The agent loads the source shapefile 'ne_50m_admin_0_countries.shp' into a GIS application.",
+            "points": 10,
+            "visual_evidence": "A GIS application (like QGIS) is open showing a layer named 'ne_50m_admin_0_countries' in the layers panel."
+        },
+        {
+            "id": "open_simplify_tool",
+            "description": "The agent opens the geometry simplification tool (e.g., 'Simplify' or 'Simplify Geometries').",
+            "points": 10,
+            "visual_evidence": "A dialog box or processing tool window for 'Simplify' or 'Simplify Geometries' is visible on screen."
+        },
+        {
+            "id": "set_simplification_parameters",
+            "description": "The agent sets the simplification method to Douglas-Peucker and the tolerance to 0.05.",
+            "points": 25,
+            "visual_evidence": "The simplification tool dialog shows 'Douglas-Peucker' selected and a tolerance value of '0.05' entered in the input field."
+        },
+        {
+            "id": "execute_simplification",
+            "description": "The agent runs the simplification process to create a new simplified layer.",
+            "points": 20,
+            "visual_evidence": "A progress bar for the simplification task is visible, or a new 'Simplified' layer appears in the layers panel."
+        },
+        {
+            "id": "configure_export_settings",
+            "description": "The agent configures the export to GeoJSON format with CRS EPSG:4326.",
+            "points": 20,
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog shows the format set to 'GeoJSON' and the CRS set to 'EPSG:4326 - WGS 84'."
+        },
+        {
+            "id": "export_final_file",
+            "description": "The agent exports the result to the specific path /home/ga/GIS_Data/exports/countries_simplified.geojson.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/GIS_Data/exports/countries_simplified.geojson' is visible in the export dialog's file name field or a success message confirms the export to that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and interaction with GIS dialog boxes (e.g., QGIS) rather than just a terminal window."
+        },
+        {
+            "id": "actual_data_processing",
+            "description": "The agent processed the actual file rather than creating a dummy file.",
+            "visual_evidence": "The map canvas shows the actual geometry of world countries, and the layer attribute table or properties reflect the Natural Earth dataset."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the GeoJSON file using a text editor.",
+            "visual_evidence": "The GeoJSON file is generated via the GIS export interface, not by typing JSON content into a text editor like VS Code or Vim."
+        }
+    ],
+    "privileged_info_for_vlm": "The source dataset contains 242 features and approximately 99,613 vertices. A Douglas-Peucker simplification with a 0.05-degree tolerance is expected to reduce the vertex count by at least 30% while maintaining at least 200 features. The output must be in GeoJSON format using EPSG:4326 (WGS 84) coordinate system."
+}

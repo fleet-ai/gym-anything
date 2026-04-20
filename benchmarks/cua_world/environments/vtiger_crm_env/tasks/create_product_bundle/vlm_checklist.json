@@ -1,0 +1,59 @@
+{
+    "task_id": "create_product_bundle@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_products",
+            "description": "Agent navigates to the Product creation or Product list section of the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Products' module header or the 'Add Product' form in the CRM interface."
+        },
+        {
+            "id": "fill_basic_details",
+            "description": "Agent enters the Product Name 'Smart Home Starter Kit' and Part Number 'KIT-SH-001'.",
+            "points": 15,
+            "visual_evidence": "The text fields for Product Name and Part Number are populated with 'Smart Home Starter Kit' and 'KIT-SH-001' respectively."
+        },
+        {
+            "id": "set_attributes_and_status",
+            "description": "Agent sets Sales Start Date to '2024-11-01', Unit Price to '149.99', Usage Unit to 'Pack', and ensures 'Active' is checked.",
+            "points": 20,
+            "visual_evidence": "The VLM should see '2024-11-01' in the date field, '149.99' in the price field, 'Pack' selected in the unit dropdown, and the 'Active' checkbox ticked."
+        },
+        {
+            "id": "set_stock_quantity",
+            "description": "Agent enters '100' in the Qty In Stock field.",
+            "points": 15,
+            "visual_evidence": "The 'Qty In Stock' field shows the value '100'."
+        },
+        {
+            "id": "associate_child_products",
+            "description": "Agent adds 'Smart Hub Pro', 'RGB Smart Bulb', and 'WiFi Smart Plug' as bundle components/sub-products.",
+            "points": 30,
+            "visual_evidence": "A sub-table or 'Product Bundle' section shows these three specific product names linked to the main record."
+        },
+        {
+            "id": "save_bundle",
+            "description": "Agent saves the record and the CRM displays a success message or the detailed view of the created bundle.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a 'Product Details' view for 'Smart Home Starter Kit' or a 'Record Saved' notification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the CRM web interface rather than executing database commands or scripts in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on CRM buttons, and typing into web forms rather than a terminal window."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the menu system rather than jumping directly to a final 'success' URL.",
+            "visual_evidence": "The trajectory shows the sequence of clicking through the CRM navigation menus (e.g., Inventory > Products)."
+        },
+        {
+            "id": "genuine_product_selection",
+            "description": "The agent searched for and selected the existing child products from the CRM database.",
+            "visual_evidence": "The VLM should see search pop-ups or dropdown selections for 'Smart Hub Pro', 'RGB Smart Bulb', and 'WiFi Smart Plug'."
+        }
+    ],
+    "privileged_info_for_vlm": "The bundle name must be 'Smart Home Starter Kit' with Part Number 'KIT-SH-001'. The price is 149.99, stock is 100, and unit is 'Pack'. The three specific child products that must be associated are 'Smart Hub Pro', 'RGB Smart Bulb', and 'WiFi Smart Plug'. The Sales Start Date must be 2024-11-01."
+}

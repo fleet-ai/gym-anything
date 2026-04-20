@@ -1,0 +1,59 @@
+{
+    "task_id": "mt_cyb_alternative_translation@1",
+    "task_completion": [
+        {
+            "id": "load_fasta_ugene",
+            "description": "Load the human_mt_cyb.fasta file into UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE interface showing 'human_mt_cyb.fasta' open in the Project View or Sequence View."
+        },
+        {
+            "id": "select_translation_table",
+            "description": "Select the 'Vertebrate Mitochondrial' translation table for the sequence.",
+            "points": 15,
+            "visual_evidence": "A dialog box, dropdown menu, or property panel in UGENE showing 'Vertebrate Mitochondrial' (or Table 2) selected."
+        },
+        {
+            "id": "translate_sequence",
+            "description": "Translate the DNA sequence into a protein sequence.",
+            "points": 20,
+            "visual_evidence": "The UGENE interface showing a new amino acid sequence (protein) generated from the DNA, or a 'Translate' operation in progress."
+        },
+        {
+            "id": "save_genbank_file",
+            "description": "Save the annotated DNA sequence as a GenBank file to the specified path.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' dialog showing the file path '~/UGENE_Data/results/mt_cyb_annotated.gb' and the GenBank format selected."
+        },
+        {
+            "id": "export_protein_fasta",
+            "description": "Export the translated protein sequence to a FASTA file at the specified path.",
+            "points": 15,
+            "visual_evidence": "An 'Export' dialog or file browser showing 'mt_cyb_protein.fasta' being saved to '~/UGENE_Data/results/'."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Create a text report with the translation table name, protein length, and biological explanation.",
+            "points": 25,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing 'translation_report.txt' containing 'Vertebrate Mitochondrial', a length around 380 amino acids, and a mention of codon differences (e.g., UGA coding for Tryptophan instead of Stop)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform the translation and export, rather than just using command-line tools like 'translate' or 'sed'.",
+            "visual_evidence": "Screenshots showing the UGENE application window, menus, and sequence views being interacted with."
+        },
+        {
+            "id": "genuine_translation",
+            "description": "The protein length and sequence were derived from the software, not just typed into the report from memory.",
+            "visual_evidence": "The UGENE interface displaying the protein sequence length (380 aa) before the report is written."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "File paths in 'Save' dialogs or terminal 'ls' commands matching '~/UGENE_Data/results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct translation table is 'Vertebrate Mitochondrial' (NCBI Table 2). The resulting protein sequence for human MT-CYB (NC_012920.1) is exactly 380 amino acids long. The standard genetic code fails because in vertebrate mitochondria, UGA codes for Tryptophan (Trp) instead of a Stop codon, and AUA/AUU can act as start codons or code for Methionine (Met) instead of Isoleucine (Ile)."
+}

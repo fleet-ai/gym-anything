@@ -1,0 +1,59 @@
+{
+    "task_id": "create_rdk_motion_task@1",
+    "task_completion": [
+        {
+            "id": "open_psychopy_builder",
+            "description": "The agent has opened the PsychoPy Builder interface.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder window is visible with the 'Routine' and 'Flow' panes."
+        },
+        {
+            "id": "create_routines",
+            "description": "The agent has created the four required routines: instructions, fixation, trial, and thanks.",
+            "points": 15,
+            "visual_evidence": "Tabs or labels for 'instructions', 'fixation', 'trial', and 'thanks' are visible in the Flow or Routine view."
+        },
+        {
+            "id": "configure_rdk_component",
+            "description": "The RDK (Dots) component is configured with the specific parameters: nDots=200, fieldShape='circle', dotLife=3, coherence=$coherence, and direction=$direction.",
+            "points": 25,
+            "visual_evidence": "The Dots component properties dialog shows nDots: 200, shape: circle, dot life: 3, coherence: $coherence, and direction: $direction."
+        },
+        {
+            "id": "configure_keyboard_component",
+            "description": "The keyboard component in the trial routine is set with allowed keys 'left', 'right' and correct answer $corrAns.",
+            "points": 15,
+            "visual_evidence": "The Keyboard component properties dialog shows allowedKeys: 'left', 'right' and Store Correct: $corrAns."
+        },
+        {
+            "id": "configure_trials_loop",
+            "description": "A loop named 'trials' surrounds the fixation and trial routines, using the correct conditions file and 2 repetitions.",
+            "points": 20,
+            "visual_evidence": "The Loop properties dialog shows name: trials, nReps: 2, and conditions file: conditions/motion_conditions.csv (or the full path)."
+        },
+        {
+            "id": "save_experiment_file",
+            "description": "The experiment is saved to the specified path: ~/PsychoPyExperiments/motion_coherence.psyexp.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy window title bar or a 'Save As' dialog shows the file path ~/PsychoPyExperiments/motion_coherence.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing the XML/Python code manually in a text editor.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with PsychoPy component icons and property dialogs."
+        },
+        {
+            "id": "genuine_conditions_link",
+            "description": "The agent actually selected or typed the conditions file path in the loop properties rather than leaving it blank.",
+            "visual_evidence": "The 'conditions' field in the Loop dialog is populated with 'conditions/motion_conditions.csv'."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use terminal commands to simply move a pre-existing file to the destination.",
+            "visual_evidence": "The agent is seen actively configuring components within the PsychoPy application."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/motion_coherence.psyexp. The conditions file is located at /home/ga/PsychoPyExperiments/conditions/motion_conditions.csv and contains headers 'coherence', 'direction', and 'corrAns'. The RDK component must use these exact variable names preceded by a '$' (e.g., $coherence) to indicate they are loaded from the conditions file."
+}

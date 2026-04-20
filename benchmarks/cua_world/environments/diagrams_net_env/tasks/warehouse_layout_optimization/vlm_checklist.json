@@ -1,0 +1,59 @@
+{
+    "task_id": "warehouse_layout_optimization@1",
+    "task_completion": [
+        {
+            "id": "analyze_inventory_csv",
+            "description": "Agent opens and analyzes inventory_velocity.csv to identify product velocities.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet viewer, text editor, or terminal output showing the contents of inventory_velocity.csv."
+        },
+        {
+            "id": "open_drawio_diagram",
+            "description": "Agent opens the warehouse_current.drawio file in a diagramming tool.",
+            "points": 10,
+            "visual_evidence": "The draw.io (diagrams.net) interface or a similar GUI showing the initial warehouse layout."
+        },
+        {
+            "id": "re_slot_fast_movers",
+            "description": "The Top 4 Fast Mover racks are moved to Zone A (East side near Packing/Shipping).",
+            "points": 25,
+            "visual_evidence": "Screenshots showing 'Phone Accessories', 'Consumer Electronics', 'Vitamins & Supplements', and 'Pet Food' racks positioned on the right/East side of the diagram."
+        },
+        {
+            "id": "re_slot_slow_movers",
+            "description": "The Bottom 4 Slow Mover racks are moved to Zone C (West side/rear).",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the four lowest velocity racks (e.g., Kayak Accessories) positioned on the left/West side of the diagram."
+        },
+        {
+            "id": "label_zone_and_path",
+            "description": "Zone A is labeled and a Pick Path arrow is drawn from the Office to the Packing Area.",
+            "points": 20,
+            "visual_evidence": "A text label or highlighted area marked 'Zone A' and a visible arrow line connecting the Office area to the Packing Area through the aisles."
+        },
+        {
+            "id": "export_pdf_result",
+            "description": "The final diagram is exported as a PDF to the specified directory.",
+            "points": 15,
+            "visual_evidence": "The 'Export as PDF' dialog box or a file manager showing optimized_layout.pdf in ~/Diagrams/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "Agent used the diagramming GUI to move elements rather than just script manipulation.",
+            "visual_evidence": "Mouse cursor movements, drag-and-drop actions, or selection boxes visible over the rack elements in the draw.io interface."
+        },
+        {
+            "id": "no_terminal_shortcut_export",
+            "description": "Agent did not simply use a command-line tool to generate a PDF without editing the layout.",
+            "visual_evidence": "Visual confirmation of the agent manually moving rack objects and drawing the arrow line in the GUI."
+        },
+        {
+            "id": "genuine_data_analysis",
+            "description": "Agent actually opened the CSV to find the categories rather than guessing.",
+            "visual_evidence": "The inventory_velocity.csv file being displayed on screen prior to the layout changes."
+        }
+    ],
+    "privileged_info_for_vlm": "The Top 4 Fast Movers (to be moved to the East/Zone A) are: 1. Phone Accessories, 2. Consumer Electronics, 3. Vitamins & Supplements, 4. Pet Food. The Packing Area is located on the East side. Zone C is the West side. The Pick Path must be a continuous arrow starting at the Office and ending at the Packing Area. The final file must be named optimized_layout.pdf."
+}

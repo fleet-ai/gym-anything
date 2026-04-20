@@ -1,0 +1,59 @@
+{
+    "task_id": "update_layer_metadata@1",
+    "task_completion": [
+        {
+            "id": "geoserver_login",
+            "description": "Agent successfully logs into the GeoServer admin interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer web interface is visible with the 'admin' user logged in (usually shown in the top right corner)."
+        },
+        {
+            "id": "navigate_to_layer_edit",
+            "description": "Agent navigates to the 'Edit Layer' page for 'ne_countries' in the 'ne' workspace.",
+            "points": 10,
+            "visual_evidence": "The browser shows the 'Edit Layer' screen for 'ne:ne_countries'."
+        },
+        {
+            "id": "update_title_abstract",
+            "description": "Title and Abstract are updated to the specified text.",
+            "points": 20,
+            "visual_evidence": "The 'Title' field contains 'World Political Boundaries (1:110m)' and the 'Abstract' field contains the full text starting with 'Country boundaries from the Natural Earth...'"
+        },
+        {
+            "id": "update_keywords",
+            "description": "The five specific keywords are added to the layer metadata.",
+            "points": 20,
+            "visual_evidence": "The keywords 'countries', 'political', 'boundaries', 'natural-earth', and 'admin-0' are visible in the keywords list or input field."
+        },
+        {
+            "id": "verify_queryable_srs",
+            "description": "The layer is set to Queryable and the Declared SRS is EPSG:4326.",
+            "points": 20,
+            "visual_evidence": "The 'Queryable' checkbox is checked and the 'Declared SRS' field shows 'EPSG:4326'."
+        },
+        {
+            "id": "save_metadata_changes",
+            "description": "The agent saves the changes and receives a success confirmation.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Save' button and the interface returns to the layer list with a message like 'Layer ne_countries saved'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than executing direct database or API commands via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, typing in form fields, and navigation within the GeoServer GUI."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the menu (Layers -> ne_countries) rather than jumping to a final success URL.",
+            "visual_evidence": "Sequential screenshots show the process of finding the layer in the GeoServer layer list."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent typed or pasted the specific metadata values into the actual GeoServer form fields.",
+            "visual_evidence": "The specific strings for Title and Abstract are visible within the GeoServer UI text areas."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset 'ne_countries' corresponds to the Natural Earth 1:110m Admin 0 Countries dataset. While the task description asks for an abstract mentioning 'sovereign states', the actual dataset contains 258 entries including dependent territories. The VLM should strictly verify that the agent entered the text exactly as requested in the task description: Title: 'World Political Boundaries (1:110m)'; Abstract: 'Country boundaries from the Natural Earth 1:110 million scale cultural dataset. Includes sovereign states and dependent territories with administrative boundary polygons suitable for small-scale thematic mapping and reference cartography.'; Keywords: 'countries', 'political', 'boundaries', 'natural-earth', 'admin-0'. The Declared SRS must be exactly 'EPSG:4326'."
+}

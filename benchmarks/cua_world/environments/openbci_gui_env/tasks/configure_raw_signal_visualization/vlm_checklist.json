@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_raw_signal_visualization@1",
+    "task_completion": [
+        {
+            "id": "open_playback_file",
+            "description": "OpenBCI GUI is launched and the specific playback file 'OpenBCI-EEG-S001-EyesOpen.txt' is selected.",
+            "points": 15,
+            "visual_evidence": "The OpenBCI GUI control panel or file browser shows the path '~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-EyesOpen.txt' selected for playback."
+        },
+        {
+            "id": "start_data_stream",
+            "description": "The data stream is active and EEG waveforms are visible in the Time Series widget.",
+            "points": 10,
+            "visual_evidence": "The 'Start Data Stream' button is pressed (usually turns green or says 'Stop Data Stream') and moving waveforms appear in the main window."
+        },
+        {
+            "id": "disable_notch_filter",
+            "description": "The Notch filter is disabled or set to 'None'.",
+            "points": 20,
+            "visual_evidence": "The Notch filter button/dropdown in the Time Series widget or top bar is set to 'None' or 'Off'."
+        },
+        {
+            "id": "disable_bandpass_filter",
+            "description": "The Bandpass filter is disabled or set to 'None'.",
+            "points": 20,
+            "visual_evidence": "The Bandpass filter button/dropdown in the Time Series widget or top bar is set to 'None' or 'Off'."
+        },
+        {
+            "id": "adjust_vertical_scale",
+            "description": "The Time Series vertical scale is adjusted to 1000 uV.",
+            "points": 20,
+            "visual_evidence": "The vertical scale setting (often a dropdown on the left of the Time Series widget) explicitly displays '1000 uV'."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "A screenshot of the raw data view is saved to the specified location.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with the 'Screenshot' button in the GUI or a file explorer shows 'raw_signal_view.png' created in the Recordings folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenBCI GUI interface rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI buttons like 'Notch', 'Bandpass', and 'Vert Scale'."
+        },
+        {
+            "id": "genuine_data_rendering",
+            "description": "The waveforms displayed are dynamic and correspond to EEG data, not a static image or placeholder.",
+            "visual_evidence": "Sequential screenshots show the EEG traces progressing/scrolling across the Time Series window."
+        },
+        {
+            "id": "no_premade_screenshots",
+            "description": "The agent did not simply rename an existing image to 'raw_signal_view.png'.",
+            "visual_evidence": "The UI state in the final screenshot (filter settings, scale, and file name) matches the actions taken in the preceding trajectory steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The playback file must be 'OpenBCI-EEG-S001-EyesOpen.txt'. For the signal to be considered 'raw' as per requirements, the Notch filter must be 'None', the Bandpass filter must be 'None', and the Vertical Scale must be exactly '1000 uV'. The final output image must be named 'raw_signal_view.png' and located in '~/Documents/OpenBCI_GUI/Recordings/'."
+}

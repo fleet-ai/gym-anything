@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_balancing_robot_sim2real@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots simulator and located the SEGWAY_ROBOT node in the scene tree.",
+            "points": 10,
+            "visual_evidence": "Webots application window is visible with 'SEGWAY_ROBOT' listed in the Scene Tree on the left."
+        },
+        {
+            "id": "set_chassis_mass",
+            "description": "The main chassis mass is set to 45.5 kg.",
+            "points": 20,
+            "visual_evidence": "The 'mass' field under the SEGWAY_ROBOT's physics/chassis node shows the value 45.5 in the Webots field editor."
+        },
+        {
+            "id": "set_center_of_mass",
+            "description": "The center of mass is set to 0 0 0.15.",
+            "points": 20,
+            "visual_evidence": "The 'centerOfMass' field under the SEGWAY_ROBOT's physics node shows the vector [0, 0, 0.15] in the Webots field editor."
+        },
+        {
+            "id": "set_encoder_resolutions",
+            "description": "The resolution for both left_encoder and right_encoder is set to 0.001534.",
+            "points": 20,
+            "visual_evidence": "The 'resolution' field for both 'left_encoder' and 'right_encoder' nodes in the scene tree shows 0.001534."
+        },
+        {
+            "id": "set_gyro_noise",
+            "description": "The pitch_gyro noise is set to 0.005.",
+            "points": 15,
+            "visual_evidence": "The 'lookupTable' or 'noise' field (depending on node type) for the 'pitch_gyro' shows the value 0.005."
+        },
+        {
+            "id": "save_calibrated_world",
+            "description": "The world is saved to the specific path /home/ga/Desktop/segway_calibrated.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box or the Webots title bar shows the file path /home/ga/Desktop/segway_calibrated.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI to change parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "no_file_system_faking",
+            "description": "The agent actually saved the file through the application interface.",
+            "visual_evidence": "The 'Save As' dialog or the file appearing on the Desktop in the file manager/desktop view."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered the specific values into the Webots fields.",
+            "visual_evidence": "Sequential screenshots showing the values 45.5, 0.15, 0.001534, and 0.005 being typed or appearing in the property editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot name is 'SEGWAY_ROBOT'. Required values: Mass = 45.5; Center of Mass = [0, 0, 0.15]; Encoder Resolution (left and right) = 0.001534; Gyro Noise = 0.005. The final file must be saved as /home/ga/Desktop/segway_calibrated.wbt."
+}

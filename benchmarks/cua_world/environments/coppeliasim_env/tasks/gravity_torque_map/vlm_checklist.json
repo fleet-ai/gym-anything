@@ -1,0 +1,59 @@
+{
+    "task_id": "gravity_torque_map@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch_and_model_load",
+            "description": "CoppeliaSim is running and the UR5 robot model is loaded into the scene.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible with a UR5 robot arm (6-DOF) present in the 3D viewport."
+        },
+        {
+            "id": "script_execution_zmq",
+            "description": "The agent executes a script that connects to the ZMQ Remote API on port 23000.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code editor showing a Python script using 'coppelia_zmq_remote_api' or similar, targeting port 23000."
+        },
+        {
+            "id": "stepping_mode_simulation",
+            "description": "The simulation is running in stepping mode to capture steady-state torques.",
+            "points": 15,
+            "visual_evidence": "The CoppeliaSim toolbar shows the simulation is active, and code/logs indicate 'setStepping(True)' or manual triggers of simulation steps."
+        },
+        {
+            "id": "grid_search_movement",
+            "description": "The robot arm is observed moving through various configurations for the shoulder and elbow joints.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots show the UR5 shoulder (2nd joint) and elbow (3rd joint) at different angles, covering a wide range of motion."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "A CSV file is created at the specified path with the correct columns and at least 25 rows.",
+            "points": 20,
+            "visual_evidence": "A terminal 'cat' command or file explorer showing /home/ga/Documents/CoppeliaSim/exports/torque_map.csv with columns: config_id, shoulder_deg, elbow_deg, shoulder_torque_nm, elbow_torque_nm."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "A JSON summary report is generated with the required statistical fields.",
+            "points": 15,
+            "visual_evidence": "A terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/torque_report.json containing total_configs, max_shoulder_torque_nm, and max_elbow_torque_nm."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent did not hardcode the torque values or the report content.",
+            "visual_evidence": "The torque values in the CSV/JSON should contain floating-point decimals that correspond to the physical poses seen in the screenshots, rather than perfectly round or arbitrary numbers."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The files were generated via script execution, not by manually typing into a text editor.",
+            "visual_evidence": "The agent is seen running a script in the terminal that produces the files, rather than opening an empty CSV/JSON and typing the data manually."
+        },
+        {
+            "id": "api_usage_consistency",
+            "description": "The agent used the ZMQ API as requested rather than internal Lua scripts or GUI sliders to gather data.",
+            "visual_evidence": "Code screenshots show the use of the Remote API client to get joint forces/torques and set joint positions."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 5x5 grid (minimum 25 configs). The shoulder (joint 1 in 0-index, 2nd joint) and elbow (joint 2 in 0-index, 3rd joint) must each span at least 90 degrees. The output must be at /home/ga/Documents/CoppeliaSim/exports/torque_map.csv and /home/ga/Documents/CoppeliaSim/exports/torque_report.json. The UR5 model is located at /opt/CoppeliaSim/models/robots/non-mobile/UR5.ttm."
+}

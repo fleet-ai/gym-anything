@@ -1,0 +1,53 @@
+{
+    "task_id": "view_metadata@1",
+    "task_completion": [
+        {
+            "id": "weasis_application_visible",
+            "description": "The Weasis medical viewer application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis window frame, toolbar, and main interface are visible in the screenshot."
+        },
+        {
+            "id": "image_loaded",
+            "description": "A medical image (DICOM) is loaded and displayed in the main viewing pane.",
+            "points": 15,
+            "visual_evidence": "A grayscale medical image (X-ray/Angiography) is visible in the central canvas of Weasis."
+        },
+        {
+            "id": "metadata_viewer_opened",
+            "description": "The agent has successfully opened the DICOM metadata/header information panel or window.",
+            "points": 25,
+            "visual_evidence": "A panel or pop-up window titled 'DICOM Info', 'Metadata', or 'DICOM Tags' is visible over or alongside the image."
+        },
+        {
+            "id": "patient_name_displayed",
+            "description": "The DICOM tag for Patient Name is visible in the metadata viewer.",
+            "points": 20,
+            "visual_evidence": "The text 'Rubo DEMO' is visible next to the 'Patient Name' or tag (0010,0010) field."
+        },
+        {
+            "id": "modality_and_study_displayed",
+            "description": "The DICOM tags for Modality and Study Description are visible in the metadata viewer.",
+            "points": 30,
+            "visual_evidence": "The text 'XA' is visible next to the 'Modality' tag (0008,0060), and study information is present in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to access metadata rather than querying files via a terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement toward Weasis menus (e.g., right-click on image or 'View' menu) rather than a terminal window with 'strings' or 'pydicom' commands."
+        },
+        {
+            "id": "no_hardcoded_metadata",
+            "description": "The agent did not simply echo the metadata from the task prompt, which contains incorrect placeholder values.",
+            "visual_evidence": "The metadata viewer shows 'Rubo DEMO' and 'XA', not the 'Metadata^Test' or 'CT' mentioned in the initial task description."
+        },
+        {
+            "id": "active_window_focus",
+            "description": "The agent is interacting with the live Weasis application.",
+            "visual_evidence": "The Weasis window is the active/focused window during the metadata retrieval process."
+        }
+    ],
+    "privileged_info_for_vlm": "The actual DICOM data loaded in Weasis contains the following verified values: Patient Name is 'Rubo DEMO' and Modality is 'XA'. If the agent shows or claims the Patient Name is 'Metadata^Test' or the Modality is 'CT', it is likely hallucinating or relying on incorrect prompt text rather than the actual software state."
+}

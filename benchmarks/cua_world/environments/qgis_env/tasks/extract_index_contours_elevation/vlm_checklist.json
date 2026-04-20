@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_index_contours_elevation@1",
+    "task_completion": [
+        {
+            "id": "load_raster_data",
+            "description": "The input raster file srtm_41_19.tif is loaded into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The file 'srtm_41_19.tif' is visible in the Layers panel or the main map canvas."
+        },
+        {
+            "id": "open_contour_tool",
+            "description": "The agent opens the Contour extraction tool/dialog.",
+            "points": 10,
+            "visual_evidence": "A dialog box titled 'Contour' or similar is visible on the screen."
+        },
+        {
+            "id": "configure_contour_parameters",
+            "description": "The agent sets the interval to 20 and the attribute name to 'ELEV'.",
+            "points": 20,
+            "visual_evidence": "The value '20' is entered in the 'Interval between contour lines' field and 'ELEV' is entered in the 'Attribute name' field."
+        },
+        {
+            "id": "filter_index_contours",
+            "description": "The agent filters the generated contours to keep only multiples of 100m.",
+            "points": 30,
+            "visual_evidence": "An expression builder or filter dialog showing a query like '\"ELEV\" % 100 = 0' or a selection of specific elevation values (100, 200, ..., 1600)."
+        },
+        {
+            "id": "export_geojson",
+            "description": "The agent exports the filtered contours to the specified GeoJSON path.",
+            "points": 30,
+            "visual_evidence": "The 'Save Vector Layer as' or 'Export' dialog shows the format 'GeoJSON' and the file path '/home/ga/GIS_Data/exports/index_contours.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and interaction with GIS dialog boxes (e.g., QGIS or ArcGIS interface)."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent actually ran the contour tool on the loaded raster.",
+            "visual_evidence": "Progress bars or the appearance of a new vector layer on top of the raster in the map canvas."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create a text file and rename it to .geojson.",
+            "visual_evidence": "The export process is seen through the GIS software's export/save-as interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The input raster srtm_41_19.tif has elevation values ranging from 4m to 1699m. The final GeoJSON should only contain contours for elevations that are multiples of 100 (e.g., 100, 200, ..., 1600). The attribute field in the output must be named 'ELEV'. The base interval used in the tool should be 20, but the final output must be filtered to 100m intervals."
+}

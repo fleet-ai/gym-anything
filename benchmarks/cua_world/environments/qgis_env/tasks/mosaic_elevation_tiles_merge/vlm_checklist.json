@@ -1,0 +1,59 @@
+{
+    "task_id": "mosaic_elevation_tiles_merge@1",
+    "task_completion": [
+        {
+            "id": "load_input_rasters",
+            "description": "The agent loads both dem_tile_west.tif and dem_tile_east.tif into the GIS software interface.",
+            "points": 10,
+            "visual_evidence": "Look for 'dem_tile_west.tif' and 'dem_tile_east.tif' listed in the Layers panel or visible in the workspace."
+        },
+        {
+            "id": "open_merge_tool",
+            "description": "The agent opens the 'Merge' or 'Mosaic' tool dialog (e.g., GDAL Merge or equivalent).",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Merge', 'Mosaic', or 'Build Virtual Raster' is visible on the screen."
+        },
+        {
+            "id": "configure_input_layers",
+            "description": "The agent selects both input tiles as the source for the merge operation.",
+            "points": 15,
+            "visual_evidence": "The Merge tool dialog shows both west and east tiles selected in the 'Input layers' or 'Input files' field."
+        },
+        {
+            "id": "set_output_data_type",
+            "description": "The agent sets the output data type to Float32 as specified in the task.",
+            "points": 20,
+            "visual_evidence": "The 'Output data type' dropdown or parameter in the tool dialog is set to 'Float32'."
+        },
+        {
+            "id": "set_output_path",
+            "description": "The agent specifies the correct output path and filename for the merged DEM.",
+            "points": 15,
+            "visual_evidence": "The 'Merged' or 'Output file' field shows the path '/home/ga/GIS_Data/exports/merged_dem.tif'."
+        },
+        {
+            "id": "execute_merge",
+            "description": "The agent runs the merge process and a new layer is generated.",
+            "points": 25,
+            "visual_evidence": "A progress bar completes, and a new layer named 'merged_dem' appears in the Layers panel, showing a combined extent of the two original tiles."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the GIS software GUI to perform the merge rather than just executing a script in the terminal.",
+            "visual_evidence": "Screenshots show interactions with tool dialogs, menus, and the map canvas rather than only a terminal window."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply rename or copy an existing file to the output path.",
+            "visual_evidence": "The agent is seen configuring parameters (Float32, input files) within a processing tool."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system through the application's file picker or layer browser.",
+            "visual_evidence": "The file browser or layer selection dialog is visible when selecting inputs and outputs."
+        }
+    ],
+    "privileged_info_for_vlm": "The input tiles are located at /home/ga/GIS_Data/rasters/ (dem_tile_west.tif and dem_tile_east.tif). The expected output must be a Float32 GeoTIFF saved to /home/ga/GIS_Data/exports/merged_dem.tif. The combined extent of the result should be approximately Longitude -122.5 to -121.5 and Latitude 37.5 to 38.0. The Coordinate Reference System (CRS) is EPSG:4326."
+}

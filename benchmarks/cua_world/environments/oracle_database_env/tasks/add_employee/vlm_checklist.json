@@ -1,0 +1,59 @@
+{
+    "task_id": "add_employee@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle HR database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a database management tool (like SQL Developer, DBeaver, or a web UI) with connection settings for host 'localhost', port '1521', and user 'hr' being entered or connected."
+        },
+        {
+            "id": "open_insert_interface",
+            "description": "Agent navigates to the employee table or an 'Add Employee' form/SQL editor.",
+            "points": 10,
+            "visual_evidence": "The screen shows the 'EMPLOYEES' table structure or a blank data entry form for a new record."
+        },
+        {
+            "id": "input_personal_details",
+            "description": "Agent enters the correct name, email, and phone number for Sarah Johnson.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing 'Sarah' in the first name field, 'Johnson' in the last name field, 'SJOHNSON' in the email field, and '650.555.1234' in the phone field."
+        },
+        {
+            "id": "input_job_and_date",
+            "description": "Agent enters the correct Job ID and Hire Date.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing 'IT_PROG' selected/typed and a hire date of 'January 15, 2024' (or 2024-01-15)."
+        },
+        {
+            "id": "input_org_details",
+            "description": "Agent enters the correct Salary, Manager ID, and Department ID.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing Salary: 5500, Manager ID: 103, and Department ID: 60 entered into the respective fields."
+        },
+        {
+            "id": "commit_transaction",
+            "description": "Agent executes the insert command or clicks save/apply to commit the new record to the database.",
+            "points": 20,
+            "visual_evidence": "A 'Success' message, a 'Row Inserted' notification, or a commit confirmation dialog in the database tool."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a database GUI or management tool rather than just executing a script via a hidden terminal.",
+            "visual_evidence": "Visible interaction with a database client application (e.g., SQL Developer, DBeaver, or a browser-based DB manager)."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply print a success message without actually interacting with the database software.",
+            "visual_evidence": "The sequence of screenshots shows the step-by-step process of filling out fields or writing the SQL query in the tool."
+        },
+        {
+            "id": "actual_connection_params",
+            "description": "The agent used the provided connection details (localhost, 1521, hr) rather than a mock environment.",
+            "visual_evidence": "Connection setup screens showing the specific host and port provided in the task description."
+        }
+    ],
+    "privileged_info_for_vlm": "The employee to be added is Sarah Johnson. Required values: Email=SJOHNSON, Phone=650.555.1234, Hire Date=Jan 15 2024, Job ID=IT_PROG, Salary=5500, Manager ID=103, Department ID=60. Database credentials: User=hr, Password=hr123, DB=XEPDB1."
+}

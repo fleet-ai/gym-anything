@@ -1,0 +1,59 @@
+{
+    "task_id": "probe_pixel_density@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_software",
+            "description": "The agent opens the DICOM viewing software and loads the CT scan image.",
+            "points": 10,
+            "visual_evidence": "A medical imaging interface (DICOM viewer) is visible on the screen showing a 256x256 CT scan image."
+        },
+        {
+            "id": "probe_coordinate_128_128",
+            "description": "The agent positions the cursor or probe tool at (128, 128) to read the value.",
+            "points": 20,
+            "visual_evidence": "The cursor or a crosshair tool is positioned near the center of the image, and a value (approx 2000 or 976) is visible in the UI overlay."
+        },
+        {
+            "id": "probe_coordinate_64_64",
+            "description": "The agent positions the cursor or probe tool at (64, 64) to read the value.",
+            "points": 20,
+            "visual_evidence": "The cursor or a crosshair tool is positioned in the top-left quadrant of the image, and a value (approx 1000 or -24) is visible in the UI overlay."
+        },
+        {
+            "id": "probe_coordinate_192_192",
+            "description": "The agent positions the cursor or probe tool at (192, 192) to read the value.",
+            "points": 20,
+            "visual_evidence": "The cursor or a crosshair tool is positioned in the bottom-right quadrant of the image, and a value (approx 3000 or 1976) is visible in the UI overlay."
+        },
+        {
+            "id": "create_results_file",
+            "description": "The agent creates the results file at the specified path with the correct header.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal shows the creation of '~/DICOM/exports/pixel_probe_results.txt' with the header 'Pixel Probe Results'."
+        },
+        {
+            "id": "save_correct_values",
+            "description": "The agent saves the three recorded values into the text file using the required format.",
+            "points": 20,
+            "visual_evidence": "The final text file is shown containing the three coordinates and their corresponding numeric values (VALUE1, VALUE2, VALUE3)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the GUI probe tool rather than just calculating values via script.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to the specific coordinates within the DICOM viewer UI."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent should not simply echo the values into a file without first viewing them in the software.",
+            "visual_evidence": "The agent must have the DICOM viewer open and active before the text file is finalized."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent saves the file to the specific requested directory, not a default location.",
+            "visual_evidence": "The file path '~/DICOM/exports/pixel_probe_results.txt' is visible during the save process or in a file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth values for the coordinates are: (128,128) is 2000 (raw) or 976 (HU); (64,64) is 1000 (raw) or -24 (HU); (192,192) is 3000 (raw) or 1976 (HU). The agent may record either the raw or HU value as long as it matches the software display. A tolerance of ±5 pixels for coordinates and ±100 for values is acceptable."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "brain_lesion_localization@1",
+    "task_completion": [
+        {
+            "id": "load_flair_mri",
+            "description": "The FLAIR MRI volume is loaded into the 3D Slicer viewer.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows a brain MRI volume in the axial, coronal, and sagittal slice views."
+        },
+        {
+            "id": "place_fiducial_on_lesion",
+            "description": "A fiducial marker is placed on the hyperintense (bright) region representing the glioma.",
+            "points": 25,
+            "visual_evidence": "A colored markup point (fiducial) is visible within the bright lesion area in the slice viewers."
+        },
+        {
+            "id": "capture_orthogonal_screenshots",
+            "description": "Screenshots of the lesion are captured in axial, coronal, and sagittal planes.",
+            "points": 20,
+            "visual_evidence": "The agent's file browser or terminal shows the creation of lesion_axial.png, lesion_coronal.png, and lesion_sagittal.png."
+        },
+        {
+            "id": "save_centroid_json",
+            "description": "The fiducial coordinates are exported as a .mrk.json file.",
+            "points": 20,
+            "visual_evidence": "A file named lesion_centroid.mrk.json is visible in the ~/Documents/SlicerData/BraTS/LocalizationReport/ directory."
+        },
+        {
+            "id": "generate_localization_report",
+            "description": "A JSON report is created containing lesion_centroid_ras, laterality, midline_distance_mm, and hemisphere_involvement.",
+            "points": 25,
+            "visual_evidence": "The file localization_report.json is visible, and if opened, contains the four required data fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to locate the tumor rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's 'Markups' module or clicking on the MRI slices."
+        },
+        {
+            "id": "genuine_localization",
+            "description": "The fiducial placement corresponds to the visual location of the lesion in the specific case BraTS2021_00000.",
+            "visual_evidence": "The fiducial marker is centered on the white/bright mass in the FLAIR image, not placed at random coordinates."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply echo the ground truth into a file without opening the image.",
+            "visual_evidence": "The trajectory shows the MRI volume being actively manipulated (scrolling through slices) before the report is saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses BraTS 2021 case 'BraTS2021_00000'. The glioma is visible as a hyperintense (bright) region on the FLAIR sequence. The ground truth centroid must be within 15.0mm of the actual lesion center. The midline distance calculation has a 10.0mm tolerance. The report must be saved in ~/Documents/SlicerData/BraTS/LocalizationReport/."
+}

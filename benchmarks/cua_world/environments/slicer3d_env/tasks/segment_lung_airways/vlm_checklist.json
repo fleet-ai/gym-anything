@@ -1,0 +1,59 @@
+{
+    "task_id": "segment_lung_airways@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The chest CT scan for patient LIDC-IDRI-0001 is loaded into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows axial, sagittal, and coronal views of a chest CT scan; the Data module or Subject Hierarchy lists a volume named 'LIDC-IDRI-0001' or similar."
+        },
+        {
+            "id": "create_segmentation_node",
+            "description": "A new segmentation node is created and named 'Airways'.",
+            "points": 10,
+            "visual_evidence": "The Segment Editor module or the Subject Hierarchy shows a segmentation node or segment explicitly named 'Airways'."
+        },
+        {
+            "id": "segmentation_process",
+            "description": "The agent uses segmentation tools (e.g., Threshold, Grow from Seeds, or Paint) to isolate the trachea and bronchi.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the Segment Editor active with tools like 'Threshold' or 'Grow from Seeds' being configured, and colored overlays appearing specifically within the dark airway lumens in the slice views."
+        },
+        {
+            "id": "exclude_external_air",
+            "description": "The segmentation is confined to the internal airways and does not include the air outside the patient's body.",
+            "points": 15,
+            "visual_evidence": "The colored segmentation mask is visible only inside the patient's chest/neck area; no colored mask is visible in the black space surrounding the patient's skin."
+        },
+        {
+            "id": "verify_airway_anatomy",
+            "description": "The segmentation correctly captures the tracheobronchial tree structure.",
+            "points": 20,
+            "visual_evidence": "The 3D view or slice views show a continuous tubular structure representing the trachea branching into the left and right mainstem bronchi."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is exported/saved to the specific file path ~/Documents/SlicerData/Exports/airways_segmentation.seg.nrrd.",
+            "points": 20,
+            "visual_evidence": "The 'Export to files' dialog or a terminal 'ls' command shows the file 'airways_segmentation.seg.nrrd' in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI tools rather than just executing a pre-written script or terminal command to generate the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor effects, sliders, or the 'Add' segment button."
+        },
+        {
+            "id": "genuine_segmentation",
+            "description": "The segmentation mask was actually generated from the loaded volume, not by loading a pre-existing mask file.",
+            "visual_evidence": "The VLM should see the progression of the segmentation mask growing or being painted over several frames, rather than it appearing instantly in its final form."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply rename an existing file to match the target filename.",
+            "visual_evidence": "The 'Save' or 'Export' dialog in Slicer is visible with the correct path and filename being typed or selected."
+        }
+    ],
+    "privileged_info_for_vlm": "For patient LIDC-IDRI-0001, a valid airway segmentation should have a volume between 50 mL and 300 mL. The mean Hounsfield Unit (HU) value of the segmented area must be -800 HU or lower (representing air). The segmentation should ideally consist of a single connected component representing the trachea and major bronchi."
+}

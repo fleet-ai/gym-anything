@@ -1,0 +1,59 @@
+{
+    "task_id": "hurricane_fiona_buoy_analysis@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named analyze_hurricane.py in the /home/ga/Documents/ directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or text editor showing the file path /home/ga/Documents/analyze_hurricane.py."
+        },
+        {
+            "id": "data_loading_logic",
+            "description": "The script contains code to read the buoy_41046_2022.txt file, handling the two header rows and space separation.",
+            "points": 15,
+            "visual_evidence": "Code in the editor showing parameters like 'skiprows=2' or similar logic to skip headers and 'sep' or 'delim_whitespace' for space separation."
+        },
+        {
+            "id": "filtering_and_cleaning_logic",
+            "description": "The script includes logic to filter for September (MM=09) and excludes missing values (99.00 for WVHT and 9999.0 for PRES).",
+            "points": 25,
+            "visual_evidence": "Code showing a filter for month 9 and conditional checks or 'replace' calls for the specific missing value constants 99.0 and 9999.0."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "The script calculates the maximum wave height and minimum pressure from the filtered data.",
+            "points": 20,
+            "visual_evidence": "Code showing the use of .max() on the WVHT column and .min() on the PRES column."
+        },
+        {
+            "id": "report_generation",
+            "description": "The script includes code to write the results to /home/ga/Documents/hurricane_summary.txt in the specified format.",
+            "points": 15,
+            "visual_evidence": "Code showing an 'open' or 'write' operation to the summary file with the exact string formatting required."
+        },
+        {
+            "id": "final_report_content",
+            "description": "The file /home/ga/Documents/hurricane_summary.txt exists and contains the correct formatted output.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command output showing the file content with 'Maximum Wave Height: [Value] m' and 'Minimum Pressure: [Value] hPa'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write the final values into the script without performing the data processing.",
+            "visual_evidence": "The script analyze_hurricane.py should contain logic to process the dataframe, not just print statements with the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the file system and text editor rather than just simulating output in a terminal.",
+            "visual_evidence": "Screenshots showing the use of a text editor (like VS Code, Gedit, or Vim) and the presence of the files in the file manager."
+        },
+        {
+            "id": "source_data_usage",
+            "description": "The agent actually opened or referenced the source data file buoy_41046_2022.txt.",
+            "visual_evidence": "The script path points to the correct data file location, or the agent is seen opening the data file to inspect the headers."
+        }
+    ],
+    "privileged_info_for_vlm": "For NOAA Buoy 41046 in September 2022 (Hurricane Fiona), the maximum significant wave height (WVHT) was 11.7 meters and the minimum sea level pressure (PRES) was 994.3 hPa. The VLM should verify these specific numbers appear in the final hurricane_summary.txt."
+}

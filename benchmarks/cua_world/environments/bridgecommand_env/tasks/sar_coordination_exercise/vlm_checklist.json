@@ -1,0 +1,62 @@
+{
+    "task_id": "sar_coordination_exercise@1",
+    "task_completion": [
+        {
+            "id": "environment_config",
+            "description": "Configure environment.ini with Solent setting, 05.5 start time, and 1.5 visibility.",
+            "points": 10,
+            "visual_evidence": "Text editor or terminal output showing /opt/bridgecommand/Scenarios/s) Solent SAR Exercise/environment.ini with Setting='Solent', StartTime=05.5, and VisibilityRange=1.5."
+        },
+        {
+            "id": "ownship_config",
+            "description": "Configure ownship.ini with RNLI Severn Class at specific coordinates and heading.",
+            "points": 15,
+            "visual_evidence": "Text editor showing ownship.ini with Vessel='RNLI Severn Class 17-35', Lat=50.765, Long=-1.295, and Heading=045."
+        },
+        {
+            "id": "othership_vessels_defined",
+            "description": "Define the four required vessels in othership.ini: Coastguard Whiskey Bravo, ILB Atlantic 85, MV Sea Guardian, and SY Dorado Star.",
+            "points": 15,
+            "visual_evidence": "Text editor showing othership.ini containing the names 'Coastguard Whiskey Bravo', 'ILB Atlantic 85 Bravo-770', 'MV Sea Guardian', and 'SY Dorado Star'."
+        },
+        {
+            "id": "search_pattern_waypoints",
+            "description": "Configure Expanding Square Search waypoints with more than 6 legs for the three search vessels.",
+            "points": 25,
+            "visual_evidence": "Text editor showing othership.ini with [Waypoints] sections for the three active vessels containing at least 7 distinct waypoint entries forming an expanding square pattern."
+        },
+        {
+            "id": "bridge_command_settings",
+            "description": "Configure bc5.ini with specific radar and ARPA settings.",
+            "points": 15,
+            "visual_evidence": "Text editor showing /home/ga/.config/Bridge Command/bc5.ini with arpa_on=1, full_radar=1, radar_range_resolution=256, and max_radar_range=48."
+        },
+        {
+            "id": "sitrep_documentation",
+            "description": "Create a SITREP document with datum, assets, search pattern, and VHF channels.",
+            "points": 20,
+            "visual_evidence": "Text editor or 'cat' command showing /home/ga/Documents/sar_sitrep.txt containing the datum (50.765, -1.295), the list of 4 vessels, 'Expanding Square Search', and VHF channel info."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "file_system_interaction",
+            "description": "Verify the agent actually created/edited files rather than just echoing text.",
+            "points": 0,
+            "visual_evidence": "Screenshots should show a text editor (like nano, vim, or gedit) or file management commands (cp, mv, tee) being used in the terminal."
+        },
+        {
+            "id": "directory_path_accuracy",
+            "description": "Verify the agent used the specific scenario subdirectory provided in the prompt.",
+            "points": 0,
+            "visual_evidence": "Terminal or editor title bars showing the full path: /opt/bridgecommand/Scenarios/s) Solent SAR Exercise/."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Verify the agent didn't leave template values in the SITREP.",
+            "points": 0,
+            "visual_evidence": "The SITREP file should contain the actual coordinates (50.765, -1.295) and vessel names, not placeholders like '[Insert Lat]'."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario must be located in '/opt/bridgecommand/Scenarios/s) Solent SAR Exercise/'. The datum coordinates are Lat 50.765, Long -1.295. The casualty vessel is 'SY Dorado Star' (speed 0.0). The search vessels must have waypoints for an 'Expanding Square Search' with >6 legs. The Bridge Command config file is at '/home/ga/.config/Bridge Command/bc5.ini' and must have arpa_on=1 and max_radar_range=48. The SITREP must be at '/home/ga/Documents/sar_sitrep.txt'."
+}

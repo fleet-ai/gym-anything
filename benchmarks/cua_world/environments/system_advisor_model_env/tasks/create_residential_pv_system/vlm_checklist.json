@@ -1,0 +1,59 @@
+{
+    "task_id": "create_residential_pv_system@1",
+    "task_completion": [
+        {
+            "id": "sam_launched",
+            "description": "NREL System Advisor Model (SAM) is opened and a new project is initiated.",
+            "points": 10,
+            "visual_evidence": "The SAM application window is visible on the desktop."
+        },
+        {
+            "id": "location_set_phoenix",
+            "description": "The weather data/location is set to Phoenix, Arizona.",
+            "points": 15,
+            "visual_evidence": "The 'Location and Resource' page shows 'Phoenix' or a Phoenix-area TMY file selected in the library."
+        },
+        {
+            "id": "system_design_5kw",
+            "description": "The DC system size is configured to approximately 5 kW.",
+            "points": 20,
+            "visual_evidence": "The 'System Design' page shows a 'Nameplate capacity' or 'System DC size' between 4.5 and 5.5 kW."
+        },
+        {
+            "id": "orientation_tilt_azimuth",
+            "description": "The roof slope (tilt) is set to ~20 degrees and orientation (azimuth) is set to south-facing.",
+            "points": 20,
+            "visual_evidence": "The 'System Design' page shows Tilt between 15-25 degrees and Azimuth between 175-185 degrees (180 is south)."
+        },
+        {
+            "id": "simulation_executed",
+            "description": "The simulation is run to generate energy production results.",
+            "points": 15,
+            "visual_evidence": "The 'Results' page is visible, showing a 'Summary' with 'Annual energy' values."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "The results are saved to the specific JSON file path requested.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal window shows the file 'Phoenix_Residential_5kW.json' exists in '/home/ga/Documents/SAM_Projects/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to configure the system rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with SAM input fields and the 'Simulate' button."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The annual energy production is derived from the SAM simulation results, not hardcoded.",
+            "visual_evidence": "The values in the final JSON file match the 'Annual energy' (kWh) displayed in the SAM Results GUI."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file.",
+            "visual_evidence": "The trajectory shows the process of entering parameters and clicking 'Save' or 'Export' within the application."
+        }
+    ],
+    "privileged_info_for_vlm": "The system must be 5 kW DC (acceptable range 4.5-5.5 kW). Location must be Phoenix, AZ. Tilt must be ~20 degrees (acceptable 15-25). Azimuth must be south-facing (acceptable 175-185 degrees). The final output must be a JSON file named 'Phoenix_Residential_5kW.json' located in '/home/ga/Documents/SAM_Projects/'. Annual energy production for such a system in Phoenix is typically between 8,000 and 10,000 kWh."
+}

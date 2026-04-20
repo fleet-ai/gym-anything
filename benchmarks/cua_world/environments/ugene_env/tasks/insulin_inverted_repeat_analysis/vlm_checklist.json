@@ -1,0 +1,53 @@
+{
+    "task_id": "insulin_inverted_repeat_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the human_insulin_gene.gb file in UGENE",
+            "points": 10,
+            "visual_evidence": "The UGENE interface shows 'human_insulin_gene.gb' loaded in the Project View or Sequence View."
+        },
+        {
+            "id": "configure_repeat_search",
+            "description": "Configure the 'Find Inverted Repeats' tool with minimum length 8 and 100% identity",
+            "points": 20,
+            "visual_evidence": "The 'Find Inverted Repeats' dialog box is visible with 'Minimum length' set to 8 and 'Identity' or 'Mismatches' set to 100% or 0 respectively."
+        },
+        {
+            "id": "identify_repeats",
+            "description": "Run the search and identify repeat features on the sequence",
+            "points": 20,
+            "visual_evidence": "The sequence view shows multiple 'inverted_repeat' annotations or a list of results in the 'Annotations' or 'Search Results' panel."
+        },
+        {
+            "id": "export_gff_file",
+            "description": "Export the identified repeat annotations to inverted_repeats.gff",
+            "points": 25,
+            "visual_evidence": "The 'Export' or 'Save' dialog shows the file path '~/UGENE_Data/repeat_analysis/inverted_repeats.gff' and the GFF format selected."
+        },
+        {
+            "id": "create_summary_file",
+            "description": "Create a summary.txt file with the total count and coordinates of the first repeat",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal view shows 'summary.txt' containing a total count of features and the start/end coordinates of the first repeat."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform the analysis rather than just writing files via terminal",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being interacted with."
+        },
+        {
+            "id": "genuine_search_results",
+            "description": "The repeat features found match the sequence data provided",
+            "visual_evidence": "The annotations in the GFF or summary file correspond to the sequence length (465 bp) and the search parameters (length >= 8)."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply copy a pre-existing result file",
+            "visual_evidence": "The agent is seen navigating the UGENE 'Find Inverted Repeats' workflow and manually typing or saving the summary file."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is human_insulin_gene.gb (465 bp). The agent must find inverted repeats with length >= 8 and 100% identity. Expected results should include approximately 6 or more repeat pairs (e.g., CCCTCCAG/CTGGAGGG). The summary.txt must contain the total count of these features and the specific start/end coordinates of the very first feature listed in the GFF."
+}

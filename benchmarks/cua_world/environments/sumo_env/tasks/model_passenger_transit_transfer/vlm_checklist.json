@@ -1,0 +1,53 @@
+{
+    "task_id": "model_passenger_transit_transfer@1",
+    "task_completion": [
+        {
+            "id": "commuters_rou_xml_creation",
+            "description": "Create the commuters.rou.xml file with at least three persons and three-stage trips (walk-ride-walk).",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing /home/ga/SUMO_Output/commuters.rou.xml containing <person> tags with <walk>, <ride>, and <walk> child elements."
+        },
+        {
+            "id": "sumocfg_configuration",
+            "description": "Create the run_commuters.sumocfg file including the network, additionals, and all required route files.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing /home/ga/SUMO_Output/run_commuters.sumocfg referencing pasubio_buslanes.net.xml, pasubio.rou.xml, pasubio_busses.rou.xml, and commuters.rou.xml."
+        },
+        {
+            "id": "tripinfo_output_definition",
+            "description": "Ensure the sumocfg is configured to generate tripinfo.xml output.",
+            "points": 10,
+            "visual_evidence": "The run_commuters.sumocfg file contains a <tripinfo-output value=\"/home/ga/SUMO_Output/tripinfo.xml\"/> entry."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Run the SUMO simulation using the created configuration file.",
+            "points": 25,
+            "visual_evidence": "A terminal showing the execution of 'sumo -c /home/ga/SUMO_Output/run_commuters.sumocfg' or the SUMO GUI running the simulation."
+        },
+        {
+            "id": "tripinfo_file_generation",
+            "description": "Verify that the tripinfo.xml file was successfully generated and contains data.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal command (e.g., 'ls' or 'cat') showing that /home/ga/SUMO_Output/tripinfo.xml exists and contains <personinfo> or <tripinfo> records."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_tripinfo",
+            "description": "The agent did not manually create a fake tripinfo.xml file.",
+            "visual_evidence": "The tripinfo.xml file should be generated after the simulation execution command is seen in the history, not before."
+        },
+        {
+            "id": "genuine_file_system_interaction",
+            "description": "The agent interacted with the specified file paths rather than mock paths.",
+            "visual_evidence": "Commands or editor windows explicitly show the /home/ga/SUMO_Output/ directory."
+        },
+        {
+            "id": "simulation_runtime_logs",
+            "description": "The simulation produced standard SUMO console output during execution.",
+            "visual_evidence": "Terminal logs showing 'Loading configuration', 'Step #0.00', and 'Simulation ended' messages."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a specific multi-modal trip structure: walk to stop, ride bus, walk to destination. The simulation must include the base files from /home/ga/SUMO_Scenarios/bologna_pasubio/ and output results to /home/ga/SUMO_Output/tripinfo.xml. The departure times for the three persons must be within the range [0, 300] seconds."
+}

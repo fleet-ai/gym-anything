@@ -1,0 +1,59 @@
+{
+    "task_id": "split_invoice_items@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "Open the chinook.odb database in the database application.",
+            "points": 10,
+            "visual_evidence": "The database application (e.g., LibreOffice Base) is open showing the 'chinook' database tables or forms."
+        },
+        {
+            "id": "locate_invoice_1",
+            "description": "Locate Invoice #1 for Customer 2 (Leonie Köhler) containing tracks 2 and 4.",
+            "points": 15,
+            "visual_evidence": "A table view or form showing InvoiceId 1 with line items for 'Balls to the Wall' and 'Restless and Wild'."
+        },
+        {
+            "id": "create_new_invoice",
+            "description": "Create a new invoice for Leonie Köhler with the specified date and address.",
+            "points": 20,
+            "visual_evidence": "A new invoice record entry showing CustomerId 2, Date 2009-01-01, and Address 'Theodor-Heuss-Straße 34, Stuttgart'."
+        },
+        {
+            "id": "move_track_4",
+            "description": "Move 'Restless and Wild' (Track ID 4) from Invoice 1 to the new invoice.",
+            "points": 25,
+            "visual_evidence": "The line item for Track ID 4 is no longer associated with Invoice 1 and is now associated with the newly created Invoice ID."
+        },
+        {
+            "id": "verify_totals",
+            "description": "Ensure both Invoice 1 and the new invoice have a total of $0.99.",
+            "points": 20,
+            "visual_evidence": "The 'Total' field for both Invoice 1 and the new invoice displays 0.99."
+        },
+        {
+            "id": "save_database",
+            "description": "Save the changes to the database file.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the 'Save' icon or selects File > Save, and no 'unsaved changes' indicators remain."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database GUI application rather than executing raw SQL in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with buttons/forms in LibreOffice Base, not just a terminal window."
+        },
+        {
+            "id": "no_manual_total_override",
+            "description": "The agent updated the line items to change the total, rather than just typing over the total field without moving the data.",
+            "visual_evidence": "Screenshots show the modification of the InvoiceItems table or sub-form, not just the Invoice total field."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or selected the specific address and date details provided in the prompt.",
+            "visual_evidence": "The agent is seen typing 'Theodor-Heuss-Straße 34' or selecting '2009-01-01' in the date picker."
+        }
+    ],
+    "privileged_info_for_vlm": "Invoice 1 initially contains Track 2 and Track 4 (each $0.99, total $1.98). The goal is to move Track 4 ('Restless and Wild') to a new invoice for Customer 2. The new invoice must be dated 2009-01-01 with address: Theodor-Heuss-Straße 34, Stuttgart, BW, Germany, 70174. After the move, both Invoice 1 and the new invoice must show a total of 0.99. The database file is located at /home/ga/chinook.odb."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "assign_conversation@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_freescout",
+            "description": "Agent navigates to the FreeScout Support mailbox interface.",
+            "points": 10,
+            "visual_evidence": "The browser shows the FreeScout login page or dashboard, specifically showing a 'Support' mailbox or a list of conversations."
+        },
+        {
+            "id": "locate_unassigned_conversation",
+            "description": "Agent identifies the unassigned conversation with the subject 'Payment issue'.",
+            "points": 20,
+            "visual_evidence": "A conversation list is visible where a ticket with the subject 'Payment issue' is shown, typically in the 'Unassigned' folder or with no user avatar/name in the assignee column."
+        },
+        {
+            "id": "open_conversation_details",
+            "description": "Agent clicks on the 'Payment issue' conversation to view its details.",
+            "points": 15,
+            "visual_evidence": "The screen displays the specific thread for the 'Payment issue' ticket, showing the message content from Frank Sherman."
+        },
+        {
+            "id": "initiate_assignment",
+            "description": "Agent opens the assignment menu or dropdown to select a user.",
+            "points": 20,
+            "visual_evidence": "A dropdown menu or search box for 'Assign' or 'Owner' is visible, listing available users."
+        },
+        {
+            "id": "select_admin_user",
+            "description": "Agent selects 'Admin User' from the list of available assignees.",
+            "points": 35,
+            "visual_evidence": "The UI shows 'Admin User' being selected or clicked, and subsequently, the conversation header or sidebar updates to show 'Admin User' as the assignee. A success notification may also appear."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task via the FreeScout web interface rather than using database commands or CLI.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and typing within the browser window; no terminal/shell windows are used to execute SQL or PHP commands."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menus rather than jumping directly to a specific ticket ID URL that wasn't previously discovered.",
+            "visual_evidence": "The agent is seen clicking on the mailbox or the conversation list before arriving at the specific ticket."
+        },
+        {
+            "id": "genuine_user_selection",
+            "description": "The agent actually selects the user from the UI list rather than just claiming it is done in the thought process.",
+            "visual_evidence": "The visual state of the 'Assignee' field changes from 'Unassigned' (or empty) to 'Admin User' in the FreeScout interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The target conversation subject is 'Payment issue' (customer: Frank Sherman, email: floresbryan@example.net). The target assignee is 'Admin User'. The task is performed in the FreeScout Support mailbox."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "pointing_model_construction@1",
+    "task_completion": [
+        {
+            "id": "telescope_unparked",
+            "description": "The telescope is unparked to allow for observations.",
+            "points": 10,
+            "visual_evidence": "The telescope control software (e.g., KStars/Ekos or similar) shows the mount status as 'Unparked' or the tracking/slewing controls are enabled."
+        },
+        {
+            "id": "exposure_settings_configured",
+            "description": "CCD settings are configured for 5-second LIGHT frame exposures.",
+            "points": 10,
+            "visual_evidence": "The camera control interface shows 'Exposure' set to 5.0s and 'Type' or 'Frame' set to 'Light'."
+        },
+        {
+            "id": "star_observations_captured",
+            "description": "Observations are conducted for the 8 specified reference stars.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the telescope slewing to or capturing images of Polaris, Capella, Regulus, Arcturus, Vega, Altair, Deneb, and Fomalhaut."
+        },
+        {
+            "id": "image_files_saved",
+            "description": "Images are saved in the correct directory structure (/home/ga/Images/pointing_model/<star_name>/).",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal window shows subdirectories for each star (e.g., /vega/, /polaris/) containing FITS or image files within the /home/ga/Images/pointing_model/ path."
+        },
+        {
+            "id": "pointing_model_data_generated",
+            "description": "A TPoint-format pointing model file is created at /home/ga/Documents/pointing_model.dat.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output displays the contents of /home/ga/Documents/pointing_model.dat containing coordinate data for the 8 stars."
+        },
+        {
+            "id": "final_sky_view_captured",
+            "description": "The final sky view image is generated using the specified script.",
+            "points": 10,
+            "visual_evidence": "The agent runs ~/capture_sky_view.sh and the file ~/Images/pointing_model/final_sky.png is visible in the file system."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI for telescope control and image capture.",
+            "visual_evidence": "Screenshots show mouse interactions with buttons like 'Slew', 'Capture', or 'Unpark' in the telescope/CCD control software rather than just CLI scripts."
+        },
+        {
+            "id": "genuine_observation_sequence",
+            "description": "The agent performed the observations sequentially rather than instantly generating all files.",
+            "visual_evidence": "The timestamps on the screenshots and the progress bars in the capture software show a logical progression of slewing and exposing for different stars."
+        },
+        {
+            "id": "no_hardcoded_data_copy",
+            "description": "The pointing model data was derived from the session, not just copy-pasted from the spec.",
+            "visual_evidence": "The agent is seen interacting with the software to get coordinates or the pointing model file creation shows dynamic input."
+        }
+    ],
+    "privileged_info_for_vlm": "The 8 required stars are: polaris, capella, regulus, arcturus, vega, altair, deneb, fomalhaut. Exposure time must be exactly 5 seconds. The pointing model file must be at /home/ga/Documents/pointing_model.dat. The image directory is /home/ga/Images/pointing_model/. The telescope must be unparked before capture. The final sky view is created by ~/capture_sky_view.sh."
+}

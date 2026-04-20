@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_module_bindings_three_stations_scconfig@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig_inventory",
+            "description": "The agent opens the scconfig application and navigates to the Inventory or Stations tab.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scconfig' is visible, showing the station list or inventory tree."
+        },
+        {
+            "id": "select_ge_network",
+            "description": "The agent locates and selects the GE network and the specific stations (GSI, BKB, SANI).",
+            "points": 10,
+            "visual_evidence": "The GE network is expanded in the station tree, and GSI, BKB, or SANI are highlighted or visible."
+        },
+        {
+            "id": "add_scautopick_bindings",
+            "description": "The agent adds the 'scautopick' module binding to all three stations (GSI, BKB, SANI).",
+            "points": 30,
+            "visual_evidence": "The 'scautopick' module name appears in the bindings list for each of the three stations, often with a 'default' profile assigned."
+        },
+        {
+            "id": "add_scamp_bindings",
+            "description": "The agent adds the 'scamp' module binding to all three stations (GSI, BKB, SANI).",
+            "points": 30,
+            "visual_evidence": "The 'scamp' module name appears in the bindings list for each of the three stations, often with a 'default' profile assigned."
+        },
+        {
+            "id": "save_configuration",
+            "description": "The agent saves the configuration within scconfig to apply the changes to the key files.",
+            "points": 20,
+            "visual_evidence": "The agent clicks a 'Save' button or selects 'File -> Save' in the scconfig menu, or a 'Configuration saved' status message appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent uses the scconfig GUI to perform the task rather than manually editing files in a terminal.",
+            "visual_evidence": "The screenshots show interactions with the scconfig window (mouse clicks, menu selections) rather than just terminal commands like 'echo' or 'vi'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the station list and binding dialogs specifically for GSI, BKB, and SANI.",
+            "visual_evidence": "The mouse cursor or focus indicators are seen on the specific station names and the 'Add Binding' dialogs."
+        },
+        {
+            "id": "no_pre_existing_bindings",
+            "description": "The agent does not simply claim the task is done if the bindings were already there (though the task setup ensures they are missing).",
+            "visual_evidence": "Initial screenshots show the stations without scautopick/scamp bindings before the agent adds them."
+        }
+    ],
+    "privileged_info_for_vlm": "The target stations are GE.GSI, GE.BKB, and GE.SANI. The required modules to bind are 'scautopick' and 'scamp'. These must be configured using the 'default' profile. The changes are finalized when the agent saves in scconfig, which updates the key files in /home/ga/seiscomp/etc/key/station_GE_[STATION_CODE]. The VLM should verify that all three stations receive both modules."
+}

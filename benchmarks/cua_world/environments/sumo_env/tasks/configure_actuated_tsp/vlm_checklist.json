@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_actuated_tsp@1",
+    "task_completion": [
+        {
+            "id": "open_tls_config",
+            "description": "Open the traffic light configuration file pasubio_tls.add.xml for editing.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the contents of /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_tls.add.xml."
+        },
+        {
+            "id": "modify_tls_logic",
+            "description": "Update tlLogic types to 'actuated' and add minDur/maxDur attributes to phases.",
+            "points": 25,
+            "visual_evidence": "Code in the editor showing <tlLogic type=\"actuated\"> and <phase> elements containing minDur and maxDur attributes calculated as 50% and 150% of the original duration."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation using the specified configuration file.",
+            "points": 20,
+            "visual_evidence": "A terminal command showing 'sumo -c /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg' or the SUMO GUI running the simulation."
+        },
+        {
+            "id": "verify_tripinfo_generation",
+            "description": "Confirm that tripinfos.xml was generated or updated after the simulation run.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'ls' command showing tripinfos.xml in the bologna_pasubio directory with a recent timestamp."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the final summary report bus_travel_times.txt in the output directory.",
+            "points": 30,
+            "visual_evidence": "The file /home/ga/SUMO_Output/bus_travel_times.txt displayed in a text editor or via 'cat' command, containing the specific keys: bus_trips_completed, avg_duration_s, and avg_waitingTime_s."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually edited the XML file rather than just echoing the final report.",
+            "visual_evidence": "Screenshots showing the agent interacting with the XML structure in an editor like VS Code, Vim, or Nano."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent actually ran the SUMO simulation to generate data.",
+            "visual_evidence": "Terminal output showing SUMO simulation progress (Step #...) or the SUMO GUI interface active."
+        },
+        {
+            "id": "data_derivation",
+            "description": "The report values are derived from the simulation output, not hardcoded from the prompt.",
+            "visual_evidence": "The agent performing calculations (e.g., using a script or command line tools like grep/awk) on the tripinfos.xml file."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires filtering for 'bus' trips. Note that in the provided Bologna Pasubio dataset, vehicle IDs (id) do not contain the string 'bus' (they look like '11_0'); however, the vehicle type (vType) attribute in tripinfos.xml contains the string 'bus'. The agent should be credited if it correctly identifies these vehicles. The report must be saved specifically to /home/ga/SUMO_Output/bus_travel_times.txt."
+}

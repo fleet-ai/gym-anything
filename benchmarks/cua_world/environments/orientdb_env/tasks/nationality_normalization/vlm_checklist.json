@@ -1,0 +1,53 @@
+{
+    "task_id": "nationality_normalization@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent connects to the 'demodb' database and explores the 'Profiles' and 'Countries' classes.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a database management tool or terminal connected to 'demodb' with 'Profiles' and 'Countries' visible in the schema or query results."
+        },
+        {
+            "id": "create_edge_class",
+            "description": "Agent creates the new edge class named 'IsCitizenOf' in the database.",
+            "points": 15,
+            "visual_evidence": "A command or GUI action showing the creation of the 'IsCitizenOf' class, or the class appearing in the database schema list."
+        },
+        {
+            "id": "semantic_mapping_logic",
+            "description": "Agent identifies the mapping between nationality strings (e.g., American, British, Dutch) and country names (United States, United Kingdom, Netherlands).",
+            "points": 20,
+            "visual_evidence": "Queries or scripts showing the logic used to match 'Profiles.Nationality' to 'Countries.Name' based on the specified semantic rules."
+        },
+        {
+            "id": "link_profiles_to_countries",
+            "description": "Agent executes the creation of edges between Profiles and Countries using the 'IsCitizenOf' class.",
+            "points": 30,
+            "visual_evidence": "Execution of 'CREATE EDGE' commands or a bulk update process that links specific profile records to country records."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "Agent saves the report to '/home/ga/nationality_audit.txt' with successful mappings and unmapped nationalities.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of '/home/ga/nationality_audit.txt' containing 'Email -> Country' mappings and an 'Unmapped Nationalities' section."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_report_creation",
+            "description": "The agent did not simply type the report manually without querying the database.",
+            "visual_evidence": "The agent must be seen running queries to extract the data (e.g., SELECT statements) before the report is generated."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the actual database schema rather than hardcoding the expected values from the task description.",
+            "visual_evidence": "Screenshots showing the agent inspecting the 'Profiles' data to find specific nationalities like 'American' or 'Dutch' before mapping them."
+        },
+        {
+            "id": "no_new_country_vertices",
+            "description": "The agent did not create new country vertices for unmapped nationalities.",
+            "visual_evidence": "The database logs or command history should not show 'INSERT INTO Countries' or similar commands for missing nationalities."
+        }
+    ],
+    "privileged_info_for_vlm": "The database 'demodb' contains a profile for 'John Smith' (American) which must map to 'United States', 'David Jones' (British) to 'United Kingdom', and 'Piet Vanderberg' (Dutch) to 'Netherlands'. The edge class must be exactly 'IsCitizenOf'. The final report must be at '/home/ga/nationality_audit.txt' and include a specific section for 'Unmapped Nationalities'."
+}

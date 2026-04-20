@@ -1,0 +1,53 @@
+{
+    "task_id": "populate_curated_playlist@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "The agent successfully opens the 'chinook.odb' database file in a database management tool.",
+            "points": 10,
+            "visual_evidence": "A database application (like LibreOffice Base or a SQL editor) is open showing 'chinook.odb' or the Chinook tables (Playlist, Track, Genre, etc.) in the sidebar."
+        },
+        {
+            "id": "filter_criteria_execution",
+            "description": "The agent executes a query or applies filters to identify tracks where Genre is 'Rock', Milliseconds > 300,000, and Composer is not empty.",
+            "points": 25,
+            "visual_evidence": "A SQL query window or filter dialog showing the logic: GenreId for Rock, Milliseconds > 300000, and Composer IS NOT NULL (or not empty)."
+        },
+        {
+            "id": "create_new_playlist",
+            "description": "A new entry named 'Epic Rock' is created in the 'Playlist' table.",
+            "points": 15,
+            "visual_evidence": "The 'Playlist' table view showing a new row with the Name 'Epic Rock' and a unique PlaylistId."
+        },
+        {
+            "id": "identify_track_ids",
+            "description": "The agent identifies the specific TrackIds that meet the criteria to be added to the playlist.",
+            "points": 20,
+            "visual_evidence": "A result set or list of tracks visible on screen that match the 'Epic Rock' criteria (e.g., long Rock songs with composers)."
+        },
+        {
+            "id": "populate_playlist_track_table",
+            "description": "The agent inserts the filtered tracks into the 'PlaylistTrack' table associated with the new PlaylistId.",
+            "points": 30,
+            "visual_evidence": "The 'PlaylistTrack' table showing multiple new rows where the PlaylistId matches the 'Epic Rock' ID and the TrackIds match the filtered results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database GUI/application interface rather than just executing a single opaque script in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursors, menu selections, or manual entry within the database software UI."
+        },
+        {
+            "id": "no_hardcoded_inserts",
+            "description": "The agent derived the track list from the database data rather than pasting a pre-known list of IDs.",
+            "visual_evidence": "The agent is seen performing a search, filter, or SELECT query before performing the inserts."
+        },
+        {
+            "id": "actual_database_file",
+            "description": "The agent is interacting with 'chinook.odb' specifically.",
+            "visual_evidence": "The window title or file path in the application header confirms 'chinook.odb' is the active file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target playlist name is 'Epic Rock'. The criteria for tracks are: Genre must be 'Rock' (GenreId 1), Duration (Milliseconds) must be strictly greater than 300,000, and the Composer field must not be NULL or an empty string. There are approximately 347 tracks in the standard Chinook database that meet these specific criteria."
+}

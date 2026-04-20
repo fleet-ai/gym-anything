@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_tile_caching@1",
+    "task_completion": [
+        {
+            "id": "login_geoserver",
+            "description": "Log in to the GeoServer admin interface",
+            "points": 10,
+            "visual_evidence": "The VLM should see the GeoServer 'Welcome' page or dashboard after entering credentials (admin/Admin123!)."
+        },
+        {
+            "id": "create_gridset_basic",
+            "description": "Create a new Gridset named 'WebMercator512' with EPSG:3857",
+            "points": 20,
+            "visual_evidence": "A 'Gridset Edit' page showing the name 'WebMercator512' and the Coordinate Reference System (CRS) set to 'EPSG:3857'."
+        },
+        {
+            "id": "configure_gridset_dims",
+            "description": "Set tile dimensions to 512x512 and add at least 5 zoom levels",
+            "points": 25,
+            "visual_evidence": "In the Gridset configuration, 'Tile width' and 'Tile height' fields both show '512'. The 'Grid Levels' table contains at least 5 rows (Zoom levels)."
+        },
+        {
+            "id": "assign_gridset_to_layer",
+            "description": "Assign the 'WebMercator512' gridset to the 'ne:ne_countries' tile layer",
+            "points": 25,
+            "visual_evidence": "The 'Tile Layers' configuration page for 'ne:ne_countries' shows 'WebMercator512' added to the 'Gridsets' table."
+        },
+        {
+            "id": "verify_mime_type",
+            "description": "Ensure 'image/png' is an allowed tile image format for the layer",
+            "points": 20,
+            "visual_evidence": "On the 'ne:ne_countries' Tile Layer edit page, the checkbox for 'image/png' is checked under 'Tile Image Formats'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than direct API calls or terminal scripts",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser, navigation through GeoServer menus (Gridsets, Tile Layers), and form filling."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not just view existing settings but actively created/modified them",
+            "visual_evidence": "Screenshots show the 'New Gridset' page being filled out and the 'Save' button being clicked."
+        },
+        {
+            "id": "target_layer_match",
+            "description": "The agent interacted with the specific layer 'ne:ne_countries'",
+            "visual_evidence": "The layer name 'ne:ne_countries' or 'ne_countries' is visible in the Tile Layers list and configuration headers."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create a NEW gridset. Required values: Name='WebMercator512', CRS='EPSG:3857', Tile Size=512x512, Zoom Levels >= 5. This gridset must then be linked to the 'ne:ne_countries' layer (found under Tile Layers in the GeoWebCache section of the sidebar). The format 'image/png' must be enabled for that specific tile layer."
+}

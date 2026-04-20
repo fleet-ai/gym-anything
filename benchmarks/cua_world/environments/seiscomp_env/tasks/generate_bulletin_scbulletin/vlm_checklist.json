@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_bulletin_scbulletin@1",
+    "task_completion": [
+        {
+            "id": "seiscomp_command_execution",
+            "description": "Agent executes SeisComP command-line tools (e.g., scbulletin or scevtls) to query the database.",
+            "points": 15,
+            "visual_evidence": "Terminal screenshot showing a command starting with 'seiscomp exec' or direct calls to SeisComP binaries like 'scbulletin'."
+        },
+        {
+            "id": "database_connection_parameters",
+            "description": "Agent uses the correct database connection string in the command or configuration.",
+            "points": 15,
+            "visual_evidence": "Terminal text showing 'mysql://sysop:sysop@localhost/seiscomp' or similar connection flags."
+        },
+        {
+            "id": "event_identification",
+            "description": "Agent identifies the correct event for the 2024 Noto Peninsula earthquake (M7.5, 2024-01-01).",
+            "points": 20,
+            "visual_evidence": "Terminal output or command arguments showing the date '2024-01-01' or a specific Event ID associated with the Noto earthquake."
+        },
+        {
+            "id": "bulletin_generation_output",
+            "description": "The tool generates a formatted bulletin containing origin time, location, depth, and magnitude.",
+            "points": 30,
+            "visual_evidence": "Terminal output showing a structured earthquake report with fields like 'Origin Time', 'Latitude', 'Longitude', 'Depth', and 'Magnitude'."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "The final bulletin is saved to the specified path: ~/bulletins/noto_bulletin.txt.",
+            "points": 20,
+            "visual_evidence": "A command like 'cat ~/bulletins/noto_bulletin.txt' or a 'ls' command showing the file exists in the correct directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_typing",
+            "description": "The agent did not manually type out the bulletin content into a text editor without running SeisComP tools.",
+            "visual_evidence": "The trajectory must show the execution of SeisComP command-line utilities, not just a 'nano' or 'echo' command with the final data pre-filled."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the local SeisComP installation rather than searching for the data online.",
+            "visual_evidence": "Commands referencing '/home/ga/seiscomp' or local database queries instead of web browser usage."
+        },
+        {
+            "id": "correct_tool_usage",
+            "description": "The agent used SeisComP specific tools (scbulletin) as requested, rather than generic SQL queries only.",
+            "visual_evidence": "Presence of 'scbulletin' or 'scevtls' in the command history."
+        }
+    ],
+    "privileged_info_for_vlm": "The target earthquake occurred on 2024-01-01. The bulletin must show a magnitude between 7.0 and 8.0 (specifically 7.5). The latitude should be approximately 37.48 (range 36.5 to 38.5) and longitude approximately 137.27 (range 136.0 to 138.5). The final file must be at /home/ga/bulletins/noto_bulletin.txt."
+}

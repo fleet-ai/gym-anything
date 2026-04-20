@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_incident_rca@1",
+    "task_completion": [
+        {
+            "id": "investigate_container_status",
+            "description": "Agent checks the status of the docker containers to confirm they are in an 'Exited' state.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker ps -a' or 'docker-compose ps' with services store-db, store-api, store-worker, and store-web listed as 'Exited'."
+        },
+        {
+            "id": "identify_root_cause",
+            "description": "Agent examines logs or configuration files to identify the cause of the cascading failure.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent reading 'docker logs' for the services or opening '~/projects/store-app/docker-compose.yml' in a text editor."
+        },
+        {
+            "id": "apply_configuration_fix",
+            "description": "Agent modifies the docker-compose.yml or application code to fix the identified error.",
+            "points": 25,
+            "visual_evidence": "A text editor (like nano, vim, or VS Code) showing a saved change to the configuration file or source code within the project directory."
+        },
+        {
+            "id": "restart_stack",
+            "description": "Agent attempts to bring the docker-compose stack back up.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing the command 'docker-compose up -d' and the containers starting successfully."
+        },
+        {
+            "id": "verify_api_health",
+            "description": "Agent verifies the API is responding with a 200 OK status.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'curl -i http://localhost:8080/api/health' returning an 'HTTP/1.1 200 OK' response."
+        },
+        {
+            "id": "create_incident_report",
+            "description": "Agent documents the failure timeline, root cause, and fix in the specified report file.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing the content of '~/Desktop/incident_report.txt' containing the required sections (timeline, root cause, fix)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_premade_report",
+            "description": "The agent did not simply create the report without investigating the system.",
+            "visual_evidence": "The trajectory must show commands like 'docker logs' or 'docker ps' occurring before the report is written."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the terminal and files directly rather than simulating output.",
+            "visual_evidence": "The presence of the desktop environment, terminal windows, and text editors in the screenshots."
+        },
+        {
+            "id": "verified_fix_application",
+            "description": "The agent actually applied a fix rather than just restarting the broken containers.",
+            "visual_evidence": "Evidence of file modification (e.g., 'save' in an editor or 'sed' command) prior to the final successful health check."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/store-app. The required services are store-db, store-api, store-worker, and store-web. The health check endpoint is http://localhost:8080/api/health and must return a 200 OK status. The final report must be saved at /home/ga/Desktop/incident_report.txt. The user is 'ga'."
+}

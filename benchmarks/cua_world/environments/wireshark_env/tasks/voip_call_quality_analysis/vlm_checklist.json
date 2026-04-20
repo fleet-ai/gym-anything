@@ -1,0 +1,59 @@
+{
+    "task_id": "voip_call_quality_analysis@1",
+    "task_completion": [
+        {
+            "id": "wireshark_open_pcap",
+            "description": "Wireshark is opened and the SIP_CALL_RTP_G711 packet capture is loaded.",
+            "points": 10,
+            "visual_evidence": "The Wireshark window title or file path shows 'SIP_CALL_RTP_G711' and a list of packets is visible."
+        },
+        {
+            "id": "sip_traffic_analysis",
+            "description": "The agent filters or analyzes SIP traffic to identify methods and packet counts.",
+            "points": 15,
+            "visual_evidence": "The Wireshark display filter shows 'sip' or the agent is viewing the 'Telephony > SIP Flows' or 'Statistics > Conversations' window."
+        },
+        {
+            "id": "rtp_stream_analysis",
+            "description": "The agent analyzes RTP streams to determine packet counts and codec information.",
+            "points": 15,
+            "visual_evidence": "The agent opens 'Telephony > RTP > RTP Streams' or uses an 'rtp' display filter."
+        },
+        {
+            "id": "extract_call_details",
+            "description": "The agent inspects the first INVITE packet to find Caller and Callee information.",
+            "points": 20,
+            "visual_evidence": "A packet detail pane is visible showing the 'From' and 'To' fields of a SIP INVITE message."
+        },
+        {
+            "id": "report_creation",
+            "description": "A text editor or terminal is used to create the report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) or a terminal showing 'nano' or 'vim' with the file path ~/Documents/voip_report.txt."
+        },
+        {
+            "id": "report_content_verification",
+            "description": "The final report contains all required labeled lines with the correct extracted data.",
+            "points": 30,
+            "visual_evidence": "The content of ~/Documents/voip_report.txt is displayed, showing all 8 required labels (Total_SIP_Packets, Total_RTP_Packets, SIP_Methods, Caller, Callee, Codec, Number_of_RTP_Streams, SIP_Response_Codes) with values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final values into a file without performing analysis.",
+            "visual_evidence": "The trajectory must show the agent interacting with Wireshark (scrolling, filtering, or opening dialogs) before the report is written."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI as intended for a visual task rather than just running background scripts.",
+            "visual_evidence": "Screenshots show the Wireshark application window active and being manipulated."
+        },
+        {
+            "id": "genuine_file_save",
+            "description": "The report is saved to the correct local directory and not just printed to the terminal.",
+            "visual_evidence": "The agent performs a save action in an editor or uses a redirection command to ~/Documents/voip_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The PCAP contains: 14 SIP packets and 1445 RTP packets. SIP Methods: ACK, INVITE, REGISTER. SIP Response Codes: 100, 180, 200, 401. Caller: 5514540002. Callee: 5514540001. Codec: ITU-T G.711 PCMA (or G711/PCMA). Number of RTP Streams: 2. The report must be saved at ~/Documents/voip_report.txt."
+}

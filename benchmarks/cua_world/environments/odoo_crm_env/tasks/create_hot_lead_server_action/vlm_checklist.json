@@ -1,0 +1,59 @@
+{
+    "task_id": "create_hot_lead_server_action@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_server_actions",
+            "description": "Navigate to the Server Actions menu in Odoo settings or technical menu.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 'Server Actions' list view or the creation form for a new server action."
+        },
+        {
+            "id": "configure_action_basics",
+            "description": "Set the Action Name to 'Mark as Hot Lead' and the Model to 'Lead/Opportunity' (crm.lead).",
+            "points": 15,
+            "visual_evidence": "The Server Action form with 'Action Name' field containing 'Mark as Hot Lead' and 'Model' field containing 'Lead/Opportunity'."
+        },
+        {
+            "id": "configure_data_updates",
+            "description": "Set the action to update the record's Priority to High (3 stars) and Probability to 90%.",
+            "points": 25,
+            "visual_evidence": "The 'Data to Write' tab or 'Update Record' section showing Priority set to 'High' (or value 3) and Probability set to 90."
+        },
+        {
+            "id": "enable_contextual_action",
+            "description": "Enable the action as a contextual action (Create Contextual Action button).",
+            "points": 15,
+            "visual_evidence": "The 'Create Contextual Action' button being clicked or the 'Remove Contextual Action' button appearing, indicating it is active."
+        },
+        {
+            "id": "locate_target_opportunity",
+            "description": "Navigate to the CRM Pipeline and find the 'Solar Panel Upgrade - Smith Residence' opportunity.",
+            "points": 10,
+            "visual_evidence": "The CRM Kanban or List view showing the specific opportunity 'Solar Panel Upgrade - Smith Residence'."
+        },
+        {
+            "id": "execute_server_action",
+            "description": "Execute the 'Mark as Hot Lead' action on the specific opportunity via the Action menu.",
+            "points": 25,
+            "visual_evidence": "The 'Action' dropdown menu on the opportunity form showing 'Mark as Hot Lead' and the record updating to 3 stars and 90% probability."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent used the Odoo GUI to create the action rather than executing SQL or shell scripts in the terminal.",
+            "visual_evidence": "The trajectory shows mouse movements and clicks within the Odoo web interface rather than commands in a terminal window."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the specific record mentioned in the task.",
+            "visual_evidence": "Screenshots show the 'Solar Panel Upgrade - Smith Residence' record being opened and modified."
+        },
+        {
+            "id": "no_manual_field_edit",
+            "description": "The agent used the Server Action to update the record, not just manually typing 90% into the field on the lead form.",
+            "visual_evidence": "The agent is seen selecting the action from the 'Action' gear/dropdown menu rather than just clicking the probability field and typing."
+        }
+    ],
+    "privileged_info_for_vlm": "The target model is 'crm.lead' (Lead/Opportunity). The specific record name is 'Solar Panel Upgrade - Smith Residence'. Although Odoo 17 standard UI usually shows 3 levels of priority (0, 1, 2), the task explicitly asks for 'High (3 stars)'. The VLM should verify the Server Action is named 'Mark as Hot Lead' and sets Probability to 90."
+}

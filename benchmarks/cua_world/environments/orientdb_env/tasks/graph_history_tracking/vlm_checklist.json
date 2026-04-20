@@ -1,0 +1,53 @@
+{
+    "task_id": "graph_history_tracking@1",
+    "task_completion": [
+        {
+            "id": "create_hotel_history_class",
+            "description": "Create the 'HotelHistory' vertex class with the specified properties (OriginalName, OriginalStars, OriginalPhone, MutationReason).",
+            "points": 15,
+            "visual_evidence": "OrientDB Studio 'Schema' tab showing the 'HotelHistory' class and its properties (String, Integer, String, String)."
+        },
+        {
+            "id": "create_has_history_edge",
+            "description": "Create the 'HasHistory' edge class.",
+            "points": 10,
+            "visual_evidence": "OrientDB Studio 'Schema' tab showing 'HasHistory' listed under Edge classes."
+        },
+        {
+            "id": "update_hotel_artemide",
+            "description": "Update 'Hotel Artemide' to 5 stars and create a history record with 'Annual Review'.",
+            "points": 25,
+            "visual_evidence": "Graph view or Query result showing 'Hotel Artemide' with Stars=5, and a 'HotelHistory' vertex linked via 'HasHistory' containing OriginalStars=4 and MutationReason='Annual Review'."
+        },
+        {
+            "id": "update_the_savoy",
+            "description": "Update 'The Savoy' phone number and create a history record with 'Correction'.",
+            "points": 25,
+            "visual_evidence": "Graph view or Query result showing 'The Savoy' with Phone='+44-20-9999-8888', and a 'HotelHistory' vertex linked via 'HasHistory' containing OriginalPhone='+44-20-7836-4343' and MutationReason='Correction'."
+        },
+        {
+            "id": "update_hotel_adlon",
+            "description": "Rename 'Hotel Adlon Kempinski' to 'Adlon Kempinski Berlin' and create a history record with 'Rebranding'.",
+            "points": 25,
+            "visual_evidence": "Graph view or Query result showing the hotel name as 'Adlon Kempinski Berlin', and a 'HotelHistory' vertex linked via 'HasHistory' containing OriginalName='Hotel Adlon Kempinski' and MutationReason='Rebranding'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing scripts in a terminal.",
+            "visual_evidence": "Screenshots show the browser with OrientDB Studio (Schema, Graph, or Query tabs) being actively used."
+        },
+        {
+            "id": "database_context",
+            "description": "The agent is working within the 'demodb' database.",
+            "visual_evidence": "The database name 'demodb' is visible in the OrientDB Studio header or connection string."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually performed the updates and vertex creations rather than just displaying a mock result.",
+            "visual_evidence": "Sequential screenshots showing the input of SQL commands or form fills in the Studio UI and the subsequent 'success' notifications."
+        }
+    ],
+    "privileged_info_for_vlm": "Initial values for verification: 'Hotel Artemide' had 4 stars. 'The Savoy' had phone number '+44-20-7836-4343'. 'Hotel Adlon Kempinski' is the original name for the rebranding task. The history vertex must store these 'Original' values, while the main 'Hotels' vertex is updated to the new values specified in the task."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_visual_search_task@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a conditions CSV file with required columns and at least 12 trials.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing 'search_conditions.csv' with columns 'target_present', 'set_size', and 'corrAns' and at least 13 rows (header + 12 trials)."
+        },
+        {
+            "id": "routines_setup",
+            "description": "PsychoPy Builder shows both an instructions routine and a trial routine.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Flow panel at the bottom of the screen showing at least two distinct routine blocks (e.g., 'instructions' and 'trial')."
+        },
+        {
+            "id": "loop_properties",
+            "description": "The trial routine is enclosed in a loop linked to the conditions file.",
+            "points": 15,
+            "visual_evidence": "The 'Loop Properties' dialog box in PsychoPy showing the conditions file path pointing to '/home/ga/PsychoPyExperiments/visual_search/search_conditions.csv'."
+        },
+        {
+            "id": "stimuli_components",
+            "description": "The trial routine contains components for the target ('T') and distractors ('L').",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Routine panel showing multiple Text components (one for 'T', others for 'L') or a Code component intended to manage these stimuli."
+        },
+        {
+            "id": "code_component_logic",
+            "description": "A Code component is implemented to handle dynamic spatial randomization and orientation.",
+            "points": 25,
+            "visual_evidence": "A Code Component window open showing Python code that references 'random', sets '.pos' for stimuli, or sets '.ori' to values like 0, 90, 180, 270."
+        },
+        {
+            "id": "file_persistence",
+            "description": "The experiment is saved to the correct file path.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy window title bar or a File Explorer window showing 'visual_search.psyexp' located in '/home/ga/PsychoPyExperiments/visual_search/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to create the experiment rather than just writing a raw script via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with the PsychoPy Builder interface (Flow, Routine panels, Component dialogs)."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The conditions file was created or edited by the agent, not pre-existing.",
+            "visual_evidence": "Screenshots show the agent typing into a CSV editor or using a terminal command like 'echo' or 'printf' to generate the CSV content."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The experiment uses the conditions file variables rather than hardcoded trial logic.",
+            "visual_evidence": "Component property fields (like 'Text' or 'Opacity') showing variables from the CSV (e.g., $target_present) with the dropdown set to 'set every repeat'."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/visual_search/visual_search.psyexp. The conditions file /home/ga/PsychoPyExperiments/visual_search/search_conditions.csv must contain exactly these columns: target_present, set_size, and corrAns. The trial must involve 1 'T' and 5 'L' characters with randomized positions and orientations (0, 90, 180, 270)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "trash_irrelevant_items@1",
+    "task_completion": [
+        {
+            "id": "locate_einstein_paper",
+            "description": "Identify and select 'On the Electrodynamics of Moving Bodies' (Einstein, 1905) in the library.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the Einstein paper highlighted or right-clicked in the Zotero main library view."
+        },
+        {
+            "id": "locate_watson_crick_paper",
+            "description": "Identify and select 'Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid' (Watson & Crick, 1953) in the library.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the Watson & Crick paper highlighted or right-clicked in the Zotero main library view."
+        },
+        {
+            "id": "locate_church_paper",
+            "description": "Identify and select 'An Unsolvable Problem of Elementary Number Theory' (Church, 1936) in the library.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the Church paper highlighted or right-clicked in the Zotero main library view."
+        },
+        {
+            "id": "locate_shannon_book",
+            "description": "Identify and select the 1949 book version of 'The Mathematical Theory of Communication' (Shannon & Weaver) while ignoring the 1948 paper.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the Shannon & Weaver 1949 book selected. It must distinguish it from the 1948 'A Mathematical Theory of Communication' paper which should remain in the library."
+        },
+        {
+            "id": "move_to_trash",
+            "description": "Move the four specific items to the Trash folder.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the 'Move Item to Trash' context menu option being clicked or the items disappearing from the main library list."
+        },
+        {
+            "id": "verify_trash_contents",
+            "description": "Verify that exactly the four specified papers are in the Trash and the Trash is not empty.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Trash' folder selected in the left pane, showing exactly four items: Einstein (1905), Watson & Crick (1953), Shannon & Weaver (1949), and Church (1936)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI to move items rather than deleting files via a terminal or script.",
+            "visual_evidence": "Screenshots should show the mouse cursor interacting with Zotero menus, right-click options, or drag-and-drop actions."
+        },
+        {
+            "id": "no_trash_emptying",
+            "description": "The agent did not empty the trash after moving the items.",
+            "visual_evidence": "The final screenshots should show the items still residing in the Trash folder, not an empty Trash state."
+        },
+        {
+            "id": "selective_deletion",
+            "description": "The agent did not perform a bulk delete of all items; it specifically targeted the requested papers.",
+            "visual_evidence": "The main library should still contain other papers (like the 1948 Shannon paper) after the task is complete."
+        }
+    ],
+    "privileged_info_for_vlm": "The target items to be moved to Trash are: 1. 'On the Electrodynamics of Moving Bodies' (Einstein, 1905); 2. 'Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid' (Watson & Crick, 1953); 3. 'The Mathematical Theory of Communication' (Shannon & Weaver, 1949 book); 4. 'An Unsolvable Problem of Elementary Number Theory' (Church, 1936). CRITICAL: The paper 'A Mathematical Theory of Communication' (Shannon, 1948) must NOT be trashed. The Trash folder must contain exactly 4 items at the end and must not be emptied."
+}

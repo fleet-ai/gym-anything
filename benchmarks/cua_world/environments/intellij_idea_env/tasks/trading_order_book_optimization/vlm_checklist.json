@@ -1,0 +1,53 @@
+{
+    "task_id": "trading_order_book_optimization@1",
+    "task_completion": [
+        {
+            "id": "open_project_and_files",
+            "description": "Agent opens the trading-orderbook project and the target source files (Order.java, OrderBook.java, or MatchingEngine.java) in the IDE.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing IntelliJ IDEA or a similar IDE open with the project structure visible and at least one of the specified Java files open in the editor tab."
+        },
+        {
+            "id": "initial_test_failure",
+            "description": "Agent runs OrderBookTest and observes failures, confirming the presence of bugs.",
+            "points": 10,
+            "visual_evidence": "A test runner window or terminal output showing 'OrderBookTest' with red failure indicators or stack traces."
+        },
+        {
+            "id": "modify_source_code",
+            "description": "Agent modifies the logic in Order.java, OrderBook.java, and/or MatchingEngine.java to fix bugs.",
+            "points": 30,
+            "visual_evidence": "Code editor screenshots showing changes to the logic in the specified files, such as price-time priority handling or matching logic."
+        },
+        {
+            "id": "run_tests_after_fix",
+            "description": "Agent executes the OrderBookTest suite after applying fixes.",
+            "points": 10,
+            "visual_evidence": "The IDE's test execution UI showing the progress of running the 6 tests in OrderBookTest."
+        },
+        {
+            "id": "all_tests_passed",
+            "description": "The OrderBookTest suite passes completely (6/6 tests).",
+            "points": 40,
+            "visual_evidence": "A green checkmark or 'Tests passed: 6' message in the IDE's test runner or terminal output for the class com.trading.OrderBookTest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify OrderBookTest.java to force a pass.",
+            "visual_evidence": "The editor tabs or file explorer should not show unsaved changes or recent edits to OrderBookTest.java that bypass logic; the test count must remain at 6."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "The agent used the IDE features (editor, test runner) rather than just executing shell scripts to spoof results.",
+            "visual_evidence": "Screenshots showing the mouse cursor, highlighted code, or IDE-specific UI elements being interacted with."
+        },
+        {
+            "id": "source_code_integrity",
+            "description": "The agent modified the actual logic in the requested files rather than deleting the code or replacing it with a trivial return.",
+            "visual_evidence": "Code screenshots showing meaningful Java logic (e.g., loops, comparisons, object updates) in the matching engine and order book classes."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/trading-orderbook. The test suite com.trading.OrderBookTest contains exactly 6 tests: testEmptyBookHasNoBestBidOrAsk, testBestBidIsHighestPrice, testBestAskIsLowestPrice, testAtParPriceOrdersAreMatched, testCrossedPriceOrdersAreMatched, and testPartialFillTracksRemainingCorrectly. Success is defined by all 6 tests passing without any modifications to the OrderBookTest.java file itself."
+}

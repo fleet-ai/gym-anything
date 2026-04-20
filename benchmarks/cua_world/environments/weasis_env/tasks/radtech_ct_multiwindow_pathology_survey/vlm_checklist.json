@@ -1,0 +1,53 @@
+{
+    "task_id": "radtech_ct_multiwindow_pathology_survey@1",
+    "task_completion": [
+        {
+            "id": "dicom_loading",
+            "description": "Agent successfully opens the DICOM viewer and loads the CT scan from the specified directory.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer application (e.g., Horos, Weasis, or similar) is open showing a CT scan of the chest/torso."
+        },
+        {
+            "id": "window_preset_application",
+            "description": "Agent demonstrates switching between different window settings (Lung, Bone, Soft Tissue, Mediastinal).",
+            "points": 20,
+            "visual_evidence": "Screenshots show the image contrast and brightness changing significantly to highlight different tissues (e.g., black/white lung parenchyma vs. bright white bone)."
+        },
+        {
+            "id": "anatomical_measurements",
+            "description": "Agent performs linear or area measurements on anatomical structures in each of the four windows.",
+            "points": 30,
+            "visual_evidence": "Measurement callouts, calipers, or rulers are visible on the CT slices across different window views."
+        },
+        {
+            "id": "image_export",
+            "description": "Agent exports the annotated views as PNG files to the designated export directory.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' or 'Export' dialog box is seen with the file format set to PNG and the path pointing to /home/ga/DICOM/exports/."
+        },
+        {
+            "id": "survey_report_creation",
+            "description": "Agent creates a text report containing the window preset, structure measured, and measurement value for all four windows.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal view shows the file /home/ga/DICOM/exports/multiwindow_survey_report.txt with four distinct entries matching the visual measurements."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "Agent used the medical imaging GUI to perform measurements rather than script-based manipulation.",
+            "visual_evidence": "Mouse cursor movement, active tool selection (ruler/annotation tool), and GUI menus are visible in the trajectory."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "Measurements are derived from the actual image data, not placeholder values.",
+            "visual_evidence": "The measurement values in the final report match the numerical values displayed on the calipers in the GUI screenshots."
+        },
+        {
+            "id": "no_file_system_shortcuts",
+            "description": "Agent did not simply move pre-existing files but generated them through the application.",
+            "visual_evidence": "The export process (dialog boxes or 'Export' button clicks) is captured in the screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the following window settings: Lung (W:1500, L:-500), Bone (W:2000, L:300), Soft Tissue (W:400, L:40), and Mediastinal (W:350, L:50). The source DICOM is located at /home/ga/DICOM/studies/multiwindow_ct/ and all outputs (4 PNGs and 1 TXT report) must be saved to /home/ga/DICOM/exports/. The report must correlate exactly with the visual measurements taken in the GUI."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "migrate_weather_lib@1",
+    "task_completion": [
+        {
+            "id": "identify_python2_syntax",
+            "description": "Agent identifies Python 2 specific syntax in the weather/ package files (e.g., print statements without parentheses or .iteritems()).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the agent opening files in the weather/ directory and highlighting or scrolling past Python 2 code patterns."
+        },
+        {
+            "id": "fix_print_and_builtins",
+            "description": "Agent updates print statements to function calls and replaces Python 2 built-ins like xrange or unicode.",
+            "points": 20,
+            "visual_evidence": "Code editor screenshots showing 'print(...)' with parentheses and the removal of 'unicode(' or 'xrange(' in the weather/ package."
+        },
+        {
+            "id": "fix_dict_and_exceptions",
+            "description": "Agent updates dictionary methods (iteritems/has_key) and exception handling syntax to Python 3 standards.",
+            "points": 20,
+            "visual_evidence": "Code editor screenshots showing '.items()' instead of '.iteritems()' and 'except Exception as e:' instead of 'except Exception, e:'."
+        },
+        {
+            "id": "run_pytest_initial",
+            "description": "Agent attempts to run the test suite using a Python 3 interpreter to identify remaining failures.",
+            "points": 15,
+            "visual_evidence": "Terminal or IDE output showing the execution of 'pytest' or 'python3 -m pytest' within the project directory."
+        },
+        {
+            "id": "verify_all_tests_pass",
+            "description": "Agent successfully runs the full test suite with all tests passing in a Python 3.11 environment.",
+            "points": 35,
+            "visual_evidence": "Terminal output showing '11 passed' (or similar) and a green status bar from pytest, confirming all tests in the tests/ directory are successful."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "visual_evidence": "The VLM should check that the agent did not save changes to any files inside the 'tests/' directory."
+        },
+        {
+            "id": "genuine_migration",
+            "description": "The agent actually edited the source code rather than just running a mock script.",
+            "visual_evidence": "Screenshots must show the agent actively editing files in the 'weather/' directory and saving those changes."
+        },
+        {
+            "id": "python3_execution",
+            "description": "The tests were executed using Python 3, not Python 2.",
+            "visual_evidence": "Look for 'python3', 'python3.11', or pytest output headers indicating a 3.x runtime environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/weather_analysis. There are exactly 11 tests to be passed (3 in test_parser.py, 5 in test_statistics.py, and 3 in test_report.py). The migration is successful only if the following 8 patterns are removed from the weather/ package: 'print \"', '.iteritems()', '.has_key(', 'unicode(', 'basestring', 'raw_input(', 'xrange(', and 'except .*,.*:'. Note that '.itervalues()' is not present in this specific codebase."
+}

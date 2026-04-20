@@ -1,0 +1,59 @@
+{
+    "task_id": "apply_color_lut@1",
+    "task_completion": [
+        {
+            "id": "weasis_interface_active",
+            "description": "The Weasis medical viewer is open and a DICOM image is loaded in the main viewport.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible with a grayscale medical image (X-ray/CT) displayed in the center."
+        },
+        {
+            "id": "lut_menu_accessed",
+            "description": "The agent locates and opens the Look-Up Table (LUT) selection menu or panel.",
+            "points": 15,
+            "visual_evidence": "A dropdown menu or side panel containing color map options (like 'Grayscale', 'Jet', 'Hot Iron') is visible."
+        },
+        {
+            "id": "hot_iron_applied",
+            "description": "The 'Hot Iron' pseudo-color LUT is selected and applied to the image.",
+            "points": 25,
+            "visual_evidence": "The image in the viewport changes from grayscale to a 'Hot Iron' palette (typically black, red, orange, and white tones). The 'Hot Iron' option may be highlighted in the menu."
+        },
+        {
+            "id": "export_dialog_configured",
+            "description": "The agent opens the Export dialog and sets the format to PNG.",
+            "points": 20,
+            "visual_evidence": "An 'Export' or 'Save As' dialog box is visible with 'PNG' selected as the file format."
+        },
+        {
+            "id": "export_path_set",
+            "description": "The agent specifies the correct file path for the export.",
+            "points": 15,
+            "visual_evidence": "The file path field in the export dialog shows '~/DICOM/exports/colorized_ct.png' or the equivalent directory navigation is visible."
+        },
+        {
+            "id": "export_confirmed",
+            "description": "The agent completes the export process.",
+            "points": 15,
+            "visual_evidence": "A progress bar for exporting appears, or the export dialog closes, and a file manager window might show the new file 'colorized_ct.png' in the target folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the Weasis GUI to apply the LUT rather than command-line image manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis menus and the image changing color within the application UI."
+        },
+        {
+            "id": "no_file_renaming_cheat",
+            "description": "The agent did not simply rename an existing file to meet the requirement.",
+            "visual_evidence": "The visual transition of the image from grayscale to 'Hot Iron' is captured in the trajectory before the export occurs."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual Weasis software interface.",
+            "visual_evidence": "The standard Weasis toolbar, icons, and DICOM metadata overlays are visible in the screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires applying the 'Hot Iron' LUT specifically. The output must be a PNG file named 'colorized_ct.png' located in '/home/ga/DICOM/exports/'. The source image is a real DICOM file (0002.DCM) which is a multi-frame X-ray. The 'Hot Iron' LUT is characterized by a black-red-yellow-white color gradient."
+}

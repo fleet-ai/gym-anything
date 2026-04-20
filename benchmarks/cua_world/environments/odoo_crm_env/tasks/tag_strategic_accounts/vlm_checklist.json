@@ -1,0 +1,53 @@
+{
+    "task_id": "tag_strategic_accounts@1",
+    "task_completion": [
+        {
+            "id": "access_crm_pipeline",
+            "description": "Navigate to the CRM Pipeline or Opportunities view to identify revenue values.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of opportunities with 'Expected Revenue' or 'Revenue' columns visible."
+        },
+        {
+            "id": "identify_qualifying_opportunities",
+            "description": "Identify opportunities with revenue >= $90,000 (Logistics Pro Inc and NorthWest Retail).",
+            "points": 15,
+            "visual_evidence": "The agent selects, clicks into, or hovers over records for Logistics Pro Inc ($150,000) and NorthWest Retail ($95,000)."
+        },
+        {
+            "id": "tag_logistics_pro",
+            "description": "Apply the 'Strategic Account' tag to Logistics Pro Inc.",
+            "points": 30,
+            "visual_evidence": "The customer record for 'Logistics Pro Inc' shows the tag 'Strategic Account' being added or saved in the tags field."
+        },
+        {
+            "id": "tag_northwest_retail",
+            "description": "Apply the 'Strategic Account' tag to NorthWest Retail.",
+            "points": 30,
+            "visual_evidence": "The customer record for 'NorthWest Retail' shows the tag 'Strategic Account' being added or saved in the tags field."
+        },
+        {
+            "id": "verify_non_qualifying",
+            "description": "Ensure accounts below $90,000 are not tagged.",
+            "points": 15,
+            "visual_evidence": "The agent views or skips accounts like those with $12,000 revenue without adding the 'Strategic Account' tag."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM graphical interface rather than executing database scripts or terminal commands to update records.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the CRM web interface; no terminal windows showing SQL or Python execution for data updates."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually navigated to the specific records rather than searching for them via a direct URL if not provided.",
+            "visual_evidence": "The agent is seen using the search bar or scrolling through the pipeline list to find the target companies."
+        },
+        {
+            "id": "genuine_tag_entry",
+            "description": "The agent manually typed or selected the tag from a menu rather than just displaying a final state without the process.",
+            "visual_evidence": "Intermediate screenshots show the tag input field active or the dropdown menu open."
+        }
+    ],
+    "privileged_info_for_vlm": "The threshold for tagging is $90,000. Qualifying accounts are: 'Logistics Pro Inc' ($150,000) and 'NorthWest Retail' ($95,000). Non-qualifying accounts include any with revenue below $90,000 (e.g., an account with $12,000). The exact tag string required is 'Strategic Account'."
+}

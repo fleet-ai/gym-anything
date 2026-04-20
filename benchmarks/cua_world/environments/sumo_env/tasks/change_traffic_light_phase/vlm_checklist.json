@@ -1,0 +1,59 @@
+{
+    "task_id": "change_traffic_light_phase@1",
+    "task_completion": [
+        {
+            "id": "open_netedit",
+            "description": "The agent successfully launches the SUMO netedit application.",
+            "points": 10,
+            "visual_evidence": "The netedit window is visible on the screen with its characteristic menu bar and toolbar."
+        },
+        {
+            "id": "load_network_file",
+            "description": "The agent opens the specific network file 'acosta_buslanes.net.xml'.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/SUMO_Scenarios/bologna_acosta/acosta_buslanes.net.xml' is visible in the title bar or the 'Open Network' dialog."
+        },
+        {
+            "id": "enter_traffic_light_mode",
+            "description": "The agent switches to the Traffic Light edit mode in netedit.",
+            "points": 15,
+            "visual_evidence": "The Traffic Light icon (usually a green/red signal icon) is selected in the toolbar, and the left sidebar updates to show traffic light editing options."
+        },
+        {
+            "id": "select_junction",
+            "description": "The agent selects a traffic-light-controlled junction to edit.",
+            "points": 15,
+            "visual_evidence": "A junction in the network view is highlighted, and the 'Traffic Light Editor' panel appears on the left."
+        },
+        {
+            "id": "modify_phase_duration",
+            "description": "The agent changes the duration of the first phase (row 0) to 45 seconds.",
+            "points": 25,
+            "visual_evidence": "In the Traffic Light Editor table, the 'Duration' cell for the first row (index 0) is edited to show the value '45' or '45.00'."
+        },
+        {
+            "id": "save_tls_program",
+            "description": "The agent saves the modified traffic light program to the specified XML file.",
+            "points": 20,
+            "visual_evidence": "The 'Save' or 'Export' dialog for TLS programs is visible, with the output path set to '/home/ga/SUMO_Output/modified_tls.xml'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the netedit GUI rather than just executing terminal commands to modify the XML directly.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the netedit table cells and menu items."
+        },
+        {
+            "id": "genuine_file_selection",
+            "description": "The agent navigated the file system to find the specific Bologna network file.",
+            "visual_evidence": "The file browser dialog shows the navigation to the 'bologna_acosta' directory."
+        },
+        {
+            "id": "no_manual_xml_edit",
+            "description": "The agent did not simply open the XML file in a text editor to change the value.",
+            "visual_evidence": "The primary interaction occurs within the netedit graphical interface, not a text editor like gedit or vim."
+        }
+    ],
+    "privileged_info_for_vlm": "The target network file is 'acosta_buslanes.net.xml'. The agent must change the duration of the first phase (row 0) of any selected traffic light junction to exactly 45 seconds. The final output must be saved to '/home/ga/SUMO_Output/modified_tls.xml'. Note that while the agent is asked to save to a new file, the underlying evaluation script also checks if the original network file was modified with the duration='45' attribute."
+}

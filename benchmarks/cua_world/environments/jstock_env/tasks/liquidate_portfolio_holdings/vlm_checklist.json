@@ -1,0 +1,59 @@
+{
+    "task_id": "liquidate_portfolio_holdings@1",
+    "task_completion": [
+        {
+            "id": "open_my_portfolio",
+            "description": "The agent opens the 'My Portfolio' tab or window within the JStock application.",
+            "points": 10,
+            "visual_evidence": "The JStock application is visible with a tab or window titled 'My Portfolio' active."
+        },
+        {
+            "id": "sell_aapl_shares",
+            "description": "Record a sell transaction for 100 shares of AAPL at $200.00.",
+            "points": 20,
+            "visual_evidence": "A transaction entry or dialog showing AAPL, quantity 100, and price 200.00 being recorded as a sell/sell-side transaction."
+        },
+        {
+            "id": "sell_msft_shares",
+            "description": "Record a sell transaction for 50 shares of MSFT at $400.00.",
+            "points": 20,
+            "visual_evidence": "A transaction entry or dialog showing MSFT, quantity 50, and price 400.00 being recorded as a sell/sell-side transaction."
+        },
+        {
+            "id": "sell_nvda_shares",
+            "description": "Record a sell transaction for 25 shares of NVDA at $800.00.",
+            "points": 20,
+            "visual_evidence": "A transaction entry or dialog showing NVDA, quantity 25, and price 800.00 being recorded as a sell/sell-side transaction."
+        },
+        {
+            "id": "verify_zero_quantity",
+            "description": "Ensure the net quantity for AAPL, MSFT, and NVDA in the portfolio summary is zero.",
+            "points": 20,
+            "visual_evidence": "The portfolio summary table shows '0' or empty values for the current quantity/shares held for AAPL, MSFT, and NVDA."
+        },
+        {
+            "id": "save_portfolio",
+            "description": "Save the changes made to the portfolio.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' icon, selects 'File > Save', or a 'Portfolio saved' confirmation message appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the JStock GUI to record transactions rather than editing configuration files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with JStock menus, buttons, and dialog boxes; no terminal windows showing manual file editing of .csv or portfolio files."
+        },
+        {
+            "id": "genuine_transaction_entry",
+            "description": "The agent manually entered the specific prices and quantities required by the task.",
+            "visual_evidence": "Screenshots show the input fields for price and quantity being populated with the values 200.00, 400.00, and 800.00 respectively."
+        },
+        {
+            "id": "no_shortcut_deletion",
+            "description": "The agent liquidated positions via sell transactions rather than simply deleting the rows from the portfolio.",
+            "visual_evidence": "The presence of 'Sell' transaction records or a transaction history showing the liquidation process, rather than the stocks just disappearing from the list without recorded sales."
+        }
+    ],
+    "privileged_info_for_vlm": "The portfolio name is 'My Portfolio'. The required liquidation values are: AAPL (100 shares at $200.00), MSFT (50 shares at $400.00), and NVDA (25 shares at $800.00). The final state must show 0 shares held for these tickers and the portfolio must be saved."
+}

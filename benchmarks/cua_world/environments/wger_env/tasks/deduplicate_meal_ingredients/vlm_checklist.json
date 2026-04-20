@@ -1,0 +1,59 @@
+{
+    "task_id": "deduplicate_meal_ingredients@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger application as admin.",
+            "points": 10,
+            "visual_evidence": "The dashboard or navigation menu is visible, and the 'admin' username is shown in the user profile section."
+        },
+        {
+            "id": "navigate_to_lean_bulk_plan",
+            "description": "Agent navigates to the 'Lean Bulk Plan' within the Nutrition section.",
+            "points": 15,
+            "visual_evidence": "The screen displays the details of the 'Lean Bulk Plan' nutrition plan."
+        },
+        {
+            "id": "locate_morning_power_shake",
+            "description": "Agent identifies the 'Morning Power Shake' meal and its duplicate ingredients.",
+            "points": 15,
+            "visual_evidence": "The 'Morning Power Shake' meal is visible, showing multiple entries for Whey Protein Powder and Peanut Butter."
+        },
+        {
+            "id": "delete_duplicate_whey",
+            "description": "Agent removes two of the three Whey Protein Powder entries.",
+            "points": 25,
+            "visual_evidence": "Action menus (e.g., trash icons or delete buttons) are clicked for the specific duplicate Whey Protein Powder rows."
+        },
+        {
+            "id": "delete_duplicate_peanut_butter",
+            "description": "Agent removes one of the two Peanut Butter entries.",
+            "points": 25,
+            "visual_evidence": "Action menu is clicked to delete the redundant Peanut Butter entry."
+        },
+        {
+            "id": "verify_final_state",
+            "description": "The meal contains exactly one of each required ingredient.",
+            "points": 10,
+            "visual_evidence": "The 'Morning Power Shake' meal list shows exactly three items: 1x Whey Protein Powder, 1x Peanut Butter, and 1x Oat Milk."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on web elements, and browser navigation rather than a terminal window with Django shell or SQL commands."
+        },
+        {
+            "id": "no_plan_deletion",
+            "description": "The agent did not delete and recreate the entire plan to bypass the deduplication task.",
+            "visual_evidence": "The history or sequence of screenshots shows individual item deletions rather than the deletion of the 'Lean Bulk Plan' object."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the application menus to find the plan.",
+            "visual_evidence": "The agent is seen clicking on 'Nutrition' and then 'Plans' rather than jumping directly to a deep-linked URL if not previously known."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Lean Bulk Plan' initially contains a meal called 'Morning Power Shake'. This meal starts with 6 total ingredient entries: 3x Whey Protein Powder, 2x Peanut Butter, and 1x Oat Milk. The goal is reached when the meal list displays exactly 3 rows in total, one for each unique ingredient. The agent should not change the gram/unit amounts of the remaining entries."
+}

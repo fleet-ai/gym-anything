@@ -1,0 +1,59 @@
+{
+    "task_id": "http_session_reconstruction@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the packet capture file 'http.cap' using a network analysis tool like Wireshark or tshark.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark or a terminal window displaying the contents of /home/ga/Documents/captures/http.cap."
+        },
+        {
+            "id": "filter_http_traffic",
+            "description": "The agent filters the traffic to isolate HTTP protocol packets.",
+            "points": 15,
+            "visual_evidence": "The Wireshark display filter bar showing 'http' or a tshark command with an HTTP filter applied."
+        },
+        {
+            "id": "identify_session_details",
+            "description": "The agent identifies the User-Agent, server IPs, and request URIs from the packet data.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the agent inspecting packet details (Hypertext Transfer Protocol section) or running commands to extract these specific fields."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the file 'http_analysis_report.txt' in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A terminal command like 'touch' or 'nano', or a file manager showing the creation of /home/ga/Documents/captures/http_analysis_report.txt."
+        },
+        {
+            "id": "populate_report_content",
+            "description": "The agent writes the required analysis (URIs, IPs, status codes, User-Agent, and packet count) into the report.",
+            "points": 30,
+            "visual_evidence": "A screenshot of a text editor or a 'cat' command output showing the report content with clearly labeled sections."
+        },
+        {
+            "id": "verify_final_report",
+            "description": "The final report contains all required elements: URIs, server IP, status codes, User-Agent, and total request count.",
+            "points": 10,
+            "visual_evidence": "A final view of the completed http_analysis_report.txt containing the specific data points from the PCAP."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the expected values without analyzing the file.",
+            "visual_evidence": "The agent must be seen interacting with the PCAP file (scrolling through Wireshark or running tshark/tcpdump queries) before writing the report."
+        },
+        {
+            "id": "genuine_tool_usage",
+            "description": "The agent uses standard network analysis tools rather than just creating the file from memory.",
+            "visual_evidence": "Presence of Wireshark GUI or terminal-based packet analysis tools in the trajectory screenshots."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent uses the specific paths provided in the instructions.",
+            "visual_evidence": "Commands or file dialogs referencing /home/ga/Documents/captures/ specifically."
+        }
+    ],
+    "privileged_info_for_vlm": "The PCAP file 'http.cap' contains exactly 2 HTTP request packets. The URIs are '/download.html' and '/pagead/ads...'. The destination IPs are 65.208.228.223 and 216.239.59.99. The HTTP response status code for these requests is 200. The User-Agent string starts with 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113'. The report must be located at /home/ga/Documents/captures/http_analysis_report.txt."
+}

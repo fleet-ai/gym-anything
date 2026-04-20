@@ -1,0 +1,53 @@
+{
+    "task_id": "query_long_rock_tracks@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "The agent has opened the Chinook database file in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "LibreOffice Base window is open showing 'chinook.odb' in the title bar or application state."
+        },
+        {
+            "id": "query_design_view",
+            "description": "The agent has entered the Query Design or SQL view to create a new query.",
+            "points": 10,
+            "visual_evidence": "A 'Query Design' window or 'SQL View' window is open, showing the Track table or a SELECT statement."
+        },
+        {
+            "id": "query_criteria_setup",
+            "description": "The query includes the correct filters for Genre (Rock/Metal), Duration (>300,000), and Composer (is not null).",
+            "points": 30,
+            "visual_evidence": "In the query editor, look for criteria like 'Rock', 'Metal', '> 300000', and 'IS NOT NULL' (or 'NOT EMPTY') in the relevant columns."
+        },
+        {
+            "id": "calculated_column_and_sort",
+            "description": "The query includes a calculated column for minutes and is sorted by duration descending.",
+            "points": 25,
+            "visual_evidence": "Look for a column expression like 'Milliseconds / 60000' and a 'Descending' sort order set on the Milliseconds or calculated column."
+        },
+        {
+            "id": "save_query_name",
+            "description": "The query is saved with the specific name 'DeepCutsPlaylist'.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' dialog or the main database window showing 'DeepCutsPlaylist' under the Queries section."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just executing a shell script to modify the .odb file.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, and typing within the LibreOffice interface."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply type the results into a text file or spreadsheet, but actually built a query.",
+            "visual_evidence": "The presence of the Query Design window or SQL editor within LibreOffice Base."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent is interacting with the actual chinook.odb file provided in the environment.",
+            "visual_evidence": "The file path /home/ga/chinook.odb is visible in the application or file picker."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The query must be named 'DeepCutsPlaylist'. The correct query should return exactly 500 rows based on the criteria: (Genre is Rock or Metal) AND (Milliseconds > 300000) AND (Composer is not null). The calculated column for minutes is Milliseconds / 60000."
+}

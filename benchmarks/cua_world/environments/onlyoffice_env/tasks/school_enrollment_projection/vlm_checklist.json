@@ -1,0 +1,65 @@
+{
+    "task_id": "school_enrollment_projection@1",
+    "task_completion": [
+        {
+            "id": "open_onlyoffice",
+            "description": "The agent opens ONLYOFFICE Spreadsheet editor to begin the projection model.",
+            "points": 10,
+            "visual_evidence": "The ONLYOFFICE Spreadsheet interface is visible on the screen."
+        },
+        {
+            "id": "import_historical_data",
+            "description": "The agent imports or enters data from historical_enrollment.csv and regional_births.csv into the spreadsheet.",
+            "points": 15,
+            "visual_evidence": "The spreadsheet contains historical enrollment numbers by grade and birth data from previous years."
+        },
+        {
+            "id": "calculate_csr_ratios",
+            "description": "The agent calculates Cohort Survival Ratios (CSR) for grade transitions and Birth-to-Kindergarten ratios.",
+            "points": 20,
+            "visual_evidence": "Formulas or calculated decimal values (e.g., 0.90, 0.98) representing ratios between grades and birth-to-K are visible in the spreadsheet cells."
+        },
+        {
+            "id": "calculate_5_year_averages",
+            "description": "The agent calculates the 5-year average for all transition ratios to use for projections.",
+            "points": 15,
+            "visual_evidence": "A row or column labeled 'Average' or 'Mean' containing the averaged ratios for each grade transition."
+        },
+        {
+            "id": "project_2024_2028_enrollment",
+            "description": "The agent projects enrollment for grades K-12 for the years 2024 through 2028 using the calculated averages.",
+            "points": 25,
+            "visual_evidence": "A table showing projected enrollment numbers for years 2024, 2025, 2026, 2027, and 2028 across all grades K-12."
+        },
+        {
+            "id": "calculate_grand_totals",
+            "description": "The agent calculates the grand total enrollment for each projected year (2024-2028).",
+            "points": 10,
+            "visual_evidence": "A 'Total' or 'Grand Total' row at the bottom of the projection table with summed values for each year."
+        },
+        {
+            "id": "save_final_file",
+            "description": "The agent saves the final spreadsheet to the specified path.",
+            "points": 5,
+            "visual_evidence": "The ONLYOFFICE save dialog or title bar shows the file name 'enrollment_projections.xlsx' in the '/home/ga/Documents/Spreadsheets/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ONLYOFFICE GUI to build the model rather than just generating the file via terminal scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ONLYOFFICE cells, formulas being typed into the formula bar, and the application ribbon."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent uses formulas to calculate projections rather than typing in the final numbers directly.",
+            "visual_evidence": "When a cell is selected, the formula bar shows a calculation (e.g., =B5*C10) rather than a static number."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent uses the provided CSV data rather than external or hallucinated data.",
+            "visual_evidence": "The historical data in the spreadsheet matches the values found in the source CSV files visible in previous steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The projection must cover years 2024-2028. Verified calculation constants: The Average Birth-to-K ratio is 0.90. The Average K-to-1 ratio is approximately 0.98. For the year 2024, the projected Kindergarten (K) enrollment should be 396.0 and Grade 1 (G1) should be approximately 396.9 (or 397 if rounded). The final file must be saved as enrollment_projections.xlsx in ~/Documents/Spreadsheets/."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "tls_decryption_with_keylog@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_in_wireshark",
+            "description": "Wireshark is opened and the 'secure_api.pcap' file is loaded.",
+            "points": 10,
+            "visual_evidence": "Wireshark window title or file menu showing 'secure_api.pcap' is open."
+        },
+        {
+            "id": "configure_tls_keylog",
+            "description": "The agent navigates to TLS preferences and sets the '(Pre)-Master-Secret log filename' to the provided path.",
+            "points": 25,
+            "visual_evidence": "Wireshark 'Preferences' dialog under 'Protocols' -> 'TLS' showing '/home/ga/Documents/captures/session_keys.log' in the keylog file path field."
+        },
+        {
+            "id": "verify_decrypted_traffic",
+            "description": "The packet list shows decrypted HTTP/HTTPS traffic (e.g., 'HTTP' or 'Decrypted TLS' tabs in packet details).",
+            "points": 20,
+            "visual_evidence": "Packet list showing green 'HTTP' protocol rows or a 'Decrypted TLS' tab appearing in the packet details pane for packets that were previously only 'TLS'."
+        },
+        {
+            "id": "locate_secret_uuid",
+            "description": "The agent finds the packet containing the 'SECRET_FLAG:' label and the associated UUID.",
+            "points": 25,
+            "visual_evidence": "Wireshark packet bytes or packet details pane highlighting the string 'SECRET_FLAG:' followed by a UUID string."
+        },
+        {
+            "id": "save_uuid_to_file",
+            "description": "The agent saves only the UUID to '~/Documents/decrypted_flag.txt'.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '/home/ga/Documents/decrypted_flag.txt' containing a single UUID string."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to perform the decryption configuration rather than just command-line tools.",
+            "visual_evidence": "Screenshots showing the Wireshark Preferences window and protocol settings being modified."
+        },
+        {
+            "id": "no_hardcoded_flag",
+            "description": "The agent did not simply echo a flag from a known location without performing the decryption steps.",
+            "visual_evidence": "The trajectory shows the agent interacting with the TLS settings in Wireshark before the flag is identified."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual pcap and log files provided in the task.",
+            "visual_evidence": "File paths in Wireshark and terminal commands match the paths specified in the task description."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using Wireshark's TLS decryption feature. The keylog file is located at '/home/ga/Documents/captures/session_keys.log'. The decrypted traffic will reveal a string 'SECRET_FLAG:' followed by a UUID. The final output file '/home/ga/Documents/decrypted_flag.txt' must contain ONLY the UUID (e.g., 550e8400-e29b-41d4-a716-446655440000) and no other text."
+}

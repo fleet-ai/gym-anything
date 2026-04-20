@@ -1,0 +1,59 @@
+{
+    "task_id": "schedule_irregular_training_series@1",
+    "task_completion": [
+        {
+            "id": "read_schedule_file",
+            "description": "The agent opens and reads the 'leadership_schedule.txt' file to identify the specific dates and times.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of '~/Documents/leadership_schedule.txt'."
+        },
+        {
+            "id": "navigate_to_calendar",
+            "description": "The agent navigates to the Odoo Calendar application.",
+            "points": 10,
+            "visual_evidence": "The Odoo interface showing the Calendar module view."
+        },
+        {
+            "id": "create_first_session",
+            "description": "The first 'Leadership 101' session is created with correct details (Name, Location, Attendees, Description).",
+            "points": 25,
+            "visual_evidence": "An event creation dialog or event details view showing 'Leadership 101', 'Board Room', 'Alice Johnson', 'Frank Rivera', and the description 'Core leadership principles for new managers.' for the first date."
+        },
+        {
+            "id": "create_second_session",
+            "description": "The second 'Leadership 101' session is created with correct details.",
+            "points": 25,
+            "visual_evidence": "An event creation dialog or event details view showing the same details as the first session but for the second scheduled date."
+        },
+        {
+            "id": "create_third_session",
+            "description": "The third 'Leadership 101' session is created with correct details.",
+            "points": 25,
+            "visual_evidence": "An event creation dialog or event details view showing the same details as the first session but for the third scheduled date."
+        },
+        {
+            "id": "verify_no_recurrence",
+            "description": "The sessions are created as separate, individual events rather than a single recurring series.",
+            "points": 5,
+            "visual_evidence": "The calendar view showing three distinct event blocks or the event details showing 'Recurrent' is not checked/active."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo web interface to schedule the events rather than direct database manipulation or scripts.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Odoo buttons, form fields being filled, and the calendar UI updating."
+        },
+        {
+            "id": "no_terminal_scheduling",
+            "description": "The agent did not use terminal commands to bypass the Odoo UI for event creation.",
+            "visual_evidence": "The terminal is only used for reading the schedule file, not for executing python scripts or curl commands to the Odoo API."
+        },
+        {
+            "id": "genuine_contact_selection",
+            "description": "The agent selected the actual contact records for Alice Johnson and Frank Rivera.",
+            "visual_evidence": "The attendee field in Odoo showing the contact tags/pills for the specific users rather than just plain text."
+        }
+    ],
+    "privileged_info_for_vlm": "The schedule file '~/Documents/leadership_schedule.txt' contains three specific dates/times. Each event must be titled 'Leadership 101', located in 'Board Room', include attendees 'Alice Johnson' and 'Frank Rivera', and have the description 'Core leadership principles for new managers.' The events must be created individually in Odoo, not as a recurring series."
+}

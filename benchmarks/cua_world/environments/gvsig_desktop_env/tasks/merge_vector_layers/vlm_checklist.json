@@ -1,0 +1,59 @@
+{
+    "task_id": "merge_vector_layers@1",
+    "task_completion": [
+        {
+            "id": "load_input_layers",
+            "description": "Both input shapefiles (eurasia_countries.shp and rest_countries.shp) are loaded into the gvSIG layer manager.",
+            "points": 10,
+            "visual_evidence": "The Table of Contents (TOC) or Layer Manager panel shows 'eurasia_countries' and 'rest_countries' as active layers."
+        },
+        {
+            "id": "open_geoprocessing_tool",
+            "description": "The agent opens the 'Merge' or 'Union' geoprocessing tool from the gvSIG toolbox.",
+            "points": 15,
+            "visual_evidence": "A geoprocessing dialog box titled 'Merge' or 'Geoprocessing tools' is visible on screen."
+        },
+        {
+            "id": "select_input_features",
+            "description": "The agent selects both eurasia_countries and rest_countries as the input layers for the merge operation.",
+            "points": 15,
+            "visual_evidence": "The Merge tool dialog shows both input files selected in the 'Input layers' or 'Layers to merge' selection area."
+        },
+        {
+            "id": "configure_output_path",
+            "description": "The agent sets the output file path to /home/ga/gvsig_data/exports/world_merged.shp.",
+            "points": 20,
+            "visual_evidence": "The 'Output file' text field in the geoprocessing dialog contains the string '/home/ga/gvsig_data/exports/world_merged.shp'."
+        },
+        {
+            "id": "execute_merge",
+            "description": "The agent executes the merge process and a new layer is generated.",
+            "points": 20,
+            "visual_evidence": "A progress bar appears, or a new layer named 'world_merged' appears in the Layer Manager/TOC."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "The agent opens the attribute table of the merged layer to ensure fields like NAME and POP_EST are present.",
+            "points": 20,
+            "visual_evidence": "An attribute table window is open for the 'world_merged' layer, showing columns labeled 'NAME' and 'POP_EST' with data populated."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent performed the merge using the gvSIG GUI rather than executing a python script or shell command to bypass the interface.",
+            "visual_evidence": "Screenshots show mouse interactions with gvSIG menus and dialog boxes, not just a terminal window."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not simply rename an existing file or create a dummy file via terminal.",
+            "visual_evidence": "The sequence of screenshots shows the Geoprocessing wizard being configured and the 'OK' or 'Process' button being clicked."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not manually type in feature counts or results into a text file to simulate completion.",
+            "visual_evidence": "The agent interacts with the gvSIG attribute table and map view to verify the result."
+        }
+    ],
+    "privileged_info_for_vlm": "The input 'eurasia_countries.shp' has 86 features and 'rest_countries.shp' has 91 features. The final merged file 'world_merged.shp' must contain exactly 177 features (acceptable range 172-182). The attribute table must contain the specific fields 'NAME' and 'POP_EST'. The output must be saved specifically to /home/ga/gvsig_data/exports/world_merged.shp."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "vleo_geomagnetic_storm_deorbit@1",
+    "task_completion": [
+        {
+            "id": "read_parameters",
+            "description": "Agent opens and reads the spacecraft parameters from the text file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/space_weather_brief_SL47.txt with Mass: 260 kg, Drag Area: 10 m^2, and Cd: 2.2."
+        },
+        {
+            "id": "gmat_script_creation",
+            "description": "Agent creates a GMAT script incorporating the JacchiaRoberts atmosphere model and the specified spacecraft parameters.",
+            "points": 20,
+            "visual_evidence": "A text editor or GMAT GUI showing script code with 'AtmosphereModel = JacchiaRoberts', 'DryMass = 260', 'DragArea = 10', and 'Cd = 2.2'."
+        },
+        {
+            "id": "scenario_configuration",
+            "description": "Agent configures the two specific solar/magnetic index scenarios (Nominal: F10.7=120, Kp=3; Storm: F10.7=140, Kp=8).",
+            "points": 20,
+            "visual_evidence": "GMAT script or GUI panels showing the input values for F10.7, F10.7A, and MagneticIndex/Kp for both simulation runs."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent runs the GMAT simulation to propagate the orbits until the 120 km altitude threshold or 15-day limit.",
+            "points": 25,
+            "visual_evidence": "GMAT execution progress bar, console output showing propagation steps, or the GMAT output window updating as the simulation runs."
+        },
+        {
+            "id": "save_script_and_report",
+            "description": "Agent saves the final GMAT script and the summary report to the specified directory.",
+            "points": 25,
+            "visual_evidence": "File explorer or terminal showing 'storm_decay_simulation.script' and 'storm_survival_report.txt' inside ~/GMAT_output/, and the report content containing the required keys (nominal_survival_days, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_usage",
+            "description": "The agent used the GMAT software (GUI or Console) to generate results rather than fabricating them.",
+            "visual_evidence": "Screenshots showing the GMAT application window, GMAT-specific logs, or the GMAT script editor being used."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply write the report without running the simulation first.",
+            "visual_evidence": "The sequence of screenshots must show the simulation running or GMAT output files being generated before the final report is written."
+        },
+        {
+            "id": "parameter_consistency",
+            "description": "The values in the final report match the simulation outputs rather than the example values in the prompt.",
+            "visual_evidence": "The report values for survival days should align with the verified simulation results (approx 1.7 days for nominal and 1.1 days for storm) rather than the placeholder ranges in the metadata."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation uses a 260kg satellite at 260km altitude. Verified simulation results using GMAT R2022a for these specific parameters: Nominal scenario (F10.7=120, Kp=3) results in a survival time of approximately 1.718 days. Storm scenario (F10.7=140, Kp=8) results in a survival time of approximately 1.177 days. The final altitude for both should be exactly 120 km as per the propagation stop condition. The report must use the keys: nominal_survival_days, storm_survival_days, nominal_final_alt_km, and storm_final_alt_km."
+}

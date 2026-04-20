@@ -1,0 +1,56 @@
+{
+    "task_id": "whitelabel_wp_login@1",
+    "task_completion": [
+        {
+            "id": "file_transfer_logo",
+            "description": "The client logo is moved from the home directory to a web-accessible WordPress directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal window showing 'client-logo.png' being moved or copied into a subdirectory of /var/www/html/wordpress (e.g., wp-content/uploads)."
+        },
+        {
+            "id": "mu_plugin_creation",
+            "description": "A Must-Use plugin file is created in the wp-content/mu-plugins directory.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation of a PHP file within '/var/www/html/wordpress/wp-content/mu-plugins/'."
+        },
+        {
+            "id": "background_color_applied",
+            "description": "The login page background color is changed to #1e293b.",
+            "points": 25,
+            "visual_evidence": "The WordPress login screen (wp-login.php) showing a dark blue/slate background instead of the default light grey. The VLM should verify the color matches #1e293b (RGB: 30, 41, 59)."
+        },
+        {
+            "id": "custom_logo_displayed",
+            "description": "The default WordPress logo is replaced by the client logo on the login screen.",
+            "points": 25,
+            "visual_evidence": "The WordPress login screen showing the client's specific logo (likely a React logo or the provided PNG) instead of the WordPress 'W' logo."
+        },
+        {
+            "id": "logo_url_redirect",
+            "description": "The login logo link points to http://localhost/.",
+            "points": 15,
+            "visual_evidence": "The agent hovering over the logo on the login page showing 'localhost' in the browser status bar, or code in the editor showing a filter for 'login_headerurl' returning 'http://localhost/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_core_modification",
+            "description": "The agent did not modify WordPress core files directly.",
+            "points": 0,
+            "visual_evidence": "The agent should be seen working in the 'mu-plugins' directory rather than editing 'wp-login.php' or files in 'wp-includes' directly."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the browser and file system to verify changes.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent refreshing the browser to see the visual changes on the login page rather than just closing the task after editing code."
+        },
+        {
+            "id": "asset_source_verification",
+            "description": "The agent used the specific asset provided in the home directory.",
+            "points": 0,
+            "visual_evidence": "The agent is seen accessing '~/client-assets/client-logo.png' rather than downloading a random image from the internet."
+        }
+    ],
+    "privileged_info_for_vlm": "The target background color for the login page is exactly #1e293b (a dark slate blue). The source image is located at ~/client-assets/client-logo.png. The agent must use the mu-plugins system (wp-content/mu-plugins) and must not edit core files. The logo link must point to http://localhost/."
+}

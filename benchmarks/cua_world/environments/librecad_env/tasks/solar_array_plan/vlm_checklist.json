@@ -1,0 +1,62 @@
+{
+    "task_id": "solar_array_plan@1",
+    "task_completion": [
+        {
+            "id": "librecad_initialization",
+            "description": "LibreCAD is opened and the unit is set to millimeters.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD application window is visible. The status bar or 'Current Drawing Preferences' dialog shows 'Millimeter' as the unit."
+        },
+        {
+            "id": "layer_creation",
+            "description": "The 'PANELS' (Green), 'ELECTRICAL' (Red), and 'BORDER' (White) layers are created in the Layer List.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget shows three layers named 'PANELS', 'ELECTRICAL', and 'BORDER' with their respective color icons (Green, Red, White/Black)."
+        },
+        {
+            "id": "panel_geometry",
+            "description": "Four 10000x2000 rectangles are drawn on the PANELS layer at the specified coordinates.",
+            "points": 25,
+            "visual_evidence": "Four green horizontal rectangles are visible in the workspace. The coordinate display shows they are positioned at y=0, 4000, 8000, and 12000."
+        },
+        {
+            "id": "electrical_components",
+            "description": "A 600x600 combiner box and four conduit lines are drawn on the ELECTRICAL layer.",
+            "points": 25,
+            "visual_evidence": "A small red square is visible at (11000, 6700). Four red lines are visible connecting the right side of the panels to a central point (11300, 7000)."
+        },
+        {
+            "id": "border_geometry",
+            "description": "A site boundary rectangle is drawn on the BORDER layer from (-2000, -2000) to (14000, 16000).",
+            "points": 15,
+            "visual_evidence": "A large white/black rectangle encloses all other elements in the drawing area."
+        },
+        {
+            "id": "file_saved",
+            "description": "The drawing is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "The title bar of LibreCAD or a 'Save As' dialog confirms the file path is '~/Documents/LibreCAD/solar_array_plan.dxf'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI tools rather than just terminal commands to generate the file.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with drawing tools (rectangle, line) or the command line within the LibreCAD interface."
+        },
+        {
+            "id": "no_file_injection",
+            "description": "The agent did not simply move a pre-existing file into the directory.",
+            "points": 0,
+            "visual_evidence": "The progression of screenshots shows the drawing being constructed step-by-step in the CAD workspace."
+        },
+        {
+            "id": "genuine_layer_usage",
+            "description": "The agent actively switched between layers while drawing different components.",
+            "points": 0,
+            "visual_evidence": "The Layer List highlights different active layers (PANELS, ELECTRICAL, BORDER) as the corresponding objects are being drawn."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified facts: PANELS layer must be Green (ACI 3). ELECTRICAL layer must be Red (ACI 1). BORDER layer must be White (ACI 7). Panel dimensions are 10000x2000mm. Combiner box is 600x600mm at (11000, 6700). Conduit lines must converge at (11300, 7000). The site boundary is a rectangle from (-2000, -2000) to (14000, 16000). The final output path is /home/ga/Documents/LibreCAD/solar_array_plan.dxf."
+}

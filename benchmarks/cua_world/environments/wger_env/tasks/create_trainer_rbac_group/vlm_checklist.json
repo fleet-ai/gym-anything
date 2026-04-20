@@ -1,0 +1,59 @@
+{
+    "task_id": "create_trainer_rbac_group@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the wger application as admin.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger dashboard or the Django Administration login page followed by the admin index page."
+        },
+        {
+            "id": "navigate_to_groups",
+            "description": "Navigate to the 'Groups' section within the Django Administration panel.",
+            "points": 10,
+            "visual_evidence": "The URL contains '/admin/auth/group/' or the page header says 'Select group to change' or 'Add group'."
+        },
+        {
+            "id": "set_group_name",
+            "description": "Enter the group name 'Personal Trainers'.",
+            "points": 15,
+            "visual_evidence": "The 'Name' input field in the group creation form contains the text 'Personal Trainers'."
+        },
+        {
+            "id": "assign_required_permissions",
+            "description": "Assign the three specific exercise permissions: add, change, and view.",
+            "points": 40,
+            "visual_evidence": "The 'Chosen permissions' box contains 'exercises | exercise | Can add exercise', 'exercises | exercise | Can change exercise', and 'exercises | exercise | Can view exercise'."
+        },
+        {
+            "id": "exclude_delete_permission",
+            "description": "Ensure 'Can delete exercise' is NOT assigned.",
+            "points": 15,
+            "visual_evidence": "The 'Chosen permissions' box does NOT contain 'exercises | exercise | Can delete exercise'."
+        },
+        {
+            "id": "save_group",
+            "description": "Save the new group successfully.",
+            "points": 10,
+            "visual_evidence": "A success message appears (e.g., 'The group \"Personal Trainers\" was added successfully') or the group appears in the list of groups."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser window, not just terminal output."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the Django admin menus to reach the group settings.",
+            "visual_evidence": "Sequential screenshots show the transition from the admin home page to the Auth/Groups section."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a python script to bypass the UI.",
+            "visual_evidence": "The terminal (if visible) does not show the execution of scripts like 'manage.py shell' or custom SQL/ORM scripts."
+        }
+    ],
+    "privileged_info_for_vlm": "The group name must be exactly 'Personal Trainers'. The required permissions are 'exercises | exercise | Can add exercise', 'exercises | exercise | Can change exercise', and 'exercises | exercise | Can view exercise'. The permission 'exercises | exercise | Can delete exercise' must be absent. There should be exactly 3 permissions in the 'Chosen permissions' list."
+}

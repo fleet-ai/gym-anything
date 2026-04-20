@@ -1,0 +1,53 @@
+{
+    "task_id": "model_multi_subarray_commercial_pv@1",
+    "task_completion": [
+        {
+            "id": "weather_file_selection",
+            "description": "Agent selects a Phoenix, AZ TMY weather file from the SAM solar_resource directory.",
+            "points": 10,
+            "visual_evidence": "Code or GUI showing the path to a Phoenix weather file (e.g., phoenix_az_...tm2 or .csv) being loaded into the model."
+        },
+        {
+            "id": "subarray_configuration",
+            "description": "Agent configures two subarrays with specific azimuths (180 and 270) and tilts (15 and 10).",
+            "points": 20,
+            "visual_evidence": "Code snippets or GUI fields showing Subarray 1 with 180 azimuth/15 tilt and Subarray 2 with 270 azimuth/10 tilt."
+        },
+        {
+            "id": "system_sizing",
+            "description": "Agent sets DC capacity to ~100kW (60kW + 40kW) and sizes the inverter for a ~1.2 DC-to-AC ratio.",
+            "points": 20,
+            "visual_evidence": "Code showing 'number of modules' or 'dc_capacity' calculations totaling 100kW and inverter selection/sizing resulting in ~83kW AC."
+        },
+        {
+            "id": "model_execution",
+            "description": "Agent executes both the Pvsamv1 and Singleowner simulation modules.",
+            "points": 25,
+            "visual_evidence": "Code showing calls to `pv.execute()` and `so.execute()` (or similar PySAM execution commands) and the absence of error messages."
+        },
+        {
+            "id": "json_file_creation",
+            "description": "Agent saves the results to the specific JSON path with the required structure.",
+            "points": 25,
+            "visual_evidence": "Terminal output or code showing the creation of `/home/ga/Documents/SAM_Projects/multi_subarray_results.json` containing the calculated LCOE and energy values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final LCOE or energy values without running the simulation.",
+            "visual_evidence": "The script must show active calls to the PySAM library and variable assignments from simulation outputs, not just a print statement of a pre-written JSON."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Agent uses the PySAM library rather than a generic calculator.",
+            "visual_evidence": "Screenshots show `import PySAM.Pvsamv1` or `import PySAM.Singleowner` in the code editor."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent uses the exact file path specified in the prompt.",
+            "visual_evidence": "The code or terminal shows the path `/home/ga/Documents/SAM_Projects/multi_subarray_results.json` explicitly."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using PySAM (the Python wrapper for NREL's System Advisor Model). For a 100kW DC system in Phoenix with these tilts/azimuths, the annual energy should be roughly between 150,000 and 180,000 kWh. The DC-to-AC ratio of 1.2 is a specific constraint; the AC capacity must be approximately 83.3 kW. The JSON must contain 'lcoe_real_cents_per_kwh' which is a specific output of the SingleOwner module."
+}

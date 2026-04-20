@@ -1,0 +1,59 @@
+{
+    "task_id": "urban_gentrification_analysis@1",
+    "task_completion": [
+        {
+            "id": "calculated_columns_added",
+            "description": "Verify that the four required columns (Income_Growth, Rent_Growth, Edu_Growth, Gentrification_Index) have been added to the main spreadsheet.",
+            "points": 15,
+            "visual_evidence": "Look for new column headers in the spreadsheet view matching these exact names."
+        },
+        {
+            "id": "formula_implementation",
+            "description": "Verify that the Gentrification_Index is calculated as the sum of the three growth metrics.",
+            "points": 15,
+            "visual_evidence": "Check the formula bar when a cell in the Gentrification_Index column is selected; it should show a sum of the preceding three growth cells."
+        },
+        {
+            "id": "population_filter_applied",
+            "description": "Verify that census tracts with Total_Pop_2022 less than 500 have been removed from the analysis.",
+            "points": 20,
+            "visual_evidence": "Check that noise tracts (e.g., 48453009800 or 48453009900) are absent from the filtered list or that the 'Total_Pop_2022' column contains no values under 500."
+        },
+        {
+            "id": "sorting_and_top_10_sheet",
+            "description": "Verify a new sheet 'Top_10_Gentrified' exists containing the top 10 rows sorted by Gentrification_Index descending.",
+            "points": 25,
+            "visual_evidence": "Look for a sheet tab named 'Top_10_Gentrified'. The rows should be sorted by the index column, and the tract IDs should match the ground truth (starting with 48453000801)."
+        },
+        {
+            "id": "averages_row_added",
+            "description": "Verify the original sheet contains a final row calculating averages for the four specified median income and rent columns.",
+            "points": 15,
+            "visual_evidence": "Look at the bottom of the data on the original sheet for a row labeled 'Average' or containing average formulas for Med_Inc_2012, Med_Inc_2022, Med_Rent_2012, and Med_Rent_2022."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "Verify the workbook is saved as 'austin_gentrification_analysis.xlsx' in the correct directory.",
+            "points": 10,
+            "visual_evidence": "Check the application title bar or the 'Save As' dialog/file explorer to confirm the filename and .xlsx extension."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the spreadsheet application GUI rather than just executing python scripts in the terminal to generate the file.",
+            "visual_evidence": "Screenshots should show the OnlyOffice/spreadsheet interface being used to enter formulas, create sheets, or save files."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent calculated the values using spreadsheet formulas rather than typing in the final numbers manually.",
+            "visual_evidence": "The formula bar should show cell references (e.g., =B2+C2+D2) rather than static numeric values when a calculated cell is selected."
+        },
+        {
+            "id": "genuine_filtering",
+            "description": "The agent actually performed the population filter to remove noise tracts.",
+            "visual_evidence": "The absence of tracts 48453009800 and 48453009900 in the final 'Top 10' list, as these have high indices but low populations."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth top 10 census tracts (by Gentrification_Index) are: 48453000801, 48453000802, 48453000803, 48453000804, 48453000901, 48453000902, 48453001000, 48453001100, 48453001200, 48453001300. Tracts 48453009800 and 48453009900 are 'noise' traps with populations < 500 and must be filtered out; if they appear in the Top 10, the filtering step failed."
+}

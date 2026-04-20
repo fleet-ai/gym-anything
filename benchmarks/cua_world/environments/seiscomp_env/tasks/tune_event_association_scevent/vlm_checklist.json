@@ -1,0 +1,65 @@
+{
+    "task_id": "tune_event_association_scevent@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "Agent opens the configuration file /home/ga/seiscomp/etc/scevent.cfg in a text editor.",
+            "points": 10,
+            "visual_evidence": "A text editor (like nano, vim, or gedit) showing the contents of /home/ga/seiscomp/etc/scevent.cfg."
+        },
+        {
+            "id": "set_max_distance",
+            "description": "Agent sets maximumDistance to 2.5 in the config file.",
+            "points": 15,
+            "visual_evidence": "The line 'maximumDistance = 2.5' (or similar syntax) visible in the editor or via a 'cat' command."
+        },
+        {
+            "id": "set_max_time_diff",
+            "description": "Agent sets maximumTimeDifference to 60.0 in the config file.",
+            "points": 15,
+            "visual_evidence": "The line 'maximumTimeDifference = 60.0' visible in the editor or via a 'cat' command."
+        },
+        {
+            "id": "set_delay_time",
+            "description": "Agent sets delayTimeSpan to 15 in the config file.",
+            "points": 15,
+            "visual_evidence": "The line 'delayTimeSpan = 15' visible in the editor or via a 'cat' command."
+        },
+        {
+            "id": "set_mag_types",
+            "description": "Agent sets magTypes to the priority list: mww, Mwp, Mw, ML, mb.",
+            "points": 20,
+            "visual_evidence": "The line 'magTypes = mww, Mwp, Mw, ML, mb' visible in the editor or via a 'cat' command."
+        },
+        {
+            "id": "restart_scevent",
+            "description": "Agent restarts the scevent module to apply changes.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing a command like 'seiscomp restart scevent' or 'seiscomp stop scevent' followed by 'seiscomp start scevent'."
+        },
+        {
+            "id": "verify_running_status",
+            "description": "Agent verifies that the scevent module is running after the restart.",
+            "points": 10,
+            "visual_evidence": "Terminal output from 'seiscomp status' or 'seiscomp status scevent' showing the module as 'running'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_edit",
+            "description": "The agent actually edited the file rather than just echoing the final state.",
+            "visual_evidence": "Screenshots showing the process of opening an editor or using sed/redirects on the specific path /home/ga/seiscomp/etc/scevent.cfg."
+        },
+        {
+            "id": "module_interaction",
+            "description": "The agent interacted with the SeisComP management system to restart the service.",
+            "visual_evidence": "Execution of 'seiscomp' commands in the terminal rather than just claiming the service is restarted."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent used the specific values requested, not default or placeholder values.",
+            "visual_evidence": "The exact values 2.5, 60.0, 15, and the specific magTypes list appearing in the terminal or editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration must be applied to /home/ga/seiscomp/etc/scevent.cfg. Required values: maximumDistance = 2.5, maximumTimeDifference = 60.0, delayTimeSpan = 15, and magTypes = mww, Mwp, Mw, ML, mb. The module 'scevent' must be restarted (typically via 'seiscomp restart scevent') and its status verified as 'running' afterwards."
+}

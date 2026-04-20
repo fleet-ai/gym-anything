@@ -1,0 +1,59 @@
+{
+    "task_id": "ed_throughput_los_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_source_csv",
+            "description": "Agent opens the source file ed_visit_logs_q3.csv in a spreadsheet application or data tool.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like LibreOffice Calc or Excel) or a coding environment showing the raw CSV data with columns like Arrival_Time, MD_Seen_Time, and Departure_Time."
+        },
+        {
+            "id": "calculate_door_to_doc",
+            "description": "Agent calculates 'Door-to-Doctor Time' (MD_Seen_Time - Arrival_Time) in minutes for each patient record.",
+            "points": 15,
+            "visual_evidence": "A new column in the spreadsheet or a dataframe showing numeric values representing the difference between arrival and physician contact, correctly handling time differences."
+        },
+        {
+            "id": "calculate_total_los",
+            "description": "Agent calculates 'Total LOS' (Departure_Time - Arrival_Time) in minutes, ensuring cross-midnight logic is applied.",
+            "points": 20,
+            "visual_evidence": "A column showing Total LOS values. For records spanning midnight, the duration should be a positive integer (e.g., 23:30 to 01:30 should be 120, not a negative number)."
+        },
+        {
+            "id": "status_flagging",
+            "description": "Agent creates a status column flagging visits as 'Breach' if Total LOS > 240 minutes, otherwise 'Compliant'.",
+            "points": 15,
+            "visual_evidence": "A column containing the specific strings 'Breach' and 'Compliant' based on the 240-minute threshold."
+        },
+        {
+            "id": "summary_sheet_metrics",
+            "description": "Agent creates a separate summary sheet with average Door-to-Doctor time and LWBS rate.",
+            "points": 20,
+            "visual_evidence": "A second tab or distinct section showing the average Door-to-Doctor time (approx 58.5) and the LWBS rate (approx 4.1%)."
+        },
+        {
+            "id": "esi_grouping_table",
+            "description": "Agent provides a summary table showing average or median Total LOS grouped by Acuity_ESI level (1-5).",
+            "points": 20,
+            "visual_evidence": "A table or pivot chart showing five distinct rows (ESI 1, 2, 3, 4, 5) each associated with a calculated LOS value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used spreadsheet software or a GUI-based tool to format the final dashboard rather than just printing text to a terminal.",
+            "visual_evidence": "Screenshots show an active spreadsheet application (e.g., LibreOffice) or a saved .xlsx file being opened/formatted."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent performed calculations on the full dataset of 1500 records rather than hardcoding the summary values.",
+            "visual_evidence": "Formula bars in the spreadsheet showing cell references (e.g., =B2-A2) or Python code processing the full CSV."
+        },
+        {
+            "id": "file_persistence",
+            "description": "The final output is saved to the specific requested path.",
+            "visual_evidence": "The file manager or spreadsheet title bar shows the file saved as ~/Documents/Spreadsheets/ed_operations_dashboard.xlsx."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 1500 records. The target LOS threshold is 240 minutes. Verified summary values: The average Door-to-Doctor time is approximately 58.5 minutes. The LWBS (Left Without Being Seen) rate is approximately 4.13%. ESI levels are integers 1 through 5. The status column must use the exact terms 'Breach' and 'Compliant'."
+}

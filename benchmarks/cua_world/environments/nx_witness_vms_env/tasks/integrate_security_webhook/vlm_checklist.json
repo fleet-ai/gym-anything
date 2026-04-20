@@ -1,0 +1,53 @@
+{
+    "task_id": "integrate_security_webhook@1",
+    "task_completion": [
+        {
+            "id": "storage_health_event_config",
+            "description": "Configure the first Event Rule with 'Storage Failure' as the event and 'Any server' as the source.",
+            "points": 15,
+            "visual_evidence": "The Event Rules dialog showing a rule where 'Event' is set to 'Storage Failure' and 'At' is set to 'Any Server'."
+        },
+        {
+            "id": "storage_health_action_config",
+            "description": "Configure the action for Storage Failure to perform an HTTP POST request to the health webhook with the correct JSON body.",
+            "points": 25,
+            "visual_evidence": "The 'Action' side of the rule showing 'Do' as 'HTTP Request', 'HTTP Method' as 'POST', 'URL' as 'https://ops-api.internal/webhooks/health', and the 'Content' field containing the JSON body with {event.sourceName} or {event.source} and {event.time} macros."
+        },
+        {
+            "id": "panic_button_event_config",
+            "description": "Configure the second Event Rule with 'Soft Trigger' as the event, named 'Panic Alert', using the Bell icon.",
+            "points": 15,
+            "visual_evidence": "An Event Rule showing 'Event' as 'Soft Trigger', 'Name' as 'Panic Alert', and the icon selection showing a Bell icon."
+        },
+        {
+            "id": "panic_button_permissions",
+            "description": "Ensure the Soft Trigger is available to all users and all cameras.",
+            "points": 15,
+            "visual_evidence": "The Soft Trigger settings showing 'Available to' set to 'All Users' and 'Cameras' set to 'Any Camera' (or all cameras selected)."
+        },
+        {
+            "id": "panic_button_action_config",
+            "description": "Configure the action for the Panic Alert to perform an HTTP POST request to the panic webhook with the correct JSON body.",
+            "points": 30,
+            "visual_evidence": "The 'Action' side of the rule showing 'Do' as 'HTTP Request', 'HTTP Method' as 'POST', 'URL' as 'https://ops-api.internal/webhooks/panic', and the 'Content' field containing the JSON body with {user.name} and {event.cameraId} macros."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Nx Witness Desktop client GUI to configure rules rather than scripts or CLI.",
+            "visual_evidence": "Screenshots show the Nx Witness 'Event Rules' dialog box and active mouse cursor interactions within the application windows."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent actually typed or pasted the specific URLs and JSON bodies into the application fields.",
+            "visual_evidence": "Screenshots show the specific internal URLs (ops-api.internal) and JSON structures present within the Nx Witness UI text fields."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent used the required macros rather than hardcoding example values like 'Server1' or 'Admin'.",
+            "visual_evidence": "The 'Content' or 'HTTP Body' fields in the GUI show the curly-brace macros (e.g., {event.time}, {user.name}) as specified."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires two specific Event Rules in Nx Witness. Rule 1: Event 'Storage Failure' (Any Server) -> Action 'HTTP Request' (POST) to https://ops-api.internal/webhooks/health. Rule 2: Event 'Soft Trigger' (Name: 'Panic Alert', Icon: Bell, Users: All, Cameras: Any) -> Action 'HTTP Request' (POST) to https://ops-api.internal/webhooks/panic. Note: For the Storage Health macro, official documentation uses {event.source}, but the task description specifies {event.sourceName}; both are acceptable. The JSON bodies must match the task description exactly, including the specific macros {event.time}, {user.name}, and {event.cameraId}."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "proxy_leave_entry_and_approval@1",
+    "task_completion": [
+        {
+            "id": "read_leave_requests_file",
+            "description": "The agent reads the transcription file field_leave_requests.txt on the desktop.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of ~/Desktop/field_leave_requests.txt with names Emily Williams, Robert Patel, Jennifer Martinez, and Tyler Moore."
+        },
+        {
+            "id": "login_sentrifugo",
+            "description": "The agent logs into Sentrifugo as admin.",
+            "points": 10,
+            "visual_evidence": "The Sentrifugo dashboard is visible, and the top right corner shows 'Admin' or 'admin@sentrifugo.local' as the logged-in user."
+        },
+        {
+            "id": "enter_emily_williams_leave",
+            "description": "Enter and approve Sick Leave for Emily Williams (EMP004) for 2026-04-02 to 2026-04-03.",
+            "points": 20,
+            "visual_evidence": "A leave management screen showing a record for Emily Williams with status 'Approved' for the specified dates and type 'Sick Leave'."
+        },
+        {
+            "id": "enter_robert_patel_leave",
+            "description": "Enter and approve Annual Leave for Robert Patel (EMP007) for 2026-03-25 to 2026-03-26.",
+            "points": 20,
+            "visual_evidence": "A leave management screen showing a record for Robert Patel with status 'Approved' for the specified dates and type 'Annual Leave'."
+        },
+        {
+            "id": "enter_jennifer_martinez_leave",
+            "description": "Enter and approve Sick Leave for Jennifer Martinez (EMP012) for 2026-04-06.",
+            "points": 20,
+            "visual_evidence": "A leave management screen showing a record for Jennifer Martinez with status 'Approved' for the specified date and type 'Sick Leave'."
+        },
+        {
+            "id": "enter_tyler_moore_leave",
+            "description": "Enter and approve Annual Leave for Tyler Moore (EMP019) for 2026-03-30 to 2026-04-01.",
+            "points": 20,
+            "visual_evidence": "A leave management screen showing a record for Tyler Moore with status 'Approved' for the specified dates and type 'Annual Leave'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web browser GUI to enter data, not direct database manipulation.",
+            "visual_evidence": "Screenshots show the browser navigating through Sentrifugo menus (Leave > Add/Approve) and filling out forms."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually opened the text file to find the employee details.",
+            "visual_evidence": "A screenshot shows the agent opening or cat-ing the file field_leave_requests.txt before entering data."
+        },
+        {
+            "id": "genuine_approval_flow",
+            "description": "The agent followed the system's approval workflow rather than just viewing an empty list.",
+            "visual_evidence": "Screenshots show the 'Approve' button being clicked or the status changing from 'Pending' to 'Approved' in the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The file ~/Desktop/field_leave_requests.txt contains four requests: 1. Emily Williams (EMP004), SL (Sick Leave), 2026-04-02 to 2026-04-03. 2. Robert Patel (EMP007), AL (Annual Leave), 2026-03-25 to 2026-03-26. 3. Jennifer Martinez (EMP012), SL (Sick Leave), 2026-04-06 to 2026-04-06. 4. Tyler Moore (EMP019), AL (Annual Leave), 2026-03-30 to 2026-04-01. The agent must enter these into http://localhost and ensure the final status for all four is 'Approved'."
+}

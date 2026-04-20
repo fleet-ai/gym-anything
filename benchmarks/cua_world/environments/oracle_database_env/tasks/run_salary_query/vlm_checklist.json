@@ -1,0 +1,53 @@
+{
+    "task_id": "run_salary_query@1",
+    "task_completion": [
+        {
+            "id": "database_tool_launch",
+            "description": "The agent opens a database management tool or terminal-based SQL client to connect to the Oracle database.",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or a terminal with sqlplus) is visible on the screen."
+        },
+        {
+            "id": "connection_configuration",
+            "description": "The agent enters the correct connection details: Host=localhost, Port=1521, Database=XEPDB1, Username=hr.",
+            "points": 15,
+            "visual_evidence": "Connection settings window or command line arguments showing the specified host, port, SID/Service Name, and username."
+        },
+        {
+            "id": "sql_query_construction",
+            "description": "The agent writes a SQL query targeting department_id 60 and salary > 5000 with the required columns.",
+            "points": 25,
+            "visual_evidence": "A SQL editor or command line showing: SELECT employee_id, first_name, last_name, salary, job_id FROM employees WHERE department_id = 60 AND salary > 5000."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "The agent executes the query and retrieves the matching records.",
+            "points": 20,
+            "visual_evidence": "A results grid or terminal output showing at least two rows (Alexander Hunold and Bruce Ernst) with their respective salaries (9000 and 6000)."
+        },
+        {
+            "id": "file_export_command",
+            "description": "The agent exports the query results to the specific file path /tmp/query_results.txt.",
+            "points": 30,
+            "visual_evidence": "An export dialog box, a 'spool' command in SQL*Plus, or a shell redirection (e.g., > /tmp/query_results.txt) showing the target path and the inclusion of column headers."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a text file and manually type the names without querying the database.",
+            "visual_evidence": "The trajectory must show the SQL query being executed in a database tool, not just a text editor being opened and filled from memory."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the Oracle instance rather than using mock data.",
+            "visual_evidence": "Visual confirmation of the database connection being established or a successful login message from the Oracle server."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the provided credentials and did not bypass security.",
+            "visual_evidence": "The username 'hr' and password 'hr123' (if visible) or the specific connection string for XEPDB1 being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The query must return exactly 2 employees: Alexander Hunold (Salary: 9000) and Bruce Ernst (Salary: 6000). The required columns are employee_id, first_name, last_name, salary, and job_id. The output file must be /tmp/query_results.txt and must include column headers. The department_id used in the filter must be 60 and the salary threshold must be > 5000."
+}

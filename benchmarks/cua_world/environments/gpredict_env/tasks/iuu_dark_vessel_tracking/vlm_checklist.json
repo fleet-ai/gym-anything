@@ -1,0 +1,53 @@
+{
+    "task_id": "iuu_dark_vessel_tracking@1",
+    "task_completion": [
+        {
+            "id": "ground_station_creation",
+            "description": "Create a ground station named 'Galapagos_Reserve' with coordinates 0.3800 S, 90.3000 W and 0m altitude.",
+            "points": 20,
+            "visual_evidence": "The 'Ground Stations' configuration window or the 'Select Ground Station' list showing 'Galapagos_Reserve' with Latitude -0.38, Longitude -90.30, and Altitude 0."
+        },
+        {
+            "id": "module_creation_and_naming",
+            "description": "Create a new tracking module named 'Dark_Vessels'.",
+            "points": 10,
+            "visual_evidence": "A new module tab or window titled 'Dark_Vessels' appearing in the GPredict interface."
+        },
+        {
+            "id": "satellite_selection",
+            "description": "Add SENTINEL-1A, SENTINEL-2A, SENTINEL-2B, LANDSAT 8, and LANDSAT 9 to the module.",
+            "points": 30,
+            "visual_evidence": "The 'Module Configuration' dialog for 'Dark_Vessels' showing the five specific satellites (SENTINEL-1A, SENTINEL-2A, SENTINEL-2B, LANDSAT 8, LANDSAT 9) in the 'Selected Satellites' list."
+        },
+        {
+            "id": "module_ground_station_link",
+            "description": "Configure the 'Dark_Vessels' module to use 'Galapagos_Reserve' as its ground station.",
+            "points": 20,
+            "visual_evidence": "The 'Module Configuration' dialog for 'Dark_Vessels' showing 'Galapagos_Reserve' selected in the 'Ground Station' dropdown menu."
+        },
+        {
+            "id": "map_preferences_config",
+            "description": "Enable day/night shadow and center the map at longitude -90 in global map preferences.",
+            "points": 20,
+            "visual_evidence": "The 'Map View' preferences showing 'Show day/night shadow' checked and 'Center map at longitude' set to -90. Visually, the map in the main UI should be centered over the Eastern Pacific/Galapagos region with a visible shadow."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to perform configurations rather than editing config files via terminal.",
+            "visual_evidence": "Screenshots showing the GPredict 'Ground Stations' editor, 'Module Configuration' dialog, and 'Preferences' windows being interacted with."
+        },
+        {
+            "id": "correct_satellite_identity",
+            "description": "The agent selected the specific satellites requested, not just any available satellites.",
+            "visual_evidence": "The satellite list in the module configuration matches the names and NORAD IDs (39634, 40697, 42028, 39084, 49260) provided in the prompt."
+        },
+        {
+            "id": "no_shortcut_config",
+            "description": "The agent did not simply open an existing 'Dark_Vessels' module if one was already present (though unlikely in a clean state).",
+            "visual_evidence": "Sequential screenshots showing the creation process (clicking 'New Module', typing the name, etc.)."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground station 'Galapagos_Reserve' must have Latitude -0.38 and Longitude -90.30 (South and West are negative in GPredict). The required satellites and their NORAD IDs are: SENTINEL-1A (39634), SENTINEL-2A (40697), SENTINEL-2B (42028), LANDSAT 8 (39084), and LANDSAT 9 (49260). Note that in this environment, NORAD ID 42028 is synthetically mapped to SENTINEL-2B. The map must be centered at -90 longitude."
+}

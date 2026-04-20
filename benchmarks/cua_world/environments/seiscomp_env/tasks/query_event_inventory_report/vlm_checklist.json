@@ -1,0 +1,53 @@
+{
+    "task_id": "query_event_inventory_report@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_tools",
+            "description": "Agent opens SeisComP database tools (e.g., scvgm, scolv, or database query tools) to access event and station data.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing SeisComP GUI applications or database management windows open on the desktop."
+        },
+        {
+            "id": "retrieve_earthquake_params",
+            "description": "Agent locates the 2024 Noto Peninsula earthquake and extracts its origin parameters and magnitude.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the event list or event details window with the Noto earthquake selected, displaying origin time, lat/lon, depth, and magnitude."
+        },
+        {
+            "id": "retrieve_station_coordinates",
+            "description": "Agent accesses the inventory for the GE network to find coordinates for stations TOLI, GSI, KWP, SANI, and BKB.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the station inventory list or station information tabs for the GE network with latitude and longitude values visible."
+        },
+        {
+            "id": "calculate_distances",
+            "description": "Agent performs great-circle distance calculations between the earthquake epicenter and the five specified stations.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing a calculator, script execution, or manual math being performed to derive kilometer values for each station."
+        },
+        {
+            "id": "save_formatted_report",
+            "description": "Agent saves the final report to /home/ga/noto_earthquake_report.txt with the exact required headers and format.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file content at the correct path with headers '=== EARTHQUAKE PARAMETERS ===' and '=== STATION DISTANCES ==='."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_query",
+            "description": "Agent queried the SeisComP database rather than hardcoding values from external knowledge.",
+            "visual_evidence": "Screenshots must show the agent interacting with SeisComP GUI components or specific database query logs, not just typing values directly into a text file."
+        },
+        {
+            "id": "no_copy_paste_privileged",
+            "description": "Agent did not use the metadata values from the task prompt if they contradict the actual database values.",
+            "visual_evidence": "The report should contain the verified values (e.g., Lat 37.4874) rather than the metadata values (37.23) if the database shows the former."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the provided SeisComP graphical tools to navigate the inventory and event list.",
+            "visual_evidence": "Visual presence of SeisComP application windows (like scvgm or inventory browsers) during the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The earthquake parameters in the database are: Origin Time: 2024-01-01 07:10:09 UTC (approx); Latitude: 37.4874; Longitude: 137.271; Depth: 10.0 km; Magnitude: 7.5; Magnitude Type: mww; Agency: USGS. The station coordinates for GE network are: TOLI (Lat: 1.12, Lon: 124.91), GSI (Lat: -0.74, Lon: 100.46), KWP (Lat: 49.43, Lon: 22.71), SANI (Lat: 36.37, Lon: 25.43), BKB (Lat: 3.31, Lon: 117.50). Distances must be calculated using these coordinates and the epicenter (37.4874, 137.271)."
+}

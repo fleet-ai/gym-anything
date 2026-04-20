@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_scqc_parameters_scconfig@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig",
+            "description": "The agent opens the SeisComP configuration tool (scconfig).",
+            "points": 10,
+            "visual_evidence": "A window titled 'SeisComP Configurator' or 'scconfig' is visible on the desktop."
+        },
+        {
+            "id": "navigate_to_scqc",
+            "description": "The agent navigates to the 'scqc' module configuration section.",
+            "points": 15,
+            "visual_evidence": "The 'scqc' module is selected in the left-hand navigation pane or the scqc configuration panel is active in the main view."
+        },
+        {
+            "id": "set_report_parameters",
+            "description": "The agent sets report.interval to 60 and report.buffer to 3600.",
+            "points": 25,
+            "visual_evidence": "In the scqc configuration panel, the input field for 'report.interval' shows '60' and 'report.buffer' shows '3600'."
+        },
+        {
+            "id": "set_stream_mask",
+            "description": "The agent sets the streamMask to GE.*.*.*.",
+            "points": 20,
+            "visual_evidence": "The input field for 'streamMask' in the scqc configuration panel shows 'GE.*.*.*'."
+        },
+        {
+            "id": "set_realtime_buffer",
+            "description": "The agent sets realtime.buffer to 1800.",
+            "points": 15,
+            "visual_evidence": "The input field for 'realtime.buffer' in the scqc configuration panel shows '1800'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "The agent saves the configuration to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save' button or selects 'File > Save' in the scconfig GUI. A confirmation message or the absence of 'unsaved changes' indicators may be visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent uses the scconfig GUI rather than editing the text file directly via terminal.",
+            "visual_evidence": "Screenshots show interactions with the SeisComP Configurator window (mouse clicks, typing in GUI fields) rather than a terminal editor like nano or vim."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the actual scconfig application elements.",
+            "visual_evidence": "The cursor is seen hovering over or clicking specific GUI elements (buttons, text boxes) within the scconfig interface."
+        },
+        {
+            "id": "no_prefilled_values",
+            "description": "The agent manually enters or modifies the values rather than they being present by default.",
+            "visual_evidence": "Sequential screenshots show the transition from empty or default values to the required values (60, 3600, GE.*.*.*, 1800)."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires configuring the 'scqc' module using the 'scconfig' GUI. Required values: report.interval = 60, report.buffer = 3600, streamMask = GE.*.*.*, and realtime.buffer = 1800. The final configuration must be saved, which updates /home/ga/seiscomp/etc/scqc.cfg."
+}

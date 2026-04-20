@@ -1,0 +1,59 @@
+{
+    "task_id": "identify_diverse_customers@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "The agent opens the Chinook database file in the database management application.",
+            "points": 10,
+            "visual_evidence": "The database application (e.g., LibreOffice Base) is open showing the Chinook database tables (Customer, Invoice, InvoiceLine, Track, Genre)."
+        },
+        {
+            "id": "sql_editor_open",
+            "description": "The agent opens the SQL query editor or design view to create a new query.",
+            "points": 10,
+            "visual_evidence": "A SQL command entry window or query design window is visible."
+        },
+        {
+            "id": "correct_sql_logic",
+            "description": "The SQL query joins necessary tables and uses COUNT(DISTINCT GenreId) with a HAVING clause for >= 5.",
+            "points": 30,
+            "visual_evidence": "The SQL text contains 'JOIN', 'GROUP BY', and 'HAVING COUNT(DISTINCT ... ) >= 5' or similar logic."
+        },
+        {
+            "id": "column_formatting",
+            "description": "The query selects 'CustomerName' (concatenated) and 'DiversityRating' (count + ' Genres').",
+            "points": 20,
+            "visual_evidence": "The SQL code shows concatenation (e.g., FirstName || ' ' || LastName) aliased as 'CustomerName' and the count aliased as 'DiversityRating' with the string ' Genres' appended."
+        },
+        {
+            "id": "sorting_applied",
+            "description": "The results are sorted by the genre count in descending order.",
+            "points": 10,
+            "visual_evidence": "The SQL code contains 'ORDER BY' followed by the count or the DiversityRating alias and the keyword 'DESC'."
+        },
+        {
+            "id": "query_saved_and_named",
+            "description": "The query is saved with the specific name 'DiverseCustomerReport'.",
+            "points": 20,
+            "visual_evidence": "A save dialog or the database object list shows a query named 'DiverseCustomerReport'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database GUI rather than just executing a script in the terminal.",
+            "visual_evidence": "Screenshots show mouse movements and interactions within the LibreOffice Base or database GUI windows."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the results into a table but generated them via SQL.",
+            "visual_evidence": "The presence of a functional SQL query window rather than a manually edited spreadsheet/table."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent interacted with the actual database file provided in the task.",
+            "visual_evidence": "The file path /home/ga/chinook.odb or the table schema matches the Chinook database structure."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The query must be named 'DiverseCustomerReport'. Required columns: 'CustomerName' (First + Last) and 'DiversityRating' (e.g., '5 Genres'). The filter is for 5 or more distinct genres. Top result should be Luis Rojas with 12 Genres."
+}

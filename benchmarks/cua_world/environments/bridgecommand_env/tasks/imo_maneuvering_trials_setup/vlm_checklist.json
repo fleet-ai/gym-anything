@@ -1,0 +1,59 @@
+{
+    "task_id": "imo_maneuvering_trials_setup@1",
+    "task_completion": [
+        {
+            "id": "directory_structure_created",
+            "description": "Create the simulation directory and three scenario subfolders at the specified path.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal showing folders 'Turning Circle Test', 'Zig-Zag Test', and 'Crash Stop Test' inside /opt/bridgecommand/Scenarios/Sea Trials/."
+        },
+        {
+            "id": "scenario_weather_config",
+            "description": "Configure scenario INI files for calm weather (Weather=0, RainVisible=0, Fog=0).",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command output showing Weather=0, RainVisible=0, and Fog=0 within the scenario .ini files."
+        },
+        {
+            "id": "scenario_location_vessel_config",
+            "description": "Configure scenario INI files for a location south of 50.65°N, zero traffic, and 'MV Blue Whale' at 14.0 knots.",
+            "points": 20,
+            "visual_evidence": "INI file content showing a Latitude < 50.65, no other ship entries (zero traffic), and the ownship name 'MV Blue Whale' with Speed=14.0."
+        },
+        {
+            "id": "bc5_ini_track_history",
+            "description": "Enable 'track_history' in the bc5.ini configuration file.",
+            "points": 15,
+            "visual_evidence": "Text editor showing 'track_history=1' (or similar enabled boolean) inside the bc5.ini file."
+        },
+        {
+            "id": "imo_criteria_calculations",
+            "description": "Calculate Max Tactical Diameter (5L), Max Advance (4.5L), and Max Stopping Distance (15L) for a 225m vessel.",
+            "points": 25,
+            "visual_evidence": "The agent performing calculations (calculator or terminal) or writing the specific values (1125m, 1012.5m, 3375m) to a file."
+        },
+        {
+            "id": "trials_plan_saved",
+            "description": "Save the calculated IMO results to /home/ga/Documents/trials_plan.txt.",
+            "points": 15,
+            "visual_evidence": "File content of /home/ga/Documents/trials_plan.txt showing the three calculated distance values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_calculation",
+            "description": "Verify the agent didn't just guess the IMO multipliers but applied them to the 225m length.",
+            "visual_evidence": "Screenshots showing the math (225 * 5, 225 * 4.5, 225 * 15) being performed."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Ensure the agent didn't leave template strings like <LATITUDE> in the INI files.",
+            "visual_evidence": "The INI files should show actual numerical values for coordinates and speeds."
+        },
+        {
+            "id": "proper_user_context",
+            "description": "Verify the agent is operating as the 'ga' user as requested.",
+            "visual_evidence": "Terminal prompts showing 'ga@' or file paths within /home/ga/."
+        }
+    ],
+    "privileged_info_for_vlm": "The vessel length is 225m. According to IMO Resolution A.751(18): 1) Max Tactical Diameter = 5 * L = 1125.0m. 2) Max Advance = 4.5 * L = 1012.5m. 3) Max Stopping Distance (Track Reach) = 15 * L = 3375.0m. The scenario files must be in /opt/bridgecommand/Scenarios/Sea Trials/ and the results file at /home/ga/Documents/trials_plan.txt. Weather settings must be strictly 0 for Weather, RainVisible, and Fog."
+}

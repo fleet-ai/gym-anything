@@ -1,0 +1,53 @@
+{
+    "task_id": "hpv16_circular_linearization@1",
+    "task_completion": [
+        {
+            "id": "load_hpv16_genome",
+            "description": "The HPV16 reference genome (hpv16_reference.gb) is opened in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE sequence view shows 'hpv16_reference' or 'NC_001526' as the active document."
+        },
+        {
+            "id": "circular_mode_restriction_analysis",
+            "description": "The agent configures the restriction analysis to treat the sequence as circular.",
+            "points": 15,
+            "visual_evidence": "The 'Find restriction sites' dialog or the sequence properties panel shows the 'Circular' checkbox selected or the topology set to circular."
+        },
+        {
+            "id": "identify_single_cutters",
+            "description": "The agent filters the restriction enzyme analysis to identify single-cutters (enzymes with exactly 1 hit).",
+            "points": 20,
+            "visual_evidence": "The restriction site search results or the 'Restriction Sites' panel shows a list of enzymes filtered by '1 hit' or 'Single cutters'."
+        },
+        {
+            "id": "annotate_and_export_gb",
+            "description": "The agent generates annotations for the single-cutters and exports the file to the specified GenBank path.",
+            "points": 25,
+            "visual_evidence": "The 'Export as GenBank' dialog is visible with the path '~/UGENE_Data/hpv/results/hpv16_single_cutters.gb' entered, or the file manager shows the file created."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "A text report is created containing the required enzyme counts, specific enzyme names, and EcoRI/HindIII analysis.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) shows 'linearization_report.txt' with content mentioning BamHI, SphI, and the status of EcoRI and HindIII."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform the analysis rather than just using terminal commands to generate files.",
+            "visual_evidence": "Screenshots show the UGENE interface, dialog boxes for restriction analysis, and the sequence map."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "The agent did not simply type the report from memory but actually performed the search in the software.",
+            "visual_evidence": "The 'Restriction Sites' or 'Annotations' panel in UGENE is populated with data before the report is written."
+        },
+        {
+            "id": "path_accuracy",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "The save dialogs or terminal 'ls' commands show the exact paths: ~/UGENE_Data/hpv/results/hpv16_single_cutters.gb and linearization_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The HPV16 genome (NC_001526.4) is 7906 bp. When treated as circular: BamHI and SphI are confirmed single-cutters (1 hit). EcoRI and HindIII are NOT single-cutters (EcoRI has 0 hits; HindIII has 0 hits in the standard reference NC_001526.4). The agent must explicitly mention these hit counts in the report. The output directory is /home/ga/UGENE_Data/hpv/results/."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_encoding_and_eol@1",
+    "task_completion": [
+        {
+            "id": "open_project_properties",
+            "description": "Open the project properties or preferences dialog for 'InternationalApp' to access encoding settings.",
+            "points": 10,
+            "visual_evidence": "A properties or preferences window titled 'Properties for InternationalApp' or similar is visible over the IDE."
+        },
+        {
+            "id": "set_encoding_utf8",
+            "description": "Change the text file encoding for the project to UTF-8.",
+            "points": 25,
+            "visual_evidence": "In the Resource or Project settings, the 'Text file encoding' radio button is set to 'Other: UTF-8'."
+        },
+        {
+            "id": "verify_japanese_rendering",
+            "description": "Open 'src/messages_jp.properties' to ensure Japanese characters are rendered correctly after the encoding change.",
+            "points": 20,
+            "visual_evidence": "The file 'messages_jp.properties' is open in the editor, and Japanese characters (Kanji/Kana) are visible and not displayed as garbled text (mojibake)."
+        },
+        {
+            "id": "open_windows_service_java",
+            "description": "Open 'src/com/legacy/WindowsService.java' to prepare for line ending conversion.",
+            "points": 10,
+            "visual_evidence": "The file 'WindowsService.java' is active in the editor tab."
+        },
+        {
+            "id": "convert_line_endings_lf",
+            "description": "Convert the line endings of 'WindowsService.java' from CRLF to LF (Unix).",
+            "points": 25,
+            "visual_evidence": "The IDE status bar or a 'Convert Line Delimiters' menu selection shows 'Unix' or 'LF' selected for the file."
+        },
+        {
+            "id": "save_all_changes",
+            "description": "Save all modified files and project settings.",
+            "points": 10,
+            "visual_evidence": "The 'Save All' icon is clicked/grayed out, or the dirty markers (asterisks) on the file tabs disappear."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the IDE's graphical interface rather than executing terminal commands like 'dos2unix' or 'sed'.",
+            "visual_evidence": "Screenshots show navigation through IDE menus (File, Project, Properties) rather than a terminal window with shell commands."
+        },
+        {
+            "id": "genuine_encoding_change",
+            "description": "The agent actually changed the project settings rather than just re-typing the Japanese text.",
+            "visual_evidence": "The Properties dialog for the project is seen with the UTF-8 selection applied."
+        },
+        {
+            "id": "no_manual_deletion",
+            "description": "The agent did not manually delete and recreate the files to bypass encoding issues.",
+            "visual_evidence": "The file history or editor shows the existing files being modified/converted rather than being deleted from the project explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/InternationalApp. The file 'src/com/legacy/WindowsService.java' starts with CRLF line endings and must be converted to LF. The file 'src/messages_jp.properties' is initially encoded in ISO-8859-1 (causing Japanese text to look garbled) and the project must be set to UTF-8 to fix this. Correct Japanese rendering should show legible characters, not boxes or escape sequences."
+}

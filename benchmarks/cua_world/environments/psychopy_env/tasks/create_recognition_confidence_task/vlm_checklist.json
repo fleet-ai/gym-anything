@@ -1,0 +1,59 @@
+{
+    "task_id": "create_recognition_confidence_task@1",
+    "task_completion": [
+        {
+            "id": "create_csv_files",
+            "description": "Create study_list.csv and test_list.csv with the specified words and parameters in the correct directory.",
+            "points": 15,
+            "visual_evidence": "Screenshots of a spreadsheet editor or text editor showing study_list.csv (Garden, Market, Office, Planet, Winter) and test_list.csv (including Doctor, Fabric, Jungle, Moment, Village) at /home/ga/PsychoPyExperiments/conditions/."
+        },
+        {
+            "id": "study_phase_setup",
+            "description": "Configure the Study Phase routine in PsychoPy Builder to display words for 2.0 seconds.",
+            "points": 15,
+            "visual_evidence": "PsychoPy Builder interface showing a routine with a Text component set to a duration of 2.0s and a loop linked to study_list.csv."
+        },
+        {
+            "id": "distractor_task_setup",
+            "description": "Configure the distractor task routine for counting backwards from 100 by 7s, ending on a Space key press.",
+            "points": 15,
+            "visual_evidence": "PsychoPy Builder showing a routine with a Text component (instructions for counting) and a Keyboard component set to accept 'space' to end the routine."
+        },
+        {
+            "id": "test_phase_recognition",
+            "description": "Configure the Test Phase routine to display words from test_list.csv and collect 'y'/'n' responses.",
+            "points": 20,
+            "visual_evidence": "PsychoPy Builder showing a routine with a Text component linked to the test_list.csv 'word' column and a Keyboard component restricted to 'y' and 'n'."
+        },
+        {
+            "id": "conditional_confidence_logic",
+            "description": "Implement logic to show the confidence slider only if the response is 'y' (Old) and skip if 'n' (New).",
+            "points": 25,
+            "visual_evidence": "PsychoPy Code Component window showing logic like 'if key_resp.keys == \"n\": continueRoutine = False' placed before the Slider component in the routine flow."
+        },
+        {
+            "id": "save_experiment_file",
+            "description": "Save the experiment file to the specified path.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing recognition_confidence.psyexp saved at /home/ga/PsychoPyExperiments/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing a raw Python script.",
+            "visual_evidence": "Screenshots show the PsychoPy Builder interface (flowchart, routine panels) being interacted with."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent manually entered or imported the specific word lists rather than using placeholder data.",
+            "visual_evidence": "Screenshots show the content of the CSV files matching the task description exactly."
+        },
+        {
+            "id": "no_script_injection",
+            "description": "The agent did not bypass the task by simply running a pre-made script in the terminal.",
+            "visual_evidence": "The trajectory shows the step-by-step assembly of components in the PsychoPy Builder."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be at /home/ga/PsychoPyExperiments/recognition_confidence.psyexp. Study words: Garden, Market, Office, Planet, Winter (2.0s duration). Test foils: Doctor, Fabric, Jungle, Moment, Village. Test logic: 'y' = Old, 'n' = New. If 'n' is pressed, the confidence slider routine must be skipped (typically using 'continueRoutine = False' in a Code Component)."
+}

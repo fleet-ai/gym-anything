@@ -1,0 +1,65 @@
+{
+    "task_id": "rpo_relative_motion_analysis@1",
+    "task_completion": [
+        {
+            "id": "spec_file_opened",
+            "description": "The agent opened the specification document on the desktop to retrieve orbital elements.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/envisat_inspection_spec.txt."
+        },
+        {
+            "id": "gmat_spacecraft_setup",
+            "description": "Two spacecraft (CS_SERVICER and ENVISAT_TARGET) are created in GMAT with parameters from the spec.",
+            "points": 15,
+            "visual_evidence": "GMAT resources tree showing both spacecraft names; spacecraft property windows showing orbital element inputs."
+        },
+        {
+            "id": "coordinate_system_vnb",
+            "description": "A custom coordinate system 'TargetVNB' is created with Origin ENVISAT_TARGET and Axes VNB.",
+            "points": 15,
+            "visual_evidence": "GMAT Coordinate System dialog showing Name: TargetVNB, Origin: ENVISAT_TARGET, and Type: VNB."
+        },
+        {
+            "id": "force_model_config",
+            "description": "The Force Model is set to Point Mass gravity only, with drag and SRP disabled.",
+            "points": 15,
+            "visual_evidence": "GMAT Propagator/Force Model configuration window showing 'PointMasses' for Earth and no secondary forces (Drag/SRP) checked."
+        },
+        {
+            "id": "propagation_sequence",
+            "description": "The mission sequence propagates both spacecraft for 24 hours with a 60s step size.",
+            "points": 15,
+            "visual_evidence": "GMAT Mission tree showing a Propagate command; Propagate dialog showing 'ElapsedSec = 86400' or 'Days = 1' and StepSize = 60."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The agent generated the summary text file with the required range calculations.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/rpo_summary.txt with min_range_km, max_range_km, and passive_safety_violated fields."
+        },
+        {
+            "id": "script_saved",
+            "description": "The GMAT script is saved to the specified output directory.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing ~/GMAT_output/rpo_drift.script exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GMAT graphical user interface rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots show the GMAT application window, resource tree, and dialog boxes being manipulated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not hallucinate values; the values in the summary file correspond to the data seen in GMAT reports/plots.",
+            "visual_evidence": "Consistency between GMAT's internal data displays (ReportFiles/Output tabs) and the final rpo_summary.txt."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent used GMAT's calculation capabilities (ReportFiles or Variables) to find min/max range rather than guessing.",
+            "visual_evidence": "The GMAT Mission tree contains commands for data output or math variables to track relative distance."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 24-hour propagation (86400 seconds). The safety threshold is 0.5 km; if min_range_km is less than 0.5, passive_safety_violated must be 'true'. The coordinate system must be exactly 'TargetVNB'. The force model must be Two-Body (Point Mass) only."
+}

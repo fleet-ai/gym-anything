@@ -1,0 +1,53 @@
+{
+    "task_id": "enrich_contacts_via_import_update@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_import",
+            "description": "Agent navigated to the Contacts module and initiated the Import tool.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the Vtiger Contacts module with the 'Import' button clicked or the 'Import Contacts' wizard open."
+        },
+        {
+            "id": "upload_csv_file",
+            "description": "Agent selected the correct CSV file '/home/ga/Documents/enriched_contacts.csv' for upload.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the file upload step showing 'enriched_contacts.csv' selected or uploaded in the CRM interface."
+        },
+        {
+            "id": "duplicate_handling_config",
+            "description": "Agent configured the import to handle duplicates by matching 'Primary Email' and selecting 'Update' (not skip or create).",
+            "points": 25,
+            "visual_evidence": "Screenshot showing the 'Duplicate Record Handling' screen with 'Primary Email' selected as the matching field and 'Update' selected as the action."
+        },
+        {
+            "id": "field_mapping_correct",
+            "description": "Agent mapped CSV columns to CRM fields correctly (Email to Primary Email, Direct Phone to Office Phone, etc.).",
+            "points": 25,
+            "visual_evidence": "Screenshot of the mapping step showing 'Email' mapped to 'Primary Email' and 'Direct Phone' mapped to 'Office Phone'."
+        },
+        {
+            "id": "import_execution_success",
+            "description": "Agent completed the import and the system shows a success summary with 10 records updated.",
+            "points": 25,
+            "visual_evidence": "Screenshot of the 'Import Results' or 'Summary' page showing 'Records Updated: 10' and 'Records Created: 0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM web interface to perform the import rather than direct database manipulation or scripts.",
+            "visual_evidence": "The trajectory shows browser interactions with the Vtiger UI; no terminal windows are used to run SQL or python scripts against the CRM database."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent used the bulk import tool as requested rather than manually editing 10 individual contact records.",
+            "visual_evidence": "Screenshots show the Import Wizard workflow rather than the 'Edit' view of 10 different contact pages."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent actually opened or selected the file from the file system dialog.",
+            "visual_evidence": "The file picker dialog or the file path '/home/ga/Documents/enriched_contacts.csv' is visible in the browser's upload field."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if the import summary shows 10 records updated and 0 records created. Key mappings: 'Email' -> 'Primary Email', 'Direct Phone' -> 'Office Phone'. Expected updates include: m.scott@example.com (Regional Manager, 570-555-1234), p.beesly@example.com (Office Administrator, 570-555-1235), j.halpert@example.com (Co-Manager, 570-555-1236), d.schrute@example.com (Assistant to the Regional Manager, 570-555-1237), a.martin@example.com (Senior Accountant, 570-555-1238), k.malone@example.com (Accountant, 570-555-1239), o.martinez@example.com (Chief Accountant, 570-555-1240), s.hudson@example.com (Senior Sales Representative, 570-555-1241), p.vance@example.com (Senior Sales Representative, 570-555-1242), k.kapoor@example.com (Customer Service Director, 570-555-1243)."
+}

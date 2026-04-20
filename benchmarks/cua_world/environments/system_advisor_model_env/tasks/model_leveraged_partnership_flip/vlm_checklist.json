@@ -1,0 +1,53 @@
+{
+    "task_id": "model_leveraged_partnership_flip@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at the specified path /home/ga/Documents/SAM_Projects/levpartflip_model.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the file being saved or existing at the correct path."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "The script contains PySAM code configuring the PVWatts and Leveraged Partnership Flip modules with the specified parameters (20MW, 1.2 DC/AC, 30% ITC, 60% debt).",
+            "points": 25,
+            "visual_evidence": "Code snippets in the editor showing 'system_capacity': 20000, 'dc_ac_ratio': 1.2, 'itc_fed_percent': 30, and 'debt_fraction': 60."
+        },
+        {
+            "id": "weather_data_handling",
+            "description": "The script correctly references the Daggett, CA weather data or coordinates.",
+            "points": 15,
+            "visual_evidence": "Code showing the loading of a TMY file for Daggett or setting latitude 34.87 and longitude -116.78."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the Python script to run the SAM simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the command 'python3 levpartflip_model.py' being run without errors."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent generates the JSON file at /home/ga/Documents/SAM_Projects/levpartflip_results.json with the required keys.",
+            "points": 30,
+            "visual_evidence": "A view of the JSON file content containing keys like 'flip_year', 'tax_investor_irr_pct', and 'annual_energy_year1_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write a JSON file with hardcoded values without running a simulation.",
+            "visual_evidence": "The Python script must contain logic to call PySAM modules (e.g., 'import PySAM.Pvwattsv8') and extract results from the 'Outputs' group."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent uses the PySAM library rather than a mock calculation.",
+            "visual_evidence": "Terminal or editor showing the import and instantiation of PySAM modules like 'Pvwattsv8' and 'Levpartflip'."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the exact file paths specified in the prompt.",
+            "visual_evidence": "The file explorer or terminal commands showing the directory /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation for a 20MW DC system in Daggett (20,000 kW) with a 1.2 DC/AC ratio should yield an annual energy production of approximately 35,000,000 to 40,000,000 kWh. The total installed cost must be exactly $22,000,000. The 'ppa_price_year1_cents_per_kwh' must be 5.0. The 'debt_fraction_pct' must be 60. The 'flip_year' is typically between 6 and 15 years for this structure depending on the target 8% IRR."
+}

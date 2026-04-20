@@ -1,0 +1,53 @@
+{
+    "task_id": "script_import_manual_picks@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "A Python script is created in /home/ga/ containing the SeisComP API imports and the specified pick data.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'cat', 'nano', or 'vim' creating a file in /home/ga/ with 'import seiscomp3' or similar and the station names (TOLI, GSI, SANI)."
+        },
+        {
+            "id": "correct_pick_attributes",
+            "description": "The script defines the Pick objects with PhaseHint 'P', EvaluationMode 'MANUAL', and AgencyID 'ExternalSource'.",
+            "points": 20,
+            "visual_evidence": "Code visible in the terminal or editor showing strings 'P', 'MANUAL', and 'ExternalSource' assigned to pick attributes."
+        },
+        {
+            "id": "waveform_id_config",
+            "description": "The script correctly sets the WaveformID with Network 'GE' and Channel 'BHZ' for the three stations.",
+            "points": 15,
+            "visual_evidence": "Code showing WaveformID(networkCode='GE', stationCode=..., channelCode='BHZ')."
+        },
+        {
+            "id": "database_connection",
+            "description": "The script includes the connection string to the SeisComP database (mysql://sysop:sysop@localhost/seiscomp).",
+            "points": 20,
+            "visual_evidence": "Code showing the database URI 'mysql://sysop:sysop@localhost/seiscomp' being used in a DataObject or Database query."
+        },
+        {
+            "id": "script_execution",
+            "description": "The Python script is executed without errors.",
+            "points": 30,
+            "visual_evidence": "Terminal showing 'python3 script_name.py' followed by a successful exit or confirmation message, with no traceback errors visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_db_insert",
+            "description": "The agent did not use direct SQL INSERT statements to bypass the SeisComP API.",
+            "visual_evidence": "The terminal should show Python code using SeisComP libraries, not raw 'mysql -e' or 'INSERT INTO' commands."
+        },
+        {
+            "id": "genuine_script_run",
+            "description": "The agent actually ran the script rather than just printing 'Success'.",
+            "visual_evidence": "The terminal shows the command execution and the resulting shell prompt, not just a static text block."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The script is saved in the specific directory requested (/home/ga/).",
+            "visual_evidence": "The 'pwd' command or the file path in the editor/terminal shows /home/ga/."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must import 3 picks. Station TOLI: 07:16:35.45; Station GSI: 07:17:12.80; Station SANI: 07:18:05.15. All must have Network='GE', Channel='BHZ', Phase='P', Mode='MANUAL', and Agency='ExternalSource'. The database URL is mysql://sysop:sysop@localhost/seiscomp. A tolerance of 0.1s is allowed for timestamps."
+}

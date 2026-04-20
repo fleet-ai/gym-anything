@@ -1,0 +1,59 @@
+{
+    "task_id": "insert_record@1",
+    "task_completion": [
+        {
+            "id": "login_screen_navigation",
+            "description": "Navigate to the OrientDB Studio login page and enter credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see 'demodb' in the database field and 'root' in the username field on the OrientDB Studio login page."
+        },
+        {
+            "id": "successful_login",
+            "description": "Successfully log into the OrientDB Studio dashboard.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the OrientDB Studio main dashboard or 'Schema' tab, indicating a successful login to 'demodb'."
+        },
+        {
+            "id": "navigate_to_countries_class",
+            "description": "Navigate to the 'Countries' class within the database schema or browse view.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'Countries' class selected in the sidebar or as the active tab in the 'Browse' or 'Schema' view."
+        },
+        {
+            "id": "open_new_record_form",
+            "description": "Open the interface to create a new record/document.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a 'New' button clicked or a blank record form/editor appearing for the Countries class."
+        },
+        {
+            "id": "input_record_data",
+            "description": "Enter 'Portugal' for Name and 'European' for Type in the record fields.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the text 'Portugal' typed into the 'Name' field and 'European' typed into the 'Type' field."
+        },
+        {
+            "id": "save_and_verify_record",
+            "description": "Save the record and verify it appears in the list of countries.",
+            "points": 25,
+            "visual_evidence": "The VLM should see a 'Save' button clicked and subsequently see a row in the data table containing both 'Portugal' and 'European'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OrientDB Studio web interface rather than executing raw SQL in a terminal.",
+            "visual_evidence": "The VLM should see mouse movements and clicks on the web UI elements (buttons, input fields) rather than just a terminal window."
+        },
+        {
+            "id": "no_pre_existing_record",
+            "description": "The agent did not simply point to an existing record.",
+            "visual_evidence": "The VLM should observe the process of clicking 'New' or 'Add' and typing the specific values into empty fields."
+        },
+        {
+            "id": "actual_software_use",
+            "description": "The agent interacted with the live OrientDB Studio instance at the specified URL.",
+            "visual_evidence": "The browser address bar should show 'localhost:2480/studio/index.html' during the interaction."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' database is pre-seeded with several countries (e.g., Italy, Germany, France). The agent must specifically add 'Portugal' with the type 'European'. The login requires username 'root' and password 'GymAnything123!'. Success is confirmed when a new RID (Record ID) is generated for the 'Portugal' entry in the Countries class."
+}

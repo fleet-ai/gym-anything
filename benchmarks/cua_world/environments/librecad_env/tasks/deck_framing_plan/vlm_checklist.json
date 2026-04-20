@@ -1,0 +1,65 @@
+{
+    "task_id": "deck_framing_plan@1",
+    "task_completion": [
+        {
+            "id": "librecad_interface_setup",
+            "description": "LibreCAD is open and the drawing units are set to inches.",
+            "points": 10,
+            "visual_evidence": "LibreCAD application window is visible; unit settings (inches) might be seen in status bar or preferences dialog."
+        },
+        {
+            "id": "layer_creation",
+            "description": "Required layers (OUTLINE, LEDGER, BEAM, JOISTS, POSTS, STAIRS, DIMENSIONS) are created in the Layer List.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget shows the specific names: OUTLINE, LEDGER, BEAM, JOISTS, POSTS, STAIRS, and DIMENSIONS."
+        },
+        {
+            "id": "deck_outline_ledger",
+            "description": "A 144x192 rectangle is drawn on layer OUTLINE and a ledger line is drawn at Y=192 on layer LEDGER.",
+            "points": 15,
+            "visual_evidence": "A large vertical rectangle is visible. Coordinates in the status bar show (0,0) to (144,192) when hovering. A distinct line is at the top edge."
+        },
+        {
+            "id": "beam_and_posts",
+            "description": "A beam line is drawn at Y=96 and three post markers are placed at X=0, 72, and 144.",
+            "points": 15,
+            "visual_evidence": "A horizontal line bisects the deck width-wise. Three markers (points or small shapes) are visible along this line at the left, center, and right."
+        },
+        {
+            "id": "joist_layout",
+            "description": "Vertical joist lines are drawn from Y=0 to 192, spaced 16 units apart starting from X=0.",
+            "points": 20,
+            "visual_evidence": "A series of parallel vertical lines (approx. 10 lines) are visible within the deck outline, evenly spaced."
+        },
+        {
+            "id": "stair_and_dimensions",
+            "description": "A 36x48 stair rectangle is centered at the bottom and dimensions are added for width, length, and joist spacing.",
+            "points": 15,
+            "visual_evidence": "A smaller rectangle is attached to the bottom edge (Y=0). Dimension lines with text (144, 192, 16) are visible on the drawing."
+        },
+        {
+            "id": "file_saved_dxf",
+            "description": "The drawing is saved as deck_framing_plan.dxf in the specified directory.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD title bar shows 'deck_framing_plan.dxf' or the 'Save As' dialog shows the path /home/ga/Documents/LibreCAD/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI tools rather than just command-line file generation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (line tool, layer tool) and the drawing area."
+        },
+        {
+            "id": "genuine_cad_usage",
+            "description": "The agent did not simply display a pre-made image.",
+            "visual_evidence": "The progression of the drawing (adding lines one by one) is visible across the trajectory screenshots."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use 'sed' or 'echo' to create the DXF file directly in the terminal.",
+            "visual_evidence": "The terminal is not used to write raw DXF code; it is primarily used to launch LibreCAD or manage directories."
+        }
+    ],
+    "privileged_info_for_vlm": "The deck must be 144 (X) by 192 (Y). The ledger is at Y=192. The beam is at Y=96. Posts are at (0,96), (72,96), and (144,96). Joists are vertical lines at X=0, 16, 32, 48, 64, 80, 96, 112, 128, 144. Stairs are a rectangle from X=54 to 90 and Y=-48 to 0. There are 7 required layers: OUTLINE, LEDGER, JOISTS, BEAM, POSTS, STAIRS, and DIMENSIONS. The file must be saved as deck_framing_plan.dxf."
+}

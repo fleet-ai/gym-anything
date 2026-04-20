@@ -1,0 +1,59 @@
+{
+    "task_id": "hazmat_emergency_response@1",
+    "task_completion": [
+        {
+            "id": "open_incident_report",
+            "description": "Agent opens the hazmat_incident_report.txt file on the Desktop to confirm incident details.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/hazmat_incident_report.txt, specifically mentioning Chlorine or UN 1017."
+        },
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website in a web browser.",
+            "points": 10,
+            "visual_evidence": "Web browser showing the CAMEO Chemicals homepage or search results for Chlorine (UN 1017)."
+        },
+        {
+            "id": "locate_erg_guide_124",
+            "description": "Agent identifies ERG Guide 124 for Chlorine within the CAMEO Chemicals database.",
+            "points": 15,
+            "visual_evidence": "Browser screenshot showing the Chlorine chemical page or the ERG 124 'Gases - Toxic and/or Corrosive - Oxidizing' section."
+        },
+        {
+            "id": "extract_isolation_distances",
+            "description": "Agent identifies the specific isolation and protective action distances for a LARGE spill.",
+            "points": 20,
+            "visual_evidence": "Browser showing the 'Response' or 'ERG' tab with distances like 600 feet (200m) for initial isolation and specific day/night protective distances."
+        },
+        {
+            "id": "extract_procedures_and_ppe",
+            "description": "Agent identifies firefighting, PPE, and first aid measures from the ERG data.",
+            "points": 20,
+            "visual_evidence": "Browser showing text related to 'Fire', 'Protective Clothing', and 'First Aid' within the ERG 124 section."
+        },
+        {
+            "id": "save_final_report",
+            "description": "Agent saves all required information to the specified path in Documents.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the creation/saving of ~/Documents/chlorine_emergency_response.txt containing the compiled ERG data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the web browser GUI to find information rather than just echoing known values into a file.",
+            "visual_evidence": "Screenshots show active navigation and scrolling on the CAMEO Chemicals website."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent did not simply cat a hidden file or use pre-existing knowledge without visiting the source.",
+            "visual_evidence": "The agent's history shows a search query for 'Chlorine' or '1017' on the NOAA site before the file is written."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent used the correct output path as specified in the task.",
+            "visual_evidence": "The file is saved to ~/Documents/chlorine_emergency_response.txt, not the Desktop or home directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The chemical is Chlorine (UN 1017). The correct ERG Guide Number is 124 (Gases - Toxic and/or Corrosive - Oxidizing). For a LARGE spill: Initial Isolation Distance is 600 feet (200 meters). Protective Action Distances for a large spill are 1.7 miles (2.8 km) for Day and 4.9 miles (7.9 km) for Night. The output must be saved to /home/ga/Documents/chlorine_emergency_response.txt."
+}

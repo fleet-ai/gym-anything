@@ -1,0 +1,59 @@
+{
+    "task_id": "pm_cost_accuracy_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the source CSV file at ~/pebl/data/prospective_memory_data.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal output or code editor showing the content or loading of the CSV file with columns like participant_id, block_type, and rt_ms."
+        },
+        {
+            "id": "identify_outlier",
+            "description": "Agent identifies the automated participant (sub-99) with impossible reaction times (20-30ms).",
+            "points": 20,
+            "visual_evidence": "Code execution output or data exploration showing sub-99 has extremely low RT values compared to other participants."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "Agent calculates Baseline Ongoing RT, PM Block Ongoing RT, PM Cost, and PM Hit Rate for valid participants.",
+            "points": 25,
+            "visual_evidence": "Python script or terminal output showing the logic for filtering 'correct' trials and 'ongoing' vs 'pm_cue' trial types to compute means."
+        },
+        {
+            "id": "json_structure",
+            "description": "Agent creates a JSON file with the required structure, including the 'participants' list and root group means.",
+            "points": 20,
+            "visual_evidence": "A preview of the JSON content showing keys like 'group_mean_pm_cost_ms' and 'group_mean_pm_hit_rate' at the root level."
+        },
+        {
+            "id": "exclusion_record",
+            "description": "The JSON report explicitly includes the excluded participant with 'excluded': true and a reason.",
+            "points": 10,
+            "visual_evidence": "JSON content showing an entry for 'sub-99' with the 'excluded' boolean set to true."
+        },
+        {
+            "id": "file_export",
+            "description": "The final report is saved to the specific path ~/pebl/analysis/pm_report.json.",
+            "points": 15,
+            "visual_evidence": "Terminal command (e.g., 'ls' or 'cat') or file explorer showing the file exists at the correct path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the participant IDs or results from the task description.",
+            "visual_evidence": "The code should show dynamic calculation (e.g., using pandas or math libraries) rather than a manually typed list of results."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "Agent actually processed the CSV file rather than creating a dummy JSON.",
+            "visual_evidence": "Screenshots should show the agent opening or reading the source CSV file before the JSON is generated."
+        },
+        {
+            "id": "proper_exclusion_logic",
+            "description": "The exclusion of sub-99 is based on the data (RTs) rather than just knowing the ID beforehand.",
+            "visual_evidence": "Code or logs showing a filter or conditional check for low reaction times (e.g., rt < 100ms)."
+        }
+    ],
+    "privileged_info_for_vlm": "The contaminated participant is 'sub-99', who has impossible reaction times between 20-30ms. There are 20 valid participants (sub-1 through sub-20). The output must be a JSON file at ~/pebl/analysis/pm_report.json. Valid participants must have 'baseline_ongoing_rt_ms', 'pm_block_ongoing_rt_ms', 'pm_cost_ms', and 'pm_hit_rate' calculated. The excluded participant (sub-99) must have 'id', 'excluded': true, and a 'reason' field."
+}

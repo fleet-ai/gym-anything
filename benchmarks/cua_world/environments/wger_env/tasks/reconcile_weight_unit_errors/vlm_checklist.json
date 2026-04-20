@@ -1,0 +1,53 @@
+{
+    "task_id": "reconcile_weight_unit_errors@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger fitness manager as admin.",
+            "points": 10,
+            "visual_evidence": "The dashboard or weight log page is visible, showing the 'admin' username in the navigation bar or user profile section."
+        },
+        {
+            "id": "identify_anomalies",
+            "description": "Agent navigates to the body weight log and identifies the 5 anomalous entries (values > 150).",
+            "points": 15,
+            "visual_evidence": "A list or chart of body weight entries is shown, containing values significantly higher than the others (e.g., ~185-187 lbs/kg)."
+        },
+        {
+            "id": "edit_first_two_entries",
+            "description": "Agent begins editing the anomalous entries, converting them to kg (approx. 84-85 kg).",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Edit' form for at least two weight entries being updated with values between 84.0 and 85.0."
+        },
+        {
+            "id": "edit_remaining_entries",
+            "description": "Agent completes the editing of all 5 anomalous entries.",
+            "points": 25,
+            "visual_evidence": "The weight log table now shows all 5 previously high values updated to values between 70 and 100 kg (specifically around 84.2-84.8 kg)."
+        },
+        {
+            "id": "verify_streak_and_count",
+            "description": "The agent ensures all 30 entries are present and the trend chart is normalized.",
+            "points": 25,
+            "visual_evidence": "The weight log table or chart shows a continuous 30-day history without massive spikes, and the total count of entries remains 30 (no deletions)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_db_edit",
+            "description": "The agent used the web interface to edit records rather than SQL commands in the terminal.",
+            "visual_evidence": "The agent is seen clicking 'Edit' buttons and typing into web forms rather than executing 'UPDATE' statements in a terminal."
+        },
+        {
+            "id": "no_deletion",
+            "description": "The agent edited existing records instead of deleting and recreating them.",
+            "visual_evidence": "The 'Edit' dialogs are used; the history/logs do not show a sequence of 'Delete' followed by 'Add'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the wger application elements.",
+            "visual_evidence": "Mouse cursors, highlighted buttons, and standard browser navigation to localhost are visible."
+        }
+    ],
+    "privileged_info_for_vlm": "There are exactly 30 weight entries. Five entries are outliers with values between 185.6 and 187.0. These must be edited (not deleted) to their kg equivalents (divide by 2.2046), which should result in values between 84.2 and 84.8 kg, rounded to 1 decimal place. The final log must contain 30 entries all within the 70-100 kg range."
+}

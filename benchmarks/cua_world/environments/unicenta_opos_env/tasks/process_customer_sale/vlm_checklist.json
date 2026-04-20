@@ -1,0 +1,65 @@
+{
+    "task_id": "process_customer_sale@1",
+    "task_completion": [
+        {
+            "id": "login_successful",
+            "description": "The agent successfully logs into the uniCenta oPOS system.",
+            "points": 10,
+            "visual_evidence": "The screen transitions from the login/user selection grid to the main POS sales interface (showing product categories and the ticket area)."
+        },
+        {
+            "id": "add_coca_cola",
+            "description": "One Coca-Cola Classic 12oz is added to the sales ticket.",
+            "points": 15,
+            "visual_evidence": "The ticket area shows 'Coca-Cola Classic 12oz' with a quantity of 1 and a price of $1.29."
+        },
+        {
+            "id": "add_lays_chips",
+            "description": "Two Lay's Classic Potato Chips are added to the sales ticket.",
+            "points": 20,
+            "visual_evidence": "The ticket area shows 'Lay's Classic Potato Chips' with a quantity of 2 and a unit price of $4.49 (or a line total of $8.98)."
+        },
+        {
+            "id": "add_ketchup",
+            "description": "One Heinz Tomato Ketchup is added to the sales ticket.",
+            "points": 15,
+            "visual_evidence": "The ticket area shows 'Heinz Tomato Ketchup' with a quantity of 1 and a price of $4.49."
+        },
+        {
+            "id": "verify_subtotal",
+            "description": "The total before tax matches the required amount of $14.76.",
+            "points": 15,
+            "visual_evidence": "The 'Subtotal' or 'Total' field (before tax calculation) on the POS screen displays $14.76."
+        },
+        {
+            "id": "payment_screen_cash",
+            "description": "The agent navigates to the payment screen and selects the Cash option.",
+            "points": 10,
+            "visual_evidence": "The payment dialog/screen is visible with the 'Cash' button selected or the cash amount entered."
+        },
+        {
+            "id": "transaction_completed",
+            "description": "The transaction is finalized and the system returns to a ready state.",
+            "points": 15,
+            "visual_evidence": "The payment dialog closes, the current ticket is cleared, and the system is ready for a new sale or shows a 'Change' amount/receipt preview."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the uniCenta GUI rather than using a terminal or script.",
+            "visual_evidence": "Mouse cursor movements and clicks are visible on the POS buttons (items, payment, OK) rather than commands being typed into a shell."
+        },
+        {
+            "id": "no_manual_total_override",
+            "description": "The agent added items individually rather than manually overriding the price to reach $14.76.",
+            "visual_evidence": "The ticket history shows individual line items for Coke, Lay's, and Ketchup rather than a single 'Custom Item' entry."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent used the actual uniCenta oPOS software interface.",
+            "visual_evidence": "The screenshots show the standard uniCenta oPOS layout, icons, and branding."
+        }
+    ],
+    "privileged_info_for_vlm": "The required items and prices are: 1x Coca-Cola Classic 12oz ($1.29), 2x Lay's Classic Potato Chips ($4.49 each = $8.98), and 1x Heinz Tomato Ketchup ($4.49). The sum of these items is exactly $14.76. The VLM should verify that the quantity for Lay's is 2 and that the final subtotal displayed on the screen is $14.76 before the cash payment is processed."
+}

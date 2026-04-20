@@ -1,0 +1,53 @@
+{
+    "task_id": "shortest_path_social_network@1",
+    "task_completion": [
+        {
+            "id": "database_access",
+            "description": "Agent accesses the 'demodb' database to query the social network graph.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a database client, terminal, or script connecting to 'demodb' or querying the 'HasFriend' class/table."
+        },
+        {
+            "id": "query_schafer_path",
+            "description": "Agent attempts to find a path between john.smith@example.com and thomas.schafer@example.com.",
+            "points": 20,
+            "visual_evidence": "SQL or graph queries (e.g., shortestPath() or MATCH) involving both email addresses in a terminal or database UI."
+        },
+        {
+            "id": "query_petrakis_path",
+            "description": "Agent identifies the path between john.smith@example.com and elena.petrakis@example.com.",
+            "points": 25,
+            "visual_evidence": "Query results showing the intermediate nodes (maria.garcia and sophie.martin) or the hop count for this specific connection."
+        },
+        {
+            "id": "query_friends_of_friends",
+            "description": "Agent identifies 'friends of friends' for john.smith@example.com (2 hops away, excluding direct friends).",
+            "points": 25,
+            "visual_evidence": "Queries or logic filtering for nodes exactly 2 edges away from john.smith, excluding his direct neighbors."
+        },
+        {
+            "id": "save_results_json",
+            "description": "Agent saves the final analysis to /home/ga/shortest_path_results.json in the specified format.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'save') or a text editor showing the JSON file content at the correct path with the required keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply write the file without performing database queries.",
+            "visual_evidence": "The trajectory must show active interaction with the database (SQL queries, graph traversals) before the file creation."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "Agent uses the database system to calculate paths rather than manual estimation.",
+            "visual_evidence": "Screenshots showing the execution of graph-related functions like shortestPath() or multiple JOIN/traversal queries."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent saves the file to the exact path specified in the task.",
+            "visual_evidence": "The file path /home/ga/shortest_path_results.json is visible in the saving command or editor header."
+        }
+    ],
+    "privileged_info_for_vlm": "The social network in 'demodb' is disconnected. John Smith and Thomas Schafer are in different components, so no path exists (hops should be 0 or null, path empty). John Smith and Elena Petrakis are in the same component; the shortest path is 3 hops: john.smith -> maria.garcia -> sophie.martin -> elena.petrakis. No path exists to Yuki Tanaka (path_to_tanaka_exists: false). Friends of friends for John Smith (exactly 2 hops away) are: sophie.martin and li.wei."
+}

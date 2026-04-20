@@ -1,0 +1,53 @@
+{
+    "task_id": "garch_volatility_inflation@1",
+    "task_completion": [
+        {
+            "id": "open_dataset",
+            "description": "The agent opens the dataset /home/ga/Documents/gretl_data/usa.gdt in Gretl.",
+            "points": 10,
+            "visual_evidence": "The Gretl main window title bar or file info shows 'usa.gdt' is loaded, and the variable list includes 'inf'."
+        },
+        {
+            "id": "create_script_file",
+            "description": "The agent creates a new script file (inp) at the specified path /home/ga/Documents/gretl_output/garch_inflation.inp.",
+            "points": 15,
+            "visual_evidence": "A Gretl script editor window is open showing the file path /home/ga/Documents/gretl_output/garch_inflation.inp in the title or save dialog."
+        },
+        {
+            "id": "garch_command_syntax",
+            "description": "The script contains the correct GARCH(1,1) command for the 'inf' variable with a constant in the mean equation.",
+            "points": 25,
+            "visual_evidence": "The script editor shows a command like 'garch 1 1 ; inf const' or 'garch 1 1 ; inf 0'."
+        },
+        {
+            "id": "output_redirection",
+            "description": "The script includes commands to redirect output to garch_output.txt and save the conditional variance ($h) and inflation to a CSV.",
+            "points": 25,
+            "visual_evidence": "The script contains 'outfile --quiet \"/home/ga/Documents/gretl_output/garch_output.txt\"' and 'store \"/home/ga/Documents/gretl_output/garch_cond_variance.csv\" inf $h --csv'."
+        },
+        {
+            "id": "execute_and_verify_files",
+            "description": "The agent executes the script and the output files are generated in the target directory.",
+            "points": 25,
+            "visual_evidence": "A file manager or terminal window shows garch_output.txt and garch_cond_variance.csv existing in /home/ga/Documents/gretl_output/ after execution."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gretl_interaction",
+            "description": "The agent used the Gretl GUI and script editor rather than just creating files via terminal echo commands.",
+            "visual_evidence": "Screenshots show the Gretl application windows, menus, and the built-in script editor being used."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the model results into the output files.",
+            "visual_evidence": "The script execution log or the process of running the script in Gretl is visible, showing the software generating the output."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the local usa.gdt file as specified, not an external or synthetic dataset.",
+            "visual_evidence": "The file path in the Gretl 'Open Data' dialog or main window matches /home/ga/Documents/gretl_data/usa.gdt."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset usa.gdt contains quarterly data from 1984:1 to 2009:3 (103 observations). The target variable 'inf' is the CPI inflation rate. A correct GARCH(1,1) model in Gretl syntax is 'garch 1 1 ; inf const'. The internal variable for conditional variance in Gretl is '$h'. The output must be redirected using 'outfile' and saved using 'store ... --csv'."
+}

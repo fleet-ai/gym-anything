@@ -1,0 +1,53 @@
+{
+    "task_id": "intersection_safety_audit@1",
+    "task_completion": [
+        {
+            "id": "load_bologna_scenario",
+            "description": "The agent loads the 'bologna_acosta' scenario files from the specified directory into the SUMO simulation environment.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the SUMO-GUI or terminal referencing the path /home/ga/SUMO_Scenarios/bologna_acosta/ and the network loading."
+        },
+        {
+            "id": "configure_ssm_parameters",
+            "description": "The agent configures the simulation to track Surrogate Safety Measures (SSM) with a TTC threshold of 3.0s and DRAC.",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal output showing configuration of 'ssm' device with 'device.ssm.threshold 3.0' and 'device.ssm.measures TTC DRAC'."
+        },
+        {
+            "id": "run_simulation_ssm_output",
+            "description": "The agent executes the simulation and generates the raw SSM XML output file.",
+            "points": 20,
+            "visual_evidence": "SUMO simulation running (GUI progress bar or terminal logs) and evidence of the file /home/ga/SUMO_Output/ssm_output.xml being created."
+        },
+        {
+            "id": "generate_safety_report_csv",
+            "description": "The agent processes the simulation data to create the intersection safety report CSV.",
+            "points": 25,
+            "visual_evidence": "Terminal command or script execution showing the creation/saving of /home/ga/SUMO_Output/intersection_safety_report.csv."
+        },
+        {
+            "id": "create_summary_finding",
+            "description": "The agent writes the final summary finding text file based on the audit results.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command showing the content of /home/ga/SUMO_Output/safety_audit_summary.txt containing safety findings."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "The agent actually ran the SUMO simulation rather than just creating empty files.",
+            "visual_evidence": "Screenshots of the SUMO-GUI showing vehicle movement or terminal logs showing simulation step increments."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the report from the SSM output rather than copy-pasting pre-known values.",
+            "visual_evidence": "The agent opening or parsing ssm_output.xml before generating the .csv and .txt files."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the specific file paths mandated by the City of Bologna contract.",
+            "visual_evidence": "Commands or file explorer views showing files located exactly at /home/ga/SUMO_Output/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a specific TTC (Time-To-Collision) threshold of 3.0 seconds. The scenario is 'bologna_acosta'. The required output files are ssm_output.xml, intersection_safety_report.csv, and safety_audit_summary.txt, all located in /home/ga/SUMO_Output/. The agent is acting as an Occupational Health and Safety Specialist (SOC 29-9011.00)."
+}

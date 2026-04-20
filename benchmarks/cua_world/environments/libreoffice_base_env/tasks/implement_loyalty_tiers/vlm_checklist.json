@@ -1,0 +1,53 @@
+{
+    "task_id": "implement_loyalty_tiers@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "The agent opens the Chinook database file in a database management tool or LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "A database application window is visible showing the 'chinook.odb' file or the Chinook tables list."
+        },
+        {
+            "id": "add_loyalty_tier_column",
+            "description": "The 'Customer' table is modified to include a new column named 'LoyaltyTier' with a VARCHAR data type.",
+            "points": 20,
+            "visual_evidence": "Table design view or schema view showing 'LoyaltyTier' added to the 'Customer' table columns."
+        },
+        {
+            "id": "calculate_spending",
+            "description": "The agent executes a query or uses a tool to calculate the sum of 'Total' from the 'Invoice' table grouped by Customer.",
+            "points": 20,
+            "visual_evidence": "An SQL editor or query builder showing a SUM(Total) calculation joined with the Customer table."
+        },
+        {
+            "id": "populate_tiers_logic",
+            "description": "The agent applies the logic to update the LoyaltyTier column based on the specified spending thresholds.",
+            "points": 30,
+            "visual_evidence": "SQL UPDATE statements or data entry showing 'Platinum' for >45, 'Gold' for 40-45, and 'Silver' for <40."
+        },
+        {
+            "id": "verify_final_data",
+            "description": "The 'Customer' table is displayed showing the populated 'LoyaltyTier' column for the records.",
+            "points": 20,
+            "visual_evidence": "A datasheet view of the 'Customer' table showing the 'LoyaltyTier' column filled with 'Platinum', 'Gold', or 'Silver' values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface of the database tool rather than just executing a single script in a terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement, menu selections, or window interactions within the database GUI."
+        },
+        {
+            "id": "no_hardcoded_updates",
+            "description": "The agent didn't manually type in tiers for every customer without calculating totals first.",
+            "visual_evidence": "Evidence of a JOIN or SUM query being performed before or during the update process."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual database file located at /home/ga/chinook.odb.",
+            "visual_evidence": "The file path or application title bar confirms the correct database file is being edited."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb and contains 59 customers. The tier logic is: Platinum if Total > 45.00; Gold if 40.00 <= Total <= 45.00; Silver if Total < 40.00. Note that 'Gold' includes the boundary values of 40 and 45 exactly. There are no customers with exactly 40.00 or 45.00 in the dataset, but the logic must reflect these boundaries."
+}

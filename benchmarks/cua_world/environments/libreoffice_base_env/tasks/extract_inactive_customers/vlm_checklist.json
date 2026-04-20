@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_inactive_customers@1",
+    "task_completion": [
+        {
+            "id": "open_libreoffice_base",
+            "description": "The Chinook database is open in the LibreOffice Base application.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base window is visible, showing the Chinook database file name in the title bar or main interface."
+        },
+        {
+            "id": "query_creation",
+            "description": "The agent creates a query or SQL command to identify customers with a last purchase date before January 1, 2013.",
+            "points": 20,
+            "visual_evidence": "A SQL editor or Query Design window showing a SELECT statement with 'MAX(InvoiceDate) < '2013-01-01'' or similar logic."
+        },
+        {
+            "id": "table_creation",
+            "description": "A new table named 'InactiveCustomers' is created with the specified schema.",
+            "points": 20,
+            "visual_evidence": "The 'Tables' section of LibreOffice Base shows a new table entry named 'InactiveCustomers'."
+        },
+        {
+            "id": "schema_verification",
+            "description": "The InactiveCustomers table contains the required columns: CustomerId, FirstName, LastName, Email, LastPurchaseDate, and LifetimeValue.",
+            "points": 20,
+            "visual_evidence": "The table design view or data view for 'InactiveCustomers' shows these specific column headers."
+        },
+        {
+            "id": "data_population",
+            "description": "The InactiveCustomers table is populated with data based on the query results.",
+            "points": 20,
+            "visual_evidence": "The data view of the 'InactiveCustomers' table shows rows of data (or an attempt to insert them) corresponding to the filtered customer list."
+        },
+        {
+            "id": "save_database",
+            "description": "The database is saved to ensure changes are recorded.",
+            "points": 10,
+            "visual_evidence": "The 'Save' icon is clicked, or the 'File > Save' menu option is selected, and the save progress bar or status change is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just executing terminal commands to manipulate the database file directly.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, buttons, and table wizards."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type in customer names and dates from memory or external notes.",
+            "visual_evidence": "The agent is seen using SQL 'INSERT INTO ... SELECT' statements or the 'Copy/Paste' table wizard within the GUI."
+        },
+        {
+            "id": "genuine_application_usage",
+            "description": "The agent interacted with the actual Chinook database file provided in the environment.",
+            "visual_evidence": "The file path or database connection settings in LibreOffice Base point to the expected Chinook source file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target table must be named 'InactiveCustomers'. The cutoff date for inactivity is strictly before 2013-01-01. Note: Due to the specific version of the Chinook dataset used in this environment, all invoice dates are actually between 2021 and 2025. Therefore, a correct query will result in 0 rows. The agent should still be evaluated on the correct creation of the table schema and the logic of the SQL query/filter used, even if the resulting table is empty."
+}

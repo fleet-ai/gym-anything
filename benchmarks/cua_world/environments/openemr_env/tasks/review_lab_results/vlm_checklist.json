@@ -1,0 +1,53 @@
+{
+    "task_id": "review_lab_results@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the medical system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The login screen transitions to a dashboard or patient search interface; the username 'admin' may be visible in the header."
+        },
+        {
+            "id": "patient_selection",
+            "description": "Agent locates and selects the correct patient, Abraham Gutmann, verifying the DOB 1996-12-14.",
+            "points": 15,
+            "visual_evidence": "The patient profile for Abraham Gutmann is displayed, showing the name and the date of birth 1996-12-14."
+        },
+        {
+            "id": "locate_lipid_panel",
+            "description": "Agent navigates to the lab results section and identifies the pending Lipid Panel.",
+            "points": 15,
+            "visual_evidence": "A 'Lipid Panel' entry is visible in the lab results or pending tasks list for the patient."
+        },
+        {
+            "id": "input_follow_up_note",
+            "description": "Agent types the specific follow-up note into the system's comment or note field.",
+            "points": 30,
+            "visual_evidence": "The text 'Results reviewed. Lipid panel within acceptable limits for current therapy. Continue current statin dose. Recheck in 6 months.' is visible in a text input field."
+        },
+        {
+            "id": "mark_as_reviewed",
+            "description": "Agent performs the action to mark the lab results as 'reviewed' or 'acknowledged'.",
+            "points": 30,
+            "visual_evidence": "The agent clicks a 'Mark as Reviewed', 'Acknowledge', or 'Sign' button, and the status of the Lipid Panel updates to 'Reviewed' or disappears from the pending list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface rather than executing database scripts or terminal commands to update the record.",
+            "visual_evidence": "Screenshots show mouse cursor movement, button clicks, and text entry within the application windows, not a command-line interface."
+        },
+        {
+            "id": "no_shortcut_search",
+            "description": "The agent navigated through the patient's chart rather than using a direct URL or backend bypass to reach the lab review screen.",
+            "visual_evidence": "The trajectory shows the sequence of clicking through the patient search and lab results tabs."
+        },
+        {
+            "id": "manual_note_entry",
+            "description": "The agent entered the note into the correct application field rather than just printing it to a log or terminal.",
+            "visual_evidence": "The specific follow-up note text is visible inside the medical software's UI components."
+        }
+    ],
+    "privileged_info_for_vlm": "Patient: Abraham Gutmann. DOB: 1996-12-14. Lab to review: Lipid Panel (PID 4). Expected values in the panel: Total Cholesterol 185, HDL 45, LDL 110, Triglycerides 150. The required note must exactly match: 'Results reviewed. Lipid panel within acceptable limits for current therapy. Continue current statin dose. Recheck in 6 months.'"
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_motion_detection@1",
+    "task_completion": [
+        {
+            "id": "api_authentication",
+            "description": "Agent authenticates with the Nx Witness REST API using admin credentials.",
+            "points": 10,
+            "visual_evidence": "Terminal or browser showing API requests to localhost:7001 with authentication headers or login success."
+        },
+        {
+            "id": "camera_identification",
+            "description": "Agent retrieves the list of cameras to identify IDs for Entrance, Server Room, and Loading Dock cameras.",
+            "points": 15,
+            "visual_evidence": "API response or terminal output showing a list of camera names and their corresponding UUIDs."
+        },
+        {
+            "id": "configure_motion_type",
+            "description": "Agent sets 'motionType' to 'software' for the three target cameras.",
+            "points": 20,
+            "visual_evidence": "PUT/PATCH API request payloads or successful response codes showing 'motionType': 'software' for the specific camera IDs."
+        },
+        {
+            "id": "update_recording_schedule",
+            "description": "Agent updates recording schedules to 'motionOnly' for the three target cameras.",
+            "points": 25,
+            "visual_evidence": "API request bodies showing schedule tasks or recording parameters updated to 'motionOnly' for the target cameras."
+        },
+        {
+            "id": "verify_ignored_cameras",
+            "description": "Agent ensures Parking Lot and Lobby cameras remain unchanged.",
+            "points": 10,
+            "visual_evidence": "Absence of API calls targeting the IDs of the Parking Lot or Lobby cameras, or a GET request showing their original state."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent creates the final JSON configuration report at the specified path with the correct schema.",
+            "points": 20,
+            "visual_evidence": "Terminal command (e.g., 'cat') showing the content of /home/ga/motion_detection_config.json containing the 'generated_by': 'agent' field and the camera array."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_interaction",
+            "description": "Agent interacted with the actual REST API rather than mocking the file.",
+            "visual_evidence": "Screenshots showing curl commands, postman-like interface, or python scripts executing requests against https://localhost:7001."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Agent did not create the report without first querying the system state.",
+            "visual_evidence": "The trajectory shows data retrieval (GET requests) occurring before the file creation."
+        },
+        {
+            "id": "correct_camera_mapping",
+            "description": "Agent correctly mapped the specific names to the UUIDs provided by the system.",
+            "visual_evidence": "The UUIDs in the final JSON report match the UUIDs returned in the initial API discovery steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness API is at https://localhost:7001. Credentials are admin / Admin1234!. Target cameras for modification: Entrance Camera, Server Room Camera, Loading Dock Camera. Cameras to ignore: Parking Lot Camera, Lobby Camera. Required changes: motionType='software' and recordingType='motionOnly'. The final report must be at /home/ga/motion_detection_config.json and include 'generated_by': 'agent'."
+}

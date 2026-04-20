@@ -1,0 +1,59 @@
+{
+    "task_id": "build_relational_genealogy_tree@1",
+    "task_completion": [
+        {
+            "id": "create_person_tiddlers",
+            "description": "Create five tiddlers tagged 'Person' for Queen Victoria, Prince Albert, Victoria Princess Royal, Edward VII, and Princess Alice.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the 'Recent' tab or a list of tiddlers containing all five names, each with the 'Person' tag applied."
+        },
+        {
+            "id": "set_custom_fields",
+            "description": "Assign birth-date, mother, and father fields to the relevant tiddlers as specified.",
+            "points": 15,
+            "visual_evidence": "The 'Fields' section at the bottom of the tiddler edit or view mode showing keys like 'birth-date', 'mother', and 'father' with their respective values."
+        },
+        {
+            "id": "create_view_template",
+            "description": "Create a new tiddler tagged '$:/tags/ViewTemplate' to act as the dynamic display logic.",
+            "points": 20,
+            "visual_evidence": "A tiddler open in the editor showing the tag '$:/tags/ViewTemplate' and wikitext code involving filters or transclusions."
+        },
+        {
+            "id": "template_conditional_logic",
+            "description": "Ensure the ViewTemplate uses a filter to only display on tiddlers tagged 'Person'.",
+            "points": 15,
+            "visual_evidence": "The wikitext in the ViewTemplate tiddler containing a list widget or conditional (e.g., <$list filter=\"[all[current]tag[Person]]\">)."
+        },
+        {
+            "id": "dynamic_parent_links",
+            "description": "The ViewTemplate displays clickable links to the mother and father tiddlers.",
+            "points": 15,
+            "visual_evidence": "In the view mode of a child tiddler (e.g., Edward VII), the names of the parents appear as blue internal links."
+        },
+        {
+            "id": "dynamic_children_list",
+            "description": "The ViewTemplate displays a list of children by querying which tiddlers list the current person as a parent, without hardcoding names.",
+            "points": 20,
+            "visual_evidence": "In the view mode of 'Queen Victoria', a list of her three children is visible. The code for this must show a filter like '[mother<currentTiddler>]' or '[father<currentTiddler>]' rather than a static list of names."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit tiddlers rather than just modifying the underlying file via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the 'plus' button, the tag dropdown, and the 'save' tick icon in the browser."
+        },
+        {
+            "id": "no_hardcoded_children",
+            "description": "The agent did not manually type the names of children into the parent tiddlers' body text.",
+            "visual_evidence": "The 'text' field of the 'Queen Victoria' and 'Prince Albert' tiddlers should be empty or contain general info, not a manual list of their children."
+        },
+        {
+            "id": "genuine_template_usage",
+            "description": "The genealogy information is rendered via the ViewTemplate, not just written into the tiddler body.",
+            "visual_evidence": "When viewing a 'Person' tiddler, the genealogy info appears, but when the same tiddler is put into 'Edit' mode, that info is absent from the main text area."
+        }
+    ],
+    "privileged_info_for_vlm": "The five required persons are: Queen Victoria (1819-05-24), Prince Albert (1819-08-26), Victoria, Princess Royal (1840-11-21), Edward VII (1841-11-09), and Princess Alice (1843-04-25). The children must list Queen Victoria as 'mother' and Prince Albert as 'father' in their fields. The ViewTemplate must be tagged '$:/tags/ViewTemplate' to be active."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "insulin_asset_decoupling@1",
+    "task_completion": [
+        {
+            "id": "open_genbank_file",
+            "description": "Open the human_insulin_gene.gb file in the UGENE interface.",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows 'human_insulin_gene.gb' loaded in the Project View or as an active sequence tab."
+        },
+        {
+            "id": "export_fasta_nucleotide",
+            "description": "Export the full-length nucleotide sequence to insulin_reference.fasta.",
+            "points": 15,
+            "visual_evidence": "An export dialog or file browser showing the destination '~/UGENE_Data/pipeline_assets/insulin_reference.fasta' with FASTA format selected."
+        },
+        {
+            "id": "export_gff_annotations",
+            "description": "Export all annotations to insulin_annotations.gff.",
+            "points": 15,
+            "visual_evidence": "The 'Export Annotations' dialog in UGENE showing the output path '~/UGENE_Data/pipeline_assets/insulin_annotations.gff'."
+        },
+        {
+            "id": "translate_cds_to_protein",
+            "description": "Perform in-silico translation of the CDS annotation and export to insulin_protein.fasta.",
+            "points": 30,
+            "visual_evidence": "The CDS feature selected in the sequence view, followed by a translation action or 'Export Sequence' dialog showing the protein sequence being saved to 'insulin_protein.fasta'."
+        },
+        {
+            "id": "create_manifest_file",
+            "description": "Create a manifest.txt file with the specific required labels and values.",
+            "points": 30,
+            "visual_evidence": "A text editor or file preview showing manifest.txt containing: Nucleotide Length: 465, Protein Length: 110, CDS Count: 1, and Gene Count: 1."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE graphical interface rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and dialog boxes being interacted with."
+        },
+        {
+            "id": "genuine_translation",
+            "description": "The protein length and sequence were derived from the UGENE translation tool, not hardcoded.",
+            "visual_evidence": "The agent is seen selecting the CDS annotation in the UGENE sequence view to initiate the translation/export process."
+        },
+        {
+            "id": "no_manual_manifest_guessing",
+            "description": "The agent verified the sequence properties within UGENE before writing the manifest.",
+            "visual_evidence": "The agent viewing the 'Statistics' tab or 'Object Properties' in UGENE to confirm the 465bp length and feature counts."
+        }
+    ],
+    "privileged_info_for_vlm": "The source GenBank file (NM_000207.3) contains exactly 465 nucleotides. It has 1 'gene' feature and 1 'CDS' feature. The translation of the CDS results in a protein of 110 amino acids. The manifest.txt must use these exact labels: 'Nucleotide Length', 'Protein Length', 'CDS Count', and 'Gene Count'."
+}

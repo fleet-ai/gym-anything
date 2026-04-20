@@ -1,0 +1,59 @@
+{
+    "task_id": "legacy_portal_access@1",
+    "task_completion": [
+        {
+            "id": "open_edge_browser",
+            "description": "The agent opens the Microsoft Edge browser.",
+            "points": 10,
+            "visual_evidence": "The Microsoft Edge browser window is visible on the desktop."
+        },
+        {
+            "id": "access_developer_tools",
+            "description": "The agent accesses Developer Tools or Network Conditions to modify the User Agent.",
+            "points": 20,
+            "visual_evidence": "The Edge DevTools panel is open, specifically showing 'Network conditions' or 'Emulation' settings."
+        },
+        {
+            "id": "emulate_ie_ua",
+            "description": "The agent sets the User Agent to an Internet Explorer string (containing MSIE or Trident).",
+            "points": 20,
+            "visual_evidence": "The 'User agent' dropdown or custom text field in DevTools shows a string containing 'MSIE' or 'Trident'."
+        },
+        {
+            "id": "load_portal_successfully",
+            "description": "The agent successfully loads http://localhost:8000 without a compatibility error.",
+            "points": 20,
+            "visual_evidence": "The browser displays the 'Legacy Logistics Portal' content rather than an 'Access Denied' or 'Unsupported Browser' message."
+        },
+        {
+            "id": "identify_manifest_code",
+            "description": "The agent locates the alphanumeric Manifest Code on the page.",
+            "points": 15,
+            "visual_evidence": "A code in the format MFST-XXXX-XXXX is visible on the rendered portal page."
+        },
+        {
+            "id": "save_code_to_file",
+            "description": "The agent saves the Manifest Code to /home/ga/Desktop/manifest_code.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command shows the manifest code being saved to the specific path /home/ga/Desktop/manifest_code.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the Edge browser GUI to access the portal rather than just using curl/wget in the terminal.",
+            "visual_evidence": "Screenshots show the Edge browser window active and navigating to the URL, not just terminal output."
+        },
+        {
+            "id": "genuine_ua_spoofing",
+            "description": "The agent manually configured the User Agent in the browser settings.",
+            "visual_evidence": "The DevTools panel is visible with the User Agent override active."
+        },
+        {
+            "id": "no_hardcoded_code",
+            "description": "The agent retrieved the code from the browser, not from a pre-existing file or environment variable.",
+            "visual_evidence": "The agent is seen highlighting or copying the code directly from the browser window."
+        }
+    ],
+    "privileged_info_for_vlm": "The portal is at http://localhost:8000. It requires a User-Agent containing 'MSIE' or 'Trident' to bypass the block. The Manifest Code follows the pattern MFST-XXXX-XXXX. The final output must be saved to /home/ga/Desktop/manifest_code.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "delete_outlier_measurements@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger application as admin.",
+            "points": 10,
+            "visual_evidence": "The dashboard or user profile shows 'admin' logged in at http://localhost."
+        },
+        {
+            "id": "navigate_to_measurements",
+            "description": "Agent navigates to the body measurements or weight/data tracking section.",
+            "points": 10,
+            "visual_evidence": "The browser shows the measurements overview page with lists or charts of body data."
+        },
+        {
+            "id": "locate_body_fat_outlier",
+            "description": "Agent identifies the 'Body Fat' entry with the value 180.0.",
+            "points": 15,
+            "visual_evidence": "A table or list view showing a 'Body Fat' entry with the specific value '180.0' or '180.0 %'."
+        },
+        {
+            "id": "delete_body_fat_outlier",
+            "description": "Agent deletes the 180.0 Body Fat entry.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion or a 'success' message after deleting the 180.0 entry; the entry no longer appears in the list."
+        },
+        {
+            "id": "locate_waist_outlier",
+            "description": "Agent identifies the 'Waist' entry with the value 820.0.",
+            "points": 15,
+            "visual_evidence": "A table or list view showing a 'Waist' entry with the specific value '820.0' or '820.0 cm'."
+        },
+        {
+            "id": "delete_waist_outlier",
+            "description": "Agent deletes the 820.0 Waist entry.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion or a 'success' message after deleting the 820.0 entry; the entry no longer appears in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface to perform deletions rather than executing database commands in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on 'Delete' icons/buttons, and browser navigation rather than a terminal window with SQL or Django shell commands."
+        },
+        {
+            "id": "no_over_deletion",
+            "description": "The agent did not delete valid historical data.",
+            "visual_evidence": "After the outliers are gone, at least 5 valid entries remain visible in the measurement history categories."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the wger menus to find the measurements.",
+            "visual_evidence": "The trajectory shows the agent clicking on the 'Software' or 'Add' menus to reach the measurement logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The specific outlier values to be deleted are exactly 180.0 for 'Body Fat' and 820.0 for 'Waist'. There should be exactly 5 valid (non-outlier) entries remaining in each category after the task is complete. The agent must use the web UI at http://localhost."
+}

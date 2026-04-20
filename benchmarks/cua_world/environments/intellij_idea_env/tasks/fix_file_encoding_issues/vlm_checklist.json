@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_file_encoding_issues@1",
+    "task_completion": [
+        {
+            "id": "open_target_file",
+            "description": "Open CurrencyConfig.java and identify encoding issues",
+            "points": 10,
+            "visual_evidence": "The file 'CurrencyConfig.java' is open in the IntelliJ editor, showing garbled characters or replacement symbols () where currency symbols should be."
+        },
+        {
+            "id": "reload_windows_1252",
+            "description": "Reload the file using Windows-1252 encoding",
+            "points": 15,
+            "visual_evidence": "The encoding picker (usually bottom right of the status bar) shows 'Windows-1252' or a 'Reload in Windows-1252' dialog is visible, and the symbols (€, £, ¥) appear correctly after the reload."
+        },
+        {
+            "id": "convert_to_utf8",
+            "description": "Convert the file encoding to UTF-8",
+            "points": 20,
+            "visual_evidence": "The encoding picker is used to 'Convert' the file to UTF-8. The status bar should eventually show 'UTF-8' for this file while the symbols remain correctly rendered."
+        },
+        {
+            "id": "set_line_separators_lf",
+            "description": "Change project line separators to Unix (LF)",
+            "points": 15,
+            "visual_evidence": "The status bar shows 'LF' instead of 'CRLF', or the 'File -> Line Separators' menu shows 'Unix (LF)' selected."
+        },
+        {
+            "id": "configure_project_encoding",
+            "description": "Configure Project Encoding settings to UTF-8",
+            "points": 20,
+            "visual_evidence": "The 'Settings/Preferences -> Editor -> File Encodings' window is open, showing 'Global Encoding', 'Project Encoding', and 'Default encoding for properties files' all set to 'UTF-8'."
+        },
+        {
+            "id": "run_currency_test",
+            "description": "Verify the fix by running CurrencyTest unit tests",
+            "points": 20,
+            "visual_evidence": "The 'Run' tool window or a test results tab shows that 'CurrencyTest' has been executed and the tests passed (indicated by green checkmarks or a 'Tests passed' message)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IntelliJ IDEA GUI for encoding changes rather than just terminal commands",
+            "visual_evidence": "Screenshots show interaction with the IntelliJ status bar encoding menu, settings dialogs, or the 'Reload/Convert' popup notifications."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent ran the actual unit tests within the IDE",
+            "visual_evidence": "The IntelliJ 'Run' or 'Test' window is visible with the specific test results for CurrencyTest, not just a manual print statement in the terminal."
+        },
+        {
+            "id": "no_manual_symbol_replacement",
+            "description": "The agent fixed the encoding via IDE tools rather than manually typing the symbols",
+            "visual_evidence": "The agent is seen using the 'Reload' and 'Convert' actions in the UI rather than deleting the garbled text and typing '€', '£', '¥' manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/legacy-finance-app. The target file is src/main/java/com/legacy/finance/CurrencyConfig.java. The specific symbols that must be correctly displayed are the Euro (€), Pound (£), and Yen (¥). The final state must have the file encoded in UTF-8, line endings set to LF, and the Project Encoding settings in IntelliJ set to UTF-8. Success is confirmed when CurrencyTest.java passes."
+}

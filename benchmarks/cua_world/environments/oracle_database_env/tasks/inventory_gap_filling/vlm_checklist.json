@@ -1,0 +1,59 @@
+{
+    "task_id": "inventory_gap_filling@1",
+    "task_completion": [
+        {
+            "id": "inspect_source_schema",
+            "description": "Agent inspects the INVENTORY_LOG table schema or data to understand the source structure.",
+            "points": 10,
+            "visual_evidence": "A SQL query or database explorer view showing the columns LOG_ID, PRODUCT_ID, CHANGE_DATE, and NEW_QUANTITY."
+        },
+        {
+            "id": "generate_date_series",
+            "description": "Agent writes logic to generate a continuous series of dates for January 2026 (2026-01-01 to 2026-01-31).",
+            "points": 15,
+            "visual_evidence": "SQL code containing a date generation function (like generate_series, a recursive CTE, or a calendar table) covering the range 2026-01-01 to 2026-01-31."
+        },
+        {
+            "id": "handle_multiple_daily_changes",
+            "description": "Agent implements logic to select the record with the highest LOG_ID when multiple changes occur on the same day.",
+            "points": 20,
+            "visual_evidence": "SQL code using MAX(LOG_ID) or a window function like ROW_NUMBER() OVER (PARTITION BY PRODUCT_ID, CHANGE_DATE ORDER BY LOG_ID DESC)."
+        },
+        {
+            "id": "implement_locf_logic",
+            "description": "Agent implements Last Observation Carried Forward (LOCF) logic to fill gaps and defaults missing early history to 0.",
+            "points": 25,
+            "visual_evidence": "SQL code using COALESCE and a window function like LAST_VALUE(...) IGNORE NULLS or a correlated subquery to fetch the previous known STOCK_LEVEL."
+        },
+        {
+            "id": "create_view_definition",
+            "description": "Agent executes the DDL to create the view named DAILY_INVENTORY_FULL with the required columns.",
+            "points": 15,
+            "visual_evidence": "A 'CREATE VIEW DAILY_INVENTORY_FULL' statement being executed in the SQL editor, including columns REPORT_DATE, PRODUCT_ID, and STOCK_LEVEL."
+        },
+        {
+            "id": "verify_view_output",
+            "description": "Agent queries the newly created view to verify the results for January 2026.",
+            "points": 15,
+            "visual_evidence": "A result grid showing rows with REPORT_DATE from 2026-01-01 onwards, PRODUCT_IDs (e.g., 500, 501, 502), and corresponding STOCK_LEVELs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually insert the expected result rows into a table instead of writing the transformation logic.",
+            "visual_evidence": "The SQL code should contain logic (JOINs, window functions, CTEs) rather than a long list of 'INSERT INTO ... VALUES' for every day of the month."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the database management GUI/IDE to write and execute queries rather than just the terminal.",
+            "visual_evidence": "Screenshots show a SQL editor interface (like DBeaver, pgAdmin, or a web-based IDE) with the query and results visible."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The results shown in the UI match the logic written in the editor.",
+            "visual_evidence": "The output grid in the GUI is populated immediately after the execution of the SELECT query on the DAILY_INVENTORY_FULL view."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named DAILY_INVENTORY_FULL. It must cover all 31 days of January 2026. Source table is INVENTORY_LOG. Key test cases: Product 500 has gaps to fill; Product 501 starts mid-month (must show 0s before first entry); Product 502 has multiple updates on one day (must use highest LOG_ID). Columns required: REPORT_DATE, PRODUCT_ID, STOCK_LEVEL."
+}

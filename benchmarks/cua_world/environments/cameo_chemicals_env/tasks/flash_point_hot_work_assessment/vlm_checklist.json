@@ -1,0 +1,53 @@
+{
+    "task_id": "flash_point_hot_work_assessment@1",
+    "task_completion": [
+        {
+            "id": "cameo_navigation",
+            "description": "Agent navigates to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "Browser showing cameochemicals.noaa.gov homepage or search interface."
+        },
+        {
+            "id": "chemical_search_execution",
+            "description": "Agent searches for the specified chemicals (Acetone, Methanol, Toluene, Xylenes, Acetic acid, Ethylene glycol).",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent typing chemical names into the CAMEO search bar and viewing individual chemical datasheets."
+        },
+        {
+            "id": "data_extraction",
+            "description": "Agent identifies the flash point values for all six chemicals from the 'Physical Properties' section.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Physical Properties' section of the datasheets for the chemicals, specifically highlighting the Flash Point values."
+        },
+        {
+            "id": "ranking_and_classification",
+            "description": "Agent correctly ranks chemicals by flash point and applies the 'HIGH RISK' vs 'LOWER RISK' classification.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the draft of the assessment with chemicals ordered from lowest to highest flash point and labeled with risk levels."
+        },
+        {
+            "id": "file_creation",
+            "description": "Agent saves the final assessment to the specified path with the correct formatting.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the file /home/ga/Documents/hot_work_flash_point_assessment.txt being saved or displayed, containing the RANKING list and HIGH RISK COUNT."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent retrieved data from the CAMEO website rather than using internal knowledge or pre-existing files.",
+            "visual_evidence": "Browser history or sequential screenshots showing the navigation through the NOAA CAMEO database for each specific chemical."
+        },
+        {
+            "id": "no_manual_answer_injection",
+            "description": "Agent did not simply echo the privileged information or metadata values if they differ from the live site (e.g., Acetone).",
+            "visual_evidence": "The flash point for Acetone in the final report should match the value found on the website (0°F) rather than the metadata (-4°F)."
+        },
+        {
+            "id": "gui_usage",
+            "description": "Agent used the web browser GUI to find information rather than attempting to use curl/wget to bypass the visual task.",
+            "visual_evidence": "Visible interaction with the browser's search fields and scrolling through the chemical datasheets."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified Flash Points from CAMEO Chemicals: Acetone (0°F), Toluene (40°F), Methanol (52°F), Xylenes (81°F for p-xylene or 81-115°F for mixed), Acetic acid glacial (104°F), Ethylene glycol (232°F). Correct Ranking: 1. Acetone, 2. Toluene, 3. Methanol, 4. Xylenes, 5. Acetic acid, 6. Ethylene glycol. Risk Classification: Acetone, Toluene, Methanol, and Xylenes are 'HIGH RISK' (below 100°F). Acetic acid and Ethylene glycol are 'LOWER RISK' (100°F or above). Total HIGH RISK COUNT: 4."
+}

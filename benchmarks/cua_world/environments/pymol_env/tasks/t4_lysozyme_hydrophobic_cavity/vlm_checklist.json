@@ -1,0 +1,59 @@
+{
+    "task_id": "t4_lysozyme_hydrophobic_cavity@1",
+    "task_completion": [
+        {
+            "id": "load_structures",
+            "description": "Load PDB structures 2LZM and 4W52 into the PyMOL workspace.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list (right panel) shows both '2LZM' and '4W52' entries."
+        },
+        {
+            "id": "superimpose_structures",
+            "description": "Superimpose 4W52 onto 2LZM to align the protein backbones.",
+            "points": 15,
+            "visual_evidence": "The two protein structures appear overlapping in the 3D viewer, and the PyMOL console shows an alignment command (e.g., 'align' or 'super') with RMSD output."
+        },
+        {
+            "id": "measure_ca_distance",
+            "description": "Measure the distance between the C-alpha atoms of residue 99 in both structures.",
+            "points": 20,
+            "visual_evidence": "A measurement line (wizard or distance command) is visible between the C-alpha atoms of residue 99 in both structures, with a distance label displayed in the viewer."
+        },
+        {
+            "id": "identify_cavity_residues",
+            "description": "Identify residues in 4W52 within 4.0 Å of the BNZ ligand.",
+            "points": 20,
+            "visual_evidence": "The PyMOL console shows a selection command using 'within 4.0 of resn BNZ' or similar, and the resulting residues are highlighted or labeled in the viewer."
+        },
+        {
+            "id": "visual_rendering",
+            "description": "Render a high-quality visualization showing the superposition, residue 99 side chains, and the benzene ligand.",
+            "points": 20,
+            "visual_evidence": "The 3D viewer shows the superimposed proteins, the BNZ ligand (likely in sticks/spheres), and the side chains of residue 99 (Leu in 2LZM, Ala in 4W52) specifically highlighted."
+        },
+        {
+            "id": "save_outputs",
+            "description": "Save the final image and the structural analysis report to the specified file paths.",
+            "points": 15,
+            "visual_evidence": "The PyMOL console or terminal shows commands saving 't4_cavity_superposition.png' and writing to 't4_cavity_report.txt' in the /home/ga/PyMOL_Data/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Verify the agent interacted with the PyMOL GUI or command line rather than just creating files.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the structures loaded and manipulated in the 3D viewport."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Check that the distance measurement and residue list were derived from the software, not pre-calculated.",
+            "visual_evidence": "The PyMOL console shows the output of the distance command and the selection count/list for residues near BNZ."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "Ensure the agent used the exact file paths specified in the task.",
+            "visual_evidence": "The save/export commands in the console show the full paths: /home/ga/PyMOL_Data/images/t4_cavity_superposition.png and /home/ga/PyMOL_Data/t4_cavity_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The C-alpha distance for residue 99 between 2LZM and 4W52 should be approximately 0.3 Å (acceptable range 0.1 - 1.5 Å). The ligand residue name is BNZ. The cavity-lining residues in 4W52 (within 4.0 Å of BNZ) typically include Leu78, Gly82, Ala99, Val102, Met103, and Leu118, among others. The image must be saved to /home/ga/PyMOL_Data/images/t4_cavity_superposition.png and the report to /home/ga/PyMOL_Data/t4_cavity_report.txt."
+}

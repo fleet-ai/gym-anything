@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_json_hybrid_analysis@1",
+    "task_completion": [
+        {
+            "id": "create_track_features_table",
+            "description": "Create the TrackFeatures table with TrackId (PK) and Features (TEXT) columns in the chinook.db database.",
+            "points": 10,
+            "visual_evidence": "SQL editor showing the CREATE TABLE statement or the DBeaver database navigator showing 'TrackFeatures' under the Tables node."
+        },
+        {
+            "id": "import_csv_data",
+            "description": "Import data from track_features.csv into the TrackFeatures table using pipe-delimited settings.",
+            "points": 20,
+            "visual_evidence": "DBeaver Import Wizard showing the file path /home/ga/Documents/imports/track_features.csv and the delimiter set to '|', or a data grid showing populated rows in TrackFeatures."
+        },
+        {
+            "id": "create_extended_view",
+            "description": "Create the v_TrackExtended view joining tracks and TrackFeatures, extracting BPM, Key, and Danceability from JSON.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing CREATE VIEW v_TrackExtended with json_extract or similar functions for BPM, Key, and Danceability, or the view appearing in the database navigator."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL analysis scripts to /home/ga/Documents/scripts/json_analysis.sql.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window showing the file json_analysis.sql at the specified path."
+        },
+        {
+            "id": "export_filtered_report",
+            "description": "Export a CSV report to high_energy_tracks.csv with tracks where BPM > 130 and Danceability > 0.7.",
+            "points": 30,
+            "visual_evidence": "DBeaver Export Wizard or a CSV viewer showing the file /home/ga/Documents/exports/high_energy_tracks.csv with columns Name, BPM, and Danceability, and values meeting the criteria (BPM > 130)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DBeaver GUI for database operations rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the DBeaver application window, SQL editor, and Import/Export wizards being actively used."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent imported data from the specified file path rather than manually typing values.",
+            "visual_evidence": "The Import Wizard showing the source path /home/ga/Documents/imports/track_features.csv."
+        },
+        {
+            "id": "actual_sql_execution",
+            "description": "The agent executed SQL queries to generate results rather than creating a dummy CSV file.",
+            "visual_evidence": "The 'Results' tab in DBeaver showing the output of the SELECT statement used for the export."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. The source file /home/ga/Documents/imports/track_features.csv is pipe-delimited (|) and contains JSON strings in the features column. The view v_TrackExtended must extract BPM, Key, and Danceability from this JSON. The final export /home/ga/Documents/exports/high_energy_tracks.csv must only include tracks where BPM > 130 and Danceability > 0.7. The SQL script must be saved to /home/ga/Documents/scripts/json_analysis.sql."
+}

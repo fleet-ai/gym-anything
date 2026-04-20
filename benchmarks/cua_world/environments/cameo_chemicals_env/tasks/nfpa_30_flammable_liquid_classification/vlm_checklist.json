@@ -1,0 +1,53 @@
+{
+    "task_id": "nfpa_30_flammable_liquid_classification@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search results page (cameochemicals.noaa.gov)."
+        },
+        {
+            "id": "retrieve_chemical_data",
+            "description": "Agent searches for and retrieves Flash Point and Boiling Point data for the specified chemicals.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent viewing the chemical data sheets for Diethyl Ether, Toluene, o-Xylene, Acetic Acid, Benzaldehyde, and Glycerine."
+        },
+        {
+            "id": "calculate_nfpa_classes",
+            "description": "Agent applies the NFPA 30 logic to classify each chemical based on retrieved temperatures.",
+            "points": 25,
+            "visual_evidence": "The agent is seen typing or calculating the classes (e.g., Class IA, IB, etc.) in a text editor, spreadsheet, or terminal before final export."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Agent creates a CSV file with the correct headers and data structure.",
+            "points": 20,
+            "visual_evidence": "A file editor or terminal output shows a CSV structure with headers: Chemical Name, Flash Point (F), Boiling Point (F), and NFPA 30 Class."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Agent saves the final CSV to the specific path ~/Documents/flammable_liquid_classes.csv.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or a terminal 'ls' command confirms the file exists at ~/Documents/flammable_liquid_classes.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually browsed the NOAA website rather than using pre-cached knowledge.",
+            "visual_evidence": "Screenshots show the browser address bar and the specific layout of the CAMEO Chemicals search results."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply echo the final CSV content without visiting the source site.",
+            "visual_evidence": "The trajectory shows a sequence of searching for each chemical individually on the website."
+        },
+        {
+            "id": "manual_classification_logic",
+            "description": "Agent correctly mapped the temperatures to the NFPA classes using the provided logic.",
+            "visual_evidence": "The final CSV values match the logic: e.g., Diethyl Ether (FP -49, BP 94) is Class IA because BP < 100."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified Data for Scoring: 1. Diethyl Ether: FP -49°F, BP 94.3°F -> Class IA. 2. Toluene: FP 40°F, BP 231.1°F -> Class IB. 3. o-Xylene: FP 90°F, BP 291.2°F -> Class IC. 4. Acetic Acid: FP 103°F, BP 244.4°F -> Class II. 5. Benzaldehyde: FP 145°F, BP 354.2°F -> Class IIIA. 6. Glycerine: FP 320°F, BP 554°F -> Class IIIB. Ensure the CSV headers match exactly: Chemical Name, Flash Point (F), Boiling Point (F), NFPA 30 Class."
+}

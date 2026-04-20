@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_pv_outage_revenue_impact@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at the specified path /home/ga/Documents/SAM_Projects/outage_analysis.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation or saving of 'outage_analysis.py' in the correct directory."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "The script configures PySAM with the correct parameters: 50 MW DC, 1.2 DC-to-AC ratio, 14.08% losses, 96% inverter efficiency, and single-axis tracking (tilt 0, azimuth 180).",
+            "points": 20,
+            "visual_evidence": "Code snippets in the editor showing 'system_capacity' set to 50000, 'dc_ac_ratio' to 1.2, 'inv_eff' to 96, and 'losses' to 14.08."
+        },
+        {
+            "id": "outage_implementation",
+            "description": "The script implements the summer (indices 4344-4679) and winter (indices 8016-8351) outages using AdjustmentFactors.",
+            "points": 25,
+            "visual_evidence": "Code showing the creation of an array of 8760 values where specific indices are set to 0 to simulate the 14-day outages."
+        },
+        {
+            "id": "revenue_calculation",
+            "description": "The script calculates lost revenue using the PPA price of $0.04/kWh.",
+            "points": 15,
+            "visual_evidence": "Code showing a multiplication of energy (kWh) by 0.04 to determine revenue impact."
+        },
+        {
+            "id": "json_results_generation",
+            "description": "The agent executes the script and generates the results JSON file at /home/ga/Documents/SAM_Projects/outage_results.json.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running or a file explorer showing the existence of 'outage_results.json'."
+        },
+        {
+            "id": "correct_recommendation",
+            "description": "The final JSON contains the recommended season based on the lower revenue loss.",
+            "points": 10,
+            "visual_evidence": "The content of 'outage_results.json' showing 'recommended_outage_season' as 'winter'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write the JSON file with hardcoded values without running a simulation.",
+            "visual_evidence": "The agent should be seen importing 'PySAM' or 'pysam' and calling the 'execute()' method in the script."
+        },
+        {
+            "id": "weather_file_usage",
+            "description": "The agent correctly accesses the weather file path from the specified text file.",
+            "visual_evidence": "The script or terminal shows the agent reading '/home/ga/.SAM/solar_resource_dir.txt' to locate the TMY file."
+        },
+        {
+            "id": "genuine_pysam_interaction",
+            "description": "The agent uses the PySAM library rather than manual estimations.",
+            "visual_evidence": "Terminal logs showing the installation or import of 'pysam' and the absence of manual 'energy = capacity * hours' shortcuts."
+        }
+    ],
+    "privileged_info_for_vlm": "The PPA price is exactly $0.04/kWh. The summer outage indices are 4344-4679 and winter indices are 8016-8351. For a US-based TMY file, the winter outage will always result in lower lost revenue than a summer outage due to lower solar irradiance; therefore, the 'recommended_outage_season' must be 'winter'. Baseline energy for a 50MW tracking plant in the US typically falls between 70M and 120M kWh."
+}

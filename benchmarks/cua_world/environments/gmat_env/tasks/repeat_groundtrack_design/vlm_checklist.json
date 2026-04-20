@@ -1,0 +1,59 @@
+{
+    "task_id": "repeat_groundtrack_design@1",
+    "task_completion": [
+        {
+            "id": "open_requirements_file",
+            "description": "Agent opens the orbit requirements document on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/earthmapper3_orbit_requirements.txt."
+        },
+        {
+            "id": "gmat_interface_active",
+            "description": "Agent opens the GMAT (General Mission Analysis Tool) software.",
+            "points": 10,
+            "visual_evidence": "The GMAT graphical user interface is visible on the screen."
+        },
+        {
+            "id": "configure_orbit_parameters",
+            "description": "Agent configures the satellite orbit parameters (SMA, Inclination) in GMAT to match sun-synchronous repeat cycle requirements.",
+            "points": 25,
+            "visual_evidence": "GMAT 'Spacecraft' or 'Orbit' setup panel showing values for Semi-Major Axis (approx 7077-7078 km) and Inclination (approx 98.2 deg)."
+        },
+        {
+            "id": "propagate_16_days",
+            "description": "Agent sets up a propagation sequence for the full 16-day repeat cycle.",
+            "points": 15,
+            "visual_evidence": "GMAT Mission Tree showing a 'Propagate' command with a duration or stop condition set to 16 days (1382400 seconds)."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal showing earthmapper3_orbit.script exists in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_results_file",
+            "description": "Agent creates the final results text file with all required orbital fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/groundtrack_design_results.txt containing SMA_km, INC_deg, ECC, altitude_km, longitude_drift_deg, repeat_cycle_revolutions, and sun_sync_RAAN_rate_degperday."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_usage",
+            "description": "The agent used the GMAT GUI to perform the design rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show the GMAT application window being interacted with (Mission Tree, Resource Tree, or Output tabs)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The orbital parameters in the results file match the specific requirements (16-day/233-rev) rather than generic values.",
+            "visual_evidence": "The results file shows an SMA near 7077.7 km and Inclination near 98.19 deg."
+        },
+        {
+            "id": "no_premade_results",
+            "description": "The agent did not simply copy a pre-existing results file from a hidden directory.",
+            "visual_evidence": "The agent is seen typing or using the GMAT 'Save As' or 'ReportFile' functions."
+        }
+    ],
+    "privileged_info_for_vlm": "The target orbit for a 16-day / 233-revolution repeat cycle is approximately: Semi-Major Axis (SMA) = 7077.7 km (acceptable range 7070-7100 km), Inclination = 98.19 degrees (acceptable range 98.0-98.5 deg). The Sun-Synchronous RAAN rate should be approximately 0.9856 deg/day. The script must be at ~/GMAT_output/earthmapper3_orbit.script and the results at ~/GMAT_output/groundtrack_design_results.txt."
+}

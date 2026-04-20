@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_snr_report_scamp@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_gui",
+            "description": "The agent opens the SeisComP graphical interface (e.g., scconfig or scolv) to manage the earthquake data.",
+            "points": 10,
+            "visual_evidence": "A window showing the SeisComP user interface, such as the configuration manager or the origin locator view."
+        },
+        {
+            "id": "load_waveform_data",
+            "description": "The agent accesses or loads the waveform archive located at /home/ga/seiscomp/var/lib/archive.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the file browser or SeisComP settings pointing to the specific archive path /home/ga/seiscomp/var/lib/archive."
+        },
+        {
+            "id": "identify_p_wave_picks",
+            "description": "The agent identifies or processes P-wave picks for the Noto earthquake event.",
+            "points": 20,
+            "visual_evidence": "Waveform traces in a SeisComP window (like scolv) with vertical markers indicating 'P' phase picks."
+        },
+        {
+            "id": "calculate_snr_values",
+            "description": "The agent calculates or displays the Signal-to-Noise Ratio (SNR) for the identified P-waves.",
+            "points": 25,
+            "visual_evidence": "A table or inspector view within SeisComP showing SNR values associated with specific station picks."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "The agent exports the data to a CSV file at the specified path /home/ga/snr_report.csv.",
+            "points": 15,
+            "visual_evidence": "A terminal command or a 'Save As' dialog box showing the file path /home/ga/snr_report.csv."
+        },
+        {
+            "id": "verify_csv_format",
+            "description": "The exported CSV contains the correct header: STATION,PHASE,SNR.",
+            "points": 15,
+            "visual_evidence": "A view of the file content (via 'cat' in terminal or a text editor) showing the header row 'STATION,PHASE,SNR' and at least 3 rows of data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_software_interaction",
+            "description": "The agent interacted with the SeisComP software rather than just creating a manual file.",
+            "visual_evidence": "Screenshots must show the SeisComP GUI windows and waveform processing, not just a terminal creating a CSV from scratch."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the expected station names and SNR values into a file.",
+            "visual_evidence": "The agent should be seen clicking on waveforms or using SeisComP processing tools before the CSV is generated."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the local archive path provided in the instructions.",
+            "visual_evidence": "The path /home/ga/seiscomp/var/lib/archive should be visible in the configuration or command logs."
+        }
+    ],
+    "privileged_info_for_vlm": "The waveform archive only contains data for three stations: GSI, SANI, and BKB. Although the inventory may list TOLI and KWP, their waveform files (.mseed) are missing. A successful report will contain exactly 3 SNR measurements for GSI, SANI, and BKB. The output must be a CSV at /home/ga/snr_report.csv with the header STATION,PHASE,SNR."
+}

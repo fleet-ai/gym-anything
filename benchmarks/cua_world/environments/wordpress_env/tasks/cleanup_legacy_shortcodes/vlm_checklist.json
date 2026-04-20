@@ -1,0 +1,53 @@
+{
+    "task_id": "cleanup_legacy_shortcodes@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_posts",
+            "description": "Navigate to the 'Posts' section in the WordPress admin dashboard.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the WordPress dashboard with the 'Posts' menu item selected and a list of posts including 'Service Interruption Notice', 'Watch our latest webinar', and 'Annual Report 2025'."
+        },
+        {
+            "id": "replace_alert_with_quote",
+            "description": "In 'Service Interruption Notice', replace the [legacy_alert] shortcode with a native Quote block.",
+            "points": 25,
+            "visual_evidence": "The post editor for 'Service Interruption Notice' shows a Quote block containing the text 'Our servers will be down for maintenance on Sunday.' The original [legacy_alert] tags are gone."
+        },
+        {
+            "id": "replace_video_with_youtube",
+            "description": "In 'Watch our latest webinar', replace the [legacy_video] shortcode with a YouTube Embed block.",
+            "points": 30,
+            "visual_evidence": "The post editor for 'Watch our latest webinar' shows a YouTube Embed block with the URL 'https://www.youtube.com/watch?v=jNQXAC9IVRw'. The [legacy_video] shortcode is gone."
+        },
+        {
+            "id": "replace_button_with_block",
+            "description": "In 'Annual Report 2025', replace the [legacy_button] shortcode with a native Buttons block.",
+            "points": 25,
+            "visual_evidence": "The post editor for 'Annual Report 2025' shows a Buttons block with a single button labeled 'Download Report' linked to '/annual-report-pdf'. The [legacy_button] shortcode is gone."
+        },
+        {
+            "id": "verify_updates_saved",
+            "description": "Ensure all three posts have been updated/saved.",
+            "points": 10,
+            "visual_evidence": "The VLM should see 'Post updated' notifications or the 'Update' button in a disabled/greyed-out state after clicking it for each of the three posts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the WordPress GUI to perform edits rather than WP-CLI or terminal commands.",
+            "visual_evidence": "The screenshots show the mouse cursor interacting with the Gutenberg editor and WordPress dashboard elements; no terminal windows are used for the content replacement."
+        },
+        {
+            "id": "no_leftover_shortcodes",
+            "description": "The agent did not simply append the new blocks but actually deleted the legacy shortcode text.",
+            "visual_evidence": "The editor view for each post shows only the new Gutenberg blocks; the raw text strings like '[legacy_alert]' or '[/legacy_button]' are nowhere to be seen in the content area."
+        },
+        {
+            "id": "genuine_block_insertion",
+            "description": "The agent used actual Gutenberg blocks (Quote, YouTube, Buttons) rather than just typing the text into a standard paragraph block.",
+            "visual_evidence": "The block toolbar or the 'List View' in the WordPress editor identifies the blocks as 'Quote', 'YouTube', and 'Buttons' respectively."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires replacing specific legacy shortcodes with native WordPress blocks. Post 1 ('Service Interruption Notice') must have '[legacy_alert]Our servers will be down for maintenance on Sunday.[/legacy_alert]' replaced by a Quote block with that exact text. Post 2 ('Watch our latest webinar') must have '[legacy_video id=\"jNQXAC9IVRw\"]' replaced by a YouTube Embed block with URL 'https://www.youtube.com/watch?v=jNQXAC9IVRw'. Post 3 ('Annual Report 2025') must have '[legacy_button url=\"/annual-report-pdf\" label=\"Download Report\"]' replaced by a Buttons block with text 'Download Report' and link '/annual-report-pdf'."
+}

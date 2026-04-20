@@ -1,0 +1,59 @@
+{
+    "task_id": "develop_realtime_pick_monitor@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The Python script 'pick_monitor.py' is created in the home directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the existence of ~/pick_monitor.py."
+        },
+        {
+            "id": "messaging_api_usage",
+            "description": "The script contains code to connect to the SeisComP messaging bus and subscribe to the PICK group.",
+            "points": 20,
+            "visual_evidence": "Code editor or cat output showing imports like 'seiscomp3.client' or 'seiscomp.client' and a connection to the 'PICK' group."
+        },
+        {
+            "id": "pick_injection_execution",
+            "description": "The agent executes a command to inject the sample pick XML into the SeisComP system.",
+            "points": 15,
+            "visual_evidence": "Terminal showing a command like 'scdispatch -i ~/sample_pick.xml' or similar SeisComP injection tools."
+        },
+        {
+            "id": "monitor_running",
+            "description": "The pick_monitor.py script is executed and running while the picks are being processed.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing 'python3 pick_monitor.py' being executed."
+        },
+        {
+            "id": "log_file_generation",
+            "description": "The log file 'pick_log.txt' is created in the home directory.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing the existence of ~/pick_log.txt after the script runs."
+        },
+        {
+            "id": "correct_log_content",
+            "description": "The log file contains the detected pick publicID in the required format.",
+            "points": 30,
+            "visual_evidence": "Terminal output of 'cat ~/pick_log.txt' showing lines starting with 'DETECTED PICK: ' followed by a publicID string."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_picks",
+            "description": "The agent did not simply echo the publicID from the XML into the log file manually.",
+            "visual_evidence": "The script pick_monitor.py should contain logic for a messaging client, not just a print statement with a hardcoded ID from sample_pick.xml."
+        },
+        {
+            "id": "genuine_messaging_subscription",
+            "description": "The agent used the SeisComP messaging API rather than just parsing the XML file directly in the script.",
+            "visual_evidence": "The source code of pick_monitor.py must show SeisComP client/messaging classes, not just 'open(sample_pick.xml)'."
+        },
+        {
+            "id": "real_time_execution",
+            "description": "The log entries were generated as a result of running the script, not by manual text editing.",
+            "visual_evidence": "The terminal should show the script running and potentially printing output before the log file is inspected."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be located at /home/ga/pick_monitor.py and the log at /home/ga/pick_log.txt. The script must subscribe to the 'PICK' messaging group. The required log format is 'DETECTED PICK: <publicID>'. The agent must use the SeisComP messaging bus (localhost) to receive data, which is triggered by injecting ~/sample_pick.xml into the system."
+}

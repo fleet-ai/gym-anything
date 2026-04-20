@@ -1,0 +1,53 @@
+{
+    "task_id": "secure_user_profile_config@1",
+    "task_completion": [
+        {
+            "id": "create_verify_function",
+            "description": "Create the 'STRICT_PASS_VERIFY' password verification function in the SYSTEM schema.",
+            "points": 20,
+            "visual_evidence": "SQL command or GUI confirmation showing the creation of 'STRICT_PASS_VERIFY' with logic for length >= 8, numeric check, and username check."
+        },
+        {
+            "id": "create_secure_profile",
+            "description": "Create the 'SECURE_DEV_PROFILE' with the specified security limits and the verification function.",
+            "points": 25,
+            "visual_evidence": "SQL output or Profile Management window showing SECURE_DEV_PROFILE with SESSIONS_PER_USER=2, IDLE_TIME=15, FAILED_LOGIN_ATTEMPTS=3, PASSWORD_LOCK_TIME=1, PASSWORD_LIFE_TIME=90, and PASSWORD_VERIFY_FUNCTION=STRICT_PASS_VERIFY."
+        },
+        {
+            "id": "assign_profile_to_hr",
+            "description": "Assign the 'SECURE_DEV_PROFILE' to the 'HR' user account.",
+            "points": 15,
+            "visual_evidence": "ALTER USER HR PROFILE SECURE_DEV_PROFILE command or the HR user properties window showing the assigned profile."
+        },
+        {
+            "id": "change_hr_password",
+            "description": "Change the 'HR' user's password to 'Oracle_2026' to demonstrate the new policy.",
+            "points": 15,
+            "visual_evidence": "SQL command 'ALTER USER HR IDENTIFIED BY Oracle_2026' and a success message."
+        },
+        {
+            "id": "lock_hr_account",
+            "description": "Generate failed login attempts until the 'HR' account is locked.",
+            "points": 25,
+            "visual_evidence": "Repeated failed login attempts for user HR followed by an error message indicating 'ORA-28000: the account is locked'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with a real Oracle database interface (SQL Plus, SQL Developer, or Enterprise Manager).",
+            "visual_evidence": "Standard Oracle UI elements, command prompts, or connection logs rather than static text files or mockups."
+        },
+        {
+            "id": "no_manual_status_override",
+            "description": "The account lock was achieved through failed logins, not a manual 'ALTER USER HR ACCOUNT LOCK' command.",
+            "visual_evidence": "Screenshots showing login attempts and the resulting ORA-28000 error rather than a direct administrative lock command."
+        },
+        {
+            "id": "administrative_context",
+            "description": "The agent used the SYSTEM account for administrative tasks.",
+            "visual_evidence": "Connection strings or login screens showing 'SYSTEM' as the active user during profile and function creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create a function named STRICT_PASS_VERIFY and a profile named SECURE_DEV_PROFILE. Profile limits must be: SESSIONS_PER_USER: 2, IDLE_TIME: 15, FAILED_LOGIN_ATTEMPTS: 3, PASSWORD_LOCK_TIME: 1, PASSWORD_LIFE_TIME: 90. The HR user must be assigned this profile. The final state of the HR account must be 'LOCKED' due to exceeding the 3 failed login attempts allowed by the profile."
+}

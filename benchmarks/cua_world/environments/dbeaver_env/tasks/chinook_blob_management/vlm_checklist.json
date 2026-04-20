@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_blob_management@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connected_chinook",
+            "description": "DBeaver is open and connected to the chinook.db database.",
+            "points": 10,
+            "visual_evidence": "The DBeaver Database Navigator shows 'chinook.db' or 'chinook' as an active connection."
+        },
+        {
+            "id": "sql_create_table",
+            "description": "The agent executes a SQL statement to create the 'employee_badges' table with the specified columns.",
+            "points": 15,
+            "visual_evidence": "A SQL Editor window in DBeaver showing 'CREATE TABLE employee_badges' with columns BadgeId, EmployeeId, BadgeData, and IssueDate."
+        },
+        {
+            "id": "insert_blob_record",
+            "description": "The agent inserts a record for EmployeeId 1 with the specified date and BLOB data.",
+            "points": 25,
+            "visual_evidence": "SQL Editor or Data Grid showing an INSERT statement or a new row in 'employee_badges' with EmployeeId=1, IssueDate='2024-01-01', and a [BLOB] or [IMAGE] value in the BadgeData column."
+        },
+        {
+            "id": "export_blob_image",
+            "description": "The agent uses DBeaver's export functionality to save the BLOB to a file.",
+            "points": 25,
+            "visual_evidence": "The DBeaver 'Export Value' or 'Save to file' dialog open, showing the destination path '/home/ga/Documents/exports/verified_badge.png'."
+        },
+        {
+            "id": "save_ddl_script",
+            "description": "The agent saves the SQL CREATE TABLE statement to the specified script file.",
+            "points": 25,
+            "visual_evidence": "A text editor or DBeaver 'Save As' dialog showing the SQL script being saved to '/home/ga/Documents/scripts/badge_schema.sql'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DBeaver GUI for database management rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the DBeaver application window, menus, and data grids being interacted with."
+        },
+        {
+            "id": "genuine_blob_handling",
+            "description": "The agent actually handled the BLOB data within DBeaver rather than manually copying the source image to the destination.",
+            "visual_evidence": "Screenshots show the BLOB cell being edited or exported within the DBeaver Data Editor."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply create empty files to pass checks.",
+            "visual_evidence": "The SQL editor shows the actual DDL code and the export dialog shows the specific file path configuration."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. The target employee is Andrew Adams (EmployeeId: 1). The source image for the BLOB is /usr/share/dbeaver-ce/dbeaver.png. The required export path is /home/ga/Documents/exports/verified_badge.png and the SQL script path is /home/ga/Documents/scripts/badge_schema.sql. The IssueDate must be exactly '2024-01-01'."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "sakila_film_audit_triggers@1",
+    "task_completion": [
+        {
+            "id": "create_audit_table",
+            "description": "Create the 'film_audit_log' table with the specified schema in the sakila database.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE TABLE statement for 'film_audit_log' or the table appearing in the MySQL Workbench schema navigator."
+        },
+        {
+            "id": "create_triggers",
+            "description": "Implement the three required AFTER triggers: trg_film_after_insert, trg_film_after_update, and trg_film_after_delete.",
+            "points": 25,
+            "visual_evidence": "SQL code for CREATE TRIGGER statements or the triggers listed under the 'film' table in the MySQL Workbench object browser."
+        },
+        {
+            "id": "insert_test_film",
+            "description": "Insert 'AUDIT TEST FILM' into the film table to test the insert trigger.",
+            "points": 10,
+            "visual_evidence": "SQL INSERT statement executed for 'AUDIT TEST FILM' or a success message in the output console."
+        },
+        {
+            "id": "update_film_rate",
+            "description": "Update the rental_rate of film_id 1 ('ACADEMY DINOSAUR') to 1.99.",
+            "points": 10,
+            "visual_evidence": "SQL UPDATE statement executed for film_id 1 or the result grid showing the updated rate."
+        },
+        {
+            "id": "delete_test_film",
+            "description": "Delete 'AUDIT TEST FILM' from the film table to test the delete trigger.",
+            "points": 10,
+            "visual_evidence": "SQL DELETE statement executed for 'AUDIT TEST FILM' or a success message in the output console."
+        },
+        {
+            "id": "verify_audit_log_content",
+            "description": "Query the film_audit_log table to verify it contains records for the INSERT, UPDATE, and DELETE actions.",
+            "points": 20,
+            "visual_evidence": "A SELECT * FROM film_audit_log result grid showing at least three rows corresponding to the test actions."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the film_audit_log table to /home/ga/Documents/exports/film_audit_log.csv.",
+            "points": 10,
+            "visual_evidence": "The MySQL Workbench export wizard, a 'Save' dialog pointing to the specific path, or a file manager showing the CSV in the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used MySQL Workbench GUI features or SQL editor rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the MySQL Workbench application window, query tabs, and result grids."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not simply create a fake CSV file manually without running the database operations.",
+            "visual_evidence": "Sequential screenshots showing the execution of SQL commands and the resulting changes in the database schema/data."
+        },
+        {
+            "id": "no_hardcoded_log",
+            "description": "The agent didn't manually insert rows into the audit log to fake trigger functionality.",
+            "visual_evidence": "The presence of 'CREATE TRIGGER' code in the SQL editor, proving the automation of the logging."
+        }
+    ],
+    "privileged_info_for_vlm": "The target database is 'sakila'. The audit table must be named 'film_audit_log'. Required triggers are 'trg_film_after_insert', 'trg_film_after_update', and 'trg_film_after_delete'. The test film title is 'AUDIT TEST FILM'. The film to be updated is film_id 1 ('ACADEMY DINOSAUR'). The final export path is /home/ga/Documents/exports/film_audit_log.csv. The audit log must capture old and new rental rates; for film_id 1, the new_rental_rate should be 1.99."
+}

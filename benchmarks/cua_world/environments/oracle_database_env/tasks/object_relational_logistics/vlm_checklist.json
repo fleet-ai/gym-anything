@@ -1,0 +1,53 @@
+{
+    "task_id": "object_relational_logistics@1",
+    "task_completion": [
+        {
+            "id": "create_object_types",
+            "description": "Create Oracle Object Type T_MANIFEST_ITEM and Collection Type T_MANIFEST_TAB.",
+            "points": 15,
+            "visual_evidence": "SQL execution output or database explorer showing the creation of T_MANIFEST_ITEM (attributes: ITEM_NAME, QUANTITY, UNIT_WEIGHT_KG) and T_MANIFEST_TAB (TABLE OF T_MANIFEST_ITEM)."
+        },
+        {
+            "id": "create_shipment_objects_table",
+            "description": "Create the SHIPMENT_OBJECTS table with the MANIFEST column and explicit nested table storage.",
+            "points": 15,
+            "visual_evidence": "SQL command showing 'CREATE TABLE SHIPMENT_OBJECTS' with 'NESTED TABLE MANIFEST STORE AS STORED_MANIFEST_ITEMS'."
+        },
+        {
+            "id": "data_migration_logic",
+            "description": "Migrate and consolidate data from legacy_manifests.csv into the object-relational table.",
+            "points": 25,
+            "visual_evidence": "SQL script or PL/SQL block that reads the CSV and performs an INSERT/COLLECT into SHIPMENT_OBJECTS, ensuring one row per SHIPMENT_ID."
+        },
+        {
+            "id": "create_weights_view",
+            "description": "Create the V_MANIFEST_WEIGHTS view with specific calculated columns.",
+            "points": 20,
+            "visual_evidence": "SQL command creating V_MANIFEST_WEIGHTS with columns: SHIPMENT_ID, ITEM_COUNT_DISTINCT, TOTAL_ITEMS, and TOTAL_WEIGHT_KG."
+        },
+        {
+            "id": "verify_data_integrity",
+            "description": "Query the view to verify the migrated data matches expected values (specifically Shipment 1003).",
+            "points": 25,
+            "visual_evidence": "A SELECT query result showing Shipment 1003 with TOTAL_ITEMS = 150 and TOTAL_WEIGHT_KG = 238.5."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a database GUI or IDE (like SQL Developer or a browser-based tool) rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing a database management interface, SQL editor, or GUI-based data import wizard."
+        },
+        {
+            "id": "genuine_csv_access",
+            "description": "The agent actually opened or processed the file at /home/ga/Desktop/legacy_manifests.csv.",
+            "visual_evidence": "Screenshots showing the CSV file being opened in a text editor or referenced in a SQL loader/import tool."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply print the expected values but derived them from the database.",
+            "visual_evidence": "The final verification must be a result of a 'SELECT * FROM V_MANIFEST_WEIGHTS' query, not a manual print statement."
+        }
+    ],
+    "privileged_info_for_vlm": "The legacy CSV contains 4 distinct shipments (1001-1004). For Shipment ID 1003, the correct calculated values are: TOTAL_ITEMS = 150 (50+50+50) and TOTAL_WEIGHT_KG = 238.5. The nested table storage must be named 'STORED_MANIFEST_ITEMS'. The object types required are T_MANIFEST_ITEM and T_MANIFEST_TAB."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "warranty_audit_remediation@1",
+    "task_completion": [
+        {
+            "id": "identify_expired_assets",
+            "description": "Identify hardware assets where the purchase date plus warranty months is before 2025-03-06.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent viewing a list of assets with columns for 'Purchase Date' and 'Warranty' (months) to calculate expiration."
+        },
+        {
+            "id": "filter_eligible_assets",
+            "description": "Ensure only active assets are selected, excluding those already marked as 'Retired', 'Lost', or 'Stolen'.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent checking the current status of assets or applying filters to exclude 'Retired', 'Lost', or 'Stolen' statuses."
+        },
+        {
+            "id": "update_status_to_pending",
+            "description": "Update the status of all identified expired assets to 'Pending'.",
+            "points": 30,
+            "visual_evidence": "Screenshots of the asset edit screen or bulk action menu showing the 'Status' field being changed to 'Pending' for the correct assets."
+        },
+        {
+            "id": "add_compliance_note",
+            "description": "Add the specific compliance note to the expired assets.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the text 'WARRANTY EXPIRED - Renewal or replacement required per compliance policy FIN-IT-2025-Q1' being typed or saved into the 'Notes' or 'Comments' field."
+        },
+        {
+            "id": "verify_no_false_positives",
+            "description": "Ensure assets with active warranties (expiring after 2025-03-06) remain unchanged.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent bypassing assets that do not meet the expiration criteria or a final list showing active assets with their original status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent must use the web interface/GUI to perform updates rather than direct database manipulation via terminal.",
+            "visual_evidence": "The agent interacts with buttons, dropdowns, and text fields in the browser; no SQL update commands are seen in a terminal."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually or via GUI tools enters the compliance note rather than just displaying a success message without action.",
+            "visual_evidence": "Screenshots capture the process of opening individual asset records or a bulk edit modal to input the data."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent calculates the expiration date based on the provided audit date (2025-03-06) rather than using a pre-made list of IDs.",
+            "visual_evidence": "The agent is seen looking at the purchase date and warranty duration values before selecting an asset for modification."
+        }
+    ],
+    "privileged_info_for_vlm": "The audit date is 2025-03-06. Assets are expired if (Purchase Date + Warranty Months) < 2025-03-06. Expired assets must have status changed to 'Pending' and the exact note 'WARRANTY EXPIRED - Renewal or replacement required per compliance policy FIN-IT-2025-Q1' added. Assets with status 'Retired', 'Lost', or 'Stolen' must NOT be modified even if their warranty is expired. Asset W004 is specifically noted in the scoring criteria as one that should not be modified if it is retired."
+}

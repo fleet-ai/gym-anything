@@ -1,0 +1,65 @@
+{
+    "task_id": "configure_fcd_output@1",
+    "task_completion": [
+        {
+            "id": "open_template_config",
+            "description": "Agent opens the original configuration file /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg to use as a template.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the contents of run.sumocfg."
+        },
+        {
+            "id": "create_new_config",
+            "description": "Agent creates or saves a new configuration file at /home/ga/SUMO_Scenarios/bologna_pasubio/run_fcd.sumocfg.",
+            "points": 15,
+            "visual_evidence": "A text editor or file manager showing the new file name run_fcd.sumocfg."
+        },
+        {
+            "id": "configure_time_settings",
+            "description": "The new configuration file has simulation time set from 0 to 500.",
+            "points": 15,
+            "visual_evidence": "In the XML/text editor, <begin value=\"0\"/> and <end value=\"500\"/> are visible within the <time> section."
+        },
+        {
+            "id": "configure_fcd_output",
+            "description": "The configuration includes FCD output to the correct path with a 1.0s period.",
+            "points": 20,
+            "visual_evidence": "In the XML/text editor, <fcd-output value=\"/home/ga/SUMO_Output/pasubio_fcd.xml\"/> and <device.fcd.period value=\"1.0\"/> (or similar period setting) are visible."
+        },
+        {
+            "id": "configure_tripinfo_output",
+            "description": "The configuration includes tripinfo output to the correct path.",
+            "points": 15,
+            "visual_evidence": "In the XML/text editor, <tripinfo-output value=\"/home/ga/SUMO_Output/tripinfos.xml\"/> is visible."
+        },
+        {
+            "id": "run_headless_simulation",
+            "description": "Agent executes the simulation using the 'sumo' command (headless) rather than 'sumo-gui'.",
+            "points": 15,
+            "visual_evidence": "A terminal showing a command like 'sumo -c /home/ga/SUMO_Scenarios/bologna_pasubio/run_fcd.sumocfg' being executed."
+        },
+        {
+            "id": "verify_output_generation",
+            "description": "The output files are generated in the target directory.",
+            "points": 10,
+            "visual_evidence": "A terminal 'ls' command or file manager showing pasubio_fcd.xml and tripinfos.xml in /home/ga/SUMO_Output/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not simply 'touch' or create empty output files to fake completion.",
+            "visual_evidence": "The terminal output should show the SUMO simulation progress (e.g., 'Step #500.00') or the file sizes in a directory listing should be non-zero (FCD file should be large)."
+        },
+        {
+            "id": "correct_binary_usage",
+            "description": "Agent used the headless 'sumo' command as requested, not the GUI.",
+            "visual_evidence": "The command line shows 'sumo' and not 'sumo-gui'; no SUMO graphical window is active during execution."
+        },
+        {
+            "id": "template_retention",
+            "description": "Agent actually used the template and didn't write a bare-bones config from scratch.",
+            "visual_evidence": "The run_fcd.sumocfg file contains the original input tags (net-file, route-files) from the source run.sumocfg."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create /home/ga/SUMO_Scenarios/bologna_pasubio/run_fcd.sumocfg. Key XML values: <begin value=\"0\"/>, <end value=\"500\"/>, <fcd-output value=\"/home/ga/SUMO_Output/pasubio_fcd.xml\"/>, <tripinfo-output value=\"/home/ga/SUMO_Output/tripinfos.xml\"/>. The FCD period should be 1.0. A successful simulation run of this scenario to step 500 typically produces an FCD file significantly larger than 100KB (approx 28MB)."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "geo_defunct_drift_hazard_prediction@1",
+    "task_completion": [
+        {
+            "id": "open_gmat_script",
+            "description": "Agent opens the GMAT application and loads the script from ~/Documents/missions/defunct_geo_hazard.script.",
+            "points": 10,
+            "visual_evidence": "The GMAT GUI is visible with the script 'defunct_geo_hazard.script' loaded in the script editor or resource tree."
+        },
+        {
+            "id": "configure_gravity_model",
+            "description": "Agent modifies the Earth gravity model to at least Degree 8 and Order 8.",
+            "points": 25,
+            "visual_evidence": "The GMAT 'Force Model' or 'Gravity Field' configuration window shows 'Degree' and 'Order' fields set to values >= 8 (e.g., 8x8 or 10x10)."
+        },
+        {
+            "id": "run_propagation",
+            "description": "Agent executes the GMAT script to propagate the orbit for 730 days.",
+            "points": 15,
+            "visual_evidence": "The GMAT 'Run' button is pressed, and the message window or progress bar indicates the simulation is running or completed."
+        },
+        {
+            "id": "identify_crossing_date",
+            "description": "Agent identifies the UTC date when the longitude crosses -35.0 degrees (325.0 E).",
+            "points": 30,
+            "visual_evidence": "The agent is seen inspecting a report file, data plot, or message window in GMAT to find the timestamp corresponding to Longitude = -35.0."
+        },
+        {
+            "id": "save_output_file",
+            "description": "Agent saves the crossing date in 'DD Mon YYYY' format to ~/GMAT_output/hazard_prediction.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file /home/ga/GMAT_output/hazard_prediction.txt containing a date like '15 Oct 2025'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_interaction",
+            "description": "The agent interacted with the GMAT GUI to perform calculations rather than just writing a file.",
+            "visual_evidence": "Screenshots show the GMAT interface being manipulated (menus, dialog boxes, or script editor) rather than just terminal commands."
+        },
+        {
+            "id": "no_hardcoded_result",
+            "description": "The agent did not simply echo a date into the file without performing the simulation.",
+            "visual_evidence": "The trajectory shows the agent opening the script and running the GMAT engine before the final text file is created."
+        },
+        {
+            "id": "correct_gravity_parameters",
+            "description": "The agent actually changed the gravity settings to the required fidelity.",
+            "visual_evidence": "The script editor or the Gravity Field dialog box explicitly shows the numbers 8 or higher for both degree and order."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use GMAT to simulate a drift from -15.0W to -35.0W. The gravity model must be set to at least Degree 8 and Order 8. The final output must be in /home/ga/GMAT_output/hazard_prediction.txt in 'DD Mon YYYY' format. The reported date is correct if it is within 7 days of the simulation's calculated crossing point."
+}

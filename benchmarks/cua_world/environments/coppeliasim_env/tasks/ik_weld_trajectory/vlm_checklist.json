@@ -1,0 +1,59 @@
+{
+    "task_id": "ik_weld_trajectory@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "CoppeliaSim application is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI window is open, showing the 3D simulation environment."
+        },
+        {
+            "id": "ik_setup_configuration",
+            "description": "Inverse Kinematics (IK) is configured for the robot arm to follow a path.",
+            "points": 15,
+            "visual_evidence": "The scene hierarchy or script editor shows IK elements (e.g., IK groups, targets, or tip dummies) being manipulated."
+        },
+        {
+            "id": "waypoint_generation",
+            "description": "At least 8 waypoints are defined for the linear weld trajectory.",
+            "points": 15,
+            "visual_evidence": "Visual markers for waypoints (dummies or path points) are visible in the 3D view, or code/logs show the creation of at least 8 distinct points."
+        },
+        {
+            "id": "trajectory_execution",
+            "description": "The robot executes the trajectory following the linear path.",
+            "points": 20,
+            "visual_evidence": "The robot arm is seen moving through the sequence of waypoints in the simulation window."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "The per-waypoint records are exported to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal window shows 'weld_trajectory.csv' exists in /home/ga/Documents/CoppeliaSim/exports/."
+        },
+        {
+            "id": "json_stats_export",
+            "description": "The trajectory summary statistics are exported to the specified JSON path.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal window shows 'weld_stats.json' exists in /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI rather than just using background scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor or active window focus on the CoppeliaSim simulation controls and scene objects."
+        },
+        {
+            "id": "genuine_simulation_run",
+            "description": "The trajectory data comes from a running simulation, not a pre-existing file.",
+            "visual_evidence": "The simulation play button is active (pressed) and the simulation time counter is non-zero during the trajectory execution."
+        },
+        {
+            "id": "path_span_validation",
+            "description": "The trajectory covers a significant distance consistent with the 0.2m requirement.",
+            "visual_evidence": "The visual distance covered by the robot end-effector in the 3D scene corresponds to a substantial portion of the chassis/workpiece."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must generate at least 8 waypoints and the total path length must be at least 0.2 meters. The output files must be saved exactly to /home/ga/Documents/CoppeliaSim/exports/weld_trajectory.csv and /home/ga/Documents/CoppeliaSim/exports/weld_stats.json. The simulation environment typically uses the 'obstacleAvoidanceAndIk.ttt' scene."
+}

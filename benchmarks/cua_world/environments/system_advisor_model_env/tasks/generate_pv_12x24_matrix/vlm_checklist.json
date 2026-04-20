@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_pv_12x24_matrix@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent locates and reads the weather file path from /home/ga/.SAM/solar_resource_dir.txt",
+            "points": 10,
+            "visual_evidence": "A terminal or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt, which points to the Phoenix TMY data."
+        },
+        {
+            "id": "initialize_pysam_model",
+            "description": "Agent writes code to initialize the PySAM.Pvwattsv8 model with the specified system parameters (50,000 kW DC, 1.2 DC/AC ratio, 1-axis tracking).",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing Python script using 'PySAM.Pvwattsv8.new()' and setting 'system_capacity' to 50000."
+        },
+        {
+            "id": "configure_losses_efficiency",
+            "description": "Agent configures the model with 96% inverter efficiency and 14% system losses.",
+            "points": 15,
+            "visual_evidence": "Python code showing 'inv_eff' set to 96 and 'losses' set to 14."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent executes the simulation and processes the hourly AC output into a 12x24 matrix.",
+            "points": 25,
+            "visual_evidence": "Code showing the execution of the model (e.g., '.execute()') and logic to group 8760 hourly values into 12 months by 24 hours."
+        },
+        {
+            "id": "verify_json_structure",
+            "description": "Agent formats the output into the required JSON structure with project_size_kw, location, annual_energy_kwh, and matrix_12x24.",
+            "points": 15,
+            "visual_evidence": "A preview of the JSON object in the terminal or editor matching the schema requested in the instructions."
+        },
+        {
+            "id": "save_final_output",
+            "description": "Agent saves the final 12x24 matrix to /home/ga/Documents/SAM_Projects/12x24_profile.json.",
+            "points": 20,
+            "visual_evidence": "Terminal command or file explorer showing the creation of the file at the specific path /home/ga/Documents/SAM_Projects/12x24_profile.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually used the PySAM library rather than hardcoding the matrix values.",
+            "visual_evidence": "Screenshots must show the import and functional calls of the 'pysam' or 'nrel-pysam' library, not just a print statement of a pre-calculated matrix."
+        },
+        {
+            "id": "weather_data_access",
+            "description": "The agent accessed the specific weather file provided in the local directory.",
+            "visual_evidence": "Code showing the script reading the path from /home/ga/.SAM/solar_resource_dir.txt and passing that path to the PySAM data module."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The annual_energy_kwh field contains a calculated float, not a placeholder or the example string from the prompt.",
+            "visual_evidence": "The final JSON file content shows a specific numerical value for 'annual_energy_kwh' (e.g., between 90,000,000 and 125,000,000)."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use PySAM.Pvwattsv8 with a 50,000 kW DC capacity. For Phoenix TMY data with 1-axis tracking and 14% losses, the annual_energy_kwh should fall between 90,000,000 and 125,000,000 kWh. Peak hourly generation in the matrix (typically mid-day in summer months) should be approximately 20,000 kW or higher. The output file must be exactly /home/ga/Documents/SAM_Projects/12x24_profile.json."
+}

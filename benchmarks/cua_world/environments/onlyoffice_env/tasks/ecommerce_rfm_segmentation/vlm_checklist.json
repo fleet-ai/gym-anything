@@ -1,0 +1,59 @@
+{
+    "task_id": "ecommerce_rfm_segmentation@1",
+    "task_completion": [
+        {
+            "id": "open_source_data",
+            "description": "Agent opens the source CSV file 'online_retail_q4.csv' in a spreadsheet application or text editor to inspect the data.",
+            "points": 10,
+            "visual_evidence": "A window showing 'online_retail_q4.csv' with columns like InvoiceDate, Quantity, UnitPrice, and CustomerID."
+        },
+        {
+            "id": "calculate_line_total",
+            "description": "Agent calculates 'LineTotal' (Quantity * UnitPrice) for the transaction data.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet column labeled 'LineTotal' containing the product of Quantity and UnitPrice."
+        },
+        {
+            "id": "rfm_metrics_calculation",
+            "description": "Agent calculates Recency, Frequency, and Monetary metrics for each CustomerID on a sheet named 'RFM_Analysis'.",
+            "points": 25,
+            "visual_evidence": "A sheet tab named 'RFM_Analysis' with columns for CustomerID, Recency, Frequency, and Monetary. Recency should reflect days since the last invoice relative to 2011-12-01."
+        },
+        {
+            "id": "rfm_scoring_logic",
+            "description": "Agent assigns R_Score, F_Score, and M_Score (1-4) based on the specific thresholds provided in the task.",
+            "points": 20,
+            "visual_evidence": "Columns for R_Score, F_Score, and M_Score with values 1, 2, 3, or 4. For example, an R_Score of 4 for Recency <= 15 days."
+        },
+        {
+            "id": "segmentation_assignment",
+            "description": "Agent calculates RFM_Sum and assigns the correct Segment (Champions, Loyal Customers, At Risk, Lost).",
+            "points": 15,
+            "visual_evidence": "Columns for 'RFM_Sum' and 'Segment'. A sum of 11-12 should show 'Champions'; 3-4 should show 'Lost'."
+        },
+        {
+            "id": "summary_sheet_creation",
+            "description": "Agent creates a 'Summary' sheet with the total count of customers in each segment.",
+            "points": 15,
+            "visual_evidence": "A separate sheet tab named 'Summary' containing a table or list with the four segment names and their respective customer counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ONLYOFFICE GUI to perform calculations and formatting rather than just generating the file via terminal scripts.",
+            "visual_evidence": "Screenshots showing the ONLYOFFICE interface, cell formula bars, and manual navigation between sheets."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not hardcode the final summary values but derived them from the data.",
+            "visual_evidence": "Presence of spreadsheet formulas (e.g., SUM, COUNTIF, or VLOOKUP) in the formula bar when cells are selected."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The final file is saved at the specific requested location.",
+            "visual_evidence": "The ONLYOFFICE title bar or a file explorer window showing the file saved at ~/Documents/Spreadsheets/rfm_segmentation.xlsx."
+        }
+    ],
+    "privileged_info_for_vlm": "The reference date for Recency calculations is 2011-12-01. The source data is located at ~/Documents/Spreadsheets/online_retail_q4.csv. The output must be an ONLYOFFICE spreadsheet at ~/Documents/Spreadsheets/rfm_segmentation.xlsx. Scoring thresholds: R (4: <=15, 3: 16-30, 2: 31-60, 1: >60); F (4: >=15, 3: 6-14, 2: 2-5, 1: 1); M (4: >=500, 3: 150-499, 2: 50-149, 1: <50). Segments: Champions (11-12), Loyal (8-10), At Risk (5-7), Lost (3-4)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "renal_cyst_bosniak@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the abdominal CT scan into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 3D Slicer interface with an abdominal CT scan loaded in the axial, sagittal, and coronal viewers."
+        },
+        {
+            "id": "locate_right_renal_cyst",
+            "description": "The agent navigates to and identifies the renal cyst in the right kidney.",
+            "points": 10,
+            "visual_evidence": "The crosshairs or viewport focus is centered on a hypo-dense lesion within the right kidney."
+        },
+        {
+            "id": "perform_measurements",
+            "description": "The agent uses measurement tools to determine diameter and HU density (ROI statistics).",
+            "points": 25,
+            "visual_evidence": "Visual markup lines (rulers) for diameter and closed loops or points for HU sampling (Data Probe or Markups module) visible on the cyst."
+        },
+        {
+            "id": "save_markups_file",
+            "description": "The agent saves the measurement markups to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save Data' dialog or terminal confirmation showing the file being saved to ~/Documents/SlicerData/AMOS/cyst_measurements.mrk.json."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "The agent creates the JSON report with all required clinical fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing a JSON file at ~/Documents/SlicerData/AMOS/bosniak_report.json containing fields like 'bosniak_category' and 'internal_hu_mean'."
+        },
+        {
+            "id": "correct_bosniak_classification",
+            "description": "The agent assigns a Bosniak category based on the observed features.",
+            "points": 20,
+            "visual_evidence": "The final report or on-screen text shows a Bosniak category (I, II, IIF, III, or IV) derived from the measurements."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI for analysis rather than just script-based file generation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's measurement tools, sliders, or module panels."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual evidence in the software.",
+            "visual_evidence": "The HU values and millimeter measurements in the final JSON match the values displayed in the Slicer 'Data Probe' or 'Markups' table during the session."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply cat/echo a pre-existing report without performing the analysis.",
+            "visual_evidence": "The trajectory shows the step-by-step process of placing rulers and ROIs before the report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses the AMOS 2022 dataset (case amos_0001) with a synthetic cyst. Valid Bosniak categories are I, II, IIF, III, and IV. Measurement tolerances are 3.0mm for diameter and 10.0 HU for density. Ensure the agent measures the right kidney, not the left."
+}

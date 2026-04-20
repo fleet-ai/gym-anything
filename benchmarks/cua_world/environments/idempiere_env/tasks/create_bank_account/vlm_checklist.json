@@ -1,0 +1,59 @@
+{
+    "task_id": "create_bank_account@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_bank_creation",
+            "description": "Navigate to the bank setup or creation interface within the application.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a form or modal titled 'Create Bank', 'New Bank', or similar, with fields for bank name and routing details."
+        },
+        {
+            "id": "bank_details_entry",
+            "description": "Enter the bank name, routing number, and SWIFT code correctly.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing 'Chase Bank NA' (or JPMorgan Chase Bank, N.A.), '021000021', and 'CHASUS33' typed into the respective input fields."
+        },
+        {
+            "id": "bank_address_entry",
+            "description": "Enter the bank address details correctly.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing '270 Park Avenue', 'New York', and '10017' entered into the address fields."
+        },
+        {
+            "id": "bank_record_saved",
+            "description": "Confirm the bank record is successfully created/saved.",
+            "points": 15,
+            "visual_evidence": "A success message, or the bank 'Chase Bank NA' appearing in a list of banks."
+        },
+        {
+            "id": "account_details_entry",
+            "description": "Create a bank account under the bank with the specified name, number, type, and currency.",
+            "points": 30,
+            "visual_evidence": "A form showing 'Chase Payroll Operating', '8877665544', 'Checking', and 'USD' selected or typed."
+        },
+        {
+            "id": "final_verification",
+            "description": "Verify the final bank account is listed and associated with the correct bank.",
+            "points": 10,
+            "visual_evidence": "A summary screen or list view showing the account 'Chase Payroll Operating' linked to 'Chase Bank NA'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the graphical user interface rather than executing database commands via terminal.",
+            "visual_evidence": "The agent clicks buttons and types into form fields in the browser/app; no terminal windows showing SQL inserts or direct API calls are used to bypass the UI."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not skip steps by navigating directly to a 'success' URL or spoofing the result.",
+            "visual_evidence": "The agent follows the logical flow of the application (e.g., clicking 'New', then 'Save')."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or pasted the specific data provided in the task into the UI.",
+            "visual_evidence": "The specific values (8877665544, CHASUS33) are visible in the UI fields during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The bank name may appear as 'JPMorgan Chase Bank, N.A.' or 'Chase Bank NA'. The routing number '021000021' and SWIFT code 'CHASUS33' are the official identifiers for this entity. The address '270 Park Avenue, New York, 10017' is the verified headquarters. The account number '8877665544' and name 'Chase Payroll Operating' are synthetic values created for this specific task."
+}

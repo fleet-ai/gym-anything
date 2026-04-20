@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_courant_stability@1",
+    "task_completion": [
+        {
+            "id": "open_hdf_file",
+            "description": "Open the HEC-RAS simulation results file (Muncie.p04.tmp.hdf) in a viewer or HEC-RAS interface.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the HEC-RAS software or an HDF5 viewer (like HDFView) with 'Muncie.p04.tmp.hdf' loaded."
+        },
+        {
+            "id": "identify_peak_flow_data",
+            "description": "Locate the velocity and geometry data corresponding to the time of peak flow.",
+            "points": 15,
+            "visual_evidence": "Visual of a table or data grid showing velocity (V) and reach lengths/spacing (Delta X) for various river stations."
+        },
+        {
+            "id": "calculate_courant_values",
+            "description": "Compute the Courant number for each cross-section using the formula C = V * Δt / Δx.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet, script output, or calculator interface showing the calculation of Courant numbers for multiple River Stations."
+        },
+        {
+            "id": "save_csv_output",
+            "description": "Save the analysis results to ~/Documents/hec_ras_results/courant_analysis.csv with the four required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer showing the CSV at the correct path or a text editor/spreadsheet view of the CSV showing columns: River_Station, Velocity_fps, Delta_X_ft, and Courant_Number."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Create the summary report at ~/Documents/hec_ras_results/courant_report.txt with Max Courant, count of C > 1.0, and stability assessment.",
+            "points": 25,
+            "visual_evidence": "A text editor showing the content of 'courant_report.txt' including the specific metrics and the assessment (STABLE, MARGINAL, or UNSTABLE)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_extraction",
+            "description": "Verify the agent extracted data from the actual HDF file rather than fabricating numbers.",
+            "visual_evidence": "The agent should be seen interacting with the HDF5 file structure or HEC-RAS output tables, not just typing numbers into a CSV from memory."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Ensure the stability assessment in the report matches the calculated data.",
+            "visual_evidence": "The 'Max Courant Number' in the report must match the highest value found in the generated CSV file."
+        },
+        {
+            "id": "proper_file_path_usage",
+            "description": "Check that the agent used the specific file paths requested in the task.",
+            "visual_evidence": "The file save dialogs or terminal 'save' commands must explicitly show the path '~/Documents/hec_ras_results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is located in /home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.tmp.hdf. The output CSV must contain exactly these headers: River_Station, Velocity_fps, Delta_X_ft, Courant_Number. The stability assessment logic is: STABLE (Max < 1.0), MARGINAL (1.0-2.0), or UNSTABLE (> 2.0). The agent must use the peak flow time step for calculations."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_air_hockey_dynamics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment and locates the WorldInfo or ContactProperties section.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the Webots application open with a 3D air hockey table visible and the scene tree on the left."
+        },
+        {
+            "id": "configure_puck_table",
+            "description": "Configure ContactProperties for 'puck' and 'table' with coulombFriction set to 0.002.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a dialog box shows a ContactProperties node with material1 'puck', material2 'table', and coulombFriction set to 0.002."
+        },
+        {
+            "id": "configure_puck_wall",
+            "description": "Configure ContactProperties for 'puck' and 'wall' with bounce set to 0.95 and bounceVelocity to 0.05.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a dialog box shows a ContactProperties node with material1 'puck', material2 'wall', bounce set to 0.95, and bounceVelocity set to 0.05."
+        },
+        {
+            "id": "configure_puck_striker",
+            "description": "Configure ContactProperties for 'puck' and 'striker' with bounce set to 0.85.",
+            "points": 20,
+            "visual_evidence": "The scene tree or a dialog box shows a ContactProperties node with material1 'puck', material2 'striker', and bounce set to 0.85."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specific path /home/ga/Desktop/air_hockey_ready.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog box or the file explorer shows the file being saved to /home/ga/Desktop/air_hockey_ready.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree or field editor."
+        },
+        {
+            "id": "genuine_simulation_use",
+            "description": "The agent is interacting with a live Webots instance, not just viewing static images.",
+            "visual_evidence": "Changes in the scene tree or 3D view are visible across multiple timestamps."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or 'echo' in the terminal to bypass the simulation software.",
+            "visual_evidence": "The terminal history (if visible) does not show commands that manually write the final .wbt file content."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure three specific ContactProperties nodes in Webots: 1) puck-table: coulombFriction=0.002. 2) puck-wall: bounce=0.95, bounceVelocity=0.05. 3) puck-striker: bounce=0.85. The final file must be saved exactly as /home/ga/Desktop/air_hockey_ready.wbt."
+}

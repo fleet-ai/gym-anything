@@ -1,0 +1,59 @@
+{
+    "task_id": "proximity_sensor_coverage@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launched",
+            "description": "The agent successfully launched the CoppeliaSim application and is logged into the 'ga' account.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible on the screen, and the file explorer or terminal shows the user is 'ga'."
+        },
+        {
+            "id": "scene_setup",
+            "description": "A robot workcell and a proximity sensor are present in the CoppeliaSim scene.",
+            "points": 15,
+            "visual_evidence": "The 3D viewport shows a robot model and a proximity sensor object (often represented by a cone or pyramid volume)."
+        },
+        {
+            "id": "sensor_placement_iteration",
+            "description": "The agent moves the sensor to at least five different candidate mounting positions.",
+            "points": 25,
+            "visual_evidence": "A sequence of screenshots showing the proximity sensor at different X, Y, or Z coordinates relative to the robot workcell."
+        },
+        {
+            "id": "coverage_measurement",
+            "description": "The agent performs coverage analysis or records detection data for the placements.",
+            "points": 20,
+            "visual_evidence": "The agent interacting with sensor properties, running a simulation, or using a script/console within CoppeliaSim to calculate detection fractions."
+        },
+        {
+            "id": "csv_export_verified",
+            "description": "The agent saves the measurement records to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or terminal 'ls' command showing 'sensor_coverage.csv' in /home/ga/Documents/CoppeliaSim/exports/."
+        },
+        {
+            "id": "json_report_verified",
+            "description": "The agent saves the final comparison report and recommendation to the specified JSON path.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or text editor showing 'sensor_analysis.json' in /home/ga/Documents/CoppeliaSim/exports/ with a recommended location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the CoppeliaSim scene tree, object properties, or simulation controls."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The sensor data is derived from the simulation environment, not hardcoded.",
+            "visual_evidence": "The values in the CSV/JSON correspond to the visual positions of the sensor seen in the 3D viewport during the task."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply copy existing result files from another directory.",
+            "visual_evidence": "The agent is seen actively typing data or using export functions within the software or a script they authored."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must evaluate at least 5 distinct mounting positions. The required output files are exactly /home/ga/Documents/CoppeliaSim/exports/sensor_coverage.csv (containing at least 5 rows of data) and /home/ga/Documents/CoppeliaSim/exports/sensor_analysis.json (containing the recommendation). The agent starts with an empty scene and must build the simulation environment."
+}

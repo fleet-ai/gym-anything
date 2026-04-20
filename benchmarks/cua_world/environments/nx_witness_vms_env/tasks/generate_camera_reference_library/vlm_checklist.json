@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_camera_reference_library@1",
+    "task_completion": [
+        {
+            "id": "vms_login",
+            "description": "Agent successfully logs into the Nx Witness VMS at localhost:7001 using admin credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the login page with 'admin' entered and the subsequent transition to the main VMS dashboard/camera layout."
+        },
+        {
+            "id": "identify_active_cameras",
+            "description": "Agent identifies the list of active cameras in the system (e.g., Parking Lot, Entrance, Server Room, Lobby, Loading Dock).",
+            "points": 15,
+            "visual_evidence": "The camera resource tree or a list of devices is visible on the left sidebar or main panel of the VMS interface."
+        },
+        {
+            "id": "capture_camera_snapshots",
+            "description": "Agent captures or saves a snapshot for each active camera found in the system.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the agent right-clicking a camera feed or using a 'Save Screenshot' / 'Take Snapshot' button for multiple distinct camera views."
+        },
+        {
+            "id": "file_naming_convention",
+            "description": "Agent names the files using the camera name with spaces replaced by underscores.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or 'Save As' dialog shows filenames like 'Parking_Lot_Camera.jpg' or 'Server_Room_Camera.jpg'."
+        },
+        {
+            "id": "save_to_correct_directory",
+            "description": "Agent saves all JPEG images to the specific directory /home/ga/Documents/ReferenceImages.",
+            "points": 25,
+            "visual_evidence": "The file manager or save dialog path bar explicitly shows the directory /home/ga/Documents/ReferenceImages containing the .jpg files."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the VMS graphical interface rather than executing CLI scripts to extract images.",
+            "visual_evidence": "The trajectory shows mouse movements and clicks within the Nx Witness desktop/web client rather than just terminal commands."
+        },
+        {
+            "id": "genuine_vms_usage",
+            "description": "The agent interacted with the actual Nx Witness software elements.",
+            "visual_evidence": "Screenshots show the specific Nx Witness UI components (Resource Tree, Video Cells, Notification Panel) being manipulated."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply move existing files but generated them from the live camera feeds.",
+            "visual_evidence": "The agent is seen opening each camera feed or selecting the snapshot option within the VMS interface before the files appear in the folder."
+        }
+    ],
+    "privileged_info_for_vlm": "The VMS is located at https://localhost:7001. Credentials are admin / Admin1234!. There are 5 active cameras: Parking Lot Camera, Entrance Camera, Server Room Camera, Lobby Camera, and Loading Dock Camera. The output directory must be /home/ga/Documents/ReferenceImages. Files must use .jpg extension and underscores instead of spaces (e.g., Loading_Dock_Camera.jpg)."
+}

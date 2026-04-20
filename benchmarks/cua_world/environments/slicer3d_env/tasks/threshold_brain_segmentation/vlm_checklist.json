@@ -1,0 +1,59 @@
+{
+    "task_id": "threshold_brain_segmentation@1",
+    "task_completion": [
+        {
+            "id": "load_mrhead_volume",
+            "description": "The MRHead.nrrd volume is loaded into 3D Slicer.",
+            "points": 10,
+            "visual_evidence": "The 'MRHead' volume name is visible in the Data module or the slice viewers (Red/Green/Yellow views)."
+        },
+        {
+            "id": "segment_editor_active",
+            "description": "The Segment Editor module is open and a new segment is created.",
+            "points": 10,
+            "visual_evidence": "The 'Segment Editor' module interface is visible, and a segment entry exists in the segments table."
+        },
+        {
+            "id": "segment_named_braintissue",
+            "description": "The segment is explicitly named 'BrainTissue'.",
+            "points": 10,
+            "visual_evidence": "The text 'BrainTissue' is visible in the segment list within the Segment Editor or Data module."
+        },
+        {
+            "id": "threshold_tool_selected",
+            "description": "The Threshold effect is selected and a range is applied to isolate brain tissue.",
+            "points": 20,
+            "visual_evidence": "The 'Threshold' button is highlighted in the Segment Editor, and a colored mask (overlay) appears over the brain matter in the slice viewers."
+        },
+        {
+            "id": "segmentation_quality",
+            "description": "The segmentation mask covers gray/white matter while excluding the skull and background.",
+            "points": 30,
+            "visual_evidence": "The colored overlay is confined to the inner brain area; there is a clear gap between the mask and the outer skull/scalp boundaries."
+        },
+        {
+            "id": "export_segmentation",
+            "description": "The segmentation is exported to the specified file path.",
+            "points": 20,
+            "visual_evidence": "The 'Export to files' dialog or 'Save Data' dialog is visible with the destination path set to '~/Documents/SlicerData/Exports/brain_segmentation.seg.nrrd'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer buttons, sliders, and the Segment Editor panel."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename an existing file to satisfy the export requirement.",
+            "visual_evidence": "The progression shows the manual adjustment of threshold sliders and the 'Apply' button being clicked."
+        },
+        {
+            "id": "genuine_slicer_environment",
+            "description": "The task is performed within the 3D Slicer application interface.",
+            "visual_evidence": "The standard 3D Slicer window layout, including the module selector and the four-up slice view, is present."
+        }
+    ],
+    "privileged_info_for_vlm": "The MRHead volume typically requires a threshold range that captures the main histogram peak of the brain tissue (often between 50 and 280 intensity units). The final file must be saved specifically as 'brain_segmentation.seg.nrrd' in the Exports folder."
+}

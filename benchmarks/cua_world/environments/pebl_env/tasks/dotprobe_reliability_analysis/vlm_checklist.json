@@ -1,0 +1,53 @@
+{
+    "task_id": "dotprobe_reliability_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the dotprobe_data.csv file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A file explorer window, terminal command (cat/ls), or code editor showing the CSV file located at ~/pebl/data/dotprobe_data.csv."
+        },
+        {
+            "id": "data_cleaning_logic",
+            "description": "Agent implements filtering logic for sub-99, <80% accuracy, filler trials, and RTs outside 200-1000ms.",
+            "points": 20,
+            "visual_evidence": "Code snippets or script execution showing filtering conditions (e.g., 'sub-99', 'accuracy < 0.8', 'rt_ms between 200 and 1000')."
+        },
+        {
+            "id": "ab_score_calculation",
+            "description": "Agent calculates AB scores (Mean RT Incongruent - Mean RT Congruent) for total, odd, and even trials.",
+            "points": 20,
+            "visual_evidence": "Code or intermediate output showing the subtraction of mean RTs for congruent and incongruent conditions."
+        },
+        {
+            "id": "reliability_analysis",
+            "description": "Agent computes Pearson correlation and the Spearman-Brown correction formula.",
+            "points": 25,
+            "visual_evidence": "Code or output showing the calculation of 'r' and the formula '2r / (1 + r)'."
+        },
+        {
+            "id": "json_output_creation",
+            "description": "Agent saves the final results to the specified JSON path with all required keys.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the file ~/pebl/analysis/dotprobe_reliability.json containing participant-level scores/exclusions and group-level metrics (mean_ab_score, split_half_correlation_r, spearman_brown_reliability)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final reliability values or participant scores.",
+            "visual_evidence": "The code should show dynamic calculation from the CSV data rather than a dictionary of pre-defined results."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent actually processed the CSV file rather than simulating a success message.",
+            "visual_evidence": "Screenshots showing the loading of the CSV (e.g., via pandas or csv module) and the resulting data structures."
+        },
+        {
+            "id": "correct_exclusion_handling",
+            "description": "The agent specifically identifies sub-99 for exclusion as per the task requirements.",
+            "visual_evidence": "Code or logs explicitly mentioning the exclusion of 'sub-99'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data is at /home/ga/pebl/data/dotprobe_data.csv. Participant 'sub-99' is a contaminated subject with ~50% accuracy and must be excluded. The final output must be a JSON file at /home/ga/pebl/analysis/dotprobe_reliability.json containing individual AB scores (total, odd, even) and group metrics: mean_ab_score, split_half_correlation_r, and spearman_brown_reliability (calculated as 2r / (1 + r))."
+}

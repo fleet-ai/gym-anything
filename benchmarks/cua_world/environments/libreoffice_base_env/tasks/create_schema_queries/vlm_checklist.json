@@ -1,0 +1,59 @@
+{
+    "task_id": "create_schema_queries@1",
+    "task_completion": [
+        {
+            "id": "open_database_file",
+            "description": "The agent opens the Chinook database file located at /home/ga/chinook.odb in the database application.",
+            "points": 10,
+            "visual_evidence": "The database application (e.g., LibreOffice Base) is open showing 'chinook.odb' in the title bar or file path."
+        },
+        {
+            "id": "create_table_column_catalog_query",
+            "description": "The agent creates a new query named 'TableColumnCatalog' using the SQL editor.",
+            "points": 10,
+            "visual_evidence": "A query design or SQL view window is open, and the name 'TableColumnCatalog' is visible in the save dialog or the main database window list."
+        },
+        {
+            "id": "verify_table_column_catalog_logic",
+            "description": "The 'TableColumnCatalog' query selects TABLE_NAME, COLUMN_NAME, TYPE_NAME, ORDINAL_POSITION, and IS_NULLABLE from SYSTEM_COLUMNS with the correct filters and sorting.",
+            "points": 25,
+            "visual_evidence": "SQL text showing 'SELECT TABLE_NAME, COLUMN_NAME, TYPE_NAME, ORDINAL_POSITION, IS_NULLABLE FROM INFORMATION_SCHEMA.SYSTEM_COLUMNS WHERE TABLE_SCHEM = 'PUBLIC' ORDER BY TABLE_NAME, ORDINAL_POSITION'."
+        },
+        {
+            "id": "create_primary_key_catalog_query",
+            "description": "The agent creates a second query named 'PrimaryKeyCatalog'.",
+            "points": 10,
+            "visual_evidence": "A second query entry named 'PrimaryKeyCatalog' appears in the Queries section of the database manager."
+        },
+        {
+            "id": "verify_primary_key_catalog_logic",
+            "description": "The 'PrimaryKeyCatalog' query selects TABLE_NAME, COLUMN_NAME, KEY_SEQ, and PK_NAME from SYSTEM_PRIMARYKEYS with correct filters and sorting.",
+            "points": 25,
+            "visual_evidence": "SQL text showing 'SELECT TABLE_NAME, COLUMN_NAME, KEY_SEQ, PK_NAME FROM INFORMATION_SCHEMA.SYSTEM_PRIMARYKEYS WHERE TABLE_SCHEM = 'PUBLIC' ORDER BY TABLE_NAME, KEY_SEQ'."
+        },
+        {
+            "id": "save_database_changes",
+            "description": "The agent saves the database file to ensure queries are persisted to disk.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Save' icon in the main database window or selects File > Save, and the save icon becomes greyed out or a 'Saving' progress bar appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the database GUI application rather than executing command-line scripts to modify the .odb file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the LibreOffice Base/HSQLDB GUI elements."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent wrote actual SQL queries against the system tables rather than creating static tables with manual data entry.",
+            "visual_evidence": "The SQL view shows SELECT statements targeting INFORMATION_SCHEMA tables (SYSTEM_COLUMNS, SYSTEM_PRIMARYKEYS)."
+        },
+        {
+            "id": "genuine_application_usage",
+            "description": "The agent did not simply create text files named after the queries but used the internal database 'Queries' object container.",
+            "visual_evidence": "The 'TableColumnCatalog' and 'PrimaryKeyCatalog' items are visible within the 'Queries' pane of the database application interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is HSQLDB 1.8.0 (used by LibreOffice/OpenOffice). The system schema is 'INFORMATION_SCHEMA'. User tables are located in the 'PUBLIC' schema. The table for columns is 'SYSTEM_COLUMNS' (required columns: TABLE_NAME, COLUMN_NAME, TYPE_NAME, ORDINAL_POSITION, IS_NULLABLE). The table for primary keys is 'SYSTEM_PRIMARYKEYS' (required columns: TABLE_NAME, COLUMN_NAME, KEY_SEQ, PK_NAME). The database file is located at /home/ga/chinook.odb."
+}

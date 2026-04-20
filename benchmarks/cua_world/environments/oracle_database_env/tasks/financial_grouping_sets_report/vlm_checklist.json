@@ -1,0 +1,59 @@
+{
+    "task_id": "financial_grouping_sets_report@1",
+    "task_completion": [
+        {
+            "id": "access_source_query",
+            "description": "Agent opens and reads the logic in /home/ga/Desktop/inefficient_query.sql to understand the required aggregation.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of inefficient_query.sql."
+        },
+        {
+            "id": "database_connection",
+            "description": "Agent connects to the Oracle database (XEPDB1) using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or terminal) showing a successful connection to localhost:1521/XEPDB1."
+        },
+        {
+            "id": "view_creation_syntax",
+            "description": "Agent writes a CREATE VIEW statement for REVENUE_SUMMARY_VIEW using GROUPING SETS and NVL/COALESCE for labels.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing code containing 'CREATE VIEW REVENUE_SUMMARY_VIEW', 'GROUPING SETS', and the replacement strings 'All Regions' and 'All Categories'."
+        },
+        {
+            "id": "optimization_check",
+            "description": "The view definition avoids using UNION or UNION ALL to ensure a single-pass aggregation.",
+            "points": 20,
+            "visual_evidence": "The SQL code for the view creation is visible and does NOT contain the keywords 'UNION' or 'UNION ALL'."
+        },
+        {
+            "id": "column_and_sort_verification",
+            "description": "The view contains exactly three columns (REPORT_REGION, REPORT_CATEGORY, TOTAL_REVENUE) and includes an ORDER BY clause.",
+            "points": 15,
+            "visual_evidence": "SQL code showing the specific column aliases and 'ORDER BY REPORT_REGION, REPORT_CATEGORY'."
+        },
+        {
+            "id": "successful_execution",
+            "description": "The agent executes the DDL and receives a confirmation that the view has been created.",
+            "points": 20,
+            "visual_evidence": "A 'View REVENUE_SUMMARY_VIEW created' message or a successful query result from 'SELECT * FROM REVENUE_SUMMARY_VIEW'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent creates a dynamic view rather than a static table with hardcoded values.",
+            "visual_evidence": "The SQL code shows a SELECT statement querying SALES_TRANSACTIONS, not a series of INSERT statements or a 'SELECT ... FROM DUAL' with hardcoded numbers."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent uses a database tool or CLI to interact with the Oracle instance.",
+            "visual_evidence": "Screenshots show an active SQL IDE (like SQL Developer) or a terminal running sqlplus/sqlcl."
+        },
+        {
+            "id": "logic_source_verification",
+            "description": "The agent actually opens the file on the desktop instead of guessing the logic.",
+            "visual_evidence": "The file /home/ga/Desktop/inefficient_query.sql is seen being opened or cat-ed in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The view must be named REVENUE_SUMMARY_VIEW. It must aggregate the SALES_TRANSACTIONS table. Required columns: REPORT_REGION, REPORT_CATEGORY, TOTAL_REVENUE. It MUST use GROUPING SETS and MUST NOT use UNION/UNION ALL. Nulls in Region must be 'All Regions' and nulls in Category must be 'All Categories'. Sorting is by REPORT_REGION then REPORT_CATEGORY."
+}

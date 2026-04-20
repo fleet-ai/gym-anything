@@ -1,0 +1,59 @@
+{
+    "task_id": "determine_optimal_rpm@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "Generate or load the NACA 4412 airfoil and perform XFoil analysis at Re=1,000,000 with 360-degree extrapolation.",
+            "points": 15,
+            "visual_evidence": "Look for a NACA 4412 profile in the airfoil design module and an aerodynamic polar plot or table showing Re=1,000,000 and data points spanning -180 to 180 degrees."
+        },
+        {
+            "id": "rotor_geometry_setup",
+            "description": "Configure a 3-bladed rotor with a 10m radius and the specified linear chord/twist distribution.",
+            "points": 15,
+            "visual_evidence": "Blade geometry table or graph showing Radius=10m, 3 blades, Root (0m) with Chord=1.5m/Twist=10, and Tip (10m) with Chord=0.5m/Twist=0."
+        },
+        {
+            "id": "bem_simulation_execution",
+            "description": "Run a BEM (Blade Element Momentum) simulation to generate a Cp vs TSR curve.",
+            "points": 20,
+            "visual_evidence": "A simulation results window or graph showing the Power Coefficient (Cp) plotted against the Tip Speed Ratio (TSR)."
+        },
+        {
+            "id": "identify_optimal_values",
+            "description": "Identify the peak of the Cp curve to find the Optimal TSR and Max Cp.",
+            "points": 20,
+            "visual_evidence": "The cursor or a data label highlighting the maximum point on the Cp-TSR curve, or a summary table showing the peak Cp value."
+        },
+        {
+            "id": "save_project_file",
+            "description": "Save the project to the specific path /home/ga/Documents/projects/rpm_study.wpa.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog box or the application title bar showing the file path /home/ga/Documents/projects/rpm_study.wpa."
+        },
+        {
+            "id": "final_report_generation",
+            "description": "Create a text report at the specified path containing the Optimal TSR, Max Cp, and calculated Optimal RPM.",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) or a terminal 'cat' command showing a file at /home/ga/Documents/projects/optimal_rpm_report.txt with the numerical results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the wind turbine design software GUI rather than just writing the report via terminal.",
+            "visual_evidence": "Screenshots must show the wind turbine simulation software interface (e.g., QBlade or similar) being actively used."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The values in the report match the simulation results shown in the GUI.",
+            "visual_evidence": "The Max Cp and TSR values in the final .txt report must match the peak values visible on the simulation graphs in the software."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the privileged information into the report without performing the steps.",
+            "visual_evidence": "The trajectory should show the sequence of airfoil analysis, then rotor design, then simulation, rather than jumping straight to report writing."
+        }
+    ],
+    "privileged_info_for_vlm": "The target airfoil is NACA 4412. The rotor radius is 10m. The wind speed for RPM calculation is 12 m/s. The project must be saved to /home/ga/Documents/projects/rpm_study.wpa and the report to /home/ga/Documents/projects/optimal_rpm_report.txt. The Optimal RPM is calculated as: (TSR * Wind Speed * 60) / (2 * PI * Radius). For a 10m radius at 12m/s, RPM = (TSR * 12 * 60) / (62.83) ≈ TSR * 11.46."
+}

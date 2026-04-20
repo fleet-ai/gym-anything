@@ -1,0 +1,53 @@
+{
+    "task_id": "filter_and_tag_deep_dives@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent opens the Subsurface application and loads the dive log file.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible, showing a list of dives from the file /home/ga/Documents/dives.ssrf."
+        },
+        {
+            "id": "identify_deep_dives",
+            "description": "The agent identifies or selects dives with a maximum depth strictly greater than 20 meters.",
+            "points": 20,
+            "visual_evidence": "The agent is seen clicking on or highlighting dive entries where the 'Depth' column shows a value > 20.0m."
+        },
+        {
+            "id": "apply_deeptech_tag",
+            "description": "The agent adds the specific tag 'DeepTech' to the identified dives.",
+            "points": 30,
+            "visual_evidence": "The 'Tags' field in the dive information/edit pane contains the text 'DeepTech' for the selected dives."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the modifications to the dive log file.",
+            "points": 25,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or a save icon, or a confirmation message appears indicating the file has been saved."
+        },
+        {
+            "id": "verify_file_path",
+            "description": "The final saved file is located at the correct path.",
+            "points": 15,
+            "visual_evidence": "The window title bar or the 'Save As' dialog confirms the file path is /home/ga/Documents/dives.ssrf."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Subsurface GUI to filter and tag, rather than command-line tools like sed or awk.",
+            "visual_evidence": "The screenshots show the mouse cursor interacting with the Subsurface application menus and input fields."
+        },
+        {
+            "id": "no_manual_xml_edit",
+            "description": "The agent did not open the .ssrf file in a text editor to manually add tags.",
+            "visual_evidence": "No text editors (like Gedit or Vim) are seen displaying the raw XML content of the .ssrf file."
+        },
+        {
+            "id": "genuine_selection",
+            "description": "The agent correctly distinguished between dives > 20m and those <= 20m.",
+            "visual_evidence": "Dives with depths like 18m or 20m do not have the 'DeepTech' tag applied in the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the Subsurface GUI. The depth threshold is strictly > 20.0 meters. The exact tag to be added is 'DeepTech' (case-sensitive). The target file path is /home/ga/Documents/dives.ssrf. Ensure the agent does not tag dives that are exactly 20.0 meters deep."
+}

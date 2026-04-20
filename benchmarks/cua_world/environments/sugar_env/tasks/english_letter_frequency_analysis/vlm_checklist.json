@@ -1,0 +1,56 @@
+{
+    "task_id": "english_letter_frequency_analysis@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The Python script 'letter_freq.py' is created in the correct directory.",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal showing '/home/ga/Documents/letter_freq.py' exists."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script contains logic to read 'alice_in_wonderland.txt', count A-Z case-insensitively, and calculate percentages.",
+            "points": 25,
+            "visual_evidence": "Code editor or 'cat' command output showing Python code with 'open()', '.lower()' or '.upper()', and a loop or counter for letters A-Z."
+        },
+        {
+            "id": "csv_generation",
+            "description": "The script is executed and generates 'frequencies.csv' in the Documents folder.",
+            "points": 15,
+            "visual_evidence": "Terminal showing the script being run (e.g., 'python3 letter_freq.py') and the subsequent appearance of 'frequencies.csv' in the file list."
+        },
+        {
+            "id": "csv_format_and_header",
+            "description": "The CSV file contains the exact header 'Letter,Count,Percentage' and 26 data rows.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the CSV file content showing the header and a list of letters."
+        },
+        {
+            "id": "data_sorting_and_rounding",
+            "description": "The CSV data is sorted by Count in descending order and percentages are rounded to exactly two decimal places.",
+            "points": 30,
+            "visual_evidence": "Visual inspection of the CSV content showing the 'Count' column values decreasing and the 'Percentage' column showing values like '12.34' or '0.00'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the frequency results directly into the script or CSV.",
+            "points": 0,
+            "visual_evidence": "The Python script should show calculation logic (e.g., count/total * 100) rather than a dictionary of pre-calculated numbers."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent actually opened and read the provided text file.",
+            "points": 0,
+            "visual_evidence": "The code or terminal logs show the script targeting '/home/ga/Documents/alice_in_wonderland.txt'."
+        },
+        {
+            "id": "proper_tool_usage",
+            "description": "The agent used a text editor or IDE to write the script rather than just echo-ing a string into a file.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing an editor like VS Code, Gedit, or Vim being used to compose the script."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file 'alice_in_wonderland.txt' is a short excerpt (Chapters 1-2). Crucially, this specific excerpt contains zero occurrences of the letter 'Z'. If the agent's CSV shows 'Z,0,0.00', it is correct based on the actual file content, even if a human might expect 'Z' to appear in a full book. The script must handle A-Z (26 rows) regardless of whether the count is zero."
+}

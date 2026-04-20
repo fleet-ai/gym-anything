@@ -1,0 +1,53 @@
+{
+    "task_id": "surgical_anatomy_briefing@1",
+    "task_completion": [
+        {
+            "id": "create_fiducial_list",
+            "description": "Create a Markups Fiducial list named 'AnatomicalLandmarks' in the 3D Slicer subject hierarchy or Markups module.",
+            "points": 10,
+            "visual_evidence": "The 'Markups' or 'Data' module panel shows a list named 'AnatomicalLandmarks'."
+        },
+        {
+            "id": "label_8_structures",
+            "description": "Place and label 8 distinct fiducial points corresponding to the required abdominal organs (Liver, Spleen, Right Kidney, Left Kidney, Aorta, IVC, Pancreas, and Portal Vein/Gallbladder).",
+            "points": 40,
+            "visual_evidence": "The Markups list contains 8 entries with the specific names of the organs, and corresponding glyphs are visible on the CT slices."
+        },
+        {
+            "id": "export_json_file",
+            "description": "Export the fiducials to the specific path ~/Documents/SlicerData/AMOS/anatomical_landmarks.mrk.json.",
+            "points": 20,
+            "visual_evidence": "A 'Save Data' dialog or a file browser window shows the file path and name correctly configured for export."
+        },
+        {
+            "id": "save_slicer_scene",
+            "description": "Save the entire Slicer scene to the directory ~/Documents/SlicerData/AMOS/.",
+            "points": 10,
+            "visual_evidence": "The 'Save Scene' or 'Save Data' dialog shows the destination directory as ~/Documents/SlicerData/AMOS/."
+        },
+        {
+            "id": "capture_three_views",
+            "description": "Save screenshots of the Axial (Red), Coronal (Green), and Sagittal (Yellow) views with the specified filenames.",
+            "points": 20,
+            "visual_evidence": "The agent is seen using the 'Screen Capture' module or 'Save' dialog to create briefing_axial.png, briefing_coronal.png, and briefing_sagittal.png."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the 3D Slicer GUI to place fiducials and save files rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the slice views and the Slicer module panels."
+        },
+        {
+            "id": "anatomical_accuracy",
+            "description": "The fiducials are placed on the actual anatomical structures they label, not randomly in the image space.",
+            "visual_evidence": "The colored fiducial markers in the Red/Green/Yellow slice views align with the correct organ morphology (e.g., Liver marker is in the upper right quadrant)."
+        },
+        {
+            "id": "genuine_file_dialogs",
+            "description": "The agent interacted with the Slicer 'Save Data' interface to specify paths.",
+            "visual_evidence": "The Slicer 'Save Data' window is visible with the 'File Name' and 'Storage Directory' columns modified by the agent."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses the AMOS 2022 dataset (case amos_0001). The agent must use the 'Markups' module in 3D Slicer. The 8 required labels are: Liver, Spleen, Right Kidney, Left Kidney, Aorta, IVC, Pancreas, and either Portal Vein or Gallbladder. All files must be saved specifically in ~/Documents/SlicerData/AMOS/."
+}

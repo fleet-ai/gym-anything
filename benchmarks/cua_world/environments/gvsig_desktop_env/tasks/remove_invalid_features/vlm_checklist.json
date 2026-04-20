@@ -1,0 +1,53 @@
+{
+    "task_id": "remove_invalid_features@1",
+    "task_completion": [
+        {
+            "id": "load_shapefile",
+            "description": "The shapefile 'countries_cleaning.shp' is loaded into the gvSIG project.",
+            "points": 10,
+            "visual_evidence": "The layer 'countries_cleaning' appears in the Table of Contents (TOC) on the left side of the gvSIG interface."
+        },
+        {
+            "id": "open_attribute_table",
+            "description": "The agent opens the attribute table for the 'countries_cleaning' layer.",
+            "points": 10,
+            "visual_evidence": "An attribute table window is visible, displaying columns such as 'NAME' and 'POP_EST'."
+        },
+        {
+            "id": "filter_invalid_records",
+            "description": "The agent identifies or selects records where 'POP_EST' equals -99.",
+            "points": 25,
+            "visual_evidence": "The 'Filter' or 'Selection by attributes' dialog is shown with the expression \"POP_EST\" = -99, or rows with -99 are highlighted in the table."
+        },
+        {
+            "id": "delete_features",
+            "description": "The agent deletes the selected invalid features from the dataset.",
+            "points": 30,
+            "visual_evidence": "The agent enters 'Editing Mode' (indicated by a pencil icon or red dots on vertices) and uses the 'Delete' tool or 'Remove selected rows' button."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the edits to the shapefile and finishes the editing session.",
+            "points": 25,
+            "visual_evidence": "The agent clicks 'Stop Editing' and confirms 'Yes' to save changes, or clicks the 'Save' icon specifically for the layer edits."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just running shell commands to modify the file.",
+            "visual_evidence": "Screenshots show mouse movements, menu selections, and gvSIG dialog boxes rather than just a terminal window."
+        },
+        {
+            "id": "genuine_selection",
+            "description": "The agent actually performed a selection or search for the value -99.",
+            "visual_evidence": "The attribute table or query builder shows the specific value -99 being targeted."
+        },
+        {
+            "id": "no_file_replacement",
+            "description": "The agent did not simply download a clean file and overwrite the target.",
+            "visual_evidence": "The agent is seen interacting with the gvSIG editing tools (e.g., the 'Delete' button) rather than a file manager or terminal 'mv' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset initially contains exactly 15 records with a 'POP_EST' value of -99. To successfully complete the task, the agent must delete exactly these 15 records. After deletion, the attribute table should no longer contain any rows where POP_EST is -99. The file path is /home/ga/gvsig_data/projects/countries_cleaning.shp."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "manual_event_recovery_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv_interface",
+            "description": "Open the SeisComP Origin Locator (scolv) application.",
+            "points": 10,
+            "visual_evidence": "The scolv main window is visible, showing the map and event list tabs."
+        },
+        {
+            "id": "create_artificial_origin",
+            "description": "Create a new artificial origin using the coordinates and time from the alert file.",
+            "points": 20,
+            "visual_evidence": "A dialog or input field in scolv showing Latitude: 37.498, Longitude: 137.242, and Depth: 10 km being entered."
+        },
+        {
+            "id": "commit_origin",
+            "description": "Commit the newly created origin to the database.",
+            "points": 15,
+            "visual_evidence": "The 'Commit' button is clicked or a 'Commit' dialog is shown, and the origin appears in the event list."
+        },
+        {
+            "id": "compute_magnitudes",
+            "description": "Compute magnitudes using the archived waveform data from the GE network.",
+            "points": 25,
+            "visual_evidence": "The 'Magnitude' tab in scolv is active, showing calculated magnitude values (e.g., Mw, ML, or Mwp) for various stations."
+        },
+        {
+            "id": "commit_magnitudes",
+            "description": "Commit the calculated magnitudes to the event.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with the 'Commit' action within the Magnitude tab; the magnitude value (likely > 7.0) is finalized."
+        },
+        {
+            "id": "export_event_xml",
+            "description": "Export the complete event data to '~/recovered_event.xml'.",
+            "points": 15,
+            "visual_evidence": "An export dialog or terminal command showing the event being saved to the specific path '/home/ga/recovered_event.xml'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the scolv GUI for origin creation and magnitude calculation rather than just writing the XML manually.",
+            "visual_evidence": "Screenshots show the scolv interface being manipulated (mouse clicks on map, magnitude tab, or commit buttons)."
+        },
+        {
+            "id": "genuine_waveform_processing",
+            "description": "The agent actually processed waveforms to get the magnitude.",
+            "visual_evidence": "The scolv 'Magnitude' or 'Waveform' tabs show active traces or calculated amplitudes, not just a hardcoded magnitude value."
+        },
+        {
+            "id": "no_premade_xml",
+            "description": "The agent did not simply rename an existing file to recovered_event.xml.",
+            "visual_evidence": "The agent is seen using the 'Export' or 'Save' functionality within the SeisComP suite or a command-line tool like 'scxmldump'."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the following parameters: Latitude 37.498, Longitude 137.242, Depth 10 km, and Time 2024-01-01 07:10:09.5. The resulting magnitude calculated from the GE network data should be approximately 7.0 or higher. The final output must be saved to /home/ga/recovered_event.xml."
+}

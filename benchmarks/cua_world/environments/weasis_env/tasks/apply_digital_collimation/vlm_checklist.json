@@ -1,0 +1,59 @@
+{
+    "task_id": "apply_digital_collimation@1",
+    "task_completion": [
+        {
+            "id": "dicom_viewer_opened",
+            "description": "The agent has opened a DICOM viewing application.",
+            "points": 10,
+            "visual_evidence": "A medical imaging software interface (e.g., Horos, Weasis, or a generic DICOM viewer) is visible on the desktop."
+        },
+        {
+            "id": "image_loaded",
+            "description": "The target DICOM image 'collimation_target.dcm' is loaded into the viewer.",
+            "points": 15,
+            "visual_evidence": "The viewer displays a synthetic medical image (likely a grayscale phantom or anatomy) with visible outer edges."
+        },
+        {
+            "id": "shutter_tool_selected",
+            "description": "The agent has activated the Rectangular Shutter or Digital Collimation tool.",
+            "points": 15,
+            "visual_evidence": "A 'Shutter', 'Collimation', or 'Mask' tool is highlighted in the toolbar, or a rectangular selection box appears over the image."
+        },
+        {
+            "id": "shutter_applied",
+            "description": "A rectangular mask is applied to the image, obscuring the outer edges.",
+            "points": 30,
+            "visual_evidence": "The outer regions of the image are now covered by solid black borders, leaving only the central anatomy visible within a rectangular frame."
+        },
+        {
+            "id": "export_dialog_configured",
+            "description": "The agent opens the export menu and sets the format to JPEG and the correct filename.",
+            "points": 15,
+            "visual_evidence": "An export or 'Save As' dialog box is visible with the format set to JPEG and the filename 'collimated_view.jpg' typed in."
+        },
+        {
+            "id": "file_saved_to_destination",
+            "description": "The file is saved to the specific directory '~/DICOM/exports/'.",
+            "points": 15,
+            "visual_evidence": "The file explorer or the export dialog shows the path /home/ga/DICOM/exports/ as the save location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to apply the collimation rather than command-line image processing tools.",
+            "visual_evidence": "Screenshots show mouse cursor movements and menu interactions within the DICOM viewer, not just terminal commands like 'convert' or 'ffmpeg'."
+        },
+        {
+            "id": "genuine_shutter_tool",
+            "description": "The agent used the software's built-in shutter/collimation feature rather than just cropping the image window.",
+            "visual_evidence": "The software's specific 'Shutter' or 'Collimation' UI elements are active; the resulting image shows black masking overlays rather than a resized canvas."
+        },
+        {
+            "id": "no_premade_file_copy",
+            "description": "The agent did not simply copy a pre-existing result file to the destination.",
+            "visual_evidence": "The agent is seen interacting with the 'Save' or 'Export' button in the DICOM viewer software."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected output path is exactly /home/ga/DICOM/exports/collimated_view.jpg. Note that due to the specific DICOM windowing (WC=40, WW=400, Intercept=-1024), the synthetic background will appear as pure black (0) in the JPEG even before the shutter is applied. The VLM should verify the shutter is applied by looking for the UI interaction with the collimation tool and the resulting rectangular framing of the central anatomy, which has a variance of approximately 106.1."
+}

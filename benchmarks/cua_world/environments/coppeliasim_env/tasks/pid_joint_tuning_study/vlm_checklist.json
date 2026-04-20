@@ -1,0 +1,53 @@
+{
+    "task_id": "pid_joint_tuning_study@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "Launch CoppeliaSim and ensure the ZMQ Remote API is active on port 23000.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible, and the status bar or a terminal window shows the ZMQ plugin has started or is listening on port 23000."
+        },
+        {
+            "id": "pid_script_execution",
+            "description": "Execute a script or program that iterates through at least 8 distinct PID gain combinations.",
+            "points": 20,
+            "visual_evidence": "A code editor (e.g., VS Code) or terminal shows a script running with loops or a list of at least 8 sets of P, I, and D values within the specified ranges."
+        },
+        {
+            "id": "robot_motion_observation",
+            "description": "Observe the robot arm joint performing step response movements (e.g., 0 to 45 degrees) in the simulation.",
+            "points": 15,
+            "visual_evidence": "Screenshots of the CoppeliaSim 3D view showing the robot arm joint moving to different positions repeatedly during the tuning process."
+        },
+        {
+            "id": "csv_data_generation",
+            "description": "Generate the CSV file containing the 8 trials with all required performance metrics.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal 'cat' command shows /home/ga/Documents/CoppeliaSim/exports/pid_tuning_data.csv exists with columns: trial_id, kp, ki, kd, overshoot_pct, settling_time_s, rise_time_s, and steady_state_error_deg."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Generate the JSON summary report recommending the best-performing gain set.",
+            "points": 30,
+            "visual_evidence": "A file explorer or text editor shows /home/ga/Documents/CoppeliaSim/exports/pid_tuning_report.json containing keys like best_kp, best_ki, best_kd, and selection_criterion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually ran the simulation rather than just creating files manually.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim simulation clock advancing or the 'Play' button active while the script is running."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the PID metrics (overshoot, settling time) vary across trials and are not identical placeholder values.",
+            "visual_evidence": "The CSV file content shows different numerical values for performance metrics across the 8 trials, reflecting actual physical simulation behavior."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Verify the agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "The terminal or file manager shows the files located specifically in /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must produce two specific files: a CSV at /home/ga/Documents/CoppeliaSim/exports/pid_tuning_data.csv with at least 8 rows of data, and a JSON at /home/ga/Documents/CoppeliaSim/exports/pid_tuning_report.json. The PID ranges must be P (0.1-5.0), I (0.0-0.5), and D (0.0-1.0). The ZMQ API must be accessed via port 23000."
+}

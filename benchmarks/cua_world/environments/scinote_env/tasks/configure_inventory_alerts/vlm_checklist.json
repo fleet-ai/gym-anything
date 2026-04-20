@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_inventory_alerts@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_pcr_reagents",
+            "description": "Navigate to the 'PCR Reagents' inventory page.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SciNote inventory list with 'PCR Reagents' selected or as the active table header."
+        },
+        {
+            "id": "create_minimum_stock_column",
+            "description": "Add a new column named 'Minimum Stock' with the type 'Number'.",
+            "points": 25,
+            "visual_evidence": "A column creation dialog or settings panel showing the name 'Minimum Stock' and type 'Number' (or '#' icon), followed by the column appearing in the table header."
+        },
+        {
+            "id": "update_taq_polymerase_value",
+            "description": "Set the 'Minimum Stock' value for 'Taq DNA Polymerase' to 200.",
+            "points": 25,
+            "visual_evidence": "The row for 'Taq DNA Polymerase' shows the value '200' in the 'Minimum Stock' column."
+        },
+        {
+            "id": "update_dntp_mix_value",
+            "description": "Set the 'Minimum Stock' value for 'dNTP Mix 10mM' to 400.",
+            "points": 25,
+            "visual_evidence": "The row for 'dNTP Mix 10mM' shows the value '400' in the 'Minimum Stock' column."
+        },
+        {
+            "id": "verify_changes_saved",
+            "description": "Ensure all changes are saved and visible in the final inventory table view.",
+            "points": 15,
+            "visual_evidence": "A final screenshot of the 'PCR Reagents' table showing both items with their respective new values (200 and 400) without any 'unsaved changes' indicators or active edit cursors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the SciNote web interface rather than executing database or terminal commands to modify the inventory.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and typing within the browser; no terminal windows are used to run Rails scripts or SQL."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menus to reach the inventory settings rather than jumping to a direct deep-link if not provided.",
+            "visual_evidence": "Screenshots show the agent clicking on 'Inventories' and selecting 'PCR Reagents' from the list."
+        },
+        {
+            "id": "authentic_data_entry",
+            "description": "The agent manually entered the values into the table cells or edit forms.",
+            "visual_evidence": "The VLM should see the cursor active in the specific cells for 'Taq DNA Polymerase' and 'dNTP Mix 10mM' during the update process."
+        }
+    ],
+    "privileged_info_for_vlm": "The target inventory is 'PCR Reagents'. The new column must be exactly named 'Minimum Stock' and be a Number type. Specific values to verify: 'Taq DNA Polymerase' = 200, 'dNTP Mix 10mM' = 400. These values must be visible in the inventory table in the final state."
+}

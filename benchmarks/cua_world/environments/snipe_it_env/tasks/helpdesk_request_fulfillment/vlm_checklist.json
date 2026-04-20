@@ -1,0 +1,65 @@
+{
+    "task_id": "helpdesk_request_fulfillment@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_requests",
+            "description": "Navigate to the 'Requested' assets/items section in Snipe-IT.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Snipe-IT dashboard or sidebar with the 'Requested' menu item selected, showing a list of pending requests."
+        },
+        {
+            "id": "fulfill_sarah_jenkins",
+            "description": "Fulfill Sarah Jenkins' request for Lenovo ThinkPad X1 (LPT-8001).",
+            "points": 20,
+            "visual_evidence": "A confirmation message or a checkout screen showing Asset Tag LPT-8001 being assigned to Sarah Jenkins."
+        },
+        {
+            "id": "fulfill_david_chen",
+            "description": "Fulfill David Chen's request for Dell UltraSharp 27 (MON-8002).",
+            "points": 20,
+            "visual_evidence": "A confirmation message or a checkout screen showing Asset Tag MON-8002 being assigned to David Chen."
+        },
+        {
+            "id": "fulfill_maria_garcia",
+            "description": "Fulfill Maria Garcia's request for 1 unit of Apple Magic Mouse.",
+            "points": 15,
+            "visual_evidence": "The 'Checkout Accessory' screen for Apple Magic Mouse with Maria Garcia selected as the user."
+        },
+        {
+            "id": "fulfill_robert_taylor",
+            "description": "Fulfill Robert Taylor's request for 1 unit of HP 64X Black Toner.",
+            "points": 15,
+            "visual_evidence": "The 'Checkout Consumable' screen for HP 64X Black Toner with Robert Taylor selected as the user."
+        },
+        {
+            "id": "deny_james_smith",
+            "description": "Deny James Smith's request for the iPad Pro 12.9.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Decline' or 'Cancel Request' action being taken on James Smith's iPad Pro request."
+        },
+        {
+            "id": "verify_empty_queue",
+            "description": "Verify that the 'Requested' queue is now empty.",
+            "points": 10,
+            "visual_evidence": "The 'Requested' list view in Snipe-IT showing 'No matching records found' or an empty table."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent must use the Snipe-IT web interface, not the terminal or database commands.",
+            "visual_evidence": "Screenshots should show mouse movements, clicks, and form filling within the browser, not commands typed into a terminal window."
+        },
+        {
+            "id": "correct_asset_matching",
+            "description": "The agent must select the specific asset tags mentioned in the prompt, not just any available item.",
+            "visual_evidence": "The checkout screens must explicitly show 'LPT-8001' and 'MON-8002' being selected."
+        },
+        {
+            "id": "no_bulk_deletion",
+            "description": "The agent should process requests individually or via the proper fulfillment workflow rather than just deleting the request records.",
+            "visual_evidence": "The agent should be seen interacting with 'Checkout' or 'Fulfill' buttons rather than 'Delete' buttons for the four approved requests."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific asset-to-user mapping: Sarah Jenkins gets LPT-8001 (ThinkPad), David Chen gets MON-8002 (Dell Monitor), Maria Garcia gets 1 Apple Magic Mouse, and Robert Taylor gets 1 HP 64X Toner. James Smith's iPad request MUST be denied. Success is defined by the 'Requested' queue being empty after these specific actions."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "tax_lot_portfolio_tracking@1",
+    "task_completion": [
+        {
+            "id": "portfolio_creation",
+            "description": "Create a new portfolio named 'Tax Lots 2024' in JStock.",
+            "points": 10,
+            "visual_evidence": "The JStock application window shows a portfolio tab or title bar with the name 'Tax Lots 2024'."
+        },
+        {
+            "id": "first_lot_details",
+            "description": "Record the first buy transaction: 10 shares of COST at $638.22 on December 1, 2023.",
+            "points": 20,
+            "visual_evidence": "A transaction entry or dialog for COST showing Quantity: 10, Price: 638.22, and Date: 2023-12-01."
+        },
+        {
+            "id": "first_lot_fees",
+            "description": "Record distinct fees for the first lot: $4.95 commission and $0.20 clearing fee.",
+            "points": 20,
+            "visual_evidence": "The transaction input fields or summary for the first lot show Broker Commission: 4.95 and Clearing Fee: 0.20 (or Other Fee: 0.20)."
+        },
+        {
+            "id": "first_lot_comment",
+            "description": "Add the comment 'COST lot 1 Dec 2023' to the first transaction.",
+            "points": 10,
+            "visual_evidence": "The comment field for the December 1st transaction contains the exact string 'COST lot 1 Dec 2023'."
+        },
+        {
+            "id": "second_lot_details",
+            "description": "Record the second buy transaction: 8 shares of COST at $715.40 on January 19, 2024.",
+            "points": 20,
+            "visual_evidence": "A second transaction entry for COST showing Quantity: 8, Price: 715.40, and Date: 2024-01-19."
+        },
+        {
+            "id": "second_lot_fees",
+            "description": "Record distinct fees for the second lot: $4.95 commission and $0.20 clearing fee.",
+            "points": 20,
+            "visual_evidence": "The transaction input fields or summary for the second lot show Broker Commission: 4.95 and Clearing Fee: 0.20."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the JStock GUI to enter data rather than modifying underlying database files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with JStock dialogs (Buy/Sell windows) and typing into GUI text fields."
+        },
+        {
+            "id": "distinct_fee_entry",
+            "description": "The agent entered fees into separate fields rather than summing them into the share price.",
+            "visual_evidence": "The 'Broker Commission' and 'Clearing Fee' fields in the JStock transaction dialog are filled with 4.95 and 0.20 respectively."
+        },
+        {
+            "id": "no_bulk_import",
+            "description": "The agent manually entered the two distinct lots to ensure FIFO tracking rather than a single aggregated entry.",
+            "visual_evidence": "The portfolio list shows two separate rows or entries for COST with different dates and prices."
+        }
+    ],
+    "privileged_info_for_vlm": "The portfolio must be named 'Tax Lots 2024'. Lot 1: 10 shares COST, price 638.22, date Dec 1, 2023, comment 'COST lot 1 Dec 2023'. Lot 2: 8 shares COST, price 715.40, date Jan 19, 2024. For both lots, Broker Commission must be 4.95 and Clearing Fee must be 0.20. Note: The prices provided in the prompt are synthetic and will not match real-world historical data for those dates; the agent must use the prompt's values."
+}

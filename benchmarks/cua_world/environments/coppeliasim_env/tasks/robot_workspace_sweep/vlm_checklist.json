@@ -1,0 +1,53 @@
+{
+    "task_id": "robot_workspace_sweep@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "The agent successfully launches CoppeliaSim and opens the simulation environment.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim application window is visible, showing a 3D scene with a robot arm."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent starts the simulation to allow the robot arm to move and collect data.",
+            "points": 15,
+            "visual_evidence": "The 'Play' button in the CoppeliaSim toolbar is toggled, and the simulation timer is incrementing."
+        },
+        {
+            "id": "joint_configuration_sweep",
+            "description": "The agent systematically moves the robot arm through various joint configurations.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots show the robot arm in different physical poses/orientations within the 3D view."
+        },
+        {
+            "id": "csv_generation",
+            "description": "The agent saves the per-configuration records to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "A file explorer or terminal command shows the creation of '/home/ga/Documents/CoppeliaSim/exports/workspace_samples.csv' with at least 50 rows of data."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent saves the aggregate workspace statistics to the specified JSON path.",
+            "points": 25,
+            "visual_evidence": "A file explorer or text editor shows '/home/ga/Documents/CoppeliaSim/exports/workspace_report.json' containing a 'total_samples' value of 50 or greater."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI or API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the robot arm actually moving in the simulator, not just a static image while files are written."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type out 50 rows of coordinates into a text editor.",
+            "visual_evidence": "The agent uses a script or the Remote API to automate the data collection process."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the requirements.",
+            "visual_evidence": "The file paths in the terminal or file manager match '/home/ga/Documents/CoppeliaSim/exports/' exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must collect at least 50 distinct samples. The output files must be exactly '/home/ga/Documents/CoppeliaSim/exports/workspace_samples.csv' (containing >= 50 rows) and '/home/ga/Documents/CoppeliaSim/exports/workspace_report.json' (containing a 'total_samples' key with a value >= 50). The simulation environment used is 'movementViaRemoteApi.ttt'."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "build_dynamic_localization_system@1",
+    "task_completion": [
+        {
+            "id": "system_strings_import",
+            "description": "Import translations.json into a JSON DataTiddler titled 'SystemStrings'.",
+            "points": 10,
+            "visual_evidence": "A tiddler titled 'SystemStrings' is open, showing JSON content with keys like 'welcome-en', 'welcome-es', etc., and the tiddler type is set to 'application/json'."
+        },
+        {
+            "id": "language_state_init",
+            "description": "Initialize the language state in '$:/state/language' with 'en'.",
+            "points": 10,
+            "visual_evidence": "The tiddler '$:/state/language' exists and contains the text 'en'."
+        },
+        {
+            "id": "localization_macro_implementation",
+            "description": "Create the 'loc' macro in 'LocalizationMacro' tagged with '$:/tags/Macro'.",
+            "points": 25,
+            "visual_evidence": "A tiddler titled 'LocalizationMacro' is visible with the tag '$:/tags/Macro'. The code contains a '\\define loc(key)' or '\\procedure loc(key)' block that references 'SystemStrings' and '$:/state/language'."
+        },
+        {
+            "id": "language_settings_ui",
+            "description": "Create 'Language Settings' tiddler with UI to switch between en, es, and fr.",
+            "points": 20,
+            "visual_evidence": "A tiddler titled 'Language Settings' is visible containing buttons or a select dropdown labeled 'English', 'Español', and 'Français'."
+        },
+        {
+            "id": "home_dashboard_implementation",
+            "description": "Create 'Home Dashboard' using the 'loc' macro for specific keys.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled 'Home Dashboard' is visible. In edit mode, it shows calls to the 'loc' macro for 'welcome', 'submit_ticket', and 'knowledge_base'."
+        },
+        {
+            "id": "dynamic_localization_verification",
+            "description": "Verify the Home Dashboard updates content when the language is switched.",
+            "points": 20,
+            "visual_evidence": "Screenshots show 'Home Dashboard' displaying English text (e.g., 'Welcome to the IT Support Portal'), then switching to Spanish (e.g., 'Bienvenido al Portal de Soporte de TI') or French after interacting with the Language Settings."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_strings",
+            "description": "Verify the Home Dashboard does not have hardcoded translated strings.",
+            "visual_evidence": "The edit mode of 'Home Dashboard' should show macro calls like <<loc welcome>> or <$macrocall $name='loc' key='welcome'/> rather than the actual translated sentences."
+        },
+        {
+            "id": "tiddlywiki_interface_usage",
+            "description": "Ensure the agent used the TiddlyWiki browser interface to create tiddlers.",
+            "visual_evidence": "Screenshots show the TiddlyWiki 'plus' button, tiddler edit fields, and 'save' checkmarks being used, rather than just terminal commands modifying the underlying file system."
+        },
+        {
+            "id": "genuine_state_interaction",
+            "description": "Verify the language switch is driven by the state tiddler.",
+            "visual_evidence": "The 'Language Settings' tiddler should show widgets (like <$button> or <$select>) that target the '$:/state/language' tiddler."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected translations are: English (en): 'Welcome to the IT Support Portal', 'Submit a New Ticket', 'Browse Knowledge Base'. Spanish (es): 'Bienvenido al Portal de Soporte de TI', 'Enviar un nuevo ticket', 'Explorar la base de conocimientos'. French (fr): 'Bienvenue sur le portail d'assistance informatique', 'Soumettre un nouveau ticket', 'Parcourir la base de connaissances'. The 'welcome' key must be rendered as an H1 heading (<h1> or !). The macro must dynamically concatenate the key and the state (e.g., key + '-' + state)."
+}

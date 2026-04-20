@@ -1,0 +1,53 @@
+{
+    "task_id": "batch_redact_pii_regex@1",
+    "task_completion": [
+        {
+            "id": "locate_project_files",
+            "description": "Locate and open the 'PatientConnector' project directory and its subfolders containing Java, XML, properties, and log files.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the file explorer or IDE sidebar with the /home/ga/eclipse-workspace/PatientConnector directory expanded, revealing .java, .xml, .properties, and .log files."
+        },
+        {
+            "id": "identify_pii_instances",
+            "description": "Identify instances of SSNs (XXX-XX-XXXX) and MRNs (MRN-XXXXXX) within the project files using search or find-in-files functionality.",
+            "points": 15,
+            "visual_evidence": "Search results panel or highlighted text in an editor showing raw SSNs (e.g., 123-45-6789) and MRNs (e.g., MRN-123456)."
+        },
+        {
+            "id": "apply_ssn_redaction",
+            "description": "Replace all identified SSNs with the literal string 'XXX-XX-XXXX' across all specified file types.",
+            "points": 35,
+            "visual_evidence": "Editor screenshots or 'Replace All' confirmation dialogs showing the transition from numeric SSNs to the 'XXX-XX-XXXX' placeholder."
+        },
+        {
+            "id": "apply_mrn_redaction",
+            "description": "Replace all identified MRNs with the literal string 'MRN-000000' across all specified file types.",
+            "points": 30,
+            "visual_evidence": "Editor screenshots or 'Replace All' confirmation dialogs showing the transition from numeric MRNs to the 'MRN-000000' placeholder."
+        },
+        {
+            "id": "verify_redaction_completeness",
+            "description": "Perform a final search to ensure no raw SSNs or MRNs remain in the project files.",
+            "points": 10,
+            "visual_evidence": "A search result window showing '0 matches' or 'No results found' for the regex patterns \\d{3}-\\d{2}-\\d{4} and MRN-\\d{6}."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent should use the IDE/GUI search and replace features rather than executing 'sed' or 'perl' commands in the terminal to perform the redaction.",
+            "visual_evidence": "Absence of terminal commands like 'sed -i' or 'grep -rl' in the command history or visible terminal windows; presence of IDE 'Find/Replace' dialogs."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent must open and modify the actual files in the project directory, not just create a summary report.",
+            "visual_evidence": "Screenshots showing multiple file tabs open in the editor (e.g., .java, .xml, .log) with the redacted content visible."
+        },
+        {
+            "id": "no_manual_placeholder_typing",
+            "description": "The agent should use a batch replace or regex replace tool rather than manually typing over every single instance to ensure comprehensive coverage.",
+            "visual_evidence": "Use of 'Replace All' buttons or global search-and-replace dialogs in the IDE."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/PatientConnector. There are 15 SSNs to be redacted (format: XXX-XX-XXXX) and 10 MRNs (format: MRN-XXXXXX). SSNs must be replaced with the literal string 'XXX-XX-XXXX' and MRNs with 'MRN-000000'. Redaction must cover .java, .xml, .properties, and .log files. Note: A 'Dummy' SSN (000-00-0000) in TestPatient.java is often excluded from the count of real PII but should still be redacted if it matches the pattern."
+}

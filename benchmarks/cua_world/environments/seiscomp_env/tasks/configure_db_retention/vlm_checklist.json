@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_db_retention@1",
+    "task_completion": [
+        {
+            "id": "directory_creation",
+            "description": "The agent creates the directory /home/ga/scripts/ if it does not exist.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'mkdir -p /home/ga/scripts' or a file manager showing the directory path."
+        },
+        {
+            "id": "script_creation",
+            "description": "The agent creates a file named cleanup_events.sh at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor (vi, nano, gedit) or terminal command (touch, cat >) showing the creation of /home/ga/scripts/cleanup_events.sh."
+        },
+        {
+            "id": "correct_utility_usage",
+            "description": "The script content includes the 'scdbstrip' utility command.",
+            "points": 20,
+            "visual_evidence": "The string 'scdbstrip' is visible within the script content in a text editor or 'cat' output."
+        },
+        {
+            "id": "retention_parameter",
+            "description": "The script specifies a retention period of 365 days using the appropriate flag.",
+            "points": 25,
+            "visual_evidence": "The script content shows '365' alongside flags like '--days' or '-d' (e.g., 'scdbstrip -d 365')."
+        },
+        {
+            "id": "executable_permissions",
+            "description": "The agent makes the script executable.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'chmod +x' or 'ls -l' showing 'x' permissions for the script file."
+        },
+        {
+            "id": "initial_cleanup_execution",
+            "description": "The agent executes the script to perform the initial cleanup.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of './cleanup_events.sh' or '/home/ga/scripts/cleanup_events.sh' and any resulting logs from scdbstrip."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'Success' without running the utility.",
+            "visual_evidence": "The terminal should show the actual output/logs of the scdbstrip command, not just a manual print statement."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the file system rather than just simulating the task in a mock environment.",
+            "visual_evidence": "Screenshots show standard Linux terminal prompts (e.g., ga@...) and standard file system paths."
+        },
+        {
+            "id": "manual_script_writing",
+            "description": "The agent wrote the script content manually or via redirection, not by downloading a pre-made solution.",
+            "visual_evidence": "The agent is seen typing the script content into an editor or using 'cat'/'echo' to write the lines."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be located at /home/ga/scripts/cleanup_events.sh. It must use the 'scdbstrip' utility with the value '365' and the flag '--days' or '-d'. The task is only complete if the script is both created with these parameters and executed at least once."
+}

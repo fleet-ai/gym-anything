@@ -1,0 +1,59 @@
+{
+    "task_id": "model_generic_small_hydro@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script at the specified path /home/ga/Documents/SAM_Projects/small_hydro_model.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation of the file at the correct path."
+        },
+        {
+            "id": "pysam_import_and_setup",
+            "description": "The script imports PySAM and initializes the Generic System and Lcoefcr models.",
+            "points": 15,
+            "visual_evidence": "Code in the script showing 'import PySAM.GenericSystem' and 'import PySAM.Lcoefcr' (or similar) and model instantiation."
+        },
+        {
+            "id": "input_parameter_configuration",
+            "description": "The script defines the required inputs: 500 kW capacity, 0.95 derate, $2,000,000 cost, $50,000 fixed O&M, $0.005/kWh variable O&M, and 0.078 FCR.",
+            "points": 20,
+            "visual_evidence": "Code showing these specific numerical values assigned to the model input variables."
+        },
+        {
+            "id": "generation_profile_logic",
+            "description": "The script contains logic to generate an 8760-hour array based on the provided monthly capacity factors.",
+            "points": 20,
+            "visual_evidence": "Code showing the array of 12 monthly factors [0.45, 0.50, 0.65, 0.75, 0.80, 0.70, 0.50, 0.35, 0.30, 0.35, 0.45, 0.45] and a loop or expansion to 8760 values."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the script to run the PySAM simulation.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the execution of 'python3 small_hydro_model.py' without errors."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The script generates the JSON report at /home/ga/Documents/SAM_Projects/small_hydro_results.json with all required keys.",
+            "points": 20,
+            "visual_evidence": "The content of the JSON file displayed on screen containing keys: system_nameplate_kw, annual_energy_kwh, annual_capacity_factor_pct, monthly_energy_kwh, lcoe_cents_per_kwh, and total_installed_cost_usd."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final LCOE or energy values directly into the JSON without running a simulation.",
+            "visual_evidence": "The Python script should show logic for calling .execute() on the PySAM models and extracting outputs, rather than just writing a static JSON string."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually uses the PySAM library rather than a simple manual math calculation in Python.",
+            "visual_evidence": "The script must contain PySAM class calls (e.g., GenericSystem.new()) and not just basic arithmetic for the LCOE."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the exact file paths specified in the prompt.",
+            "visual_evidence": "Screenshots show the directory /home/ga/Documents/SAM_Projects/ being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation should yield an annual energy production of approximately 2,166,570 kWh (acceptable range: 2,000,000 - 2,300,000). The annual capacity factor should be approximately 49.47% (acceptable range: 45% - 55%). The calculated LCOE should be approximately 10.01 cents/kWh (acceptable range: 7.0 - 13.0). The system_nameplate_kw must be 500 and total_installed_cost_usd must be 2,000,000."
+}

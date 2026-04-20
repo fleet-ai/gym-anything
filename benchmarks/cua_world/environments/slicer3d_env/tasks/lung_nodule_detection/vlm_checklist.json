@@ -1,0 +1,53 @@
+{
+    "task_id": "lung_nodule_detection@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the chest CT scan into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a CT scan loaded in the viewer with axial, sagittal, and coronal slices visible."
+        },
+        {
+            "id": "identify_nodules",
+            "description": "The agent navigates through the slices to locate potential lung nodules.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent scrolling through different CT slices and centering the crosshairs on specific anatomical abnormalities."
+        },
+        {
+            "id": "place_fiducial_markers",
+            "description": "The agent places fiducial markers on identified nodules >=3mm.",
+            "points": 25,
+            "visual_evidence": "Visual markers (colored dots or glyphs) overlaid on the CT scan at the site of nodules; the 'Markups' list should show entries."
+        },
+        {
+            "id": "save_fiducial_file",
+            "description": "The agent saves the fiducial markers to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A save dialog or terminal command showing the export of markers to '~/Documents/SlicerData/LIDC/agent_fiducials.fcsv'."
+        },
+        {
+            "id": "generate_nodule_report",
+            "description": "The agent creates a report containing the lobe location and longest diameter for each nodule.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output showing a JSON structure with 'lobe' (e.g., RUL, LLL) and 'diameter' fields, saved to '~/Documents/SlicerData/LIDC/nodule_report.json'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to identify and mark nodules rather than just script execution.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Slicer tools, slice sliders, and the markup toolbar."
+        },
+        {
+            "id": "no_precomputed_copy_paste",
+            "description": "The agent did not simply copy-paste a pre-existing JSON report from a hidden directory.",
+            "visual_evidence": "The agent is seen manually measuring diameters or typing the report based on observations in the viewer."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent used measurement tools (like a ruler or markup scale) to verify the 3mm threshold.",
+            "visual_evidence": "The presence of a ruler tool or coordinate-based measurement visible in the GUI during the detection phase."
+        }
+    ],
+    "privileged_info_for_vlm": "The LIDC-IDRI dataset defines nodules as being >= 3.0 mm in diameter. Only nodules meeting or exceeding this size should be marked and reported. Lobe abbreviations are: RUL (Right Upper Lobe), RML (Right Middle Lobe), RLL (Right Lower Lobe), LUL (Left Upper Lobe), and LLL (Left Lower Lobe)."
+}

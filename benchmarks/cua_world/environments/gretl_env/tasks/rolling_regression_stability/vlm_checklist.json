@@ -1,0 +1,59 @@
+{
+    "task_id": "rolling_regression_stability@1",
+    "task_completion": [
+        {
+            "id": "gretl_script_editor",
+            "description": "The agent opens the Gretl script editor and writes the script for rolling OLS regression.",
+            "points": 10,
+            "visual_evidence": "A Gretl script editor window (hansl) is visible containing code with 'ols inf const inf(-1)' and a loop structure."
+        },
+        {
+            "id": "script_saved",
+            "description": "The script is saved to the specified path '/home/ga/Documents/gretl_output/run_rolling.inp'.",
+            "points": 10,
+            "visual_evidence": "The file save dialog or the title bar of the script editor shows the path /home/ga/Documents/gretl_output/run_rolling.inp."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script to perform the rolling window regression.",
+            "points": 20,
+            "visual_evidence": "The Gretl console or output window shows the execution of the script and the iteration through observations (25 to end)."
+        },
+        {
+            "id": "csv_file_generation",
+            "description": "A CSV file containing the coefficients and standard errors is generated at the specified path.",
+            "points": 25,
+            "visual_evidence": "A file manager window or terminal command shows 'rolling_results.csv' exists in /home/ga/Documents/gretl_output/ with headers like 'coeff' and 'se'."
+        },
+        {
+            "id": "plot_generation",
+            "description": "A plot of the slope coefficient series is generated and saved as a PNG.",
+            "points": 25,
+            "visual_evidence": "The file 'persistence_plot.png' is visible in the output directory, or a Gretl plot window showing the time-varying coefficient of inf(-1) is displayed."
+        },
+        {
+            "id": "verify_window_logic",
+            "description": "The script correctly uses a window size of 24 and starts from observation 25.",
+            "points": 10,
+            "visual_evidence": "The script text shows logic equivalent to 'loop i=25..T' and 'smpl i-23 i' or similar windowing syntax."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gretl_interaction",
+            "description": "The agent interacted with the Gretl GUI/Script editor rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the Gretl application window, menus, or the native Gretl script editor being used."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the regression results into the CSV.",
+            "visual_evidence": "The CSV is generated via the script's 'outfile' or 'store' commands in the Gretl console output."
+        },
+        {
+            "id": "actual_data_usage",
+            "description": "The agent used the 'usa.gdt' dataset provided in Gretl.",
+            "visual_evidence": "The Gretl main window shows 'usa.gdt' as the active dataset or the script contains 'open usa.gdt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'usa.gdt' dataset is a standard Gretl sample file. The variable 'inf' represents the quarterly inflation rate. A rolling window of 24 observations in quarterly data corresponds to 6 years. The script must use the 'smpl' command inside a loop to shift the window and the 'ols' command to estimate the model 'inf = const + inf(-1)'. The coefficient of interest is the one associated with 'inf_1' (the lag)."
+}

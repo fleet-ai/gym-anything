@@ -1,0 +1,59 @@
+{
+    "task_id": "simulate_commercial_fuel_cell@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script at /home/ga/Documents/SAM_Projects/fuel_cell_model.py.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation/saving of 'fuel_cell_model.py' in the specified directory."
+        },
+        {
+            "id": "pysam_fuelcell_import",
+            "description": "The script imports PySAM.Fuelcell and uses the FuelCellCommercial default configuration.",
+            "points": 15,
+            "visual_evidence": "Code in the script showing 'import PySAM.Fuelcell' and 'Fuelcell.default(\"FuelCellCommercial\")' or similar initialization."
+        },
+        {
+            "id": "capacity_configuration",
+            "description": "The script configures the system to have a total capacity of exactly 500 kW.",
+            "points": 20,
+            "visual_evidence": "Code showing the calculation or setting of unit power and number of units such that (number_of_units * unit_max_power_kw) equals 500."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the script to run the annual simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal output or IDE console showing the execution of the python script without errors."
+        },
+        {
+            "id": "json_results_file",
+            "description": "The agent saves the results to /home/ga/Documents/SAM_Projects/fuel_cell_results.json with the required keys.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal showing 'fuel_cell_results.json' exists in the correct path."
+        },
+        {
+            "id": "verify_results_content",
+            "description": "The JSON file contains valid numerical results for annual energy, fuel usage, and capacity factor.",
+            "points": 20,
+            "visual_evidence": "The content of 'fuel_cell_results.json' displayed on screen showing 'total_capacity_kw': 500 and non-zero values for 'annual_energy_kwh' and 'capacity_factor_pct'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final simulation results into the script without running the PySAM module.",
+            "visual_evidence": "The script should show calls to 'fuelcell.execute()' and data extraction from 'fuelcell.Outputs', rather than just a print statement of fixed numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually uses the PySAM library rather than mocking the output.",
+            "visual_evidence": "Terminal logs showing the installation or import of PySAM, or the script containing specific PySAM attribute assignments (e.g., .FuelCell.system_capacity)."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent uses the specific paths requested rather than default or temporary directories.",
+            "visual_evidence": "The file paths in the code and terminal match '/home/ga/Documents/SAM_Projects/' exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The total capacity must be exactly 500 kW (e.g., 1 unit of 500kW or 2 units of 250kW). For a 500kW commercial fuel cell, the annual energy generation (annual_energy_kwh) should be between 3,500,000 and 4,380,000 kWh. The capacity factor (capacity_factor_pct) must be between 50% and 100%. The output must be a JSON file at the specified path with the exact keys: total_capacity_kw, number_of_units, unit_max_power_kw, annual_energy_kwh, annual_fuel_usage, and capacity_factor_pct."
+}

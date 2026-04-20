@@ -1,0 +1,59 @@
+{
+    "task_id": "visual_forensic_bookmarking@1",
+    "task_completion": [
+        {
+            "id": "open_vms_client",
+            "description": "The agent opens the Video Management System (VMS) software.",
+            "points": 10,
+            "visual_evidence": "The VMS application window is visible on the desktop."
+        },
+        {
+            "id": "select_conveyor_camera",
+            "description": "The agent selects or views the 'Conveyor Camera' from the resource tree or layout.",
+            "points": 15,
+            "visual_evidence": "The camera name 'Conveyor Camera' is visible in the video tile or the resource panel."
+        },
+        {
+            "id": "locate_alert_event",
+            "description": "The agent scrubs through the timeline to find the 'CRITICAL ALERT' red screen.",
+            "points": 20,
+            "visual_evidence": "The video player shows a bright red screen with the text 'CRITICAL ALERT' visible."
+        },
+        {
+            "id": "open_bookmark_dialog",
+            "description": "The agent initiates the creation of a bookmark for the identified event.",
+            "points": 15,
+            "visual_evidence": "A 'Add Bookmark' or 'Bookmark' dialog box is open on the screen."
+        },
+        {
+            "id": "name_bookmark_correctly",
+            "description": "The agent names the bookmark 'Jam Event'.",
+            "points": 20,
+            "visual_evidence": "The text 'Jam Event' is typed into the Name field of the bookmark dialog."
+        },
+        {
+            "id": "save_bookmark_on_timeline",
+            "description": "The agent saves the bookmark, and it appears on the timeline covering the alert duration.",
+            "points": 20,
+            "visual_evidence": "A bookmark icon or colored bar labeled 'Jam Event' is visible on the video timeline corresponding to the red screen duration."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the VMS GUI to create the bookmark rather than script/terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the VMS timeline and dialog boxes; no terminal windows are used to bypass the UI."
+        },
+        {
+            "id": "genuine_video_scrubbing",
+            "description": "The agent actually navigated the video to find the alert rather than guessing the time.",
+            "visual_evidence": "The timeline playhead is seen moving to the specific point where the red screen appears before the bookmark is created."
+        },
+        {
+            "id": "no_hardcoded_metadata",
+            "description": "The agent did not simply search for existing bookmarks but created a new one.",
+            "visual_evidence": "The 'Add Bookmark' dialog is filled out manually by the agent during the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The video is 60 seconds long. A red screen with 'CRITICAL ALERT' appears for 8 seconds between the 10s and 45s marks. The camera must be named 'Conveyor Camera'. The bookmark must be named 'Jam Event'. A timing tolerance of 5 seconds is allowed for the start and end times of the bookmark relative to the actual visual alert."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "robot_arm_inverse_kinematics_viz@1",
+    "task_completion": [
+        {
+            "id": "geogebra_interface_open",
+            "description": "The GeoGebra application is open and active.",
+            "points": 10,
+            "visual_evidence": "The GeoGebra window is visible, showing the Algebra and Graphics views."
+        },
+        {
+            "id": "base_and_target_points",
+            "description": "A fixed base point at (0,0) and a draggable target point are created.",
+            "points": 15,
+            "visual_evidence": "A point labeled or located at (0,0) and another point (often labeled 'T' or 'Target') are visible in the Graphics view and Algebra list."
+        },
+        {
+            "id": "workspace_boundary",
+            "description": "A circle representing the maximum workspace boundary (radius 592) is drawn.",
+            "points": 15,
+            "visual_evidence": "A large circle centered at (0,0) is visible; the Algebra view should show an equation like x² + y² = 592² or a circle with radius 592."
+        },
+        {
+            "id": "geometric_elbow_construction",
+            "description": "The elbow point is geometrically constructed (e.g., using intersections of circles) to reach the target.",
+            "points": 30,
+            "visual_evidence": "Construction lines or circles used to find the elbow point are visible, or the Algebra view shows the elbow point defined by the intersection of two circles (one radius 290 from base, one radius 302 from target)."
+        },
+        {
+            "id": "robot_arm_links",
+            "description": "Two segments representing Link 1 (290 mm) and Link 2 (302 mm) connect the base, elbow, and target.",
+            "points": 20,
+            "visual_evidence": "Two connected line segments are visible. The Algebra view confirms the lengths of these segments are approximately 290 and 302."
+        },
+        {
+            "id": "file_saved",
+            "description": "The simulation is saved as 'robot_kinematics.ggb' in the specified directory.",
+            "points": 10,
+            "visual_evidence": "The GeoGebra title bar shows 'robot_kinematics.ggb' or a file explorer window shows the file in ~/Documents/GeoGebra/projects/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoGebra GUI to build the model rather than just creating a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GeoGebra tools or the input bar within the application."
+        },
+        {
+            "id": "genuine_construction",
+            "description": "The robot arm actually moves when the target is dragged (if video/sequence available) or the geometry logically follows the target.",
+            "visual_evidence": "The elbow point position is mathematically dependent on the target point position in the Algebra view."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The elbow point is not a static coordinate but a calculated object.",
+            "visual_evidence": "The Algebra view shows the elbow point defined by a formula or intersection, not fixed numbers."
+        }
+    ],
+    "privileged_info_for_vlm": "The task prompt specifies Link 1 = 290mm and Link 2 = 302mm, resulting in a max reach of 592mm. Although real-world ABB IRB 120 specs differ (270mm/302mm/580mm reach), the agent MUST follow the prompt's values (290, 302, 592) for this simulation. The verifier allows a tolerance of 2.0mm for these lengths. The viewport width must be greater than 200 units to be considered valid."
+}

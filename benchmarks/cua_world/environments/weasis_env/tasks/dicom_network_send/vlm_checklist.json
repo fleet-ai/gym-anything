@@ -1,0 +1,53 @@
+{
+    "task_id": "dicom_network_send@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_preferences",
+            "description": "Open the DICOM Send or DICOM Nodes configuration window in Weasis.",
+            "points": 10,
+            "visual_evidence": "A settings or preferences dialog box is visible, specifically showing DICOM node/destination configuration."
+        },
+        {
+            "id": "configure_node_details",
+            "description": "Enter the correct destination parameters: Description (Central PACS), AE Title (PACS_ARCHIVE), Hostname (localhost), and Port (11112).",
+            "points": 25,
+            "visual_evidence": "The text fields for Description, AE Title, Hostname, and Port are filled with 'Central PACS', 'PACS_ARCHIVE', 'localhost', and '11112' respectively."
+        },
+        {
+            "id": "save_node_configuration",
+            "description": "Save or add the newly configured DICOM destination to the list of nodes.",
+            "points": 15,
+            "visual_evidence": "The 'Central PACS' node appears in the list of configured DICOM destinations or the 'Add/Save' button is clicked."
+        },
+        {
+            "id": "initiate_dicom_send",
+            "description": "Select the loaded series and initiate the DICOM Send/Export command.",
+            "points": 20,
+            "visual_evidence": "The user right-clicks the series or uses the 'DICOM Send' menu, and a transfer dialog appears with 'Central PACS' selected as the destination."
+        },
+        {
+            "id": "verify_transfer_success",
+            "description": "Confirm the DICOM transfer completed successfully.",
+            "points": 30,
+            "visual_evidence": "A progress bar reaches 100%, a 'Success' notification appears, or the transfer queue shows the status as 'Sent' or 'Completed'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to configure and send, rather than using command-line tools like 'dcmsend'.",
+            "visual_evidence": "Screenshots show mouse cursor movements and interactions within the Weasis application windows rather than a terminal."
+        },
+        {
+            "id": "no_manual_file_copy",
+            "description": "The agent did not simply move files on the file system to simulate a transfer.",
+            "visual_evidence": "The DICOM Send dialog in Weasis is used, showing active network protocol interaction (C-STORE)."
+        },
+        {
+            "id": "authentic_configuration",
+            "description": "The agent typed or pasted the specific parameters into the GUI fields.",
+            "visual_evidence": "The specific values 'PACS_ARCHIVE' and '11112' are visible within the Weasis configuration text boxes."
+        }
+    ],
+    "privileged_info_for_vlm": "The destination node must be configured with AE Title: 'PACS_ARCHIVE', Host: 'localhost', and Port: '11112'. Although the task description mentions a 'CT series', the actual data loaded in Weasis is an X-Ray Angiography (XA) file from Rubo Medical. The transfer is successful if the Weasis DICOM Send interface indicates completion to the 'Central PACS' destination."
+}

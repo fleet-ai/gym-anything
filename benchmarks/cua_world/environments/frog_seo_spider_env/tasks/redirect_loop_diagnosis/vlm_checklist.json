@@ -1,0 +1,53 @@
+{
+    "task_id": "redirect_loop_diagnosis@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launched",
+            "description": "Screaming Frog SEO Spider is opened and the target URL is entered.",
+            "points": 10,
+            "visual_evidence": "The Screaming Frog application window is visible with 'https://crawler-test.com/' typed into the 'Enter URL to spider' field."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "The agent initiates and completes the crawl of the target website.",
+            "points": 15,
+            "visual_evidence": "The progress bar at the top right shows 100% or the 'Start' button has changed to 'Resume/Clear', and the internal tab is populated with URLs."
+        },
+        {
+            "id": "filter_redirect_loops",
+            "description": "The agent navigates to the Response Codes tab and filters for Redirect Loops.",
+            "points": 20,
+            "visual_evidence": "The 'Response Codes' tab is selected, and the filter dropdown menu shows 'Redirect Loop' selected, displaying a list of looping URLs."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "The agent exports the filtered redirect loop results to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "The 'Export' button is clicked while the Redirect Loop filter is active, and a file save dialog or terminal command confirms saving to '~/Documents/SEO/exports/redirect_loops.csv'."
+        },
+        {
+            "id": "create_text_report",
+            "description": "The agent creates a text report with the total count and an example URL.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) or a terminal 'cat' command shows a file at '~/Documents/SEO/reports/loop_analysis.txt' containing a number of loops and a specific URL from the crawl results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Screaming Frog GUI to perform the analysis rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the Screaming Frog interface being interacted with (clicking tabs, setting filters) rather than just a blank desktop and a terminal."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The data in the report matches the data seen in the Screaming Frog UI.",
+            "visual_evidence": "The URL listed as an example in loop_analysis.txt matches one of the URLs visible in the Screaming Frog 'Redirect Loop' filtered list."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The agent did not use placeholder text like 'X loops found'.",
+            "visual_evidence": "The loop_analysis.txt file contains a specific integer and a valid URL from the crawler-test.com domain."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://crawler-test.com/. In Screaming Frog, redirect loops are found under the 'Response Codes' tab by selecting the 'Redirect Loop' filter. The expected export path is ~/Documents/SEO/exports/redirect_loops.csv and the report path is ~/Documents/SEO/reports/loop_analysis.txt. Verified loop examples on this site include paths like '/redirects/infinite_redirect' or '/redirects/two_step_redirect_loop_1'."
+}

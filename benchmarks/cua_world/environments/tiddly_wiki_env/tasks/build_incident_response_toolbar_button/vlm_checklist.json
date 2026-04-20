@@ -1,0 +1,59 @@
+{
+    "task_id": "build_incident_response_toolbar_button@1",
+    "task_completion": [
+        {
+            "id": "create_incident_template",
+            "description": "Create a tiddler titled 'Incident Template' with the tag 'Security Incident'.",
+            "points": 15,
+            "visual_evidence": "A tiddler open in the TiddlyWiki interface titled 'Incident Template' showing the tag 'Security Incident' in the tag area."
+        },
+        {
+            "id": "template_fields_and_body",
+            "description": "Configure the template with custom fields (status: Open, severity: Triage) and the three specific Markdown/Wikitext headings.",
+            "points": 25,
+            "visual_evidence": "The 'Incident Template' tiddler showing fields 'status' set to 'Open' and 'severity' set to 'Triage' at the bottom, and the body containing '# Incident Summary', '# Indicators of Compromise (IoCs)', and '# Remediation Actions'."
+        },
+        {
+            "id": "create_button_tiddler",
+            "description": "Create the button tiddler '$:/custom/buttons/NewIncident' with the tag '$:/tags/PageControls'.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled '$:/custom/buttons/NewIncident' with the tag '$:/tags/PageControls' visible in the editor or view mode."
+        },
+        {
+            "id": "button_metadata_and_icon",
+            "description": "Set the button's caption to 'New Incident', description to 'Create a new security incident report', and include a visual icon.",
+            "points": 15,
+            "visual_evidence": "The button tiddler showing a 'caption' field as 'New Incident', a 'description' field, and code for an icon (e.g., {{$:/core/images/new-button}} or similar SVG)."
+        },
+        {
+            "id": "sidebar_button_presence",
+            "description": "The 'New Incident' button appears in the sidebar Page Controls (top right area).",
+            "points": 10,
+            "visual_evidence": "A new icon appearing in the sidebar's page control segment (near the search bar or 'plus' icon) that shows the 'New Incident' tooltip on hover."
+        },
+        {
+            "id": "functional_incident_creation",
+            "description": "Clicking the button generates a new tiddler titled 'New Security Incident' based on the template.",
+            "points": 20,
+            "visual_evidence": "A new tiddler titled 'New Security Incident' appearing in the story river, pre-populated with the template's headings and fields after the sidebar button is clicked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki browser interface to create tiddlers rather than just editing files via terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking the '+' button, typing into the TiddlyWiki editor fields, and saving tiddlers within the browser."
+        },
+        {
+            "id": "no_manual_tiddler_bypass",
+            "description": "The agent did not simply manually create a tiddler named 'New Security Incident' to fake the button's functionality.",
+            "visual_evidence": "The trajectory should show the configuration of the action-createtiddler widget or similar logic within the button tiddler code."
+        },
+        {
+            "id": "genuine_ui_elements",
+            "description": "The sidebar button is integrated into the actual PageControls tag system.",
+            "visual_evidence": "The '$:/tags/PageControls' tag is visible on the button tiddler, and the button appears alongside standard system buttons like 'home' or 'control panel'."
+        }
+    ],
+    "privileged_info_for_vlm": "The template must be titled 'Incident Template' and tagged 'Security Incident'. It must have fields status=Open and severity=Triage. The button must be titled '$:/custom/buttons/NewIncident', tagged '$:/tags/PageControls', and have the caption 'New Incident'. The resulting incident tiddler must be titled 'New Security Incident'. The headings in the template must use the '#' character (Markdown style) exactly as specified."
+}

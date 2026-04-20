@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_inactive_purge@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "The agent connects to the Chinook database at the specified path.",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver, SQLite Browser) or terminal showing the connection to /home/ga/Documents/databases/chinook.db."
+        },
+        {
+            "id": "identify_inactive_customers",
+            "description": "The agent executes a query to identify customers with no orders in 2013.",
+            "points": 15,
+            "visual_evidence": "SQL query in an editor or terminal containing 'NOT IN' or 'EXCEPT' logic targeting InvoiceDate between '2013-01-01' and '2013-12-31'."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "The agent exports the list of inactive customers with the required columns to the specified CSV path.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal showing /home/ga/Documents/exports/inactive_customers.csv exists, or a 'SELECT ... INTO' or export wizard screen showing columns CustomerId, FirstName, LastName, Email, and TotalSpent."
+        },
+        {
+            "id": "delete_associated_records",
+            "description": "The agent deletes records from invoice_items and invoices for the inactive customers to maintain referential integrity.",
+            "points": 20,
+            "visual_evidence": "SQL commands showing 'DELETE FROM invoice_items' and 'DELETE FROM invoices' where CustomerId matches the inactive list."
+        },
+        {
+            "id": "delete_customers",
+            "description": "The agent deletes the inactive customers from the customers table.",
+            "points": 20,
+            "visual_evidence": "SQL command showing 'DELETE FROM customers' for the identified inactive IDs."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "The agent saves the full SQL process to the specified script path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or text editor showing the file /home/ga/Documents/scripts/purge_process.sql containing the logic used."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type the CSV content but generated it via database interaction.",
+            "visual_evidence": "The agent should be seen running an export command or using a database tool's export feature rather than just opening a blank text file and typing names."
+        },
+        {
+            "id": "actual_database_interaction",
+            "description": "The agent interacted with the real database file, not a mock or temporary file.",
+            "visual_evidence": "The file path /home/ga/Documents/databases/chinook.db is visible in the connection strings or command line arguments."
+        },
+        {
+            "id": "sequential_execution",
+            "description": "The agent performed the deletion in the correct order (items -> invoices -> customers) to avoid foreign key constraint errors.",
+            "visual_evidence": "The SQL script or command history shows the deletion of child records (invoice_items/invoices) before the parent records (customers)."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. There are exactly 13 inactive customers who did not place orders in 2013. The required columns for the CSV are CustomerId, FirstName, LastName, Email, and TotalSpent. The deletion must follow the order: invoice_items, then invoices, then customers, to satisfy foreign key constraints. The final script must be at /home/ga/Documents/scripts/purge_process.sql and the export at /home/ga/Documents/exports/inactive_customers.csv."
+}

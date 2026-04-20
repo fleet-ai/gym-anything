@@ -1,0 +1,59 @@
+{
+    "task_id": "rtp_audio_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_wireshark",
+            "description": "Open the specified PCAP file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'sip-rtp-g711.pcap' in the title bar or file path."
+        },
+        {
+            "id": "navigate_rtp_streams",
+            "description": "Access the RTP Streams analysis tool within Wireshark.",
+            "points": 15,
+            "visual_evidence": "The 'RTP Streams' dialog window is open, listing at least one detected RTP stream."
+        },
+        {
+            "id": "select_and_analyze",
+            "description": "Select the correct RTP stream for analysis/playback.",
+            "points": 15,
+            "visual_evidence": "An RTP stream is highlighted in the RTP Streams window, or the 'RTP Player' window is open showing a waveform."
+        },
+        {
+            "id": "export_audio_dialog",
+            "description": "Initiate the export/save payload process for the audio stream.",
+            "points": 20,
+            "visual_evidence": "A 'Save' or 'Export' file dialog is visible, specifically for saving the audio payload."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Save the file to the exact path and filename specified in the task.",
+            "points": 20,
+            "visual_evidence": "The file dialog shows the path '~/Documents/captures/' and the filename 'recovered_call.au' being entered or saved."
+        },
+        {
+            "id": "verify_file_existence",
+            "description": "Confirm the file exists in the file manager or terminal at the target location.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal output showing 'recovered_call.au' in the '~/Documents/captures/' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to perform the extraction rather than just using CLI tools like tshark.",
+            "visual_evidence": "Screenshots show the Wireshark application window and menu interactions (Telephony > RTP > RTP Streams)."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create an empty file or rename a dummy file to match the output name.",
+            "visual_evidence": "The agent is seen interacting with the Wireshark 'Export' or 'Save' buttons, not just using 'touch' or 'mv' in a terminal."
+        },
+        {
+            "id": "genuine_stream_selection",
+            "description": "The agent interacted with the specific RTP stream found in the provided pcap.",
+            "visual_evidence": "The RTP analysis window shows stream data (SSRC, packet counts) consistent with the sip-rtp-g711.pcap file."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is sip-rtp-g711.pcap. The expected output is a Sun Audio file (.au) located at ~/Documents/captures/recovered_call.au. A successful extraction of this specific PCAP should result in a file approximately 144,508 bytes in size. The audio codec in the PCAP is G.711 (PCMU), which Wireshark natively exports to .au format via the RTP Player/Stream analysis tool."
+}

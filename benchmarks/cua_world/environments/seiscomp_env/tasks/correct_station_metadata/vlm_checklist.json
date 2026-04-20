@@ -1,0 +1,53 @@
+{
+    "task_id": "correct_station_metadata@1",
+    "task_completion": [
+        {
+            "id": "database_access",
+            "description": "Agent accesses the SeisComP database via terminal using the specified mysql command.",
+            "points": 10,
+            "visual_evidence": "Terminal screenshot showing 'mysql -u sysop -psysop seiscomp' being executed."
+        },
+        {
+            "id": "identify_original_elevation",
+            "description": "Agent queries the database to find the current (incorrect) elevation for station GE.BKB.",
+            "points": 15,
+            "visual_evidence": "SQL query results showing station BKB with an elevation value (likely 132.0 based on privileged info)."
+        },
+        {
+            "id": "update_elevation_sql",
+            "description": "Agent executes an SQL UPDATE command to set the elevation of GE.BKB to exactly 50.0.",
+            "points": 25,
+            "visual_evidence": "Terminal showing an SQL UPDATE statement targeting the 'Station' table where code='BKB' and setting elevation='50.0'."
+        },
+        {
+            "id": "export_scml_inventory",
+            "description": "Agent exports the corrected GE network inventory to the specified XML path.",
+            "points": 25,
+            "visual_evidence": "Terminal command showing 'scxmldump' or similar SeisComP export tool targeting ~/seiscomp/var/lib/inventory/corrected_inventory.xml."
+        },
+        {
+            "id": "create_text_report",
+            "description": "Agent creates the plain text report file with the required station details and elevation values.",
+            "points": 25,
+            "visual_evidence": "Terminal command (cat, echo, or editor) showing the creation of ~/station_correction_report.txt containing 'GE.BKB', the original elevation, and '50.0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_report",
+            "description": "Agent did not create the report before querying the database for the original value.",
+            "visual_evidence": "The sequence of screenshots must show a database SELECT query occurring before the report file is written."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacted with the actual mysql client rather than just mocking file creation.",
+            "visual_evidence": "Screenshots show the MariaDB/MySQL prompt and command outputs, not just shell 'touch' commands."
+        },
+        {
+            "id": "correct_target_path",
+            "description": "Agent used the exact file paths specified in the task for output.",
+            "visual_evidence": "The XML and TXT files are saved to the specific paths: ~/seiscomp/var/lib/inventory/corrected_inventory.xml and ~/station_correction_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The target station is GE.BKB. Although the task description mentions Biak, the database entry for BKB is the one to modify. The original elevation in the database is 132.0 (synthetic corruption). The agent must change this to exactly 50.0. The final XML must be exported using SeisComP tools (like scxmldump) to ~/seiscomp/var/lib/inventory/corrected_inventory.xml and the report must be at ~/station_correction_report.txt."
+}

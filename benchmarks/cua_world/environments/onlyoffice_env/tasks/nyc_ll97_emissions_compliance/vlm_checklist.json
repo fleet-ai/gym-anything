@@ -1,0 +1,59 @@
+{
+    "task_id": "nyc_ll97_emissions_compliance@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source data files (CSV and TXT) to read the portfolio and statutory limits.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing nyc_ll84_portfolio.csv and ll97_limits.txt open in a text editor, spreadsheet viewer, or terminal."
+        },
+        {
+            "id": "excel_initialization",
+            "description": "Agent opens Excel or a similar spreadsheet application to begin building the model.",
+            "points": 10,
+            "visual_evidence": "The spreadsheet application (e.g., LibreOffice Calc or Excel) is visible on the screen."
+        },
+        {
+            "id": "calculation_columns_setup",
+            "description": "The spreadsheet contains columns for LL97_Limit, Allowed_Emissions, Excess_Emissions, and Estimated_Penalty.",
+            "points": 20,
+            "visual_evidence": "Column headers matching these specific names are visible in the spreadsheet UI."
+        },
+        {
+            "id": "formula_implementation",
+            "description": "Agent implements the required logic: Allowed_Emissions (GFA * Limit) and Estimated_Penalty (Excess * $268).",
+            "points": 30,
+            "visual_evidence": "The formula bar shows a calculation involving a cell multiplied by 268 or a cell multiplied by the limit value."
+        },
+        {
+            "id": "summary_sheet_creation",
+            "description": "A summary sheet or section exists reporting the total count of non-compliant buildings and the grand total penalty.",
+            "points": 20,
+            "visual_evidence": "A separate tab or a distinct summary area showing 'Total Non-Compliant Buildings' and 'Grand Total Financial Penalty'."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "The workbook is saved to the specific path ~/Documents/Spreadsheets/ll97_compliance_model.xlsx.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog or the window title bar shows the correct file name and path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the spreadsheet GUI to build the model rather than just generating a file via a single terminal command.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with spreadsheet cells, menus, or formula bars."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not hardcode the final summary values but derived them from the data.",
+            "visual_evidence": "The formula bar shows SUM or COUNTIF functions rather than static numbers in the summary fields."
+        },
+        {
+            "id": "source_data_usage",
+            "description": "The agent actually referenced the provided limits.txt for the penalty rate.",
+            "visual_evidence": "The agent is seen opening or cat-ing ll97_limits.txt before or during the spreadsheet creation."
+        }
+    ],
+    "privileged_info_for_vlm": "The penalty rate is exactly $268 per metric ton of excess emissions. The source data in nyc_ll84_portfolio.csv is synthetically generated for this task. The final output must be an Excel file (.xlsx) located at /home/ga/Documents/Spreadsheets/ll97_compliance_model.xlsx. Note: A programmatic verifier script is missing from the environment, so visual confirmation of the formulas and summary values is the primary method of validation."
+}

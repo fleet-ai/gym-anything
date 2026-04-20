@@ -1,0 +1,53 @@
+{
+    "task_id": "migrate_hotel_type_to_tags@1",
+    "task_completion": [
+        {
+            "id": "create_tags_property",
+            "description": "Create the 'Tags' property as an EMBEDDEDSET of Strings in the 'Hotels' class.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the OrientDB schema/studio showing 'Tags' added to the 'Hotels' class with type 'EMBEDDEDSET' and linked type 'STRING'."
+        },
+        {
+            "id": "migrate_type_to_tags",
+            "description": "Migrate the existing 'Type' value into the 'Tags' set for all records.",
+            "points": 20,
+            "visual_evidence": "A query result or data view showing the 'Tags' field containing the original value (e.g., 'Historic' for Copacabana Palace)."
+        },
+        {
+            "id": "enrich_luxury_tag",
+            "description": "Add the 'Luxury' tag to hotels with 'Palace' in their name.",
+            "points": 15,
+            "visual_evidence": "Data view showing a hotel like 'Copacabana Palace' having both its original type and 'Luxury' in the 'Tags' field."
+        },
+        {
+            "id": "enrich_resort_wellness_tags",
+            "description": "Add 'Resort' to hotels with 'Resort' in name and 'Wellness' to hotels with 'Spa' in name.",
+            "points": 20,
+            "visual_evidence": "Query results showing hotels with 'Resort' or 'Spa' in their name having the corresponding new tags added to their 'Tags' collection."
+        },
+        {
+            "id": "remove_type_property",
+            "description": "Remove the legacy 'Type' property from the 'Hotels' class schema.",
+            "points": 30,
+            "visual_evidence": "Schema view of the 'Hotels' class showing that the 'Type' property no longer exists, or a successful 'DROP PROPERTY' command execution."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio GUI or a database management interface rather than just executing a single opaque script.",
+            "visual_evidence": "Screenshots showing the OrientDB Studio browser interface, SQL console within the browser, or Schema tab."
+        },
+        {
+            "id": "genuine_data_query",
+            "description": "The agent verified the data before and after migration by running SELECT queries.",
+            "visual_evidence": "Screenshots of query results showing actual hotel records (e.g., Copacabana Palace) in the result table."
+        },
+        {
+            "id": "no_hardcoded_updates",
+            "description": "The agent used logic-based updates (e.g., WHERE name LIKE '%Palace%') rather than manually updating specific IDs.",
+            "visual_evidence": "SQL commands in the console showing the use of wildcards (%) or conditional logic for the enrichment step."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'demodb' and the class is 'Hotels'. The original property is 'Type' (String) and the new one is 'Tags' (Embedded Set of Strings). A key test case is 'Copacabana Palace', which starts with Type='Historic'. After migration and enrichment, its 'Tags' should contain both 'Historic' and 'Luxury'. The 'Type' property must be deleted from the schema at the end."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "open_dicom@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis DICOM Viewer application is open and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window, including its title bar and interface, is visible."
+        },
+        {
+            "id": "import_dialog_opened",
+            "description": "The agent has opened the 'Import' or 'Open' dialog to browse for files.",
+            "points": 15,
+            "visual_evidence": "A file browser or import dialog window is overlaid on the Weasis main interface."
+        },
+        {
+            "id": "navigated_to_samples",
+            "description": "The agent navigated to the directory ~/DICOM/samples within the file browser.",
+            "points": 20,
+            "visual_evidence": "The file path /home/ga/DICOM/samples or ~/DICOM/samples is visible in the file explorer address bar or breadcrumbs."
+        },
+        {
+            "id": "dicom_file_selected",
+            "description": "A DICOM file from the samples directory is selected for loading.",
+            "points": 15,
+            "visual_evidence": "A file within the samples directory is highlighted, or the file name is entered into the 'Open' field."
+        },
+        {
+            "id": "image_rendered",
+            "description": "The DICOM image is successfully loaded and rendered in the main viewing pane.",
+            "points": 40,
+            "visual_evidence": "A medical image (specifically a CT scan showing a circular pattern) is visible in the Weasis central viewport. Metadata such as 'CT' should be visible in the image overlays."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_used",
+            "description": "The agent used the Weasis GUI to open the file rather than just running a command-line argument to bypass the UI.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Weasis 'File' menu or 'Import' buttons."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not simply use a terminal to 'cat' or 'display' the file using a different tool.",
+            "visual_evidence": "The final rendered image is contained within the Weasis application frame, not a generic image viewer or terminal output."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent manually navigated through the file system rather than using a pre-existing shortcut if one wasn't provided.",
+            "visual_evidence": "Sequential screenshots show the file dialog changing directories to reach /home/ga/DICOM/samples."
+        }
+    ],
+    "privileged_info_for_vlm": "The DICOM files are located in /home/ga/DICOM/samples. The files are synthetic CT scans. When opened correctly in Weasis, the image should display a circular pattern and the modality 'CT' should be visible in the DICOM header overlays on the image."
+}

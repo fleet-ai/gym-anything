@@ -1,0 +1,53 @@
+{
+    "task_id": "pv_performance_degradation_diagnosis@1",
+    "task_completion": [
+        {
+            "id": "read_client_report",
+            "description": "Agent opens and reads the client_system_report.json file to obtain system specs and Year 4 production data.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/client_system_report.json, specifically the Year 4 production value."
+        },
+        {
+            "id": "sam_setup",
+            "description": "Agent opens the SAM (System Advisor Model) software and configures a PV system with a 25 kW capacity and Las Vegas weather data.",
+            "points": 15,
+            "visual_evidence": "SAM interface visible with 'Photovoltaic (Detailed)' or 'PVWatts' selected, location set to Las Vegas, and system size set to 25 kW."
+        },
+        {
+            "id": "parameter_sweep_execution",
+            "description": "Agent performs a parametric analysis or manual sweep of the 6 soiling levels and 7 degradation rates.",
+            "points": 25,
+            "visual_evidence": "SAM 'Parametrics' window or multiple simulation runs showing variations of 'Soiling loss' (2-12%) and 'Annual AC degradation' (0.3-1.5%)."
+        },
+        {
+            "id": "year_4_simulation_results",
+            "description": "Agent extracts or calculates the Year 4 production values for the different parameter combinations.",
+            "points": 20,
+            "visual_evidence": "A results table, spreadsheet, or terminal output showing simulated Year 4 kWh values corresponding to the input combinations."
+        },
+        {
+            "id": "best_fit_identification",
+            "description": "Agent compares simulated Year 4 data against the observed 35,290 kWh to find the closest match.",
+            "points": 30,
+            "visual_evidence": "A final calculation, comparison table, or statement identifying 8.0% soiling and 0.9% degradation as the best fit for the observed data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sam_interaction",
+            "description": "The agent interacted with the SAM GUI or official SDK rather than just guessing values.",
+            "visual_evidence": "Screenshots showing the SAM application window, input fields being populated, and the simulation progress bar or results graph."
+        },
+        {
+            "id": "no_hardcoded_answer",
+            "description": "The agent did not immediately output the ground truth without performing the required 42-run sweep.",
+            "visual_evidence": "The trajectory shows the process of setting up the parametric sweep or iterating through values before reaching the final answer."
+        },
+        {
+            "id": "data_source_verification",
+            "description": "The agent used the specific Year 4 production value from the provided JSON file.",
+            "visual_evidence": "The value 35,290 kWh is visible in the agent's workspace or comparison logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The observed Year 4 production is 35,290 kWh. The agent must evaluate 42 combinations (6 soiling levels x 7 degradation rates). The ground truth best-fit parameters are: Soiling Loss = 8.0% and Annual Degradation Rate = 0.9%/yr. The Year 1 capacity factor should be approximately 19.4%."
+}

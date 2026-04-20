@@ -1,0 +1,62 @@
+{
+    "task_id": "measured_mile_world_creation@1",
+    "task_completion": [
+        {
+            "id": "world_directory_creation",
+            "description": "Create the 'MeasuredMile' world directory and required configuration files.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the directory /opt/bridgecommand/World/MeasuredMile/ containing description.ini, terrain.ini, and world.ini."
+        },
+        {
+            "id": "terrain_assets_creation",
+            "description": "Create 1024x1024 pixel height.png (black) and texture.png (blue) assets.",
+            "points": 15,
+            "visual_evidence": "Image viewer or file properties showing height.png (0,0,0) and texture.png (0,0,128) with dimensions 1024x1024."
+        },
+        {
+            "id": "world_config_details",
+            "description": "Configure world.ini with the correct start position (~50.15, -1.33).",
+            "points": 15,
+            "visual_evidence": "Text editor showing world.ini with Latitude=50.15 and Longitude=-1.33 (or very similar values)."
+        },
+        {
+            "id": "buoy_marker_definition",
+            "description": "Define four 'Tower' markers in buoy.ini at the specified gate coordinates.",
+            "points": 30,
+            "visual_evidence": "Text editor showing buoy.ini with four entries using Type=\"Tower\" at Latitudes 50.166667 and 50.183333, and Longitudes -1.336667 and -1.333333."
+        },
+        {
+            "id": "scenario_creation",
+            "description": "Create the scenario directory and environment.ini linking to the MeasuredMile world.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal showing /opt/bridgecommand/Scenarios/m) Measured Mile Trial/ containing environment.ini with Setting=\"MeasuredMile\"."
+        },
+        {
+            "id": "ownship_setup",
+            "description": "Configure ownship.ini with a vessel heading North, positioned south of the start gate.",
+            "points": 15,
+            "visual_evidence": "Text editor showing ownship.ini with a Heading of 0 (North) and a Latitude less than 50.166667."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "Verify the agent actually created the files rather than just viewing existing ones.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the use of 'touch', 'mkdir', 'convert' (for images), or text editor 'Save' actions."
+        },
+        {
+            "id": "coordinate_accuracy",
+            "description": "Ensure the agent didn't round the coordinates to fewer than 4 decimal places.",
+            "points": 0,
+            "visual_evidence": "The text in the .ini files should show high-precision decimals (e.g., 50.166667) as specified in the task."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "Check that the agent didn't leave template or placeholder text in the .ini files.",
+            "points": 0,
+            "visual_evidence": "The .ini files should contain specific values for the MeasuredMile task, not generic 'example' data."
+        }
+    ],
+    "privileged_info_for_vlm": "The Measured Mile course is exactly 1.0 nautical mile long. The South Gate is at Latitude 50.166667 and the North Gate is at Latitude 50.183333. The West Longitude is -1.336667 and East Longitude is -1.333333. The texture.png must be RGB (0,0,128) and height.png must be RGB (0,0,0). The scenario folder name must be exactly 'm) Measured Mile Trial'."
+}

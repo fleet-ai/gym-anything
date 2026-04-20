@@ -1,0 +1,53 @@
+{
+    "task_id": "batch_edit_dive_temperatures@1",
+    "task_completion": [
+        {
+            "id": "locate_sund_rock_trip",
+            "description": "Locate and select the 'Sund Rock' trip from December 2010 in the dive list.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Sund Rock' trip header (dated 2010-12) highlighted or expanded in the dive list."
+        },
+        {
+            "id": "select_four_dives",
+            "description": "Select all four dives within the 'Sund Rock' trip for batch editing.",
+            "points": 20,
+            "visual_evidence": "Four dive entries under the 'Sund Rock' trip should be visually highlighted/selected simultaneously in the dive list."
+        },
+        {
+            "id": "set_air_temperature",
+            "description": "Set the Air Temperature to 15°C in the dive equipment or notes/details panel.",
+            "points": 25,
+            "visual_evidence": "The 'Air' temperature input field should show '15°C' while the dives are selected."
+        },
+        {
+            "id": "set_water_temperature",
+            "description": "Set the Water Temperature to 9°C in the dive equipment or notes/details panel.",
+            "points": 25,
+            "visual_evidence": "The 'Water' temperature input field should show '9°C' while the dives are selected."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save the changes to the dive log.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'File' > 'Save' or a save icon, or a 'Save' button in the edit panel becomes inactive/disappears after clicking."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Subsurface GUI to perform edits rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Subsurface menus and input fields."
+        },
+        {
+            "id": "no_yellow_house_modification",
+            "description": "The agent did not modify the 'Yellow House' trip temperatures.",
+            "visual_evidence": "The 'Yellow House' trip (dated 2011-09) should remain unselected or show its original values if viewed."
+        },
+        {
+            "id": "genuine_batch_edit",
+            "description": "The agent performed a batch edit or sequential edit of all 4 target dives rather than just one.",
+            "visual_evidence": "The UI should show multiple dives selected or the agent iterating through all four dives in the Sund Rock trip."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Sund Rock' trip is dated December 2010 (2010-12) and contains exactly 4 dives. The 'Yellow House' trip is dated September 2011 (2011-09) and must not be edited. The target values are exactly 15°C for Air and 9°C for Water. There are 29 total dives in the logbook."
+}

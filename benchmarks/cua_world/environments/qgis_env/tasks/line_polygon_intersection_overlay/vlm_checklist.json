@@ -1,0 +1,59 @@
+{
+    "task_id": "line_polygon_intersection_overlay@1",
+    "task_completion": [
+        {
+            "id": "load_input_layers",
+            "description": "Load sample_lines.geojson and sample_polygon.geojson into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layers 'sample_lines' and 'sample_polygon' are visible in the Layers panel/legend of the GIS application."
+        },
+        {
+            "id": "open_intersection_tool",
+            "description": "Open the Intersection or Overlay tool dialog.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Intersection' or 'Overlay' is open, showing fields for Input layer and Overlay layer."
+        },
+        {
+            "id": "configure_intersection_parameters",
+            "description": "Select the road lines as the input layer and the polygon zones as the overlay layer.",
+            "points": 20,
+            "visual_evidence": "The Intersection dialog shows 'sample_lines' selected as the Input layer and 'sample_polygon' selected as the Overlay layer."
+        },
+        {
+            "id": "execute_intersection",
+            "description": "Run the intersection process to create the split road segments.",
+            "points": 25,
+            "visual_evidence": "A new layer (often named 'Intersection' or 'roads_by_zone') appears in the Layers panel, and the map canvas shows lines clipped to the polygon boundaries."
+        },
+        {
+            "id": "verify_attribute_join",
+            "description": "Verify that the resulting features contain attributes from both the road and polygon layers.",
+            "points": 15,
+            "visual_evidence": "The Attribute Table of the result layer is open, showing columns from both original files (e.g., road names and zone IDs/names)."
+        },
+        {
+            "id": "export_geojson_result",
+            "description": "Export the final intersected layer to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save Layer As' or 'Export' dialog is visible with the format set to GeoJSON and the file path set to /home/ga/GIS_Data/exports/roads_by_zone.geojson."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands to process the data.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GIS menus, toolboxes, and dialog windows."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the input file or create a dummy file.",
+            "visual_evidence": "The map canvas displays the geometric intersection (lines split at boundaries) which differs visually from the input lines."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent interacted with the tool settings rather than typing the expected feature count into a text file.",
+            "visual_evidence": "The agent is seen configuring the Intersection tool parameters in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The input 'sample_lines.geojson' has 2 features and 'sample_polygon.geojson' has 2 features. The correct intersection result must contain exactly 3 LineString features (Road 1 is split into 2 segments by the polygon boundary, and Road 2 remains 1 segment). The final output must be saved to /home/ga/GIS_Data/exports/roads_by_zone.geojson."
+}

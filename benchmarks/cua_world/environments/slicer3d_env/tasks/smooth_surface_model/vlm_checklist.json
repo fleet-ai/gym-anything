@@ -1,0 +1,59 @@
+{
+    "task_id": "smooth_surface_model@1",
+    "task_completion": [
+        {
+            "id": "load_rough_model",
+            "description": "The 'TumorModel_Rough' surface model is loaded and visible in the 3D view or the Models module hierarchy.",
+            "points": 10,
+            "visual_evidence": "Look for 'TumorModel_Rough' in the Slicer Data Probe or Models module tree."
+        },
+        {
+            "id": "open_surface_toolbox",
+            "description": "The agent navigates to a smoothing tool, typically found in the 'Surface Toolbox' or 'Model Maker' modules.",
+            "points": 15,
+            "visual_evidence": "The module selector shows 'Surface Toolbox' or a similar mesh processing module active in the sidebar."
+        },
+        {
+            "id": "configure_smoothing_parameters",
+            "description": "The agent selects the 'Smooth' operation and applies settings to reduce artifacts while maintaining shape.",
+            "points": 20,
+            "visual_evidence": "The 'Smooth' checkbox or button is active in the Surface Toolbox, and 'TumorModel_Rough' is selected as the input."
+        },
+        {
+            "id": "generate_smoothed_model",
+            "description": "A new smoothed model is generated, showing a visibly less 'stair-stepped' surface in the 3D viewer compared to the original.",
+            "points": 25,
+            "visual_evidence": "A new model entry appears in the hierarchy, and the 3D view shows a tumor with rounded edges rather than voxel-like steps."
+        },
+        {
+            "id": "rename_model",
+            "description": "The resulting model is named 'TumorModel_Smoothed' within the Slicer application.",
+            "points": 10,
+            "visual_evidence": "The text 'TumorModel_Smoothed' is visible in the Subject Hierarchy or Models list."
+        },
+        {
+            "id": "save_to_destination",
+            "description": "The agent opens the Save Data dialog and sets the file path to the specified directory and filename.",
+            "points": 20,
+            "visual_evidence": "The 'Save Data' dialog is visible with the file path '~/Documents/SlicerData/BraTS/TumorModel_Smoothed.vtk' or the corresponding absolute path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI to perform the smoothing rather than just running a background script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with module panels, sliders, and the 'Apply' button."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename the rough model to 'smoothed' without applying a filter.",
+            "visual_evidence": "The 3D rendering must show a physical change in geometry (loss of jagged edges) between the input and output models."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use a terminal to move or create a dummy file to satisfy the file path requirement.",
+            "visual_evidence": "The file saving process is initiated through the Slicer 'Save' menu interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing BraTS2021_00000 data. Success criteria: Roughness must be reduced by at least 30% (visually smoother), volume change must be under 10%, and the final mesh must have at least 1000 polygons. The final file must be saved as a .vtk file at ~/Documents/SlicerData/BraTS/TumorModel_Smoothed.vtk."
+}

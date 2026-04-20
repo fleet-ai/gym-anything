@@ -1,0 +1,59 @@
+{
+    "task_id": "gfp_chromophore_environment@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1gfl",
+            "description": "Load the 1GFL PDB structure into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1GFL' and the 3D viewer displays a protein structure (beta-barrel)."
+        },
+        {
+            "id": "identify_chromophore",
+            "description": "Identify and select the chromophore at residue position 66.",
+            "points": 15,
+            "visual_evidence": "A selection or highlight is visible at the center of the beta-barrel, specifically at residue 66 (TYR in 1GFL)."
+        },
+        {
+            "id": "select_neighboring_residues",
+            "description": "Select all protein residues within 4.0 Angstroms of the chromophore.",
+            "points": 20,
+            "visual_evidence": "Multiple residues surrounding the central chromophore are highlighted or shown in a different representation (e.g., sticks) within the 4.0A radius."
+        },
+        {
+            "id": "visualization_quality",
+            "description": "Create a visualization showing the beta-barrel (transparent/clipped), the chromophore, and surrounding residues.",
+            "points": 25,
+            "visual_evidence": "The 3D viewer shows a transparent or clipped cartoon representation of the barrel, with the chromophore and neighbors clearly visible as sticks inside."
+        },
+        {
+            "id": "save_image_file",
+            "description": "Save the visualization to the specified path: ~/PyMOL_Data/images/gfp_chromophore.png.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command log shows a 'png' command or 'save' command targeting the correct file path."
+        },
+        {
+            "id": "export_text_report",
+            "description": "Export a text report with the count and list of contacting residues to ~/PyMOL_Data/gfp_environment_report.txt.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command log or a terminal window shows commands to write/export residue data to the specified .txt file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PyMOL GUI and command line interface rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the 1GFL structure loaded and manipulated."
+        },
+        {
+            "id": "genuine_selection_logic",
+            "description": "The agent used PyMOL selection commands (e.g., 'within 4.0 of...') rather than hardcoding a list of residues.",
+            "visual_evidence": "The PyMOL command history shows selection syntax like 'br. all within 4.0 of resi 66'."
+        },
+        {
+            "id": "no_placeholder_images",
+            "description": "The saved image is a genuine render of the 1GFL structure, not a generic or empty file.",
+            "visual_evidence": "The final screenshot or file preview shows the specific GFP beta-barrel structure with the internal chromophore visible."
+        }
+    ],
+    "privileged_info_for_vlm": "In PDB 1GFL, the chromophore is not labeled as 'CRO'. It is composed of standard residues, with TYR 66 being the central residue. The agent should select residues within 4.0 Angstroms of residue 66. The output image must be saved to ~/PyMOL_Data/images/gfp_chromophore.png and the text report to ~/PyMOL_Data/gfp_environment_report.txt. The report must contain a count and list of residues (Chain, Resi, Resn)."
+}

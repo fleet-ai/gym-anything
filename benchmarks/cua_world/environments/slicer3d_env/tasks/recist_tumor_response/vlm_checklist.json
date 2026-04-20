@@ -1,0 +1,53 @@
+{
+    "task_id": "recist_tumor_response@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully opens the abdominal CT scan in the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 3D Slicer interface with an abdominal CT loaded in the axial, sagittal, and coronal viewers."
+        },
+        {
+            "id": "measure_three_lesions",
+            "description": "The agent identifies and measures the longest axial diameter of 3 target liver lesions using the measurement tool.",
+            "points": 30,
+            "visual_evidence": "Visual markers or rulers placed on three distinct liver lesions in the axial view; the 'Markups' or 'Measurements' panel should list at least three entries."
+        },
+        {
+            "id": "save_mrk_json",
+            "description": "The agent saves the measurements to the specified file path: ~/Documents/SlicerData/IRCADb/recist_measurements.mrk.json.",
+            "points": 15,
+            "visual_evidence": "A file save dialog or a terminal confirmation showing the successful export of measurements to the specific .mrk.json path."
+        },
+        {
+            "id": "calculate_sld_and_change",
+            "description": "The agent calculates the current SLD and the percent change relative to the baseline (65 mm).",
+            "points": 25,
+            "visual_evidence": "A text editor, terminal, or report window showing the math: Sum of 3 diameters, and (Current SLD - 65) / 65 * 100."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "The agent creates the final JSON report with all required fields: lesion_measurements, current_sld_mm, baseline_sld_mm, percent_change, and response_category.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the content of ~/Documents/SlicerData/IRCADb/recist_report.json containing the five required keys and calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform measurements rather than script-injecting coordinates.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the measurement tools and dragging rulers over the CT slices."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent did not simply copy the baseline SLD from the prompt but actually read the baseline_info.json file.",
+            "visual_evidence": "A screenshot showing the agent opening or 'cat'-ing the baseline_info.json file."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The response category is derived from RECIST 1.1 logic based on the calculated percent change.",
+            "visual_evidence": "The report shows a response category (e.g., PR, SD, PD) that logically matches the calculated percent change shown in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline Sum of Longest Diameters (SLD) is exactly 65 mm. For a successful task, the agent must identify at least 2-3 lesions. The measurement tolerance is 5.0 mm per lesion. The percent change calculation must use 65 mm as the denominator. Response categories follow RECIST 1.1: Partial Response (PR) is >=30% decrease, Progressive Disease (PD) is >=20% increase, Stable Disease (SD) is in between."
+}

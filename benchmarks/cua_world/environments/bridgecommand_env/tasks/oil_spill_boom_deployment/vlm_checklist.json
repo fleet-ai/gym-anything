@@ -1,0 +1,59 @@
+{
+    "task_id": "oil_spill_boom_deployment@1",
+    "task_completion": [
+        {
+            "id": "scenario_file_creation",
+            "description": "Create a new scenario file in the directory '/opt/bridgecommand/Scenarios/q) Oil Recovery V-Sweep/'",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing a new scenario file created in the specified path."
+        },
+        {
+            "id": "environment_settings",
+            "description": "Configure scenario with Solent location, overcast skies, 2nm visibility, and calm seas.",
+            "points": 15,
+            "visual_evidence": "Scenario editor or configuration file showing 'Solent', 'Overcast', 'Visibility: 2', and 'Sea State: 0' (or equivalent calm setting)."
+        },
+        {
+            "id": "recovery_vessel_placement",
+            "description": "Position a Coaster or Tug at the Collection Point (50.8350°N, 1.3050°W).",
+            "points": 15,
+            "visual_evidence": "Scenario editor showing a vessel of type 'Coaster' or 'Tug' with coordinates 50.8350, -1.3050."
+        },
+        {
+            "id": "buoy_deployment_geometry",
+            "description": "Deploy red buoys (Type=Buoy_R) in two arms starting from West (50.8250°N, 1.3150°W) and East (50.8250°N, 1.2950°W) converging at the Collection Point.",
+            "points": 30,
+            "visual_evidence": "Scenario editor or map view showing a V-shape of red buoys converging on the recovery vessel's location."
+        },
+        {
+            "id": "buoy_spacing_calculation",
+            "description": "Place buoys at exactly 0.002 degree intervals of Latitude along the paths.",
+            "points": 20,
+            "visual_evidence": "Scenario file content or editor list showing buoy coordinates incrementing by 0.002 in Latitude (e.g., 50.825, 50.827, 50.829, 50.831, 50.833, 50.835)."
+        },
+        {
+            "id": "documentation_file",
+            "description": "Document the heading for each arm and total buoy count in '/home/ga/Documents/boom_deployment_plan.txt'.",
+            "points": 10,
+            "visual_evidence": "Text editor showing the file with headings (approx 45° and 315° or equivalent) and the total count of buoys used."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the Bridge Command scenario editor or configuration files directly.",
+            "visual_evidence": "Screenshots show the Bridge Command interface or manual editing of the scenario's .ini/text files, not just a final output."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent calculated the buoy positions rather than just stating the final count without evidence.",
+            "visual_evidence": "The agent's trajectory shows the process of determining coordinates or placing individual buoy entities."
+        },
+        {
+            "id": "file_system_integrity",
+            "description": "The files were created in the specific requested paths.",
+            "visual_evidence": "Terminal or file manager showing the full path /opt/bridgecommand/Scenarios/q) Oil Recovery V-Sweep/ and /home/ga/Documents/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Collection Point is 50.8350N, 1.3050W. The West Arm starts at 50.8250N, 1.3150W. The East Arm starts at 50.8250N, 1.2950W. With a 0.002 latitude step, there are 6 points per arm (including start and end). Since they share the Collection Point, the total number of buoys is 11 (5 unique to West, 5 unique to East, 1 shared). The headings should be approximately 045 degrees for the West arm and 315 degrees for the East arm relative to the start points."
+}

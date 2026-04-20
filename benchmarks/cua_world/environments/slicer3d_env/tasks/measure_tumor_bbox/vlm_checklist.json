@@ -1,0 +1,53 @@
+{
+    "task_id": "measure_tumor_bbox@1",
+    "task_completion": [
+        {
+            "id": "load_flair_mri",
+            "description": "The FLAIR MRI volume from the BraTS dataset is loaded into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "The software interface shows a 3D brain volume loaded, with the filename or metadata indicating 'FLAIR' or 'BraTS2021_00000'."
+        },
+        {
+            "id": "segment_tumor",
+            "description": "The agent performs a segmentation of the tumor region.",
+            "points": 30,
+            "visual_evidence": "A colored overlay (mask/label map) is visible on the brain slices, specifically targeting the hyperintense tumor region in the FLAIR sequence."
+        },
+        {
+            "id": "calculate_bounding_box",
+            "description": "The agent uses a tool to calculate the 3D bounding box dimensions (width, depth, height).",
+            "points": 25,
+            "visual_evidence": "A bounding box widget is visible around the segmentation, or a statistics/quantification module (like 'Segment Statistics') is open showing dimension values."
+        },
+        {
+            "id": "measure_volume",
+            "description": "The agent calculates the bounding volume of the segmented tumor.",
+            "points": 15,
+            "visual_evidence": "The UI displays a volume measurement (in mm³ or cm³) associated with the segmentation or the bounding box."
+        },
+        {
+            "id": "save_measurements_file",
+            "description": "The agent saves the measurements to the specified text file path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows the content of 'tumor_bbox_measurements.txt' containing width, depth, height, and volume, or a 'Save' dialog confirms the path ~/Documents/SlicerData/BraTS/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform segmentation and measurement rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer modules, segment editor tools, or measurement buttons."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the expected values into a file without performing the analysis.",
+            "visual_evidence": "The measurements in the final text file correspond to the visual segmentation and statistics generated in the software UI during the trajectory."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent loaded the specific BraTS2021_00000 case from the designated directory.",
+            "visual_evidence": "The file browser or data module in the software shows the path /home/ga/Documents/SlicerData/BraTS/BraTS2021_00000."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses BraTS 2021 case 'BraTS2021_00000'. The data is located at /home/ga/Documents/SlicerData/BraTS. The output must be a text file at /home/ga/Documents/SlicerData/BraTS/tumor_bbox_measurements.txt. Dimensions should be within a 15% tolerance of the ground truth. The dimensions must be in millimeters (mm) and volume in cubic units."
+}

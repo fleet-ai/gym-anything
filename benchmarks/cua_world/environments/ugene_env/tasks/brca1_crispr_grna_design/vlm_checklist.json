@@ -1,0 +1,59 @@
+{
+    "task_id": "brca1_crispr_grna_design@1",
+    "task_completion": [
+        {
+            "id": "open_fasta_file",
+            "description": "Open the BRCA1_exon11.fasta file in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE sequence viewer displays the BRCA1 sequence from the specified path ~/UGENE_Data/crispr/BRCA1_exon11.fasta."
+        },
+        {
+            "id": "configure_crispr_search",
+            "description": "Configure the CRISPR find tool with SpCas9 parameters (20bp target, NGG PAM).",
+            "points": 15,
+            "visual_evidence": "The 'Find CRISPR Cas9 Sites' dialog box is visible with 'NGG' selected as the PAM and '20' set as the target length."
+        },
+        {
+            "id": "identify_targets_both_strands",
+            "description": "Run the search to identify targets on both forward and reverse strands.",
+            "points": 25,
+            "visual_evidence": "The UGENE interface shows annotation tracks appearing on both the top and bottom strands of the sequence."
+        },
+        {
+            "id": "export_genbank",
+            "description": "Export the annotated sequence to BRCA1_crispr.gb.",
+            "points": 20,
+            "visual_evidence": "The 'Export as GenBank' or 'Save as' dialog is shown with the file path set to ~/UGENE_Data/crispr/results/BRCA1_crispr.gb."
+        },
+        {
+            "id": "export_csv_tracks",
+            "description": "Export the annotation tracks to crispr_targets.csv.",
+            "points": 20,
+            "visual_evidence": "The 'Export Annotations to CSV' dialog is visible with the destination path ~/UGENE_Data/crispr/results/crispr_targets.csv."
+        },
+        {
+            "id": "record_summary",
+            "description": "Record the total number of identified target sites in design_summary.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command shows the total count of CRISPR sites being written to ~/UGENE_Data/crispr/results/design_summary.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE graphical interface rather than just terminal scripts to generate results.",
+            "visual_evidence": "Screenshots show the UGENE application window, menus, and CRISPR search dialogs being interacted with."
+        },
+        {
+            "id": "genuine_search_execution",
+            "description": "The agent actually performed the CRISPR search within the software.",
+            "visual_evidence": "The 'Find CRISPR Cas9 Sites' progress bar or the resulting annotation tracks are visible in the UGENE sequence view."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply copy pre-existing result files from a hidden directory.",
+            "visual_evidence": "The agent is seen navigating the UGENE export menus and typing the filenames manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The target sequence is BRCA1 Exon 11. Standard SpCas9 settings require a 20bp target length and an NGG PAM (total 23bp). On the forward strand, the sequence must end in 'GG'; on the reverse strand, the target sequence (as viewed on the forward strand) must start with 'CC' (the complement of the 3' NGG). Expected output paths: ~/UGENE_Data/crispr/results/BRCA1_crispr.gb, ~/UGENE_Data/crispr/results/crispr_targets.csv, and ~/UGENE_Data/crispr/results/design_summary.txt."
+}

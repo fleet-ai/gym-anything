@@ -1,0 +1,59 @@
+{
+    "task_id": "lunar_dsn_ephemeris_generation@1",
+    "task_completion": [
+        {
+            "id": "open_gmat_and_memo",
+            "description": "Agent opens the GMAT application and reads the mission specifications from the desktop memo.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the GMAT GUI open and the content of 'ephemeris_request.txt' displayed in a text editor."
+        },
+        {
+            "id": "configure_spacecraft_orbit",
+            "description": "Agent configures the Lunar Polar Mapper (LPM) spacecraft with Moon-centered MJ2000Eq coordinate system.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Spacecraft' or 'Orbit' panel showing 'Coordinate System' set to a Moon-centered MJ2000Eq frame."
+        },
+        {
+            "id": "configure_propagation_duration",
+            "description": "Agent sets the propagation duration to 7 days and the step size to 60 seconds.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Propagate' command or 'Propagator' settings showing a duration of 7 days (or equivalent seconds) and a step size of 60."
+        },
+        {
+            "id": "configure_ephemeris_outputs",
+            "description": "Agent sets up the EphemerisFileWriter resources for both OEM and SPK formats with the specified file paths.",
+            "points": 25,
+            "visual_evidence": "GMAT resource tree or configuration panels showing an EphemerisFileWriter for 'lunar_dsn.oem' and another for 'lunar_science.bsp' in the GMAT_output folder."
+        },
+        {
+            "id": "run_mission_simulation",
+            "description": "Agent executes the script/mission to generate the trajectory data.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Message Window' showing a successful run completion or the 'Run' button being pressed followed by a progress bar."
+        },
+        {
+            "id": "verify_files_and_script_saved",
+            "description": "Agent saves the GMAT script to the specified location and verifies the output files exist.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal showing 'lunar_dsn.script' in ~/Documents/missions/ and the .oem and .bsp files in ~/GMAT_output/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the GMAT graphical user interface rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking buttons and typing in the GMAT GUI panels."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the .oem or .bsp files using a text editor to fake results.",
+            "visual_evidence": "The output files are generated through the GMAT 'Run' process, visible in the GMAT console output."
+        },
+        {
+            "id": "authentic_parameter_entry",
+            "description": "The agent entered the specific mission parameters (7 days, 60s step) into the software.",
+            "visual_evidence": "Screenshots showing the agent actively inputting '7' and '60' into the GMAT configuration fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The mission requires a 7-day duration at a 60-second step size, which results in exactly 10,081 data points in the OEM file. The coordinate system must be Moon-centered MJ2000Eq. Output paths: Script to ~/Documents/missions/lunar_dsn.script; OEM to ~/GMAT_output/lunar_dsn.oem; SPK to ~/GMAT_output/lunar_science.bsp."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "pcba_bom_cost_rollup@1",
+    "task_completion": [
+        {
+            "id": "open_source_bom",
+            "description": "The agent opens the source file iot_gateway_bom.csv in a spreadsheet application or text editor.",
+            "points": 10,
+            "visual_evidence": "A window showing iot_gateway_bom.csv with columns like Quantity, Unit_Cost_1k, Category, and Sourcing_Type."
+        },
+        {
+            "id": "calculate_extended_costs",
+            "description": "The agent calculates the Extended Cost (Quantity x Unit_Cost_1k) for the line items.",
+            "points": 20,
+            "visual_evidence": "A spreadsheet or calculation tool showing a new column or values representing the product of Quantity and Unit_Cost_1k."
+        },
+        {
+            "id": "category_cost_breakdown",
+            "description": "The agent aggregates costs by Category (IC, Connector, Passive, Diode, PCB).",
+            "points": 20,
+            "visual_evidence": "A table or summary section showing specific cost totals for IC, Connector, Passive, Diode, and PCB."
+        },
+        {
+            "id": "risk_analysis_metrics",
+            "description": "The agent identifies 'Sole_Source' financial exposure and 'NRND'/'Obsolete' lifecycle risks.",
+            "points": 20,
+            "visual_evidence": "Text or cells showing the sum of costs for Sole_Source parts and a count or list of parts marked as NRND or Obsolete."
+        },
+        {
+            "id": "save_formatted_xlsx",
+            "description": "The agent saves the final analysis to ~/Documents/Spreadsheets/pcba_cost_rollup.xlsx.",
+            "points": 30,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window showing pcba_cost_rollup.xlsx in the specified directory, or the file open in Excel/LibreOffice Calc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses spreadsheet software (e.g., LibreOffice Calc) rather than just executing a single python script to generate the file.",
+            "visual_evidence": "Screenshots show the agent interacting with spreadsheet menus, formulas, or cells."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent does not simply type the final totals from memory/hints without performing the intermediate calculations.",
+            "visual_evidence": "The agent is seen selecting ranges of cells or using formulas (e.g., SUMIF, product formulas) to derive the totals."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent creates the .xlsx file through the application interface.",
+            "visual_evidence": "The 'Save' or 'Export' workflow is visible in the spreadsheet application."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth values for the analysis are: Total Assembly Cost = 38.45; Category Costs: IC = 22.5, Connector = 4.2, Passive = 2.7, Diode = 0.75, PCB = 8.3; Sole Source Exposure = 14.3. The agent must identify parts with 'NRND' or 'Obsolete' status. The source file is iot_gateway_bom.csv and the output must be pcba_cost_rollup.xlsx."
+}

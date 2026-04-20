@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_grid_network@1",
+    "task_completion": [
+        {
+            "id": "netgenerate_command",
+            "description": "Agent uses netgenerate to create the grid network with specified parameters (4x3 junctions, 200m length, 13.89 speed).",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'netgenerate --grid' with arguments '--grid.x-number 4 --grid.y-number 3 --grid.length 200 --default.speed 13.89' and output file 'grid.net.xml'."
+        },
+        {
+            "id": "random_trips_command",
+            "description": "Agent generates traffic demand using randomTrips.py for 3600 seconds with an 18-second period.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'randomTrips.py' with '-n grid.net.xml -e 3600 -p 18' and output file 'routes.rou.xml'."
+        },
+        {
+            "id": "sumocfg_creation",
+            "description": "Agent creates a SUMO configuration file (grid.sumocfg) linking the network and route files.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command showing 'grid.sumocfg' containing references to 'grid.net.xml' and 'routes.rou.xml', and an end time of 3600."
+        },
+        {
+            "id": "tripinfo_config",
+            "description": "The configuration file includes the tripinfo-output setting.",
+            "points": 15,
+            "visual_evidence": "Text editor or 'cat' command showing '<tripinfo-output value=\"tripinfo.xml\"/>' within the grid.sumocfg file."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the SUMO simulation using the configuration file.",
+            "points": 20,
+            "visual_evidence": "Terminal command 'sumo -c grid.sumocfg' or 'sumo-gui -c grid.sumocfg' showing simulation progress or completion."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "The final tripinfo.xml file is generated in the correct directory.",
+            "points": 20,
+            "visual_evidence": "Terminal command 'ls /home/ga/SUMO_Scenarios/grid_development/' showing 'tripinfo.xml' exists, or 'cat tripinfo.xml' showing XML data of completed trips."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_xml_spoofing",
+            "description": "Agent did not manually create a fake tripinfo.xml file without running the simulation.",
+            "visual_evidence": "The terminal should show the 'sumo' command execution and the resulting simulation log/output rather than just a 'echo' or 'cat' to create the file."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "Agent works within the specified directory /home/ga/SUMO_Scenarios/grid_development/.",
+            "visual_evidence": "Terminal prompts or 'pwd' command showing the agent is in the correct path."
+        },
+        {
+            "id": "genuine_tool_interaction",
+            "description": "Agent uses SUMO command-line tools (netgenerate, randomTrips.py) as requested.",
+            "visual_evidence": "Terminal history showing the specific SUMO tool commands being typed and executed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 4x3 grid (12 junctions). The speed limit must be 13.89 m/s. The simulation duration is 3600s with an 18s trip period (resulting in ~200 trips). The final verification should confirm that tripinfo.xml contains at least 30 completed trips and that the network file contains 12 non-internal junctions."
+}

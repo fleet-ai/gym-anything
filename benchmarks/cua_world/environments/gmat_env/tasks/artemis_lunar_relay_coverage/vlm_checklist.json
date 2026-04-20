@@ -1,0 +1,65 @@
+{
+    "task_id": "artemis_lunar_relay_coverage@1",
+    "task_completion": [
+        {
+            "id": "read_requirements",
+            "description": "Agent opens and reads the mission requirements document on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of ~/Desktop/artemis_relay_reqs.txt."
+        },
+        {
+            "id": "gmat_configuration",
+            "description": "Agent configures the Spacecraft and GroundStation in GMAT with Luna as the central body.",
+            "points": 20,
+            "visual_evidence": "GMAT GUI showing the Spacecraft 'Orbit' tab with 'Central Body' set to 'Luna' and GroundStation configured at the South Pole."
+        },
+        {
+            "id": "contact_locator_setup",
+            "description": "Agent sets up a ContactLocator resource to detect line-of-sight between the spacecraft and the ground station.",
+            "points": 15,
+            "visual_evidence": "GMAT resource tree showing a 'ContactLocator' object and its configuration window targeting the Spacecraft and GroundStation."
+        },
+        {
+            "id": "propagate_seven_days",
+            "description": "Agent runs the mission sequence to propagate the orbit for exactly 7 days.",
+            "points": 15,
+            "visual_evidence": "GMAT Mission tab showing a 'Propagate' command with a duration of 7 days (604800 seconds) and the execution log showing a successful run."
+        },
+        {
+            "id": "generate_contact_report",
+            "description": "Agent generates or opens the contact report to find the longest contact duration.",
+            "points": 15,
+            "visual_evidence": "A text file or GMAT output window showing a list of contact intervals with start/stop times and durations."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing 'artemis_relay.script' exists in ~/GMAT_output/."
+        },
+        {
+            "id": "summary_analysis_file",
+            "description": "Agent creates the summary analysis file with the required four lines of data.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command output showing ~/GMAT_output/relay_summary.txt with SMA_km, ECC, INC_deg, and max_continuous_contact_hours."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "Agent used the GMAT graphical user interface for configuration rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots showing the GMAT application window being interacted with (menus, resource trees, dialog boxes)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Agent calculated the SMA based on the 12-hour period rather than guessing.",
+            "visual_evidence": "Calculator app, python terminal, or scratchpad showing the math: SMA = cuberoot(mu * (T / 2pi)^2)."
+        },
+        {
+            "id": "output_consistency",
+            "description": "The values in relay_summary.txt match the data generated in the GMAT contact report.",
+            "visual_evidence": "The 'max_continuous_contact_hours' in the text file matches the longest interval shown in the GMAT report screenshot."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct Semi-Major Axis (SMA) for a 12-hour lunar orbit is approximately 6128.5 km (calculated using T=43200s and mu=4902.8). The contact report must be derived from a 7-day propagation. The summary file must contain exactly four lines with the specific labels: SMA_km, ECC, INC_deg, and max_continuous_contact_hours."
+}

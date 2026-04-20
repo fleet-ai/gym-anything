@@ -1,0 +1,59 @@
+{
+    "task_id": "document_type_hierarchy@1",
+    "task_completion": [
+        {
+            "id": "explore_project_structure",
+            "description": "Agent explores the MessageSystem project structure in the IDE to locate source files.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the Package Explorer or Project tree expanded, revealing the 'src' directory and package structure."
+        },
+        {
+            "id": "identify_interface_and_hierarchy",
+            "description": "Agent opens IMessageHandler.java or uses a search/hierarchy tool to find implementations.",
+            "points": 15,
+            "visual_evidence": "The editor shows IMessageHandler.java open, or a 'Type Hierarchy' view/search results for 'implements IMessageHandler'."
+        },
+        {
+            "id": "inspect_email_handler",
+            "description": "Agent opens EmailHandler.java to verify it is a concrete class and extract its Javadoc.",
+            "points": 20,
+            "visual_evidence": "EmailHandler.java is visible in the editor showing 'public class EmailHandler implements IMessageHandler' and the Javadoc regarding SMTP/administrators."
+        },
+        {
+            "id": "inspect_sms_handler",
+            "description": "Agent opens SMSHandler.java to verify it is a concrete class and extract its Javadoc.",
+            "points": 20,
+            "visual_evidence": "SMSHandler.java is visible in the editor showing 'public class SMSHandler implements IMessageHandler' and the Javadoc regarding Twilio/urgent messages."
+        },
+        {
+            "id": "create_audit_file",
+            "description": "Agent creates the 'handler_audit.txt' file in the project root.",
+            "points": 10,
+            "visual_evidence": "The file 'handler_audit.txt' appears in the project explorer or a 'New File' dialog is shown."
+        },
+        {
+            "id": "verify_final_content",
+            "description": "The final content of 'handler_audit.txt' matches the required format and includes the correct classes and descriptions.",
+            "points": 25,
+            "visual_evidence": "The editor shows 'handler_audit.txt' containing 'EmailHandler: [Javadoc]' and 'SMSHandler: [Javadoc]' with the specific descriptions found in the source code."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use grep or find commands in the terminal to bypass the IDE exploration.",
+            "visual_evidence": "The terminal history (if visible) does not show commands like 'grep -r' or 'find .'; the agent primarily uses the IDE's GUI features."
+        },
+        {
+            "id": "genuine_source_interaction",
+            "description": "The agent actually opened the .java files to read the Javadoc rather than guessing.",
+            "visual_evidence": "Screenshots show the specific source files (EmailHandler.java, SMSHandler.java) being opened in the editor tab."
+        },
+        {
+            "id": "manual_file_creation",
+            "description": "The agent used the IDE or a text editor to create and save the audit file.",
+            "visual_evidence": "The agent is seen typing into the 'handler_audit.txt' file or using the 'Save' action in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/MessageSystem. There are two concrete classes to identify: 1) EmailHandler: Javadoc should mention 'Sends system notifications via SMTP email to registered administrators. Used for critical system alerts.' 2) SMSHandler: Javadoc should mention 'Dispatches short text messages via the Twilio gateway. Intended for urgent notifications.' Both classes directly implement IMessageHandler. The output file must be named 'handler_audit.txt' in the project root."
+}

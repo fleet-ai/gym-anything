@@ -1,0 +1,53 @@
+{
+    "task_id": "simulate_urban_freight_delivery@1",
+    "task_completion": [
+        {
+            "id": "create_route_file",
+            "description": "Create the pasubio_freight.rou.xml file with the correct vehicle definition.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the creation of /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_freight.rou.xml with id='parcel_van_1', vClass='delivery', and depart='200'."
+        },
+        {
+            "id": "define_stops_and_route",
+            "description": "Define a route of at least 4 edges and two 60-second stops on rightmost lanes (_0).",
+            "points": 25,
+            "visual_evidence": "XML content showing a <route edges='...'/> with 4+ edges and two <stop lane='..._0' duration='60'/> elements inside the vehicle definition."
+        },
+        {
+            "id": "update_sumocfg",
+            "description": "Update the .sumocfg file to include the new route file.",
+            "points": 15,
+            "visual_evidence": "A text editor showing run.sumocfg with 'pasubio_freight.rou.xml' added to the <route-files> value."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation to generate results.",
+            "points": 20,
+            "visual_evidence": "The SUMO GUI or a terminal command showing 'sumo' or 'sumo-gui' running the pasubio configuration until completion."
+        },
+        {
+            "id": "generate_report",
+            "description": "Create the freight_report.txt with the required metrics.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/SUMO_Output/freight_report.txt containing 'van_trip_duration=' and 'van_route_length=' with numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran the simulation rather than guessing values.",
+            "visual_evidence": "Screenshots showing the SUMO simulation interface or terminal output logs indicating the simulation finished (e.g., 'Statistics' or 'Simulation ended at time')."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Ensure the report was created after the simulation run.",
+            "visual_evidence": "The timestamp of the report creation or the sequence of actions showing the report being written after the simulation execution."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Verify the agent used the exact paths specified in the instructions.",
+            "visual_evidence": "Terminal or editor titles showing the specific paths: /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_freight.rou.xml and ~/SUMO_Output/freight_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific file paths: the route file must be at /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_freight.rou.xml and the final report at /home/ga/SUMO_Output/freight_report.txt. The vehicle ID must be 'parcel_van_1' with vClass 'delivery'. Stops must be exactly 60 seconds and on lanes ending in '_0'. The report must use the exact keys 'van_trip_duration' and 'van_route_length'."
+}

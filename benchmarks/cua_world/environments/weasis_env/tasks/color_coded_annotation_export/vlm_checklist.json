@@ -1,0 +1,62 @@
+{
+    "task_id": "color_coded_annotation_export@1",
+    "task_completion": [
+        {
+            "id": "dicom_image_loaded",
+            "description": "The DICOM image is opened and visible in the viewer interface.",
+            "points": 10,
+            "visual_evidence": "A medical DICOM image (grayscale) is displayed within the application's main viewport."
+        },
+        {
+            "id": "lesion_encircled",
+            "description": "The bright lesion in the lower right center is encircled with an annotation tool.",
+            "points": 20,
+            "visual_evidence": "An ellipse or circular shape drawn around a bright spot located in the lower right quadrant of the image."
+        },
+        {
+            "id": "urgent_label_added",
+            "description": "A text label reading 'URGENT' is added to the image.",
+            "points": 20,
+            "visual_evidence": "The specific text 'URGENT' is visible on the image near the lesion."
+        },
+        {
+            "id": "red_color_applied",
+            "description": "Both the encircling annotation and the text label are colored red.",
+            "points": 20,
+            "visual_evidence": "The ellipse and the 'URGENT' text appear in a distinct red color, contrasting with the grayscale DICOM image."
+        },
+        {
+            "id": "export_dialog_configured",
+            "description": "The export settings are configured to save as JPEG to the specified path.",
+            "points": 15,
+            "visual_evidence": "An export or 'Save As' dialog showing the file format set to JPEG and the destination path including 'urgent_finding.jpg'."
+        },
+        {
+            "id": "successful_export_confirmation",
+            "description": "The agent completes the export process, resulting in the final file.",
+            "points": 15,
+            "visual_evidence": "A confirmation message, a file explorer view showing the new file in ~/DICOM/exports/, or the final saved JPEG image."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the medical imaging software GUI rather than just terminal commands.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with menus, toolbars, and drawing tools within the application."
+        },
+        {
+            "id": "no_premade_image_injection",
+            "description": "The agent did not simply open an existing annotated image.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows the step-by-step process of drawing the ellipse and typing the text label."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The export was triggered through the application's export/save menu.",
+            "points": 0,
+            "visual_evidence": "The 'File' or 'Export' menu is seen being navigated to generate the JPEG."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a red ellipse and the red text 'URGENT' to be placed over a bright lesion in the lower right center of a grayscale DICOM image. The final output must be a JPEG file named 'urgent_finding.jpg' located in '/home/ga/DICOM/exports/'. The file size must be at least 5000 bytes to be considered a valid export."
+}

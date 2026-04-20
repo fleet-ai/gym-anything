@@ -1,0 +1,53 @@
+{
+    "task_id": "insert_event_markers@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI application window is open and active."
+        },
+        {
+            "id": "synthetic_mode_selected",
+            "description": "The agent selects 'Synthetic' as the data source.",
+            "points": 15,
+            "visual_evidence": "The 'Synthetic' button is highlighted or selected in the System Control panel."
+        },
+        {
+            "id": "session_started",
+            "description": "The session is started and data is streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' button has been clicked, and the 'Start Data Stream' button is active or the EEG trace is moving."
+        },
+        {
+            "id": "recording_initiated",
+            "description": "The agent starts recording data to a file.",
+            "points": 20,
+            "visual_evidence": "The 'Start Recording' button is pressed (often turns red or shows 'Stop Recording') and the recording directory/filename is visible in the GUI."
+        },
+        {
+            "id": "markers_inserted",
+            "description": "The agent inserts event markers 1, 2, and 3 with temporal separation.",
+            "points": 40,
+            "visual_evidence": "Visual confirmation of markers 1, 2, and 3 appearing in the data stream or the 'Widget' area showing marker buttons being pressed/triggered sequentially."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to perform the task rather than script execution in the terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements and button clicks within the OpenBCI GUI rather than just terminal commands."
+        },
+        {
+            "id": "genuine_marker_sequence",
+            "description": "Markers are inserted sequentially with time gaps, not all at once.",
+            "visual_evidence": "The EEG timeline shows markers 1, 2, and 3 spaced out horizontally across the scrolling data window."
+        },
+        {
+            "id": "no_file_spoofing",
+            "description": "The agent did not simply create a dummy file via terminal to satisfy the directory check.",
+            "visual_evidence": "The GUI shows an active recording session with a file path matching the required directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The default recording directory is ~/Documents/OpenBCI_GUI/Recordings. In the OpenBCI GUI, markers 1, 2, and 3 are typically triggered by keyboard keys 'Z', 'X', and 'C' or via the 'Networking' or 'Widget' panels. For 'Synthetic' mode, the GUI must be in the 'System Control' panel to select the source before starting the session. Temporal separation is defined as at least 100 samples (approx 0.4s at 250Hz), but the task suggests ~2 seconds between markers."
+}

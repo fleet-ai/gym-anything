@@ -1,0 +1,53 @@
+{
+    "task_id": "invasive_species_state_expansion@1",
+    "task_completion": [
+        {
+            "id": "load_gis_layers",
+            "description": "Load both the occurrence records and the US state boundaries into a GIS environment or data processing script.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing both 'harmonia_us_occurrences.geojson' and 'us_states.geojson' loaded in a GIS tool (like QGIS) or referenced in code (like GeoPandas)."
+        },
+        {
+            "id": "spatial_join_and_filter",
+            "description": "Perform a spatial join to associate occurrence points with states and filter data into the two specified time periods (2005-2012 and 2016-2023).",
+            "points": 25,
+            "visual_evidence": "Code or logs showing filtering by 'year' (2005-2012 and 2016-2023) and a spatial operation (intersect/within) between points and state polygons."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "Calculate count_2005_2012, count_2016_2023, pct_change, and invasion_status for each state.",
+            "points": 25,
+            "visual_evidence": "A table view or code output showing the new columns: count_2005_2012, count_2016_2023, pct_change, and invasion_status (e.g., 'expanding', 'new_invasion')."
+        },
+        {
+            "id": "export_geojson",
+            "description": "Export the processed state features to /home/ga/GIS_Data/exports/invasion_status_by_state.geojson including only states with occurrences.",
+            "points": 20,
+            "visual_evidence": "Terminal command or GUI dialog confirming the export of the GeoJSON file to the specific path /home/ga/GIS_Data/exports/invasion_status_by_state.geojson."
+        },
+        {
+            "id": "export_summary_csv",
+            "description": "Export the summary report to /home/ga/GIS_Data/exports/invasion_summary.csv with the required columns.",
+            "points": 20,
+            "visual_evidence": "A file explorer view, terminal 'cat' command, or export confirmation showing a CSV with columns: invasion_status, state_count, and total_occurrences_recent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent did not hardcode the results or summary statistics.",
+            "visual_evidence": "The agent's code should show logic for counting points within polygons and calculating percentages, rather than print statements with pre-calculated numbers."
+        },
+        {
+            "id": "genuine_gis_interaction",
+            "description": "Verify the agent used GIS libraries or software to perform spatial analysis.",
+            "visual_evidence": "Use of libraries like GeoPandas, PyQGIS, or Shapely, or interaction with a GIS GUI, rather than simple string manipulation of the GeoJSON files."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the correct input and output paths as specified.",
+            "visual_evidence": "Code or terminal commands explicitly referencing /home/ga/GIS_Data/ and its subdirectories."
+        }
+    ],
+    "privileged_info_for_vlm": "The species is Harmonia axyridis (taxonKey 4989904). For the contiguous US: the 2005-2012 period contains approximately 1,393 records, and the 2016-2023 period contains approximately 97,919 records. The invasion status 'new_invasion' applies if count_2005_2012 is 0 and count_2016_2023 > 0. The 'pct_change' must be null if the early period count is 0 to avoid division by zero."
+}

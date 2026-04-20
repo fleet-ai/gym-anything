@@ -1,0 +1,54 @@
+{
+    "task_id": "create_external_image_gallery@1",
+    "task_completion": [
+        {
+            "id": "create_colosseum_tiddler",
+            "description": "Create the 'Colosseum' tiddler with correct type, tag, and fields.",
+            "points": 20,
+            "visual_evidence": "Tiddler named 'Colosseum' visible with tag 'Landmark', type 'image/jpeg', and fields '_canonical_uri' (pointing to the Wikimedia URL), 'location' (Rome, Italy), and 'year' (80 AD)."
+        },
+        {
+            "id": "create_taj_mahal_tiddler",
+            "description": "Create the 'Taj Mahal' tiddler with correct type, tag, and fields.",
+            "points": 20,
+            "visual_evidence": "Tiddler named 'Taj Mahal' visible with tag 'Landmark', type 'image/jpeg', and fields '_canonical_uri' (pointing to the Wikimedia URL), 'location' (Agra, India), and 'year' (1643)."
+        },
+        {
+            "id": "create_machu_picchu_tiddler",
+            "description": "Create the 'Machu Picchu' tiddler with correct type, tag, and fields.",
+            "points": 20,
+            "visual_evidence": "Tiddler named 'Machu Picchu' visible with tag 'Landmark', type 'image/jpeg', and fields '_canonical_uri' (pointing to the Wikimedia URL), 'location' (Cusco Region, Peru), and 'year' (1450)."
+        },
+        {
+            "id": "create_gallery_dashboard",
+            "description": "Create the 'World Heritage Gallery' tiddler with an introductory description.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled 'World Heritage Gallery' containing text describing the gallery."
+        },
+        {
+            "id": "gallery_implementation",
+            "description": "The gallery displays the three images using transclusion or list widgets without duplicating URLs.",
+            "points": 25,
+            "visual_evidence": "The 'World Heritage Gallery' tiddler shows all three images rendered. In edit mode, the code should show transclusions (e.g., {{Colosseum}}) or a <$list> widget filtering for the 'Landmark' tag, rather than hardcoded <img> tags with external URLs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create tiddlers.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the agent clicking the '+' button, typing into the TiddlyWiki edit fields, and clicking 'done' (checkmark icon)."
+        },
+        {
+            "id": "no_data_bloat",
+            "description": "The agent used _canonical_uri instead of importing/uploading raw image data.",
+            "visual_evidence": "The image tiddlers show the '_canonical_uri' field and the tiddler type is 'image/jpeg', but the text area is empty (not containing Base64 data)."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not use terminal commands to manipulate the wiki store file directly.",
+            "visual_evidence": "The browser interface is the primary tool used in the trajectory; no terminal windows showing 'sed', 'echo', or file system edits to the .html file."
+        }
+    ],
+    "privileged_info_for_vlm": "The three landmarks must have the tag 'Landmark' and type 'image/jpeg'. Colosseum: URL ends in 640px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg, Location: Rome, Italy, Year: 80 AD. Taj Mahal: URL ends in 640px-Taj_Mahal%2C_Agra%2C_India_edit3.jpg, Location: Agra, India, Year: 1643. Machu Picchu: URL ends in 640px-Machu_Picchu%2C_Peru.jpg, Location: Cusco Region, Peru, Year: 1450. The 'World Heritage Gallery' must use TiddlyWiki syntax (like {{Colosseum}} or [tag[Landmark]]) to display images, not direct HTML <img> tags with the source URLs."
+}

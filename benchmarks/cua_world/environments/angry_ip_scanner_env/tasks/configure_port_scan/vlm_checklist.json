@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_port_scan@1",
+    "task_completion": [
+        {
+            "id": "open_preferences_dialog",
+            "description": "The Preferences dialog window is opened.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Preferences' is visible over the main Angry IP Scanner interface."
+        },
+        {
+            "id": "navigate_to_ports_tab",
+            "description": "The 'Ports' tab within the Preferences dialog is selected.",
+            "points": 10,
+            "visual_evidence": "The 'Ports' tab is highlighted or active, showing port-related configuration fields."
+        },
+        {
+            "id": "enter_port_list",
+            "description": "The specific list of ports is entered into the port selection field.",
+            "points": 30,
+            "visual_evidence": "The text '22,80,443,3306,5432,6379,8080,8443' is typed into the 'Port selection' or 'Port list' text box."
+        },
+        {
+            "id": "save_preferences",
+            "description": "The user clicks the OK button to apply the changes.",
+            "points": 20,
+            "visual_evidence": "The cursor is seen clicking the 'OK' button at the bottom of the Preferences dialog, and the dialog closes."
+        },
+        {
+            "id": "verify_main_window_update",
+            "description": "The main window reflects the updated port configuration.",
+            "points": 30,
+            "visual_evidence": "The main Angry IP Scanner window shows the string '22,80,443,3306,5432,6379,8080,8443' in the ports display area (usually next to the 'Start' button or in the configuration summary)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to configure settings rather than command-line scripts.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the Angry IP Scanner interface; no terminal windows are used to modify config files directly."
+        },
+        {
+            "id": "no_config_file_bypass",
+            "description": "The agent did not simply edit a configuration file in a text editor.",
+            "visual_evidence": "The agent interacts with the 'Preferences' menu and dialog boxes of the application."
+        },
+        {
+            "id": "genuine_input",
+            "description": "The port list was typed or pasted into the application field, not just simulated in a mock-up.",
+            "visual_evidence": "The port string appears inside the actual Angry IP Scanner UI elements."
+        }
+    ],
+    "privileged_info_for_vlm": "The required port string is '22,80,443,3306,5432,6379,8080,8443'. In Angry IP Scanner, the Preferences dialog is typically accessed via Tools > Preferences. The 'Ports' tab contains a field labeled 'Port selection'. After clicking OK, the selected ports are usually visible in the main window to the right of the IP range fields."
+}

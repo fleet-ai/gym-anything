@@ -1,0 +1,53 @@
+{
+    "task_id": "sarsat_coastal_tracking@1",
+    "task_completion": [
+        {
+            "id": "delete_old_modules",
+            "description": "Delete 'TestSats' and 'OldWeather' modules while keeping 'Amateur'.",
+            "points": 15,
+            "visual_evidence": "The GPredict main interface or module list should no longer show 'TestSats' or 'OldWeather', but 'Amateur' must still be visible in the layout or module selection menu."
+        },
+        {
+            "id": "create_sarsat_module",
+            "description": "Create a new module named 'SARSAT' containing the five specified satellites.",
+            "points": 25,
+            "visual_evidence": "A module window or tab titled 'SARSAT' is visible. The satellite list within this module must include NOAA 15, NOAA 18, NOAA 19, METOP-B, and METOP-C."
+        },
+        {
+            "id": "add_boston_ground_station",
+            "description": "Add Coast Guard Sector Boston ground station with specific coordinates.",
+            "points": 20,
+            "visual_evidence": "The 'Ground Stations' configuration dialog shows an entry for 'Coast Guard Sector Boston' (or similar name) with Latitude 42.3541 N, Longitude 71.0488 W, and Altitude 5m."
+        },
+        {
+            "id": "add_cape_may_ground_station",
+            "description": "Add Coast Guard Training Center Cape May ground station with specific coordinates.",
+            "points": 20,
+            "visual_evidence": "The 'Ground Stations' configuration dialog shows an entry for 'Coast Guard Training Center Cape May' (or similar name) with Latitude 38.9351 N, Longitude 74.9060 W, and Altitude 3m."
+        },
+        {
+            "id": "set_default_ground_station",
+            "description": "Set the Boston station as the default in application preferences.",
+            "points": 20,
+            "visual_evidence": "In the GPredict Preferences menu under 'General' or 'Ground Stations', the Boston station is selected as the 'Default ground station'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to perform actions rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GPredict menus, dialog boxes (Module editor, Ground Station editor), and preference windows."
+        },
+        {
+            "id": "genuine_module_creation",
+            "description": "The SARSAT module is a functional GPredict module, not a static image or text file.",
+            "visual_evidence": "The SARSAT module window shows dynamic satellite tracking data (azimuth/elevation) or map positions consistent with the GPredict interface."
+        },
+        {
+            "id": "no_terminal_shortcuts",
+            "description": "The agent did not use 'sed' or 'rm' in the terminal to delete modules or modify the ground station database.",
+            "visual_evidence": "The terminal history (if visible) does not show direct manipulation of ~/.config/gpredict/ files."
+        }
+    ],
+    "privileged_info_for_vlm": "The required NORAD IDs for the SARSAT module are: NOAA 15 (25338), NOAA 18 (28654), NOAA 19 (33591), METOP-B (38771), and METOP-C (43689). Boston coordinates: 42.3541 N, 71.0488 W, 5m. Cape May coordinates: 38.9351 N, 74.9060 W, 3m. The 'Amateur' module must be preserved. Boston must be set as the default ground station in the global Preferences, not just within a single module."
+}

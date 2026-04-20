@@ -1,0 +1,53 @@
+{
+    "task_id": "viral_marketing_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver, pgAdmin, or a SQL IDE) showing a successful connection to 'demodb'."
+        },
+        {
+            "id": "schema_update_network_value",
+            "description": "Add the 'NetworkValue' column with type Double to the 'Profiles' table.",
+            "points": 15,
+            "visual_evidence": "SQL execution logs or a table schema view showing the 'Profiles' table now contains a 'NetworkValue' column of type Double/Float8."
+        },
+        {
+            "id": "schema_update_is_viral_hub",
+            "description": "Add the 'IsViralHub' column with type Boolean to the 'Profiles' table.",
+            "points": 15,
+            "visual_evidence": "SQL execution logs or a table schema view showing the 'Profiles' table now contains an 'IsViralHub' column of type Boolean."
+        },
+        {
+            "id": "calculate_network_value",
+            "description": "Calculate and update 'NetworkValue' as the sum of the 'Price' of all orders made by direct friends.",
+            "points": 30,
+            "visual_evidence": "SQL UPDATE statements or a data grid view showing populated numerical values in the 'NetworkValue' column for various profiles."
+        },
+        {
+            "id": "verify_viral_hub_logic",
+            "description": "Set 'IsViralHub' to true for profiles with 3+ friends and NetworkValue > 1500, otherwise false.",
+            "points": 30,
+            "visual_evidence": "A final query result or data grid showing 'IsViralHub' as true for liam.hub@test.com (NetworkValue 1750) and false for damon.pop@test.com (NetworkValue 50)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a GUI-based database tool rather than just executing a single opaque shell script.",
+            "visual_evidence": "Screenshots showing a database management application (e.g., DBeaver) being used to write and run SQL queries."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent calculated values using SQL logic rather than manually typing in the expected values from the prompt.",
+            "visual_evidence": "SQL queries showing JOINs between Profiles, Friends/Connections, and Orders tables rather than simple UPDATE statements with hardcoded IDs and values."
+        },
+        {
+            "id": "genuine_database_query",
+            "description": "The agent actually queried the database to see the results instead of just assuming the update worked.",
+            "visual_evidence": "A SELECT statement or refreshed data grid showing the updated rows in the 'Profiles' table."
+        }
+    ],
+    "privileged_info_for_vlm": "Liam (liam.hub@test.com) must have NetworkValue=1750.0 and IsViralHub=true because he has 3 friends (Noel, Gem, Andy) whose orders sum to 1750. Damon (damon.pop@test.com) must have NetworkValue=50.0 and IsViralHub=false because although he has 5 friends, their orders only sum to 50. Graham (graham.solo@test.com) is a loner and should be false."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "create_dictionary_tiddler_glossary@1",
+    "task_completion": [
+        {
+            "id": "create_metar_dictionary",
+            "description": "Create a tiddler titled 'METAR Codes' with the type set to 'application/x-tiddler-dictionary'.",
+            "points": 15,
+            "visual_evidence": "A tiddler edit or view screen showing the title 'METAR Codes' and the Type field set to 'application/x-tiddler-dictionary'."
+        },
+        {
+            "id": "populate_dictionary_content",
+            "description": "The 'METAR Codes' tiddler contains the 8 specified weather code pairs (BR, DZ, FG, FZ, GR, RA, SN, TS).",
+            "points": 20,
+            "visual_evidence": "The text area of the 'METAR Codes' tiddler showing the key-value pairs in 'Key: Value' format (e.g., BR: Mist)."
+        },
+        {
+            "id": "create_reference_tiddler",
+            "description": "Create a tiddler titled 'Weather Code Reference' with the tag 'Reference'.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled 'Weather Code Reference' with a visible tag pill labeled 'Reference'."
+        },
+        {
+            "id": "implement_dynamic_lookup",
+            "description": "The 'Weather Code Reference' tiddler uses TiddlyWiki syntax (like <$list> or getindex) to fetch data from 'METAR Codes' rather than hardcoding the list.",
+            "points": 30,
+            "visual_evidence": "The edit mode of 'Weather Code Reference' showing code like '<$list filter=\"[[METAR Codes]indexes[]]\">' or similar dynamic lookup widgets."
+        },
+        {
+            "id": "verify_rendered_output",
+            "description": "The 'Weather Code Reference' tiddler correctly renders a bulleted list with the format '* **Key**: Value'.",
+            "points": 20,
+            "visual_evidence": "The view mode of 'Weather Code Reference' showing a bulleted list where keys are bolded (e.g., * **BR**: Mist) for all 8 entries."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create and edit tiddlers.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the 'plus' button, edit fields, and save buttons within the browser."
+        },
+        {
+            "id": "no_hardcoded_reference",
+            "description": "The 'Weather Code Reference' tiddler does not contain the weather definitions as plain text in its source code.",
+            "visual_evidence": "The edit mode of 'Weather Code Reference' showing only functional code/macros and no static text like 'Mist' or 'Drizzle'."
+        },
+        {
+            "id": "genuine_workflow",
+            "description": "The agent did not use the terminal to inject tiddler files directly into the wiki database.",
+            "visual_evidence": "Absence of terminal windows performing file system operations or 'tiddlywiki --import' commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The dictionary tiddler must be named 'METAR Codes' and have the specific MIME type 'application/x-tiddler-dictionary'. The reference tiddler must be named 'Weather Code Reference', tagged 'Reference', and must use dynamic widgets (like <$list> and getindex) to display the 8 codes: BR (Mist), DZ (Drizzle), FG (Fog), FZ (Freezing), GR (Hail), RA (Rain), SN (Snow), TS (Thunderstorm). The rendered output must follow the format: * **Key**: Value."
+}

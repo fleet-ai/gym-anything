@@ -1,0 +1,59 @@
+{
+    "task_id": "autofill_profile_configuration@1",
+    "task_completion": [
+        {
+            "id": "open_identity_file",
+            "description": "Agent opens the identity_details.txt file on the desktop to read the information.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/Desktop/identity_details.txt."
+        },
+        {
+            "id": "navigate_to_edge_settings",
+            "description": "Agent opens Microsoft Edge and navigates to the 'Profiles' or 'Personal info' section in Settings.",
+            "points": 15,
+            "visual_evidence": "Microsoft Edge browser open at the URL 'edge://settings/profiles' or 'edge://settings/personalinfo'."
+        },
+        {
+            "id": "add_personal_info_entry",
+            "description": "Agent clicks the button to add a new address or personal info entry.",
+            "points": 15,
+            "visual_evidence": "A dialog box or form titled 'Add address' or 'Add personal info' is visible within the Edge settings page."
+        },
+        {
+            "id": "fill_name_and_organization",
+            "description": "Agent enters the correct name and company/organization into the form.",
+            "points": 20,
+            "visual_evidence": "The 'First name' field contains 'Jordan', 'Last name' contains 'Rivera', and 'Organization' contains 'Apex Logistics Solutions'."
+        },
+        {
+            "id": "fill_address_details",
+            "description": "Agent enters the correct street address, city, state, and zip code.",
+            "points": 25,
+            "visual_evidence": "The address fields contain '4500 Harbour Pointe Blvd', 'Mukilteo', 'WA', and '98275'."
+        },
+        {
+            "id": "save_autofill_profile",
+            "description": "Agent saves the profile and it appears in the list of saved personal info.",
+            "points": 15,
+            "visual_evidence": "The 'Add address' dialog is closed and a new entry for 'Jordan Rivera' is visible in the Edge settings list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent configured the settings via the Edge GUI, not by modifying internal database files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Edge browser UI elements rather than just terminal commands modifying ~/.config/microsoft-edge/."
+        },
+        {
+            "id": "no_placeholder_data",
+            "description": "The agent used the specific details from the text file, not generic or placeholder information.",
+            "visual_evidence": "The text entered into the browser matches the privileged information exactly (Jordan Rivera, Apex Logistics Solutions, etc.)."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the browser menus or used the direct settings URL rather than simulating a success state.",
+            "visual_evidence": "The browser address bar and UI transitions show the progression from the home page/settings to the personal info section."
+        }
+    ],
+    "privileged_info_for_vlm": "The identity details to be configured in Edge are: Name: Jordan Rivera; Organization: Apex Logistics Solutions; Address: 4500 Harbour Pointe Blvd; City: Mukilteo; State: WA; Zip: 98275. These details are stored in /home/ga/Desktop/identity_details.txt."
+}

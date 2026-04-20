@@ -1,0 +1,53 @@
+{
+    "task_id": "joint_dynamics_profiling@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_scene_loaded",
+            "description": "CoppeliaSim is open with the 'messaging/movementViaRemoteApi.ttt' scene loaded.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim window title or status bar shows 'movementViaRemoteApi.ttt' and the 3D view displays a robot arm."
+        },
+        {
+            "id": "stepping_mode_enabled",
+            "description": "The simulation is configured to run in 'stepping mode' as required for precise data recording.",
+            "points": 10,
+            "visual_evidence": "The 'Stepping' button in the CoppeliaSim toolbar is toggled on, or code is visible setting the simulation to stepping mode via the ZMQ API."
+        },
+        {
+            "id": "trajectory_execution",
+            "description": "The robot arm executes a trajectory spanning at least 2 joints and 45 degrees of motion.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots show the robot arm in significantly different poses, with joint angle readouts or visual movement indicating a wide range of motion."
+        },
+        {
+            "id": "csv_export_generated",
+            "description": "The dynamics data is exported to the specified CSV file with the correct column headers.",
+            "points": 25,
+            "visual_evidence": "A terminal or file explorer shows 'dynamics_profile.csv' at the correct path, or a text editor shows the file content with headers like 'time_s', 'j0_pos_deg', 'j0_vel_degs', etc."
+        },
+        {
+            "id": "compliance_report_generated",
+            "description": "The JSON compliance report is generated at the specified path with all required fields.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output displays 'dynamics_report.json' containing fields: total_samples, total_waypoints, trajectory_duration_s, max_velocity_degs, max_acceleration_degs2, velocity_violations, acceleration_violations, and compliant."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim GUI and API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application active, the play button pressed, and the robot moving in the 3D viewport."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The compliance report values are derived from the simulation, not just copy-pasted from the prompt.",
+            "visual_evidence": "The values in the JSON report (like total_samples or max_velocity) should correspond to the actual motion observed in the simulation screenshots."
+        },
+        {
+            "id": "correct_port_usage",
+            "description": "The agent used the specific ZMQ Remote API port 23000.",
+            "visual_evidence": "Code snippets in the terminal or IDE show the initialization of the ZMQ client with port 23000."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a trajectory of at least 6 waypoints and 100 samples. The velocity limit is 180°/s and the acceleration limit is 800°/s². The output files must be located at /home/ga/Documents/CoppeliaSim/exports/dynamics_profile.csv and /home/ga/Documents/CoppeliaSim/exports/dynamics_report.json. The 'compliant' boolean in the JSON must be true only if max_velocity <= 180 and max_acceleration <= 800."
+}

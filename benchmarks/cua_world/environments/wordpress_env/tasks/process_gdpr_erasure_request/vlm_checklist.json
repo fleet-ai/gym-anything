@@ -1,0 +1,59 @@
+{
+    "task_id": "process_gdpr_erasure_request@1",
+    "task_completion": [
+        {
+            "id": "export_personal_data_request",
+            "description": "Initiate the personal data export request for alex.rebel@example.com in the WordPress Tools menu.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the 'Export Personal Data' page with alex.rebel@example.com added to the list of requests."
+        },
+        {
+            "id": "download_export_zip",
+            "description": "Download the generated personal data export file.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the 'Download Personal Data' button being clicked or a browser download notification for a .zip file."
+        },
+        {
+            "id": "move_export_to_path",
+            "description": "Move the exported zip file to the specific legal holds directory.",
+            "points": 20,
+            "visual_evidence": "Terminal or file manager showing the file moved to /home/ga/legal_holds/alex_rebel_export.zip."
+        },
+        {
+            "id": "erase_personal_data_request",
+            "description": "Initiate and complete the 'Erase Personal Data' request for alex.rebel@example.com.",
+            "points": 20,
+            "visual_evidence": "Screenshot showing the 'Erase Personal Data' page with the status for alex.rebel@example.com marked as 'Removed' or 'Completed'."
+        },
+        {
+            "id": "delete_user_account",
+            "description": "Navigate to the Users list and initiate deletion of the 'alex_rebel' account.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the Users page with 'alex_rebel' selected and the 'Delete' action triggered."
+        },
+        {
+            "id": "reassign_posts_to_admin",
+            "description": "Confirm deletion of the user while reassigning all content to the 'admin' user.",
+            "points": 20,
+            "visual_evidence": "The 'Delete Users' confirmation page with the radio button 'Attribute all content to:' selected and 'admin' chosen in the dropdown."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress dashboard GUI for GDPR actions rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with WordPress menu items like 'Tools' and 'Users'."
+        },
+        {
+            "id": "actual_export_generation",
+            "description": "The agent actually generated the export via WordPress rather than creating an empty zip file.",
+            "visual_evidence": "Screenshots show the WordPress 'Export Personal Data' progress bar or the email sent notification within the UI."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo a success message without performing the steps.",
+            "visual_evidence": "The trajectory contains intermediate steps showing the WordPress admin interface, not just a final terminal command."
+        }
+    ],
+    "privileged_info_for_vlm": "The target user is 'alex_rebel' with email 'alex.rebel@example.com'. The export must be saved exactly to '/home/ga/legal_holds/alex_rebel_export.zip'. During the final user deletion step, all posts must be reassigned to the user 'admin' (ID 1)."
+}

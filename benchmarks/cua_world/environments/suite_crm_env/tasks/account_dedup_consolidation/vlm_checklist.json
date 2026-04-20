@@ -1,0 +1,53 @@
+{
+    "task_id": "account_dedup_consolidation@1",
+    "task_completion": [
+        {
+            "id": "identify_duplicates",
+            "description": "Identify duplicate account records for Boeing and General Electric in the SuiteCRM Accounts list.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the Accounts list view with multiple entries for 'Boeing' and 'General Electric' (or variations like 'GE')."
+        },
+        {
+            "id": "merge_boeing_accounts",
+            "description": "Perform a merge of the Boeing duplicate records into a single canonical account.",
+            "points": 25,
+            "visual_evidence": "The SuiteCRM 'Merge Records' screen showing Boeing accounts being compared and merged, followed by a single Boeing record remaining in the list."
+        },
+        {
+            "id": "merge_ge_accounts",
+            "description": "Perform a merge of the General Electric/GE duplicate records into a single canonical account.",
+            "points": 25,
+            "visual_evidence": "The SuiteCRM 'Merge Records' screen showing GE accounts being compared and merged, followed by a single General Electric record remaining in the list."
+        },
+        {
+            "id": "verify_related_records",
+            "description": "Ensure contacts, opportunities, and cases are preserved and linked to the merged accounts.",
+            "points": 30,
+            "visual_evidence": "The 'Subpanels' (Contacts, Opportunities, Cases) of the merged Boeing and GE accounts showing the reassigned items (e.g., Mark Richardson, Sandra Mitchell, Jason Park, and the Turbine blade case)."
+        },
+        {
+            "id": "avoid_contamination_merge",
+            "description": "Ensure distinct companies like Johnson Controls International were not merged into the aerospace accounts.",
+            "points": 10,
+            "visual_evidence": "The Accounts list view still showing 'Johnson Controls International' as a separate, distinct record."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the SuiteCRM web interface rather than executing SQL queries or PHP scripts in the terminal to manipulate the database.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on CRM buttons (Merge, Save), and form filling in the browser, not just terminal commands."
+        },
+        {
+            "id": "no_manual_deletion",
+            "description": "The agent used the built-in 'Merge' functionality rather than simply deleting duplicate records (which would lose related data).",
+            "visual_evidence": "Screenshots of the 'Merge' interface and comparison screen rather than just selecting 'Delete' from the bulk action menu."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM menus to find the records rather than jumping directly to hardcoded URLs from the task metadata.",
+            "visual_evidence": "Screenshots showing the agent clicking on the 'Accounts' module and using the search/filter bar."
+        }
+    ],
+    "privileged_info_for_vlm": "There are 4 duplicate accounts to consolidate (2 for Boeing, 2 for GE). There are 3 contacts (Mark Richardson, Sandra Mitchell, Jason Park), 2 opportunities, and 1 case ('Turbine blade inspection data gap') that must be preserved during the merge. 'Johnson Controls International' is a distinct company and must remain separate. The agent must use the SuiteCRM GUI merge tool to ensure data integrity."
+}

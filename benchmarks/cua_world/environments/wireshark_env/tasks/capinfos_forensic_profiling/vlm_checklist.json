@@ -1,0 +1,53 @@
+{
+    "task_id": "capinfos_forensic_profiling@1",
+    "task_completion": [
+        {
+            "id": "access_captures_directory",
+            "description": "Agent navigates to /home/ga/Documents/captures/ and identifies the five target capture files.",
+            "points": 10,
+            "visual_evidence": "A terminal window or file manager showing the directory /home/ga/Documents/captures/ with the files http.cap, dns.cap, telnet-cooked.pcap, 200722_tcp_anon.pcapng, and smtp.pcap."
+        },
+        {
+            "id": "analyze_files_with_capinfos",
+            "description": "Agent uses 'capinfos' or a similar tool to extract metadata for the capture files.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing the execution of 'capinfos' (or 'tshark') on the target files, displaying fields like 'Number of packets', 'Capture duration', and 'Average packet size'."
+        },
+        {
+            "id": "extract_individual_file_data",
+            "description": "Agent records the specific metrics (packet count, duration, avg size, file size, encapsulation) for each of the five files.",
+            "points": 25,
+            "visual_evidence": "Terminal logs, a text editor, or a draft file where the agent is aggregating the specific values for each of the five files."
+        },
+        {
+            "id": "calculate_summary_statistics",
+            "description": "Agent calculates the total packet count and identifies the files with the max packets, longest duration, and largest average packet size.",
+            "points": 20,
+            "visual_evidence": "Evidence of the agent performing calculations or comparisons, such as terminal commands (e.g., awk, grep) or manual notes to determine the summary values."
+        },
+        {
+            "id": "save_valid_json_report",
+            "description": "Agent saves the final report to /home/ga/Documents/forensic_report.json with the correct JSON structure and rounded values.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'nano') showing the content of /home/ga/Documents/forensic_report.json, confirming it is valid JSON with the 'capture_files' array and 'summary' object."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_tool_usage",
+            "description": "Agent actually ran forensic tools rather than guessing or hallucinating values.",
+            "visual_evidence": "Screenshots must show the execution of 'capinfos', 'tshark', or 'wireshark' and the resulting output; the values in the final JSON must match the tool output."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo a pre-prepared JSON string without performing the analysis steps.",
+            "visual_evidence": "The trajectory should show the progression from directory listing to individual file analysis to final report generation."
+        },
+        {
+            "id": "correct_rounding_precision",
+            "description": "Agent followed the specific rounding instructions (6 decimal places for duration, 2 for avg size).",
+            "visual_evidence": "The final JSON file content shows 'capture_duration_seconds' with up to 6 decimal places and 'average_packet_size_bytes' with 2 decimal places."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must analyze 5 files in /home/ga/Documents/captures/. Verified data for key files: http.cap (43 packets, 30.393704s duration, 583.51 bytes avg size, 25KB/25062 bytes, Ethernet); dns.cap (38 packets, 278.879313s duration, 97.53 bytes avg size, 4338 bytes, Ethernet). The final report must be at /home/ga/Documents/forensic_report.json. Ensure 'capture_duration_seconds' is a float (6 decimal places) and 'average_packet_size_bytes' is a float (2 decimal places)."
+}

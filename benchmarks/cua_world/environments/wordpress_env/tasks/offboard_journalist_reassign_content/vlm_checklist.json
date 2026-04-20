@@ -1,0 +1,59 @@
+{
+    "task_id": "offboard_journalist_reassign_content@1",
+    "task_completion": [
+        {
+            "id": "create_archive_user",
+            "description": "Create the 'editorial_archives' user account with the specified details (email: archives@localnews.com, role: Author).",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the 'Add New User' form filled out with username 'editorial_archives', email 'archives@localnews.com', and role 'Author', or the user list showing this new account."
+        },
+        {
+            "id": "trash_draft_election",
+            "description": "Move the draft 'Local Election Results Preview' to the Trash.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the Posts list showing 'Local Election Results Preview' being moved to trash or appearing in the 'Trash' tab."
+        },
+        {
+            "id": "trash_draft_remote_work",
+            "description": "Move the draft 'Opinion: The Future of Remote Work' to the Trash.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the Posts list showing 'Opinion: The Future of Remote Work' being moved to trash or appearing in the 'Trash' tab."
+        },
+        {
+            "id": "initiate_delete_jdoe",
+            "description": "Select the 'jdoe' user and initiate the deletion process.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the 'Delete' link being clicked for user 'jdoe' or the 'Delete Users' confirmation page."
+        },
+        {
+            "id": "reassign_content_to_archive",
+            "description": "On the deletion confirmation page, select 'Attribute all content to:' and choose 'editorial_archives'.",
+            "points": 30,
+            "visual_evidence": "Screenshot of the 'Delete Users' confirmation screen with the radio button 'Attribute all content to:' selected and 'editorial_archives' chosen in the dropdown."
+        },
+        {
+            "id": "confirm_deletion_and_reassignment",
+            "description": "Confirm the deletion of 'jdoe' and verify the user is gone and content is reassigned.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the Users list without 'jdoe' and/or the Posts list showing published articles now authored by 'editorial_archives'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed the task via the WordPress dashboard GUI rather than using the terminal/WP-CLI.",
+            "visual_evidence": "Screenshots show the browser interacting with the WordPress admin panel (wp-admin) menus and forms."
+        },
+        {
+            "id": "no_collateral_damage",
+            "description": "The agent did not delete or modify the 'asmith' user or unrelated posts.",
+            "visual_evidence": "The user list or post list screenshots do not show actions taken against 'asmith'."
+        },
+        {
+            "id": "genuine_workflow",
+            "description": "The agent navigated through the standard WordPress deletion workflow rather than jumping to a success state.",
+            "visual_evidence": "Sequential screenshots showing the 'Delete Users' confirmation page which is a required step in the WordPress UI for content reassignment."
+        }
+    ],
+    "privileged_info_for_vlm": "The target user to be deleted is 'jdoe'. The new user to be created is 'editorial_archives' (email: archives@localnews.com, role: author). There are two specific drafts to be trashed: 'Local Election Results Preview' and 'Opinion: The Future of Remote Work'. There is a bystander user 'asmith' who should remain untouched. Content reassignment must happen during the 'jdoe' deletion process via the WordPress UI."
+}

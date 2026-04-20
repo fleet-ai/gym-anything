@@ -1,0 +1,59 @@
+{
+    "task_id": "robotic_too_pipeline_scripting@1",
+    "task_completion": [
+        {
+            "id": "read_specification",
+            "description": "Agent opens and reads the specification file at ~/Documents/too_script_spec.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal (cat/less) showing the contents of too_script_spec.txt."
+        },
+        {
+            "id": "script_creation",
+            "description": "Agent creates the bash script at /home/ga/too_capture.sh with logic for polling hardware state.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation/saving of /home/ga/too_capture.sh containing 'indi_getprop' commands."
+        },
+        {
+            "id": "script_executable",
+            "description": "Agent makes the script executable.",
+            "points": 5,
+            "visual_evidence": "Terminal command 'chmod +x /home/ga/too_capture.sh' or file properties showing executable permissions."
+        },
+        {
+            "id": "script_execution_start",
+            "description": "Agent executes the script to capture the GRB 221009A event.",
+            "points": 15,
+            "visual_evidence": "Terminal showing the execution of ./too_capture.sh with arguments or environment variables related to GRB 221009A."
+        },
+        {
+            "id": "hardware_polling_interaction",
+            "description": "The script or agent interacts with INDI hardware to set coordinates and filter.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing indi_getprop/indi_setprop activity or logs indicating the telescope moving to RA 19.2175 and Dec 19.7733."
+        },
+        {
+            "id": "successful_capture_output",
+            "description": "The script successfully captures the image and saves it to the specified directory.",
+            "points": 25,
+            "visual_evidence": "Terminal output or file explorer showing a new FITS file generated in /home/ga/Images/too_alerts/GRB221009A/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually 'touch' or 'cp' a fake image file into the destination to bypass the script logic.",
+            "visual_evidence": "The terminal history should show the script running and generating the file, rather than a simple 'touch' command at the destination path."
+        },
+        {
+            "id": "genuine_indi_usage",
+            "description": "The agent used indi_getprop/setprop as required by the spec rather than hardcoding a success message.",
+            "visual_evidence": "The script content or terminal execution logs must show active polling of INDI properties."
+        },
+        {
+            "id": "correct_target_parameters",
+            "description": "The agent used the specific coordinates and filter from the spec, not default or random values.",
+            "visual_evidence": "The script or command arguments should explicitly mention RA: 19.2175, Dec: 19.7733, and Filter: R (or Slot 4)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is GRB 221009A. Required parameters: RA 19.2175, Dec 19.7733. The required filter is 'R' (which corresponds to Slot 4 in the Filter Simulator). The exposure time must be 120 seconds. The final output image must be located in /home/ga/Images/too_alerts/GRB221009A/."
+}

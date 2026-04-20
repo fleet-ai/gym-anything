@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_storage_intelligence_dashboard@1",
+    "task_completion": [
+        {
+            "id": "mysql_connection",
+            "description": "Connect to the local MySQL server using the provided credentials (ga/password123).",
+            "points": 10,
+            "visual_evidence": "A database management tool (like MySQL Workbench, DBeaver, or terminal) showing a successful connection to the local MySQL instance."
+        },
+        {
+            "id": "create_v_storage_metrics",
+            "description": "Create the view 'sakila.v_storage_metrics' with the specified columns and calculations (total_size_mb, index_pct, fragmentation_pct).",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement for 'v_storage_metrics' or the view appearing in the database schema navigator."
+        },
+        {
+            "id": "create_v_maintenance_required",
+            "description": "Create the view 'sakila.v_maintenance_required' filtering for fragmentation > 15% or index_pct > 50%.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement for 'v_maintenance_required' referencing 'v_storage_metrics' with the correct WHERE clause and ORDER BY."
+        },
+        {
+            "id": "verify_view_results",
+            "description": "Query the created views to ensure they return data, specifically identifying fragmented tables.",
+            "points": 20,
+            "visual_evidence": "A result grid showing rows from 'v_maintenance_required', likely including tables like 'payment' or 'rental' with high fragmentation percentages."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the results of 'v_maintenance_required' to the specific path /home/ga/Documents/exports/maintenance_report.csv.",
+            "points": 20,
+            "visual_evidence": "An export dialog, a terminal command confirming the file creation, or a file explorer window showing 'maintenance_report.csv' in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not simply create a CSV file with text editors but generated it from the database.",
+            "visual_evidence": "Screenshots should show the export process from a database tool or a SQL 'INTO OUTFILE' command, rather than just opening a blank text file and typing data."
+        },
+        {
+            "id": "actual_database_interaction",
+            "description": "The agent interacted with the MySQL schema rather than mocking the output.",
+            "visual_evidence": "The presence of the 'sakila' schema and 'information_schema.TABLES' in the SQL queries or UI navigation."
+        },
+        {
+            "id": "correct_calculation_logic",
+            "description": "The agent used the specific formulas provided in the prompt for MB and percentage calculations.",
+            "visual_evidence": "The SQL code visible in screenshots must show the math: (data_length + index_length) / 1024 / 1024 and the rounding functions."
+        }
+    ],
+    "privileged_info_for_vlm": "The views must be named 'v_storage_metrics' and 'v_maintenance_required'. The environment is specifically set up so that the 'payment' and 'rental' tables have high fragmentation (data_free) due to recent deletions; these tables should appear in the final maintenance report. The export must be located at /home/ga/Documents/exports/maintenance_report.csv."
+}

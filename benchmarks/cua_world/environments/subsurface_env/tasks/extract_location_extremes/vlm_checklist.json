@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_location_extremes@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent successfully launches the Subsurface dive log application.",
+            "points": 10,
+            "visual_evidence": "The Subsurface application window is visible on the desktop."
+        },
+        {
+            "id": "load_dive_data",
+            "description": "The agent opens the 'SampleDivesV2.ssrf' file within the application.",
+            "points": 15,
+            "visual_evidence": "The dive list is populated with multiple entries, and the file path or name might be visible in the title bar or file menu."
+        },
+        {
+            "id": "filter_sund_rock",
+            "description": "The agent identifies or filters the dive list for the 'Sund Rock' location.",
+            "points": 20,
+            "visual_evidence": "The dive list is filtered or the agent is seen clicking on dives labeled 'Sund Rock' in the location column."
+        },
+        {
+            "id": "identify_extremes",
+            "description": "The agent examines the depth and duration of the Sund Rock dives to find the maximums.",
+            "points": 25,
+            "visual_evidence": "The agent selects or hovers over dives from 2010-12-04 and 2010-12-05, showing their respective profile details (depth/duration)."
+        },
+        {
+            "id": "create_text_file",
+            "description": "The agent creates the output file at the specified path with the correct data.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal shows the file /home/ga/Documents/sund_rock_records.txt containing the specific dates, depth (12.2 m), and duration (23:00 min)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Subsurface GUI to find the data rather than just querying the XML via terminal.",
+            "visual_evidence": "Screenshots show the Subsurface application being interacted with (mouse clicks, scrolling) rather than just cat/grep commands in a terminal."
+        },
+        {
+            "id": "no_hardcoded_creation",
+            "description": "The agent did not create the file immediately without first opening the data source.",
+            "visual_evidence": "The timeline of screenshots shows the application open and data being inspected before the text file is saved."
+        },
+        {
+            "id": "correct_depth_source",
+            "description": "The agent correctly identifies the deepest dive as 12.2m (2010-12-05) despite potential script errors in the environment.",
+            "visual_evidence": "The final text file contains 'Deepest: 2010-12-05, 12.2 m' (or 12.19 m)."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct data for 'Sund Rock' is: Longest dive is 2010-12-04 with 23:00 min. Deepest dive is 2010-12-05 with 12.19 m (usually displayed as 12.2 m in the UI). Note: A known bug in the environment's automated verifier might incorrectly expect 2010-12-04 as the deepest; however, the visual truth in the Subsurface UI confirms 2010-12-05 is the deepest at 12.2m. The agent should be rewarded for identifying 2010-12-05 as the deepest."
+}

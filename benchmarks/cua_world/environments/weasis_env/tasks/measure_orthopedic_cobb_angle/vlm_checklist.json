@@ -1,0 +1,59 @@
+{
+    "task_id": "measure_orthopedic_cobb_angle@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis medical viewer is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open, showing the user interface and toolbar."
+        },
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image (0002.DCM) is loaded into the viewer.",
+            "points": 15,
+            "visual_evidence": "A medical X-ray or angiogram image is displayed in the main viewport of Weasis."
+        },
+        {
+            "id": "cobb_tool_selected",
+            "description": "The Cobb Angle measurement tool is selected from the toolbar or menu.",
+            "points": 15,
+            "visual_evidence": "The Cobb Angle icon is highlighted in the toolbar, or the cursor indicates the tool is active."
+        },
+        {
+            "id": "measurement_performed",
+            "description": "The Cobb Angle measurement is applied to the image using two independent lines.",
+            "points": 30,
+            "visual_evidence": "Two intersecting or related lines are drawn on the image with an angle value (e.g., in degrees) displayed next to them."
+        },
+        {
+            "id": "screenshot_exported",
+            "description": "A screenshot of the measurement is exported to the specific file path.",
+            "points": 15,
+            "visual_evidence": "An export dialog or a file manager window shows 'cobb_angle_result.png' being saved to '~/DICOM/exports/'."
+        },
+        {
+            "id": "text_file_created",
+            "description": "A text file containing the tool name is created in the exports directory.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command shows 'measurement_type.txt' being saved with the word 'Cobb' or 'Cobb Angle' inside."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to perform the measurement rather than script-generating an image.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Weasis toolbar and drawing lines on the DICOM image."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement lines are placed on anatomical structures, not randomly.",
+            "visual_evidence": "The Cobb Angle lines are aligned with features in the DICOM image (e.g., vertebral plates or vessel segments)."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename existing files to satisfy the requirement.",
+            "visual_evidence": "The creation timestamps or the sequence of actions shows the files being generated after the measurement is visible in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses DICOM file '0002.DCM'. The required tool name to be written in 'measurement_type.txt' must contain the keyword 'cobb'. The final screenshot must be saved to '/home/ga/DICOM/exports/cobb_angle_result.png' and the text file to '/home/ga/DICOM/exports/measurement_type.txt'."
+}

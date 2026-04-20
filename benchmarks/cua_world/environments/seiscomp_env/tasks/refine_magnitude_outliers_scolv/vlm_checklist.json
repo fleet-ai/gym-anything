@@ -1,0 +1,59 @@
+{
+    "task_id": "refine_magnitude_outliers_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv",
+            "description": "The agent has opened the SeisComP Seismicity Analysis tool (scolv) and loaded the M7.5 Noto Peninsula earthquake.",
+            "points": 10,
+            "visual_evidence": "The scolv window is visible, showing event details for the M7.5 earthquake (likely labeled us6000m0xl or Noto Peninsula)."
+        },
+        {
+            "id": "adopt_event_gym",
+            "description": "The agent adopts the event to the local agency 'GYM' to enable editing.",
+            "points": 20,
+            "visual_evidence": "The 'Agency' field in the event or origin tab changes from 'USGS' to 'GYM', or a dialog box confirms the adoption to agency 'GYM'."
+        },
+        {
+            "id": "select_mb_magnitude",
+            "description": "The agent navigates to the Magnitudes tab and selects the body-wave magnitude (mb) type.",
+            "points": 15,
+            "visual_evidence": "The 'Magnitudes' tab is active, and 'mb' is selected in the magnitude list or summary view."
+        },
+        {
+            "id": "exclude_station_sani",
+            "description": "The agent identifies and excludes station GE.SANI from the network magnitude calculation.",
+            "points": 25,
+            "visual_evidence": "In the station magnitude list for mb, the row for station 'SANI' (network GE) is unchecked, grayed out, or marked as 'disabled'/'excluded'."
+        },
+        {
+            "id": "recompute_magnitude",
+            "description": "The agent recomputes the network magnitude after excluding the outlier.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Compute' or 'Recalculate' button, and the mb value updates in the GUI."
+        },
+        {
+            "id": "commit_to_database",
+            "description": "The agent commits the updated magnitude and event changes to the database.",
+            "points": 15,
+            "visual_evidence": "The agent clicks the 'Commit' button (often a checkmark or floppy disk icon), and a confirmation dialog or status message indicates the save was successful."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the scolv GUI rather than executing database update commands via the terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movement and button clicks within the SeisComP GUI; no terminal windows are used to bypass the interface."
+        },
+        {
+            "id": "genuine_station_exclusion",
+            "description": "The agent specifically interacted with the SANI station entry.",
+            "visual_evidence": "The cursor or selection highlight is seen on the 'SANI' row in the station magnitude table before it is disabled."
+        },
+        {
+            "id": "agency_verification",
+            "description": "The agency change to 'GYM' is performed within the application logic.",
+            "visual_evidence": "The 'Adopt Event' workflow is visible in the GUI, showing the transition from the initial USGS ownership."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the M7.5 Noto Peninsula earthquake (initial agency: USGS). The agent must change the agency to 'GYM'. The specific station to exclude from the 'mb' (body-wave magnitude) calculation is 'SANI' (Network: GE). The final action must be a 'Commit' to save changes to the SeisComP database."
+}

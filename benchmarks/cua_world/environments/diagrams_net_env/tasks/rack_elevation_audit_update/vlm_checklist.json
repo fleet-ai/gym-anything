@@ -1,0 +1,59 @@
+{
+    "task_id": "rack_elevation_audit_update@1",
+    "task_completion": [
+        {
+            "id": "open_required_files",
+            "description": "Agent opens the draw.io diagram and the change log text file.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing 'rack_a07.drawio' open in a diagramming tool and 'rack_a07_changes.txt' open in a text editor."
+        },
+        {
+            "id": "remove_deprecated_device",
+            "description": "DB-REPLICA-01 is removed from the rack diagram.",
+            "points": 15,
+            "visual_evidence": "The label 'DB-REPLICA-01' is no longer visible in the U9-U10 positions of the rack diagram."
+        },
+        {
+            "id": "add_new_devices_with_labels",
+            "description": "New devices (DB-REPLICA-02, SW-DIST-01, APP-API-01, APP-API-02, Patch Panel) are added with correct labels.",
+            "points": 25,
+            "visual_evidence": "The diagram shows new blocks with the exact text labels for the five specified devices."
+        },
+        {
+            "id": "apply_color_coding",
+            "description": "Equipment is color-coded by type (Red=Power, Blue=Network, Green=Compute, Orange=Database).",
+            "points": 15,
+            "visual_evidence": "Database units (DB-REPLICA-02) are Orange, Network units (SW-DIST-01, Patch Panel) are Blue, and Compute units (APP-API-01/02) are Green."
+        },
+        {
+            "id": "create_power_budget_page",
+            "description": "A second page titled 'Power Budget' is created with a data table.",
+            "points": 20,
+            "visual_evidence": "A second tab or page in the diagramming tool labeled 'Power Budget' containing a table with power consumption values."
+        },
+        {
+            "id": "export_pdf_multi_page",
+            "description": "The diagram is exported as a PDF to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal view showing 'rack_a07_audit.pdf' exists in '~/Diagrams/exports/' or a PDF viewer showing the multi-page document."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the draw.io GUI to edit the diagram rather than just script-writing the XML.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the draw.io interface, dragging shapes, or using the color picker."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "The agent used actual data from the change log, not 'Lorem Ipsum' or placeholder values.",
+            "visual_evidence": "The 'Power Budget' table contains specific numerical values (Watts/Amps) found in the 'rack_a07_changes.txt' file."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent used the application's export menu to create the PDF.",
+            "visual_evidence": "Screenshots showing the 'File' > 'Export as' > 'PDF' menu sequence in the diagramming tool."
+        }
+    ],
+    "privileged_info_for_vlm": "The change log requires: 1. Removing DB-REPLICA-01. 2. Adding DB-REPLICA-02 (Orange), SW-DIST-01 (Blue), APP-API-01 (Green), APP-API-02 (Green), and Patch Panel (Blue). 3. Relocating the Cable Management Panel. 4. Creating a second page named 'Power Budget' with a table. 5. Exporting to /home/ga/Diagrams/exports/rack_a07_audit.pdf. Hex codes for colors: Red (#f8cecc), Blue (#dae8fc), Green (#d5e8d4), Orange (#ffe6cc)."
+}

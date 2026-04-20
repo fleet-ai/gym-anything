@@ -1,0 +1,53 @@
+{
+    "task_id": "terrain_hillshade_slope_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_dem_raster",
+            "description": "The input DEM file 'bay_area_dem.tif' is loaded into the QGIS Layers panel.",
+            "points": 10,
+            "visual_evidence": "The layer 'bay_area_dem' is visible in the QGIS Layers panel on the left side of the screen."
+        },
+        {
+            "id": "hillshade_parameters_config",
+            "description": "The Hillshade tool is configured with Azimuth 315 and Altitude 45.",
+            "points": 20,
+            "visual_evidence": "The Hillshade dialog box shows 'Azimuth' set to 315 and 'Altitude' set to 45 before execution."
+        },
+        {
+            "id": "hillshade_output_generation",
+            "description": "The Hillshade map is generated and saved to the correct export path.",
+            "points": 20,
+            "visual_evidence": "The 'hillshade' layer appears in the Layers panel, and the 'Save to file' path in the tool dialog shows '/home/ga/GIS_Data/exports/hillshade.tif'."
+        },
+        {
+            "id": "slope_output_generation",
+            "description": "The Slope map is generated in degrees and saved to the correct export path.",
+            "points": 25,
+            "visual_evidence": "The Slope tool dialog shows 'Slope expressed as degrees' (not percent) is selected, and the output path is '/home/ga/GIS_Data/exports/slope.tif'."
+        },
+        {
+            "id": "save_qgis_project",
+            "description": "The final project is saved as 'terrain_analysis.qgz' in the specified directory.",
+            "points": 25,
+            "visual_evidence": "The QGIS title bar shows 'terrain_analysis' and the file browser or save dialog confirms the path '/home/ga/GIS_Data/projects/terrain_analysis.qgz'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the QGIS GUI to perform the analysis rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the QGIS application window, interaction with the Processing Toolbox, and tool dialog windows."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent actually ran the GDAL/QGIS algorithms rather than just renaming files.",
+            "visual_evidence": "Progress bars or 'Algorithm finished' logs are visible in the processing tool windows."
+        },
+        {
+            "id": "no_premade_project",
+            "description": "The agent started with an empty project or loaded the raw DEM, not a pre-existing analysis project.",
+            "visual_evidence": "Initial screenshots show an empty QGIS canvas or the loading of the single raw TIFF file."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is located at /home/ga/GIS_Data/rasters/bay_area_dem.tif. The required Hillshade settings are Azimuth: 315 and Altitude: 45. The Slope must be calculated in degrees. Output files must be saved exactly to: /home/ga/GIS_Data/exports/hillshade.tif, /home/ga/GIS_Data/exports/slope.tif, and the project to /home/ga/GIS_Data/projects/terrain_analysis.qgz."
+}

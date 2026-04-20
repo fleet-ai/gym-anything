@@ -1,0 +1,53 @@
+{
+    "task_id": "export_event_scxmldump@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_gui",
+            "description": "Agent opens the SeisComP management or event tool (e.g., scvgm or scolv) to locate the event.",
+            "points": 10,
+            "visual_evidence": "A SeisComP application window is visible on the desktop."
+        },
+        {
+            "id": "locate_noto_event",
+            "description": "Agent identifies the 2024 Noto Peninsula earthquake event in the database list.",
+            "points": 15,
+            "visual_evidence": "The event list shows an entry with a date around January 1, 2024, and coordinates near 37.5N, 137.3E."
+        },
+        {
+            "id": "verify_event_details",
+            "description": "Agent views the preferred origin and magnitude for the Noto event.",
+            "points": 20,
+            "visual_evidence": "The GUI displays the preferred origin (Lat: ~37.48, Lon: ~137.27) and Magnitude (~7.5)."
+        },
+        {
+            "id": "configure_export_command",
+            "description": "Agent prepares the scxmldump command or export tool with the correct database and event ID.",
+            "points": 25,
+            "visual_evidence": "A terminal or dialog box shows 'scxmldump' being used with the database string 'mysql://sysop:sysop@localhost/seiscomp' and a specific event ID."
+        },
+        {
+            "id": "execute_export_to_path",
+            "description": "Agent executes the export to the specific requested file path.",
+            "points": 30,
+            "visual_evidence": "A command or file-save dialog confirms the output is being written to '/home/ga/Documents/noto_export.xml'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_connection",
+            "description": "Agent uses the specified SeisComP database credentials rather than dummy data.",
+            "visual_evidence": "The connection string 'mysql://sysop:sysop@localhost/seiscomp' is visible in commands or configuration screens."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent does not simply create a text file and type XML content manually.",
+            "visual_evidence": "The agent uses the 'scxmldump' utility or a SeisComP export GUI rather than a text editor like 'gedit' or 'nano' to write the XML."
+        },
+        {
+            "id": "correct_event_selection",
+            "description": "Agent selects the specific Noto Peninsula event based on database attributes, not just any event.",
+            "visual_evidence": "The agent filters or selects an event with Magnitude ~7.5 and Latitude ~37.48."
+        }
+    ],
+    "privileged_info_for_vlm": "The target event is the 2024 Noto Peninsula earthquake. Verified database: mysql://sysop:sysop@localhost/seiscomp. Expected event attributes: Latitude ~37.4874 (must be between 36.5 and 38.5), Longitude ~137.271 (must be between 136.0 and 138.0), and Magnitude ~7.5 (must be >= 7.0). The final output must be saved exactly to /home/ga/Documents/noto_export.xml using the scxmldump utility."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "nationality_friendship_projection@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a database management tool or terminal connected to 'demodb' with 'admin' user."
+        },
+        {
+            "id": "create_schema",
+            "description": "Agent creates the 'NationalityNode' vertex class and 'NationalityLink' edge class with required properties.",
+            "points": 15,
+            "visual_evidence": "Commands or GUI actions showing the creation of NationalityNode (Name, ProfileCount) and NationalityLink (FriendshipCount)."
+        },
+        {
+            "id": "populate_nodes",
+            "description": "Agent populates NationalityNode with distinct nationalities and their profile counts.",
+            "points": 20,
+            "visual_evidence": "Query results or a table view showing 11 distinct nationality nodes with their respective counts (e.g., British: 3)."
+        },
+        {
+            "id": "populate_edges",
+            "description": "Agent populates NationalityLink by aggregating friendships alphabetically and calculating counts.",
+            "points": 30,
+            "visual_evidence": "Query execution or graph view showing edges between nationalities with a 'FriendshipCount' property."
+        },
+        {
+            "id": "generate_report",
+            "description": "Agent creates the final report file at the specified path with the required summary statistics.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of '/home/ga/nationality_network_report.txt' containing total nationalities, connections, and the strongest connection."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent performed actual queries against the database rather than hardcoding values.",
+            "visual_evidence": "Screenshots showing SQL or Gremlin queries being typed and executed in a database interface."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply write the report using pre-known values without exploring the data.",
+            "visual_evidence": "The trajectory shows the agent exploring the 'Profiles' and 'HasFriend' classes before generating the report."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The report was actually saved to the specified file path.",
+            "visual_evidence": "A file manager or terminal showing the file exists at '/home/ga/nationality_network_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains 11 distinct nationalities (American, Australian, British, Dutch, French, German, Greek, Italian, Japanese, Mexican, Spanish). There are 10 unique nationality-level friendship edges. All edges in this specific dataset have a FriendshipCount of 1, meaning there is no single 'strongest' connection; any edge with count 1 is technically tied for strongest. The British nationality has a ProfileCount of 3."
+}

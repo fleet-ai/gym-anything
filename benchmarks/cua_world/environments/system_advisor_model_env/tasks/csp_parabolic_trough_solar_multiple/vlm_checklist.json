@@ -1,0 +1,59 @@
+{
+    "task_id": "csp_parabolic_trough_solar_multiple@1",
+    "task_completion": [
+        {
+            "id": "sam_setup_daggett",
+            "description": "SAM is open with the Parabolic Trough (Physical) model and the Daggett, CA weather file selected.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing SAM interface with 'Physical Trough' model and 'Daggett' selected in the Location and Resource page."
+        },
+        {
+            "id": "configure_plant_parameters",
+            "description": "Plant capacity set to 50 MW and Thermal Storage set to 6 hours.",
+            "points": 15,
+            "visual_evidence": "System Design page showing 'Design turbine gross output' or 'Net plant capacity' at 50 MW and 'Full load hours of TES' at 6."
+        },
+        {
+            "id": "configure_financials",
+            "description": "Financial parameters (PPA price $0.08/kWh, ITC 30%, and costs) are correctly entered.",
+            "points": 15,
+            "visual_evidence": "Financial Parameters or Revenue page showing PPA price of 0.08 $/kWh and System Costs page showing $7,500/kW."
+        },
+        {
+            "id": "parametric_setup",
+            "description": "Parametric simulation configured for Solar Multiple from 1.0 to 3.0 with 0.25 increments.",
+            "points": 20,
+            "visual_evidence": "Parametric simulation window showing a list of 9 runs with Solar Multiple values: 1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0."
+        },
+        {
+            "id": "run_simulations",
+            "description": "The agent executes the parametric simulations and generates a results table.",
+            "points": 20,
+            "visual_evidence": "Parametric results table populated with values for Annual Energy, Capacity Factor, LCOE, and NPV."
+        },
+        {
+            "id": "save_json_results",
+            "description": "The agent saves the final results to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "Terminal command or file explorer showing the creation of '/home/ga/Documents/SAM_Projects/Daggett_CSP_SM_Analysis.json'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to perform the analysis rather than just writing a script to generate the JSON.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with SAM menus, input fields, and the 'Run' button."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The data in the JSON matches the values visible in the SAM parametric results table.",
+            "visual_evidence": "Comparison between the SAM results table screenshot and the content of the generated JSON file."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply output the final answer without navigating the software.",
+            "visual_evidence": "Sequential screenshots showing the step-by-step configuration of the model before the results appear."
+        }
+    ],
+    "privileged_info_for_vlm": "The Daggett weather file is typically named 'USA CA Daggett (TMY2)' or similar in the SAM library. For a 50MW trough plant with 6h storage in Daggett, the optimal Solar Multiple (maximizing NPV) is typically between 2.0 and 2.5. The PPA price must be entered as $0.08/kWh (SAM uses kWh, task says $80/MWh). Ensure the 'Real LCOE' metric is used, not 'Nominal LCOE'."
+}

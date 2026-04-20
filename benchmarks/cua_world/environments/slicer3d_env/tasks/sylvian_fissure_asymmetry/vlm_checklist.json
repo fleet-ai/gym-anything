@@ -1,0 +1,53 @@
+{
+    "task_id": "sylvian_fissure_asymmetry@1",
+    "task_completion": [
+        {
+            "id": "load_flair_mri",
+            "description": "The agent successfully loads the brain FLAIR MRI volume into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "3D Slicer interface showing a brain MRI with 'FLAIR' in the volume name or metadata."
+        },
+        {
+            "id": "measure_left_sylvian",
+            "description": "The agent uses a measurement tool (e.g., Markups line) to measure the width of the left Sylvian fissure.",
+            "points": 20,
+            "visual_evidence": "A measurement line or ruler visible across the left Sylvian fissure in the axial or coronal slice view."
+        },
+        {
+            "id": "measure_right_sylvian",
+            "description": "The agent uses a measurement tool to measure the width of the right Sylvian fissure.",
+            "points": 20,
+            "visual_evidence": "A measurement line or ruler visible across the right Sylvian fissure in the axial or coronal slice view."
+        },
+        {
+            "id": "save_markup_files",
+            "description": "The agent saves the individual measurement markups to the specified JSON file paths.",
+            "points": 20,
+            "visual_evidence": "Save dialogs or terminal output confirming the creation of 'left_sylvian.mrk.json' and 'right_sylvian.mrk.json' in the ~/Documents/SlicerData/BraTS/ directory."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "The agent creates the final JSON report containing all required fields: left_width_mm, right_width_mm, asymmetry_index_percent, classification, wider_side, and measurement_level.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal view showing 'sylvian_asymmetry_report.json' with the specific keys and calculated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform measurements rather than just writing files via script.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Slicer's 'Markups' module or ruler tools."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual lines drawn on the MRI.",
+            "visual_evidence": "The millimeter values shown in the Slicer 'Markups' table match the values written in the final JSON report."
+        },
+        {
+            "id": "no_precomputed_values",
+            "description": "The agent did not simply echo a pre-known result without opening the MRI file.",
+            "visual_evidence": "The MRI volume is visibly loaded and manipulated (scrolling through slices) before the report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sylvian Fissure Asymmetry Index (SFAI) is typically calculated as |Left - Right| / [(Left + Right) / 2] * 100 or a similar ratio; ensure the 'asymmetry_index_percent' in the report is mathematically consistent with the 'left_width_mm' and 'right_width_mm' values shown in the Slicer UI."
+}

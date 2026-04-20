@@ -1,0 +1,53 @@
+{
+    "task_id": "locate_experiments_via_search@1",
+    "task_completion": [
+        {
+            "id": "login_scinote",
+            "description": "Agent successfully logs into the SciNote application using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The SciNote dashboard or project overview page is visible after the login screen."
+        },
+        {
+            "id": "search_vorinostat",
+            "description": "Agent uses the global search or filter function to search for the term 'Vorinostat'.",
+            "points": 15,
+            "visual_evidence": "The search bar contains the text 'Vorinostat' and search results are displayed."
+        },
+        {
+            "id": "identify_experiments",
+            "description": "Agent navigates through the search results to identify unique parent experiment names.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the agent clicking on or viewing search results that list 'Vorinostat Efficacy Study VR-01', 'PK Profile - Group 4', and 'Toxicity Screening 2024'."
+        },
+        {
+            "id": "create_output_file",
+            "description": "Agent creates a text file at the specified path /home/ga/Documents/vorinostat_experiments.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command shows the creation or saving of a file at the path /home/ga/Documents/vorinostat_experiments.txt."
+        },
+        {
+            "id": "verify_file_content",
+            "description": "The output file contains the three unique experiment names, one per line.",
+            "points": 30,
+            "visual_evidence": "The final file content is visible, showing 'Vorinostat Efficacy Study VR-01', 'PK Profile - Group 4', and 'Toxicity Screening 2024' on separate lines."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SciNote web interface to find the data rather than querying the database directly via terminal.",
+            "visual_evidence": "Screenshots show the browser interacting with the SciNote UI elements (search bars, result lists)."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the experiment names into a file without first searching the database.",
+            "visual_evidence": "The trajectory shows the search process in the browser occurring before the file is written."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent interacted with the actual application elements rather than just simulating a file creation.",
+            "visual_evidence": "Mouse movements, clicks on search results, and page scrolls within the SciNote application are visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The three specific experiment names that must be found in the SciNote database and listed in the file are: 'Vorinostat Efficacy Study VR-01', 'PK Profile - Group 4', and 'Toxicity Screening 2024'. Note that the first experiment name must include the word 'Vorinostat'. The output file must be located at /home/ga/Documents/vorinostat_experiments.txt."
+}

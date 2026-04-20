@@ -1,0 +1,59 @@
+{
+    "task_id": "multi_window_trauma_layout@1",
+    "task_completion": [
+        {
+            "id": "open_weasis_and_load_dicom",
+            "description": "Open the Weasis application and load the DICOM series from the specified directory.",
+            "points": 10,
+            "visual_evidence": "The Weasis interface is visible with the DICOM series (0002.DCM) loaded in the explorer or main view."
+        },
+        {
+            "id": "configure_multi_panel_layout",
+            "description": "Configure the layout to show at least three panels in a grid.",
+            "points": 15,
+            "visual_evidence": "The main viewing area is divided into at least three distinct image panels/viewports."
+        },
+        {
+            "id": "display_series_in_three_panels",
+            "description": "Display the same DICOM series in at least three separate panels.",
+            "points": 15,
+            "visual_evidence": "Three separate panels are populated with the same image series."
+        },
+        {
+            "id": "apply_distinct_window_levels",
+            "description": "Apply distinct Window/Level settings (Soft Tissue, Bone, Lung) to each of the three panels.",
+            "points": 30,
+            "visual_evidence": "The three panels show the same image but with clearly different contrast/brightness levels (one dark/high contrast for bone, one balanced for soft tissue, one optimized for air/lung)."
+        },
+        {
+            "id": "save_layout_screenshot",
+            "description": "Save a screenshot of the multi-window setup to the specified export path.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal command confirms the creation of 'trauma_layout.png' in ~/DICOM/exports/."
+        },
+        {
+            "id": "record_window_values_text",
+            "description": "Record the WC and WW values for all three panels in the specified text file format.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows 'window_levels.txt' containing three lines of 'Panel X: WC [value], WW [value]'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_layout",
+            "description": "The agent used the Weasis GUI to configure the layout and window levels rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis layout menus and Window/Level sliders or presets."
+        },
+        {
+            "id": "genuine_window_values",
+            "description": "The WC/WW values recorded in the text file match the values visible in the Weasis UI overlays.",
+            "visual_evidence": "The text in window_levels.txt matches the 'W' and 'C' (or WW/WL) values displayed in the corner of each respective panel in the GUI."
+        },
+        {
+            "id": "unlinked_display_properties",
+            "description": "The panels are unlinked, allowing for different views of the same series.",
+            "visual_evidence": "The UI shows that 'Sync' or 'Link' properties are disabled, or the visual contrast differs between panels despite them showing the same frame."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses a real DICOM file (0002.DCM) which is an X-Ray Angiography (XA) image, though the task refers to it as a trauma CT. The agent must produce exactly 3 distinct WC/WW pairs. The expected output files are /home/ga/DICOM/exports/trauma_layout.png and /home/ga/DICOM/exports/window_levels.txt. Verify that the WC/WW values in the text file correspond to the visual appearance of Bone, Soft Tissue, and Lung presets in the Weasis interface."
+}

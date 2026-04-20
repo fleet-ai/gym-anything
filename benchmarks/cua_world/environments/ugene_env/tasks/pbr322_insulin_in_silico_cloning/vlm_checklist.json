@@ -1,0 +1,53 @@
+{
+    "task_id": "pbr322_insulin_in_silico_cloning@1",
+    "task_completion": [
+        {
+            "id": "fetch_pbr322_vector",
+            "description": "Fetch the pBR322 sequence (J01749.1) and save it to ~/UGENE_Data/results/pBR322.gb",
+            "points": 15,
+            "visual_evidence": "UGENE interface showing the pBR322 sequence loaded or a file explorer window showing pBR322.gb in the results directory."
+        },
+        {
+            "id": "load_insulin_gene",
+            "description": "Load the human insulin gene sequence from ~/UGENE_Data/human_insulin_gene.gb",
+            "points": 10,
+            "visual_evidence": "UGENE Project View or Sequence View showing human_insulin_gene.gb as an open document."
+        },
+        {
+            "id": "insert_sequence_at_375",
+            "description": "Insert the insulin gene sequence exactly after nucleotide position 375 of the pBR322 vector.",
+            "points": 30,
+            "visual_evidence": "UGENE 'Insert Sequence' dialog box with position 375 specified, or the cursor placed at position 375/376 during the edit operation."
+        },
+        {
+            "id": "save_recombinant_genbank",
+            "description": "Save the recombinant sequence as a GenBank file at ~/UGENE_Data/results/pBR322_insulin_recombinant.gb.",
+            "points": 25,
+            "visual_evidence": "The 'Export as GenBank' or 'Save As' dialog showing the specific file path and filename in the results directory."
+        },
+        {
+            "id": "create_cloning_report",
+            "description": "Create a plain text report at ~/UGENE_Data/results/cloning_report.txt with the total length of the final plasmid.",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing the file cloning_report.txt with a numerical value representing the total base pairs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the UGENE GUI to perform cloning operations rather than just using terminal commands to manipulate files.",
+            "visual_evidence": "Screenshots showing the UGENE application window active, menus being clicked, and sequence visualization."
+        },
+        {
+            "id": "genuine_sequence_manipulation",
+            "description": "The agent actually performed the insertion in the editor rather than just renaming the input file.",
+            "visual_evidence": "The sequence length in the UGENE status bar or sequence view should be the sum of the vector (4361 bp) and the insulin gene."
+        },
+        {
+            "id": "no_precomputed_report",
+            "description": "The cloning report was generated after the sequence manipulation was visible in the GUI.",
+            "visual_evidence": "Timestamp or sequence of screenshots showing the report being written after the recombinant file was saved."
+        }
+    ],
+    "privileged_info_for_vlm": "The pBR322 vector (J01749.1) is exactly 4361 bp long. The insertion point 375 is the BamHI site. The final length in the cloning_report.txt should be 4361 plus the length of the human_insulin_gene.gb sequence (NM_000207.3 is approx 446-500bp depending on the specific record version, but the VLM should verify the math: 4361 + [insulin_length])."
+}

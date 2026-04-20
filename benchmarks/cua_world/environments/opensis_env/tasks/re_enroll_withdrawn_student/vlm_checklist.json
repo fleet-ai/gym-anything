@@ -1,0 +1,59 @@
+{
+    "task_id": "re_enroll_withdrawn_student@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the system using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the dashboard or main menu of the school management system after the login screen."
+        },
+        {
+            "id": "locate_student",
+            "description": "Agent searches for and locates the inactive student 'Emily Blunt'.",
+            "points": 15,
+            "visual_evidence": "A search result or profile page for 'Emily Blunt' is visible, likely showing an 'Inactive' or 'Withdrawn' status."
+        },
+        {
+            "id": "initiate_enrollment",
+            "description": "Agent opens the enrollment or re-enrollment interface for the student.",
+            "points": 15,
+            "visual_evidence": "A form or modal titled 'Enrollment', 'Re-enroll', or similar is visible on the screen."
+        },
+        {
+            "id": "set_grade_and_code",
+            "description": "Agent selects Grade 11 and the enrollment code 'Re-Enrollment'.",
+            "points": 30,
+            "visual_evidence": "The enrollment form shows '11' selected for Grade Level and 'Re-Enrollment' selected for the Enrollment Code/Type."
+        },
+        {
+            "id": "set_effective_date",
+            "description": "Agent sets the enrollment date to today's date.",
+            "points": 10,
+            "visual_evidence": "The date field in the enrollment form is populated with the current date (relative to the task execution time)."
+        },
+        {
+            "id": "confirm_enrollment",
+            "description": "Agent submits the form and confirms the student is now active without deleting history.",
+            "points": 20,
+            "visual_evidence": "A success message is displayed, or the student's profile now shows an 'Active' status for Grade 11, while previous withdrawal records remain visible in the history/log section."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing direct database commands via a terminal.",
+            "visual_evidence": "The screenshots show mouse movements, clicks on buttons, and typing into form fields within the browser, not a command-line interface."
+        },
+        {
+            "id": "no_history_deletion",
+            "description": "The agent did not delete the existing withdrawal records to 'reset' the student.",
+            "visual_evidence": "The student's history or enrollment log still shows the previous withdrawal entry alongside the new enrollment entry."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the application menus to find the student.",
+            "visual_evidence": "Screenshots show the sequence of clicking through the student directory or search functions rather than jumping directly to a final success URL."
+        }
+    ],
+    "privileged_info_for_vlm": "The student to be re-enrolled is Emily Blunt. The target grade is '11'. The specific enrollment code to select is 'Re-Enrollment'. The agent must use the GUI to perform the action and must ensure the previous withdrawal history is preserved in the student's records."
+}

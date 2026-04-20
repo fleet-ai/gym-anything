@@ -1,0 +1,59 @@
+{
+    "task_id": "payload_bay_integration@1",
+    "task_completion": [
+        {
+            "id": "open_source_file",
+            "description": "Open the 'simple_model_rocket.ork' file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket window title or file menu shows 'simple_model_rocket.ork' is loaded."
+        },
+        {
+            "id": "add_body_tube",
+            "description": "Add a new body tube component with a length of 100mm and outer diameter of 25.4mm.",
+            "points": 20,
+            "visual_evidence": "The component tree shows a new Body Tube; the configuration dialog for that tube shows 'Length: 10 cm' (or 100 mm) and 'Outer diameter: 2.54 cm' (or 25.4 mm)."
+        },
+        {
+            "id": "add_mass_component",
+            "description": "Add a 30-gram mass component inside the new body tube.",
+            "points": 20,
+            "visual_evidence": "The component tree shows a 'Mass component' nested under the new tube; the configuration dialog for the mass shows 'Mass: 30 g'."
+        },
+        {
+            "id": "verify_stability",
+            "description": "Ensure the final design maintains a stability margin of at least 1.0 caliber.",
+            "points": 15,
+            "visual_evidence": "The OpenRocket main window status bar or stability indicator shows a value ≥ 1.0 cal."
+        },
+        {
+            "id": "save_modified_design",
+            "description": "Save the modified design to the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or terminal output confirms saving to '~/Documents/rockets/payload_integrated_rocket.ork'."
+        },
+        {
+            "id": "create_report",
+            "description": "Create a report at '~/Documents/exports/payload_report.txt' containing the required data (components, mass, stability, apogee).",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the report file with the payload mass (30g), stability margin (≥1.0), and an apogee altitude value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to modify the rocket design rather than just editing XML/text files.",
+            "visual_evidence": "Screenshots show the OpenRocket application window, component dialogs, and mouse cursor interactions with the GUI."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The apogee altitude in the report is derived from an actual simulation run.",
+            "visual_evidence": "Screenshots show the 'Flight Simulations' tab in OpenRocket with at least one simulation entry and a 'Run Simulation' action."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply write a report without performing the design steps.",
+            "visual_evidence": "The trajectory shows the rocket model changing visually in the 2D/3D view before the report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The target body tube length is 100mm (0.1m) and the mass component must be exactly 30g (0.03kg). The stability margin must be at least 1.0 caliber. The output files must be named 'payload_integrated_rocket.ork' and 'payload_report.txt' in their respective directories. The VLM should verify that the apogee reported in the text file matches the value shown in the OpenRocket 'Flight Simulations' table."
+}

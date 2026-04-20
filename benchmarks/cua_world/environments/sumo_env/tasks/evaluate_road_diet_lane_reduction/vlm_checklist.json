@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_road_diet_lane_reduction@1",
+    "task_completion": [
+        {
+            "id": "identify_target_edge",
+            "description": "Identify the longest non-internal edge with 2+ lanes in the acosta_buslanes.net.xml file.",
+            "points": 10,
+            "visual_evidence": "Terminal output or text editor showing the agent parsing the XML and identifying edge '31064404#0' (or the specific longest edge) as the target."
+        },
+        {
+            "id": "baseline_simulation_run",
+            "description": "Run the baseline SUMO simulation and generate the baseline_tripinfo.xml file.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'sumo -c ... --tripinfo-output /home/ga/SUMO_Output/baseline_tripinfo.xml' or the SUMO GUI running the baseline config."
+        },
+        {
+            "id": "create_edge_patch",
+            "description": "Create the roaddiet.edg.xml file reducing the target edge to 1 lane.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command showing an XML file with an <edge> tag, the correct ID, and numLanes=\"1\"."
+        },
+        {
+            "id": "netconvert_application",
+            "description": "Use netconvert to apply the patch and create the new network file.",
+            "points": 20,
+            "visual_evidence": "Terminal command showing 'netconvert' with the original network, the patch file, and the output path acosta_roaddiet.net.xml."
+        },
+        {
+            "id": "diet_simulation_run",
+            "description": "Run the simulation with the modified network and generate roaddiet_tripinfo.xml.",
+            "points": 20,
+            "visual_evidence": "Terminal command or GUI showing the execution of roaddiet.sumocfg and the creation of the second tripinfo XML."
+        },
+        {
+            "id": "final_report_generation",
+            "description": "Create the road_diet_report.txt with the specific required metrics.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing road_diet_report.txt containing the Target_Edge, Original_Lanes, Baseline_Average_Duration, Diet_Average_Duration, and Duration_Increase."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent didn't just write the report without running simulations.",
+            "visual_evidence": "Check that the timestamps of the generated XML files in the file explorer or terminal match the session time and precede the report creation."
+        },
+        {
+            "id": "actual_netconvert_usage",
+            "description": "Ensure the agent used netconvert rather than manually editing the large .net.xml file.",
+            "visual_evidence": "Look for the netconvert command execution in the terminal history."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Check that the agent used the specific paths defined in the instructions.",
+            "visual_evidence": "Verify file paths in commands and editor headers match /home/ga/SUMO_Output/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target edge in the Bologna Acosta network (acosta_buslanes.net.xml) that is the longest non-internal edge with 2+ lanes is '31064404#0' (length ~382m). The original number of lanes for this edge is 2. The agent must calculate the average duration by summing the 'duration' attribute values in the tripinfo XMLs and dividing by the count of 'tripinfo' elements."
+}

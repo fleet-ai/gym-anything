@@ -1,0 +1,53 @@
+{
+    "task_id": "redact_inventory_metadata_scml@1",
+    "task_completion": [
+        {
+            "id": "database_access",
+            "description": "Agent accesses the SeisComP database via terminal or GUI tools using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Terminal commands showing connection to mysql://sysop:sysop@localhost/seiscomp or a database management tool open with this connection."
+        },
+        {
+            "id": "inventory_extraction",
+            "description": "Agent extracts the network inventory into an XML/SCML format.",
+            "points": 15,
+            "visual_evidence": "Execution of a command like 'scxmldump' or a database export command, and the appearance of an initial XML file."
+        },
+        {
+            "id": "redact_sani_bkb",
+            "description": "Agent modifies the latitude, longitude, and elevation to 0.0 for stations SANI and BKB.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output showing the <station> and <sensorLocation> elements for SANI and BKB with latitude, longitude, and elevation set to 0.0."
+        },
+        {
+            "id": "preserve_other_stations",
+            "description": "Agent ensures coordinates for TOLI, GSI, and KWP remain unchanged.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing non-zero coordinates for stations TOLI, GSI, or KWP."
+        },
+        {
+            "id": "save_redacted_file",
+            "description": "Agent saves the final valid SCML file to the specific path ~/exports/redacted_inventory.scml.",
+            "points": 25,
+            "visual_evidence": "A file manager or terminal command (e.g., 'ls ~/exports/') showing the file 'redacted_inventory.scml' exists in the correct directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_creation",
+            "description": "Agent did not simply create a dummy file from scratch without querying the database.",
+            "visual_evidence": "Evidence of database connection strings or SeisComP command-line tools (like scxmldump) being used before the file is edited."
+        },
+        {
+            "id": "genuine_editing",
+            "description": "Agent performed the redaction through an editor or stream editor (sed/awk/python), not by just echoing a pre-written string into a file.",
+            "visual_evidence": "Screenshots showing an open text editor (VS Code, Vim, Nano) or complex command-line processing of the XML content."
+        },
+        {
+            "id": "path_accuracy",
+            "description": "Agent used the exact file path specified in the instructions.",
+            "visual_evidence": "The file path /home/ga/exports/redacted_inventory.scml is visible in the terminal or editor save dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must redact stations SANI and BKB. For both stations, the latitude, longitude, and elevation must be exactly 0.0 in both the <station> and <sensorLocation> tags. Stations TOLI, GSI, and KWP must retain their original non-zero coordinates. The final output must be saved to /home/ga/exports/redacted_inventory.scml."
+}

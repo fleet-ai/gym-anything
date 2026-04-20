@@ -1,0 +1,59 @@
+{
+    "task_id": "browser_performance_diagnostic@1",
+    "task_completion": [
+        {
+            "id": "websites_opened",
+            "description": "Open all five specified websites (BBC, NYTimes, GitHub, Wikipedia, Weather.gov) in separate tabs.",
+            "points": 15,
+            "visual_evidence": "The Edge tab bar showing favicons or titles for BBC, NYTimes, GitHub, Wikipedia, and Weather.gov simultaneously."
+        },
+        {
+            "id": "memory_diagnosis",
+            "description": "Identify the website consuming the most memory using the browser's internal tools.",
+            "points": 20,
+            "visual_evidence": "The Edge Browser Task Manager (Shift+Esc) or 'edge://browser-task-manager/' open, showing memory usage for the tabs."
+        },
+        {
+            "id": "enable_startup_boost",
+            "description": "Enable the 'Startup boost' setting in Edge.",
+            "points": 15,
+            "visual_evidence": "The Edge Settings page (edge://settings/system) showing the 'Startup boost' toggle switched to the 'On' position."
+        },
+        {
+            "id": "enable_sleeping_tabs",
+            "description": "Enable 'Save resources with sleeping tabs' and set the inactivity timeout to 5 minutes.",
+            "points": 20,
+            "visual_evidence": "The Edge Settings page showing 'Save resources with sleeping tabs' enabled and the dropdown menu for 'Put inactive tabs to sleep after this amount of time' set to '5 minutes of inactivity'."
+        },
+        {
+            "id": "version_check",
+            "description": "Locate the Edge version string.",
+            "points": 10,
+            "visual_evidence": "The 'edge://version' page or 'About Microsoft Edge' page displayed on screen."
+        },
+        {
+            "id": "report_creation",
+            "description": "Create the diagnostic report at the specified path with all required content.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file /home/ga/Desktop/performance_report.txt containing the version, tab count, highest memory site, settings confirmation, and a recommendation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Edge GUI to change settings rather than modifying config files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Edge Settings UI toggles."
+        },
+        {
+            "id": "genuine_memory_check",
+            "description": "The agent actually checked memory usage rather than guessing the highest consumer.",
+            "visual_evidence": "Screenshots showing the Browser Task Manager or a similar performance monitoring tool being opened and inspected."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The report was typed or generated during the session, not simply moved from a hidden source.",
+            "visual_evidence": "The agent actively typing in a text editor or using 'echo' commands to build the report content."
+        }
+    ],
+    "privileged_info_for_vlm": "The required websites are bbc.com, nytimes.com, github.com, wikipedia.org, and weather.gov. The Edge version must be retrieved from edge://version. The performance settings (Startup boost and Sleeping tabs) are located in edge://settings/system. The report must be saved specifically to /home/ga/Desktop/performance_report.txt. Memory usage values will vary based on the live site content at the time of the run, but the agent must use the Browser Task Manager to identify the leader."
+}

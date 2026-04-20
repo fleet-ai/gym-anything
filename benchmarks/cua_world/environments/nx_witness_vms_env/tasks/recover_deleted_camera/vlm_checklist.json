@@ -1,0 +1,53 @@
+{
+    "task_id": "recover_deleted_camera@1",
+    "task_completion": [
+        {
+            "id": "read_inventory_file",
+            "description": "Agent opens and reads the network inventory file at /home/ga/Documents/network_inventory.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of network_inventory.txt, including the IP address, username (admin), and password (password)."
+        },
+        {
+            "id": "open_camera_addition_dialog",
+            "description": "Agent opens the 'Add Device' or 'Manual Add' dialog within the video management software.",
+            "points": 15,
+            "visual_evidence": "A dialog box or modal window titled 'Add Device', 'Manual Add', or similar, with fields for IP address and credentials."
+        },
+        {
+            "id": "input_camera_details",
+            "description": "Agent enters the IP address and credentials from the inventory file into the software.",
+            "points": 20,
+            "visual_evidence": "The 'Add Device' dialog with the IP address, username 'admin', and password 'password' (likely masked) typed into the respective fields."
+        },
+        {
+            "id": "set_camera_name",
+            "description": "Agent names the camera exactly 'Server Room Camera'.",
+            "points": 20,
+            "visual_evidence": "The camera settings or general properties tab showing the name field set to 'Server Room Camera'."
+        },
+        {
+            "id": "configure_recording_settings",
+            "description": "Agent sets the recording mode to 'Continuous' and the frame rate to 15 FPS.",
+            "points": 35,
+            "visual_evidence": "The 'Recording' tab or schedule settings showing 'Continuous' recording selected and the FPS slider or input box set to '15'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the VMS GUI to add and configure the camera rather than using backend scripts or API calls.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the VMS interface elements (buttons, tabs, input fields) rather than just terminal commands."
+        },
+        {
+            "id": "genuine_inventory_access",
+            "description": "The agent actually opened the inventory file to retrieve the IP and credentials.",
+            "visual_evidence": "A screenshot showing the file /home/ga/Documents/network_inventory.txt being opened before the camera is added."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not use a pre-existing script to automate the entire restoration process.",
+            "visual_evidence": "Step-by-step manual navigation through the VMS menus (e.g., Right-click Server -> Add Device)."
+        }
+    ],
+    "privileged_info_for_vlm": "The network inventory file is at /home/ga/Documents/network_inventory.txt. The required credentials are Username: 'admin' and Password: 'password'. The camera must be named exactly 'Server Room Camera'. The recording configuration must be 'Continuous' and the frame rate must be exactly 15 FPS. The software used is Nx Witness (NetworkOptix)."
+}

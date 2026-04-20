@@ -1,0 +1,59 @@
+{
+    "task_id": "bfi_psychometric_scoring@1",
+    "task_completion": [
+        {
+            "id": "access_raw_data",
+            "description": "Agent opens or reads the raw trial data file at ~/pebl/data/bfi_raw_data.csv",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output showing the contents of bfi_raw_data.csv."
+        },
+        {
+            "id": "access_scoring_key",
+            "description": "Agent opens or reads the scoring key at ~/pebl/lab/bfi_key.json",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the JSON structure of the BFI scoring key."
+        },
+        {
+            "id": "implement_data_cleaning",
+            "description": "Agent applies exclusion criteria for speeding (RT < 500ms) and straight-lining (SD < 0.25)",
+            "points": 25,
+            "visual_evidence": "Code in a script (Python/R) or commands showing logic to filter rows based on 'rt_ms' and standard deviation of responses."
+        },
+        {
+            "id": "apply_reverse_scoring",
+            "description": "Agent applies reverse scoring (6 - response) to specific items as defined in the key",
+            "points": 20,
+            "visual_evidence": "Code or transformation steps showing the calculation '6 - x' for items identified in the scoring key."
+        },
+        {
+            "id": "calculate_trait_means",
+            "description": "Agent calculates the mean for each of the Big Five traits across valid participants",
+            "points": 20,
+            "visual_evidence": "Code or output showing aggregation/averaging of scores grouped by trait (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism)."
+        },
+        {
+            "id": "export_final_report",
+            "description": "Agent exports the final trait report to ~/pebl/analysis/bfi_report.json",
+            "points": 15,
+            "visual_evidence": "A file explorer showing bfi_report.json in the analysis folder or a 'save' command targeting that specific path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final means or participant counts without calculation",
+            "visual_evidence": "The script or commands should show logic/formulas, not just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacted with the provided CSV and JSON files rather than creating dummy data",
+            "visual_evidence": "File paths in the code must match the provided paths in the ~/pebl/ directory."
+        },
+        {
+            "id": "logical_flow",
+            "description": "The agent followed the sequence of cleaning before scoring",
+            "visual_evidence": "The trajectory shows the exclusion logic (RT/SD) occurring before the mean trait calculation."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must output the final report specifically to /home/ga/pebl/analysis/bfi_report.json. The raw data is synthetic and located at ~/pebl/data/bfi_raw_data.csv. The scoring key is at ~/pebl/lab/bfi_key.json. Valid participants must have a median RT >= 500ms and a response SD >= 0.25. Reverse scoring is calculated as 6 minus the original response."
+}

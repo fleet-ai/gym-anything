@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_performance_optimization@1",
+    "task_completion": [
+        {
+            "id": "restore_indexes",
+            "description": "Restore missing indexes on rental (customer_id), payment (rental_id), and inventory (film_id) tables.",
+            "points": 25,
+            "visual_evidence": "SQL execution logs or database schema views showing CREATE INDEX commands or the presence of indexes on the specified columns in the sakila database."
+        },
+        {
+            "id": "create_view",
+            "description": "Create a database view named v_monthly_revenue with columns payment_year, payment_month, and total_revenue.",
+            "points": 20,
+            "visual_evidence": "SQL command creating the view or the view appearing in the database navigator/object tree with the correct column names."
+        },
+        {
+            "id": "create_stored_procedure",
+            "description": "Create a stored procedure named sp_monthly_revenue(p_year INT) that returns monthly revenue data.",
+            "points": 25,
+            "visual_evidence": "SQL code for 'CREATE PROCEDURE sp_monthly_revenue' or the procedure listed in the database's 'Stored Procedures' section."
+        },
+        {
+            "id": "call_procedure",
+            "description": "Execute the stored procedure for the year 2005.",
+            "points": 10,
+            "visual_evidence": "A SQL editor showing 'CALL sp_monthly_revenue(2005);' and a resulting data grid with monthly revenue figures."
+        },
+        {
+            "id": "export_csv",
+            "description": "Export the results of the 2005 revenue query to /home/ga/Documents/exports/monthly_revenue_2005.csv.",
+            "points": 20,
+            "visual_evidence": "An export wizard dialog, a terminal command (like SELECT ... INTO OUTFILE), or a file manager showing the CSV file in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the MySQL server via a GUI (like MySQL Workbench) or terminal, rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots showing a database client, SQL syntax highlighting, or terminal output from the mysql CLI."
+        },
+        {
+            "id": "no_hardcoded_csv",
+            "description": "The agent did not manually type the data into a CSV file but generated it from a database query.",
+            "visual_evidence": "Evidence of a SQL 'CALL' or 'SELECT' statement being executed immediately prior to the export or file creation."
+        },
+        {
+            "id": "correct_schema_context",
+            "description": "The agent ensured they were working within the 'sakila' database schema.",
+            "visual_evidence": "The 'USE sakila;' command or the sakila schema being highlighted/selected in a database browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The missing indexes to be restored are: rental(customer_id), payment(rental_id), and inventory(film_id). Note that in the original Sakila schema, the index on payment.rental_id is often named 'fk_payment_rental' as it is tied to a foreign key. The view 'v_monthly_revenue' must aggregate the 'amount' column from the 'payment' table. The stored procedure 'sp_monthly_revenue' must accept an integer year and filter the results accordingly. The final export path is strictly /home/ga/Documents/exports/monthly_revenue_2005.csv."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "style_dynamic_geometry_buffer@1",
+    "task_completion": [
+        {
+            "id": "login_geoserver",
+            "description": "Agent successfully logged into the GeoServer admin interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer web interface is visible with the 'admin' user logged in (usually shown in the top right corner) or the 'Welcome' page after login."
+        },
+        {
+            "id": "create_style_name",
+            "description": "A new style named 'river_buffer' is created.",
+            "points": 10,
+            "visual_evidence": "The 'Styles' page or 'Style Editor' showing the name field set to 'river_buffer'."
+        },
+        {
+            "id": "sld_geometry_buffer_logic",
+            "description": "The SLD code includes a transformation function for a buffer of 0.1 degrees.",
+            "points": 30,
+            "visual_evidence": "The SLD editor showing XML code containing '<ogc:Function name=\"buffer\">', '<ogc:PropertyName>the_geom</ogc:PropertyName>' (or similar geometry attribute), and the value '0.1'."
+        },
+        {
+            "id": "sld_polygon_styling",
+            "description": "The SLD code uses a PolygonSymbolizer with red fill (#FF0000) and 0.5 opacity.",
+            "points": 20,
+            "visual_evidence": "The SLD editor showing '<CssParameter name=\"fill\">#FF0000</CssParameter>' and '<CssParameter name=\"fill-opacity\">0.5</CssParameter>' within a '<PolygonSymbolizer>' block."
+        },
+        {
+            "id": "assign_style_to_layer",
+            "description": "The 'river_buffer' style is assigned to the 'ne:ne_rivers' layer.",
+            "points": 20,
+            "visual_evidence": "The 'Layers' configuration page for 'ne_rivers' showing 'river_buffer' selected as the default style, or the 'Publishing' tab showing the association."
+        },
+        {
+            "id": "verify_layer_preview",
+            "description": "The layer preview shows the rivers rendered with a thick red buffered area.",
+            "points": 10,
+            "visual_evidence": "The 'Layer Preview' for 'ne:ne_rivers' showing red, semi-transparent polygons following the river paths instead of simple thin lines."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than just executing curl commands or direct file edits.",
+            "visual_evidence": "Screenshots show the browser navigating through the GeoServer web UI menus (Styles, Layers, Layer Editor)."
+        },
+        {
+            "id": "genuine_sld_entry",
+            "description": "The agent manually entered or edited the SLD rather than it appearing instantly without interaction.",
+            "visual_evidence": "Sequential screenshots showing the SLD text area being populated or the 'Validate' button being clicked."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply create a text file claiming success.",
+            "visual_evidence": "The final screenshots show the actual GeoServer application state, not just a terminal output."
+        }
+    ],
+    "privileged_info_for_vlm": "The style must be named 'river_buffer'. The SLD must use a rendering transformation (ogc:Function name=\"buffer\") with a distance of 0.1. The symbology must be a PolygonSymbolizer with fill #FF0000 and opacity 0.5. The target layer is 'ne:ne_rivers' in the 'ne' workspace. The coordinate system for this dataset is EPSG:4326 (degrees)."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "event_screening_false_detection_cleanup@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_gui",
+            "description": "Open the SeisComP event management GUI (scolv) to view the event list.",
+            "points": 10,
+            "visual_evidence": "A window titled 'scolv' or 'SeisComP Origin Locator' is visible on the desktop."
+        },
+        {
+            "id": "identify_false_detections",
+            "description": "Identify the false detections based on low phase counts, implausible locations, or low magnitudes.",
+            "points": 20,
+            "visual_evidence": "The agent selects or highlights events in the scolv list that have very few phases (e.g., 2) or magnitudes significantly lower than the M7.5 mainshock."
+        },
+        {
+            "id": "delete_false_events",
+            "description": "Remove or delete the identified false detections from the database.",
+            "points": 30,
+            "visual_evidence": "The agent uses the GUI (e.g., right-click delete or 'Remove' button) or a terminal command (e.g., scdb) to remove the false events. The event list should eventually show only the M7.5 event."
+        },
+        {
+            "id": "verify_real_event_remains",
+            "description": "Ensure the 2024 Noto Peninsula M7.5 earthquake is preserved in the database.",
+            "points": 15,
+            "visual_evidence": "The scolv event list or a database query shows the event with Magnitude 7.5, Date 2024-01-01, and Location Noto Peninsula still exists."
+        },
+        {
+            "id": "export_bulletin",
+            "description": "Export the verified event(s) to the specified text file on the desktop.",
+            "points": 25,
+            "visual_evidence": "A terminal command using 'scbulletin' or a GUI export action is performed, and a file named 'verified_events.txt' appears on /home/ga/Desktop/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the SeisComP software rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots show the scolv GUI being manipulated or scbulletin/scdb commands being executed in the terminal."
+        },
+        {
+            "id": "no_hardcoded_cleanup",
+            "description": "The agent did not simply delete all events or create an empty file.",
+            "visual_evidence": "The final bulletin file or the GUI list must still contain the legitimate M7.5 Noto Peninsula earthquake record."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific file path requested in the task.",
+            "visual_evidence": "The terminal or file manager shows the output at /home/ga/Desktop/verified_events.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains one real event (Noto Peninsula, 2024-01-01, M7.5) and three false detections (IDs: false_det_001, false_det_002, false_det_003). The false detections are characterized by having only 2 phases/arrivals each, magnitudes between 0.8 and 1.6, and locations in remote ocean areas (e.g., lat/lon 5.0/170.5). The agent must delete these three and export only the M7.5 event to /home/ga/Desktop/verified_events.txt using scbulletin."
+}

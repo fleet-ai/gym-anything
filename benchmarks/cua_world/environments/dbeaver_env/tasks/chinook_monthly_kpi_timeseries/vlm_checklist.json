@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_monthly_kpi_timeseries@1",
+    "task_completion": [
+        {
+            "id": "dbeaver_connection",
+            "description": "Connect to the Chinook SQLite database in DBeaver using the connection name 'Chinook'.",
+            "points": 10,
+            "visual_evidence": "DBeaver window showing a connection named 'Chinook' in the Database Navigator, pointing to /home/ga/Documents/databases/chinook.db."
+        },
+        {
+            "id": "sql_script_creation",
+            "description": "Write the SQL script containing the complex KPI logic (Revenue, NewCustomers, CumulativeRevenue, MoMGrowthPct).",
+            "points": 25,
+            "visual_evidence": "An SQL editor tab in DBeaver containing a query that uses window functions (SUM OVER) or CTEs to calculate cumulative revenue and month-over-month growth."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "Execute the query and display the results grid with the correct columns.",
+            "points": 20,
+            "visual_evidence": "DBeaver results grid showing columns: Month, Revenue, InvoiceCount, UniqueCustomers, NewCustomers, CumulativeRevenue, and MoMGrowthPct."
+        },
+        {
+            "id": "save_sql_file",
+            "description": "Save the SQL script to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager window or DBeaver 'Save As' dialog confirming the script is saved to /home/ga/Documents/scripts/monthly_kpi.sql."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the query results to the specified CSV path.",
+            "points": 30,
+            "visual_evidence": "DBeaver export wizard or a file manager showing the file /home/ga/Documents/exports/monthly_kpi.csv has been created."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the DBeaver GUI to perform database operations rather than just using the sqlite3 CLI.",
+            "visual_evidence": "Screenshots show interactions with the DBeaver interface (menus, buttons, SQL editor) rather than only a terminal window."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent generated the report via SQL logic rather than manually typing values into a file.",
+            "visual_evidence": "The SQL script contains logic (e.g., GROUP BY, strftime, window functions) rather than a series of UNION ALL SELECT statements with hardcoded numbers."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent used the DBeaver export tool or 'Save results' feature.",
+            "visual_evidence": "Screenshots show the DBeaver 'Data Transfer' or 'Export Data' wizard dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. The first month of data (2009-01) should show a Revenue of 35.64 and a NULL or empty MoMGrowthPct. There are 60 distinct months in the dataset. The final CSV must contain exactly 7 columns: Month, Revenue, InvoiceCount, UniqueCustomers, NewCustomers, CumulativeRevenue, and MoMGrowthPct. NewCustomers are defined as customers whose very first invoice date falls within that specific month."
+}

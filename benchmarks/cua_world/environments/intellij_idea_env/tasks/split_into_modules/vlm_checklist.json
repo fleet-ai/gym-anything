@@ -1,0 +1,59 @@
+{
+    "task_id": "split_into_modules@1",
+    "task_completion": [
+        {
+            "id": "parent_pom_structure",
+            "description": "The root pom.xml is converted to a parent POM with packaging 'pom' and lists the three modules.",
+            "points": 10,
+            "visual_evidence": "Screenshot of pom.xml in the project root showing <packaging>pom</packaging> and a <modules> section containing petclinic-model, petclinic-service, and petclinic-app."
+        },
+        {
+            "id": "module_directories_created",
+            "description": "Three subdirectories for the modules exist in the project tree.",
+            "points": 10,
+            "visual_evidence": "Project explorer view showing folders named 'petclinic-model', 'petclinic-service', and 'petclinic-app' under the root directory."
+        },
+        {
+            "id": "model_module_content",
+            "description": "The 'petclinic-model' module contains the model and util packages.",
+            "points": 15,
+            "visual_evidence": "Project explorer showing 'petclinic-model/src/main/java' containing 'com.petclinic.model' and 'com.petclinic.util' packages."
+        },
+        {
+            "id": "service_module_content_and_deps",
+            "description": "The 'petclinic-service' module contains the service package and depends on 'petclinic-model'.",
+            "points": 20,
+            "visual_evidence": "Project explorer showing 'petclinic-service/src/main/java/com/petclinic/service' and its pom.xml showing a dependency on 'petclinic-model'."
+        },
+        {
+            "id": "app_module_content_and_deps",
+            "description": "The 'petclinic-app' module contains the app package and depends on both model and service modules.",
+            "points": 20,
+            "visual_evidence": "Project explorer showing 'petclinic-app/src/main/java/com/petclinic/app' and its pom.xml showing dependencies on both 'petclinic-model' and 'petclinic-service'."
+        },
+        {
+            "id": "successful_build",
+            "description": "The project compiles and packages successfully using Maven.",
+            "points": 25,
+            "visual_evidence": "Terminal output or IDE build tool window showing the command 'mvn clean package' resulting in a 'BUILD SUCCESS' message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's GUI features (refactoring tools, project explorer) rather than just executing shell scripts to move files.",
+            "visual_evidence": "Screenshots showing the use of IDE context menus (e.g., Refactor > Move), dialog boxes for creating modules, or drag-and-drop actions in the project tree."
+        },
+        {
+            "id": "genuine_compilation",
+            "description": "The build success is genuine and not a mocked echo command.",
+            "visual_evidence": "The Maven build output should show the reactor summary listing all four modules (parent + 3 children) and their individual build statuses."
+        },
+        {
+            "id": "no_hardcoded_paths",
+            "description": "The agent interacts with the project in the specified directory.",
+            "visual_evidence": "The IDE title bar or terminal prompt shows the path /home/ga/IdeaProjects/petclinic-mono."
+        }
+    ],
+    "privileged_info_for_vlm": "The project root is /home/ga/IdeaProjects/petclinic-mono. The required modules are 'petclinic-model' (containing com.petclinic.model and com.petclinic.util), 'petclinic-service' (containing com.petclinic.service), and 'petclinic-app' (containing com.petclinic.app). Dependency chain: app -> service -> model and app -> model. A successful build must show 'BUILD SUCCESS' for all modules in the Maven reactor summary."
+}

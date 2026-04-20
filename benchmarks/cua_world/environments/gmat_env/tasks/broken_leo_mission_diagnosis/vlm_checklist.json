@@ -1,0 +1,53 @@
+{
+    "task_id": "broken_leo_mission_diagnosis@1",
+    "task_completion": [
+        {
+            "id": "open_mission_script",
+            "description": "Agent opens the GMAT mission script at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/Documents/missions/leo_comms_mission.script."
+        },
+        {
+            "id": "modify_orbital_parameters",
+            "description": "Agent modifies the script with physically valid parameters for a 550km SSO orbit.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the script being edited with new values for SMA (approx 6928km), ECC (near 0), and INC (approx 97-99 deg)."
+        },
+        {
+            "id": "run_gmat_console",
+            "description": "Agent executes the script using GmatConsole.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the command 'GmatConsole' being run against the leo_comms_mission.script and completing without errors."
+        },
+        {
+            "id": "verify_propagation_duration",
+            "description": "The script is configured to propagate for 7 days.",
+            "points": 15,
+            "visual_evidence": "The script text or GMAT output logs showing a propagation duration of 604800 seconds or 7 days."
+        },
+        {
+            "id": "create_diagnosis_report",
+            "description": "Agent creates the diagnosis report at the specified output path.",
+            "points": 30,
+            "visual_evidence": "A screenshot of the file /home/ga/GMAT_output/leo_diagnosis_report.txt containing the required keys: SMA_corrected_km, ECC_corrected, INC_corrected_deg, DragArea_corrected_m2, and RAAN_drift."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_execution",
+            "description": "The agent actually ran the GMAT software rather than just writing a report.",
+            "visual_evidence": "Terminal output showing GmatConsole initialization, mission run progress, and 'Mission Run Completed'."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent derived the values from the task context (550km SSO) rather than guessing.",
+            "visual_evidence": "The agent searching for SSO inclination/SMA formulas or using a calculator before editing the script."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "Commands or editor titles showing /home/ga/Documents/missions/leo_comms_mission.script and /home/ga/GMAT_output/leo_diagnosis_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The target orbit is a 550km altitude Sun-Synchronous Orbit (SSO). Valid SMA (Semi-Major Axis) should be between 6880.0 and 6970.0 km (Earth radius ~6378km + 550km). Eccentricity (ECC) must be less than 0.015 for a stable circular orbit. Inclination (INC) for a 550km SSO must be between 97.0 and 99.5 degrees. The report must be at /home/ga/GMAT_output/leo_diagnosis_report.txt and contain the exact labels specified."
+}

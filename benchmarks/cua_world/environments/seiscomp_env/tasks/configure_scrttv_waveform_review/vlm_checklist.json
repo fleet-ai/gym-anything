@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_scrttv_waveform_review@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "The agent opens the scrttv.cfg file or a configuration editor to set parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor (like nano, vi, or gedit) or the SeisComP configuration GUI showing the file ~/seiscomp/etc/scrttv.cfg."
+        },
+        {
+            "id": "configure_recordstream",
+            "description": "The recordstream service and source are correctly configured to sdsarchive and the specified path.",
+            "points": 20,
+            "visual_evidence": "Text in the configuration file or GUI showing 'recordstream.service = sdsarchive' and 'recordstream.source = /home/ga/seiscomp/var/lib/archive'."
+        },
+        {
+            "id": "configure_filter_and_buffer",
+            "description": "The Butterworth filter and buffer size are correctly set in the configuration.",
+            "points": 25,
+            "visual_evidence": "Text in the configuration showing 'filter = \"BW(2,0.5,8.0)\"' and 'bufferSize' set to a value >= 1800."
+        },
+        {
+            "id": "launch_scrttv",
+            "description": "The scrttv application is launched and visible on the desktop.",
+            "points": 15,
+            "visual_evidence": "The SeisComP Real-Time Trace View (scrttv) window is open and active on the screen."
+        },
+        {
+            "id": "verify_waveforms_displayed",
+            "description": "The application is successfully displaying BHZ waveform data from the GE network.",
+            "points": 20,
+            "visual_evidence": "Waveform traces are visible in the scrttv window, with station labels starting with 'GE' and channel labels ending in 'BHZ'."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "A screenshot of the interface is saved to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal command showing the creation of /home/ga/scrttv_screenshot.png."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_app_interaction",
+            "description": "The agent interacted with the actual scrttv software rather than displaying a static image.",
+            "visual_evidence": "The scrttv window should show dynamic elements, window borders consistent with the OS, and specific station data (GE network) rather than generic placeholders."
+        },
+        {
+            "id": "config_file_modification",
+            "description": "The agent actually modified the configuration file rather than just launching the app with default settings.",
+            "visual_evidence": "Screenshots showing the editing of ~/seiscomp/etc/scrttv.cfg with the specific required strings (BW(2,0.5,8.0))."
+        },
+        {
+            "id": "no_hardcoded_image_bypass",
+            "description": "The screenshot saved at the end matches the current state of the desktop/application.",
+            "visual_evidence": "The final screenshot /home/ga/scrttv_screenshot.png should match the visual state of the application seen in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The configuration must exactly use: recordstream.service = 'sdsarchive', recordstream.source = '/home/ga/seiscomp/var/lib/archive', filter = 'BW(2,0.5,8.0)', and bufferSize >= 1800. The waveforms must belong to the GE network and BHZ channels. The final output must be a screenshot at /home/ga/scrttv_screenshot.png."
+}

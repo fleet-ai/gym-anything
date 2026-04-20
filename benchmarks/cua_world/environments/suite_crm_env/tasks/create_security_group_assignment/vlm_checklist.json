@@ -1,0 +1,53 @@
+{
+    "task_id": "create_security_group_assignment@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_security_groups",
+            "description": "Navigate to the Security Groups Management section of the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Security Groups Management' list view or the 'Create Security Group' form page."
+        },
+        {
+            "id": "create_group_details",
+            "description": "Create a group with the specific name 'APAC Sales Region' and the required description.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the name field populated with 'APAC Sales Region' and the description field with 'Access control group for the Asia-Pacific territory sales team.' before or during saving."
+        },
+        {
+            "id": "add_user_akiko_lin",
+            "description": "Add the user 'Akiko Lin' to the newly created security group.",
+            "points": 25,
+            "visual_evidence": "The VLM should see 'Akiko Lin' listed in the 'Users' subpanel of the 'APAC Sales Region' group detail view."
+        },
+        {
+            "id": "assign_tokyo_electronics",
+            "description": "Assign the account 'Tokyo Electronics KK' to the security group.",
+            "points": 25,
+            "visual_evidence": "The VLM should see 'Tokyo Electronics KK' listed in the 'Accounts' subpanel of the 'APAC Sales Region' group detail view."
+        },
+        {
+            "id": "exclude_tokyo_distribution",
+            "description": "Ensure 'Tokyo Distribution Partners' is NOT assigned to the group.",
+            "points": 20,
+            "visual_evidence": "The 'Accounts' subpanel for the 'APAC Sales Region' group should NOT contain 'Tokyo Distribution Partners'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands or scripts via a terminal.",
+            "visual_evidence": "The trajectory shows mouse clicks, form filling, and navigation within the browser; no terminal windows showing SQL queries or shell scripts are used to bypass the UI."
+        },
+        {
+            "id": "genuine_search_and_select",
+            "description": "The agent searched for and selected the specific records (User and Account) from the CRM database.",
+            "visual_evidence": "Screenshots show the 'Select' pop-up windows or search bars being used to find 'Akiko Lin' and 'Tokyo Electronics KK'."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the menu system rather than jumping directly to a final 'success' URL.",
+            "visual_evidence": "The VLM should see the agent clicking through the 'Security Groups Management' or 'Administration' menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The security group must be named exactly 'APAC Sales Region'. The description must be 'Access control group for the Asia-Pacific territory sales team.'. The user to be added is 'Akiko Lin'. The account to be added is 'Tokyo Electronics KK'. The account 'Tokyo Distribution Partners' must be absent from the group's account list."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "purge_stale_leave_requests@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_time_off",
+            "description": "Agent navigates to the Time Off module in Odoo.",
+            "points": 10,
+            "visual_evidence": "The screen shows the Odoo dashboard and then transitions to the 'Time Off' module interface."
+        },
+        {
+            "id": "filter_to_submit",
+            "description": "Agent filters or identifies leave requests in 'To Submit' (Draft) status.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'To Submit' filter applied in the search bar or see the agent looking at records with the status 'To Submit'."
+        },
+        {
+            "id": "identify_stale_requests",
+            "description": "Agent identifies specific requests with a Start Date before the current date.",
+            "points": 25,
+            "visual_evidence": "The agent hovers over or selects records where the 'Start Date' column shows a date in the past relative to the current system date."
+        },
+        {
+            "id": "select_stale_only",
+            "description": "Agent selects only the stale draft requests, excluding future drafts or non-draft statuses.",
+            "points": 20,
+            "visual_evidence": "Checkboxes are ticked next to records that are both 'To Submit' and have past dates. Future dates or 'Approved/Refused' statuses remain unselected."
+        },
+        {
+            "id": "delete_action",
+            "description": "Agent uses the Action menu to delete the selected records.",
+            "points": 30,
+            "visual_evidence": "The agent clicks 'Action' and then 'Delete', followed by a confirmation dialog appearing and being accepted."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task via the Odoo web interface rather than using a terminal or script.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and menu navigation within the browser, not a command-line interface."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the UI rather than guessing record IDs in the URL.",
+            "visual_evidence": "The agent clicks on buttons and filters within the Odoo UI to find the records."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually deletes the records rather than just closing the tab or claiming it's done.",
+            "visual_evidence": "The deletion confirmation popup is visible and the records disappear from the list view after the action."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must delete exactly 3 records. These records are in 'To Submit' (Draft) status and have start dates in the past (specifically -30, -15, and -5 days from today). There are 2 other draft records with future dates (+10, +20 days) and 4 records in other statuses (Approved/Confirmed) that MUST NOT be deleted. The system date can be seen in the Odoo interface or the environment clock."
+}

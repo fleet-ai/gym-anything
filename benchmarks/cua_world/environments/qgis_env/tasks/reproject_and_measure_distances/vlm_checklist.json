@@ -1,0 +1,59 @@
+{
+    "task_id": "reproject_and_measure_distances@1",
+    "task_completion": [
+        {
+            "id": "load_source_geojson",
+            "description": "Load the source file /home/ga/GIS_Data/sample_lines.geojson into QGIS.",
+            "points": 10,
+            "visual_evidence": "The 'sample_lines' layer appears in the QGIS Layers panel."
+        },
+        {
+            "id": "reproject_to_utm",
+            "description": "Reproject the layer to EPSG:32610 (WGS 84 / UTM zone 10N).",
+            "points": 20,
+            "visual_evidence": "The 'Reproject layer' or 'Save Vector Layer as' dialog showing CRS set to EPSG:32610."
+        },
+        {
+            "id": "save_utm_geojson",
+            "description": "Save the reprojected layer to /home/ga/GIS_Data/exports/roads_utm.geojson.",
+            "points": 15,
+            "visual_evidence": "A file browser or save dialog showing the path /home/ga/GIS_Data/exports/roads_utm.geojson."
+        },
+        {
+            "id": "calculate_length_km",
+            "description": "Create a new decimal field 'length_km' and calculate the road lengths in kilometers.",
+            "points": 30,
+            "visual_evidence": "The Field Calculator dialog showing the field name 'length_km', type 'Decimal number', and a formula involving $length / 1000."
+        },
+        {
+            "id": "verify_attribute_table",
+            "description": "The attribute table contains the 'length_km' field with calculated values.",
+            "points": 10,
+            "visual_evidence": "The QGIS Attribute Table open for the layer showing a column named 'length_km' with numeric values."
+        },
+        {
+            "id": "export_csv_final",
+            "description": "Export the final data to /home/ga/GIS_Data/exports/road_measurements.csv.",
+            "points": 15,
+            "visual_evidence": "The 'Save Vector Layer as' dialog with format set to 'Comma Separated Value [CSV]' and the file path /home/ga/GIS_Data/exports/road_measurements.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the QGIS GUI to perform the tasks rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show interaction with QGIS menus, processing toolbox, or attribute table rather than just a terminal window."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculated the lengths using GIS tools rather than manually typing in expected values.",
+            "visual_evidence": "The Field Calculator or geometry expression builder is visible in the trajectory."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the specified file paths and CRS.",
+            "visual_evidence": "The file paths /home/ga/GIS_Data/sample_lines.geojson and EPSG:32610 are visible in the QGIS dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file contains exactly 2 road features ('Road 1' and 'Road 2'). The target CRS is EPSG:32610 (UTM Zone 10N). The field for length must be named 'length_km' and be a decimal type. The final outputs must be a GeoJSON at /home/ga/GIS_Data/exports/roads_utm.geojson and a CSV at /home/ga/GIS_Data/exports/road_measurements.csv."
+}

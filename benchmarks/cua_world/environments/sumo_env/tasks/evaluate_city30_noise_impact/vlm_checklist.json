@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_city30_noise_impact@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "Run the baseline SUMO simulation using the original network file and generate initial output files.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or GUI activity showing 'sumo' or 'sumo-gui' running with 'pasubio_buslanes.net.xml' and generating 'baseline_tripinfo.xml' and 'baseline_noise.xml'."
+        },
+        {
+            "id": "network_modification_logic",
+            "description": "Modify the network to cap lane speeds at 8.33 m/s for all lanes exceeding that limit.",
+            "points": 25,
+            "visual_evidence": "Code or script execution (e.g., using sumolib or xml editing) showing the logic to filter lanes with speed > 8.33 and setting them to 8.33."
+        },
+        {
+            "id": "save_modified_network",
+            "description": "Save the modified network file to the specified output path.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal output showing the creation of '/home/ga/SUMO_Output/pasubio_city30.net.xml'."
+        },
+        {
+            "id": "policy_simulation_run",
+            "description": "Run the second simulation using the modified 'pasubio_city30.net.xml' network.",
+            "points": 20,
+            "visual_evidence": "Terminal or GUI showing a SUMO process using the new 'pasubio_city30.net.xml' file."
+        },
+        {
+            "id": "final_output_generation",
+            "description": "Generate and verify the existence of all four required XML output files in the output directory.",
+            "points": 25,
+            "visual_evidence": "A directory listing (ls -l /home/ga/SUMO_Output/) showing baseline_tripinfo.xml, baseline_noise.xml, city30_tripinfo.xml, and city30_noise.xml."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the SUMO simulation rather than just creating empty files.",
+            "visual_evidence": "Terminal logs showing SUMO simulation progress (e.g., 'Step #', 'Simulation ended at time') or XML files containing actual data entries rather than being 0 bytes."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Check that the agent didn't manually type out the XML content or copy it from a hidden source.",
+            "visual_evidence": "The agent should be seen using command-line tools (sumo, netconvert) or Python scripts to process the data."
+        },
+        {
+            "id": "correct_speed_threshold",
+            "description": "Ensure the agent used the specific 8.33 m/s (30 km/h) threshold as requested.",
+            "visual_evidence": "Code snippets or command arguments showing the value 8.33 or 8.34 being used in the network modification step."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must cap speeds at exactly 8.33 m/s (the mathematical equivalent of 30 km/h). The verifier uses a threshold of 8.34 m/s to check for compliance. The baseline network is 'pasubio_buslanes.net.xml'. All outputs must be saved in '/home/ga/SUMO_Output/'. Expected trip count in the output files should be at least 100."
+}

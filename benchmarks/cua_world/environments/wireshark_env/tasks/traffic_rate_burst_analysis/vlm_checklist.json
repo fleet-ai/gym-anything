@@ -1,0 +1,53 @@
+{
+    "task_id": "traffic_rate_burst_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent opens the specified PCAPNG file in a network analysis tool like Wireshark.",
+            "points": 10,
+            "visual_evidence": "A window showing Wireshark or a similar tool with '/home/ga/Documents/captures/200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "analyze_traffic_statistics",
+            "description": "The agent accesses traffic statistics or IO graphs to calculate rates and bursts.",
+            "points": 20,
+            "visual_evidence": "The agent opening 'Statistics' menus, 'IO Graphs', or running terminal commands like 'tshark' or 'capinfos' to extract packet timing data."
+        },
+        {
+            "id": "calculate_pps_metrics",
+            "description": "The agent performs calculations for duration, average PPS, and peak PPS.",
+            "points": 25,
+            "visual_evidence": "The agent using a calculator, scratchpad, or terminal to compute values like 35/27 or identifying the maximum packet count in a 1-second window."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates the text report at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command showing the creation of '/home/ga/Documents/traffic_rate_report.txt'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The report contains all required fields in the correct 'LABEL: value' format.",
+            "points": 30,
+            "visual_evidence": "A view of the final report file containing CAPTURE_DURATION_SECS, TOTAL_PACKETS, AVERAGE_PPS, PEAK_PPS, PEAK_SECOND, and IDLE_SECONDS."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "The agent actually analyzed the file rather than guessing or using pre-known values.",
+            "visual_evidence": "Screenshots showing the agent interacting with the PCAP data (scrolling through packets, using analysis tools) before writing the report."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the ground truth values into a file without opening the source data.",
+            "visual_evidence": "The agent must be seen opening the pcap file or using a tool to process it, not just typing the final numbers immediately."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific file paths provided in the task description.",
+            "visual_evidence": "The file paths '/home/ga/Documents/captures/200722_tcp_anon.pcapng' and '/home/ga/Documents/traffic_rate_report.txt' are visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The PCAP file contains 35 total packets. The first timestamp is 1595469924.23464 and the last is 1595469951.905618. CAPTURE_DURATION_SECS should be 27 (floor of 27.67). TOTAL_PACKETS is 35. AVERAGE_PPS is 1.3 (35/27 rounded). PEAK_PPS is 17. The peak occurs at the beginning of the capture (PEAK_SECOND: 0). IDLE_SECONDS is the count of 1-second bins with 0 packets within the 27-second duration."
+}

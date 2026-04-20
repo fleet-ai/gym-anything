@@ -1,0 +1,53 @@
+{
+    "task_id": "consolidate_variant_tags@1",
+    "task_completion": [
+        {
+            "id": "locate_tag_pane",
+            "description": "Locate the tag selector pane in the Zotero sidebar showing the inconsistent tags.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the bottom-left 'Tags' pane containing 'deep-learning', 'deep learning', 'nlp', 'Deep Learning', and 'NLP'."
+        },
+        {
+            "id": "rename_deep_learning_variants",
+            "description": "Rename the variant tags 'deep-learning' and 'deep learning' to the canonical 'Deep Learning'.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the agent right-clicking a variant tag and using the 'Rename Tag...' dialog to change it to 'Deep Learning'."
+        },
+        {
+            "id": "rename_nlp_variant",
+            "description": "Rename the variant tag 'nlp' to the canonical 'NLP'.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the agent right-clicking the 'nlp' tag and using the 'Rename Tag...' dialog to change it to 'NLP'."
+        },
+        {
+            "id": "verify_dl_consolidation",
+            "description": "Verify that only the canonical 'Deep Learning' tag remains and contains all 6 items.",
+            "points": 20,
+            "visual_evidence": "The tag pane shows only 'Deep Learning' (no lowercase or hyphenated versions). When 'Deep Learning' is selected, the item list shows 6 papers (including AlexNet, ResNet, BERT, etc.)."
+        },
+        {
+            "id": "verify_nlp_consolidation",
+            "description": "Verify that only the canonical 'NLP' tag remains and contains all 4 items.",
+            "points": 20,
+            "visual_evidence": "The tag pane shows only 'NLP' (no lowercase version). When 'NLP' is selected, the item list shows 4 papers (including GPT-3, Turing, Shannon, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Zotero GUI to manage tags rather than executing sqlite3 commands in the terminal.",
+            "visual_evidence": "The agent is seen clicking on the Zotero interface and typing in rename dialogs; no terminal windows showing database manipulation are present."
+        },
+        {
+            "id": "genuine_renaming",
+            "description": "The agent actually performed the merge by renaming, not just deleting tags.",
+            "visual_evidence": "The item counts for the canonical tags increase as the variants disappear, which happens when Zotero prompts to merge tags of the same name."
+        },
+        {
+            "id": "no_manual_tagging",
+            "description": "The agent did not manually re-tag every individual paper one by one.",
+            "visual_evidence": "The agent uses the 'Rename Tag' feature in the sidebar which is the efficient way to consolidate tags in Zotero."
+        }
+    ],
+    "privileged_info_for_vlm": "The canonical tags are 'Deep Learning' and 'NLP'. The variant tags to be removed are 'deep-learning', 'deep learning', and 'nlp'. After consolidation, the 'Deep Learning' tag must contain exactly 6 items (LeCun 2015, Krizhevsky 2012, Vaswani 2017, Devlin 2019, He 2016, Goodfellow 2014). The 'NLP' tag must contain exactly 4 items (Shannon 1948, Brown 2020, Turing 1950, and one other). Zotero merges tags automatically when a tag is renamed to match an existing tag name."
+}

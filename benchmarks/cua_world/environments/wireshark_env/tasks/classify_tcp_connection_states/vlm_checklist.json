@@ -1,0 +1,53 @@
+{
+    "task_id": "classify_tcp_connection_states@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Open the specified pcapng file in Wireshark",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing '200722_tcp_anon.pcapng' in the title bar or file path."
+        },
+        {
+            "id": "analyze_tcp_streams",
+            "description": "Access TCP stream information or conversation statistics",
+            "points": 20,
+            "visual_evidence": "The 'Statistics -> Conversations' window or 'Analyze -> Follow -> TCP Stream' dialog being used to identify unique streams."
+        },
+        {
+            "id": "filter_tcp_flags",
+            "description": "Apply display filters to identify SYN, RST, and FIN packets",
+            "points": 20,
+            "visual_evidence": "Usage of filters like 'tcp.flags.syn == 1', 'tcp.flags.reset == 1', or 'tcp.flags.fin == 1' in the Wireshark filter bar."
+        },
+        {
+            "id": "calculate_unanswered_syn",
+            "description": "Identify streams with a SYN but no SYN-ACK",
+            "points": 25,
+            "visual_evidence": "Filtering for 'tcp.flags.syn==1 && tcp.flags.ack==0' and comparing against stream IDs that lack a corresponding SYN/ACK response."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the final report file with the required seven metrics",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing 'tcp_connection_state_report.txt' with the 7 specific keys (total_tcp_streams, syn_packets, streams_with_rst, streams_with_fin, unanswered_syn_streams, etc.) and their values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the Wireshark GUI for analysis",
+            "visual_evidence": "Screenshots show the Wireshark graphical interface being interacted with, rather than just running tshark or tcpdump in a terminal."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Ensure the agent didn't simply echo hardcoded values into the file",
+            "visual_evidence": "The agent is seen performing filtering or checking statistics within Wireshark before writing the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Verify the report is saved in the specific requested directory",
+            "visual_evidence": "The file path '~/Documents/captures/tcp_connection_state_report.txt' is visible during the save or cat process."
+        }
+    ],
+    "privileged_info_for_vlm": "The pcapng file contains Netcat TCP traffic. Based on the '200722_tcp_anon.pcapng' dataset: total_tcp_streams is 11; syn_packets is 11; streams_with_rst is 1; streams_with_fin is 10; unanswered_syn_streams is 0 (all SYNs in this specific capture are answered as it is a successful netcat sequence, though the agent must verify this). The agent must produce exactly 7 lines in the report."
+}

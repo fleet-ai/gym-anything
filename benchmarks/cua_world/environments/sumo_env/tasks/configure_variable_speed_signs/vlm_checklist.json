@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_variable_speed_signs@1",
+    "task_completion": [
+        {
+            "id": "read_briefing_file",
+            "description": "Agent opens and reads the vss_briefing.txt file to obtain lane IDs and speed schedules.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/SUMO_Scenarios/bologna_pasubio/vss_briefing.txt."
+        },
+        {
+            "id": "create_vss_xml",
+            "description": "Agent creates pasubio_vss.add.xml with the correct variableSpeedSign id and lane references.",
+            "points": 25,
+            "visual_evidence": "A text editor showing pasubio_vss.add.xml containing <variableSpeedSign id=\"vss_peak_control\"> and <lane id=\"...\"/> tags."
+        },
+        {
+            "id": "configure_speed_steps",
+            "description": "Agent defines the specific speed steps (time and speed values) in the XML file.",
+            "points": 25,
+            "visual_evidence": "The XML file pasubio_vss.add.xml showing <step time=\"0\" speed=\"13.89\"/>, <step time=\"300\" speed=\"8.33\"/>, and <step time=\"900\" speed=\"13.89\"/>."
+        },
+        {
+            "id": "update_sumocfg",
+            "description": "Agent modifies run.sumocfg to include the new additional file.",
+            "points": 15,
+            "visual_evidence": "A text editor showing run.sumocfg with a <additional-files value=\"pasubio_vss.add.xml\"/> entry (or similar syntax)."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the SUMO simulation using the updated configuration.",
+            "points": 15,
+            "visual_evidence": "A terminal showing the execution of 'sumo -c run.sumocfg' or the SUMO GUI running the simulation."
+        },
+        {
+            "id": "verify_tripinfos_output",
+            "description": "Agent confirms the generation of tripinfos.xml in the scenario directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal 'ls' command showing tripinfos.xml exists in /home/ga/SUMO_Scenarios/bologna_pasubio/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not simply 'touch' the output file without running the simulation.",
+            "visual_evidence": "The terminal or GUI must show the SUMO simulation process running and completing, rather than just a file creation command."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the file system and editors rather than outputting the final XML content only in the chat.",
+            "visual_evidence": "Screenshots show a text editor (like VS Code, Vim, or Nano) or 'cat' commands being used within the environment."
+        },
+        {
+            "id": "correct_scenario_path",
+            "description": "Agent is working in the specific Bologna Pasubio directory, not a generic or default SUMO directory.",
+            "visual_evidence": "The file paths in the editor or terminal prompt clearly show /home/ga/SUMO_Scenarios/bologna_pasubio/."
+        }
+    ],
+    "privileged_info_for_vlm": "The target lanes for the VSS are '12_0', '12_1', and '12_2'. The speed schedule must be: 13.89 m/s at time 0, 8.33 m/s at time 300, and 13.89 m/s at time 900. The VSS ID must be 'vss_peak_control'. The simulation must be run using run.sumocfg to produce tripinfos.xml."
+}

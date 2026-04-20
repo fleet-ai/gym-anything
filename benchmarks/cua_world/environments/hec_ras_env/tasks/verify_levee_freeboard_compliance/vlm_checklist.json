@@ -1,0 +1,59 @@
+{
+    "task_id": "verify_levee_freeboard_compliance@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the HEC-RAS project located in '~/Documents/hec_ras_projects/Muncie'.",
+            "points": 10,
+            "visual_evidence": "The HEC-RAS main window is visible with the project path or 'Muncie' project name displayed in the title bar or project text box."
+        },
+        {
+            "id": "run_unsteady_simulation",
+            "description": "Run the HEC-RAS Unsteady simulation for Plan 04.",
+            "points": 20,
+            "visual_evidence": "The 'Unsteady Flow Analysis' window is open with 'Plan 04' selected, and a computation progress bar or 'Finished' status window is visible."
+        },
+        {
+            "id": "extract_wse_profile",
+            "description": "Extract or view the Maximum Water Surface Elevation (WSE) profile data.",
+            "points": 15,
+            "visual_evidence": "The HEC-RAS Profile Plot or Profile Output Table is open, showing 'Max W.S.' values for the reach."
+        },
+        {
+            "id": "calculate_compliance_data",
+            "description": "Compute freeboard and determine PASS/FAIL status based on the 3.0 ft threshold.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet, script, or data processing tool is visible showing calculations involving 'Levee_Top_Elev_ft' minus 'Modeled_WSE_ft' and a logic check for the 3.0 ft threshold."
+        },
+        {
+            "id": "generate_compliance_csv",
+            "description": "Generate 'levee_compliance.csv' in '~/Documents/hec_ras_results/' with the required columns.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal shows 'levee_compliance.csv' in the results directory, or the file is open showing columns: Station_ft, Levee_Top_Elev_ft, Modeled_WSE_ft, Freeboard_ft, and Status."
+        },
+        {
+            "id": "generate_visualization_plot",
+            "description": "Generate 'levee_profile.png' showing Levee Top and Max WSE profiles.",
+            "points": 15,
+            "visual_evidence": "An image file named 'levee_profile.png' is visible, displaying a line chart with two distinct profiles (Levee Top and Max WSE) plotted against stationing."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_hec_ras_interaction",
+            "description": "The agent interacted with the HEC-RAS GUI to run the simulation rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the HEC-RAS application windows (Main, Unsteady Analysis, and Computation) active and processing."
+        },
+        {
+            "id": "data_consistency",
+            "description": "The values in the final CSV match the data seen in the HEC-RAS output tables.",
+            "visual_evidence": "The 'Modeled_WSE_ft' values in the CSV or script match the 'Max W.S.' values shown in the HEC-RAS Profile Table."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply copy a pre-existing ground truth file.",
+            "visual_evidence": "The agent is seen performing interpolation or data merging between the 'levee_survey.csv' and the HEC-RAS output data."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/Documents/hec_ras_projects/Muncie. The simulation must be run for 'Plan 04'. The compliance threshold for 'PASS' is a freeboard (Levee Elev - Max WSE) of >= 3.0 feet. The final outputs must be saved to /home/ga/Documents/hec_ras_results/ as 'levee_compliance.csv' and 'levee_profile.png'. The survey data to be used for interpolation is in 'levee_survey.csv'."
+}

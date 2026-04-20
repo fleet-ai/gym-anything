@@ -1,0 +1,59 @@
+{
+    "task_id": "analyze_customer_affinity@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "Open the Chinook database in LibreOffice Base or a similar SQL tool.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the LibreOffice Base interface or an SQL editor showing the Chinook database tables (Artist, Album, Track, Customer, etc.)."
+        },
+        {
+            "id": "sql_query_construction",
+            "description": "Construct an SQL query that joins Customer, Invoice, InvoiceLine, Track, Album, and Artist tables.",
+            "points": 20,
+            "visual_evidence": "The VLM should see an SQL editor window containing a query with multiple JOIN statements and a WHERE clause excluding 'Various Artists'."
+        },
+        {
+            "id": "correct_columns_and_logic",
+            "description": "The query includes the concatenated 'CustomerName', 'ArtistName', and 'AlbumCount' with a HAVING clause for at least 3 albums.",
+            "points": 25,
+            "visual_evidence": "The SQL text should show: (FirstName || ' ' || LastName) AS CustomerName, COUNT(DISTINCT AlbumId) >= 3, and WHERE Artist.Name != 'Various Artists'."
+        },
+        {
+            "id": "sorting_applied",
+            "description": "The query results are ordered by AlbumCount descending and CustomerName ascending.",
+            "points": 15,
+            "visual_evidence": "The SQL text should show 'ORDER BY AlbumCount DESC, CustomerName ASC' or the result grid should reflect this sorting."
+        },
+        {
+            "id": "save_query_name",
+            "description": "The query is saved with the specific name 'DeepCatalogCustomers'.",
+            "points": 20,
+            "visual_evidence": "The VLM should see a 'Save As' dialog or the 'Queries' pane in LibreOffice Base showing a query named 'DeepCatalogCustomers'."
+        },
+        {
+            "id": "save_database_file",
+            "description": "The database file containing the new query is saved to the filesystem.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the user clicking the Save icon in the main application window or a 'File saved' confirmation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create and save the query rather than just executing a shell script.",
+            "visual_evidence": "Screenshots should show the LibreOffice Base application window, menus, and dialog boxes being interacted with by the cursor."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type out the result rows in a text file but generated them via SQL.",
+            "visual_evidence": "The VLM should see the SQL execution result grid within the database software, not a manually edited text document."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent interacted with the actual Chinook SQLite file provided in the task environment.",
+            "visual_evidence": "The file path /opt/libreoffice_base_samples/Chinook_Sqlite.sqlite should be visible in the connection settings or title bar."
+        }
+    ],
+    "privileged_info_for_vlm": "The query must exclude ArtistId 21 ('Various Artists'). The threshold for 'Deep Catalog' is COUNT(DISTINCT AlbumId) >= 3. The required query name is 'DeepCatalogCustomers'. The final result set should contain 78 rows if executed correctly. The CustomerName must be a single column combining FirstName and LastName with a space."
+}

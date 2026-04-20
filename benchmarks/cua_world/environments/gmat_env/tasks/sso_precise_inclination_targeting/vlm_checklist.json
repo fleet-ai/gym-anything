@@ -1,0 +1,59 @@
+{
+    "task_id": "sso_precise_inclination_targeting@1",
+    "task_completion": [
+        {
+            "id": "open_baseline_script",
+            "description": "Open the baseline GMAT script from the specified path in the GMAT GUI.",
+            "points": 10,
+            "visual_evidence": "GMAT application open showing the script content from ~/Documents/missions/sso_baseline.script in the script editor."
+        },
+        {
+            "id": "configure_differential_corrector",
+            "description": "Modify the script to include a DifferentialCorrector with the specified perturbation (0.001) and max step (0.05).",
+            "points": 15,
+            "visual_evidence": "Script text or GUI resource tree showing a DifferentialCorrector (e.g., DC1) with Perturbation = 0.001 and MaxStep = 0.05."
+        },
+        {
+            "id": "implement_target_sequence",
+            "description": "Implement a Target/Achieve sequence in the script targeting RAAN 9.8565 with tolerance 0.0001 by varying inclination.",
+            "points": 25,
+            "visual_evidence": "GMAT script editor showing 'Target', 'Vary Sat.Inclination', and 'Achieve Sat.EarthMJ2000Eq.RAAN = 9.8565 {Tolerance = 0.0001}' commands."
+        },
+        {
+            "id": "run_mission_convergence",
+            "description": "Run the mission and verify the solver converges on the target RAAN.",
+            "points": 20,
+            "visual_evidence": "GMAT message window or solver status window showing 'Targeter converged' or 'Solver converged' after the run."
+        },
+        {
+            "id": "save_modified_script",
+            "description": "Save the modified script to the original location.",
+            "points": 10,
+            "visual_evidence": "GMAT interface showing the script file saved or a terminal command confirming the file write to ~/Documents/missions/sso_baseline.script."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the final report file with the converged inclination and final RAAN values.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the content of ~/GMAT_output/precise_sso_report.txt with the required two lines: converged_inclination_deg and final_raan_deg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gmat_interaction",
+            "description": "Verify the agent used the GMAT GUI to perform the orbital mechanics calculations rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the GMAT GUI active, the mission tree being updated, or the GMAT output window displaying solver iterations."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't simply echo the expected values into the report without running the simulation.",
+            "visual_evidence": "The GMAT 'Message Window' showing the iterative solver process (Vary/Achieve steps) before the report file is created."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Verify the agent used the specific paths requested in the prompt for both input and output.",
+            "visual_evidence": "File explorer or terminal commands referencing ~/Documents/missions/sso_baseline.script and ~/GMAT_output/precise_sso_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The target RAAN is exactly 9.8565 degrees. The converged inclination must fall between 97.79 and 97.83 degrees due to the 10x10 gravity perturbations. The report file must be at ~/GMAT_output/precise_sso_report.txt and contain exactly two lines: 'converged_inclination_deg: <value>' and 'final_raan_deg: <value>'. The solver settings must be Perturbation=0.001 and MaxStep=0.05."
+}

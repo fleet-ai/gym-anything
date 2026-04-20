@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_infer_generics@1",
+    "task_completion": [
+        {
+            "id": "open_admission_queue",
+            "description": "Open AdmissionQueue.java in the Eclipse editor",
+            "points": 10,
+            "visual_evidence": "The file 'AdmissionQueue.java' is visible in an editor tab within the Eclipse IDE, showing raw types like 'List waitingList'."
+        },
+        {
+            "id": "trigger_refactoring_tool",
+            "description": "Access the 'Infer Generic Type Arguments' refactoring tool",
+            "points": 15,
+            "visual_evidence": "The 'Infer Generic Type Arguments' dialog box or menu item is visible, or the refactoring wizard is active."
+        },
+        {
+            "id": "apply_generics",
+            "description": "Convert raw collections to type-safe generics (List<Patient>)",
+            "points": 25,
+            "visual_evidence": "The code in AdmissionQueue.java now shows 'List<Patient>' and 'ArrayList<Patient>' instead of raw 'List' and 'ArrayList'."
+        },
+        {
+            "id": "remove_unnecessary_casts",
+            "description": "Remove explicit (Patient) casts from the code",
+            "points": 25,
+            "visual_evidence": "Lines containing '(Patient) waitingList.remove' or '(Patient) it.next()' are updated to remove the '(Patient)' cast."
+        },
+        {
+            "id": "run_unit_tests",
+            "description": "Execute unit tests and verify they pass",
+            "points": 25,
+            "visual_evidence": "The JUnit view in Eclipse shows a green bar or a console output indicates that tests in the LegacyHospitalSystem project passed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_gui_refactoring",
+            "description": "The agent used the Eclipse refactoring tool rather than manually editing text or using sed/grep",
+            "visual_evidence": "Screenshots show the Eclipse 'Refactor' menu or the 'Infer Generic Type Arguments' wizard dialog."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use terminal commands to bypass the IDE's refactoring logic",
+            "visual_evidence": "The primary actions (refactoring) occur within the Eclipse GUI, not just in a bash terminal."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually ran the tests through the IDE interface",
+            "visual_evidence": "The JUnit tab or 'Run As -> JUnit Test' context menu is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is located at /home/ga/eclipse-workspace/LegacyHospitalSystem/src/com/hospital/core/AdmissionQueue.java. The refactoring must change 'List' to 'List<Patient>' and 'ArrayList' to 'ArrayList<Patient>'. It must also remove explicit casts like '(Patient)'. Success is confirmed when the JUnit bar in Eclipse turns green."
+}

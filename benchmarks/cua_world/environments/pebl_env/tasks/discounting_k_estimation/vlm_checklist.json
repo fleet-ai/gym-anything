@@ -1,0 +1,62 @@
+{
+    "task_id": "discounting_k_estimation@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw data file at ~/pebl/data/discounting_choices.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'head', or a python script reading the CSV file from the specified path."
+        },
+        {
+            "id": "data_processing_logic",
+            "description": "Agent implements the specific k-estimation formula and exclusion criteria (RT < 300ms, 100% immediate/delayed).",
+            "points": 25,
+            "visual_evidence": "Code snippets in a text editor or terminal showing the geometric mean calculation sqrt(lower * upper) and filtering logic for RT and choice proportions."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent correctly identifies and excludes the corrupted participant (sub-99999).",
+            "points": 15,
+            "visual_evidence": "Terminal output or code execution results showing sub-99999 being flagged for exclusion due to RT or degenerate choices."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the JSON report with the required structure (participants list, group medians, n_valid).",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation of a JSON object containing 'id', 'k', 'ln_k', 'pct_immediate', and group statistics."
+        },
+        {
+            "id": "file_saved",
+            "description": "The final report is saved to the specific path ~/pebl/analysis/discounting_report.json.",
+            "points": 10,
+            "visual_evidence": "Terminal command showing 'ls ~/pebl/analysis/' or a 'save' operation in a script targeting that path."
+        },
+        {
+            "id": "mathematical_accuracy",
+            "description": "The final report contains 15 valid participants and 1 excluded participant.",
+            "points": 20,
+            "visual_evidence": "The content of the final JSON file showing 'n_valid': 15 and one entry with 'excluded': true for sub-99999."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the final results from the task description or privileged info.",
+            "points": 10,
+            "visual_evidence": "The agent's scripts should show active calculation logic (e.g., using pandas or math libraries) rather than a single print statement of the final JSON."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually reads the CSV file rather than guessing the participant IDs.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the agent inspecting the CSV headers or content before writing the analysis code."
+        },
+        {
+            "id": "logical_consistency",
+            "description": "The exclusion reason for sub-99999 matches the data found in the CSV.",
+            "points": 10,
+            "visual_evidence": "The JSON report's 'reason' field for sub-99999 should mention fast reaction times or 100% immediate choices, consistent with the raw data."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 16 participants total. Participant 'sub-99999' is the only one that must be excluded; it has 100% immediate choices and impossible RTs (10-30ms). There are exactly 15 valid participants (sub-01 to sub-15). The k-value must be calculated as the geometric mean of the indifference k-values at the choice boundaries. The final report must be a JSON file at ~/pebl/analysis/discounting_report.json."
+}

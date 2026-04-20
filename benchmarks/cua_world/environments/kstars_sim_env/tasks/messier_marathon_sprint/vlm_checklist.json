@@ -1,0 +1,59 @@
+{
+    "task_id": "messier_marathon_sprint@1",
+    "task_completion": [
+        {
+            "id": "read_target_sheet",
+            "description": "Agent opens and reads the target sheet at ~/Documents/marathon_targets.txt to identify requirements.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of marathon_targets.txt."
+        },
+        {
+            "id": "capture_m1_m13_m27",
+            "description": "Agent captures the first three targets (M1, M13, M27) with correct frame counts.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the astronomy software interface showing captures for M1 (2 frames), M13 (3 frames), and M27 (2 frames)."
+        },
+        {
+            "id": "capture_m51_m57_m101",
+            "description": "Agent captures the remaining three targets (M51, M57, M101) with correct frame counts.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the astronomy software interface showing captures for M51 (2 frames), M57 (2 frames), and M101 (2 frames)."
+        },
+        {
+            "id": "save_images_to_folders",
+            "description": "Agent saves the captured images into target-specific subdirectories under ~/Images/marathon/.",
+            "points": 15,
+            "visual_evidence": "File manager or terminal showing directories like /M1/, /M13/, etc., containing the captured image files."
+        },
+        {
+            "id": "generate_sky_view",
+            "description": "Agent generates a sky view of the final target (M101) and saves it as sky_view_m101.png.",
+            "points": 15,
+            "visual_evidence": "The astronomy software showing a 'Sky View' or 'Star Map' mode for M101 and the resulting file sky_view_m101.png in the file system."
+        },
+        {
+            "id": "write_observation_log",
+            "description": "Agent writes the final observation log to ~/Documents/marathon_log.txt as specified.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing marathon_log.txt with details of the observations performed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the astronomy software GUI to capture images rather than just creating dummy files via terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking buttons in an astronomy application (e.g., 'Capture', 'Expose', 'Slew')."
+        },
+        {
+            "id": "genuine_capture_process",
+            "description": "Agent waited for exposures to complete or followed the specific frame count requirements for each target.",
+            "visual_evidence": "Progress bars or status messages in the GUI indicating multiple frames being taken for targets like M13 (3 frames)."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not use 'touch' or 'echo' to create fake image files in the target directories.",
+            "visual_evidence": "The terminal history (if visible) should not show commands creating empty .png or .fits files manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The target requirements are: M1 (2 frames), M13 (3 frames), M27 (2 frames), M51 (2 frames), M57 (2 frames), and M101 (2 frames). The sky view must be saved to /home/ga/Images/marathon/sky_view_m101.png and the log must be saved to /home/ga/Documents/marathon_log.txt. Images for each target must be in their respective subfolders within /home/ga/Images/marathon/."
+}

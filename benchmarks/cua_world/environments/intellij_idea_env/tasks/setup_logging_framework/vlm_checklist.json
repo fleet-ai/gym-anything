@@ -1,0 +1,53 @@
+{
+    "task_id": "setup_logging_framework@1",
+    "task_completion": [
+        {
+            "id": "add_dependencies",
+            "description": "Add slf4j-api (2.0.9) and logback-classic (1.4.14) to the project build file (pom.xml or build.gradle).",
+            "points": 15,
+            "visual_evidence": "Screenshot of the build file showing the two dependencies with the exact specified versions."
+        },
+        {
+            "id": "create_logback_xml",
+            "description": "Create src/main/resources/logback.xml with a console appender and DEBUG level configuration.",
+            "points": 15,
+            "visual_evidence": "Screenshot of logback.xml content showing <appender class=\"ch.qos.logback.core.ConsoleAppender\"> and <root level=\"DEBUG\">."
+        },
+        {
+            "id": "initialize_loggers",
+            "description": "Declare and initialize SLF4J Logger instances in the Java source files.",
+            "points": 20,
+            "visual_evidence": "Screenshots of Java files (e.g., LibraryApp.java) showing 'private static final Logger logger = LoggerFactory.getLogger(...);' and the corresponding SLF4J imports."
+        },
+        {
+            "id": "replace_print_statements",
+            "description": "Replace all System.out and System.err calls with logger.info, logger.debug, or logger.error calls.",
+            "points": 30,
+            "visual_evidence": "Screenshots of the source code in LibraryApp.java, BookService.java, BookRepository.java, and SearchEngine.java showing the absence of System.out.println and presence of logger calls."
+        },
+        {
+            "id": "verify_compilation",
+            "description": "Ensure the project compiles successfully after the migration.",
+            "points": 20,
+            "visual_evidence": "Screenshot of a terminal or IDE build output showing 'BUILD SUCCESS' or a successful compilation message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE/GUI for code editing rather than just executing 'sed' or 'echo' commands in the terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with an IDE (like IntelliJ or VS Code) or a text editor window."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply print 'BUILD SUCCESS' to the terminal manually.",
+            "visual_evidence": "The build success message should be part of a standard build tool output (Maven/Gradle) and not a simple echo command."
+        },
+        {
+            "id": "genuine_file_navigation",
+            "description": "The agent navigated through the project structure to find the specific files to modify.",
+            "visual_evidence": "Screenshots showing the file explorer or the agent opening the specific paths mentioned in the privileged info."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/library-app. The files that MUST be modified to replace System.out/err are: src/main/java/com/library/LibraryApp.java, src/main/java/com/library/service/BookService.java, src/main/java/com/library/repository/BookRepository.java, and src/main/java/com/library/util/SearchEngine.java. The file src/main/java/com/library/model/Book.java does not contain print statements and should not be modified. Required versions: slf4j-api v2.0.9 and logback-classic v1.4.14."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "import_dive_log@1",
+    "task_completion": [
+        {
+            "id": "open_import_dialog",
+            "description": "Agent initiates the import process via the File menu.",
+            "points": 10,
+            "visual_evidence": "The 'Import log files' or 'Import' dialog window is visible over the main Subsurface interface."
+        },
+        {
+            "id": "select_import_file",
+            "description": "Agent selects the correct file to import from the file system.",
+            "points": 15,
+            "visual_evidence": "The file picker shows 'import_dives.ssrf' selected or typed in the file path field within the ~/Documents directory."
+        },
+        {
+            "id": "confirm_import_action",
+            "description": "Agent confirms the import of the new dives into the existing log.",
+            "points": 20,
+            "visual_evidence": "A 'Dives to import' preview window or a confirmation dialog is shown, and the agent clicks 'OK' or 'Import'."
+        },
+        {
+            "id": "verify_merged_list",
+            "description": "The dive list updates to show an increased number of dives or dives from the new trip.",
+            "points": 25,
+            "visual_evidence": "The main dive list in Subsurface displays more entries than the initial state, or shows dives with dates/locations corresponding to the imported trip."
+        },
+        {
+            "id": "save_as_final_path",
+            "description": "Agent saves the combined log to the specific requested filename and location.",
+            "points": 30,
+            "visual_evidence": "The 'Save As' dialog is visible with the path '~/Documents/dives.ssrf' entered, followed by a confirmation of the save (e.g., the window title bar updates or the dialog closes)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the Subsurface GUI to perform the import and save, not the terminal.",
+            "visual_evidence": "Screenshots show mouse interactions with Subsurface menus and dialogs; no terminal windows are used to move or concatenate files."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual Subsurface application elements.",
+            "visual_evidence": "The cursor is seen clicking on 'File' -> 'Import' and 'File' -> 'Save As' within the Subsurface UI."
+        },
+        {
+            "id": "no_manual_file_rename",
+            "description": "The agent did not simply rename the import file to the target filename using a file manager.",
+            "visual_evidence": "The agent is seen performing the 'Import' function within Subsurface, which merges data rather than replacing the file."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial log is already open in Subsurface. The file to be imported is located at /home/ga/Documents/import_dives.ssrf. The final combined log must be saved to /home/ga/Documents/dives.ssrf. Success is defined by the Subsurface dive list containing the union of both logs and the file being saved to the specific path mentioned."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "load_and_run_simulation@1",
+    "task_completion": [
+        {
+            "id": "open_coppeliasim_gui",
+            "description": "CoppeliaSim application is open and visible.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim window is visible on the desktop, showing the main 3D view and toolbar."
+        },
+        {
+            "id": "import_zmq_api",
+            "description": "Agent interacts with the specified ZMQ Remote API path in a script or terminal.",
+            "points": 15,
+            "visual_evidence": "Code or terminal input showing the path '/opt/CoppeliaSim/programming/zmqRemoteApi/clients/python/src' being added to sys.path or used for imports."
+        },
+        {
+            "id": "load_pick_and_place_scene",
+            "description": "The pick-and-place demo scene is loaded into the simulator.",
+            "points": 25,
+            "visual_evidence": "The 3D scene view changes from an empty grid to the 'pickAndPlaceDemo' environment, which typically includes robotic arms and conveyor belts."
+        },
+        {
+            "id": "simulation_started",
+            "description": "The simulation is actively running.",
+            "points": 20,
+            "visual_evidence": "The 'Play' button in the CoppeliaSim toolbar is toggled/active, and the simulation timer (usually at the top or bottom status bar) is incrementing."
+        },
+        {
+            "id": "simulation_duration_met",
+            "description": "The simulation has been running for at least 5 seconds.",
+            "points": 15,
+            "visual_evidence": "The simulation time display in the CoppeliaSim GUI shows a value greater than 00:05.00."
+        },
+        {
+            "id": "screenshot_saved_to_path",
+            "description": "A screenshot of the running simulation is saved to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal output confirms the existence of 'simulation_running.png' in '/home/ga/Documents/CoppeliaSim/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_api_usage",
+            "description": "The agent used the ZMQ Remote API to control the simulator rather than just manual GUI clicks.",
+            "visual_evidence": "Screenshots show a Python script or REPL session calling functions like 'sim.loadScene' or 'sim.startSimulation'."
+        },
+        {
+            "id": "no_pre_existing_file",
+            "description": "The agent did not simply rename an existing image to pass the task.",
+            "visual_evidence": "The timestamp of the saved image in the file properties or terminal 'ls -l' output matches the time of the agent's activity."
+        },
+        {
+            "id": "actual_simulation_state",
+            "description": "The screenshot shows a dynamic state of the simulation, not just a static load of the scene.",
+            "visual_evidence": "The robotic arms or objects in the 'pickAndPlaceDemo' are in motion or in a position different from the initial T-pose/default load state."
+        }
+    ],
+    "privileged_info_for_vlm": "The scene file is located at /opt/CoppeliaSim/scenes/pickAndPlaceDemo.ttt. The ZMQ Remote API client is at /opt/CoppeliaSim/programming/zmqRemoteApi/clients/python/src. The final output must be a PNG file at /home/ga/Documents/CoppeliaSim/exports/simulation_running.png showing the simulation timer at >5 seconds."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_fpv_camera_optics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the drone_racing_synthetic.wbt world in Webots.",
+            "points": 10,
+            "visual_evidence": "The Webots application is open showing a drone racing environment with the file name 'drone_racing_synthetic.wbt' visible in the window title or file menu."
+        },
+        {
+            "id": "locate_fpv_camera",
+            "description": "Locate the 'fpv_camera' node under the RACING_DRONE robot in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The scene tree (left sidebar) shows the RACING_DRONE expanded, with the 'fpv_camera' node selected or highlighted."
+        },
+        {
+            "id": "set_noise_and_blur",
+            "description": "Configure the camera noise to 0.05 and motionBlur to 20.0.",
+            "points": 25,
+            "visual_evidence": "The Webots field editor shows the 'noise' field set to 0.05 and the 'motionBlur' field set to 20 for the fpv_camera."
+        },
+        {
+            "id": "add_lens_node",
+            "description": "Add a Lens node to the fpv_camera's lens field.",
+            "points": 15,
+            "visual_evidence": "The scene tree shows a 'Lens' node added as a child of the 'fpv_camera' (specifically in the 'lens' field)."
+        },
+        {
+            "id": "configure_radial_coefficients",
+            "description": "Set radialCoefficients to 0.35 and -0.1 in the Lens node.",
+            "points": 25,
+            "visual_evidence": "The field editor for the Lens node shows 'radialCoefficients' with values 0.35 and -0.1. The 'center' should remain at 0.5 0.5."
+        },
+        {
+            "id": "save_as_new_world",
+            "description": "Save the modified world as /home/ga/Desktop/drone_fpv_realistic.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog is shown with the path /home/ga/Desktop/drone_fpv_realistic.wbt, or the window title updates to reflect the new filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not simply run a python/bash script to overwrite the .wbt file.",
+            "visual_evidence": "The agent is seen navigating the Webots interface manually rather than just executing a single command in the terminal to solve the task."
+        },
+        {
+            "id": "authentic_save_process",
+            "description": "The agent used the 'Save As' menu item in Webots.",
+            "visual_evidence": "The File menu is opened and 'Save World As...' is selected, or the corresponding shortcut/dialog is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must modify the 'fpv_camera' on the 'RACING_DRONE'. Required values: noise = 0.05, motionBlur = 20.0. A 'Lens' node must be added with radialCoefficients = [0.35, -0.1]. The final file must be saved specifically to /home/ga/Desktop/drone_fpv_realistic.wbt. Note that Webots field values often have small floating point representations, but should match these targets within a 0.01-0.05 tolerance."
+}

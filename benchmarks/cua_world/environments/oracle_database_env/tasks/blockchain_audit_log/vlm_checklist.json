@@ -1,0 +1,59 @@
+{
+    "task_id": "blockchain_audit_log@1",
+    "task_completion": [
+        {
+            "id": "create_blockchain_table",
+            "description": "Create the 'SALARY_CHANGE_LEDGER' blockchain table with the specified schema and retention/hashing parameters.",
+            "points": 25,
+            "visual_evidence": "SQL command or database explorer showing 'CREATE BLOCKCHAIN TABLE SALARY_CHANGE_LEDGER' with 'NO DROP UNTIL 16 DAYS IDLE', 'NO DELETE UNTIL 16 DAYS AFTER INSERT', and 'HASHING USING SHA2_512'."
+        },
+        {
+            "id": "insert_audit_records",
+            "description": "Insert the three required salary change records into the ledger.",
+            "points": 20,
+            "visual_evidence": "SQL execution logs or a SELECT query result showing three rows with IDs 1, 2, and 3, matching the specific employee IDs and salary values (e.g., Emp 100: 24000 -> 25000)."
+        },
+        {
+            "id": "attempt_tamper_deletion",
+            "description": "Attempt to delete a record from the blockchain table to demonstrate immutability.",
+            "points": 15,
+            "visual_evidence": "A SQL command 'DELETE FROM SALARY_CHANGE_LEDGER WHERE LOG_ID = 1' followed by an Oracle error message (typically ORA-05715)."
+        },
+        {
+            "id": "save_tamper_evidence",
+            "description": "Save the ORA- error message to the specified text file on the desktop.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of '/home/ga/Desktop/tamper_evidence.txt' containing the ORA- error string."
+        },
+        {
+            "id": "retrieve_signature",
+            "description": "Query the internal 'ORABCT_CHAIN_SIGNATURE' for LOG_ID 3.",
+            "points": 15,
+            "visual_evidence": "A SQL query selecting 'ORABCT_CHAIN_SIGNATURE' where LOG_ID = 3, showing a long hexadecimal string in the output."
+        },
+        {
+            "id": "save_signature_file",
+            "description": "Save the cryptographic signature for LOG_ID 3 to the specified text file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command showing the content of '/home/ga/Desktop/latest_signature.txt' containing a hex string."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Verify the agent interacted with a real Oracle 21c environment.",
+            "visual_evidence": "Screenshots should show an Oracle-specific tool like SQL*Plus, SQL Developer, or a terminal connected to 'localhost:1521/XEPDB1' with the 'hr' user."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Ensure the error message and signature were not simply typed into files without running queries.",
+            "visual_evidence": "The trajectory must show the SQL execution results (the error and the signature) appearing in the database interface before they appear in the text files."
+        },
+        {
+            "id": "correct_error_code",
+            "description": "Check that the agent captured the actual system error, not a placeholder.",
+            "visual_evidence": "The file 'tamper_evidence.txt' should contain 'ORA-05715' (the correct code for blockchain delete violations) rather than 'ORA-05709' or generic text."
+        }
+    ],
+    "privileged_info_for_vlm": "The table must be a 'BLOCKCHAIN TABLE' named 'SALARY_CHANGE_LEDGER'. Required retention is 16 days for both DROP and DELETE. Hashing must be SHA2_512. The expected error code for a DELETE attempt on a blockchain table is ORA-05715. The signature for LOG_ID 3 must be retrieved from the hidden system column 'ORABCT_CHAIN_SIGNATURE'. Files must be saved exactly to /home/ga/Desktop/tamper_evidence.txt and /home/ga/Desktop/latest_signature.txt."
+}

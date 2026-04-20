@@ -1,0 +1,65 @@
+{
+    "task_id": "create_wcst_assessment@1",
+    "task_completion": [
+        {
+            "id": "csv_creation_verification",
+            "description": "The agent creates the conditions CSV file with the required 64-card deck structure.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal view showing /home/ga/PsychoPyExperiments/conditions/wcst_cards.csv with columns cardID, color, shape, and number."
+        },
+        {
+            "id": "script_implementation_coder",
+            "description": "The agent writes the WCST implementation in PsychoPy Coder (Python script).",
+            "points": 15,
+            "visual_evidence": "The PsychoPy Coder interface or a text editor showing Python code at /home/ga/PsychoPyExperiments/wcst_task.py importing psychopy modules."
+        },
+        {
+            "id": "ui_layout_reference_cards",
+            "description": "The running experiment displays the four static reference cards correctly.",
+            "points": 15,
+            "visual_evidence": "A PsychoPy window showing four cards: 1 red triangle, 2 green stars, 3 yellow crosses, and 4 blue circles at the top."
+        },
+        {
+            "id": "ui_layout_response_card",
+            "description": "The running experiment displays a central response card and allows mouse interaction.",
+            "points": 15,
+            "visual_evidence": "A PsychoPy window showing a central card and a visible mouse cursor used for selection."
+        },
+        {
+            "id": "feedback_mechanism",
+            "description": "The script provides visual feedback ('CORRECT' or 'INCORRECT') after a selection.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the PsychoPy window displaying the text 'CORRECT' or 'INCORRECT' following a mouse click."
+        },
+        {
+            "id": "rule_switching_logic",
+            "description": "The sorting rule switches after 6 consecutive correct trials.",
+            "points": 20,
+            "visual_evidence": "A sequence of screenshots showing a change in feedback behavior (e.g., a previously 'correct' color match becoming 'incorrect') after 6 successful trials."
+        },
+        {
+            "id": "data_saving_verification",
+            "description": "The experiment saves trial data to a CSV file upon completion or during the run.",
+            "points": 10,
+            "visual_evidence": "A file browser or terminal showing a new CSV file generated in the project directory containing trial results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_builder_usage",
+            "description": "The agent must use PsychoPy Coder, not the drag-and-drop Builder interface.",
+            "visual_evidence": "The agent should be seen writing Python code in an editor, not using the PsychoPy Builder GUI with routine blocks."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the running experiment via mouse clicks rather than just editing the code to pass tests.",
+            "visual_evidence": "Screenshots showing the mouse cursor hovering over and clicking the reference cards in the PsychoPy window."
+        },
+        {
+            "id": "manual_csv_generation",
+            "description": "The agent generates the 64-row CSV file programmatically or manually rather than copying a pre-existing file.",
+            "visual_evidence": "The agent typing code to generate the CSV or manually entering the 64 combinations in an editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be located at /home/ga/PsychoPyExperiments/wcst_task.py and the conditions at /home/ga/PsychoPyExperiments/conditions/wcst_cards.csv. The CSV must contain exactly 64 rows with columns: cardID, color, shape, and number. The sorting rule sequence is Color, then Shape, then Number, switching every 6 consecutive correct trials. Reference cards are strictly: 1 red triangle, 2 green stars, 3 yellow crosses, 4 blue circles."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "flammability_range_assessment@1",
+    "task_completion": [
+        {
+            "id": "cameo_website_access",
+            "description": "Agent accessed the CAMEO Chemicals website (cameochemicals.noaa.gov).",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows cameochemicals.noaa.gov or the CAMEO Chemicals homepage is visible."
+        },
+        {
+            "id": "chemical_search_execution",
+            "description": "Agent searched for the specified chemicals (Acetone, Toluene, Methanol, Ethylene Oxide, Carbon Disulfide) using CAS numbers or names.",
+            "points": 15,
+            "visual_evidence": "Screenshots show the agent typing the CAS numbers or names into the CAMEO search bar and viewing the chemical datasheets."
+        },
+        {
+            "id": "data_extraction_flammability",
+            "description": "Agent located the LEL, UEL, Flash Point, and Autoignition Temperature for the chemicals on the CAMEO datasheets.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Physical Properties' or 'Hazards' sections of the CAMEO datasheets for the target chemicals."
+        },
+        {
+            "id": "report_file_creation",
+            "description": "Agent created the file /home/ga/Documents/flammability_assessment.txt with the required formatting.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows the file being saved at the correct path with the specified headers (Chemical, CAS, LEL, UEL, etc.)."
+        },
+        {
+            "id": "flammable_range_calculation",
+            "description": "Agent correctly calculated the Flammable Range (UEL - LEL) for each chemical in the report.",
+            "points": 15,
+            "visual_evidence": "The text file content shows a 'Flammable Range (%)' line for each chemical with a value equal to the difference between the documented UEL and LEL."
+        },
+        {
+            "id": "analysis_section_completion",
+            "description": "Agent included the ANALYSIS section identifying the widest range and lowest autoignition temperature.",
+            "points": 15,
+            "visual_evidence": "The end of the text file contains the 'ANALYSIS' header followed by the correct chemical identifications based on the gathered data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "Agent used the web browser GUI to find information rather than just using terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show active navigation and scrolling on the CAMEO Chemicals website."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent did not copy the final analysis from a pre-existing source or prompt injection.",
+            "visual_evidence": "The agent is seen manually extracting or typing values from the browser into the text document."
+        },
+        {
+            "id": "genuine_site_usage",
+            "description": "Agent interacted with the actual NOAA CAMEO site, not a cached or local mock version.",
+            "visual_evidence": "The URL in the browser is the live NOAA domain and the page layout matches the official CAMEO Chemicals interface."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified values from CAMEO Chemicals: 1. Acetone (67-64-1): LEL 2.6%, UEL 12.8%, Range 10.2%. 2. Toluene (108-88-3): LEL 1.1%, UEL 7.1%, Range 6.0%. 3. Methanol (67-56-1): LEL 6.0%, UEL 36%, Range 30.0%. 4. Ethylene Oxide (75-21-8): LEL 3.0%, UEL 100%, Range 97.0%. 5. Carbon Disulfide (75-15-0): LEL 1.3%, UEL 50%, Range 48.7%, Autoignition Temp: 194°F (90°C). ANALYSIS: Widest Flammable Range is Ethylene Oxide (97.0%). Lowest Autoignition Temperature is Carbon Disulfide (194°F / 90°C). Note: LEL/UEL values may vary slightly by source, but Ethylene Oxide is always the widest range and Carbon Disulfide is always the lowest autoignition temp among this set."
+}

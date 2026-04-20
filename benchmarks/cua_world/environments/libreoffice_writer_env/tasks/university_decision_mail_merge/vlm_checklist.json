@@ -1,0 +1,59 @@
+{
+    "task_id": "university_decision_mail_merge@1",
+    "task_completion": [
+        {
+            "id": "open_word_processor",
+            "description": "Open a word processing application (e.g., LibreOffice Writer) to begin the document creation.",
+            "points": 10,
+            "visual_evidence": "The word processor interface is visible on the screen."
+        },
+        {
+            "id": "connect_data_source",
+            "description": "Connect the document to the data source at /home/ga/Documents/applicants.csv.",
+            "points": 15,
+            "visual_evidence": "A mail merge wizard or data source selection dialog showing the path '/home/ga/Documents/applicants.csv' or the 'applicants' database connected."
+        },
+        {
+            "id": "insert_address_block",
+            "description": "Insert the applicant's Name and Address block placeholders into the document template.",
+            "points": 15,
+            "visual_evidence": "Placeholders like <Name>, <Address>, or similar field codes are visible in the document header area."
+        },
+        {
+            "id": "conditional_logic_setup",
+            "description": "Implement conditional logic (IF/THEN/ELSE) based on the 'Decision' column for the admission text.",
+            "points": 25,
+            "visual_evidence": "A 'Conditional Text' or 'Mail Merge Field' dialog box showing logic for 'Admit' and 'Deny' outcomes."
+        },
+        {
+            "id": "perform_mail_merge",
+            "description": "Execute the mail merge to generate the final letters for all records.",
+            "points": 20,
+            "visual_evidence": "The agent clicking 'Merge' or 'Print to File', and a progress bar or a new document appearing with multiple pages of personalized letters."
+        },
+        {
+            "id": "save_final_document",
+            "description": "Save the merged document as /home/ga/Documents/decision_letters.odt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or the window title bar showing the file path '/home/ga/Documents/decision_letters.odt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the word processor's GUI to perform the merge rather than scripting it via terminal.",
+            "visual_evidence": "Screenshots show mouse interactions with menus, buttons, and dialogs within LibreOffice or a similar GUI application."
+        },
+        {
+            "id": "no_manual_typing_of_all_records",
+            "description": "The agent used mail merge fields rather than manually typing out 25 different letters.",
+            "visual_evidence": "The presence of field brackets (e.g., «Name») in the template phase and a high volume of pages generated instantly during the merge phase."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent interacted with the actual CSV file provided in the task.",
+            "visual_evidence": "The file picker or data source manager points specifically to /home/ga/Documents/applicants.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The data source /home/ga/Documents/applicants.csv contains exactly 25 records. For 'Admit' decisions, the text must start with 'Congratulations! I am pleased to inform you'. For 'Deny' decisions, the text must start with 'Thank you for your interest' and include the phrase 'regret to inform you'. The final output must be a single .odt file containing all 25 letters."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_climate_warming_pv_impact@1",
+    "task_completion": [
+        {
+            "id": "create_modified_weather_file",
+            "description": "Create a modified weather file at /home/ga/SAM_Weather_Data/phoenix_plus_3c.csv with +3°C added to temperature values.",
+            "points": 15,
+            "visual_evidence": "Terminal output or a text editor showing the creation or saving of 'phoenix_plus_3c.csv' in the specified directory."
+        },
+        {
+            "id": "configure_pysam_parameters",
+            "description": "Configure PySAM Pvwattsv8 with specific parameters (50MW, Module Type 0, Array Type 2, etc.).",
+            "points": 20,
+            "visual_evidence": "Python code in an IDE or terminal showing the initialization of 'pvwattsv8' and setting variables like 'system_capacity' to 50000, 'module_type' to 0, and 'array_type' to 2."
+        },
+        {
+            "id": "run_baseline_simulation",
+            "description": "Execute the simulation using the historical baseline weather file.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing the simulation being executed with the data from 'phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "run_warming_simulation",
+            "description": "Execute the simulation using the modified +3°C weather file.",
+            "points": 20,
+            "visual_evidence": "Code or logs showing the simulation being executed with the data from 'phoenix_plus_3c.csv'."
+        },
+        {
+            "id": "calculate_impact_metrics",
+            "description": "Calculate energy loss in kWh and percentage loss.",
+            "points": 15,
+            "visual_evidence": "Python code or print statements showing the subtraction of warming yield from baseline yield and the calculation of the percentage difference."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Save the final results to /home/ga/Documents/SAM_Projects/climate_risk_report.json with the required keys.",
+            "points": 15,
+            "visual_evidence": "A file explorer showing the JSON file or a terminal command 'cat' displaying the JSON content with keys: baseline_energy_kwh, warming_scenario_energy_kwh, energy_loss_kwh, and percentage_loss_pct."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent used the PySAM library rather than hardcoding or estimating values.",
+            "visual_evidence": "Screenshots must show 'import PySAM.Pvwattsv8' or similar and the actual calling of the 'execute()' method."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply write the JSON file with values found in the prompt or external knowledge without running code.",
+            "visual_evidence": "The trajectory should show the calculation logic (e.g., baseline - warming) being performed in a script."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The agent interacted with the actual file paths provided in the task.",
+            "visual_evidence": "Commands or code referencing '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv' and the output paths."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline energy for a 50MW system in Phoenix using these specs is approximately 105,953,110 kWh. A +3°C warming scenario typically results in an energy loss of approximately 1.27% (roughly 1.3 million kWh) due to PV temperature coefficients. The final JSON must contain: baseline_energy_kwh (approx 1.05e8), warming_scenario_energy_kwh (lower than baseline), energy_loss_kwh (positive value), and percentage_loss_pct (approx 1.0 to 1.5)."
+}

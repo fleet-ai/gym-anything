@@ -1,0 +1,53 @@
+{
+    "task_id": "xray_binary_optical_counterparts@1",
+    "task_completion": [
+        {
+            "id": "read_target_list",
+            "description": "Agent opens and reads the target list at ~/Documents/xray_target_list.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of xray_target_list.txt with CygnusX1, V404Cygni, and SS433."
+        },
+        {
+            "id": "configure_imaging_settings",
+            "description": "Agent sets the camera/telescope software to V-band filter and 15-second exposure time.",
+            "points": 15,
+            "visual_evidence": "The imaging software GUI (e.g., KStars/Ekos or INDI) showing 'V-band' or 'Slot 2' selected and exposure set to 15.0s."
+        },
+        {
+            "id": "capture_fits_images",
+            "description": "Agent captures at least three LIGHT exposures for each of the three targets.",
+            "points": 30,
+            "visual_evidence": "Progress bars, logs, or file browser showing three .fits files being generated in directories for CygnusX1, V404Cygni, and SS433."
+        },
+        {
+            "id": "generate_finding_charts",
+            "description": "Agent executes the bash script to generate finding_chart.png for each target with the correct palette and scale.",
+            "points": 25,
+            "visual_evidence": "Terminal commands showing `bash ~/capture_sky_view.sh` executed three times with the `--palette cool` and `0.5` arguments for each target path."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "Agent writes the final report with target names and J2000 decimal coordinates.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing ~/Documents/xray_followup_report.txt containing the names CygnusX1, V404Cygni, SS433 and their decimal coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_imaging_interaction",
+            "description": "Agent interacted with the imaging software rather than just creating empty files.",
+            "visual_evidence": "Screenshots show the telescope control software (Ekos/INDI) active, showing 'Capturing' status or FITS viewer windows."
+        },
+        {
+            "id": "no_hardcoded_coordinates",
+            "description": "Agent retrieved coordinates from the software or target list rather than guessing.",
+            "visual_evidence": "The agent is seen copying coordinates from the telescope GUI or target list file into the report."
+        },
+        {
+            "id": "correct_command_usage",
+            "description": "Agent used the specific provided script for finding charts as instructed.",
+            "visual_evidence": "The terminal shows the exact command `bash ~/capture_sky_view.sh` being typed or pasted, not a generic image conversion tool."
+        }
+    ],
+    "privileged_info_for_vlm": "The target list contains CygnusX1, V404Cygni, and SS433. The V-band filter corresponds to Slot 2. Each target requires exactly 3 FITS files with 15s exposure. Finding charts must use '--palette cool' and scale '0.5'. The final report must be at ~/Documents/xray_followup_report.txt and contain decimal J2000 coordinates."
+}

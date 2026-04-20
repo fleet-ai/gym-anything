@@ -1,0 +1,53 @@
+{
+    "task_id": "cybersecurity_incident_quarantine@1",
+    "task_completion": [
+        {
+            "id": "create_status_label",
+            "description": "Create a new status label named 'Quarantined - Forensic Hold' with type 'Undeployable'.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the 'Create Status Label' form filled out with the name 'Quarantined - Forensic Hold' and the status type 'Undeployable' selected, or the label appearing in the Status Labels list."
+        },
+        {
+            "id": "checkin_assets",
+            "description": "Check in assets LPT-MKT-04, LPT-SALES-11, and LPT-HR-02 from their current users.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Checkin' action being performed for each of the three specific assets, or the assets appearing in the 'Ready to Deploy' or 'All Assets' list without an assigned user."
+        },
+        {
+            "id": "update_asset_status",
+            "description": "Update the status of the three compromised assets to 'Quarantined - Forensic Hold'.",
+            "points": 30,
+            "visual_evidence": "Screenshots of the 'Edit Asset' or 'Update Status' page for LPT-MKT-04, LPT-SALES-11, and LPT-HR-02 with the 'Quarantined - Forensic Hold' status selected in the dropdown."
+        },
+        {
+            "id": "append_notes",
+            "description": "Append 'CrowdStrike Alert CS-8841' to the Notes field of the three compromised assets.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the Notes text area for the three assets containing the specific string 'CrowdStrike Alert CS-8841'."
+        },
+        {
+            "id": "verify_no_extra_modifications",
+            "description": "Ensure no other assets (like LPT-EXEC-01 or LPT-DEV-09) were modified or checked in.",
+            "points": 10,
+            "visual_evidence": "The agent's navigation and action history should show no interactions with assets other than the three specified compromised assets."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Snipe-IT web interface rather than executing direct database queries or terminal commands.",
+            "visual_evidence": "Screenshots show the browser interacting with the Snipe-IT UI; no terminal windows with SQL commands are visible."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the asset management menus to find the specific assets.",
+            "visual_evidence": "Screenshots show the agent using the search bar or asset list filters to locate the target LPT devices."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not skip steps by attempting to use non-existent API shortcuts or pre-filled URLs.",
+            "visual_evidence": "The trajectory shows the step-by-step process of opening the edit page and typing/selecting the required information."
+        }
+    ],
+    "privileged_info_for_vlm": "The target status label must be exactly 'Quarantined - Forensic Hold' (Type: Undeployable). The three assets to be modified are LPT-MKT-04, LPT-SALES-11, and LPT-HR-02. The note to append is 'CrowdStrike Alert CS-8841'. Control assets that must NOT be touched are LPT-EXEC-01 and LPT-DEV-09."
+}

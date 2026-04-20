@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_stream_power@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Python script 'compute_stream_power.py' in the specified results directory.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the creation of ~/Documents/hec_ras_results/compute_stream_power.py."
+        },
+        {
+            "id": "hdf5_access",
+            "description": "The script or terminal output shows the agent accessing the HDF5 file 'Muncie.p04.hdf' to read simulation results.",
+            "points": 15,
+            "visual_evidence": "Code in the editor or terminal logs showing the opening of ~/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf using h5py or a similar library."
+        },
+        {
+            "id": "peak_flow_identification",
+            "description": "The agent identifies the time step for peak discharge at the most downstream cross-section.",
+            "points": 20,
+            "visual_evidence": "Python code logic finding the max flow value at the smallest river station or terminal output printing the peak flow time/value."
+        },
+        {
+            "id": "stream_power_calculation",
+            "description": "The script implements the stream power formula using gamma=62.4 and the calculated water surface slope.",
+            "points": 25,
+            "visual_evidence": "Code showing the formula Omega = 62.4 * Q * S, where S is the absolute difference in WSE divided by the distance between stations."
+        },
+        {
+            "id": "csv_export",
+            "description": "The agent exports the profile data to 'stream_power_profile.csv' with the required five columns.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., 'ls' or 'cat') or file explorer showing stream_power_profile.csv with columns: Station, Flow_cfs, WSE_ft, WS_Slope, and StreamPower."
+        },
+        {
+            "id": "summary_generation",
+            "description": "The agent generates 'stream_power_summary.txt' containing the max stream power station, value, and peak flow.",
+            "points": 15,
+            "visual_evidence": "A terminal command 'cat stream_power_summary.txt' showing the Max_StreamPower_Value and associated station."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final stream power values directly into the script without calculation.",
+            "visual_evidence": "The Python script should contain logic for slope calculation and HDF5 data extraction, not just print statements of the final numbers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually reads the Muncie.p04.hdf file rather than using synthetic or placeholder data.",
+            "visual_evidence": "The file path in the code matches the provided directory and the script is executed in the environment."
+        },
+        {
+            "id": "correct_gamma_usage",
+            "description": "The agent uses the specific weight of water (62.4) as defined in the prompt.",
+            "visual_evidence": "The value 62.4 is visible in the mathematical formulas within the compute_stream_power.py script."
+        }
+    ],
+    "privileged_info_for_vlm": "The HEC-RAS output file is Muncie.p04.hdf. The constant gamma must be 62.4. The peak flow occurs at the smallest river station (downstream). The expected maximum stream power value is approximately 28400.38. The script must be named compute_stream_power.py and stored in ~/Documents/hec_ras_results/."
+}

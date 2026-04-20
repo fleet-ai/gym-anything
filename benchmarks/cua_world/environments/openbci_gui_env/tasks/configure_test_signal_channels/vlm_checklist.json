@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_test_signal_channels@1",
+    "task_completion": [
+        {
+            "id": "start_synthetic_session",
+            "description": "Start an 8-channel Synthetic session in the OpenBCI GUI.",
+            "points": 10,
+            "visual_evidence": "The GUI shows 'SYNTHETIC (BOARD)' selected and the session started (e.g., 'Stop Data' button is visible or 'Start System' was clicked)."
+        },
+        {
+            "id": "open_cyton_settings",
+            "description": "Access the channel settings/control panel for the Cyton board.",
+            "points": 10,
+            "visual_evidence": "The 'Cyton Signal Control' or 'Channel Settings' widget is open and visible on the screen."
+        },
+        {
+            "id": "configure_channels_1_4_input",
+            "description": "Set Channels 1, 2, 3, and 4 to 'TESTSIG' (or 'Test') input type.",
+            "points": 25,
+            "visual_evidence": "In the channel settings grid, the 'Input Type' dropdowns for rows 1-4 are set to 'Test' or 'TESTSIG'."
+        },
+        {
+            "id": "configure_channels_1_4_gain",
+            "description": "Set Channels 1, 2, 3, and 4 to 'x8' gain.",
+            "points": 25,
+            "visual_evidence": "In the channel settings grid, the 'Gain' dropdowns for rows 1-4 are set to '8' or 'x8'."
+        },
+        {
+            "id": "verify_channels_5_8_defaults",
+            "description": "Ensure Channels 5, 6, 7, and 8 remain at default settings (Normal, x24).",
+            "points": 15,
+            "visual_evidence": "In the channel settings grid, rows 5-8 show 'Normal' for Input Type and '24' or 'x24' for Gain."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the configuration within the GUI.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save' button within the settings widget or a confirmation message/dialog appears indicating settings were saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to change settings rather than editing config files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the GUI dropdowns and buttons; no terminal commands like 'sed' or 'echo' are used to modify settings files."
+        },
+        {
+            "id": "genuine_session_start",
+            "description": "The agent actually initialized the synthetic board session.",
+            "visual_evidence": "The GUI transition from the 'Control Panel' (startup screen) to the main 'Data' dashboard is visible."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create a settings file to bypass the GUI.",
+            "visual_evidence": "The agent is seen clicking through the GUI menus rather than using a text editor or 'touch' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The OpenBCI GUI internal representation for 'TESTSIG' is 'TEST' and the gain 'x8' is stored as 'X8'. When verifying the GUI state, 'Test' or 'TESTSIG' in the dropdown corresponds to the requirement. Channels 1-4 in the UI correspond to indices 0-3 in the underlying system. The default state for channels 5-8 must be 'Normal' input and 'x24' gain."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "renumber_dives@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The Subsurface application is launched and the file /home/ga/Documents/dives.ssrf is opened.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible, and the dive list is populated with data."
+        },
+        {
+            "id": "select_all_dives",
+            "description": "The agent selects all dives in the logbook to prepare for renumbering.",
+            "points": 15,
+            "visual_evidence": "All rows in the dive list table are highlighted/selected."
+        },
+        {
+            "id": "open_renumber_dialog",
+            "description": "The agent navigates to the 'Renumber' tool in the menu (usually under Log -> Renumber).",
+            "points": 15,
+            "visual_evidence": "A 'Renumber' dialog box or pop-up window is visible over the main interface."
+        },
+        {
+            "id": "input_start_number",
+            "description": "The agent enters '43' as the starting dive number in the renumbering dialog.",
+            "points": 25,
+            "visual_evidence": "The number '43' is typed into the 'First dive number' or 'Starting number' field in the dialog."
+        },
+        {
+            "id": "verify_renumbered_list",
+            "description": "The dive list reflects the new numbering starting from 43.",
+            "points": 20,
+            "visual_evidence": "The 'Number' column in the dive list now shows 43 for the first dive and increments sequentially for subsequent dives."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the changes to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The agent clicks 'File' -> 'Save' or the save icon, and no error messages appear."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Subsurface GUI to renumber dives rather than editing the XML file directly via terminal.",
+            "visual_evidence": "Screenshots show interactions with the Subsurface menu and dialogs, not just a text editor or terminal commands like 'sed' or 'awk'."
+        },
+        {
+            "id": "genuine_renumbering_tool",
+            "description": "The agent used the built-in renumbering feature rather than manually editing every single dive number cell.",
+            "visual_evidence": "The 'Renumber' dialog box is visible at some point in the trajectory."
+        },
+        {
+            "id": "correct_target_file",
+            "description": "The agent is working on the file located at /home/ga/Documents/dives.ssrf.",
+            "visual_evidence": "The file path is visible in the Subsurface title bar or the Open/Save dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "The starting dive number must be exactly 43 (because 42 dives were completed previously). The target file is /home/ga/Documents/dives.ssrf. The agent must use the Subsurface GUI's renumbering tool to update the sequential count for all dives in the log."
+}

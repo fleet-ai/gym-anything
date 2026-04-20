@@ -1,0 +1,53 @@
+{
+    "task_id": "piping_material_compatibility_audit@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_database",
+            "description": "Agent navigates to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "Browser window showing https://cameochemicals.noaa.gov/ loaded."
+        },
+        {
+            "id": "search_chemicals",
+            "description": "Agent searches for the specified chemicals (Sodium Hydroxide, Ammonia, Methyl Chloride, Sulfuric Acid, Toluene) in the database.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing search queries for the CAS numbers or chemical names in the CAMEO search bar."
+        },
+        {
+            "id": "analyze_reactivity_data",
+            "description": "Agent views the 'Non-fire Response' or 'Reactivity' sections for Aluminum and Copper compatibility.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the CAMEO chemical datasheets, specifically sections mentioning 'corrodes metals', 'attacks aluminum', or 'reacts with copper'."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Agent creates a CSV file at the specified path with the correct headers.",
+            "points": 10,
+            "visual_evidence": "Terminal or file explorer showing the creation of /home/ga/Documents/piping_audit.csv."
+        },
+        {
+            "id": "populate_csv_data",
+            "description": "Agent populates the CSV with the correct compatibility data and hazard descriptions.",
+            "points": 40,
+            "visual_evidence": "A text editor or spreadsheet viewer showing the final CSV content with columns: Chemical, Safe_for_Aluminum, Safe_for_Copper, and Hazard_Type."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the web browser GUI to find information rather than just generating the file via terminal.",
+            "visual_evidence": "Screenshots showing the browser being used to navigate the CAMEO website."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent did not simply echo the final CSV content without visiting the source website.",
+            "visual_evidence": "The sequence of screenshots must show the search process on CAMEO Chemicals before the CSV is finalized."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent saved the file to the exact path specified in the prompt.",
+            "visual_evidence": "The file path /home/ga/Documents/piping_audit.csv is visible in the saving process or file system."
+        }
+    ],
+    "privileged_info_for_vlm": "Sodium Hydroxide: Unsafe for both (attacks Al/Zn, evolves H2; corrodes Cu). Ammonia (Anhydrous): Safe for Al; Unsafe for Cu (corrosion/cracking). Methyl Chloride: Unsafe for Al (forms pyrophoric trimethylaluminum); Safe for Cu. Sulfuric Acid: Unsafe for both (attacks Al; reacts with Cu). Toluene: Safe for both (non-corrosive to metals). The CSV must reflect these specific YES/NO values and mention hazards like 'hydrogen gas evolution' or 'pyrophoric formation' where applicable."
+}

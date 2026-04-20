@@ -1,0 +1,59 @@
+{
+    "task_id": "design_detailed_pv_cec_hardware@1",
+    "task_completion": [
+        {
+            "id": "sam_initialization",
+            "description": "SAM application is open and a 'Detailed PV' (pvsamv1) commercial project is created.",
+            "points": 10,
+            "visual_evidence": "The SAM window is visible showing 'Detailed PV' or 'Commercial' in the configuration header."
+        },
+        {
+            "id": "module_selection",
+            "description": "A module from 'CSI Solar Co. Ltd.' (Canadian Solar) with a rating between 300-350 Wdc is selected from the CEC database.",
+            "points": 20,
+            "visual_evidence": "The 'Module' page shows a selected item from the CEC library with 'CSI Solar' or 'Canadian Solar' in the name and a 'Max power' value between 300 and 350 W."
+        },
+        {
+            "id": "inverter_selection",
+            "description": "An 'SMA America' inverter with max AC power between 10-20 kWac is selected from the CEC database.",
+            "points": 20,
+            "visual_evidence": "The 'Inverter' page shows a selected item from the CEC library with 'SMA America' in the name and a 'Max AC power' between 10,000 and 20,000 W."
+        },
+        {
+            "id": "system_configuration",
+            "description": "The system is configured with exactly 4 inverters and the stringing results in a DC capacity between 45.0 and 55.0 kWdc.",
+            "points": 25,
+            "visual_evidence": "The 'System Design' page shows 'Number of inverters' set to 4 and 'Total nameplate DC capacity' between 45.0 and 55.0 kWdc."
+        },
+        {
+            "id": "save_sam_file",
+            "description": "The SAM project is saved to the specified file path.",
+            "points": 10,
+            "visual_evidence": "The SAM title bar or a 'Save As' dialog shows the path /home/ga/Documents/SAM_Projects/detailed_hardware_design.sam."
+        },
+        {
+            "id": "json_summary_creation",
+            "description": "A JSON summary file is created with the correct hardware names and DC capacity.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows design_summary.json with keys 'module_selected', 'inverter_selected', 'total_dc_capacity_kw', and 'inverter_count': 4."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to select hardware rather than just writing the JSON file manually.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the SAM library dropdowns and search filters."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The DC capacity in the JSON matches the calculated value shown in the SAM interface.",
+            "visual_evidence": "The 'Total nameplate DC capacity' value in the SAM 'System Design' tab matches the 'total_dc_capacity_kw' value in the JSON file."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the JSON content into a file without opening SAM.",
+            "visual_evidence": "The SAM application is visible and active throughout the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "In the installed SAM version's CEC library, 'Canadian Solar Inc.' has been renamed to 'CSI Solar Co. Ltd.'. The VLM should accept 'CSI Solar Co. Ltd.' as the correct brand for the module. The inverter must be 'SMA America'. The inverter count must be exactly 4. The final DC capacity must be between 45.0 and 55.0 kWdc. Files must be saved to /home/ga/Documents/SAM_Projects/."
+}

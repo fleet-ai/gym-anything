@@ -1,0 +1,59 @@
+{
+    "task_id": "blood_bank_inventory_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_raw_csv",
+            "description": "The agent opens the raw inventory CSV file in a spreadsheet application or text editor.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like LibreOffice Calc) or text editor showing 'rbc_inventory_raw.csv' with columns like 'Collection_Date' and 'Blood_Type'."
+        },
+        {
+            "id": "calculate_expiration_dates",
+            "description": "The agent calculates the 'Expiration_Date' column based on a 42-day shelf life from the 'Collection_Date'.",
+            "points": 20,
+            "visual_evidence": "A column titled 'Expiration_Date' populated with dates. For example, a collection date of 2024-09-15 should show an expiration of 2024-10-27."
+        },
+        {
+            "id": "calculate_days_remaining",
+            "description": "The agent calculates the 'Days_Remaining' column based on the current date of October 24, 2024.",
+            "points": 15,
+            "visual_evidence": "A column titled 'Days_Remaining' showing numerical values representing the difference between the Expiration Date and 2024-10-24."
+        },
+        {
+            "id": "flag_expiring_soon",
+            "description": "The agent creates an 'Expiring_Soon' flag for units with 5 or fewer days remaining.",
+            "points": 15,
+            "visual_evidence": "A column titled 'Expiring_Soon' containing flags (e.g., 'Yes', 'TRUE', or '1') for rows where Days_Remaining is <= 5."
+        },
+        {
+            "id": "create_summary_sheet",
+            "description": "The agent creates a separate sheet or section titled 'Blood Type Summary' aggregating counts for the 8 major blood groups.",
+            "points": 25,
+            "visual_evidence": "A sheet tab or table titled 'Blood Type Summary' listing O+, O-, A+, A-, B+, B-, AB+, and AB- with their respective counts."
+        },
+        {
+            "id": "save_final_xlsx",
+            "description": "The agent saves the final workbook as an Excel file at the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the application title bar showing the file path '~/Documents/Spreadsheets/blood_bank_inventory.xlsx'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a spreadsheet GUI (like LibreOffice Calc) to perform the analysis rather than just running a script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with spreadsheet cells, formulas, or pivot tables."
+        },
+        {
+            "id": "no_hardcoded_summary",
+            "description": "The agent calculated the summary values from the data rather than typing in the ground truth values directly.",
+            "visual_evidence": "Use of spreadsheet formulas like COUNTIF or Pivot Tables to generate the summary counts."
+        },
+        {
+            "id": "correct_anchor_date",
+            "description": "The agent used the specific anchor date of October 24, 2024, for calculations.",
+            "visual_evidence": "Formulas or cell entries referencing '2024-10-24' or '10/24/2024' as the current date."
+        }
+    ],
+    "privileged_info_for_vlm": "The anchor date for all calculations is 2024-10-24. The shelf life is exactly 42 days. The expected blood type counts for the summary are: O+ (290), A+ (271), B+ (78), O- (62), A- (58), AB+ (27), B- (12), and AB- (2). The final file must be an .xlsx file at ~/Documents/Spreadsheets/blood_bank_inventory.xlsx."
+}

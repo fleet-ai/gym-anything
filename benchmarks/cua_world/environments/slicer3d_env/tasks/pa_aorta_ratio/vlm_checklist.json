@@ -1,0 +1,59 @@
+{
+    "task_id": "pa_aorta_ratio@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The agent successfully loads the chest CT volume into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan of the chest is visible in the axial, sagittal, and coronal viewports of the application."
+        },
+        {
+            "id": "navigate_to_pa_bifurcation",
+            "description": "The agent navigates to the axial slice where the main pulmonary artery bifurcates.",
+            "points": 15,
+            "visual_evidence": "The axial view shows the main pulmonary artery splitting into left and right branches, adjacent to the ascending aorta."
+        },
+        {
+            "id": "measure_pa_diameter",
+            "description": "The agent places a measurement ruler or markup line across the main pulmonary artery.",
+            "points": 20,
+            "visual_evidence": "A measurement line is visible across the PA in the axial view, with a label or property panel showing a value near 31.0 mm."
+        },
+        {
+            "id": "measure_aorta_diameter",
+            "description": "The agent places a measurement ruler or markup line across the ascending aorta at the same level.",
+            "points": 20,
+            "visual_evidence": "A measurement line is visible across the ascending aorta in the axial view, with a label or property panel showing a value near 32.0 mm."
+        },
+        {
+            "id": "save_markup_files",
+            "description": "The agent saves the PA and aorta markups to the specified JSON file paths.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with a 'Save' dialog or executes a save command, and the file browser or terminal shows the creation of pa_measurement.mrk.json and aorta_measurement.mrk.json in the target directory."
+        },
+        {
+            "id": "generate_and_save_report",
+            "description": "The agent calculates the ratio and saves the final JSON report with all required fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows pa_aorta_report.json containing pa_diameter_mm (~31), aorta_diameter_mm (~32), pa_aorta_ratio (~0.97), and an assessment (e.g., 'normal')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform measurements rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement tools, rulers, or markup modules within the 3D Slicer interface."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement values in the report are derived from the actual tool placement in the GUI, not just hardcoded from privileged info.",
+            "visual_evidence": "The measurement lines in the viewport physically span the diameter of the vessels and the on-screen 'Length' value matches the report."
+        },
+        {
+            "id": "no_premade_report_copy",
+            "description": "The agent did not simply copy a pre-existing report file from another directory.",
+            "visual_evidence": "The agent is seen manually typing the report values or using a script/tool that processes the active session's data."
+        }
+    ],
+    "privileged_info_for_vlm": "The synthetic CT volume has a ground truth PA diameter of 31.0 mm and an ascending aorta diameter of 32.0 mm. The resulting PA:Aorta ratio is approximately 0.97. Since the ratio is <= 1.0, the assessment should be classified as 'normal' or 'within normal limits'."
+}

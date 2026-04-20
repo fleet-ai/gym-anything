@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_broken_media_links@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_post",
+            "description": "Navigate to the WordPress editor for the post 'Exploring Modern Architecture Masterpieces'.",
+            "points": 10,
+            "visual_evidence": "The WordPress post editor is open with the title 'Exploring Modern Architecture Masterpieces' visible."
+        },
+        {
+            "id": "upload_recovered_images",
+            "description": "Upload the three images from the local directory to the WordPress Media Library or directly into the post.",
+            "points": 20,
+            "visual_evidence": "The file picker or media library shows 'guggenheim.jpg', 'bauhaus.jpg', and 'fallingwater.jpg' being selected or uploaded."
+        },
+        {
+            "id": "replace_broken_blocks",
+            "description": "Replace the broken image blocks (pointing to legacy-site.local) with the newly uploaded images.",
+            "points": 20,
+            "visual_evidence": "The editor no longer shows broken image placeholders; instead, it shows the actual images of the Guggenheim, Bauhaus, and Fallingwater."
+        },
+        {
+            "id": "set_alt_text",
+            "description": "Assign the exact required Alternative Text to each of the three images.",
+            "points": 30,
+            "visual_evidence": "The 'Alt Text' field in the Image Block settings sidebar shows: 'Guggenheim Museum Bilbao', 'Bauhaus Dessau Building', and 'Fallingwater House' for their respective images."
+        },
+        {
+            "id": "save_and_verify_no_legacy",
+            "description": "Save/Update the post and ensure no legacy URLs remain in the content.",
+            "points": 20,
+            "visual_evidence": "The 'Update' button is clicked, and a 'Post updated' notification appears. No instances of 'legacy-site.local' are visible in the code/text view of the post."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the WordPress web interface rather than executing SQL queries or WP-CLI commands in the terminal to swap URLs.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser window rather than just terminal output."
+        },
+        {
+            "id": "manual_alt_text_entry",
+            "description": "The agent manually entered or pasted the alt text into the WordPress sidebar for each image.",
+            "visual_evidence": "The settings sidebar for each image block is opened and the Alt Text field is populated."
+        },
+        {
+            "id": "genuine_media_upload",
+            "description": "The agent interacted with the file system to retrieve the images from /home/ga/Documents/recovered_media/.",
+            "visual_evidence": "A file upload dialog or a drag-and-drop action from the specified file path is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The target post is 'Exploring Modern Architecture Masterpieces'. The legacy domain to be removed is 'legacy-site.local'. Required Alt Texts: 'Guggenheim Museum Bilbao' for guggenheim.jpg, 'Bauhaus Dessau Building' for bauhaus.jpg, and 'Fallingwater House' for fallingwater.jpg. The images must be sourced from /home/ga/Documents/recovered_media/."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "export_disaster_recovery_config@1",
+    "task_completion": [
+        {
+            "id": "access_api_documentation_or_endpoint",
+            "description": "Agent accesses the Nx Witness REST API documentation or interacts with the API endpoints via a browser or tool.",
+            "points": 10,
+            "visual_evidence": "Browser showing 'https://localhost:7001' or API documentation pages for Nx Witness."
+        },
+        {
+            "id": "authenticate_api",
+            "description": "Agent performs authentication using the provided credentials (admin/Admin1234!).",
+            "points": 10,
+            "visual_evidence": "Login screens, HTTP basic auth prompts, or 'auth' tokens visible in API response headers/bodies."
+        },
+        {
+            "id": "retrieve_system_and_server_data",
+            "description": "Agent successfully calls endpoints for System Info and Servers.",
+            "points": 15,
+            "visual_evidence": "JSON responses in the browser or terminal showing system name, version, or server lists from /rest/v1/system/info and /rest/v1/servers."
+        },
+        {
+            "id": "retrieve_devices_and_users",
+            "description": "Agent successfully calls endpoints for Devices (Cameras) and Users.",
+            "points": 15,
+            "visual_evidence": "JSON responses showing camera lists and user accounts from /rest/v1/devices and /rest/v1/users."
+        },
+        {
+            "id": "retrieve_layouts_events_settings",
+            "description": "Agent successfully calls endpoints for Layouts, Event Rules, and System Settings.",
+            "points": 20,
+            "visual_evidence": "JSON responses showing layout configurations, event rules, and global system settings."
+        },
+        {
+            "id": "compile_json_structure",
+            "description": "Agent assembles the retrieved data into the specified JSON structure with metadata.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing a JSON object containing 'metadata', 'systemInfo', 'servers', 'devices', 'users', 'layouts', 'eventRules', and 'systemSettings' keys."
+        },
+        {
+            "id": "save_final_export",
+            "description": "Agent saves the compiled JSON to the specific path /home/ga/dr_export/disaster_recovery_config.json.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., 'cat', 'ls', or 'save') confirming the file exists at the exact path /home/ga/dr_export/disaster_recovery_config.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "Agent did not simply create a file with dummy data without querying the API.",
+            "visual_evidence": "Screenshots must show the agent actually navigating to or requesting the localhost:7001 endpoints before the file is created."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the Nx Witness VMS environment rather than just using echo commands to create the file.",
+            "visual_evidence": "Presence of browser tabs or API client tools (like Postman or Insomnia) showing live responses from the local server."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Agent used the specific directory requested and did not use temporary or home directories as shortcuts.",
+            "visual_evidence": "The file path in terminal or file manager matches /home/ga/dr_export/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness REST API is hosted at https://localhost:7001. Verified endpoints include /rest/v1/system/info (System Info), /rest/v1/servers (Servers), /rest/v1/devices (Cameras), /rest/v1/users (Users), /rest/v1/layouts (Layouts), /rest/v1/eventRules (Event Rules), and /rest/v1/system/settings (System Settings). The final JSON must contain exactly these 8 top-level keys: metadata, systemInfo, servers, devices, users, layouts, eventRules, and systemSettings. The metadata block must include exportTimestamp, systemName, and exportVersion: '1.0'."
+}

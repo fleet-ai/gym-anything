@@ -1,0 +1,56 @@
+{
+    "task_id": "measurement_quality_audit@1",
+    "task_completion": [
+        {
+            "id": "load_ct_and_markups",
+            "description": "The agent loads the abdominal CT scan and the initial trainee markups into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the CT volume and the 'trainee_' markup points/lines visible in the slice views or the Markups module list."
+        },
+        {
+            "id": "audit_measurements",
+            "description": "The agent inspects the four trainee measurements for technical errors.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent navigating through the slices to locate 'trainee_aorta_diameter', 'trainee_ivc_diameter', 'trainee_celiac_distance', and 'trainee_renal_bifurcation'."
+        },
+        {
+            "id": "create_corrected_markups",
+            "description": "The agent creates new markup measurements with the 'corrected_' prefix for the erroneous measurements.",
+            "points": 30,
+            "visual_evidence": "The Markups module list showing new entries named 'corrected_aorta_diameter' and 'corrected_celiac_distance' (or similar) with adjusted positions on the CT."
+        },
+        {
+            "id": "save_corrected_json",
+            "description": "The agent saves the corrected markups to the specified file path: ~/Documents/SlicerData/AMOS/corrected_measurements.mrk.json.",
+            "points": 20,
+            "visual_evidence": "A 'Save Data' dialog box or a terminal command showing the export of markups to the specific .mrk.json path."
+        },
+        {
+            "id": "generate_audit_report",
+            "description": "The agent creates the measurement_audit_report.json with the required fields (erroneous_measurements, correct_measurements, errors, corrected_values).",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output showing the content of measurement_audit_report.json, specifically listing 'trainee_aorta_diameter' and 'trainee_celiac_distance' as erroneous."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging GUI to perform the audit rather than just manipulating files via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Slicer GUI, slice views, and markup tools."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply echo the report into a file without first viewing the CT slices.",
+            "points": 0,
+            "visual_evidence": "The sequence of screenshots must show the CT scan being navigated and inspected before the report is generated."
+        },
+        {
+            "id": "genuine_correction",
+            "description": "The corrected markups are actually placed in anatomically different/better positions than the originals.",
+            "points": 0,
+            "visual_evidence": "Visual comparison of the 'trainee_' and 'corrected_' markup lines in the slice viewers showing a change in placement."
+        }
+    ],
+    "privileged_info_for_vlm": "The measurements 'trainee_aorta_diameter' and 'trainee_celiac_distance' are intentionally erroneous. 'trainee_ivc_diameter' and 'trainee_renal_bifurcation' are correct. The aorta diameter should not exceed 33.0 mm. The agent must identify these specific errors and create markups prefixed with 'corrected_' for the aorta and celiac distance."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "particle_inclusion_analysis@1",
+    "task_completion": [
+        {
+            "id": "image_loading_and_calibration",
+            "description": "Load the micrograph and apply the spatial calibration of 0.1725 µm/pixel.",
+            "points": 10,
+            "visual_evidence": "The image 'specimen_micrograph.tif' is open in Fiji/ImageJ, and the title bar or 'Properties' window shows the unit as 'um' or 'microns' with the correct pixel scale applied."
+        },
+        {
+            "id": "particle_segmentation",
+            "description": "Segment the dark particles and apply a size filter to exclude noise smaller than 5 µm².",
+            "points": 20,
+            "visual_evidence": "The 'Analyze Particles' dialog or a thresholded binary image is visible, with a 'Size' range starting at 5 (µm²) and 'Exclude on edges' or 'Include holes' settings as appropriate."
+        },
+        {
+            "id": "measurement_data_generation",
+            "description": "Measure Area, Perimeter, Circularity, Solidity, Feret's Diameter, and Aspect Ratio.",
+            "points": 20,
+            "visual_evidence": "The 'Results' table or 'Set Measurements' dialog shows columns for Area, Perim., Circ., Solidity, Feret, and AR. A CSV save dialog for 'particle_measurements.csv' is visible."
+        },
+        {
+            "id": "histogram_generation",
+            "description": "Generate a size distribution histogram of particle areas.",
+            "points": 15,
+            "visual_evidence": "A plot window titled 'Histogram' or 'Distribution' showing particle areas is visible, and a save dialog for 'size_distribution.png' is shown."
+        },
+        {
+            "id": "annotated_image_creation",
+            "description": "Produce an annotated image with particle outlines and a scale bar (10-50 µm).",
+            "points": 15,
+            "visual_evidence": "An image window showing the original micrograph overlaid with numbered outlines (ROI Manager) and a visible scale bar labeled between 10-50 µm."
+        },
+        {
+            "id": "summary_report_and_qc",
+            "description": "Create a summary report with total count, mean area, area fraction, count > 500 µm², and QC status.",
+            "points": 20,
+            "visual_evidence": "A text editor or log window shows 'inclusion_report.txt' containing the specific metrics and a 'PASS' or 'FAIL' result based on the 500 µm² threshold."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the Fiji/ImageJ GUI rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the Fiji menu bar, active dialog boxes (Threshold, Analyze Particles), and the ROI Manager being manipulated."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The results are derived from the actual image provided, not hardcoded values.",
+            "visual_evidence": "The 'Results' table contains a list of individual particle measurements that correspond to the visual density of the particles in the micrograph."
+        },
+        {
+            "id": "file_system_integrity",
+            "description": "The agent saved files to the specific requested paths.",
+            "visual_evidence": "Save dialogs or file explorer views show the path ~/Fiji_Data/results/particles/ being used for the four output files."
+        }
+    ],
+    "privileged_info_for_vlm": "The calibration must be exactly 0.1725 µm/pixel. The noise filter is 5 µm². The critical size for QC is 500 µm². The QC result is 'PASS' if the count of particles > 500 µm² is 5 or fewer, and 'FAIL' otherwise. Four output files are required: particle_measurements.csv, size_distribution.png, annotated_micrograph.png, and inclusion_report.txt."
+}

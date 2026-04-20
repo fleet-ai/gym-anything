@@ -1,0 +1,59 @@
+{
+    "task_id": "create_adr_system@1",
+    "task_completion": [
+        {
+            "id": "adr_tiddlers_creation",
+            "description": "Five ADR tiddlers (ADR-001 to ADR-005) have been created with the correct titles.",
+            "points": 15,
+            "visual_evidence": "The TiddlyWiki sidebar or 'Recent' tab shows five tiddlers titled ADR-001 through ADR-005."
+        },
+        {
+            "id": "adr_metadata_and_tags",
+            "description": "Each ADR tiddler is tagged 'ADR' and contains the custom field 'adr-status' with the correct value (Accepted, Deprecated, or Proposed).",
+            "points": 20,
+            "visual_evidence": "In the tiddler edit or info view, the tag 'ADR' is visible, and the 'Fields' section shows 'adr-status' with values matching the specific ADR requirements (e.g., ADR-003 is Deprecated)."
+        },
+        {
+            "id": "adr_content_structure",
+            "description": "Each ADR tiddler contains the headings !! Context, !! Decision, and !! Consequences with relevant text.",
+            "points": 15,
+            "visual_evidence": "The body of the ADR tiddlers displays three distinct sections under wikitext H2 headings (!!) with 1-2 sentences of descriptive text each."
+        },
+        {
+            "id": "adr_cross_linking",
+            "description": "ADR-003 and ADR-005 contain wikitext links to each other regarding superseding/superseded status.",
+            "points": 15,
+            "visual_evidence": "ADR-003 shows a clickable blue link to [[ADR-005: Migrate to Microservices Architecture]] and ADR-005 shows a link to [[ADR-003: Use Monolithic Deployment]]."
+        },
+        {
+            "id": "index_tiddler_structure",
+            "description": "The 'ADR Index' tiddler exists, is tagged 'ADR', and contains the three required status headings.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled 'ADR Index' is visible with headings: !! Accepted, !! Proposed, and !! Deprecated."
+        },
+        {
+            "id": "index_dynamic_lists",
+            "description": "The ADR Index uses <$list> widgets with filter syntax to dynamically display the ADRs under the correct headings.",
+            "points": 20,
+            "visual_evidence": "In the 'ADR Index' tiddler, the VLM should see lists of ADR titles under each heading. If the edit view is shown, the code must contain <$list filter='[tag[ADR]adr-status[...]]'>."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create tiddlers rather than manipulating the underlying file system via terminal.",
+            "visual_evidence": "Screenshots show the browser with the TiddlyWiki 'plus' button clicked, tiddler edit fields being filled, and 'save' buttons being pressed."
+        },
+        {
+            "id": "manual_content_entry",
+            "description": "The agent authored realistic sentences for the ADR bodies rather than using placeholder text like 'lorem ipsum'.",
+            "visual_evidence": "The text under !! Context, !! Decision, and !! Consequences contains meaningful words related to the ADR title (e.g., mentioning 'database' for ADR-001)."
+        },
+        {
+            "id": "genuine_widget_usage",
+            "description": "The ADR Index uses functional TiddlyWiki widgets rather than a hardcoded static list of links.",
+            "visual_evidence": "The edit mode of the 'ADR Index' tiddler shows the <$list> syntax instead of just a bulleted list of manual links."
+        }
+    ],
+    "privileged_info_for_vlm": "The required statuses are: ADR-001 (Accepted), ADR-002 (Accepted), ADR-003 (Deprecated), ADR-004 (Proposed), and ADR-005 (Accepted). ADR-003 must link to ADR-005 as its successor, and ADR-005 must link back to ADR-003 as the tiddler it supersedes. The ADR Index must use the specific filter syntax [tag[ADR]adr-status[Value]] within a list widget."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "spleen_volume_splenomegaly@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The abdominal CT scan is loaded into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan showing abdominal anatomy is visible in the 2D slice viewers and the 3D view."
+        },
+        {
+            "id": "segment_spleen_named",
+            "description": "The spleen is segmented and the segment is explicitly named 'Spleen'.",
+            "points": 25,
+            "visual_evidence": "A segmentation layer or label map is visible over the spleen anatomy, and the segment list shows an entry named 'Spleen'."
+        },
+        {
+            "id": "measure_volume",
+            "description": "The volume of the 'Spleen' segment is calculated using the software's quantification tools.",
+            "points": 20,
+            "visual_evidence": "A statistics or quantification module is open showing a volume measurement (e.g., in mm³ or ml) for the 'Spleen' segment."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is saved to the specific path ~/Documents/SlicerData/AMOS/spleen_segmentation.nii.gz.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog box or a terminal confirmation showing the file path ~/Documents/SlicerData/AMOS/spleen_segmentation.nii.gz."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "A JSON report is created with the required fields: volume_ml, classification, and recommendation.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output displays a JSON file at ~/Documents/SlicerData/AMOS/spleen_report.json containing the keys 'volume_ml', 'classification', and 'recommendation'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the software GUI for segmentation and measurement rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor or Segment Statistics modules."
+        },
+        {
+            "id": "genuine_segmentation",
+            "description": "The segmentation mask matches the actual spleen anatomy in the CT scan.",
+            "visual_evidence": "The colored overlay (segmentation) aligns with the boundaries of the spleen in the axial, sagittal, or coronal views."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The volume in the report matches the volume calculated by the software.",
+            "visual_evidence": "The numerical value for volume in the JSON report matches the value displayed in the software's statistics table."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses the AMOS 2022 dataset (case amos_0001). The agent must use a segment named 'Spleen' (case-sensitive). Splenomegaly classification is typically based on volume (normal adult spleen volume is roughly 150-350 ml; values significantly higher indicate splenomegaly). The VLM should verify that the file paths in the save dialogs or terminal commands exactly match ~/Documents/SlicerData/AMOS/."
+}

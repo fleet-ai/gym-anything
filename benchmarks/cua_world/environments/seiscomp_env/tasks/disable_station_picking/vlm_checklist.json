@@ -1,0 +1,59 @@
+{
+    "task_id": "disable_station_picking@1",
+    "task_completion": [
+        {
+            "id": "open_scconfig",
+            "description": "The agent opens the SeisComP configuration tool (scconfig).",
+            "points": 10,
+            "visual_evidence": "A window titled 'scconfig' or 'SeisComP Configurator' is visible on the desktop."
+        },
+        {
+            "id": "navigate_to_bindings",
+            "description": "The agent navigates to the 'Bindings' or 'Inventory' section where station modules are managed.",
+            "points": 15,
+            "visual_evidence": "The scconfig interface shows the 'Bindings' tab or a list of stations with associated modules."
+        },
+        {
+            "id": "locate_target_station",
+            "description": "The agent identifies station GE.KWP and its scautopick binding.",
+            "points": 15,
+            "visual_evidence": "The station 'GE.KWP' is highlighted or selected in the station list, showing an active 'scautopick' profile or binding."
+        },
+        {
+            "id": "remove_scautopick_binding",
+            "description": "The agent removes or unbinds the scautopick module from station GE.KWP.",
+            "points": 30,
+            "visual_evidence": "The 'scautopick' entry next to GE.KWP is deleted, unchecked, or moved to an inactive state. The binding name (e.g., 'production') is no longer associated with GE.KWP."
+        },
+        {
+            "id": "verify_control_station",
+            "description": "The agent ensures that station GE.TOLI still has its scautopick binding active.",
+            "points": 15,
+            "visual_evidence": "The station 'GE.TOLI' is visible in the list and still shows an active 'scautopick' binding/profile."
+        },
+        {
+            "id": "save_configuration",
+            "description": "The agent saves or applies the changes to the SeisComP configuration.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Apply', or 'Sync' button, often followed by a confirmation dialog or a progress bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the scconfig GUI rather than modifying configuration files via the terminal.",
+            "visual_evidence": "The screenshots show mouse interactions and menu navigation within the scconfig window, not just a terminal window running 'sed' or 'vi'."
+        },
+        {
+            "id": "genuine_station_selection",
+            "description": "The agent specifically targeted GE.KWP and did not perform a bulk deletion of all station bindings.",
+            "visual_evidence": "The station list shows other stations (like GE.TOLI) remaining configured while GE.KWP is modified."
+        },
+        {
+            "id": "no_inventory_deletion",
+            "description": "The agent did not delete the station from the inventory entirely, only the binding.",
+            "visual_evidence": "The station GE.KWP remains visible in the station list/inventory tree even after the scautopick binding is removed."
+        }
+    ],
+    "privileged_info_for_vlm": "The target station is GE.KWP and the module to be disabled is 'scautopick'. The control station GE.TOLI must remain unchanged. The agent must use the 'scconfig' GUI application. Note that while the agent might use the terminal to start the GUI, the actual configuration change must happen within the scconfig interface."
+}

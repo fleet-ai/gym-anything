@@ -1,0 +1,60 @@
+{
+    "task_id": "configure_edge_flags@1",
+    "task_completion": [
+        {
+            "id": "open_edge_flags",
+            "description": "The agent navigated to the edge://flags page in the Microsoft Edge browser.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Microsoft Edge browser with 'edge://flags' in the address bar and the Experiments page loaded."
+        },
+        {
+            "id": "configure_smooth_scrolling",
+            "description": "Smooth Scrolling flag is set to Disabled.",
+            "points": 15,
+            "visual_evidence": "The dropdown menu next to 'Smooth Scrolling' shows 'Disabled' or the flag is listed under the 'Unavailable' or 'Modified' section as Disabled."
+        },
+        {
+            "id": "configure_parallel_downloading",
+            "description": "Parallel downloading flag is set to Enabled.",
+            "points": 15,
+            "visual_evidence": "The dropdown menu next to 'Parallel downloading' shows 'Enabled'."
+        },
+        {
+            "id": "configure_dark_mode_quic_hover",
+            "description": "Auto Dark Mode for Web Contents, Experimental QUIC protocol, and Tab Hover Card Images are correctly configured.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing 'Auto Dark Mode for Web Contents' (Enabled), 'Experimental QUIC protocol' (Enabled), and 'Tab Hover Card Images' (Disabled)."
+        },
+        {
+            "id": "restart_browser",
+            "description": "The agent clicked the 'Relaunch' button to apply the changes.",
+            "points": 15,
+            "visual_evidence": "The blue 'Relaunch' button at the bottom of the edge://flags page is clicked, or the browser is seen restarting."
+        },
+        {
+            "id": "create_config_document",
+            "description": "A text file is created at /home/ga/Desktop/edge_flags_config.txt with the correct content.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file at the specified path containing the five flags and their states (Smooth Scrolling: Disabled, Parallel downloading: Enabled, Auto Dark Mode: Enabled, QUIC: Enabled, Tab Hover Card Images: Disabled)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Edge browser GUI to change flags rather than just editing config files via terminal.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with dropdown menus in the Edge browser."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The configuration document was created by the agent, not pre-existing.",
+            "visual_evidence": "The agent is seen typing the content into a text editor or using a 'touch/echo' command in the terminal."
+        },
+        {
+            "id": "no_hallucinated_success",
+            "description": "The agent verified the flags were changed before writing the document.",
+            "visual_evidence": "The agent scrolls through the flags page to confirm the 'Enabled/Disabled' status after the relaunch."
+        }
+    ],
+    "privileged_info_for_vlm": "The internal flag names in the 'Local State' file or search bar are: Smooth Scrolling (#smooth-scrolling), Parallel downloading (#enable-parallel-downloading), Auto Dark Mode for Web Contents (#enable-force-dark), Experimental QUIC protocol (#enable-quic), and Tab Hover Card Images (#tab-hover-card-images). For the configuration file, the required path is exactly /home/ga/Desktop/edge_flags_config.txt."
+}

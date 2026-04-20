@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_dns_ops_profile@1",
+    "task_completion": [
+        {
+            "id": "profile_creation_active",
+            "description": "Create and activate a new Wireshark profile named 'DNS_Ops'.",
+            "points": 15,
+            "visual_evidence": "The Wireshark status bar (bottom right) should explicitly show 'Profile: DNS_Ops'."
+        },
+        {
+            "id": "remove_length_column",
+            "description": "Exclude the default 'Length' column from the packet list view.",
+            "points": 15,
+            "visual_evidence": "The packet list header row must not contain a column titled 'Length'."
+        },
+        {
+            "id": "add_transid_column",
+            "description": "Add a new column titled 'TransID' mapped to the 'dns.id' field.",
+            "points": 20,
+            "visual_evidence": "A column titled 'TransID' is visible in the packet list, containing hexadecimal or decimal transaction IDs (e.g., 0x1234)."
+        },
+        {
+            "id": "add_query_column",
+            "description": "Add a new column titled 'Query' mapped to the 'dns.qry.name' field.",
+            "points": 20,
+            "visual_evidence": "A column titled 'Query' is visible in the packet list, containing domain names (e.g., 'google.com')."
+        },
+        {
+            "id": "configure_coloring_rule",
+            "description": "Create a coloring rule 'DNS_Fail' with filter 'dns.flags.rcode != 0' and a red background.",
+            "points": 20,
+            "visual_evidence": "The Coloring Rules dialog shows 'DNS_Fail' with the correct filter and red background, or packets with non-zero return codes (errors) appear with a red background in the list."
+        },
+        {
+            "id": "save_screenshot_verification",
+            "description": "Save a screenshot of the configured view to the specified path.",
+            "points": 10,
+            "visual_evidence": "An image file named 'dns_ops_view.png' is created in /home/ga/Documents/ showing the active DNS_Ops profile and new columns."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Wireshark GUI to configure the profile rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots show the Wireshark 'Preferences', 'Columns', or 'Coloring Rules' dialog boxes being interacted with."
+        },
+        {
+            "id": "genuine_packet_data",
+            "description": "The displayed data matches the provided 'dns.cap' file.",
+            "visual_evidence": "The packet list shows DNS traffic consistent with the 'dns.cap' file (e.g., queries for google.com or netbsd.org) rather than an empty or unrelated trace."
+        },
+        {
+            "id": "no_manual_image_manipulation",
+            "description": "The final screenshot is a direct capture of the application state.",
+            "visual_evidence": "The screenshot 'dns_ops_view.png' shows the full Wireshark interface or packet pane consistent with the system's desktop environment."
+        }
+    ],
+    "privileged_info_for_vlm": "The profile name must be exactly 'DNS_Ops'. The 'TransID' column must map to 'dns.id' and the 'Query' column to 'dns.qry.name'. The coloring rule 'DNS_Fail' uses the filter 'dns.flags.rcode != 0' and must have a red background. The 'Length' column must be hidden/removed. The final verification image must be located at /home/ga/Documents/dns_ops_view.png."
+}

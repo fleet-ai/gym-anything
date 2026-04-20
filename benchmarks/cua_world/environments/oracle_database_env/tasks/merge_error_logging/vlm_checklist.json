@@ -1,0 +1,53 @@
+{
+    "task_id": "merge_error_logging@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A SQL tool (like SQL Developer, DBeaver, or terminal) showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "error_log_table_creation",
+            "description": "Agent creates the error logging table ERR_EMPLOYEES_LOG.",
+            "points": 15,
+            "visual_evidence": "SQL command 'DBMS_ERRLOG.CREATE_ERROR_LOG' or 'CREATE TABLE ERR_EMPLOYEES_LOG' being executed, or the table appearing in the schema browser."
+        },
+        {
+            "id": "merge_statement_execution",
+            "description": "Agent executes a MERGE statement targeting EMPLOYEES using EMPLOYEE_UPDATES with the LOG ERRORS clause.",
+            "points": 30,
+            "visual_evidence": "A SQL script containing 'MERGE INTO EMPLOYEES', 'USING EMPLOYEE_UPDATES', 'ON (EMPLOYEES.EMPLOYEE_ID = ...)', and 'LOG ERRORS INTO ERR_EMPLOYEES_LOG'."
+        },
+        {
+            "id": "verify_sync_results",
+            "description": "Agent verifies that data was merged and errors were captured in the log table.",
+            "points": 15,
+            "visual_evidence": "A SELECT query on ERR_EMPLOYEES_LOG showing rows (likely 5 rows) or a count of updated/inserted rows in the EMPLOYEES table."
+        },
+        {
+            "id": "export_error_csv",
+            "description": "Agent exports the contents of ERR_EMPLOYEES_LOG to the specified CSV path with headers.",
+            "points": 30,
+            "visual_evidence": "An export wizard, spool command, or save-as dialog showing the destination /home/ga/Desktop/sync_errors.csv and the 'include headers' option selected."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "Agent did not manually type or create the CSV file using a text editor without querying the database.",
+            "visual_evidence": "The CSV creation should be triggered by a database export tool or a SQL script output, not a blank Gedit/Notepad window where the agent types error data."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacts with the actual Oracle database instance rather than just echoing text.",
+            "visual_evidence": "Screenshots show an active SQL editor with execution results, row counts, or a schema tree showing the tables."
+        },
+        {
+            "id": "correct_data_mapping",
+            "description": "Agent maps the specific columns (Salary, Commission_PCT, Job_ID) required by the task.",
+            "visual_evidence": "The MERGE statement explicitly lists SALARY, COMMISSION_PCT, and JOB_ID in the UPDATE clause."
+        }
+    ],
+    "privileged_info_for_vlm": "The staging table is EMPLOYEE_UPDATES and the target is EMPLOYEES. The error table must be named ERR_EMPLOYEES_LOG. Based on the source data, the MERGE should result in 3 updates (IDs 100, 103, 104), 2 inserts (IDs 301, 302), and 5 errors logged in the ERR_EMPLOYEES_LOG table. The final CSV must be at /home/ga/Desktop/sync_errors.csv and contain headers."
+}

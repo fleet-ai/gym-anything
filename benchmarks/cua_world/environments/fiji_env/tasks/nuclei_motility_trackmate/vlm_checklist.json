@@ -1,0 +1,59 @@
+{
+    "task_id": "nuclei_motility_trackmate@1",
+    "task_completion": [
+        {
+            "id": "load_mitosis_stack",
+            "description": "Open the mitosis.tif hyperstack in ImageJ/Fiji.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 'mitosis.tif' showing a 5D hyperstack (channels, slices, frames)."
+        },
+        {
+            "id": "z_projection_preprocessing",
+            "description": "Perform a Max Intensity Z-Projection of the chromosome channel.",
+            "points": 15,
+            "visual_evidence": "A new image window titled 'MAX_mitosis.tif' or similar, showing a 2D projection of the nuclei."
+        },
+        {
+            "id": "trackmate_detector_config",
+            "description": "Configure TrackMate with LoG or DoG detector, ~8.0 micron diameter, and threshold 2.0-5.0.",
+            "points": 20,
+            "visual_evidence": "The TrackMate wizard window showing 'LoG detector' or 'DoG detector' selected with 'Estimated object diameter' set to 8.0 and 'Threshold' between 2.0 and 5.0."
+        },
+        {
+            "id": "trackmate_tracker_config",
+            "description": "Configure Simple LAP tracker with 10.0 micron linking/gap distances and max frame gap of 2.",
+            "points": 20,
+            "visual_evidence": "The TrackMate wizard window showing 'Simple LAP tracker' with 'Linking max distance' at 10.0, 'Gap-closing max distance' at 10.0, and 'Gap-closing max frame gap' at 2."
+        },
+        {
+            "id": "export_track_statistics",
+            "description": "Export the track statistics to the specified CSV file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog or a TrackMate action showing the path '~/Fiji_Data/results/tracking/track_statistics.csv' being targeted for export."
+        },
+        {
+            "id": "save_visual_overlay",
+            "description": "Save a visual overlay of the tracks to the specified PNG file path.",
+            "points": 20,
+            "visual_evidence": "An image window showing colored track lines overlaid on the nuclei, and a save dialog targeting '~/Fiji_Data/results/tracking/tracks_visual.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji/TrackMate GUI rather than just executing a script in the background.",
+            "visual_evidence": "Screenshots show the TrackMate wizard steps, parameter input fields, and the ImageJ menu being navigated."
+        },
+        {
+            "id": "genuine_tracking_results",
+            "description": "The tracking results are generated from the actual image, not a placeholder.",
+            "visual_evidence": "The visual overlay (tracks_visual.png) shows tracks that follow the movement of the nuclei in the mitosis.tif sample image."
+        },
+        {
+            "id": "file_path_fidelity",
+            "description": "The agent saved files to the specific directories requested in the task.",
+            "visual_evidence": "The file explorer or save dialogs show the paths '~/Fiji_Data/results/tracking/' being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image 'mitosis.tif' is a 5D hyperstack (171x196 pixels, 5 slices, 51 frames). The spatial unit is micrometers (um). Successful tracking should identify at least 5 tracks. The 'Simple LAP tracker' is a specific module in TrackMate. The final CSV must be named 'track_statistics.csv' and the image 'tracks_visual.png'."
+}

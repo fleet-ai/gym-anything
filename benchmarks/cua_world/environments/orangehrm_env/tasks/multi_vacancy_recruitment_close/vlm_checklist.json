@@ -1,0 +1,59 @@
+{
+    "task_id": "multi_vacancy_recruitment_close@1",
+    "task_completion": [
+        {
+            "id": "open_hiring_memo",
+            "description": "Agent opens the hiring decisions memo on the desktop to identify candidate outcomes.",
+            "points": 10,
+            "visual_evidence": "A text editor or document viewer showing the file '/home/ga/Desktop/q2_hiring_decisions.txt' with candidate names and decisions."
+        },
+        {
+            "id": "navigate_to_vacancies",
+            "description": "Agent navigates to the recruitment or vacancy management section of the HR application.",
+            "points": 10,
+            "visual_evidence": "The browser or application showing a list of active vacancies, specifically 'Senior Data Analyst - Q2 2025' and 'Clinical Coordinator - Q2 2025'."
+        },
+        {
+            "id": "process_senior_data_analyst_candidates",
+            "description": "Agent updates the status for Marcus Webb (OFFER) and Priya Sharma (REJECT) for the Senior Data Analyst vacancy.",
+            "points": 25,
+            "visual_evidence": "UI interactions showing status changes or confirmation messages for Marcus Webb and Priya Sharma within the Senior Data Analyst vacancy view."
+        },
+        {
+            "id": "process_clinical_coordinator_candidates",
+            "description": "Agent updates the status for Danielle Osei (OFFER) and Felix (REJECT) for the Clinical Coordinator vacancy.",
+            "points": 25,
+            "visual_evidence": "UI interactions showing status changes or confirmation messages for Danielle Osei and Felix within the Clinical Coordinator vacancy view."
+        },
+        {
+            "id": "close_vacancies",
+            "description": "Agent changes the status of both vacancies to 'Closed' or 'Filled' after processing candidates.",
+            "points": 20,
+            "visual_evidence": "The vacancy status dropdown or label for both 'Senior Data Analyst - Q2 2025' and 'Clinical Coordinator - Q2 2025' showing a closed/inactive state."
+        },
+        {
+            "id": "export_results",
+            "description": "Agent triggers the export script or saves the final results to the specified JSON file.",
+            "points": 10,
+            "visual_evidence": "A terminal command execution of 'export_result.sh' or a file explorer showing the creation/update of '/tmp/multi_vacancy_recruitment_close_result.json'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HR application GUI to update candidate statuses rather than direct database manipulation.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with buttons, dropdowns, and forms in the web browser/HR app."
+        },
+        {
+            "id": "no_hardcoded_json",
+            "description": "The agent did not manually type the final JSON result file without performing the UI actions.",
+            "visual_evidence": "The sequence of screenshots must show the recruitment software being used before the final export file is generated."
+        },
+        {
+            "id": "memo_reference",
+            "description": "The agent actually opened the desktop memo to retrieve the decision data.",
+            "visual_evidence": "A screenshot showing the file 'q2_hiring_decisions.txt' being opened and read."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must process two vacancies: 'Senior Data Analyst - Q2 2025' and 'Clinical Coordinator - Q2 2025'. For the Data Analyst role, Marcus Webb must be set to OFFER and Priya Sharma to REJECT. For the Clinical Coordinator role, Danielle Osei must be set to OFFER and Felix must be set to REJECT. Both vacancies must be closed. The final results are exported to /tmp/multi_vacancy_recruitment_close_result.json."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_window_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Chinook database at the specified path.",
+            "points": 10,
+            "visual_evidence": "A SQL editor or database management tool showing a connection to '/home/ga/Documents/databases/chinook.db' or a connection named 'Chinook'."
+        },
+        {
+            "id": "sql_query_construction",
+            "description": "Agent writes a SQL query utilizing window functions (SUM OVER, LAG, AVG OVER, RANK/DENSE_RANK).",
+            "points": 20,
+            "visual_evidence": "Code in a SQL editor containing window function syntax like 'OVER (ORDER BY ...)' and 'LAG(' to calculate revenue trends."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "Agent executes the query and displays results with the 7 required columns and rounded values.",
+            "points": 25,
+            "visual_evidence": "A results grid showing columns: YearMonth, MonthlyRevenue, CumulativeRevenue, PrevMonthRevenue, MoMGrowthPct, MovingAvg3M, and YearRank, with decimal values rounded to 2 places."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Agent saves the SQL query to the specified script path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or text editor showing the file 'monthly_revenue_analysis.sql' saved in '/home/ga/Documents/scripts/'."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Agent exports the analysis results to the specified CSV path.",
+            "points": 30,
+            "visual_evidence": "A notification, terminal output, or file explorer showing 'monthly_revenue_trends.csv' created in '/home/ga/Documents/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually type out the data values or hardcode the results into the CSV.",
+            "visual_evidence": "The SQL query should be visible and executed; the CSV export should be triggered by a tool command or export UI, not by manual typing."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacted with the database schema rather than using mock data.",
+            "visual_evidence": "The SQL query should reference actual Chinook tables like 'Invoices' and 'InvoiceItems'."
+        },
+        {
+            "id": "gui_usage",
+            "description": "Agent used the graphical interface (SQL IDE, File Manager) as intended rather than purely background scripts.",
+            "visual_evidence": "Screenshots show interaction with a GUI-based SQL editor or database browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The Chinook database contains 412 invoices from January 2009 to December 2013. The query must use LAG() for PrevMonthRevenue and MoMGrowthPct, SUM(...) OVER(ORDER BY YearMonth) for CumulativeRevenue, and AVG(...) OVER(ORDER BY YearMonth ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) for the 3-month moving average. YearRank should reset annually based on MonthlyRevenue. The final CSV must have exactly 7 columns and be ordered by YearMonth (YYYY-MM) ascending."
+}

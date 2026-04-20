@@ -1,0 +1,59 @@
+{
+    "task_id": "remove_ingredient_from_meal@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger application as admin.",
+            "points": 10,
+            "visual_evidence": "The dashboard or nutrition plan overview is visible, and the 'admin' username is shown in the navigation bar."
+        },
+        {
+            "id": "navigate_to_maintenance_diet",
+            "description": "Agent navigates to the 'Maintenance Diet' nutrition plan.",
+            "points": 15,
+            "visual_evidence": "The screen displays the details for the nutrition plan titled 'Maintenance Diet'."
+        },
+        {
+            "id": "locate_lunch_meal",
+            "description": "Agent identifies the 'Lunch' meal within the 'Maintenance Diet' plan.",
+            "points": 15,
+            "visual_evidence": "The 'Lunch' meal section is visible on the screen, containing various food items."
+        },
+        {
+            "id": "initiate_cola_removal",
+            "description": "Agent clicks the delete/remove button specifically for the 'Cola Drink' entry within the Lunch meal.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog appears for deleting 'Cola Drink' or the cursor is seen clicking the trash/delete icon next to 'Cola Drink'."
+        },
+        {
+            "id": "verify_cola_removed",
+            "description": "The 'Cola Drink' is no longer listed under the 'Lunch' meal.",
+            "points": 20,
+            "visual_evidence": "The 'Lunch' meal list is visible and 'Cola Drink' is absent from the list of items."
+        },
+        {
+            "id": "verify_siblings_remain",
+            "description": "The other ingredients (Chicken, Rice, Broccoli) remain in the 'Lunch' meal.",
+            "points": 15,
+            "visual_evidence": "The 'Lunch' meal still displays 'Chicken Breast Raw', 'Brown Rice Cooked', and 'Broccoli Raw' after the removal of the drink."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands in a terminal.",
+            "visual_evidence": "The screenshots show browser interactions (clicks, navigation) rather than a terminal window with SQL or Django shell commands."
+        },
+        {
+            "id": "no_meal_deletion",
+            "description": "The agent did not delete the entire 'Lunch' meal to achieve the goal.",
+            "visual_evidence": "The 'Lunch' meal header and other ingredients are still present in the final screenshots."
+        },
+        {
+            "id": "no_global_ingredient_deletion",
+            "description": "The agent did not navigate to the global ingredients database to delete 'Cola Drink' entirely from the system.",
+            "visual_evidence": "The agent stays within the Nutrition/Plans section of the site rather than the main Ingredient Manager/Library."
+        }
+    ],
+    "privileged_info_for_vlm": "The target nutrition plan is 'Maintenance Diet'. The target meal is 'Lunch'. The specific item to be removed is 'Cola Drink'. The items that must remain in the 'Lunch' meal are 'Chicken Breast Raw', 'Brown Rice Cooked', and 'Broccoli Raw'. The agent must use the GUI to remove the item from the meal list, not delete the ingredient from the global database."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_sensor_gains_csv@1",
+    "task_completion": [
+        {
+            "id": "access_inventory_source",
+            "description": "Agent accesses the SeisComP inventory via the database connection or the inventory XML file.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing a database client (e.g., MySQL/MariaDB terminal), a SeisComP GUI tool (like scinv), or the opening of an inventory XML file."
+        },
+        {
+            "id": "filter_bhz_channels",
+            "description": "Agent applies a filter or query to isolate 'BHZ' channels from the inventory.",
+            "points": 15,
+            "visual_evidence": "A SQL query containing 'WHERE channel = \"BHZ\"' or a search/filter bar in a GUI showing 'BHZ' as the criteria."
+        },
+        {
+            "id": "extract_gain_data",
+            "description": "Agent identifies and extracts the specific Gain and Gain Frequency values for the filtered channels.",
+            "points": 25,
+            "visual_evidence": "Terminal output or GUI tables displaying columns for Gain and Gain Frequency (often labeled as 'sensitivity' and 'frequency') alongside station names."
+        },
+        {
+            "id": "format_csv_header",
+            "description": "Agent creates a file with the exact required header: Network,Station,Location,Channel,Gain,GainFrequency.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the first line of the file matching the required header exactly."
+        },
+        {
+            "id": "save_final_csv",
+            "description": "Agent saves the extracted data to the specific path /home/ga/bhz_gains.csv.",
+            "points": 30,
+            "visual_evidence": "A file manager view, a 'save as' dialog, or a terminal command (e.g., 'ls /home/ga/') confirming the existence of bhz_gains.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent should not manually type out long lists of gain values from memory or external sources.",
+            "visual_evidence": "The agent should be seen using copy-paste from a query result or using redirection/scripting to populate the CSV, rather than typing every row."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent must actually connect to the provided MySQL string or open the inventory file.",
+            "visual_evidence": "Evidence of the connection command 'mysql -u sysop...' or the loading of the XML file before the data appears."
+        },
+        {
+            "id": "correct_source_usage",
+            "description": "The agent should not use dummy data or placeholder values.",
+            "visual_evidence": "The values in the CSV should match the values seen in the database/XML query results shown in previous steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must extract data from the GEOFON Seismic Network. The output file must be exactly at /home/ga/bhz_gains.csv. The ground truth data is stored at /tmp/ground_truth.csv; if the agent's final CSV content matches the structure and values found in that temporary file (specifically for BHZ channels), the task is successful. The header must be: Network,Station,Location,Channel,Gain,GainFrequency."
+}

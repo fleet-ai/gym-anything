@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_waveform_csv@1",
+    "task_completion": [
+        {
+            "id": "access_sds_archive",
+            "description": "Agent accesses or references the SDS archive path /home/ga/seiscomp/var/lib/archive in a script or command.",
+            "points": 10,
+            "visual_evidence": "Terminal output or code editor showing the SDS URI or the local path to the SeisComP archive."
+        },
+        {
+            "id": "specify_station_parameters",
+            "description": "Agent configures the extraction for Network: GE, Station: TOLI, and Channel: BHZ.",
+            "points": 15,
+            "visual_evidence": "Code or command line arguments containing 'GE', 'TOLI', and 'BHZ'."
+        },
+        {
+            "id": "set_time_window",
+            "description": "Agent sets the start time to 2024-01-01 07:10:09 and a duration of 60 seconds.",
+            "points": 15,
+            "visual_evidence": "Script or command showing the timestamp '2024-01-01 07:10:09' and an end time or duration parameter (e.g., +60s)."
+        },
+        {
+            "id": "programmatic_extraction_execution",
+            "description": "Agent executes a script or command (e.g., using ObsPy or SeisComP tools) to extract the raw waveform data.",
+            "points": 25,
+            "visual_evidence": "Terminal showing the execution of a python script or a command like 'sdsdump' or 'scart' with no errors."
+        },
+        {
+            "id": "csv_generation_with_headers",
+            "description": "Agent saves the data to '~/toli_waveform.csv' with the required headers.",
+            "points": 20,
+            "visual_evidence": "Code showing the creation of 'toli_waveform.csv' and the string 'Time_UTC,Amplitude_Counts'."
+        },
+        {
+            "id": "verify_output_content",
+            "description": "The resulting CSV contains ISO8601 timestamps and integer amplitude counts.",
+            "points": 15,
+            "visual_evidence": "A 'cat' or 'head' command of the CSV file showing rows with timestamps (e.g., 2024-01-01T07:10:09...) and integer values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_entry",
+            "description": "Agent did not manually type out waveform values or create the CSV from scratch without extraction.",
+            "visual_evidence": "The agent should be seen running a script that processes the SDS archive, not just using 'echo' to write data rows."
+        },
+        {
+            "id": "genuine_archive_interaction",
+            "description": "Agent interacts with the specified SDS directory path.",
+            "visual_evidence": "The file path /home/ga/seiscomp/var/lib/archive appears in the agent's code or terminal commands."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "Agent uses the BHZ channel as requested, not a different component like BHE or BHN.",
+            "visual_evidence": "The string 'BHZ' is explicitly used in the extraction logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires extracting data from a specific SeisComP SDS archive at /home/ga/seiscomp/var/lib/archive. The target is GE.TOLI.BHZ starting exactly at 2024-01-01 07:10:09 UTC for 60 seconds. The output file must be ~/toli_waveform.csv with the header 'Time_UTC,Amplitude_Counts'. The amplitude counts must be integers (raw counts), not floats (physical units)."
+}

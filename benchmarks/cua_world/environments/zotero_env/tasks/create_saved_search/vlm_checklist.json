@@ -1,0 +1,59 @@
+{
+    "task_id": "create_saved_search@1",
+    "task_completion": [
+        {
+            "id": "open_saved_search_dialog",
+            "description": "The agent opens the 'New Saved Search' dialog window in Zotero.",
+            "points": 10,
+            "visual_evidence": "A modal or dialog box titled 'New Saved Search' or 'Edit Saved Search' is visible over the Zotero main window."
+        },
+        {
+            "id": "set_search_name",
+            "description": "The agent names the saved search exactly 'Papers Since 2010'.",
+            "points": 15,
+            "visual_evidence": "The text 'Papers Since 2010' is typed into the 'Search Name' or 'Name' field in the dialog box."
+        },
+        {
+            "id": "configure_search_criteria",
+            "description": "The agent sets the search criteria to filter by date/year greater than or equal to 2010.",
+            "points": 30,
+            "visual_evidence": "The search criteria dropdowns show 'Date' (or 'Year') and a condition like 'is after' or 'is in the last' or 'is greater than', with the value '2010' or '2009' entered."
+        },
+        {
+            "id": "save_search_execution",
+            "description": "The agent confirms/saves the search configuration.",
+            "points": 15,
+            "visual_evidence": "The agent clicks the 'OK' or 'Save' button in the search dialog box."
+        },
+        {
+            "id": "verify_sidebar_entry",
+            "description": "The saved search appears in the Zotero left-hand sidebar.",
+            "points": 15,
+            "visual_evidence": "A purple folder icon (standard for saved searches) labeled 'Papers Since 2010' is visible in the left navigation pane."
+        },
+        {
+            "id": "verify_search_results",
+            "description": "The saved search correctly identifies the 8 modern papers.",
+            "points": 15,
+            "visual_evidence": "When the 'Papers Since 2010' search is selected, the center pane displays exactly 8 items (e.g., AlexNet, GANs, ResNet, GPT-3, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Zotero GUI rather than manipulating the database via terminal.",
+            "visual_evidence": "The agent is seen clicking menus and typing in the Zotero application window; no terminal windows showing sqlite3 or python scripts are used to modify the Zotero database."
+        },
+        {
+            "id": "no_manual_collection",
+            "description": "The agent created a dynamic 'Saved Search' rather than a static 'Collection'.",
+            "visual_evidence": "The icon in the sidebar for 'Papers Since 2010' is a purple folder with a magnifying glass (Saved Search), not a regular yellow folder (Collection)."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent did not simply rename an existing folder.",
+            "visual_evidence": "The screenshots show the process of defining the search logic (Date/Year criteria) within the search dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The library contains 18 papers total. 10 are 'Classic' (1905-1960) and 8 are 'ML' papers (2012-2020). A correct search for 'Papers Since 2010' must use the 'Date' or 'Year' field and should return exactly 8 papers: AlexNet (2012), GANs (2014), Deep Learning (2015), ResNet (2016), AlphaGo (2016), Transformer (2017), BERT (2019), and GPT-3 (2020). The name must be exactly 'Papers Since 2010'."
+}

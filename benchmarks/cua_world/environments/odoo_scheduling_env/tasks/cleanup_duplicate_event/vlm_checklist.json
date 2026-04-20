@@ -1,0 +1,59 @@
+{
+    "task_id": "cleanup_duplicate_event@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_calendar",
+            "description": "Agent navigates to the Calendar application and views the date 3 days from today.",
+            "points": 10,
+            "visual_evidence": "The Calendar interface is visible, and the date displayed is 3 days ahead of the current system date."
+        },
+        {
+            "id": "identify_duplicates",
+            "description": "Agent identifies two 'Vendor Evaluation' events on the same day and time.",
+            "points": 15,
+            "visual_evidence": "Screenshots show two distinct event blocks both titled 'Vendor Evaluation' at the same time slot."
+        },
+        {
+            "id": "inspect_event_details",
+            "description": "Agent opens or hovers over the events to check for attendees.",
+            "points": 20,
+            "visual_evidence": "The event detail popover or full form view is shown for at least one of the 'Vendor Evaluation' events."
+        },
+        {
+            "id": "identify_ghost_event",
+            "description": "Agent distinguishes the event with no attendees from the one with Alice Johnson and Bob Williams.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with the event that shows an empty 'Attendees' field or list."
+        },
+        {
+            "id": "delete_ghost_event",
+            "description": "Agent deletes the duplicate 'Vendor Evaluation' event that has no attendees.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion is shown, or the event disappears from the calendar after a delete action is triggered on the empty event."
+        },
+        {
+            "id": "verify_valid_event_remains",
+            "description": "The valid 'Vendor Evaluation' event (with attendees) remains in the calendar.",
+            "points": 15,
+            "visual_evidence": "The calendar view shows exactly one 'Vendor Evaluation' event remaining, and its details show Alice Johnson and Bob Williams as attendees."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Odoo graphical interface rather than executing database queries or terminal commands to delete the record.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and UI navigation within the browser, not a terminal window or SQL console."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "The agent did not delete both events or the wrong event.",
+            "visual_evidence": "The final screenshot must show one 'Vendor Evaluation' event still present in the calendar."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent actually opened the event details to verify attendees rather than guessing which one to delete.",
+            "visual_evidence": "Screenshots show the attendee list being inspected for at least one of the duplicate events."
+        }
+    ],
+    "privileged_info_for_vlm": "There are two events named 'Vendor Evaluation' 3 days from today at 11:00 AM. The valid event contains two attendees: Alice Johnson and Bob Williams. The 'ghost' duplicate has zero attendees. The agent must delete the one with no attendees and keep the one with Alice and Bob."
+}

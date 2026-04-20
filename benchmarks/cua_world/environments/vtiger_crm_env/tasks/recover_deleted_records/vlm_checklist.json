@@ -1,0 +1,53 @@
+{
+    "task_id": "recover_deleted_records@1",
+    "task_completion": [
+        {
+            "id": "access_recycle_bin",
+            "description": "Agent navigates to the Recycle Bin module in the CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Recycle Bin' header or breadcrumb in the CRM interface."
+        },
+        {
+            "id": "restore_red_hat",
+            "description": "The organization 'Red Hat Inc' is selected and restored from the Recycle Bin.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing 'Red Hat Inc' selected in the Recycle Bin and the 'Restore' button being clicked, or 'Red Hat Inc' appearing back in the Organizations list."
+        },
+        {
+            "id": "restore_jim_whitehurst",
+            "description": "The contact 'Jim Whitehurst' is selected and restored from the Recycle Bin.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing 'Jim Whitehurst' selected in the Recycle Bin and the 'Restore' button being clicked, or 'Jim Whitehurst' appearing back in the Contacts list."
+        },
+        {
+            "id": "tag_red_hat",
+            "description": "The tag 'Recovered' is added to the 'Red Hat Inc' organization record.",
+            "points": 30,
+            "visual_evidence": "The 'Red Hat Inc' record detail view showing a tag or label with the text 'Recovered'."
+        },
+        {
+            "id": "selective_restoration_check",
+            "description": "Verify that 'Sun Microsystems' and 'Scott McNealy' were not restored.",
+            "points": 20,
+            "visual_evidence": "The Recycle Bin still contains 'Sun Microsystems' and 'Scott McNealy', or they are absent from the active Organizations/Contacts lists while the targets are present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_creation",
+            "description": "The agent must restore records from the Recycle Bin, not create new ones from scratch.",
+            "visual_evidence": "The VLM should see the agent interacting with the Recycle Bin module rather than the 'Add Organization' or 'Add Contact' forms."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the CRM web interface to perform the task.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and navigation within the browser-based CRM UI, not just terminal commands."
+        },
+        {
+            "id": "no_bulk_restore",
+            "description": "The agent selectively restores items rather than using a 'Restore All' function that would include the distractor records.",
+            "visual_evidence": "The VLM should see individual checkboxes selected for Red Hat and Jim Whitehurst, or a sequence of actions that avoids Sun Microsystems and Scott McNealy."
+        }
+    ],
+    "privileged_info_for_vlm": "The target organization to restore is 'Red Hat Inc' and the target contact is 'Jim Whitehurst'. The records to remain deleted are 'Sun Microsystems' (organization) and 'Scott McNealy' (contact). The specific tag to be applied to 'Red Hat Inc' is 'Recovered'. Restoration must occur via the Recycle Bin module."
+}

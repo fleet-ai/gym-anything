@@ -1,0 +1,53 @@
+{
+    "task_id": "compare_east_west_vs_south_rooftop_pv@1",
+    "task_completion": [
+        {
+            "id": "calculate_capacities",
+            "description": "Calculate DC system capacities for Strategy A (1300 kW) and Strategy B (1900 kW) based on the provided GCR and efficiency.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing calculations: 10000 * 0.20 * 0.65 = 1300 and 10000 * 0.20 * 0.95 = 1900."
+        },
+        {
+            "id": "pysam_setup_strategy_a",
+            "description": "Configure PySAM Pvwattsv8 for Strategy A with 15-degree tilt, 180-degree azimuth, and specified losses/efficiency.",
+            "points": 20,
+            "visual_evidence": "Python code showing PySAM/Pvwattsv8 initialization with tilt=15, azimuth=180, gcr=0.65, and weather file path."
+        },
+        {
+            "id": "pysam_setup_strategy_b",
+            "description": "Configure PySAM Pvwattsv8 for Strategy B with dual-tilt (East 90 deg / West 270 deg) at 10-degree tilt.",
+            "points": 25,
+            "visual_evidence": "Python code showing two simulation runs or array configurations for Strategy B: one at azimuth 90 and one at azimuth 270, each with half the total capacity (950 kW each)."
+        },
+        {
+            "id": "run_simulations",
+            "description": "Execute the simulations using the Phoenix TMY weather data file.",
+            "points": 20,
+            "visual_evidence": "Code execution or terminal logs showing the simulation running against '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Save the final results to the specified JSON file path with all required keys.",
+            "points": 20,
+            "visual_evidence": "Code showing the creation of '/home/ga/Documents/SAM_Projects/rooftop_layout_comparison.json' containing the 5 required keys: capacity_strategy_A_kw, capacity_strategy_B_total_kw, annual_energy_strategy_A_kwh, annual_energy_strategy_B_total_kwh, and winning_strategy."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding the energy values.",
+            "visual_evidence": "Import statements for 'PySAM' or 'pysam.Pvwattsv8' and calls to the simulation 'execute' method."
+        },
+        {
+            "id": "weather_file_access",
+            "description": "Verify the agent accessed the specific weather file provided in the instructions.",
+            "visual_evidence": "The string '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv' appearing in the code or file system logs."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Ensure the final JSON contains calculated numbers, not placeholder text.",
+            "visual_evidence": "The final JSON file content showing numeric values for energy production (e.g., values in the millions)."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected DC capacity for Strategy A is 1300 kW. The expected DC capacity for Strategy B is 1900 kW (950 kW East + 950 kW West). Using the Phoenix TMY data, Strategy A annual energy should be approximately 2,221,206 kWh (range 1.9M-2.8M). Strategy B annual energy should be approximately 2,912,573 kWh (range 2.5M-3.8M). Strategy B is the winning strategy due to higher total production. The output file must be /home/ga/Documents/SAM_Projects/rooftop_layout_comparison.json."
+}

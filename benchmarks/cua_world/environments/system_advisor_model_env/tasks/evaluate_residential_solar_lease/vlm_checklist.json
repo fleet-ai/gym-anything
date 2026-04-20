@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_residential_solar_lease@1",
+    "task_completion": [
+        {
+            "id": "pysam_script_creation",
+            "description": "The agent creates a Python script importing PySAM and initializing Pvwattsv8, Utilityrate5, and Thirdpartyownership modules.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing a .py file with 'import PySAM.Pvwattsv8', 'import PySAM.Utilityrate5', and 'import PySAM.Thirdpartyownership'."
+        },
+        {
+            "id": "system_config_input",
+            "description": "The script configures the PV system parameters: 8.0 kW size, 35 deg tilt, 180 deg azimuth, and Denver location/weather.",
+            "points": 15,
+            "visual_evidence": "Code showing system_capacity = 8, tilt = 35, azimuth = 180, and gcr/losses/dc_to_ac ratio settings."
+        },
+        {
+            "id": "utility_rate_config",
+            "description": "The script configures the utility rate with a $0.14/kWh buy rate, $12 monthly charge, and 2.5% escalation.",
+            "points": 15,
+            "visual_evidence": "Code showing ur_ec_tou_mat or flat rate set to 0.14, ur_monthly_fixed_charge = 12, and ur_escalation = 2.5."
+        },
+        {
+            "id": "tpo_financial_config",
+            "description": "The script configures TPO parameters: $0.08/kWh PPA price, 2.0% escalation, and 30% ITC.",
+            "points": 15,
+            "visual_evidence": "Code showing ppa_price = 0.08 (or 8 cents), ppa_escalation = 2.0, and itc_fed_percent = 30."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the script to chain the modules and run the simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running without errors or a 'Simulation complete' message."
+        },
+        {
+            "id": "json_export_verification",
+            "description": "The agent exports the results to the specific JSON file path with all required keys.",
+            "points": 20,
+            "visual_evidence": "Code or terminal showing the creation of '/home/ga/Documents/SAM_Projects/denver_solar_lease_results.json' containing keys like 'npv_of_savings_usd' and 'annual_energy_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final simulation values into the JSON export without running PySAM.",
+            "visual_evidence": "The script should show logic for extracting results from the PySAM module outputs (e.g., .Outputs.annual_energy) rather than a dictionary of static numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent used the PySAM library rather than manually calculating solar geometry or financial metrics.",
+            "visual_evidence": "Presence of module.execute() calls in the Python code."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file path specified in the instructions.",
+            "visual_evidence": "The string '/home/ga/Documents/SAM_Projects/denver_solar_lease_results.json' visible in the code's export section."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use Denver (39.74, -104.99). Key expected values: DC size 8.0kW, Tilt 35, Azimuth 180. PPA price is $0.08/kWh (8 cents) with 2% escalation. The output JSON must be at /home/ga/Documents/SAM_Projects/denver_solar_lease_results.json and must include exactly 16 specific keys including 'npv_of_savings_usd' and 'lcoe_nom_cents_per_kwh'. Annual energy should be approximately 12,000-14,000 kWh for this configuration in Denver."
+}

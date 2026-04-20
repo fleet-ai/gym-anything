@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_network_capacity_mfd@1",
+    "task_completion": [
+        {
+            "id": "sumo_command_execution",
+            "description": "Agent executes SUMO simulations for the specified demand scales (0.5, 1.0, 1.5, 2.0, 3.0) using the correct configuration file.",
+            "points": 15,
+            "visual_evidence": "Terminal output or script showing 'sumo' or 'sumo-gui' commands referencing '/home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg' and the '--scale' parameter for each required value."
+        },
+        {
+            "id": "summary_xml_generation",
+            "description": "Agent generates the summary XML files for each scale in the specified output directory.",
+            "points": 15,
+            "visual_evidence": "File explorer or 'ls' command showing files like 'summary_0.5.xml', 'summary_1.0.xml', etc., in '/home/ga/SUMO_Output/'."
+        },
+        {
+            "id": "data_processing_logic",
+            "description": "Agent processes the XML files to calculate max_running and avg_speed (excluding steps where running is 0).",
+            "points": 25,
+            "visual_evidence": "Python script or terminal commands (e.g., grep, awk, or pandas code) showing the logic for filtering 'running > 0' and calculating the mean of 'meanSpeed'."
+        },
+        {
+            "id": "csv_file_creation",
+            "description": "Agent creates the final CSV file with the correct header and path.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file manager showing the existence of '/home/ga/SUMO_Output/mfd_data.csv'."
+        },
+        {
+            "id": "accurate_results_recording",
+            "description": "The CSV file contains the correct calculated values for all five scales.",
+            "points": 30,
+            "visual_evidence": "Content of 'mfd_data.csv' (via 'cat' or text editor) showing the header 'scale,max_running,avg_speed' followed by the verified data points (e.g., 0.5, 253, 7.84)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply echo the final values into the CSV without running simulations.",
+            "visual_evidence": "The trajectory must show the simulation process (SUMO logs) and data extraction steps, not just a single 'echo' command with all the final numbers."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the provided file system and SUMO tools.",
+            "visual_evidence": "Screenshots show the agent navigating the specific directories (/home/ga/...) and calling the installed SUMO binaries."
+        },
+        {
+            "id": "correct_calculation_method",
+            "description": "Agent actually performed the averaging and rounding as requested.",
+            "visual_evidence": "Code or command logs showing the rounding to 2 decimal places and the exclusion of zero-running steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The verified results for mfd_data.csv are: Scale 0.5 (max_running: 253, avg_speed: 7.84), Scale 1.0 (max_running: 953, avg_speed: 4.40), Scale 1.5 (max_running: 1485, avg_speed: 2.67), Scale 2.0 (max_running: 1501, avg_speed: 2.46), and Scale 3.0 (max_running: 1549, avg_speed: 2.15). The agent must use the scale factor as the filename suffix (e.g., summary_0.5.xml) and the CSV must have the header: scale,max_running,avg_speed."
+}

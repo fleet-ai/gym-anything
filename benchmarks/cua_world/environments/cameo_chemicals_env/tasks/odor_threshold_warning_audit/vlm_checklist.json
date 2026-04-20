@@ -1,0 +1,59 @@
+{
+    "task_id": "odor_threshold_warning_audit@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website (https://cameochemicals.noaa.gov/).",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search interface."
+        },
+        {
+            "id": "search_chemicals",
+            "description": "Agent searches for the five specified chemicals: Benzene, Hydrogen Sulfide, Toluene, Carbon Monoxide, and Dichloromethane.",
+            "points": 15,
+            "visual_evidence": "Screenshots show search queries or individual chemical datasheets for the five substances on the CAMEO site."
+        },
+        {
+            "id": "extract_odor_thresholds",
+            "description": "Agent identifies the odor threshold values for each chemical from the CAMEO datasheets.",
+            "points": 20,
+            "visual_evidence": "The agent highlights or scrolls to the 'Odor Threshold' or 'Physical Properties' section of the chemical datasheets."
+        },
+        {
+            "id": "extract_osha_pel",
+            "description": "Agent identifies the OSHA PEL (TWA or Ceiling) for each chemical.",
+            "points": 20,
+            "visual_evidence": "The agent views the 'Regulatory Information' or 'Exposure Limits' section on CAMEO or a linked OSHA/NIOSH resource."
+        },
+        {
+            "id": "perform_assessment_logic",
+            "description": "Agent compares Odor Threshold to PEL to determine ADEQUATE, INADEQUATE, or NO_WARNING status.",
+            "points": 20,
+            "visual_evidence": "The agent is seen recording or typing the assessment results based on the comparison logic."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Agent creates and saves the CSV file at /home/ga/Documents/odor_safety_audit.csv with the correct header and data.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the creation of the CSV file with the header: Chemical,Odor_ppm,PEL_ppm,Assessment."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent interacted with the CAMEO Chemicals website rather than using pre-cached data or terminal-only lookups.",
+            "visual_evidence": "Screenshots show the browser navigating the NOAA domain and clicking on specific chemical links."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply paste the final table from memory without visiting the source pages.",
+            "visual_evidence": "The trajectory shows a sequence of searching and reading for each individual chemical."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent saved the file to the specific requested directory and filename.",
+            "visual_evidence": "The file manager or terminal shows the file exists at /home/ga/Documents/odor_safety_audit.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified values for assessment: 1. Benzene: PEL=1ppm, Odor=~60ppm (INADEQUATE). 2. Hydrogen Sulfide: PEL=20ppm, Odor=~1ppm (ADEQUATE). 3. Toluene: PEL=200ppm, Odor=~1.6-2.1ppm (ADEQUATE). 4. Carbon Monoxide: PEL=50ppm, Odor=Odorless/NA (NO_WARNING). 5. Dichloromethane: PEL=25ppm, Odor=~160-250ppm (INADEQUATE). Note: If a range is given for odor, the agent must use the lower value. Assessment logic: Odor < PEL = ADEQUATE; Odor >= PEL = INADEQUATE; Odorless = NO_WARNING."
+}

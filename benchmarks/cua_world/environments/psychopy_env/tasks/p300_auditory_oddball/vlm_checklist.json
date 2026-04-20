@@ -1,0 +1,59 @@
+{
+    "task_id": "p300_auditory_oddball@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create the conditions CSV file with 300 rows and correct columns (tone_hz, trigger_code, is_target).",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing 'p300_conditions.csv' with headers and data rows (1000/2000 Hz)."
+        },
+        {
+            "id": "psychopy_flow_structure",
+            "description": "Build the experiment flow in PsychoPy with a trial loop, at least 2 blocks, and a rest screen.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder 'Flow' pane showing nested loops (blocks/trials) and a routine for the rest screen."
+        },
+        {
+            "id": "stimulus_and_timing_config",
+            "description": "Configure the sound stimulus to 20ms and the ISI to a jittered range of 900-1100ms.",
+            "points": 20,
+            "visual_evidence": "The Sound component properties showing duration '0.02' and a Static/ISI component or code showing 'random() * 0.2 + 0.9' or similar logic."
+        },
+        {
+            "id": "trigger_code_component",
+            "description": "Implement a code component that prints the trigger code to the console at stimulus onset.",
+            "points": 15,
+            "visual_evidence": "A PsychoPy Code Component window showing 'print(trigger_code)' in the 'Begin Routine' or 'Each Frame' tab."
+        },
+        {
+            "id": "feedback_screen_logic",
+            "description": "Create a final feedback screen that displays hit rate and false alarm rate.",
+            "points": 20,
+            "visual_evidence": "A Text component in a final routine containing variables for hit rate and false alarm rate (e.g., $hit_rate)."
+        },
+        {
+            "id": "file_saving_verification",
+            "description": "Save the .psyexp and .csv files to the specified absolute paths.",
+            "points": 10,
+            "visual_evidence": "The file explorer or PsychoPy title bar showing the path /home/ga/PsychoPyExperiments/p300_oddball.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking components, editing properties, and dragging routines in the PsychoPy interface."
+        },
+        {
+            "id": "genuine_conditions_generation",
+            "description": "The agent actually generated 300 rows of data rather than a placeholder file.",
+            "visual_evidence": "The conditions file properties in PsychoPy showing '300 conditions' or a scrollbar in a CSV editor indicating a long file."
+        },
+        {
+            "id": "no_hardcoded_feedback",
+            "description": "The feedback screen uses variables to calculate performance rather than static text.",
+            "visual_evidence": "The Text component properties showing code/variables (starting with $) instead of fixed numbers like 'Hit Rate: 90%'."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/p300_oddball.psyexp. The conditions file at /home/ga/PsychoPyExperiments/conditions/p300_conditions.csv must contain exactly 300 trials: 240 'standard' (1000 Hz, trigger 1, is_target 0) and 60 'deviant' (2000 Hz, trigger 2, is_target 1). The tone duration must be 0.02s. The ISI must be jittered between 0.9 and 1.1 seconds."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "add_exercise_image@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger application as admin.",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or exercise list is visible, and the 'admin' username appears in the navigation bar or user profile section."
+        },
+        {
+            "id": "navigate_to_exercise",
+            "description": "Agent navigates to the 'Standard Push-up' exercise detail page.",
+            "points": 15,
+            "visual_evidence": "The browser shows the exercise catalog or a specific page titled 'Standard Push-up'."
+        },
+        {
+            "id": "open_image_upload_form",
+            "description": "Agent initiates the process to add a new image to the exercise.",
+            "points": 15,
+            "visual_evidence": "An 'Add image' button is clicked, and a file upload form or modal appears on the screen."
+        },
+        {
+            "id": "select_correct_file",
+            "description": "Agent selects the file 'pushup_reference.jpg' from the Documents folder.",
+            "points": 25,
+            "visual_evidence": "The file picker dialog or the form's file input field shows 'pushup_reference.jpg' as the selected file."
+        },
+        {
+            "id": "set_license",
+            "description": "Agent selects the 'Creative Commons' (CC BY-SA) license in the form.",
+            "points": 15,
+            "visual_evidence": "The license dropdown or radio button is set to 'Creative Commons' or 'CC BY-SA'."
+        },
+        {
+            "id": "successful_upload_confirmation",
+            "description": "Agent submits the form and the image is successfully added to the exercise.",
+            "points": 20,
+            "visual_evidence": "A success message (e.g., 'Image added') appears, or the 'Standard Push-up' page now displays the uploaded image in its gallery."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than manipulating the database via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within the browser, not just terminal commands."
+        },
+        {
+            "id": "genuine_file_selection",
+            "description": "The agent interacted with the file system to upload the specific requested file.",
+            "visual_evidence": "The file upload dialog or the path in the browser form matches '~/Documents/pushup_reference.jpg'."
+        },
+        {
+            "id": "no_hardcoded_url_bypass",
+            "description": "The agent navigated through the application menus to find the exercise.",
+            "visual_evidence": "The trajectory shows the agent clicking through the 'Exercises' menu rather than jumping directly to a final URL if not previously known."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must upload '/home/ga/Documents/pushup_reference.jpg' to the 'Standard Push-up' exercise. Note: The source file provided in the environment might be an HTML error page disguised as a .jpg; if the wger application (Django/Pillow) rejects it with an 'Upload a valid image' error, the agent has correctly attempted the task but is blocked by a file integrity issue. The license must be set to 'Creative Commons' or 'CC BY-SA'."
+}

@@ -1,0 +1,56 @@
+{
+    "task_id": "recognition_memory_sdt_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_data_file",
+            "description": "Agent locates and opens the raw data file at ~/pebl/data/recognition_memory_data.csv.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or terminal showing the path ~/pebl/data/recognition_memory_data.csv or the contents of the CSV file."
+        },
+        {
+            "id": "exclude_contaminated_participant",
+            "description": "Agent identifies and excludes participant sub-99999 from the analysis.",
+            "points": 15,
+            "visual_evidence": "Code or a data processing step showing a filter or drop command specifically targeting 'sub-99999' or participants with RTs < 50ms."
+        },
+        {
+            "id": "calculate_sdt_metrics",
+            "description": "Agent calculates Hit Rate and False Alarm Rate to derive d-prime and criterion for the remaining 14 participants.",
+            "points": 30,
+            "visual_evidence": "Code snippets or intermediate outputs showing the calculation of d-prime (z(Hit) - z(FA)) and criterion (-0.5 * (z(Hit) + z(FA)))."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent creates the final report in JSON format containing the SDT metrics.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output displaying a JSON structure with keys for participant_id, d_prime, and criterion."
+        },
+        {
+            "id": "save_report_to_path",
+            "description": "Agent saves the final report to the specific path ~/pebl/analysis/sdt_report.json.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'ls ~/pebl/analysis/') or a 'Save As' dialog confirming the file exists at the required location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not hardcode the final SDT values without performing calculations.",
+            "points": 0,
+            "visual_evidence": "The agent's code should show logic for calculating means/z-scores rather than a JSON file created with pre-filled numbers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually read the CSV file rather than guessing the participant count.",
+            "points": 0,
+            "visual_evidence": "Screenshots should show the agent opening, reading, or loading the CSV file into a tool like Python/Pandas or Excel."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "Agent excluded sub-99999 based on the criteria (RT/Accuracy) rather than just deleting a random row.",
+            "points": 0,
+            "visual_evidence": "Code or commands showing a conditional check for participant ID 'sub-99999' or the specific impossible RT range (25-45ms)."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains exactly 15 participants total. 14 are valid (sub-10159 to sub-10172) and 1 is contaminated (sub-99999). Sub-99999 has 100% accuracy and RTs between 25-45ms; this participant MUST be excluded from the final JSON report. The final report must be saved to ~/pebl/analysis/sdt_report.json and contain d-prime and criterion for the 14 valid participants."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_imu_navigation@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has the Webots simulation open with the WAREHOUSE_AMR robot visible in the scene tree.",
+            "points": 10,
+            "visual_evidence": "Webots application window is active, and 'WAREHOUSE_AMR' is listed in the Scene Tree on the left."
+        },
+        {
+            "id": "add_inertial_unit",
+            "description": "An InertialUnit named 'inertial_unit' is added to the robot's children with noise set to 0.0005.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows an 'InertialUnit' under the robot's children. The selection panel shows 'name \"inertial_unit\"' and 'noise 0.0005'."
+        },
+        {
+            "id": "add_accelerometer",
+            "description": "An Accelerometer named 'accelerometer' is added with the specified lookupTable.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows an 'Accelerometer'. The selection panel shows 'name \"accelerometer\"' and 'lookupTable [-100 -100 0.003, 100 100 0.003]'."
+        },
+        {
+            "id": "add_gyro",
+            "description": "A Gyro named 'gyro' is added with the specified lookupTable.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows a 'Gyro'. The selection panel shows 'name \"gyro\"' and 'lookupTable [-34.9 -34.9 0.001, 34.9 34.9 0.001]'."
+        },
+        {
+            "id": "update_basic_time_step",
+            "description": "The simulation's basicTimeStep is updated to 8.",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree under 'WorldInfo', the 'basicTimeStep' field is set to 8."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world is saved to the specific path /home/ga/Desktop/imu_configured.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog or a file manager window shows the file 'imu_configured.wbt' being saved to the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to add nodes and edit fields rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the 'Add Node' dialog or the field editor in the Webots Scene Tree being used."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent entered the specific numerical values requested, not default or placeholder values.",
+            "visual_evidence": "The noise and lookupTable fields in the Webots inspector contain the exact values from the task description (0.0005, 100, 34.9)."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent performed a save action within the software.",
+            "visual_evidence": "The File menu is opened or the Save icon is clicked, or a 'Save As' file browser appears."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot name is 'WAREHOUSE_AMR'. Required IMU components and values: InertialUnit (name: 'inertial_unit', noise: 0.0005), Accelerometer (name: 'accelerometer', lookupTable: [-100 -100 0.003, 100 100 0.003]), Gyro (name: 'gyro', lookupTable: [-34.9 -34.9 0.001, 34.9 34.9 0.001]). The WorldInfo basicTimeStep must be changed from 64 to 8. The final file must be saved as /home/ga/Desktop/imu_configured.wbt."
+}

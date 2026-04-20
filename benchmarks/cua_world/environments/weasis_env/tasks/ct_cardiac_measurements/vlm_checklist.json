@@ -1,0 +1,59 @@
+{
+    "task_id": "ct_cardiac_measurements@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_series",
+            "description": "The agent opens the CT series located at /home/ga/DICOM/studies/chest_ct/ in a medical imaging viewer.",
+            "points": 10,
+            "visual_evidence": "A DICOM viewer (like Horos, Weasis, or a Python-based viewer) is visible showing a chest CT scan."
+        },
+        {
+            "id": "identify_axial_slice",
+            "description": "The agent navigates to an axial slice where the heart diameter appears largest.",
+            "points": 15,
+            "visual_evidence": "The viewer displays an axial cross-section of the mid-thorax showing the maximum breadth of the heart."
+        },
+        {
+            "id": "measure_cardiac_width",
+            "description": "The agent uses a measurement tool to determine the maximum transverse cardiac diameter.",
+            "points": 20,
+            "visual_evidence": "A measurement line or caliper tool is visible spanning the widest part of the heart on the axial slice."
+        },
+        {
+            "id": "measure_thoracic_width",
+            "description": "The agent uses a measurement tool to determine the widest inner thoracic diameter.",
+            "points": 20,
+            "visual_evidence": "A measurement line or caliper tool is visible spanning the internal diameter of the rib cage at its widest point."
+        },
+        {
+            "id": "export_annotated_image",
+            "description": "The agent exports the slice with measurements to /home/ga/DICOM/exports/cardiac_analysis.png.",
+            "points": 15,
+            "visual_evidence": "A file save dialog or terminal command confirms the export of the PNG file to the specified path."
+        },
+        {
+            "id": "save_report_file",
+            "description": "The agent saves a text report containing cardiac width, thoracic width, and CTR to /home/ga/DICOM/exports/cardiac_report.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows the creation of a report with the three required numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed measurements using the imaging software's GUI tools rather than just writing a script to generate a report.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement icons or dragging measurement lines on the image."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the values from the task prompt or privileged info without performing the measurement.",
+            "visual_evidence": "The measurement values in the final report match the labels/numbers visible on the measurement tools in the GUI."
+        },
+        {
+            "id": "genuine_file_path",
+            "description": "The agent accessed the specific directory provided in the instructions.",
+            "visual_evidence": "The file explorer or DICOM import dialog shows the path /home/ga/DICOM/studies/chest_ct/."
+        }
+    ],
+    "privileged_info_for_vlm": "The CT data is located at /home/ga/DICOM/studies/chest_ct/. The agent must calculate the CTR (Cardiothoracic Ratio) as Cardiac Width / Thoracic Width. A valid CTR for this task should generally fall between 0.25 and 0.80 to be considered realistic. The final outputs must be saved exactly to /home/ga/DICOM/exports/cardiac_analysis.png and /home/ga/DICOM/exports/cardiac_report.txt."
+}

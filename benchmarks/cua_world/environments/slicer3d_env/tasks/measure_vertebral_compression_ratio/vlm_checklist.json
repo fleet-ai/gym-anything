@@ -1,0 +1,53 @@
+{
+    "task_id": "measure_vertebral_compression_ratio@1",
+    "task_completion": [
+        {
+            "id": "load_spine_ct",
+            "description": "The agent successfully loads the spine CT volume into the 3D Slicer interface.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer application is open and a CT scan of a spine is visible in the slice viewers (Red, Green, Yellow views)."
+        },
+        {
+            "id": "measure_anterior_height",
+            "description": "The agent uses a measurement tool (e.g., Markups Line) to measure the anterior height of the L1 vertebral body.",
+            "points": 20,
+            "visual_evidence": "A measurement line or ruler is visible on the anterior (front) edge of the L1 vertebra in the sagittal view, with a distance value displayed."
+        },
+        {
+            "id": "measure_posterior_height",
+            "description": "The agent uses a measurement tool to measure the posterior height of the L1 vertebral body.",
+            "points": 20,
+            "visual_evidence": "A measurement line or ruler is visible on the posterior (back) edge of the L1 vertebra in the sagittal view, with a distance value displayed."
+        },
+        {
+            "id": "calculate_ratio_and_severity",
+            "description": "The agent calculates the compression ratio and determines the severity classification.",
+            "points": 20,
+            "visual_evidence": "The agent may be seen using a calculator, or typing the ratio (approx 0.89) and classification ('Normal') into a text editor or terminal."
+        },
+        {
+            "id": "save_json_results",
+            "description": "The agent saves the measurements and classification to the specified JSON file path.",
+            "points": 30,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'echo') or a text editor shows the creation of '~/Documents/SlicerData/Exports/l1_compression_measurements.json' containing the required fields: vertebral_level, anterior_height_mm, posterior_height_mm, compression_ratio, and classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed measurements using the 3D Slicer GUI tools rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's 'Markups' or 'Ruler' tools and lines appearing over the anatomy."
+        },
+        {
+            "id": "no_hardcoded_shortcut",
+            "description": "The agent did not simply write the JSON file immediately after opening the application without performing measurements.",
+            "visual_evidence": "The trajectory shows a sequence of actions within Slicer (scrolling, placing points) before the final file is saved."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the 3D Slicer application interface rather than using terminal-only commands to manipulate the data.",
+            "visual_evidence": "The 3D Slicer window is the active window during the measurement phase of the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The L1 vertebra in this synthetic scan has an anterior height of 28.5 mm and a posterior height of 32.0 mm. The resulting compression ratio is approximately 0.8906. According to the Genant semi-quantitative method, this ~11% height loss is classified as 'Normal' (Grade 0). The agent's saved JSON should closely reflect these values."
+}

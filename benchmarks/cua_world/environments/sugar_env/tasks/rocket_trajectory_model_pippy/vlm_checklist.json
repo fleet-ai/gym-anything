@@ -1,0 +1,59 @@
+{
+    "task_id": "rocket_trajectory_model_pippy@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named 'trajectory_model.py' in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A text editor or file manager showing '/home/ga/Documents/trajectory_model.py' being created or saved."
+        },
+        {
+            "id": "correct_parameters_in_code",
+            "description": "The script contains the correct constants: v0=30.0, theta=60, g=9.8, and dt=0.1.",
+            "points": 20,
+            "visual_evidence": "Code visible in the editor showing variables assigned to 30.0, 60, 9.8, and 0.1 respectively."
+        },
+        {
+            "id": "kinematic_logic",
+            "description": "The script implements the projectile motion equations for X and Y as specified.",
+            "points": 20,
+            "visual_evidence": "Code showing X = v0 * cos(theta) * t and Y = v0 * sin(theta) * t - 0.5 * g * t^2 (or equivalent logic)."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script to generate the output file.",
+            "points": 15,
+            "visual_evidence": "A terminal window or IDE console showing the command 'python3 /home/ga/Documents/trajectory_model.py' being run."
+        },
+        {
+            "id": "csv_file_generation",
+            "description": "The CSV file 'rocket_trajectory.csv' is created in the correct directory.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal 'ls' command showing '/home/ga/Documents/rocket_trajectory.csv' exists."
+        },
+        {
+            "id": "csv_content_verification",
+            "description": "The CSV contains the correct header, 2-decimal formatting, and only non-negative Y values.",
+            "points": 25,
+            "visual_evidence": "A view of the CSV content showing header 'Time,X,Y', values like '0.00,0.00,0.00', and no negative Y values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type the CSV data into a file without running a script.",
+            "visual_evidence": "The agent should be seen writing and executing code, not just using 'echo' or a text editor to manually fill the CSV with pre-calculated values."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the GUI/IDE/Terminal rather than just using a single 'export_result' command.",
+            "visual_evidence": "Screenshots show step-by-step progress in a text editor and terminal."
+        },
+        {
+            "id": "parameter_adherence",
+            "description": "The agent used the specific values provided in the prompt rather than default or random values.",
+            "visual_evidence": "The code and output values match the specific inputs (v0=30, theta=60) rather than generic projectile motion examples."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be at /home/ga/Documents/trajectory_model.py and the CSV at /home/ga/Documents/rocket_trajectory.csv. Key values for verification: v0=30.0, theta=60 deg, g=9.8, dt=0.1. Expected CSV values: At t=1.00, X=15.00 and Y=21.08. At t=2.00, X=30.00 and Y=32.36. The final time entry should be t=5.30 (the last point where Y >= 0)."
+}

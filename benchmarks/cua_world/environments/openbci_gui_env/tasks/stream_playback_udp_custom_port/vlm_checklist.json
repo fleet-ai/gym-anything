@@ -1,0 +1,65 @@
+{
+    "task_id": "stream_playback_udp_custom_port@1",
+    "task_completion": [
+        {
+            "id": "playback_mode_selected",
+            "description": "OpenBCI GUI is set to 'PLAYBACK' mode in the control panel.",
+            "points": 10,
+            "visual_evidence": "The 'PLAYBACK' button is highlighted or selected in the initial configuration window."
+        },
+        {
+            "id": "recording_file_loaded",
+            "description": "The specific recording file 'OpenBCI-EEG-S001-EyesOpen.txt' is selected for playback.",
+            "points": 15,
+            "visual_evidence": "The file path or filename 'OpenBCI-EEG-S001-EyesOpen.txt' is visible in the file selection box of the Playback configuration."
+        },
+        {
+            "id": "networking_widget_active",
+            "description": "The Networking widget is opened within the GUI.",
+            "points": 10,
+            "visual_evidence": "A widget titled 'Networking' is visible in one of the application panes."
+        },
+        {
+            "id": "udp_protocol_configured",
+            "description": "The Networking widget is configured to use the UDP protocol.",
+            "points": 15,
+            "visual_evidence": "The protocol dropdown or selection in the Networking widget shows 'UDP'."
+        },
+        {
+            "id": "custom_port_set",
+            "description": "The UDP port is set to 12345.",
+            "points": 20,
+            "visual_evidence": "The number '12345' is typed into the Port input field within the Networking widget."
+        },
+        {
+            "id": "playback_started",
+            "description": "The data playback session has been started.",
+            "points": 15,
+            "visual_evidence": "The 'Start Playback' or 'Start Session' button has been clicked, and EEG waveforms begin to scroll across the screen."
+        },
+        {
+            "id": "network_stream_started",
+            "description": "The network stream is actively transmitting data.",
+            "points": 15,
+            "visual_evidence": "The 'Start' or 'Stream' button within the Networking widget is toggled to an active state (e.g., turns green or says 'Stop')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OpenBCI GUI to configure settings rather than executing background scripts to bypass the interface.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI elements like the Port text box and Protocol dropdown."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use the terminal to manually send UDP packets or mock the data stream.",
+            "visual_evidence": "The terminal is not used to run netcat (nc) or custom python scripts to simulate the stream."
+        },
+        {
+            "id": "authentic_data_source",
+            "description": "The agent loaded the actual file from the specified path rather than a dummy file.",
+            "visual_evidence": "The file browser or text field shows the path ~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-EyesOpen.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires the file 'OpenBCI-EEG-S001-EyesOpen.txt' to be loaded in Playback mode. The Networking widget must be set to Protocol: UDP and Port: 12345. Both the main system 'Start Session' button and the Networking widget's 'Start' button must be activated for the task to be complete."
+}

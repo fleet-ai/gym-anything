@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_ptz_camera_optics@1",
+    "task_completion": [
+        {
+            "id": "locate_inspection_camera",
+            "description": "Locate and select the 'inspection_camera' node under the 'CRAWLER_ROBOT' in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The 'inspection_camera' node is highlighted or expanded in the Webots scene tree sidebar."
+        },
+        {
+            "id": "set_resolution",
+            "description": "Set the camera resolution to 1920x1080.",
+            "points": 15,
+            "visual_evidence": "The 'width' field is set to 1920 and the 'height' field is set to 1080 in the camera's field editor."
+        },
+        {
+            "id": "set_base_fov",
+            "description": "Set the camera's base fieldOfView to 1.57 radians.",
+            "points": 15,
+            "visual_evidence": "The 'fieldOfView' field of the Camera node shows the value 1.57."
+        },
+        {
+            "id": "configure_focus_node",
+            "description": "Add/configure a Focus node with focalLength 0.05, minFocalDistance 0.1, and maxFocalDistance 10.0.",
+            "points": 25,
+            "visual_evidence": "The 'focus' field of the Camera node is populated with a Focus node showing focalLength: 0.05, minFocalDistance: 0.1, and maxFocalDistance: 10."
+        },
+        {
+            "id": "configure_zoom_node",
+            "description": "Add/configure a Zoom node with maxFieldOfView 1.57 and minFieldOfView 0.157.",
+            "points": 25,
+            "visual_evidence": "The 'zoom' field of the Camera node is populated with a Zoom node showing maxFieldOfView: 1.57 and minFieldOfView: 0.157."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the world to the specified path /home/ga/Desktop/ptz_inspection_camera.wbt.",
+            "points": 10,
+            "visual_evidence": "The 'Save World As...' dialog is used or a terminal command confirms the file was saved to /home/ga/Desktop/ptz_inspection_camera.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node parameters rather than just editing the text file directly.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_hardcoded_script_execution",
+            "description": "The agent did not simply run a pre-written script to generate the file without manual configuration.",
+            "visual_evidence": "The agent is seen navigating the node hierarchy and typing values into the GUI fields."
+        },
+        {
+            "id": "correct_node_context",
+            "description": "The changes were applied specifically to the 'inspection_camera' on the 'CRAWLER_ROBOT'.",
+            "visual_evidence": "The scene tree shows the CRAWLER_ROBOT node expanded to reveal the inspection_camera being edited."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure the 'inspection_camera' node with: width=1920, height=1080, fieldOfView=1.57. It must add/edit a Focus node (focalLength=0.05, minFocalDistance=0.1, maxFocalDistance=10.0) and a Zoom node (maxFieldOfView=1.57, minFieldOfView=0.157). The final file must be saved as /home/ga/Desktop/ptz_inspection_camera.wbt."
+}

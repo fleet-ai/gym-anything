@@ -1,0 +1,53 @@
+{
+    "task_id": "design_workflow@1",
+    "task_completion": [
+        {
+            "id": "workflow_header_created",
+            "description": "Create the 'Project_Initiation_WF' workflow record associated with the 'C_Project' table.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the 'Workflow' window showing 'Project_Initiation_WF' in the Name field and 'C_Project' (or Project) in the Table field."
+        },
+        {
+            "id": "nodes_created",
+            "description": "Create three workflow nodes: 'WF_Start', 'WF_Review', and 'WF_Approved'.",
+            "points": 25,
+            "visual_evidence": "The 'Workflow Node' tab or sub-grid showing three distinct records with the exact names 'WF_Start', 'WF_Review', and 'WF_Approved'."
+        },
+        {
+            "id": "start_node_configured",
+            "description": "Set 'WF_Start' as the official Start Node of the workflow.",
+            "points": 15,
+            "visual_evidence": "The 'Workflow' header tab showing the 'Start Node' field populated with 'WF_Start'."
+        },
+        {
+            "id": "transition_start_to_review",
+            "description": "Configure the transition from 'WF_Start' to 'WF_Review'.",
+            "points": 20,
+            "visual_evidence": "The 'Node Next' tab for 'WF_Start' showing 'WF_Review' as the destination/Next Node."
+        },
+        {
+            "id": "transition_review_to_approved",
+            "description": "Configure the transition from 'WF_Review' to 'WF_Approved'.",
+            "points": 25,
+            "visual_evidence": "The 'Node Next' tab for 'WF_Review' showing 'WF_Approved' as the destination/Next Node."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show the iDempiere browser window, menu navigation, and form filling, not just a SQL terminal."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the Application Dictionary to find the Workflow windows.",
+            "visual_evidence": "The menu search bar or tree navigation is used to locate 'Workflow' and 'Workflow Node' windows."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually typed or selected the specific node names and table names.",
+            "visual_evidence": "Cursor focus and typing indicators in the Name and Table fields within the iDempiere UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct table name for 'Project' in iDempiere is 'C_Project'. The workflow must be defined in the 'Workflow' window (AD_Workflow table). Transitions are defined in the 'Node Next' tab (AD_WF_NodeNext table) under each specific node. Ensure the flow is strictly linear: WF_Start -> WF_Review -> WF_Approved."
+}

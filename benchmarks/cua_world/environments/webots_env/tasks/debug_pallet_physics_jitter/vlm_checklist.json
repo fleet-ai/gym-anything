@@ -1,0 +1,59 @@
+{
+    "task_id": "debug_pallet_physics_jitter@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment and locates the WorldInfo node.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the Webots application open with a scene tree on the left containing a 'WorldInfo' node."
+        },
+        {
+            "id": "set_global_cfm",
+            "description": "The agent sets the global 'cfm' field in the WorldInfo node to 0.005.",
+            "points": 15,
+            "visual_evidence": "The 'cfm' field in the WorldInfo node's attribute panel is visible and set to 0.005."
+        },
+        {
+            "id": "set_global_erp",
+            "description": "The agent sets the global 'erp' field in the WorldInfo node to 0.4.",
+            "points": 15,
+            "visual_evidence": "The 'erp' field in the WorldInfo node's attribute panel is visible and set to 0.4."
+        },
+        {
+            "id": "set_default_damping",
+            "description": "The agent sets the 'defaultDamping' linear and angular fields to 0.2.",
+            "points": 20,
+            "visual_evidence": "The 'defaultDamping' field in WorldInfo is expanded, showing 'linear' and 'angular' both set to 0.2."
+        },
+        {
+            "id": "set_cardboard_soft_cfm",
+            "description": "The agent locates the 'cardboard' ContactProperties and sets 'softCFM' to 0.001.",
+            "points": 25,
+            "visual_evidence": "The 'contactProperties' list in WorldInfo is expanded to show a ContactProperties node with material 'cardboard' and 'softCFM' set to 0.001."
+        },
+        {
+            "id": "save_stabilized_world",
+            "description": "The agent saves the modified world to the specified path /home/ga/Desktop/stabilized_pallet.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a terminal command showing the file being saved to '/home/ga/Desktop/stabilized_pallet.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots Scene Tree and selection panels."
+        },
+        {
+            "id": "no_hardcoding_script",
+            "description": "The agent did not simply run a script to overwrite the file without opening the simulation.",
+            "visual_evidence": "The Webots application window is active and the scene tree is manipulated across multiple frames."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered the values into the Webots interface.",
+            "visual_evidence": "Sequential screenshots showing the values being typed or changed in the Webots attribute editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must modify the WorldInfo node in Webots with these exact values: cfm=0.005, erp=0.4, defaultDamping (linear and angular)=0.2. Additionally, within the ContactProperties for 'cardboard', softCFM must be 0.001. The final file must be saved as /home/ga/Desktop/stabilized_pallet.wbt."
+}

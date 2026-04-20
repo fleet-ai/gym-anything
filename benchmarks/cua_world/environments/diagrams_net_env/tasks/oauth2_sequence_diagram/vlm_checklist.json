@@ -1,0 +1,62 @@
+{
+    "task_id": "oauth2_sequence_diagram@1",
+    "task_completion": [
+        {
+            "id": "open_correct_files",
+            "description": "Agent opens the draw.io application with the existing diagram and the specification text file.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the draw.io interface with 'oauth2_flow.drawio' open and a text editor showing 'oauth2_sequence_spec.txt'."
+        },
+        {
+            "id": "add_lifelines_page_1",
+            "description": "On Page-1, 'Token Store' and 'Resource Server' lifelines are added to the existing diagram.",
+            "points": 15,
+            "visual_evidence": "The diagram on Page-1 shows five lifelines in total, including the new 'Token Store' and 'Resource Server' labels."
+        },
+        {
+            "id": "model_token_exchange_resource_access",
+            "description": "Messages 7-15 are modeled on Page-1, covering Token Exchange and Resource Access phases.",
+            "points": 25,
+            "visual_evidence": "Sequence arrows labeled with messages 7-10 (Client, Auth Server, Token Store) and 11-15 (Client, Resource Server, Auth Server) are visible on Page-1."
+        },
+        {
+            "id": "uml_alt_fragment",
+            "description": "A UML 'alt' fragment is added for Resource Access validation showing 200 OK and 401 Unauthorized cases.",
+            "points": 15,
+            "visual_evidence": "A rectangular frame labeled 'alt' is visible on Page-1, containing two sections for success and failure response scenarios."
+        },
+        {
+            "id": "create_second_page",
+            "description": "A second page named 'Token Refresh Flow' is created with Client, Auth Server, and Token Store lifelines.",
+            "points": 20,
+            "visual_evidence": "A tab at the bottom of the draw.io interface labeled 'Token Refresh Flow' is visible, containing a diagram with the three specified lifelines."
+        },
+        {
+            "id": "export_svg",
+            "description": "The diagram is exported as an SVG file to the specified directory.",
+            "points": 15,
+            "visual_evidence": "The file manager or a terminal 'ls' command shows 'oauth2_flow.svg' exists in '~/Diagrams/exports/' or the export dialog shows the completed path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the draw.io GUI to edit the diagram rather than just generating a file via script.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with draw.io elements, dragging shapes, or typing labels in the app."
+        },
+        {
+            "id": "no_placeholder_text",
+            "description": "The agent used the actual message content from the spec file, not generic 'message 1' placeholders.",
+            "points": 0,
+            "visual_evidence": "Diagram labels contain specific OAuth terms like 'access_token', 'refresh_token', or 'validate token' as per the spec."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The agent used the application's export feature.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the 'File > Export as > SVG' menu sequence or the export dialog box."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial diagram has 3 lifelines and 6 messages. The final Page-1 must have 5 lifelines (User, Client, Auth Server, Token Store, Resource Server) and messages up to 15. The 'alt' fragment must specifically show 200 OK and 401 Unauthorized. The second page must be named 'Token Refresh Flow'. The export path is /home/ga/Diagrams/exports/oauth2_flow.svg."
+}

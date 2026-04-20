@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_meeting_schedule@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the Odoo system with admin credentials.",
+            "points": 10,
+            "visual_evidence": "The Odoo dashboard or Calendar view is visible, and the user profile/avatar indicates 'admin' is logged in."
+        },
+        {
+            "id": "locate_calendar_events",
+            "description": "Agent navigates to the Calendar and identifies 'Team Standup' and 'Q2 Financial Review' on next Monday.",
+            "points": 15,
+            "visual_evidence": "The Calendar view is shown with both 'Team Standup' (9:00 AM) and 'Q2 Financial Review' (originally 10:00 AM) visible on the schedule."
+        },
+        {
+            "id": "update_start_time",
+            "description": "Agent modifies the 'Q2 Financial Review' start time to 9:30 AM to follow 'Team Standup' immediately.",
+            "points": 25,
+            "visual_evidence": "The event edit dialog or drag-and-drop action shows the start time for 'Q2 Financial Review' being set to 09:30:00."
+        },
+        {
+            "id": "update_location",
+            "description": "Agent changes the location of 'Q2 Financial Review' to 'Main Conference Room'.",
+            "points": 25,
+            "visual_evidence": "The 'Location' field in the event details for 'Q2 Financial Review' is updated to 'Main Conference Room'."
+        },
+        {
+            "id": "verify_duration_and_final_state",
+            "description": "Agent saves the changes, ensuring the duration remains 1 hour 30 minutes (ending at 11:00 AM).",
+            "points": 25,
+            "visual_evidence": "The final Calendar view shows 'Q2 Financial Review' spanning from 9:30 AM to 11:00 AM in the 'Main Conference Room' without overlapping or leaving a gap after the 9:30 AM end of the Standup."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the Odoo web interface rather than executing database or terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on Odoo buttons, and typing into web forms rather than a terminal window."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "Agent navigated through the UI rather than jumping directly to a specific record ID URL if not provided.",
+            "visual_evidence": "The agent is seen clicking on the Calendar app icon or menu item."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the event dialogs to change values.",
+            "visual_evidence": "The 'Edit' modal for the 'Q2 Financial Review' is visible during the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Team Standup' ends at 9:30 AM in the 'Main Conference Room'. The 'Q2 Financial Review' must be moved to start at exactly 9:30 AM, end at 11:00 AM (maintaining its 90-minute duration), and its location must be changed from 'Conference Room A' to 'Main Conference Room'. The username and password are both 'admin'."
+}

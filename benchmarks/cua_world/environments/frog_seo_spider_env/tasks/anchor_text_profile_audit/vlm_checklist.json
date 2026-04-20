@@ -1,0 +1,59 @@
+{
+    "task_id": "anchor_text_profile_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Screaming Frog SEO Spider is launched and the target URL is entered.",
+            "points": 10,
+            "visual_evidence": "The Screaming Frog application window is visible with 'https://books.toscrape.com/' typed into the 'Enter URL to spider' field."
+        },
+        {
+            "id": "crawl_completion",
+            "description": "The crawl of the target website is initiated and reaches 100% completion.",
+            "points": 15,
+            "visual_evidence": "The progress bar in the Screaming Frog interface shows 100% and the 'Internal' tab is populated with URLs from books.toscrape.com."
+        },
+        {
+            "id": "export_all_inlinks",
+            "description": "The 'All Inlinks' data is exported from Screaming Frog.",
+            "points": 20,
+            "visual_evidence": "The user navigates to 'Bulk Export' -> 'Links' -> 'All Inlinks' or uses the 'Inlinks' tab to export, and a file save dialog appears."
+        },
+        {
+            "id": "csv_file_creation",
+            "description": "The CSV file is saved in the specific directory ~/Documents/SEO/exports/.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output shows a .csv file located in the /home/ga/Documents/SEO/exports/ directory."
+        },
+        {
+            "id": "report_content_metrics",
+            "description": "The report contains the total link count and counts for empty/generic anchor text.",
+            "points": 25,
+            "visual_evidence": "A text editor shows 'anchor_text_report.txt' containing numerical values for 'total links' and specific counts for 'empty' or 'generic' (e.g., 'Click here', 'View') anchor text."
+        },
+        {
+            "id": "report_recommendations",
+            "description": "The report includes at least 2 specific recommendations for improvement.",
+            "points": 15,
+            "visual_evidence": "The text in 'anchor_text_report.txt' includes a section for recommendations with at least two distinct bullet points or numbered items suggesting SEO improvements."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Screaming Frog GUI rather than just command line scripts to simulate the audit.",
+            "visual_evidence": "Screenshots show active interaction with the Screaming Frog desktop interface (clicking menus, buttons) rather than just a terminal window."
+        },
+        {
+            "id": "genuine_data_analysis",
+            "description": "The report data matches the exported CSV data rather than being hallucinated.",
+            "visual_evidence": "The numbers reported in the .txt file (total links) are consistent with the scale of the crawl seen in the Screaming Frog UI (which should show hundreds/thousands of links)."
+        },
+        {
+            "id": "target_site_interaction",
+            "description": "The agent interacted with the correct target domain.",
+            "visual_evidence": "The URL bar in Screaming Frog and the exported file names/content reference 'books.toscrape.com'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://books.toscrape.com/. Screaming Frog's 'All Inlinks' export contains a column specifically named 'Anchor Text'. The site is a sandbox with 1,000 books; a full crawl should result in a significant number of inlinks (well over 50). The expected export directory is /home/ga/Documents/SEO/exports/ and the report path is /home/ga/Documents/SEO/reports/anchor_text_report.txt."
+}

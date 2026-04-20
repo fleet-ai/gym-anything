@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_rl_environment@1",
+    "task_completion": [
+        {
+            "id": "set_worldinfo_timestep",
+            "description": "Set WorldInfo basicTimeStep to 16",
+            "points": 15,
+            "visual_evidence": "In the Webots Scene Tree, under WorldInfo, the 'basicTimeStep' field is visible and set to 16."
+        },
+        {
+            "id": "set_worldinfo_seed",
+            "description": "Set WorldInfo randomSeed to 42",
+            "points": 15,
+            "visual_evidence": "In the Webots Scene Tree, under WorldInfo, the 'randomSeed' field is visible and set to 42."
+        },
+        {
+            "id": "set_robot_controller",
+            "description": "Set 'DEF AGENT' controller to '<extern>'",
+            "points": 20,
+            "visual_evidence": "In the Scene Tree, the node 'Robot \"AGENT\"' has its 'controller' field set to \"<extern>\"."
+        },
+        {
+            "id": "set_robot_supervisor",
+            "description": "Set 'DEF AGENT' supervisor field to TRUE",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree, the node 'Robot \"AGENT\"' has its 'supervisor' field set to TRUE (checked box)."
+        },
+        {
+            "id": "set_target_def_name",
+            "description": "Assign DEF name 'RL_TARGET' to the Solid node with the red Sphere",
+            "points": 20,
+            "visual_evidence": "In the Scene Tree, a Solid node containing a red Sphere geometry is labeled with the DEF name 'RL_TARGET'."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog or a file explorer shows the file being saved as '/home/ga/Desktop/rl_env_ready.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the Webots GUI to modify fields",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree or field editor, rather than just running a script in the terminal."
+        },
+        {
+            "id": "genuine_node_selection",
+            "description": "Agent correctly identified the red sphere node",
+            "visual_evidence": "The agent is seen selecting the specific Solid node that visually contains a red sphere in the 3D viewport before renaming it."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "Agent did not simply edit the .wbt file in a text editor",
+            "visual_evidence": "The agent performs the configuration within the Webots application interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values in the Webots Scene Tree: WorldInfo.basicTimeStep must be 16, WorldInfo.randomSeed must be 42. The Robot node named 'AGENT' must have controller set to '<extern>' and supervisor set to TRUE. The Solid node with the red sphere must be renamed to 'RL_TARGET'. The final file must be saved exactly to /home/ga/Desktop/rl_env_ready.wbt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "import_flight_data@1",
+    "task_completion": [
+        {
+            "id": "read_mission_specs",
+            "description": "The agent reads the mission_specs.txt file to obtain the flight parameters.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor displaying the contents of ~/Documents/mission_specs.txt with the specific coordinates and times."
+        },
+        {
+            "id": "navigate_to_aerobridge_admin",
+            "description": "The agent navigates to the Aerobridge admin panel and locates the 'Draft Survey Mission' entry.",
+            "points": 10,
+            "visual_evidence": "A web browser showing the Aerobridge admin interface (http://localhost:8000/admin/) with a list of flight plans including 'Draft Survey Mission'."
+        },
+        {
+            "id": "update_start_end_times",
+            "description": "The agent updates the Start Time and End Time fields for the flight plan.",
+            "points": 20,
+            "visual_evidence": "The flight plan edit form showing '2025-11-15 08:30:00' in the Start Time field and '2025-11-15 12:45:00' in the End Time field."
+        },
+        {
+            "id": "format_geojson_geometry",
+            "description": "The agent enters the boundary coordinates as a valid GeoJSON Polygon in the Geometry field.",
+            "points": 40,
+            "visual_evidence": "The Geometry text area containing a JSON object with 'type': 'Polygon' and the coordinates formatted as [[[-95.1, 38.9], [-95.09, 38.9], [-95.09, 38.91], [-95.1, 38.91], [-95.1, 38.9]]]."
+        },
+        {
+            "id": "save_flight_plan",
+            "description": "The agent saves the changes to the flight plan.",
+            "points": 20,
+            "visual_evidence": "A success message (e.g., 'The flight plan \"Draft Survey Mission\" was changed successfully') or the browser returning to the list view after clicking 'Save'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface to update the data rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the agent clicking buttons and typing into fields within the web browser at localhost:8000."
+        },
+        {
+            "id": "source_data_usage",
+            "description": "The agent actually opened the mission_specs.txt file instead of using hardcoded values.",
+            "visual_evidence": "A screenshot showing the agent catting, opening, or reading the file ~/Documents/mission_specs.txt."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the Aerobridge menu system to find the specific flight plan.",
+            "visual_evidence": "Sequential screenshots showing the transition from the admin dashboard to the Flight Plans list and then to the specific 'Draft Survey Mission' edit page."
+        }
+    ],
+    "privileged_info_for_vlm": "The target flight plan is 'Draft Survey Mission'. Required Start Time: 2025-11-15 08:30:00. Required End Time: 2025-11-15 12:45:00. The Geometry must be a GeoJSON Polygon. The correct coordinate array (Lon, Lat) is: [[[-95.1, 38.9], [-95.09, 38.9], [-95.09, 38.91], [-95.1, 38.91], [-95.1, 38.9]]]. Note that the source file may list them as Lat/Lon, but GeoJSON requires Lon/Lat."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "autonomous_transaction_logging@1",
+    "task_completion": [
+        {
+            "id": "open_legacy_code",
+            "description": "Open the legacy payment code file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the contents of /home/ga/Desktop/legacy_payment_code.sql."
+        },
+        {
+            "id": "implement_autonomous_procedure",
+            "description": "Create or modify a logging procedure using PRAGMA AUTONOMOUS_TRANSACTION.",
+            "points": 25,
+            "visual_evidence": "Code in an editor or SQL tool containing the string 'PRAGMA AUTONOMOUS_TRANSACTION' and a 'COMMIT' statement within the logging block."
+        },
+        {
+            "id": "update_process_transfer",
+            "description": "Update the PROCESS_TRANSFER procedure to call the autonomous logging procedure.",
+            "points": 20,
+            "visual_evidence": "SQL code showing the PROCESS_TRANSFER procedure being modified to use the new logging mechanism."
+        },
+        {
+            "id": "execute_failed_transfer",
+            "description": "Attempt a $5000 transfer from User 1001 to User 1002 to trigger the 'Insufficient funds' error.",
+            "points": 20,
+            "visual_evidence": "SQL execution command or output showing a call to PROCESS_TRANSFER with parameters (1001, 1002, 5000) and a resulting error or rollback message."
+        },
+        {
+            "id": "export_audit_evidence",
+            "description": "Export the SYSTEM_LOGS table to the specified evidence file.",
+            "points": 25,
+            "visual_evidence": "A terminal command or file explorer showing the creation of /home/ga/Desktop/audit_evidence.txt containing the log entry for the failed transaction."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sql_execution",
+            "description": "The agent executed SQL commands in a database environment rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots of a SQL terminal (e.g., sqlplus, psql) or a database GUI showing command execution and database responses."
+        },
+        {
+            "id": "no_manual_log_injection",
+            "description": "The agent did not manually echo the 'Insufficient funds' string into the evidence file without querying the database.",
+            "visual_evidence": "The trajectory should show a 'SELECT' statement from SYSTEM_LOGS being redirected to the output file, not a simple 'echo' or manual text entry of the log."
+        },
+        {
+            "id": "interaction_with_legacy_file",
+            "description": "The agent actually read the provided legacy file rather than guessing the schema.",
+            "visual_evidence": "Screenshots showing the agent opening or 'cat'-ing /home/ga/Desktop/legacy_payment_code.sql."
+        }
+    ],
+    "privileged_info_for_vlm": "The sender (ID 1001) starts with $1000. A transfer of $5000 must fail due to 'Insufficient funds'. The fix requires 'PRAGMA AUTONOMOUS_TRANSACTION' so that the log persists after the main transaction rolls back. The final evidence file /home/ga/Desktop/audit_evidence.txt must contain the log entry for this failed attempt."
+}

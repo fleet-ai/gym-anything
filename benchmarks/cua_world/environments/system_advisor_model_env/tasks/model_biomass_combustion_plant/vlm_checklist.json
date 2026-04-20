@@ -1,0 +1,53 @@
+{
+    "task_id": "model_biomass_combustion_plant@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_data",
+            "description": "Locate the TMY weather file path or location details in the specified text file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the contents of /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Create the Python script at the specified path using PySAM.",
+            "points": 15,
+            "visual_evidence": "An IDE or text editor showing a file named biomass_model.py being saved in /home/ga/Documents/SAM_Projects/."
+        },
+        {
+            "id": "configure_pysam_model",
+            "description": "The script must initialize a biomass combustion model and set the nameplate capacity to 50,000 kW.",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing 'Biomass' model initialization and a line setting system capacity or nameplate to 50000."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Run the Python script to perform the simulation.",
+            "points": 20,
+            "visual_evidence": "A terminal window showing the execution of 'python3 biomass_model.py' without errors."
+        },
+        {
+            "id": "export_results_json",
+            "description": "Generate the results JSON file with the required keys and values.",
+            "points": 30,
+            "visual_evidence": "A file named biomass_results.json open in an editor or displayed via 'cat' containing keys 'nameplate_kw', 'annual_energy_kwh', and 'capacity_factor_percent'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't just write a JSON file with hardcoded values without running a simulation.",
+            "visual_evidence": "The terminal history should show the execution of the python script, and the script should contain logic to calculate results from the PySAM object, not just print statements."
+        },
+        {
+            "id": "correct_library_usage",
+            "description": "Ensure the agent actually used the PySAM library (import nrel_pysam).",
+            "visual_evidence": "The Python script code must show 'import PySAM' or specific PySAM modules like 'import PySAM.Biomass'."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Check that the agent used the specific file paths mandated by the task.",
+            "visual_evidence": "The file explorer or terminal should show files at /home/ga/Documents/SAM_Projects/biomass_model.py and biomass_results.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use a nameplate capacity of 50,000 kW. Expected annual energy (annual_energy_kwh) should be between 150,000,000 and 450,000,000. The capacity factor (capacity_factor_percent) should be between 30.0 and 95.0. The script must be located at /home/ga/Documents/SAM_Projects/biomass_model.py and the output at /home/ga/Documents/SAM_Projects/biomass_results.json."
+}

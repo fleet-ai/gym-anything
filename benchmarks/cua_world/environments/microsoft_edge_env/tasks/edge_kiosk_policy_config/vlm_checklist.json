@@ -1,0 +1,53 @@
+{
+    "task_id": "edge_kiosk_policy_config@1",
+    "task_completion": [
+        {
+            "id": "read_requirements",
+            "description": "Agent opens and reads the kiosk requirements file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/Desktop/kiosk_requirements.txt."
+        },
+        {
+            "id": "create_policy_json",
+            "description": "Agent creates or edits a JSON policy file with the required kiosk settings.",
+            "points": 20,
+            "visual_evidence": "A text editor showing a JSON structure containing keys like 'HomepageLocation', 'NewTabPageLocation', and 'DownloadRestrictions'."
+        },
+        {
+            "id": "deploy_policy_to_managed_dir",
+            "description": "Agent places the policy file into the specific managed policies directory.",
+            "points": 30,
+            "visual_evidence": "A terminal command (e.g., cp or mv) or a file manager showing a .json file being moved to or existing in /etc/microsoft-edge/policies/managed/."
+        },
+        {
+            "id": "verify_active_policies",
+            "description": "Agent verifies that the policies are active within the Edge browser.",
+            "points": 20,
+            "visual_evidence": "The Microsoft Edge browser open to 'edge://policy' showing the status 'OK' for the applied government kiosk policies."
+        },
+        {
+            "id": "generate_deployment_report",
+            "description": "Agent creates the final deployment confirmation report on the desktop.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation/content of /home/ga/Desktop/kiosk_deploy_report.txt documenting the applied settings."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_policy_application",
+            "description": "Verify the agent didn't just create the report without moving the policy file.",
+            "visual_evidence": "Screenshots must show the file existing in /etc/microsoft-edge/policies/managed/ or the edge://policy page reflecting the changes."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Agent used the specific values from the requirements, not generic placeholders.",
+            "visual_evidence": "The policy file or edge://policy page shows 'https://www.usa.gov/benefits' and 'https://www.ssa.gov' specifically."
+        },
+        {
+            "id": "actual_file_interaction",
+            "description": "Agent interacted with the filesystem rather than just printing text to the console.",
+            "visual_evidence": "File manager windows or terminal commands like 'ls /etc/microsoft-edge/policies/managed/' confirming file presence."
+        }
+    ],
+    "privileged_info_for_vlm": "The required policies are: HomepageLocation = 'https://www.usa.gov/benefits', NewTabPageLocation = 'https://www.ssa.gov', and DownloadRestrictions = 3 (BlockAllDownloads). These must be placed in a JSON file within /etc/microsoft-edge/policies/managed/. The final report must be saved to /home/ga/Desktop/kiosk_deploy_report.txt."
+}

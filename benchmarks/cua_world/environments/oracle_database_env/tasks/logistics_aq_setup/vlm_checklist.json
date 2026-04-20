@@ -1,0 +1,59 @@
+{
+    "task_id": "logistics_aq_setup@1",
+    "task_completion": [
+        {
+            "id": "grant_privileges",
+            "description": "Grant EXECUTE on DBMS_AQ and DBMS_AQADM from SYSTEM to HR.",
+            "points": 10,
+            "visual_evidence": "SQL command execution or success message in a database tool (like SQL Developer or terminal) showing grants being issued by SYSTEM to HR."
+        },
+        {
+            "id": "create_object_type",
+            "description": "Define the 'ORDER_EVENT_T' object type with the specified four attributes.",
+            "points": 15,
+            "visual_evidence": "SQL code or a 'Type Created' message showing ORDER_EVENT_T with ORDER_ID, CUSTOMER_CODE, REGION, and PRIORITY."
+        },
+        {
+            "id": "setup_queue_infrastructure",
+            "description": "Create the queue table 'ORDER_EVT_QT' and the queue 'ORDER_EVT_Q', then start the queue.",
+            "points": 20,
+            "visual_evidence": "Execution of DBMS_AQADM.CREATE_QUEUE_TABLE and DBMS_AQADM.CREATE_QUEUE, followed by START_QUEUE, with success confirmation."
+        },
+        {
+            "id": "create_enqueue_procedure",
+            "description": "Implement the 'ENQUEUE_ORDER' PL/SQL procedure.",
+            "points": 15,
+            "visual_evidence": "Code editor or script output showing the creation of a procedure named ENQUEUE_ORDER that uses DBMS_AQ.ENQUEUE."
+        },
+        {
+            "id": "enqueue_five_orders",
+            "description": "Execute the procedure to enqueue the five specific orders provided in the task.",
+            "points": 20,
+            "visual_evidence": "Execution logs or script output showing five distinct calls to ENQUEUE_ORDER or a block of code enqueuing the specific data (1001-1005)."
+        },
+        {
+            "id": "export_to_file",
+            "description": "Export ORDER_ID and CUSTOMER_CODE from 'AQ$ORDER_EVT_QT' to /home/ga/Desktop/queue_dump.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal command (like 'cat'), a text editor, or a 'spool' command showing the contents of /home/ga/Desktop/queue_dump.txt containing the expected IDs and codes."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Verify the agent interacted with an actual Oracle database environment.",
+            "visual_evidence": "Screenshots should show a database IDE (SQL Developer), SQL*Plus, or a terminal connected to an Oracle instance, not just a text editor simulating output."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Ensure the output file was generated via database export/query, not manually typed.",
+            "visual_evidence": "Look for SQL commands like 'SPOOL', 'UTL_FILE', or export wizard usage immediately preceding the file appearance."
+        },
+        {
+            "id": "schema_context_verification",
+            "description": "Check that actions were performed under the correct schemas (SYSTEM for grants, HR for AQ setup).",
+            "visual_evidence": "Connection status indicators or 'SHOW USER' commands in the SQL interface showing the switch from SYSTEM to HR."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use schema HR (password: hr123) for the main setup. Required names: Object Type 'ORDER_EVENT_T', Queue Table 'ORDER_EVT_QT', Queue 'ORDER_EVT_Q', Procedure 'ENQUEUE_ORDER'. The final file /home/ga/Desktop/queue_dump.txt must contain 5 records. Specifically, it must include '1001, AMZN_PRIME' and '1004, DHL_EXPRESS' among the exported data from the AQ$ORDER_EVT_QT view."
+}

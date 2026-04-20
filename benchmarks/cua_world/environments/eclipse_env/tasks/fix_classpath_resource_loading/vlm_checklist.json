@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_classpath_resource_loading@1",
+    "task_completion": [
+        {
+            "id": "open_climate_analyzer",
+            "description": "Open the ClimateAnalyzer.java file in the Eclipse editor.",
+            "points": 10,
+            "visual_evidence": "The Eclipse IDE is visible with 'ClimateAnalyzer.java' open in the editor tab, showing the package 'com.climate'."
+        },
+        {
+            "id": "identify_old_loading_logic",
+            "description": "Locate the original FileReader or File-based loading logic that uses a hardcoded or filesystem path.",
+            "points": 10,
+            "visual_evidence": "Code in the editor showing 'new FileReader(...)' or 'new File(...)' being used to load 'global_temps.csv'."
+        },
+        {
+            "id": "implement_classpath_loading",
+            "description": "Refactor the code to use getResourceAsStream or getClassLoader().getResourceAsStream() with InputStreamReader.",
+            "points": 30,
+            "visual_evidence": "The editor shows code similar to 'getClass().getResourceAsStream(\"/global_temps.csv\")' or 'ClassLoader.getSystemResourceAsStream' wrapped in an 'InputStreamReader'."
+        },
+        {
+            "id": "save_and_build",
+            "description": "Save the changes and ensure there are no compilation errors in the Problems view.",
+            "points": 10,
+            "visual_evidence": "The 'ClimateAnalyzer.java' tab no longer has an asterisk (indicating saved) and the 'Problems' view at the bottom of Eclipse shows 0 errors."
+        },
+        {
+            "id": "run_junit_test",
+            "description": "Execute the 'ClimateAnalyzerTest' JUnit test case.",
+            "points": 15,
+            "visual_evidence": "The 'JUnit' view is visible in Eclipse, showing the test 'ClimateAnalyzerTest' being initiated."
+        },
+        {
+            "id": "verify_test_success",
+            "description": "Confirm that the JUnit test passes with a green bar.",
+            "points": 25,
+            "visual_evidence": "The JUnit view shows a green bar and 'Runs: 1/1', 'Errors: 0', 'Failures: 0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Eclipse IDE GUI rather than just executing shell commands to overwrite files.",
+            "visual_evidence": "Screenshots show the Eclipse editor, menus, or project explorer being used to navigate and edit code."
+        },
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the JUnit test file to force a pass.",
+            "visual_evidence": "The 'ClimateAnalyzerTest.java' file is either not opened or shows no unsaved changes/modifications in the editor."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent actually implemented InputStreamReader instead of just changing a hardcoded string path to another hardcoded string path.",
+            "visual_evidence": "The code visible in the final screenshots contains the 'InputStreamReader' and 'getResourceAsStream' keywords."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/ClimateData. The main class is com.climate.ClimateAnalyzer. The resource file 'global_temps.csv' is located in src/main/resources/ and contains columns: Year, No_Smoothing, Lowess(5). To pass, the agent must replace 'new FileReader(\"path/to/file\")' with 'new InputStreamReader(ClimateAnalyzer.class.getResourceAsStream(\"/global_temps.csv\"))' or a similar ClassLoader-based stream approach."
+}

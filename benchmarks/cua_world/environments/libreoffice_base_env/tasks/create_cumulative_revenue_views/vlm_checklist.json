@@ -1,0 +1,59 @@
+{
+    "task_id": "create_cumulative_revenue_views@1",
+    "task_completion": [
+        {
+            "id": "open_database_file",
+            "description": "The agent has opened the chinook.odb file in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "LibreOffice Base window is visible showing 'chinook.odb' in the title bar or status bar."
+        },
+        {
+            "id": "create_monthly_revenue_view",
+            "description": "The agent creates the 'MonthlyRevenue' view with the specified columns (SalesYear, SalesMonth, PeriodId, MonthlyTotal) and grouping.",
+            "points": 25,
+            "visual_evidence": "SQL Query window or View Design window showing the SELECT statement with YEAR(\"InvoiceDate\"), MONTH(\"InvoiceDate\"), and SUM(\"Total\")."
+        },
+        {
+            "id": "verify_monthly_revenue_saved",
+            "description": "The 'MonthlyRevenue' view appears in the Tables/Views list of the database.",
+            "points": 10,
+            "visual_evidence": "The name 'MonthlyRevenue' is visible in the 'Views' or 'Tables' section of the LibreOffice Base main window."
+        },
+        {
+            "id": "create_cumulative_revenue_view",
+            "description": "The agent creates the 'CumulativeRevenue' view using a correlated subquery to calculate RunningTotal from MonthlyRevenue.",
+            "points": 35,
+            "visual_evidence": "SQL Query window showing a query selecting from 'MonthlyRevenue' with a subquery like (SELECT SUM(\"MonthlyTotal\") FROM \"MonthlyRevenue\" B WHERE B.\"PeriodId\" <= A.\"PeriodId\")."
+        },
+        {
+            "id": "verify_cumulative_revenue_saved",
+            "description": "The 'CumulativeRevenue' view appears in the Tables/Views list of the database.",
+            "points": 10,
+            "visual_evidence": "The name 'CumulativeRevenue' is visible in the 'Views' or 'Tables' section of the LibreOffice Base main window."
+        },
+        {
+            "id": "save_database_changes",
+            "description": "The agent saves the database file to persist the new views.",
+            "points": 10,
+            "visual_evidence": "The 'Save' icon is clicked, or the 'File' menu shows 'Save' being selected, or the status bar indicates the document is saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create views rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show the LibreOffice Base application windows, SQL editors, or View designers, not just a terminal."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent used SQL logic to calculate totals rather than typing in the final revenue numbers manually.",
+            "visual_evidence": "SQL code contains SUM() functions and JOINs/Subqueries rather than hardcoded numeric constants for the revenue values."
+        },
+        {
+            "id": "genuine_database_connection",
+            "description": "The agent is interacting with the actual chinook.odb file located at /home/ga/chinook.odb.",
+            "visual_evidence": "The file path or database name 'chinook' is visible in the application interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The total cumulative revenue (the final value of RunningTotal in the last period) should be 2328.6. The views must be named exactly 'MonthlyRevenue' and 'CumulativeRevenue'. The PeriodId formula is (Year * 100 + Month)."
+}

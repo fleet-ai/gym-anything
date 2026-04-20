@@ -1,0 +1,53 @@
+{
+    "task_id": "tag_and_search_pipeline@1",
+    "task_completion": [
+        {
+            "id": "identify_priority_papers",
+            "description": "Agent identifies papers with the 'priority' tag in the Reading Queue.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the 'Reading Queue' collection with the 'priority' tag visible in the tags column or item details for various papers."
+        },
+        {
+            "id": "tag_review_now",
+            "description": "Agent adds 'review-now' tag to priority papers published before 2010.",
+            "points": 25,
+            "visual_evidence": "The 'review-now' tag appearing in the tag list or item pane for papers like 'The UNIX Time-Sharing System' (1974) or 'The Google File System' (2003)."
+        },
+        {
+            "id": "tag_review_later",
+            "description": "Agent adds 'review-later' tag to priority papers published in 2010 or later.",
+            "points": 25,
+            "visual_evidence": "The 'review-later' tag appearing in the tag list or item pane for priority papers with dates >= 2010."
+        },
+        {
+            "id": "create_saved_search",
+            "description": "Agent creates a saved search named 'Review Now' filtering for the 'review-now' tag.",
+            "points": 20,
+            "visual_evidence": "A new collection/folder icon in the left sidebar named 'Review Now' with a search/magnifying glass overlay."
+        },
+        {
+            "id": "export_bibtex",
+            "description": "Agent exports the 'Review Now' search results as BibTeX to the specified desktop path.",
+            "points": 20,
+            "visual_evidence": "An export dialog showing 'BibTeX' format selected and a file manager or terminal view showing 'review_now.bib' on the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the reference management software GUI rather than just creating the file via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the application's tagging system and export menus."
+        },
+        {
+            "id": "no_manual_bib_creation",
+            "description": "Agent did not manually type out the BibTeX file content.",
+            "visual_evidence": "The export process is visible through the application's 'Export' or 'Right-click' menu rather than a text editor being used to write BibTeX syntax."
+        },
+        {
+            "id": "correct_tag_logic",
+            "description": "Agent verified the publication year before tagging.",
+            "visual_evidence": "The agent clicking on individual papers to view their metadata (Date/Year field) before applying the specific tag."
+        }
+    ],
+    "privileged_info_for_vlm": "The following papers are 'priority' and published before 2010 (should be tagged 'review-now'): 'The UNIX Time-Sharing System' (1974), 'End-to-End Arguments in System Design' (1984), 'The Google File System' (2003), and 'Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications' (2001). Any priority paper dated 2010 or later must be tagged 'review-later'. The final export must be in BibTeX format at /home/ga/Desktop/review_now.bib."
+}

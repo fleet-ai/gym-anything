@@ -1,0 +1,53 @@
+{
+    "task_id": "fix_recommender_system@1",
+    "task_completion": [
+        {
+            "id": "open_project_files",
+            "description": "Agent opens the relevant logic files in the Pycharm editor.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing engine/similarity.py, engine/selection.py, and engine/prediction.py open in the IDE tabs."
+        },
+        {
+            "id": "fix_cosine_similarity",
+            "description": "Agent corrects the mathematical formula for Cosine Similarity in engine/similarity.py.",
+            "points": 25,
+            "visual_evidence": "Code editor showing the implementation of calculate_cosine_similarity using dot product divided by the product of magnitudes."
+        },
+        {
+            "id": "fix_knn_selection",
+            "description": "Agent corrects the K-Nearest Neighbors selection logic in engine/selection.py.",
+            "points": 20,
+            "visual_evidence": "Code editor showing get_top_k_neighbors correctly sorting similarities and selecting the top K indices."
+        },
+        {
+            "id": "fix_weighted_average",
+            "description": "Agent corrects the Weighted Average prediction formula in engine/prediction.py.",
+            "points": 25,
+            "visual_evidence": "Code editor showing predict_score calculating the sum of (similarity * rating) divided by the sum of absolute similarities."
+        },
+        {
+            "id": "run_test_suite",
+            "description": "Agent executes the test suite to verify the fixes.",
+            "points": 20,
+            "visual_evidence": "Terminal output or IDE test runner showing the execution of tests and a 'PASSED' or 'OK' status for the recommendation logic tests."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the expected test outputs into the functions.",
+            "visual_evidence": "The code in the editor shows general mathematical formulas (using variables like vectors, k, and weights) rather than returning fixed values."
+        },
+        {
+            "id": "genuine_file_editing",
+            "description": "Agent used the IDE's text editing capabilities rather than just running shell commands to overwrite files.",
+            "visual_evidence": "Screenshots show the cursor, typing, or the 'Save' action within the Pycharm GUI."
+        },
+        {
+            "id": "verified_test_execution",
+            "description": "Agent actually ran the provided test suite rather than just claiming it passed.",
+            "visual_evidence": "A terminal or test console window is visible with the specific test command and its output log."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/recommender_system. The core task is to fix three specific functions: calculate_cosine_similarity, get_top_k_neighbors, and predict_score. Success is defined by the internal test suite passing. Note that while the task description mentions RMSE, the actual verification logic relies on the mathematical correctness of these three functions against hardcoded test vectors, not a global RMSE threshold."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "motor_imagery_channel_protocol@1",
+    "task_completion": [
+        {
+            "id": "open_bci_gui_launched",
+            "description": "OpenBCI GUI is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI application window is open and active."
+        },
+        {
+            "id": "playback_file_selected",
+            "description": "The specific EEG recording file is selected for playback.",
+            "points": 15,
+            "visual_evidence": "The file path '~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-MotorImagery.txt' is visible in the data source or playback selection field."
+        },
+        {
+            "id": "isolate_c3_c4_channels",
+            "description": "Channels C3 and C4 are isolated/active while others (Fp1, Fp2, P7, P8, O1, O2) are deactivated.",
+            "points": 25,
+            "visual_evidence": "In the channel control panel, only channels 3 and 4 (corresponding to C3 and C4) are toggled 'On' or highlighted, while channels 1, 2, 5, 6, 7, and 8 are toggled 'Off'."
+        },
+        {
+            "id": "bandpass_filter_configured",
+            "description": "An 8–30 Hz bandpass filter is applied to the data.",
+            "points": 20,
+            "visual_evidence": "The filter settings in the GUI show a Bandpass filter selected with a frequency range of 8 Hz to 30 Hz."
+        },
+        {
+            "id": "fft_plot_visible",
+            "description": "The FFT Plot widget is active and visible in the GUI layout.",
+            "points": 10,
+            "visual_evidence": "A window or widget labeled 'FFT Plot' is visible, showing frequency spectrum data."
+        },
+        {
+            "id": "save_configuration_file",
+            "description": "The session configuration is saved to the specified JSON path.",
+            "points": 20,
+            "visual_evidence": "A 'Save' or 'Export' dialog shows the file path '~/Documents/OpenBCI_GUI/Settings/motor_imagery_config.json' or a terminal/file explorer confirmation shows the file was created at that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent interacted with the OpenBCI GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI buttons, sliders, or dropdown menus within the OpenBCI application."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The FFT plot and Time Series show active waveforms consistent with EEG data playback, not static images.",
+            "visual_evidence": "The waveforms in the Time Series and the peaks in the FFT plot change or show realistic noise/signal patterns across different timestamps."
+        },
+        {
+            "id": "no_manual_json_edit",
+            "description": "The agent did not simply create the JSON file via a text editor without configuring the GUI.",
+            "visual_evidence": "The GUI state (channels off, filter set) matches the requirements before the save action is performed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific configuration of the OpenBCI GUI: 1. Data source must be the S001 recording file. 2. Channels 3 and 4 (C3 and C4) must be the only active channels; channels 1, 2, 5, 6, 7, and 8 must be deactivated. 3. The bandpass filter must be set to 8-30 Hz (Mu/Beta rhythm range for motor imagery). 4. The FFT Plot widget must be displayed. 5. The final output is a settings file named 'motor_imagery_config.json' in the specified Settings folder."
+}

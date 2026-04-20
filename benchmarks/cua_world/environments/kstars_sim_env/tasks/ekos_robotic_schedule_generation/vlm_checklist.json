@@ -1,0 +1,59 @@
+{
+    "task_id": "ekos_robotic_schedule_generation@1",
+    "task_completion": [
+        {
+            "id": "read_pi_instructions",
+            "description": "Agent opens and reads the PI instructions file to understand the requirements.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of ~/Documents/PI_instructions.txt."
+        },
+        {
+            "id": "ekos_interface_active",
+            "description": "Agent opens the KStars/Ekos interface to begin sequence creation.",
+            "points": 10,
+            "visual_evidence": "The KStars application window is visible, specifically the Ekos profile or capture module."
+        },
+        {
+            "id": "create_m81_sequence",
+            "description": "Agent creates and saves the M81 LRGB sequence file.",
+            "points": 20,
+            "visual_evidence": "The Ekos Capture module showing 'm81_lrgb.esq' being saved or listed in the file browser within ~/Documents/Ekos/."
+        },
+        {
+            "id": "create_ngc1499_sequence",
+            "description": "Agent creates and saves the NGC 1499 Ha sequence file.",
+            "points": 20,
+            "visual_evidence": "The Ekos Capture module showing 'ngc1499_ha.esq' being saved or listed in the file browser within ~/Documents/Ekos/."
+        },
+        {
+            "id": "create_m42_sequence",
+            "description": "Agent creates and saves the M42 HDR sequence file.",
+            "points": 20,
+            "visual_evidence": "The Ekos Capture module showing 'm42_hdr.esq' being saved or listed in the file browser within ~/Documents/Ekos/."
+        },
+        {
+            "id": "generate_master_schedule",
+            "description": "Agent uses the Ekos Scheduler to create the master schedule file linking the sequences.",
+            "points": 20,
+            "visual_evidence": "The Ekos Scheduler tab showing the three sequences added to the list and the final save dialog for 'master_schedule.esl' in ~/Documents/Ekos/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent must use the Ekos GUI to generate the files rather than manually creating text files via terminal.",
+            "visual_evidence": "Screenshots show mouse interactions with the Ekos Capture and Scheduler tabs, not just 'touch' or 'echo' commands in a terminal."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent interacts with the specific fields (Target, Filter, Exposure) in the Ekos UI.",
+            "visual_evidence": "Visual confirmation of the agent typing or selecting values within the Ekos module fields."
+        },
+        {
+            "id": "correct_directory_path",
+            "description": "The agent saves files specifically to the ~/Documents/Ekos/ directory as requested.",
+            "visual_evidence": "The file save dialog or a file manager view confirms the path is /home/ga/Documents/Ekos/."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create four specific files in /home/ga/Documents/Ekos/: three sequence files named 'm81_lrgb.esq', 'ngc1499_ha.esq', and 'm42_hdr.esq', and one schedule file named 'master_schedule.esl'. These must be generated using the Ekos (KStars) software interface."
+}

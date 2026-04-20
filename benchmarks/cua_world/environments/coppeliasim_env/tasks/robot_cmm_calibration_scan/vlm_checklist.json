@@ -1,0 +1,59 @@
+{
+    "task_id": "robot_cmm_calibration_scan@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_interface_active",
+            "description": "The agent successfully launched CoppeliaSim and is logged into the 'ga' account.",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim application window is visible; terminal or file explorer shows the user is 'ga'."
+        },
+        {
+            "id": "gauge_block_construction",
+            "description": "Programmatically constructed a 4-step gauge block of adjoining cuboids in the scene.",
+            "points": 20,
+            "visual_evidence": "The 3D scene view shows four distinct cuboids of increasing heights (0.02m to 0.08m) arranged in a row along the X-axis."
+        },
+        {
+            "id": "sensor_attachment",
+            "description": "A proximity sensor is attached to the robot's end-effector pointing downwards.",
+            "points": 15,
+            "visual_evidence": "The robot model in the scene shows a proximity sensor object (often a red line or cone) attached to the tool flange, oriented towards the floor/blocks."
+        },
+        {
+            "id": "linear_sweep_execution",
+            "description": "The robot performs a linear sweep over the gauge block to collect data.",
+            "points": 25,
+            "visual_evidence": "Sequential screenshots show the robot end-effector moving linearly across the top of the four steps while the simulation is running."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Exported scan_data.csv with at least 40 rows of data including surface_z calculations.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'cat' command shows scan_data.csv in /home/ga/Documents/CoppeliaSim/exports/ with columns for timestamp, ee_x, ee_y, ee_z, sensor_dist, and surface_z."
+        },
+        {
+            "id": "metrics_and_scene_save",
+            "description": "Exported calibration_metrics.json and saved the scene as calibration_setup.ttt.",
+            "points": 15,
+            "visual_evidence": "The /home/ga/Documents/CoppeliaSim/exports/ directory contains both calibration_metrics.json and calibration_setup.ttt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "The agent actually ran the simulation rather than just creating static files.",
+            "visual_evidence": "The simulation play button in CoppeliaSim is active (pressed) and the simulation time counter is non-zero during the sweep."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually type out the CSV/JSON content in a text editor without running the robot.",
+            "visual_evidence": "The agent is seen writing and executing Python/ZMQ code to control the simulation, rather than just using 'echo' or a text editor to create the final reports."
+        },
+        {
+            "id": "correct_step_heights",
+            "description": "The data in the exported files matches the physical dimensions of the blocks in the scene.",
+            "visual_evidence": "The 'surface_z' values in the CSV or 'max_surface_z_m' in the JSON correspond to the 0.08m height of the tallest block."
+        }
+    ],
+    "privileged_info_for_vlm": "The gauge block must have 4 steps with heights 0.02, 0.04, 0.06, and 0.08 meters. The scan_data.csv must contain at least 40 rows. The surface_z is calculated as ee_z minus sensor_dist. All outputs must be located in /home/ga/Documents/CoppeliaSim/exports/."
+}

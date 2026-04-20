@@ -1,0 +1,59 @@
+{
+    "task_id": "snarc_effect_regression_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_inspection",
+            "description": "Agent opens and inspects the raw data file ~/pebl/data/snarc_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of snarc_data.csv with columns like participant_id, number, and rt_ms."
+        },
+        {
+            "id": "contamination_identification",
+            "description": "Agent identifies sub-99 as the contaminated participant based on invariant/unrealistic RTs.",
+            "points": 15,
+            "visual_evidence": "Code output or a script showing a check for variance in RTs or a filter identifying sub-99 as having 45ms reaction times."
+        },
+        {
+            "id": "individual_slope_calculation",
+            "description": "Agent calculates the SNARC slope for each participant using the Lorch & Myers (1990) regression method.",
+            "points": 25,
+            "visual_evidence": "Python code or terminal output showing regression models (e.g., using statsmodels or scipy) being run per participant ID."
+        },
+        {
+            "id": "accuracy_calculation",
+            "description": "Agent computes the mean accuracy for all participants (including the one to be excluded).",
+            "points": 15,
+            "visual_evidence": "Code or output showing a groupby operation on participant_id calculating the mean of the 'accuracy' column."
+        },
+        {
+            "id": "group_mean_calculation",
+            "description": "Agent computes the group mean SNARC slope excluding the contaminated participant.",
+            "points": 15,
+            "visual_evidence": "Code showing the exclusion of sub-99 followed by an average/mean calculation of the individual slopes."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final results to ~/pebl/analysis/snarc_report.json in the specified format.",
+            "points": 20,
+            "visual_evidence": "A terminal command (cat) or editor showing the content of snarc_report.json with 'participants' and 'group_mean_snarc_slope' fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final group mean or sub-99's exclusion without performing data analysis.",
+            "visual_evidence": "The agent's scripts should show logic for filtering and calculation rather than just printing a pre-determined JSON string."
+        },
+        {
+            "id": "genuine_regression_method",
+            "description": "Agent actually performs within-subject regression as per Lorch & Myers (1990) rather than a simple correlation.",
+            "visual_evidence": "Code showing a regression of RT (or dRT) on number for each participant individually."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Agent interacts with the provided file paths rather than creating dummy data.",
+            "visual_evidence": "Screenshots show the agent accessing /home/ga/pebl/data/snarc_data.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The contaminated participant is 'sub-99', characterized by an impossible reaction time of exactly 45.0ms and 100% accuracy across all trials. There are 15 real participants (sub-01 to sub-15). The Lorch & Myers (1990) method requires calculating a regression slope for each participant first, then averaging those slopes to find the group mean. The final report must be a JSON file located at ~/pebl/analysis/snarc_report.json."
+}

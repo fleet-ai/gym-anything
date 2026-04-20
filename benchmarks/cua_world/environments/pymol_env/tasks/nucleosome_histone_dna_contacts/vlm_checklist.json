@@ -1,0 +1,53 @@
+{
+    "task_id": "nucleosome_histone_dna_contacts@1",
+    "task_completion": [
+        {
+            "id": "fetch_pdb_1aoi",
+            "description": "Fetch PDB 1AOI from RCSB and load it into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1AOI' and the 3D viewer displays a nucleosome structure (DNA wrapped around a protein core)."
+        },
+        {
+            "id": "color_histones_and_dna",
+            "description": "Color each histone type (H2A, H2B, H3, H4) and DNA in distinct, contrasting colors.",
+            "points": 20,
+            "visual_evidence": "The 3D viewer shows the DNA in one color and the protein core divided into at least 4 distinct colors corresponding to the different histone types."
+        },
+        {
+            "id": "identify_contacts",
+            "description": "Identify protein residues within 3.5 Å of the DNA.",
+            "points": 25,
+            "visual_evidence": "The PyMOL interface shows a selection (often indicated by pink squares or a new object in the list) representing residues in close proximity to the DNA strands."
+        },
+        {
+            "id": "save_rendered_figure",
+            "description": "Render a publication-quality figure and save it to the specified path.",
+            "points": 20,
+            "visual_evidence": "The terminal or PyMOL log shows a 'png' command or 'save' command directed to '/home/ga/PyMOL_Data/images/nucleosome_contacts.png'."
+        },
+        {
+            "id": "generate_structural_report",
+            "description": "Write a structural report with chain assignments, contact counts, specific residues, and the histone type with the most contacts.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command displays the contents of '/home/ga/PyMOL_Data/nucleosome_report.txt' containing chain IDs (e.g., I, J for DNA), a list of 8+ residues, and a summary of histone-DNA contacts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent used PyMOL commands or GUI menus rather than just creating a text file manually.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with commands like 'fetch', 'select', 'color', or 'distance' visible in the command history."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report content should be derived from the loaded structure, not pre-written.",
+            "visual_evidence": "The agent is seen performing selections or using the 'get_model' or 'iterate' commands in PyMOL to extract residue information before writing the report."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent saves files to the exact paths specified in the task.",
+            "visual_evidence": "The file browser or command line confirms the existence of the image and text file in the '/home/ga/PyMOL_Data/' subdirectories."
+        }
+    ],
+    "privileged_info_for_vlm": "PDB 1AOI is a nucleosome core particle. DNA chains are typically I and J. Histone chains are: H3 (A, E), H4 (B, F), H2A (C, G), and H2B (D, H). The agent must find residues within 3.5 Angstroms of DNA; expect many Arginine (ARG) and Lysine (LYS) residues as they are positively charged and interact with the DNA backbone. The report must contain at least 8 specific residues and identify which histone type (H2A, H2B, H3, or H4) has the highest contact count."
+}

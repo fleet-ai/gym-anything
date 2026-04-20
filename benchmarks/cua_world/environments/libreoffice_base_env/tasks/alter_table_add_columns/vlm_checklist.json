@@ -1,0 +1,53 @@
+{
+    "task_id": "alter_table_add_columns@1",
+    "task_completion": [
+        {
+            "id": "open_database_file",
+            "description": "The agent opens the database file /home/ga/chinook.odb in the database management application.",
+            "points": 10,
+            "visual_evidence": "The application window shows 'chinook.odb' as the active file or the 'Customer' table is visible in the table list."
+        },
+        {
+            "id": "access_table_design",
+            "description": "The agent opens the 'Customer' table in design or edit mode to modify columns.",
+            "points": 15,
+            "visual_evidence": "A table design view or SQL execution window is visible showing the 'Customer' table structure."
+        },
+        {
+            "id": "add_loyalty_points_column",
+            "description": "The agent adds the 'LoyaltyPoints' column with the correct data type and default value.",
+            "points": 25,
+            "visual_evidence": "A new row or SQL command showing 'LoyaltyPoints' as INTEGER (or INT) with a default value of 0."
+        },
+        {
+            "id": "add_membership_tier_column",
+            "description": "The agent adds the 'MembershipTier' column with the correct data type, length, and default value.",
+            "points": 30,
+            "visual_evidence": "A new row or SQL command showing 'MembershipTier' as VARCHAR (length 20) with a default value of 'Bronze'."
+        },
+        {
+            "id": "save_database_changes",
+            "description": "The agent saves the modifications to the database file.",
+            "points": 20,
+            "visual_evidence": "The agent clicks a 'Save' icon, selects 'File > Save', or executes a 'COMMIT' or 'ALTER TABLE' statement successfully without errors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the database management GUI rather than just executing terminal commands to bypass the interface.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the database application's menus, buttons, or table grids."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent enters the specific values required by the task rather than generic placeholders.",
+            "visual_evidence": "The text 'LoyaltyPoints', 'MembershipTier', '0', and 'Bronze' are typed into the application fields."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent interacts with the actual file at /home/ga/chinook.odb.",
+            "visual_evidence": "The file path /home/ga/chinook.odb is visible in the file picker or application title bar."
+        }
+    ],
+    "privileged_info_for_vlm": "The database file is located at /home/ga/chinook.odb. The table name is 'Customer' (case-sensitive). Required columns: 1) 'LoyaltyPoints', type INTEGER, default 0. 2) 'MembershipTier', type VARCHAR(20), default 'Bronze'. The agent must save the changes for the task to be complete."
+}

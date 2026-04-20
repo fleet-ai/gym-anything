@@ -1,0 +1,59 @@
+{
+    "task_id": "recovery_system_descent_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_rocket_file",
+            "description": "Open the specified rocket file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket application is visible with the file 'recovery_analysis.ork' loaded in the title bar or file path."
+        },
+        {
+            "id": "locate_recovery_components",
+            "description": "Navigate to the recovery components (Main and Drogue parachutes) in the rocket design tree.",
+            "points": 10,
+            "visual_evidence": "The 'Rocket design' tab is active, and parachute components (e.g., Main, Drogue) are highlighted or selected in the component tree."
+        },
+        {
+            "id": "modify_parachute_diameters",
+            "description": "Increase the diameters of the parachutes to optimize for a safer (slower) descent.",
+            "points": 25,
+            "visual_evidence": "The 'Parachute configuration' or 'Component properties' dialog is open, showing diameter values being increased from the initial small values (0.254m/0.076m) to larger values."
+        },
+        {
+            "id": "run_flight_simulation",
+            "description": "Run a flight simulation to calculate the new descent rates and ground hit velocity.",
+            "points": 20,
+            "visual_evidence": "The 'Flight simulations' tab is active, and a simulation is executed, showing a green checkmark or updated status."
+        },
+        {
+            "id": "verify_ground_hit_velocity",
+            "description": "Check the simulation results to ensure the ground hit velocity is within safe limits.",
+            "points": 15,
+            "visual_evidence": "The 'Simulation results' window or a plot is visible, showing the 'Ground hit velocity' or 'Vertical velocity' at landing."
+        },
+        {
+            "id": "save_descent_report",
+            "description": "Export or save the descent rate analysis report to the specified text file path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal shows the file '/home/ga/Documents/exports/descent_analysis_report.txt' containing descent rate data or ground hit velocity."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to modify the rocket design rather than just editing the XML file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with OpenRocket dialogs and input fields."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The agent actually ran a simulation in OpenRocket to get the data, not just guessing values.",
+            "visual_evidence": "The 'Flight simulations' table shows a simulation entry with a timestamp corresponding to the task execution."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report was generated based on the modified design, not pre-written.",
+            "visual_evidence": "The values in the final report match the results shown in the OpenRocket simulation UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial rocket file has dangerously small parachutes: Main diameter is 0.254m and Drogue is 0.076m. To achieve a safe descent, the Main diameter should be increased (the original design was 1.0668m, and the verifier expects at least 0.7m). The final report must be saved to /home/ga/Documents/exports/descent_analysis_report.txt. Ground hit velocity should be significantly reduced from the initial state."
+}

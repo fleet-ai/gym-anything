@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_model_config_report@1",
+    "task_completion": [
+        {
+            "id": "locate_source_files",
+            "description": "Agent locates and opens the HEC-RAS project files in the specified directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the contents of /home/ga/Documents/hec_ras_projects/Muncie, specifically the .prj and .p04 files."
+        },
+        {
+            "id": "read_prj_file",
+            "description": "Agent reads the .prj file to extract the Project Title.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output displaying the contents of the .prj file with the 'Proj Title=' line visible."
+        },
+        {
+            "id": "read_p04_file",
+            "description": "Agent reads the .p04 file to extract Plan Title, Simulation Dates, Computation Interval, and Geometry File.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output displaying the contents of the .p04 file, showing lines like 'Plan Title=', 'Simulation Date=', and 'Computation Interval='."
+        },
+        {
+            "id": "script_development",
+            "description": "Agent writes a Python script to parse the files and handle the comma-separated date logic.",
+            "points": 30,
+            "visual_evidence": "A code editor or terminal showing Python code that uses split() or similar logic on the 'Simulation Date' string and structures a dictionary with the required keys."
+        },
+        {
+            "id": "execute_script",
+            "description": "Agent runs the Python script without errors.",
+            "points": 10,
+            "visual_evidence": "A terminal showing the execution of the python script (e.g., `python3 script.py`) with no traceback or error messages."
+        },
+        {
+            "id": "verify_json_output",
+            "description": "The final JSON file is created at the correct path with all required keys.",
+            "points": 20,
+            "visual_evidence": "A terminal or editor showing the content of /home/ga/Documents/hec_ras_results/model_config.json containing project_title, plan_title, simulation_start_date, simulation_end_date, computation_interval, and geometry_file_extension."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not hardcode the values into the script or JSON.",
+            "visual_evidence": "The Python script should show logic for opening files and parsing strings (e.g., .split(',')) rather than direct assignment of the final values."
+        },
+        {
+            "id": "actual_file_access",
+            "description": "The agent interacted with the files in the specified directory.",
+            "visual_evidence": "Screenshots show the agent navigating to /home/ga/Documents/hec_ras_projects/Muncie or referencing that path in code."
+        },
+        {
+            "id": "correct_output_path",
+            "description": "The agent saved the file to the specific results directory required.",
+            "visual_evidence": "The code or terminal commands explicitly reference /home/ga/Documents/hec_ras_results/model_config.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The source files are located in /home/ga/Documents/hec_ras_projects/Muncie. The .prj file contains the Project Title. The .p04 file contains the Plan Title, Computation Interval, and a 'Simulation Date' line which is comma-separated (Start Date, End Date). The Geometry File extension is also found in the .p04 file (e.g., 'Geom File=g01'). The output must be a JSON file at /home/ga/Documents/hec_ras_results/model_config.json with the exact keys specified in the task."
+}

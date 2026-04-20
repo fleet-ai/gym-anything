@@ -1,0 +1,53 @@
+{
+    "task_id": "ingest_conference_schedule@1",
+    "task_completion": [
+        {
+            "id": "schema_creation_vertex",
+            "description": "Create Vertex Classes 'Conferences' and 'Sessions' with specified properties.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the creation or existence of 'Conferences' (with 'Name' property) and 'Sessions' (with 'Title' and 'Duration' properties) in the database schema view."
+        },
+        {
+            "id": "schema_creation_edge",
+            "description": "Create Edge Classes 'HostedAt', 'HasSession', and 'PresentedBy'.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the creation or existence of 'HostedAt', 'HasSession', and 'PresentedBy' in the database schema or class list."
+        },
+        {
+            "id": "data_ingestion_conferences",
+            "description": "Ingest conference data from the JSON file into the 'Conferences' class.",
+            "points": 20,
+            "visual_evidence": "Database query results or browse view showing 2 conference records: 'Global Graph Summit 2026' and 'Travel Tech World'."
+        },
+        {
+            "id": "data_ingestion_sessions",
+            "description": "Ingest session data from the JSON file into the 'Sessions' class.",
+            "points": 20,
+            "visual_evidence": "Database query results or browse view showing 4 session records (e.g., 'Scaling OrientDB Clusters', 'Graph Algorithms in Practice')."
+        },
+        {
+            "id": "relationship_linking",
+            "description": "Establish edges between Conferences, Sessions, Hotels, and Profiles as specified.",
+            "points": 30,
+            "visual_evidence": "Graph visualization or query results showing edges: 'Global Graph Summit 2026' linked to 'Hotel Artemide' via 'HostedAt', and sessions linked to conferences via 'HasSession'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI rather than just executing a single script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent navigating the database studio/browser interface, clicking 'New Class' or using the 'Schema' tab."
+        },
+        {
+            "id": "source_file_access",
+            "description": "The agent actually opened or read the 'conference_data.json' file.",
+            "visual_evidence": "Screenshots showing the agent opening the JSON file in a text editor or using 'cat' in a terminal to view the content before ingestion."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply manually create one record to pass; it processed the full dataset.",
+            "visual_evidence": "Screenshots showing the full list of 2 conferences and 4 sessions in the database, matching the JSON content."
+        }
+    ],
+    "privileged_info_for_vlm": "The file '~/conference_data.json' contains 2 conferences: 'Global Graph Summit 2026' (hosted at Hotel Artemide) and 'Travel Tech World'. There are 4 sessions total: 'Scaling OrientDB Clusters' (45 min) and 'Graph Algorithms in Practice' (60 min) belong to the first conference; the other two belong to Travel Tech World. Required classes: Vertex (Conferences, Sessions), Edges (HostedAt, HasSession, PresentedBy). Properties: Conferences.Name, Sessions.Title, Sessions.Duration."
+}

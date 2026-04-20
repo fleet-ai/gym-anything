@@ -1,0 +1,59 @@
+{
+    "task_id": "create_security_role@1",
+    "task_completion": [
+        {
+            "id": "login_to_demodb",
+            "description": "Log in to the 'demodb' database using admin or root credentials.",
+            "points": 10,
+            "visual_evidence": "The OrientDB Studio interface showing the user is logged into the 'demodb' database (usually visible in the top bar or connection settings)."
+        },
+        {
+            "id": "create_role_data_analyst",
+            "description": "Create a new security role named 'data_analyst'.",
+            "points": 15,
+            "visual_evidence": "A 'Security' or 'Roles' management screen showing a new role entry with the name 'data_analyst'."
+        },
+        {
+            "id": "set_role_inheritance_and_mode",
+            "description": "Set the 'data_analyst' role to inherit from 'reader' and use mode 0 (DENY_ALL_BUT).",
+            "points": 20,
+            "visual_evidence": "The role configuration screen for 'data_analyst' showing 'reader' as the parent role and the mode/policy set to 0 or 'DENY_ALL_BUT'."
+        },
+        {
+            "id": "grant_create_permissions",
+            "description": "Grant CREATE permissions on 'database.class' and 'database.cluster' resources to the 'data_analyst' role.",
+            "points": 25,
+            "visual_evidence": "The permissions/rules table for the 'data_analyst' role showing 'database.class' and 'database.cluster' with the 'Create' checkbox ticked or permission bitmask showing 1."
+        },
+        {
+            "id": "create_user_maria_garcia",
+            "description": "Create a user named 'maria_garcia' with the specified password and status 'ACTIVE'.",
+            "points": 15,
+            "visual_evidence": "The 'Users' management screen showing 'maria_garcia' with status 'ACTIVE' (or 'ENABLED')."
+        },
+        {
+            "id": "assign_role_to_user",
+            "description": "Assign the 'data_analyst' role to the user 'maria_garcia'.",
+            "points": 15,
+            "visual_evidence": "The user profile or user list showing 'maria_garcia' associated with the 'data_analyst' role."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing shell commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within the browser-based OrientDB Studio UI."
+        },
+        {
+            "id": "no_hardcoded_success_spoofing",
+            "description": "The agent did not simply echo a success message in a terminal without performing the actions in the DB.",
+            "visual_evidence": "The sequence of screenshots shows the actual creation process (modals, save buttons) rather than just a final 'done' screen."
+        },
+        {
+            "id": "actual_database_context",
+            "description": "The agent interacted with the 'demodb' database specifically.",
+            "visual_evidence": "The database name 'demodb' is visible in the URL or the Studio header during the configuration process."
+        }
+    ],
+    "privileged_info_for_vlm": "The role must be exactly 'data_analyst'. It must inherit from 'reader'. The mode '0' corresponds to 'DENY_ALL_BUT'. The permissions required are 'CREATE' (bitmask 1) for both 'database.class' and 'database.cluster'. The user is 'maria_garcia' with password 'Analyst2024!' and must be 'ACTIVE'. Credentials for admin access are admin/admin or root/GymAnything123!."
+}

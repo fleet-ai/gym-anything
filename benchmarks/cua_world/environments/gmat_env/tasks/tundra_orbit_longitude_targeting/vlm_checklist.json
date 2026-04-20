@@ -1,0 +1,59 @@
+{
+    "task_id": "tundra_orbit_longitude_targeting@1",
+    "task_completion": [
+        {
+            "id": "open_mission_spec",
+            "description": "Agent opens the mission specification file on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/borealis_mission_spec.txt."
+        },
+        {
+            "id": "gmat_interface_active",
+            "description": "Agent launches the GMAT (General Mission Analysis Tool) software.",
+            "points": 10,
+            "visual_evidence": "The GMAT GUI window is visible on the screen."
+        },
+        {
+            "id": "differential_corrector_setup",
+            "description": "Agent configures a Differential Corrector (Targeter) in the GMAT resource tree.",
+            "points": 15,
+            "visual_evidence": "The GMAT 'Resources' tree shows a 'DifferentialCorrector' object, or a 'Target' sequence is visible in the Mission tree."
+        },
+        {
+            "id": "target_longitude_configuration",
+            "description": "Agent sets the target longitude to -105.0 degrees in the solver sequence.",
+            "points": 20,
+            "visual_evidence": "A 'Vary' command for RAAN and an 'Achieve' command for Longitude = -105.0 (or 255.0) in the GMAT Mission sequence or script editor."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output path.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing 'borealis_tundra.script' inside the ~/GMAT_output/ directory."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Agent runs the mission and generates the apogee report file.",
+            "points": 30,
+            "visual_evidence": "The file ~/GMAT_output/apogee_target_report.txt exists and contains numerical values for Longitude (approx -105.0), Latitude (approx 63.4), and Altitude (approx 47592)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not simply echo the final values into a text file without running GMAT.",
+            "visual_evidence": "The GMAT execution log or 'Run' button animation should be visible before the report file is created."
+        },
+        {
+            "id": "genuine_gui_interaction",
+            "description": "Agent interacted with the GMAT GUI elements rather than just using the command line to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor or active focus on GMAT buttons, resource trees, or script editors."
+        },
+        {
+            "id": "correct_target_value",
+            "description": "Agent targeted the specific longitude requested in the prompt, not a default value.",
+            "visual_evidence": "The 'Achieve' command or the final report shows a longitude value very close to -105.0."
+        }
+    ],
+    "privileged_info_for_vlm": "The target longitude is -105.0 degrees. Based on the Tundra orbit specs (SMA 42164.17 km, Ecc 0.28, Inc 63.4), the expected apogee altitude is approximately 47,592 km and the latitude at apogee should be approximately 63.4 degrees North. The agent must use a Differential Corrector to vary the RAAN to achieve the -105.0 longitude target."
+}

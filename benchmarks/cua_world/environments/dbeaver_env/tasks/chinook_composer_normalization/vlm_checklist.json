@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_composer_normalization@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Establish a connection to the database at the specified path using the name 'ChinookNormalize'.",
+            "points": 10,
+            "visual_evidence": "A database management tool (like DBeaver or DB Browser) showing a connection named 'ChinookNormalize' pointing to '/home/ga/Documents/databases/chinook_normalize.db'."
+        },
+        {
+            "id": "schema_creation",
+            "description": "Create the 'composers' table and 'track_composers' bridge table with correct schemas.",
+            "points": 20,
+            "visual_evidence": "SQL editor or database tree showing 'composers' (ComposerId, Name) and 'track_composers' (TrackId, ComposerId) tables."
+        },
+        {
+            "id": "data_normalization_execution",
+            "description": "Execute SQL to parse the 'tracks' table, split comma-separated composers, and populate the new tables.",
+            "points": 25,
+            "visual_evidence": "SQL script execution logs or the 'composers' table populated with individual names (e.g., 'Angus Young' and 'Malcolm Young' as separate rows instead of one string)."
+        },
+        {
+            "id": "view_creation",
+            "description": "Create the 'v_track_composers' view joining the three tables.",
+            "points": 15,
+            "visual_evidence": "Database navigator showing a view named 'v_track_composers' or a 'SELECT * FROM v_track_composers' query result showing TrackId, TrackName, and ComposerName."
+        },
+        {
+            "id": "csv_export_top_20",
+            "description": "Export the top 20 composers by track count to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "An export wizard or a file explorer showing 'top_composers.csv' at '/home/ga/Documents/exports/' with columns ComposerName and TrackCount."
+        },
+        {
+            "id": "sql_script_saved",
+            "description": "Save the complete normalization SQL script to the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or file explorer showing 'normalize_composers.sql' saved at '/home/ga/Documents/scripts/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used a GUI-based database tool rather than just executing raw terminal commands for the entire task.",
+            "visual_evidence": "Screenshots show a database IDE (e.g., DBeaver, SQLiteStudio) or a GUI text editor, not just a bash terminal."
+        },
+        {
+            "id": "no_hardcoded_csv",
+            "description": "The agent generated the CSV from the database rather than manually typing the top 20 list.",
+            "visual_evidence": "Screenshots show an 'Export' dialog or a SQL query with 'ORDER BY ... DESC LIMIT 20' being executed."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system and database application directly.",
+            "visual_evidence": "Mouse cursor movements, highlighted menu items, or active dialog boxes in the application UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook_normalize.db. The connection name must be 'ChinookNormalize'. The required tables are 'composers' and 'track_composers'. The view must be named 'v_track_composers'. The final CSV must be at /home/ga/Documents/exports/top_composers.csv and the SQL script at /home/ga/Documents/scripts/normalize_composers.sql. Normalization requires splitting the 'Composer' column in 'tracks' by commas and trimming whitespace."
+}

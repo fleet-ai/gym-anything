@@ -1,0 +1,65 @@
+{
+    "task_id": "design_high_solidity_rotor@1",
+    "task_completion": [
+        {
+            "id": "airfoil_setup",
+            "description": "Import NACA 4415 airfoil and perform 360-degree polar extrapolation.",
+            "points": 10,
+            "visual_evidence": "QBlade airfoil module showing 'NACA 4415' and the polar extrapolation window or a 360-degree polar plot."
+        },
+        {
+            "id": "rotor_parameters",
+            "description": "Configure rotor with 12 blades, 2.5m radius, and 0.3m hub radius.",
+            "points": 15,
+            "visual_evidence": "Rotor design dialog or table showing 'Number of Blades: 12', 'Radius: 2.5', and 'Hub Radius: 0.3'."
+        },
+        {
+            "id": "blade_optimization",
+            "description": "Optimize blade geometry for a Tip Speed Ratio (TSR) of 2.0.",
+            "points": 20,
+            "visual_evidence": "Optimization tool window showing design TSR set to 2.0 and the resulting chord/twist distribution updates."
+        },
+        {
+            "id": "bem_simulation_setup",
+            "description": "Set up BEM simulation with a TSR sweep from 0.5 to 4.0 with a 0.1 step.",
+            "points": 20,
+            "visual_evidence": "BEM simulation dialog showing Start TSR: 0.5, End TSR: 4.0, and Step: 0.1."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Execute the BEM simulation and display the Cp vs TSR graph.",
+            "points": 15,
+            "visual_evidence": "A graph plot in QBlade showing Power Coefficient (Cp) on the Y-axis and TSR on the X-axis with data points."
+        },
+        {
+            "id": "export_files",
+            "description": "Export Cp data to wind_pump_performance.txt and save project to wind_pump.wpa.",
+            "points": 10,
+            "visual_evidence": "File export dialogs or 'Save As' windows showing the paths /home/ga/Documents/wind_pump_performance.txt and /home/ga/Documents/projects/wind_pump.wpa."
+        },
+        {
+            "id": "summary_file_creation",
+            "description": "Create a summary file with max Cp and corresponding TSR.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command showing /home/ga/Documents/design_summary.txt containing the max Cp value and TSR."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Verify the agent used the QBlade GUI for design and simulation rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots showing the QBlade application window, mouse cursor interactions with menus, and simulation progress bars."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "Ensure the Cp values are derived from the simulation and not fabricated.",
+            "visual_evidence": "The values in the final summary file should match the peak of the curve shown in the QBlade graph window."
+        },
+        {
+            "id": "no_premade_scripts",
+            "description": "Check that the agent didn't simply run a single pre-written script to generate all outputs.",
+            "visual_evidence": "Step-by-step navigation through the QBlade interface (Airfoil -> Rotor -> Simulation)."
+        }
+    ],
+    "privileged_info_for_vlm": "The rotor must have exactly 12 blades. The optimization target is TSR 2.0. The BEM simulation range is 0.5 to 4.0 (step 0.1). Required file paths: /home/ga/Documents/wind_pump_performance.txt (Cp data), /home/ga/Documents/projects/wind_pump.wpa (Project), and /home/ga/Documents/design_summary.txt (Max Cp/TSR summary). A standard NACA 4415 at TSR 2.0 for a high-solidity rotor typically yields a max Cp between 0.3 and 0.5."
+}

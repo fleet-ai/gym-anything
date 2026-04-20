@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_timeseries_window@1",
+    "task_completion": [
+        {
+            "id": "playback_mode_selected",
+            "description": "Select PLAYBACK mode in the OpenBCI GUI startup configuration.",
+            "points": 10,
+            "visual_evidence": "The startup screen shows 'PLAYBACK' highlighted or selected in the data source selection area."
+        },
+        {
+            "id": "file_loaded",
+            "description": "Load the specific recording file from the Documents directory.",
+            "points": 20,
+            "visual_evidence": "The file path '~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-EyesOpen.txt' is visible in the file selection field or the session is initialized with this file name."
+        },
+        {
+            "id": "session_started",
+            "description": "Start the data stream/session.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' button has been clicked and the GUI has transitioned to the main dashboard; the 'Start Data Stream' button (top left) is pressed/active."
+        },
+        {
+            "id": "data_streaming",
+            "description": "Verify that EEG data is actively streaming in the Time Series widget.",
+            "points": 15,
+            "visual_evidence": "Moving waveforms are visible in the Time Series widget, and the 'Stop Data Stream' button is visible (indicating it is currently running)."
+        },
+        {
+            "id": "window_duration_set",
+            "description": "Adjust the Time Series Window (horizontal duration) to 5 seconds.",
+            "points": 20,
+            "visual_evidence": "The 'Window' dropdown or label in the Time Series widget displays '5 s'."
+        },
+        {
+            "id": "vertical_scale_set",
+            "description": "Adjust the Vertical Scale to 50 uV.",
+            "points": 20,
+            "visual_evidence": "The 'Vert Scale' dropdown or label in the Time Series widget displays '50 uV'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the OpenBCI GUI elements rather than using terminal commands to bypass the interface.",
+            "visual_evidence": "Screenshots show the mouse cursor hovering over or clicking GUI buttons/dropdowns like 'Window' and 'Vert Scale'."
+        },
+        {
+            "id": "genuine_playback",
+            "description": "The agent is using the actual playback file and not a simulated or synthetic signal.",
+            "visual_evidence": "The file name 'OpenBCI-EEG-S001-EyesOpen.txt' is visible in the GUI header or playback control bar."
+        },
+        {
+            "id": "no_manual_overlay",
+            "description": "The settings were changed via the GUI controls, not just claimed in text.",
+            "visual_evidence": "The dropdown menus for Window and Vert Scale are seen in an open state or the final values are clearly rendered within the application's native UI theme."
+        }
+    ],
+    "privileged_info_for_vlm": "The application is OpenBCI GUI v5.2.2. The data source is a PhysioNet EEG recording (S001R01). The 'Window' setting must be exactly '5 s' and the 'Vertical Scale' must be exactly '50 uV', both of which are standard selectable options in the Time Series widget dropdowns. The file path is ~/Documents/OpenBCI_GUI/Recordings/OpenBCI-EEG-S001-EyesOpen.txt."
+}

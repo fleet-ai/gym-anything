@@ -1,0 +1,53 @@
+{
+    "task_id": "purge_botnet_and_cleanup@1",
+    "task_completion": [
+        {
+            "id": "disable_registration",
+            "description": "Disable 'Anyone can register' in WordPress General Settings.",
+            "points": 10,
+            "visual_evidence": "In Settings > General, the 'Membership' checkbox for 'Anyone can register' is unchecked."
+        },
+        {
+            "id": "set_default_role",
+            "description": "Set 'New User Default Role' to 'Subscriber'.",
+            "points": 10,
+            "visual_evidence": "In Settings > General, the 'New User Default Role' dropdown shows 'Subscriber' as the selected value."
+        },
+        {
+            "id": "delete_contributor_users",
+            "description": "Bulk delete all users with the 'Contributor' role.",
+            "points": 25,
+            "visual_evidence": "In the Users list, the 'Contributor' role filter should show 0 users, or the agent is seen selecting all users with the 'Contributor' role and applying the 'Delete' bulk action."
+        },
+        {
+            "id": "delete_spam_master",
+            "description": "Delete the user 'spam_master' and all their associated content.",
+            "points": 25,
+            "visual_evidence": "The user 'spam_master' is no longer in the Users list. During deletion, the agent must select 'Delete all content' rather than 'Attribute all content to...' in the confirmation screen."
+        },
+        {
+            "id": "delete_empty_tags",
+            "description": "Bulk delete all tags that have 0 posts associated with them.",
+            "points": 30,
+            "visual_evidence": "In Posts > Tags, the list shows only tags with a 'Count' of 1 or more. The agent is seen selecting tags where the 'Count' column is '0' and applying the 'Delete' bulk action."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress dashboard GUI to perform actions.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with WordPress menus, checkboxes, and buttons rather than just executing WP-CLI commands in a terminal."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "Legitimate users (Administrator, Author) and tags with posts were preserved.",
+            "visual_evidence": "The Users list still contains the admin account, and the Tags list still contains tags with a count > 0."
+        },
+        {
+            "id": "content_purge_confirmation",
+            "description": "The agent specifically confirmed the deletion of content for spam_master.",
+            "visual_evidence": "A screenshot shows the WordPress confirmation page for deleting a user with the 'Delete all content' radio button selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The environment starts with 12 'Contributor' users, a user named 'spam_master' who has 3 posts, and 15 tags that have a post count of 0. To be successful, the 'Anyone can register' box must be unchecked, default role must be 'subscriber', the contributor count must reach 0, 'spam_master' must be gone with their 3 posts deleted, and all 15 empty tags must be removed."
+}

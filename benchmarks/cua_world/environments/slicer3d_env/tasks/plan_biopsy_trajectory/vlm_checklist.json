@@ -1,0 +1,59 @@
+{
+    "task_id": "plan_biopsy_trajectory@1",
+    "task_completion": [
+        {
+            "id": "load_mri_data",
+            "description": "Brain MRI data is loaded into the Slicer scene.",
+            "points": 10,
+            "visual_evidence": "The 2D slice viewers (Red, Green, Yellow) and/or the 3D viewer show brain anatomy from the BraTS dataset."
+        },
+        {
+            "id": "create_line_markup",
+            "description": "A Line markup object is created in the Markups module.",
+            "points": 15,
+            "visual_evidence": "The 'Markups' module panel or the 'Subject Hierarchy' shows a Line node."
+        },
+        {
+            "id": "rename_markup",
+            "description": "The Line markup is named 'Biopsy_Trajectory'.",
+            "points": 15,
+            "visual_evidence": "The text 'Biopsy_Trajectory' is visible in the Markups list or Subject Hierarchy tree."
+        },
+        {
+            "id": "place_control_points",
+            "description": "Two control points are placed representing the entry and target.",
+            "points": 20,
+            "visual_evidence": "The Markups control point table shows exactly 2 points, and a line segment is visible connecting them in the viewers."
+        },
+        {
+            "id": "correct_trajectory_path",
+            "description": "The trajectory connects a superior scalp entry point to the tumor target.",
+            "points": 30,
+            "visual_evidence": "In the slice viewers, one end of the line is at the skin surface (superior/top of head) and the other end is within the visible tumor mass."
+        },
+        {
+            "id": "save_scene",
+            "description": "The scene is saved after the trajectory is planned.",
+            "points": 10,
+            "visual_evidence": "The 'Save Scene' dialog is opened, or a 'Scene saved' message appears in the status bar/log."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI to place markups rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Markups toolbar or placing points directly in the slice viewers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent actually opened the target coordinates file to find the target location.",
+            "visual_evidence": "A text editor or terminal window is seen displaying the contents of /home/ga/Documents/SlicerData/BraTS/tumor_target.txt."
+        },
+        {
+            "id": "no_pre_existing_trajectory",
+            "description": "The trajectory was created during the session, not pre-loaded.",
+            "visual_evidence": "Early screenshots show an empty Markups list, while later screenshots show the 'Biopsy_Trajectory' node."
+        }
+    ],
+    "privileged_info_for_vlm": "The markup must be a 'Line' type named exactly 'Biopsy_Trajectory'. It must have exactly 2 control points. The trajectory length should be between 30mm and 120mm. The target point must be within 15mm of the coordinates specified in the tumor_target.txt file, and the entry point must be on the scalp superior to the tumor."
+}

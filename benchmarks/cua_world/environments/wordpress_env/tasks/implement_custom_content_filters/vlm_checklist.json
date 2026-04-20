@@ -1,0 +1,62 @@
+{
+    "task_id": "implement_custom_content_filters@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_theme_editor",
+            "description": "Navigate to the WordPress Theme File Editor for the 'Magazine Child' theme.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the WordPress dashboard with 'Appearance' > 'Theme File Editor' open, and 'Magazine Child' selected in the 'Select theme to edit' dropdown."
+        },
+        {
+            "id": "edit_functions_php",
+            "description": "Open the functions.php file of the child theme for editing.",
+            "points": 10,
+            "visual_evidence": "The file 'functions.php' is selected in the right-hand sidebar and its content is visible in the main editor area."
+        },
+        {
+            "id": "implement_reading_time_logic",
+            "description": "Add code to calculate and prepend the reading time (200 wpm) to the content.",
+            "points": 25,
+            "visual_evidence": "Code in functions.php showing an 'add_filter' call for 'the_content' with logic involving 'str_word_count', division by 200, 'ceil()', and the string '<p class=\"reading-time\">Estimated Reading Time: '."
+        },
+        {
+            "id": "implement_health_disclaimer_logic",
+            "description": "Add code to append the health disclaimer if the post category is 'Health'.",
+            "points": 25,
+            "visual_evidence": "Code in functions.php showing a check for 'has_category' or 'is_category' with 'health' and the specific disclaimer string: 'Disclaimer: This content is for informational purposes only and not substitute for professional medical advice.'"
+        },
+        {
+            "id": "verify_reading_time_display",
+            "description": "Verify the reading time appears on a single post page.",
+            "points": 15,
+            "visual_evidence": "A screenshot of a live single post page showing the text 'Estimated Reading Time: X min' at the top of the post content."
+        },
+        {
+            "id": "verify_health_disclaimer_display",
+            "description": "Verify the health disclaimer appears on a post in the 'Health' category.",
+            "points": 15,
+            "visual_evidence": "A screenshot of a live post page (categorized as Health) showing the specific disclaimer text at the bottom of the post content."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_plugin_usage",
+            "description": "Verify that no plugins were installed to achieve the result.",
+            "points": 0,
+            "visual_evidence": "The 'Plugins' menu is not used to install new software; the agent remains within the Theme Editor or File Manager."
+        },
+        {
+            "id": "genuine_code_interaction",
+            "description": "Verify the agent actually saved the file in the WordPress editor or via terminal.",
+            "points": 0,
+            "visual_evidence": "A 'File edited successfully' notification in WordPress or a terminal command like 'cat' or 'vim' showing the saved changes."
+        },
+        {
+            "id": "no_manual_post_editing",
+            "description": "Verify the agent did not manually type the disclaimer into the post editor.",
+            "points": 0,
+            "visual_evidence": "The agent interacts with functions.php, not the 'Posts' > 'Edit' screen for individual articles to add the text."
+        }
+    ],
+    "privileged_info_for_vlm": "The target theme is 'magazine-child'. The reading time must be calculated at 200 words per minute, rounded up (e.g., 450 words = 3 min). The specific disclaimer text required for the 'health' category is: 'Disclaimer: This content is for informational purposes only and not substitute for professional medical advice.' Both injections must use specific HTML classes: 'reading-time' and 'health-disclaimer'."
+}

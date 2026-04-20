@@ -1,0 +1,59 @@
+{
+    "task_id": "constellation_spare_phasing@1",
+    "task_completion": [
+        {
+            "id": "read_spec_document",
+            "description": "Agent opens and reads the phasing_maneuver_spec.txt file on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/phasing_maneuver_spec.txt."
+        },
+        {
+            "id": "gmat_setup_spacecraft",
+            "description": "Agent configures the SPARE and TARGET_SLOT spacecraft in the GMAT GUI with Point Mass Earth force model.",
+            "points": 15,
+            "visual_evidence": "GMAT interface showing the 'Resources' tree with two spacecraft defined and the 'Propagator' set to PointMass Earth."
+        },
+        {
+            "id": "gmat_maneuver_sequence",
+            "description": "Agent creates the mission sequence including the drift (Wait), Burn 1, and Burn 2.",
+            "points": 25,
+            "visual_evidence": "GMAT 'Mission' tab showing a sequence of commands: Propagate (drift), Maneuver (Burn1), Propagate (transfer), Maneuver (Burn2)."
+        },
+        {
+            "id": "run_gmat_script",
+            "description": "Agent executes the GMAT script to simulate the phasing maneuver.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Output' window or message bar showing 'Mission Run Completed' or a progress bar reaching 100%."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified output directory.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal showing spare_phasing.script exists in ~/GMAT_output/."
+        },
+        {
+            "id": "generate_summary_report",
+            "description": "Agent writes the final phasing_results.txt with all required numerical parameters.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing ~/GMAT_output/phasing_results.txt containing Wait_Time_Hours, Burn1_DeltaV_ms, Burn2_DeltaV_ms, Total_DeltaV_ms, and Final_Phase_Diff_deg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "Agent used the GMAT Graphical User Interface for mission design rather than just writing a text script manually.",
+            "visual_evidence": "Screenshots showing the GMAT application window, resource tree, and mission sequence editor being interacted with."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The results in the summary report match the GMAT output and are not just copied from the prompt's hidden values.",
+            "visual_evidence": "Consistency between the GMAT 'ReportFile' output or 'Message Window' and the final phasing_results.txt file."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "Agent did not simply create the output files using 'echo' or 'touch' without running the simulation.",
+            "visual_evidence": "The agent is seen navigating the GMAT interface and clicking the 'Run' (blue arrow) button."
+        }
+    ],
+    "privileged_info_for_vlm": "The target Semi-Major Axis (SMA) is 7571.14 km. The tolerance for the final SMA is 1.0 km and the final phase difference (absolute difference in True Anomaly) must be less than 0.5 degrees. The expected wait time for the drift phase should be at least 40 minutes (approx 0.66 hours). The force model must be 'Point Mass Earth' (Two-Body). The script must be saved to ~/GMAT_output/spare_phasing.script and the report to ~/GMAT_output/phasing_results.txt."
+}

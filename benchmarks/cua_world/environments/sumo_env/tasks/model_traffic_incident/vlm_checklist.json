@@ -1,0 +1,53 @@
+{
+    "task_id": "model_traffic_incident@1",
+    "task_completion": [
+        {
+            "id": "incident_definition",
+            "description": "The agent defines the 'incident_veh' with a stop duration of 900s starting at time 100 in a route or additionals file.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal output showing an XML definition with id='incident_veh', depart='100', and a <stop> element with duration='900'."
+        },
+        {
+            "id": "sumocfg_creation",
+            "description": "The agent creates the simulation configuration file at the specified path.",
+            "points": 10,
+            "visual_evidence": "File explorer or terminal showing the creation of /home/ga/SUMO_Scenarios/bologna_pasubio/run_incident.sumocfg."
+        },
+        {
+            "id": "base_simulation_run",
+            "description": "The agent executes the base simulation and generates the first tripinfo file.",
+            "points": 20,
+            "visual_evidence": "Terminal showing a 'sumo' command execution and the subsequent existence of /home/ga/SUMO_Output/tripinfo_incident.xml."
+        },
+        {
+            "id": "rerouted_simulation_run",
+            "description": "The agent executes the simulation with dynamic rerouting enabled (e.g., using --device.rerouting.probability 1.0).",
+            "points": 25,
+            "visual_evidence": "Terminal showing a 'sumo' command with rerouting flags and the existence of /home/ga/SUMO_Output/tripinfo_rerouted.xml."
+        },
+        {
+            "id": "comparison_report_generation",
+            "description": "The agent calculates average durations and creates the impact_report.txt file.",
+            "points": 30,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/SUMO_Output/impact_report.txt with the exact labels 'Base Average Duration:' and 'Rerouted Average Duration:' followed by numbers rounded to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the report content without processing the XML files.",
+            "visual_evidence": "Evidence of the agent using scripts (python/awk/grep) or commands to parse the tripinfo_incident.xml and tripinfo_rerouted.xml files."
+        },
+        {
+            "id": "genuine_sumo_usage",
+            "description": "The agent used the SUMO binaries to generate data rather than fabricating the XML files.",
+            "visual_evidence": "Terminal logs showing the 'sumo' or 'sumo-gui' command being invoked with the correct input files."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent used the specific paths provided in the instructions rather than working in a temporary directory.",
+            "visual_evidence": "Screenshots showing file paths like /home/ga/SUMO_Scenarios/bologna_pasubio/ and /home/ga/SUMO_Output/."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario is located in /home/ga/SUMO_Scenarios/bologna_pasubio/. The incident vehicle must be named 'incident_veh', depart at 100, and stop for 900 seconds. Output files must be tripinfo_incident.xml and tripinfo_rerouted.xml in /home/ga/SUMO_Output/. The final report /home/ga/SUMO_Output/impact_report.txt must contain 'Base Average Duration: <X>' and 'Rerouted Average Duration: <X>' with values rounded to two decimal places."
+}

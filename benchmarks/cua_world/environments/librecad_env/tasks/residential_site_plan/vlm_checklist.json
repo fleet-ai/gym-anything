@@ -1,0 +1,59 @@
+{
+    "task_id": "residential_site_plan@1",
+    "task_completion": [
+        {
+            "id": "layer_creation",
+            "description": "Create required layers (LOT_LINES, SETBACKS, BUILDING, TEXT) with specified colors and linetypes.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget in LibreCAD shows 'LOT_LINES' (Red), 'SETBACKS' (Blue/Dashed), 'BUILDING' (Yellow), and 'TEXT' (White)."
+        },
+        {
+            "id": "property_lot_geometry",
+            "description": "Draw a 60'x100' property lot starting at (0,0) on the LOT_LINES layer.",
+            "points": 15,
+            "visual_evidence": "A red rectangle is visible. Coordinate display or ruler tools show dimensions of 60 units wide and 100 units high starting from the origin."
+        },
+        {
+            "id": "setback_lines",
+            "description": "Draw setbacks defining a buildable area (25' front, 10' rear, 5' sides) on the SETBACKS layer.",
+            "points": 20,
+            "visual_evidence": "Blue dashed lines inside the lot. The front line is at Y=25, rear at Y=90, and side lines at X=5 and X=55."
+        },
+        {
+            "id": "house_placement",
+            "description": "Place a 30'x50' house on the BUILDING layer, centered horizontally and aligned with the front setback.",
+            "points": 25,
+            "visual_evidence": "A yellow rectangle (30x50) positioned such that its bottom edge is on the Y=25 line and it is centered between X=5 and X=55 (centered at X=30)."
+        },
+        {
+            "id": "text_labels",
+            "description": "Label 'STREET' below the lot and 'PROPOSED RESIDENCE' inside the house on the TEXT layer.",
+            "points": 15,
+            "visual_evidence": "White text 'STREET' visible below the red lot boundary; white text 'PROPOSED RESIDENCE' visible inside the yellow rectangle."
+        },
+        {
+            "id": "file_saved",
+            "description": "Save the drawing to the specified path.",
+            "points": 10,
+            "visual_evidence": "The LibreCAD title bar or 'Save As' dialog shows the path /home/ga/Documents/LibreCAD/residential_site_plan.dxf."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (Line, Rectangle, Layer tools) and menus, rather than just terminal commands."
+        },
+        {
+            "id": "genuine_drawing_process",
+            "description": "The drawing was constructed step-by-step.",
+            "visual_evidence": "Sequential screenshots show the progression from an empty canvas to layers being added and shapes being drawn manually."
+        },
+        {
+            "id": "no_scripted_shortcuts",
+            "description": "The agent did not simply run a script to generate the DXF file.",
+            "visual_evidence": "The agent is seen clicking specific CAD tools (e.g., 'Rectangle' or 'Line' icons) and typing coordinates into the LibreCAD command line or dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "The lot is a 60x100 rectangle from (0,0) to (60,100). Setbacks create a buildable box from X=5 to X=55 and Y=25 to Y=90. The house is a 30x50 rectangle; since the lot width is 60, centering it horizontally means its X-coordinates are from 15 to 45. Its bottom edge (front wall) must be at Y=25 to align with the front setback. The file must be saved as /home/ga/Documents/LibreCAD/residential_site_plan.dxf."
+}

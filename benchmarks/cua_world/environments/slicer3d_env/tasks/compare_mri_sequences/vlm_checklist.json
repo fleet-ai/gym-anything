@@ -1,0 +1,56 @@
+{
+    "task_id": "compare_mri_sequences@1",
+    "task_completion": [
+        {
+            "id": "load_mri_volumes",
+            "description": "The agent loads the four MRI sequences (T1, T1ce, T2, FLAIR) into the 3D Slicer application.",
+            "points": 15,
+            "visual_evidence": "The Data module or Volume selector in Slicer shows four distinct volume names corresponding to the BraTS sequences (t1, t1ce, t2, flair)."
+        },
+        {
+            "id": "multi_panel_layout",
+            "description": "The agent switches the Slicer layout to a multi-panel view (e.g., Four-Up or Compare View) to display multiple sequences simultaneously.",
+            "points": 15,
+            "visual_evidence": "The Slicer viewer area is divided into at least four distinct slice views rather than a single large slice view."
+        },
+        {
+            "id": "unique_sequence_assignment",
+            "description": "Each viewer panel is configured to display a unique MRI sequence.",
+            "points": 25,
+            "visual_evidence": "The four panels show different image contrasts (e.g., T1 is dark, T2 is bright fluid, T1ce shows bright contrast enhancement) and the slice headers/labels indicate different volume names."
+        },
+        {
+            "id": "tumor_region_navigation",
+            "description": "The agent navigates the slices to a view where the brain tumor is clearly visible in all panels.",
+            "points": 25,
+            "visual_evidence": "The crosshairs or slice sliders are positioned such that a lesion/tumor (typically a bright or dark mass depending on sequence) is centered in the viewers."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves a screenshot of the comparison layout to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal output confirms the creation of 'mri_comparison.png' in the ~/Documents/SlicerData/Screenshots/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform the task rather than just executing background scripts.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer menus, layout selectors, or volume dropdowns."
+        },
+        {
+            "id": "genuine_rendering",
+            "description": "The images displayed are actual MRI renderings, not static placeholder images.",
+            "points": 0,
+            "visual_evidence": "The Slicer UI elements (orientation markers, slice numbers, intensity values) are visible and consistent with the BraTS dataset."
+        },
+        {
+            "id": "no_file_faking",
+            "description": "The agent did not simply rename an existing image to mri_comparison.png.",
+            "points": 0,
+            "visual_evidence": "The content of the final screenshot matches the state of the Slicer GUI seen in the preceding trajectory steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The BraTS 2021 dataset for case 00000 contains 4 sequences: T1, T1ce (contrast-enhanced), T2, and FLAIR. Each volume has dimensions 240x240x155. In a correct comparison, T2 and FLAIR will show bright fluid/edema, while T1ce will show bright enhancement around the tumor core compared to the standard T1."
+}

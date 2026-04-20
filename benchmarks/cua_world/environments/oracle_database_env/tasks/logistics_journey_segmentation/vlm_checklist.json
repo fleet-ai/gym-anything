@@ -1,0 +1,59 @@
+{
+    "task_id": "logistics_journey_segmentation@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle Database (HR schema) using a database client or terminal.",
+            "points": 10,
+            "visual_evidence": "A database tool (like SQL Developer, DBeaver, or SQL*Plus) showing a successful connection to localhost:1521/XEPDB1 with the user 'hr'."
+        },
+        {
+            "id": "view_creation_logic",
+            "description": "Agent writes a SQL query to create the JOURNEY_SEGMENTS view using window functions (like LAG/LEAD) or a Gaps-and-Islands approach to consolidate consecutive statuses.",
+            "points": 25,
+            "visual_evidence": "SQL code visible in an editor or terminal that references 'CREATE VIEW JOURNEY_SEGMENTS', 'CONTAINER_LOGS', and logic to group consecutive identical statuses."
+        },
+        {
+            "id": "view_schema_verification",
+            "description": "The created view contains all required columns: CONTAINER_ID, SEGMENT_ID, STATUS, START_TIME, END_TIME, and DURATION_MINS.",
+            "points": 15,
+            "visual_evidence": "A 'DESCRIBE JOURNEY_SEGMENTS' command output or a table grid showing these specific column headers."
+        },
+        {
+            "id": "segmentation_accuracy",
+            "description": "The view correctly handles 'A-B-A' transitions, resulting in distinct segments for the same status if separated by a different status.",
+            "points": 25,
+            "visual_evidence": "Query results showing Container 101 with 4 segments (Transit, Customs, Transit, Docked) or Container 103 with 5 segments."
+        },
+        {
+            "id": "csv_export_execution",
+            "description": "Agent exports the view data to the specific file path /home/ga/Desktop/journey_report.csv.",
+            "points": 15,
+            "visual_evidence": "An export wizard dialog, a SPOOL command, or a 'cp/mv' command showing the destination /home/ga/Desktop/journey_report.csv."
+        },
+        {
+            "id": "final_report_validation",
+            "description": "The final CSV file exists on the desktop and is ordered by Container ID and Start Time.",
+            "points": 10,
+            "visual_evidence": "A file manager window showing 'journey_report.csv' on the Desktop or a 'cat' command showing the CSV content sorted by ID and time."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type the data into a CSV file or use a text editor to fake the results.",
+            "visual_evidence": "The agent should be seen executing SQL queries in a database client or terminal, not just typing data into a text editor like Gedit or Notepad."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually creates the view in the Oracle database rather than just querying the table and formatting the output locally.",
+            "visual_evidence": "Evidence of the 'CREATE VIEW' command being executed and succeeding in the database logs or UI."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The SQL logic should be dynamic and not hardcoded for specific container IDs mentioned in the prompt.",
+            "visual_evidence": "The SQL query should use general grouping/window logic (e.g., PARTITION BY) rather than 'WHERE container_id = 101'."
+        }
+    ],
+    "privileged_info_for_vlm": "The JOURNEY_SEGMENTS view must consolidate consecutive logs. Expected results: Container 101 must have 4 segments (Transit -> Customs -> Transit -> Docked). Container 102 must have 1 segment (Docked). Container 103 must have 5 segments (Transit -> Error -> Transit -> Error -> Docked). The final file must be at /home/ga/Desktop/journey_report.csv."
+}

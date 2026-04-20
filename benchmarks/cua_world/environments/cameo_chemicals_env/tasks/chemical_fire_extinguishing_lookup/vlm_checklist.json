@@ -1,0 +1,59 @@
+{
+    "task_id": "chemical_fire_extinguishing_lookup@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_website",
+            "description": "Agent navigates to the CAMEO Chemicals website (cameochemicals.noaa.gov).",
+            "points": 10,
+            "visual_evidence": "The browser shows the CAMEO Chemicals homepage or search results page."
+        },
+        {
+            "id": "search_sodium_magnesium_acetone",
+            "description": "Agent searches for and views the chemical data pages for Sodium, Acetone, and Magnesium.",
+            "points": 20,
+            "visual_evidence": "Screenshots show the search bar being used or the specific chemical profile pages for Sodium (ID 7794), Acetone (ID 8), and Magnesium (ID 6949)."
+        },
+        {
+            "id": "extract_fire_recommendations",
+            "description": "Agent identifies the fire extinguishing agents for each chemical from the 'Fire Fighting' section.",
+            "points": 20,
+            "visual_evidence": "The browser displays the 'Fire Fighting' or 'Response Suggestions' section for each chemical, showing text about water reactivity or recommended foams/powders."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the report file at the specified path ~/Documents/fire_response_report.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or VS Code) or a terminal 'cat' command shows the file being created at the correct path."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report correctly identifies extinguishing agents and water reactivity for all three chemicals.",
+            "points": 30,
+            "visual_evidence": "The final report text is visible and correctly lists Sodium and Magnesium as water-reactive/contraindicated and Acetone as water-safe."
+        },
+        {
+            "id": "summary_statement_included",
+            "description": "The report includes a summary statement listing chemicals where water must never be used.",
+            "points": 10,
+            "visual_evidence": "The end of the report contains a clear summary statement naming Sodium and Magnesium as chemicals where water is prohibited."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the web browser GUI to find information rather than just using terminal commands to write the file.",
+            "visual_evidence": "Screenshots show a browser (Firefox/Chrome) open with the CAMEO Chemicals website active."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "Agent did not simply copy-paste the final report from a hidden source or script without visiting the website.",
+            "visual_evidence": "The trajectory shows the agent scrolling through or interacting with the chemical profile pages on the NOAA website."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent used the exact file path specified in the task rather than a generic location.",
+            "visual_evidence": "The file path /home/ga/Documents/fire_response_report.txt is visible in the editor or terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified facts: Sodium (ID 7794) and Magnesium (ID 6949) are water-reactive and water is contraindicated (DO NOT USE WATER). Acetone (ID 8) is water-safe (water spray or alcohol-resistant foam are recommended). The report must be at ~/Documents/fire_response_report.txt and must explicitly list Sodium and Magnesium in the 'never use water' summary."
+}

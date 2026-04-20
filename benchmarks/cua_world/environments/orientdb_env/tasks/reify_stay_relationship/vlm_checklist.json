@@ -1,0 +1,53 @@
+{
+    "task_id": "reify_stay_relationship@1",
+    "task_completion": [
+        {
+            "id": "create_staysession_vertex",
+            "description": "Create the new vertex class 'StaySession' in the demodb schema.",
+            "points": 15,
+            "visual_evidence": "The OrientDB Studio 'Schema' tab or a SQL command output showing 'StaySession' listed as a class with 'V' as its superclass."
+        },
+        {
+            "id": "create_edge_classes",
+            "description": "Create the new edge classes 'HasSession' and 'SessionAt'.",
+            "points": 15,
+            "visual_evidence": "The OrientDB Studio 'Schema' tab showing 'HasSession' and 'SessionAt' listed as classes with 'E' as their superclass."
+        },
+        {
+            "id": "migrate_data_to_staysession",
+            "description": "Migrate data from 'HasStayed' to the new structure (Profile -> HasSession -> StaySession -> SessionAt -> Hotel).",
+            "points": 30,
+            "visual_evidence": "A Graph view or Query result showing a 'StaySession' vertex connected to both a 'Profile' and a 'Hotel' via the new edge types."
+        },
+        {
+            "id": "verify_migration_count",
+            "description": "Ensure the number of StaySession vertices matches the original number of HasStayed edges (at least 50).",
+            "points": 20,
+            "visual_evidence": "A SQL query result (e.g., SELECT count(*) FROM StaySession) showing a count of at least 50."
+        },
+        {
+            "id": "delete_hasstayed_edges",
+            "description": "Delete the original 'HasStayed' edges from the database.",
+            "points": 20,
+            "visual_evidence": "A SQL query result (e.g., SELECT count(*) FROM HasStayed) showing 0, or the 'HasStayed' class being empty/dropped in the Schema tab."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface to perform actions.",
+            "visual_evidence": "Screenshots show the browser at http://localhost:2480/studio/index.html with active interaction in the 'Schema', 'Browse', or 'Graph' tabs."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent executed actual SQL/Command scripts rather than just viewing static pages.",
+            "visual_evidence": "Screenshots of the 'Browse' or 'Console' tab showing the execution of 'CREATE CLASS', 'INSERT', or 'DELETE' commands."
+        },
+        {
+            "id": "database_context",
+            "description": "The agent is working within the 'demodb' database.",
+            "visual_evidence": "The OrientDB Studio header or connection string clearly displays 'demodb' as the active database."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The task requires creating one Vertex class (StaySession) and two Edge classes (HasSession, SessionAt). There are initially at least 50 'HasStayed' edges that must be converted into the new structure before the 'HasStayed' edges are deleted. Credentials for the Studio are root / GymAnything123!."
+}

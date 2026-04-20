@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_form_controls@1",
+    "task_completion": [
+        {
+            "id": "form_creation_name",
+            "description": "A new form named 'TrackEditor' is created in the database.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base main window shows 'TrackEditor' under the Forms section."
+        },
+        {
+            "id": "all_fields_present",
+            "description": "The form contains all fields from the 'Track' table.",
+            "points": 15,
+            "visual_evidence": "The form UI displays labels and controls for TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, and UnitPrice."
+        },
+        {
+            "id": "trackid_readonly",
+            "description": "The 'TrackId' field is configured as read-only.",
+            "points": 20,
+            "visual_evidence": "In the control properties dialog for TrackId, the 'Read-only' property is set to 'Yes', or the field appears grayed out/non-editable in form view."
+        },
+        {
+            "id": "unitprice_currency_format",
+            "description": "The 'UnitPrice' field is formatted as USD currency with 2 decimal places.",
+            "points": 25,
+            "visual_evidence": "In the control properties for UnitPrice, the 'Currency symbol' is '$' and 'Decimal accuracy' is set to '2'. In live view, the value shows a '$' sign (e.g., $0.99)."
+        },
+        {
+            "id": "composer_max_length",
+            "description": "The 'Composer' field maximum text length is set to 100 characters.",
+            "points": 30,
+            "visual_evidence": "In the control properties dialog for the Composer text box, the 'Max. text length' property is explicitly set to '100'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create and configure the form.",
+            "visual_evidence": "Screenshots show the Form Wizard or Form Design view and property dialogs, not just terminal commands."
+        },
+        {
+            "id": "actual_database_file",
+            "description": "The agent is working within the 'chinook.odb' file located at /home/ga/chinook.odb.",
+            "visual_evidence": "The title bar of the LibreOffice window shows 'chinook.odb'."
+        },
+        {
+            "id": "no_manual_mockup",
+            "description": "The form is a functional part of the database, not a static image or text file.",
+            "visual_evidence": "The agent is seen interacting with the LibreOffice Base 'Form Design' or 'Form Properties' menus."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The 'Track' table contains 9 columns: TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, and UnitPrice. The default database constraint for Composer is 220 characters, but the task requires a form-level override to 100. UnitPrice must specifically show the USD symbol and 2 decimal places."
+}

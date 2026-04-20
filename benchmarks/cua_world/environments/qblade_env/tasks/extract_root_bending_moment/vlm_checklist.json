@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_root_bending_moment@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "Create a NACA 0012 airfoil with 100 panels and generate a polar at Re=1,000,000.",
+            "points": 15,
+            "visual_evidence": "QBlade 'Airfoil Design' or 'XFOIL Direct Analysis' window showing 'NACA 0012', '100 panels', and 'Re 1,000,000' in the settings or plot labels."
+        },
+        {
+            "id": "polar_extrapolation",
+            "description": "Extrapolate the generated polar to 360 degrees.",
+            "points": 10,
+            "visual_evidence": "QBlade 'Polar Extrapolation' (360° tab) showing a full 360-degree polar curve or the 'Montgomery'/'Viterna' method applied to the NACA 0012 polar."
+        },
+        {
+            "id": "blade_design",
+            "description": "Design a 10m rectangular blade with 0.5m hub radius, 1m chord, and 0 twist.",
+            "points": 20,
+            "visual_evidence": "QBlade 'Blade Design' table showing 'Radius' or 'Length' at 10m, 'Chord' at 1.0m, and 'Twist' at 0.0 for all sections."
+        },
+        {
+            "id": "simulation_setup",
+            "description": "Set up a Wind Speed Sweep BEM simulation from 5 to 25 m/s (step 1) at 60 RPM.",
+            "points": 20,
+            "visual_evidence": "QBlade 'BEM Simulation' dialog showing 'Wind Speed Sweep' from 5 to 25, 'Step 1', and 'Rotational Speed' or 'RPM' set to 60."
+        },
+        {
+            "id": "identify_root_moment",
+            "description": "Identify the Maximum Root Flapwise Bending Moment (My) from the simulation results.",
+            "points": 25,
+            "visual_evidence": "QBlade 'Multi-Parameter View' or 'Graph' showing 'Root Flapwise Bending Moment' or 'Root My' plotted against wind speed, with the agent hovering over or selecting the peak value (usually at 25 m/s)."
+        },
+        {
+            "id": "report_generation",
+            "description": "Write the rounded integer value to /home/ga/Documents/projects/root_moment_report.txt.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the command to save or the content of 'root_moment_report.txt' containing a single integer value."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI for design and simulation rather than just writing a file.",
+            "visual_evidence": "Screenshots show active interaction with QBlade menus, dialog boxes, and plot windows."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The results are derived from the simulation run, not pre-known values.",
+            "visual_evidence": "The QBlade progress bar for the BEM sweep or the generation of new data points in the graph area."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent used the specific file path requested in the task.",
+            "visual_evidence": "The file path '/home/ga/Documents/projects/root_moment_report.txt' is visible in a 'Save As' dialog or terminal command."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected Maximum Root Flapwise Bending Moment (My) should be between 20,000 Nm and 60,000 Nm. For a 10m blade at 60 RPM and 25 m/s wind speed, the value is typically around 54,000-60,000 Nm. The airfoil must be NACA 0012 with 100 panels. The simulation must be a BEM sweep from 5-25 m/s."
+}

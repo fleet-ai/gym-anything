@@ -1,0 +1,53 @@
+{
+    "task_id": "oracle_xml_data_export@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle HR database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a successful connection in a database tool (like SQL Developer or DBeaver) or a terminal showing a successful SQL*Plus login to XEPDB1."
+        },
+        {
+            "id": "org_hierarchy_xml_generation",
+            "description": "The organizational hierarchy XML file is generated at the specified path with the correct root and nested structure.",
+            "points": 25,
+            "visual_evidence": "Screenshot of /home/ga/Desktop/org_structure.xml showing <organization> root, <department> elements with attributes, and nested <employees> data."
+        },
+        {
+            "id": "compensation_feed_xml_generation",
+            "description": "The compensation statistics XML file is generated at the specified path with the required statistical fields.",
+            "points": 25,
+            "visual_evidence": "Screenshot of /home/ga/Desktop/compensation_feed.xml showing <compensation_report> root and <job> elements containing avg_actual_salary and total_payroll."
+        },
+        {
+            "id": "plsql_function_creation",
+            "description": "The PL/SQL function GENERATE_DEPT_XML is created in the HR schema.",
+            "points": 20,
+            "visual_evidence": "Screenshot showing the 'CREATE OR REPLACE FUNCTION' code being executed or the function appearing in the database object browser."
+        },
+        {
+            "id": "verification_of_outputs",
+            "description": "Agent verifies the content of the generated XML files and the functionality of the PL/SQL function.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent opening the XML files to check content and executing a SELECT GENERATE_DEPT_XML(id) FROM DUAL query to test the function."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_xml",
+            "description": "The agent must generate XML via database queries, not by manually typing out the XML content.",
+            "visual_evidence": "The VLM should look for SQL queries using XMLELEMENT, XMLAGG, or DBMS_XMLGEN rather than the agent manually typing large blocks of XML text into an editor."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "The agent interacts with the actual Oracle database instance.",
+            "visual_evidence": "Screenshots must show active database sessions, query execution progress, or results being fetched from the localhost:1521 listener."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent saves files to the specific paths requested in the task.",
+            "visual_evidence": "File explorer or terminal output showing the files exist at /home/ga/Desktop/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Oracle HR schema contains 107 employees across 11 distinct departments and 19 distinct job IDs. The org_structure.xml should contain 11 department entries. The compensation_feed.xml should contain 19 job entries. The PL/SQL function must be named GENERATE_DEPT_XML and return an XMLTYPE."
+}

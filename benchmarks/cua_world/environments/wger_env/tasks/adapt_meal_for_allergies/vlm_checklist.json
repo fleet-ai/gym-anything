@@ -1,0 +1,59 @@
+{
+    "task_id": "adapt_meal_for_allergies@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger interface using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The wger dashboard or 'Nutrition' menu is visible, and the 'admin' username appears in the navigation bar."
+        },
+        {
+            "id": "navigate_to_plan",
+            "description": "Agent navigates to the 'Standard Dietary Plan'.",
+            "points": 10,
+            "visual_evidence": "The screen shows the details page for 'Standard Dietary Plan'."
+        },
+        {
+            "id": "remove_allergens",
+            "description": "Agent removes 'Whole Milk' and 'Chicken Egg' from the 'Morning Breakfast' meal.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the deletion actions or the 'Morning Breakfast' section without 'Whole Milk' and 'Chicken Egg'."
+        },
+        {
+            "id": "add_soy_milk",
+            "description": "Agent adds 200g of 'Soy Milk' to the meal.",
+            "points": 20,
+            "visual_evidence": "The meal list for 'Morning Breakfast' shows 'Soy Milk' with a quantity of 200.0 (or 200) g."
+        },
+        {
+            "id": "add_firm_tofu",
+            "description": "Agent adds 100g of 'Firm Tofu' to the meal.",
+            "points": 20,
+            "visual_evidence": "The meal list for 'Morning Breakfast' shows 'Firm Tofu' with a quantity of 100.0 (or 100) g."
+        },
+        {
+            "id": "verify_final_state",
+            "description": "The 'Morning Breakfast' meal contains exactly three ingredients: 50g Rolled Oats, 200g Soy Milk, and 100g Firm Tofu.",
+            "points": 15,
+            "visual_evidence": "A final view of the 'Morning Breakfast' meal showing only these three specific ingredients and their correct weights."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database or shell commands to modify the plan.",
+            "visual_evidence": "Screenshots show mouse movements, clicking buttons, and form filling within the browser."
+        },
+        {
+            "id": "no_shortcut_url",
+            "description": "The agent did not bypass the UI by guessing direct API endpoints or internal IDs if not provided.",
+            "visual_evidence": "The agent navigates through the menu system (e.g., clicking 'Nutrition' -> 'Dietary plans')."
+        },
+        {
+            "id": "authentic_search",
+            "description": "The agent searched for or selected the ingredients from the wger database.",
+            "visual_evidence": "The ingredient search modal or dropdown is visible during the addition of Soy Milk and Firm Tofu."
+        }
+    ],
+    "privileged_info_for_vlm": "The target plan is named 'Standard Dietary Plan' and the meal is 'Morning Breakfast'. The final state must have exactly three ingredients: Rolled Oats (50g), Soy Milk (200g), and Firm Tofu (100g). Whole Milk and Chicken Egg must be deleted. The login is admin/adminadmin."
+}

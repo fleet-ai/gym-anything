@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_accel_dual_layout@1",
+    "task_completion": [
+        {
+            "id": "synthetic_cyton_started",
+            "description": "The OpenBCI GUI is running with a Synthetic (Cyton) board session started.",
+            "points": 15,
+            "visual_evidence": "Look for 'Synthetic (Cyton)' in the top-left status bar or session info area, and the 'Start Data Stream' button should have been pressed (showing 'Stop Data Stream')."
+        },
+        {
+            "id": "two_panel_layout",
+            "description": "The interface is configured to a 2-panel vertical layout.",
+            "points": 15,
+            "visual_evidence": "The main GUI area should be split into exactly two distinct widget containers, one positioned directly above the other."
+        },
+        {
+            "id": "top_widget_time_series",
+            "description": "The 'Time Series' widget is active in the top panel.",
+            "points": 20,
+            "visual_evidence": "The label 'Time Series' is visible in the header of the top widget panel."
+        },
+        {
+            "id": "bottom_widget_accelerometer",
+            "description": "The 'Accelerometer' widget is active in the bottom panel.",
+            "points": 20,
+            "visual_evidence": "The label 'Accelerometer' is visible in the header of the bottom widget panel."
+        },
+        {
+            "id": "live_data_streaming",
+            "description": "Both widgets are displaying live, moving data.",
+            "points": 15,
+            "visual_evidence": "The Time Series should show oscillating waveforms and the Accelerometer should show active X, Y, Z axis plots rather than flat lines or empty grids."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the configuration is saved to the specified path.",
+            "points": 15,
+            "visual_evidence": "The agent should be seen clicking the 'Screenshot' button in the GUI or a file manager window should show 'accel_layout.png' in /home/ga/Documents/OpenBCI_GUI/Screenshots/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the OpenBCI GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots should show the mouse cursor interacting with the widget dropdown menus and layout selection buttons within the OpenBCI GUI."
+        },
+        {
+            "id": "genuine_data_stream",
+            "description": "The data shown is dynamic and matches the Synthetic Cyton source.",
+            "visual_evidence": "The waveforms in the Time Series widget should show the characteristic synthetic signal (often a mix of sine waves) rather than a static image or empty background."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply rename an existing file to match the target filename.",
+            "visual_evidence": "The trajectory should show the GUI state at the moment the screenshot was captured, matching the current session's visual state."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful only if: 1) The data source is 'Synthetic (Cyton)'. 2) The layout is vertically split into two. 3) The top widget is 'Time Series'. 4) The bottom widget is 'Accelerometer'. 5) Data is actively streaming in both. 6) The final file is saved exactly as /home/ga/Documents/OpenBCI_GUI/Screenshots/accel_layout.png."
+}

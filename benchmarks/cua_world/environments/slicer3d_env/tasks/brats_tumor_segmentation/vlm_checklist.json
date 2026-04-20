@@ -1,0 +1,53 @@
+{
+    "task_id": "brats_tumor_segmentation@1",
+    "task_completion": [
+        {
+            "id": "load_mri_sequences",
+            "description": "Load the brain MRI sequences (FLAIR, T1, T1ce, T2) into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the MRI volumes loaded in the data module or visible in the 2D slice viewers."
+        },
+        {
+            "id": "segmentation_mask_creation",
+            "description": "Create a segmentation mask covering the tumor region across the slices.",
+            "points": 30,
+            "visual_evidence": "A colored overlay (segmentation) visible on the brain MRI slices in the axial, sagittal, or coronal views."
+        },
+        {
+            "id": "three_d_visualization",
+            "description": "Generate a 3D volume rendering or model of the segmented tumor.",
+            "points": 20,
+            "visual_evidence": "A 3D view window showing a reconstructed 3D object representing the tumor shape."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "Save the segmentation to the specific path ~/Documents/SlicerData/BraTS/agent_segmentation.nii.gz.",
+            "points": 20,
+            "visual_evidence": "A save dialog box, terminal confirmation, or file explorer showing the file 'agent_segmentation.nii.gz' in the specified directory."
+        },
+        {
+            "id": "report_tumor_volume",
+            "description": "Calculate the tumor volume in mL and save it to tumor_report.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing a numerical value in mL saved to 'tumor_report.txt' in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI for segmentation rather than just script execution.",
+            "visual_evidence": "Mouse cursor movements, button clicks, and active tool selection within the Slicer/imaging software interface."
+        },
+        {
+            "id": "genuine_segmentation_process",
+            "description": "The agent performed actual segmentation steps (e.g., thresholding, growing, or manual painting).",
+            "visual_evidence": "Intermediate steps showing the segmentation mask evolving or tools being applied to the MRI data."
+        },
+        {
+            "id": "no_premade_report_copy",
+            "description": "The agent calculated the volume from the software's statistics module rather than typing a hardcoded value.",
+            "visual_evidence": "The 'Segment Statistics' or similar module being open and showing calculated volume results that match the report."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires the use of medical imaging software (likely 3D Slicer) to process four specific MRI sequences. The final output must be a .nii.gz file for the mask and a .txt file for the volume. The volume must be reported in milliliters (mL), which is typically derived from the 'Segment Statistics' module in Slicer."
+}

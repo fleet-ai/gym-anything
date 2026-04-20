@@ -1,0 +1,47 @@
+{
+    "task_id": "create_incident_bookmarks@1",
+    "task_completion": [
+        {
+            "id": "read_incident_start_time",
+            "description": "Agent reads the base timestamp (T) from /home/ga/incident_start_time.txt",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of /home/ga/incident_start_time.txt."
+        },
+        {
+            "id": "api_request_entrance_bookmark",
+            "description": "Agent sends a request to create the 'Suspect Entry' bookmark for the Entrance Camera at T+0ms",
+            "points": 30,
+            "visual_evidence": "Code execution or API client (like Postman or curl) showing a POST request to the Nx Witness API with name 'Suspect Entry', duration 120000, and tags ['theft', 'suspect', 'entrance']."
+        },
+        {
+            "id": "api_request_lobby_bookmark",
+            "description": "Agent sends a request to create the 'Suspicious Behavior in Lobby' bookmark for the Lobby Camera at T+180000ms",
+            "points": 30,
+            "visual_evidence": "Code execution or API client showing a POST request to the Nx Witness API with name 'Suspicious Behavior in Lobby' and the calculated start time (T + 180,000ms)."
+        },
+        {
+            "id": "verify_bookmark_creation",
+            "description": "Agent verifies the bookmarks were successfully created via API response or GUI",
+            "points": 30,
+            "visual_evidence": "A JSON response showing 'success' or '200 OK', or the Nx Witness desktop client showing the new bookmarks in the 'Bookmarks' panel."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_timestamps",
+            "description": "Agent did not guess the start time and actually read the file",
+            "visual_evidence": "The trajectory shows the agent opening /home/ga/incident_start_time.txt before making API calls."
+        },
+        {
+            "id": "genuine_api_interaction",
+            "description": "Agent used the Nx Witness REST API as instructed rather than just editing a local file",
+            "visual_evidence": "Screenshots show HTTP requests, curl commands, or Python scripts using the 'requests' library targeting the Nx Witness server."
+        },
+        {
+            "id": "correct_camera_selection",
+            "description": "Agent correctly identified the camera IDs for 'Entrance Camera' and 'Lobby Camera'",
+            "visual_evidence": "The agent performs a GET request to /ec2/getCameras or similar to resolve camera names to IDs before creating bookmarks."
+        }
+    ],
+    "privileged_info_for_vlm": "The base timestamp T is located in /home/ga/incident_start_time.txt. The Entrance Camera bookmark must have a duration of 120000ms and tags ['theft', 'suspect', 'entrance']. The Lobby Camera bookmark must start exactly 180,000ms after T. Valid camera names are 'Entrance Camera' and 'Lobby Camera'."
+}

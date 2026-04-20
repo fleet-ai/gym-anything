@@ -1,0 +1,53 @@
+{
+    "task_id": "digitize_legacy_entry@1",
+    "task_completion": [
+        {
+            "id": "scinote_login",
+            "description": "Agent successfully logs into SciNote and reaches the dashboard.",
+            "points": 10,
+            "visual_evidence": "The SciNote dashboard or project list is visible, showing the user is logged in as 'admin@scinote.net'."
+        },
+        {
+            "id": "open_legacy_archive",
+            "description": "Agent navigates to the 'Legacy Archive' project.",
+            "points": 10,
+            "visual_evidence": "The screen shows the 'Legacy Archive' project page or the project name in the breadcrumbs/sidebar."
+        },
+        {
+            "id": "create_task_correct_name",
+            "description": "Agent creates a new task with the name format '[Date] - [Experiment]' based on the scan content.",
+            "points": 25,
+            "visual_evidence": "A new task is visible in the project with a name like '2023-10-12 - Enzyme Kinetics' (or similar, matching the date and experiment title found in notebook_scan.jpg)."
+        },
+        {
+            "id": "transcribe_observations",
+            "description": "Agent transcribes the 'Observations' section from the image into the task description or a comment.",
+            "points": 30,
+            "visual_evidence": "The task description field or a comment contains the text transcribed from the 'Observations' section of the notebook scan."
+        },
+        {
+            "id": "upload_attachment",
+            "description": "Agent uploads 'notebook_scan.jpg' as an attachment to the task.",
+            "points": 25,
+            "visual_evidence": "The 'Files' or 'Attachments' section of the task shows 'notebook_scan.jpg' has been uploaded."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the SciNote web interface rather than manipulating a database or using CLI tools.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with buttons, text fields, and menus within the SciNote browser UI."
+        },
+        {
+            "id": "genuine_transcription",
+            "description": "Agent actually opened the image to read the text rather than guessing.",
+            "visual_evidence": "The agent is seen opening 'notebook_scan.jpg' using an image viewer or browser tab before typing the task name and description."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not use pre-existing tasks or skip the navigation steps.",
+            "visual_evidence": "The workflow shows the progression from the login screen to the specific project and the 'Create Task' modal."
+        }
+    ],
+    "privileged_info_for_vlm": "The file /home/ga/Desktop/notebook_scan.jpg contains a handwritten or typed note. The VLM must verify that the task name in SciNote matches the Date and Experiment title written in that specific image, and that the 'Observations' text in SciNote matches the text under the 'Observations' heading in the image."
+}

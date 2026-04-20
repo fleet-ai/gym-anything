@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_print_format@1",
+    "task_completion": [
+        {
+            "id": "open_print_format_window",
+            "description": "Agent navigates to the 'Print Format' window in iDempiere.",
+            "points": 10,
+            "visual_evidence": "The iDempiere window title or tab shows 'Print Format' and the search/grid view for print formats is visible."
+        },
+        {
+            "id": "locate_standard_order",
+            "description": "Agent locates the 'Standard Order' print format to use as a base.",
+            "points": 10,
+            "visual_evidence": "The 'Standard Order' record is selected or displayed in the Print Format window."
+        },
+        {
+            "id": "create_customer_proposal",
+            "description": "Agent creates a new Print Format named 'Customer Proposal' for the Order table.",
+            "points": 20,
+            "visual_evidence": "A new record is visible with the Name field set to 'Customer Proposal' and the Table field set to 'C_Order' or 'Order'."
+        },
+        {
+            "id": "update_header_title",
+            "description": "Agent changes the header title text to 'PROPOSAL'.",
+            "points": 30,
+            "visual_evidence": "In the Print Format Item tab or the main Print Format record, the 'Print Name' or 'Name' field is updated to 'PROPOSAL'."
+        },
+        {
+            "id": "hide_line_no_column",
+            "description": "Agent hides the 'Line No' (Line) column from the print format.",
+            "points": 30,
+            "visual_evidence": "In the 'Print Format Item' sub-tab, the item named 'Line' or 'Line No' has the 'Printed' checkbox unchecked (IsPrinted = 'N')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within the iDempiere browser UI."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menu or search rather than jumping to a final success state.",
+            "visual_evidence": "The trajectory shows the sequence of opening the menu, searching for 'Print Format', and interacting with the record tabs."
+        },
+        {
+            "id": "genuine_record_creation",
+            "description": "The agent actually saved the record in the system.",
+            "visual_evidence": "The 'Save' button is clicked, and a confirmation message (e.g., 'Saved' or a green checkmark) appears in the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The target print format name is 'Customer Proposal'. It must be associated with the 'C_Order' table. The header title is modified by changing the 'Print Name' field to 'PROPOSAL'. To hide the 'Line No' column, the agent must find the Print Format Item named 'Line' (or 'Line No') and ensure the 'Printed' checkbox is unchecked."
+}

@@ -1,0 +1,54 @@
+{
+    "task_id": "plot_line_profile@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis medical viewer application is open and visible.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window, including its menus and toolbar, is visible on the desktop."
+        },
+        {
+            "id": "ct_image_loaded",
+            "description": "The CT image (Patient PROF001) is loaded into the viewer.",
+            "points": 15,
+            "visual_evidence": "A CT scan slice is displayed in the main viewport of Weasis."
+        },
+        {
+            "id": "line_drawn_on_structure",
+            "description": "A measurement line has been drawn across the bright central structure of the image.",
+            "points": 25,
+            "visual_evidence": "A graphical line annotation is visible overlaid on the CT image, specifically crossing the brightest central area."
+        },
+        {
+            "id": "profile_graph_displayed",
+            "description": "The line profile (intensity/density) graph is open and visible.",
+            "points": 30,
+            "visual_evidence": "A plot or graph window showing pixel intensity values along the drawn line is visible within the Weasis interface."
+        },
+        {
+            "id": "screenshot_saved_correctly",
+            "description": "The final screenshot contains both the image with the line and the profile graph.",
+            "points": 20,
+            "visual_evidence": "The image at /home/ga/DICOM/exports/line_profile_analysis.png shows the Weasis UI with both the annotated CT slice and the resulting profile graph simultaneously."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI tools to draw the line rather than generating a plot via script.",
+            "visual_evidence": "The line profile must be shown within a Weasis-native window or panel, not a generic matplotlib or terminal output."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The line profile graph corresponds to the visual data in the CT image.",
+            "points": 0,
+            "visual_evidence": "The graph should show a peak in the center corresponding to the 'bright central structure' indicated in the task."
+        },
+        {
+            "id": "no_file_system_faking",
+            "description": "The agent did not simply move a pre-existing image to the destination.",
+            "visual_evidence": "The screenshot should show the active Weasis session with the specific UI state required, not just a static image file being manipulated in a file manager."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses a synthetic DICOM image for PatientID PROF001. The agent must use the Weasis GUI to draw a line across the central bright spot. The final output must be a screenshot saved to /home/ga/DICOM/exports/line_profile_analysis.png showing both the CT slice with the drawn line and the resulting intensity profile graph."
+}

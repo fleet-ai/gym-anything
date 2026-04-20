@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_tls_offset_sweep@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "Create the Python optimization script at the specified path.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer showing the creation or existence of /home/ga/SUMO_Output/optimize_offset.py."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script contains logic to iterate from 0 to 120 in steps of 10 and run SUMO.",
+            "points": 20,
+            "visual_evidence": "Code editor or 'cat' command output showing a loop (e.g., range(0, 121, 10)) and execution of 'sumo -c /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg'."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent executes the script to run the parameter sweep.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the script running, potentially displaying progress logs or multiple SUMO execution instances."
+        },
+        {
+            "id": "csv_generation",
+            "description": "The script generates the results CSV with the correct headers and 13 data rows.",
+            "points": 20,
+            "visual_evidence": "Terminal output of 'cat /home/ga/SUMO_Output/offset_results.csv' showing headers 'offset,total_waiting_time' and 13 rows of data."
+        },
+        {
+            "id": "best_xml_generation",
+            "description": "The agent generates the final XML file with the optimized offset.",
+            "points": 25,
+            "visual_evidence": "Existence of /home/ga/SUMO_Output/best_tls.add.xml and its content showing a <tlLogic> element with an offset attribute corresponding to the minimum waiting time found in the CSV."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final CSV or XML values without running the simulation.",
+            "visual_evidence": "The terminal history should show the script being executed and the simulation running (SUMO logs), rather than just 'echo' commands creating the final files."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the task rather than working in local directories.",
+            "visual_evidence": "Commands and script code explicitly reference /home/ga/SUMO_Output/ and /home/ga/SUMO_Scenarios/."
+        },
+        {
+            "id": "genuine_sumo_interaction",
+            "description": "The agent interacted with the SUMO configuration files provided.",
+            "visual_evidence": "The script or commands must reference 'pasubio_tls.add.xml' and 'run.sumocfg' to extract or modify data."
+        }
+    ],
+    "privileged_info_for_vlm": "The parameter sweep from 0 to 120 in steps of 10 must result in exactly 13 rows in the CSV. The optimal offset for the first traffic light (ID 218) is 0 (or 90, which is the cycle equivalent), yielding a minimum total waiting time of approximately 1,353,898 seconds. The CSV headers must be exactly 'offset' and 'total_waiting_time'."
+}

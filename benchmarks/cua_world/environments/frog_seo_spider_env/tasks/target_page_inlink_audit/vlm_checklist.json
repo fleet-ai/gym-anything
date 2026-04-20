@@ -1,0 +1,59 @@
+{
+    "task_id": "target_page_inlink_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launched",
+            "description": "Screaming Frog SEO Spider application is opened and visible.",
+            "points": 10,
+            "visual_evidence": "The Screaming Frog SEO Spider GUI window is visible on the desktop."
+        },
+        {
+            "id": "crawl_initiated",
+            "description": "The agent enters the target domain and starts the crawl.",
+            "points": 15,
+            "visual_evidence": "The URL 'https://books.toscrape.com/' is entered in the 'Enter URL to spider' field and the progress bar shows activity or 100% completion."
+        },
+        {
+            "id": "target_page_selected",
+            "description": "The agent locates and selects the specific product page for 'A Light in the Attic' in the crawl results.",
+            "points": 20,
+            "visual_evidence": "The row containing 'https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html' is highlighted in the main window."
+        },
+        {
+            "id": "inlinks_tab_accessed",
+            "description": "The agent navigates to the 'Inlinks' tab at the bottom of the interface to view internal links for the selected page.",
+            "points": 15,
+            "visual_evidence": "The 'Inlinks' tab at the bottom of the Screaming Frog interface is selected/active, showing a list of source URLs."
+        },
+        {
+            "id": "export_dialog_configured",
+            "description": "The agent initiates an export of the inlinks data.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file save window is visible, showing the file name 'attic_inlinks.csv' being typed or saved."
+        },
+        {
+            "id": "file_saved_correct_path",
+            "description": "The final CSV is saved to the specified directory with the required columns.",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal window shows 'attic_inlinks.csv' exists in '~/Documents/SEO/exports/'. If the file is opened, columns 'From', 'To', and 'Anchor Text' are visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Screaming Frog buttons, tabs, and menus."
+        },
+        {
+            "id": "actual_crawl_performed",
+            "description": "The data originates from a real crawl of the sandbox site.",
+            "visual_evidence": "The Screaming Frog interface shows multiple URLs from books.toscrape.com in the internal tab with status codes (e.g., 200 OK)."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply use 'echo' or a text editor to create the CSV content manually.",
+            "visual_evidence": "The trajectory shows the export process within the Screaming Frog UI rather than a text editor or terminal command like 'cat > attic_inlinks.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://books.toscrape.com/. The specific product page to audit is https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html. The export must be a CSV named 'attic_inlinks.csv' located in '/home/ga/Documents/SEO/exports/'. The export must contain at least the columns 'From', 'To', and 'Anchor Text'. Screaming Frog's 'Inlinks' tab (bottom pane) is the standard way to view this data for a selected URL."
+}

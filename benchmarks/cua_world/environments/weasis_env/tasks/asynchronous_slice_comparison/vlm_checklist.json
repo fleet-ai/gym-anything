@@ -1,0 +1,53 @@
+{
+    "task_id": "asynchronous_slice_comparison@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "Weasis medical viewer is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open, showing the DICOM viewer interface."
+        },
+        {
+            "id": "layout_1x2",
+            "description": "The workspace layout is configured to a 1x2 grid (two side-by-side panes).",
+            "points": 15,
+            "visual_evidence": "The main viewing area is split into exactly two vertical panes (left and right)."
+        },
+        {
+            "id": "sync_disabled",
+            "description": "Slice synchronization between the two panes is disabled.",
+            "points": 25,
+            "visual_evidence": "The 'Link' or 'Sync' icon in the toolbar or pane headers is toggled off, or the panes show different slice numbers/content independently."
+        },
+        {
+            "id": "slice_comparison_content",
+            "description": "The left pane shows a slice from the beginning of the series and the right pane shows a slice from the end.",
+            "points": 30,
+            "visual_evidence": "The slice indicators (e.g., '1/10' on the left and '10/10' or '9/10' on the right) show widely separated indices from the 10-slice series."
+        },
+        {
+            "id": "files_created",
+            "description": "The agent saves the screenshot and the completion text file to the specified directory.",
+            "points": 20,
+            "visual_evidence": "Terminal output or a file explorer window shows the creation of 'async_comparison.png' and 'task_complete.txt' in ~/DICOM/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the Weasis GUI to change layouts and slices rather than just using CLI tools.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to layout menus, scrollbars, or sync toggle buttons within the Weasis interface."
+        },
+        {
+            "id": "genuine_render",
+            "description": "The images displayed are actual DICOM renders, not placeholder images.",
+            "visual_evidence": "The panes contain CT scan cross-sections with associated DICOM metadata overlays (Patient ID, Slice Number) consistent with the 10-slice series."
+        },
+        {
+            "id": "no_file_spoofing",
+            "description": "The task_complete.txt file was created after the GUI actions.",
+            "visual_evidence": "The timestamp of the terminal command creating the text file occurs after the visual configuration of the Weasis workspace."
+        }
+    ],
+    "privileged_info_for_vlm": "The CT series contains exactly 10 slices. The agent must disable synchronization to show different slices simultaneously. The expected output files are /home/ga/DICOM/exports/async_comparison.png and /home/ga/DICOM/exports/task_complete.txt (containing 'async_done')."
+}

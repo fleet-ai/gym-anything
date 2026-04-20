@@ -1,0 +1,53 @@
+{
+    "task_id": "subcarinal_lymph_node_assessment@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loads the chest CT scan into the 3D Slicer interface.",
+            "points": 10,
+            "visual_evidence": "3D Slicer application is open showing a chest CT scan in the axial, sagittal, and coronal viewers."
+        },
+        {
+            "id": "locate_subcarinal_station",
+            "description": "The agent navigates to the subcarinal region (Station 7), located just below the tracheal bifurcation (carina).",
+            "points": 15,
+            "visual_evidence": "The axial slice viewer shows the anatomy immediately inferior to the division of the main bronchi."
+        },
+        {
+            "id": "perform_short_axis_measurement",
+            "description": "The agent uses the ruler or markup tool to measure the short-axis diameter of a lymph node in the subcarinal space.",
+            "points": 25,
+            "visual_evidence": "A measurement line (markup) is visible on a lymph node in the axial view, specifically measuring the shortest diameter."
+        },
+        {
+            "id": "save_markup_file",
+            "description": "The agent saves the measurement as a markups JSON file to the specified directory.",
+            "points": 20,
+            "visual_evidence": "A 'Save' dialog or file browser shows 'subcarinal_measurement.mrk.json' being saved to '~/Documents/SlicerData/LIDC/'."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "The agent creates a JSON report with the required fields: station, lymph_node_identified, short_axis_mm, classification, and slice_position_mm.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output displays the content of 'lymph_node_report.json' containing all five required keys and values derived from the software interaction."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the 3D Slicer GUI tools to identify and measure the node rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's 'Markups' or 'Ruler' module and the measurement line appearing on the CT image."
+        },
+        {
+            "id": "no_precomputed_copy_paste",
+            "description": "The agent did not simply copy the privileged information values into the report without performing the measurement.",
+            "visual_evidence": "The measurement value in the final JSON matches the visual measurement value shown in the 3D Slicer UI overlay."
+        },
+        {
+            "id": "authentic_software_state",
+            "description": "The agent interacted with the actual LIDC-IDRI-0001 dataset loaded in the environment.",
+            "visual_evidence": "The Slicer Data Probe or window title reflects the correct patient/case ID or image dimensions consistent with the LIDC dataset."
+        }
+    ],
+    "privileged_info_for_vlm": "Station 7 refers to the subcarinal lymph nodes located inferior to the tracheal bifurcation. A short-axis diameter < 10mm is considered normal; 10-15mm is often considered indeterminate or borderline; > 15mm is typically classified as enlarged/pathological for this station. The measurement must be the short axis (perpendicular to the long axis) of the node."
+}

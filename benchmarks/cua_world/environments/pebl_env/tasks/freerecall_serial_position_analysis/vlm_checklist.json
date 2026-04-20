@@ -1,0 +1,59 @@
+{
+    "task_id": "freerecall_serial_position_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the raw data file at ~/pebl/data/freerecall_data.csv",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read) or a file explorer window showing the content of freerecall_data.csv."
+        },
+        {
+            "id": "data_filtering_logic",
+            "description": "Agent implements logic to exclude participants with 0.0 recall and mean RT < 50ms",
+            "points": 15,
+            "visual_evidence": "Code snippets in a script or notebook showing a filter or conditional statement checking 'recalled == 0' and 'recall_rt_ms < 50'."
+        },
+        {
+            "id": "participant_metrics_calculation",
+            "description": "Agent calculates primacy (1-3), middle (4-12), and recency (13-15) scores for valid participants",
+            "points": 20,
+            "visual_evidence": "Code or output showing the grouping of study_position into the three specified bins and calculating mean recall for each."
+        },
+        {
+            "id": "group_curve_generation",
+            "description": "Agent generates a group serial position curve for all 15 positions",
+            "points": 20,
+            "visual_evidence": "A plot or a data structure (array/list) containing 15 mean values corresponding to each study position."
+        },
+        {
+            "id": "json_report_structure",
+            "description": "Agent creates the JSON report with the required 'participants' list and 'group_serial_position_curve' array",
+            "points": 15,
+            "visual_evidence": "A preview of the JSON file content showing the keys 'participants' and 'group_serial_position_curve'."
+        },
+        {
+            "id": "file_export",
+            "description": "Agent saves the final report to ~/pebl/analysis/serial_position_report.json",
+            "points": 20,
+            "visual_evidence": "A terminal command or file explorer view confirming the existence of the file at the specific path ~/pebl/analysis/serial_position_report.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "Agent performed actual data processing rather than hardcoding the output",
+            "visual_evidence": "Screenshots should show the execution of Python code (pandas, numpy, etc.) that processes the CSV file, not just a 'write' command with pre-filled numbers."
+        },
+        {
+            "id": "exclusion_verification",
+            "description": "Agent correctly identifies and flags the contaminated participant",
+            "visual_evidence": "The analysis output or code should specifically mention or show the exclusion of participant 'sub-999'."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Agent uses the specified file paths for input and output",
+            "visual_evidence": "The code or terminal commands must explicitly reference ~/pebl/data/freerecall_data.csv and ~/pebl/analysis/serial_position_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 30 valid participants and one contaminated participant with ID 'sub-999'. Participant 'sub-999' must be excluded because they have an overall recall of 0.0 and a mean reaction time (RT) less than 50ms. The final JSON must contain exactly 15 floats in the 'group_serial_position_curve' representing positions 1 through 15. The output file path must be exactly /home/ga/pebl/analysis/serial_position_report.json."
+}

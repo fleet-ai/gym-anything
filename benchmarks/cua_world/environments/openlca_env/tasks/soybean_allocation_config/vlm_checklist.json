@@ -1,0 +1,53 @@
+{
+    "task_id": "soybean_allocation_config@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database from the specified zip file into openLCA.",
+            "points": 10,
+            "visual_evidence": "The openLCA navigation pane shows the 'uslci_database' or a similar USLCI-related database active in the sidebar."
+        },
+        {
+            "id": "process_creation",
+            "description": "Create a new process named 'Soybean Processing, at plant' with the required inputs and outputs.",
+            "points": 20,
+            "visual_evidence": "A process editor tab is open in openLCA titled 'Soybean Processing, at plant' showing 'Soybean Oil, crude' (0.185 kg) and 'Soybean Meal' (0.795 kg) in the 'Outputs' section, plus electricity and CO2 in the flows list."
+        },
+        {
+            "id": "allocation_setup",
+            "description": "Configure physical allocation (mass-based) for the multi-output process.",
+            "points": 20,
+            "visual_evidence": "The 'Allocation' tab of the process editor shows 'Physical allocation' selected, with allocation factors calculated for both Soybean Oil and Soybean Meal based on their mass."
+        },
+        {
+            "id": "lcia_calculation",
+            "description": "Run the LCIA calculation for the Soybean Oil product system using TRACI 2.1.",
+            "points": 25,
+            "visual_evidence": "The 'Calculation setup' dialog or the 'Analysis' results tab shows 'Soybean Oil, crude' as the reference flow and 'TRACI 2.1' as the selected Impact Assessment Method."
+        },
+        {
+            "id": "result_export",
+            "description": "Export the LCIA results to the specified CSV file path.",
+            "points": 25,
+            "visual_evidence": "An export dialog or a file explorer window shows the file 'soybean_allocation.csv' being saved to '~/LCA_Results/' or a terminal/confirmation message indicating the export was successful."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the openLCA graphical user interface to model the process rather than just writing a script.",
+            "visual_evidence": "Screenshots show the openLCA application window, including the flow editors, process tabs, and calculation wizards."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually create the CSV file using a text editor with dummy data.",
+            "visual_evidence": "The CSV export is triggered from within the openLCA interface or via the software's export functionality, not a text editor like Gedit or Vim."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the USLCI database flows rather than creating generic placeholder flows.",
+            "visual_evidence": "The flow selection dialogs show flows being picked from the USLCI database hierarchy (e.g., 'Technosphere flows' or 'Elementary flows')."
+        }
+    ],
+    "privileged_info_for_vlm": "The process must be named 'Soybean Processing, at plant'. Required outputs are exactly 0.185 kg of 'Soybean Oil, crude' and 0.795 kg of 'Soybean Meal'. The allocation method must be 'Physical' (mass-based). The LCIA method is 'TRACI 2.1'. The final output file must be located at /home/ga/LCA_Results/soybean_allocation.csv."
+}

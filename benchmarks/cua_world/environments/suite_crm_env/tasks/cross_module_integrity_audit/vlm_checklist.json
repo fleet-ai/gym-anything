@@ -1,0 +1,53 @@
+{
+    "task_id": "cross_module_integrity_audit@1",
+    "task_completion": [
+        {
+            "id": "identify_account_mismatches",
+            "description": "Identify accounts where the 'Type' does not match the Opportunity history (e.g., 'Customer' without 'Closed Won' opportunities).",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the agent viewing the Accounts list and clicking into individual accounts to check their 'Opportunities' sub-panel."
+        },
+        {
+            "id": "correct_account_types",
+            "description": "Update account types so only those with 'Closed Won' opportunities are 'Customer', and others are correctly classified (e.g., 'Analyst', 'Prospect', 'Partner', or 'Competitor').",
+            "points": 25,
+            "visual_evidence": "Screenshots of the 'Edit' view for accounts like Apple, Meta, or ExxonMobil where the 'Type' dropdown is being changed and saved."
+        },
+        {
+            "id": "identify_orphan_contacts",
+            "description": "Locate contacts that are not linked to any account (orphans).",
+            "points": 15,
+            "visual_evidence": "Screenshots of the Contacts list showing records where the 'Account Name' field is blank (specifically Victor Huang and Laura Fischer)."
+        },
+        {
+            "id": "reassign_orphan_contacts",
+            "description": "Assign orphan contacts to the correct accounts based on their email domains.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the Contact edit screen showing the 'Account Name' field being populated with a company matching the contact's email domain."
+        },
+        {
+            "id": "resolve_misattributed_contacts",
+            "description": "Identify and fix contacts assigned to the wrong account (email domain mismatch).",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the correction of James Chen (assigned to Microsoft but has an apple.com email) to the Apple account."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent must use the SuiteCRM web interface to perform edits, not the terminal or database commands.",
+            "visual_evidence": "The agent's actions are performed within the browser window; no use of 'mysql' or 'php' commands in the terminal to update records."
+        },
+        {
+            "id": "genuine_data_discovery",
+            "description": "The agent must actually navigate to the records to verify the mismatch before fixing it.",
+            "visual_evidence": "Screenshots show the agent opening the 'Opportunities' sub-panel or 'History' of an account before changing its 'Type'."
+        },
+        {
+            "id": "no_bulk_delete_shortcuts",
+            "description": "The agent should correct the data integrity rather than simply deleting problematic records.",
+            "visual_evidence": "The contact and account records remain in the system but with updated fields/assignments."
+        }
+    ],
+    "privileged_info_for_vlm": "There are 13 accounts that are incorrectly typed as 'Customer' because they lack 'Closed Won' opportunities (including Apple, Meta, ExxonMobil, Alphabet, Amazon, and NVIDIA). There are exactly 2 orphan contacts: Victor Huang and Laura Fischer. There is exactly 1 misattributed contact: James Chen (who has an @apple.com email but is assigned to Microsoft). The agent must change account types to something other than 'Customer' if no 'Closed Won' deal exists, and reassign contacts to accounts matching their email domains."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "stack_reslicing_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_fly_brain",
+            "description": "Open the 'Fly Brain' sample image stack in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 'Fly Brain' showing a multi-slice stack (indicated by a slider at the bottom) with dimensions 256x256x57."
+        },
+        {
+            "id": "convert_8bit",
+            "description": "Convert the image stack to 8-bit grayscale.",
+            "points": 15,
+            "visual_evidence": "The image window header or information bar displays '8-bit' instead of the original bit depth (e.g., 16-bit or RGB)."
+        },
+        {
+            "id": "reslice_top",
+            "description": "Perform the 'Reslice' operation from the 'Top' with 1.0 pixel spacing.",
+            "points": 25,
+            "visual_evidence": "The 'Reslice' dialog box with 'Start at: Top' and 'Output Spacing: 1.0' selected, followed by a new stack window appearing (likely titled 'Reslice of Fly Brain')."
+        },
+        {
+            "id": "max_intensity_projection",
+            "description": "Create a Maximum Intensity Projection of the resliced stack.",
+            "points": 25,
+            "visual_evidence": "The 'Z Project' dialog with 'Projection type: Maximum Intensity' selected, resulting in a single 2D image window (no slider at the bottom)."
+        },
+        {
+            "id": "save_result",
+            "description": "Save the final projection as 'side_view_projection.tif' in the specified directory.",
+            "points": 25,
+            "visual_evidence": "A 'Save' or 'Save As' dialog showing the path '~/ImageJ_Data/results/side_view_projection.tif' or the file appearing in a file explorer window at that location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI menus rather than just executing a script or terminal command.",
+            "visual_evidence": "Screenshots showing the mouse cursor navigating 'Image > Type > 8-bit', 'Image > Stacks > Reslice', and 'Image > Stacks > Z Project'."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent did not simply rename an existing file or create a dummy image.",
+            "visual_evidence": "Intermediate windows (the resliced stack and the projection window) are visible on the desktop before the final save."
+        },
+        {
+            "id": "correct_dimensions",
+            "description": "The final image dimensions match the expected output of the reslicing process.",
+            "visual_evidence": "The final image window header shows dimensions of 256x57 pixels."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Fly Brain' sample is a 256x256x57 stack. Converting to 8-bit is required before reslicing. Reslicing from the 'Top' transforms the Y-axis into the Z-axis; since the original depth was 57 and width was 256, the resulting XZ projection must be exactly 256x57 pixels. The final file must be an 8-bit TIFF named 'side_view_projection.tif' located in '~/ImageJ_Data/results/'."
+}

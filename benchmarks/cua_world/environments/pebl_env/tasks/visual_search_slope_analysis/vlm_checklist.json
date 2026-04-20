@@ -1,0 +1,53 @@
+{
+    "task_id": "visual_search_slope_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the visual search data file at ~/pebl/data/visual_search_data.csv.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the agent opening the CSV file in a text editor, spreadsheet viewer, or loading it into a data analysis environment (e.g., pandas read_csv)."
+        },
+        {
+            "id": "data_filtering",
+            "description": "Agent filters the data to exclude incorrect trials (response_correct == 0) and identifies participants with <20% accuracy on target_present trials.",
+            "points": 15,
+            "visual_evidence": "Code snippets or terminal output showing filtering logic for 'response_correct' and accuracy calculations per participant."
+        },
+        {
+            "id": "slope_calculation",
+            "description": "Agent performs linear regression (mean_RT ~ set_size) for each of the four search types per participant.",
+            "points": 30,
+            "visual_evidence": "Code or logs showing the execution of a regression function (e.g., linregress, polyfit, or OLS) across the four conditions: feature_present, feature_absent, conjunction_present, conjunction_absent."
+        },
+        {
+            "id": "group_averaging",
+            "description": "Agent calculates the group mean slopes for the four search types based on valid participants.",
+            "points": 20,
+            "visual_evidence": "Code or output showing the aggregation of individual slopes into a 'group_mean_slopes' dictionary or table."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent writes the final results to ~/pebl/analysis/visual_search_report.json with the required structure.",
+            "points": 25,
+            "visual_evidence": "Screenshot of the generated JSON file content showing 'participants' list (with IDs, slopes, and exclusion status) and 'group_mean_slopes'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates values dynamically rather than hardcoding the expected results.",
+            "visual_evidence": "The code should show mathematical operations and data frame manipulations rather than a pre-written JSON string containing the final numbers."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "Agent uses data analysis tools (Python, R, or similar) to process the CSV rather than just manually typing a report.",
+            "visual_evidence": "Screenshots of a code editor or terminal showing script execution or interactive data processing."
+        },
+        {
+            "id": "exclusion_logic_verification",
+            "description": "Agent correctly identifies and excludes sub-99 based on the data provided.",
+            "visual_evidence": "The final JSON or intermediate logs should explicitly list 'sub-99' as excluded with a reason related to low accuracy."
+        }
+    ],
+    "privileged_info_for_vlm": "The participant 'sub-99' is a contaminated entry with 0% accuracy on target_present trials and must be marked as 'excluded' in the final report. The final output must be saved specifically to /home/ga/pebl/analysis/visual_search_report.json. The four required search types are feature_present, feature_absent, conjunction_present, and conjunction_absent."
+}

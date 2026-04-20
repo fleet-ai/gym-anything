@@ -1,0 +1,59 @@
+{
+    "task_id": "execute_woocommerce_bulk_price_update@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_products",
+            "description": "Agent navigates to the WooCommerce Products list in the WordPress dashboard.",
+            "points": 10,
+            "visual_evidence": "The WordPress sidebar shows 'Products' selected and the product table is visible."
+        },
+        {
+            "id": "filter_coffee_beans",
+            "description": "Agent filters the product list by the 'Coffee Beans' category.",
+            "points": 10,
+            "visual_evidence": "The category dropdown shows 'Coffee Beans' selected and the 'Filter' button is clicked, or the product list is filtered to show only coffee items."
+        },
+        {
+            "id": "bulk_edit_coffee_beans",
+            "description": "Agent applies a 20% increase to the Regular Price for the Coffee Beans category using the Bulk Edit tool.",
+            "points": 25,
+            "visual_evidence": "The Bulk Edit interface is visible with 'Change to: Increase existing price by % (inc. tax)' or similar selected, the value '20' entered, and the 'Update' button clicked."
+        },
+        {
+            "id": "filter_brewing_equipment",
+            "description": "Agent filters the product list by the 'Brewing Equipment' category.",
+            "points": 10,
+            "visual_evidence": "The category dropdown shows 'Brewing Equipment' selected and the list is updated to show these products."
+        },
+        {
+            "id": "bulk_edit_brewing_equipment",
+            "description": "Agent applies a $15 decrease to the Regular Price for the Brewing Equipment category using the Bulk Edit tool.",
+            "points": 25,
+            "visual_evidence": "The Bulk Edit interface is visible with 'Change to: Decrease existing price by fixed amount (inc. tax)' or similar selected, the value '15' entered, and the 'Update' button clicked."
+        },
+        {
+            "id": "verify_merchandise_untouched",
+            "description": "Agent ensures the 'Merchandise' category is not modified.",
+            "points": 20,
+            "visual_evidence": "The agent either avoids selecting the Merchandise category for bulk edits or the final product list shows Merchandise prices remain at their original values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the WooCommerce GUI rather than SQL queries or WP-CLI to update prices.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on WordPress buttons, and the Bulk Edit modal rather than a terminal window."
+        },
+        {
+            "id": "no_manual_price_entry",
+            "description": "The agent used the 'Bulk Edit' math functions rather than manually calculating and typing new prices for every individual product.",
+            "visual_evidence": "The Bulk Edit screen shows the use of the 'Increase by %' and 'Decrease by fixed amount' dropdown options."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the WordPress dashboard naturally.",
+            "visual_evidence": "Sequential screenshots show the transition from the dashboard to the product list and the application of filters."
+        }
+    ],
+    "privileged_info_for_vlm": "There are exactly 25 products: 10 Coffee Beans, 10 Brewing Equipment, and 5 Merchandise. The agent must increase Coffee Beans prices by 20% and decrease Brewing Equipment by $15. Merchandise prices must remain unchanged. The agent should use the WooCommerce 'Bulk Actions' -> 'Edit' -> 'Update' flow to perform these calculations automatically."
+}

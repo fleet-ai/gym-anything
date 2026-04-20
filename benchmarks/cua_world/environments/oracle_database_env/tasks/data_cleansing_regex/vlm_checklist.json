@@ -1,0 +1,53 @@
+{
+    "task_id": "data_cleansing_regex@1",
+    "task_completion": [
+        {
+            "id": "source_table_access",
+            "description": "Agent accesses the 'ACQUIRED_EMPLOYEES' table in the HR schema.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a SQL query or a GUI table browser displaying the 'ACQUIRED_EMPLOYEES' table and its messy data."
+        },
+        {
+            "id": "regex_logic_implementation",
+            "description": "Agent develops and executes SQL or scripts using regex/string functions to transform EMP_NUM, FULL_NAME, EMAIL_ADDR, and PHONE.",
+            "points": 25,
+            "visual_evidence": "Code editor or SQL worksheet showing logic like REGEXP_SUBSTR for IDs, INITCAP for names, or REGEXP_REPLACE for phone numbers."
+        },
+        {
+            "id": "target_table_creation",
+            "description": "Agent creates the 'CLEAN_EMPLOYEES' table with the specified schema (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER).",
+            "points": 15,
+            "visual_evidence": "A 'CREATE TABLE CLEAN_EMPLOYEES' statement or a GUI confirmation showing the new table structure in the HR schema."
+        },
+        {
+            "id": "data_standardization_verification",
+            "description": "The data in 'CLEAN_EMPLOYEES' is correctly formatted (Numeric IDs, Title Case names, lowercase emails, XXX-XXX-XXXX phones).",
+            "points": 30,
+            "visual_evidence": "A 'SELECT * FROM CLEAN_EMPLOYEES' result grid showing exactly 45 rows with standardized formatting (e.g., '42' instead of 'EMP-0042', 'John' instead of '  john ')."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates a data cleansing report at the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file explorer or text editor showing the file '/home/ga/Desktop/data_cleansing_report.txt' containing a summary of the cleansing process."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_entry",
+            "description": "Agent did not manually type in the cleaned values for the 45 rows.",
+            "visual_evidence": "The agent should be seen writing a transformation script or SQL query rather than using 'INSERT' statements with hardcoded cleaned strings."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacts with the Oracle/SQL environment rather than just creating a text file.",
+            "visual_evidence": "Screenshots must show a database management tool (like SQL Developer, DBeaver, or a terminal-based SQL plus) being used to execute commands."
+        },
+        {
+            "id": "path_fidelity",
+            "description": "The report is saved to the exact path requested, not a generic location.",
+            "visual_evidence": "The file path '/home/ga/Desktop/data_cleansing_report.txt' is visible in the save dialog or the terminal 'ls' command."
+        }
+    ],
+    "privileged_info_for_vlm": "The source table 'ACQUIRED_EMPLOYEES' contains exactly 45 rows. The target table must be named 'CLEAN_EMPLOYEES'. The final report must exist at '/home/ga/Desktop/data_cleansing_report.txt'. Key transformations: EMP-0042 becomes 42; names must be Title Case; emails must be lowercase with no spaces; phone numbers must follow XXX-XXX-XXXX format."
+}

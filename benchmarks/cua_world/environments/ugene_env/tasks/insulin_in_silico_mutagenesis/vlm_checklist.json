@@ -1,0 +1,59 @@
+{
+    "task_id": "insulin_in_silico_mutagenesis@1",
+    "task_completion": [
+        {
+            "id": "open_human_insulin_gb",
+            "description": "Open the human_insulin_gene.gb file in the UGENE sequence viewer.",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows the sequence 'human_insulin_gene.gb' loaded in the project view or sequence editor."
+        },
+        {
+            "id": "locate_p28_codon",
+            "description": "Locate the B-chain Proline 28 codon (CCC) within the sequence.",
+            "points": 15,
+            "visual_evidence": "The cursor or selection is positioned over the 'CCC' codon within the 'TACACACCCAAG' motif in the UGENE sequence editor."
+        },
+        {
+            "id": "perform_mutagenesis",
+            "description": "Change the Proline codon (CCC) to an Aspartic Acid codon (GAC).",
+            "points": 25,
+            "visual_evidence": "The sequence editor shows the motif changed from 'TACACACCCAAG' to 'TACACAGACAAG' (or similar GAC substitution)."
+        },
+        {
+            "id": "annotate_mutation",
+            "description": "Add a 'misc_feature' or 'variation' annotation with the note 'P28D'.",
+            "points": 20,
+            "visual_evidence": "The 'Add Feature' dialog or the 'Annotations' panel shows a new feature with the qualifier 'note=P28D'."
+        },
+        {
+            "id": "save_mutant_gb",
+            "description": "Save the modified sequence to insulin_aspart_mutant.gb in the results folder.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the project tree shows the file being saved to '~/UGENE_Data/results/insulin_aspart_mutant.gb'."
+        },
+        {
+            "id": "create_text_report",
+            "description": "Create a text report documenting the original codon, engineered codon, and purpose.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or KWrite) is open showing 'mutagenesis_report.txt' with content mentioning 'CCC', 'GAC', and 'fast-acting insulin' or 'Insulin Aspart'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used the UGENE GUI for sequence editing rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the UGENE sequence editor window, context menus, or dialog boxes being used to edit the sequence."
+        },
+        {
+            "id": "no_frameshift",
+            "description": "Ensure the mutation was a substitution and did not change the total sequence length.",
+            "visual_evidence": "The sequence length indicator in UGENE remains at 469 bp after the edit."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Verify the agent didn't simply create the files via 'echo' in the terminal without opening UGENE.",
+            "visual_evidence": "The agent is seen interacting with the UGENE interface (e.g., clicking 'Edit sequence', 'Add annotation') before the files appear in the file system."
+        }
+    ],
+    "privileged_info_for_vlm": "The wild-type sequence contains the motif 'TACACACCCAAG' (encoding YTPK). The P28D mutation requires changing the 'CCC' (Proline) to 'GAC' (Aspartic Acid), resulting in the motif 'TACACAGACAAG'. The original sequence length is 469 bp and should remain 469 bp after the mutation to avoid a frameshift. The annotation must specifically contain the note 'P28D'."
+}

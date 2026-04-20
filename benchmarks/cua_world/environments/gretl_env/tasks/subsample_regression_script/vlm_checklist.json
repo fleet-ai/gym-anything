@@ -1,0 +1,59 @@
+{
+    "task_id": "subsample_regression_script@1",
+    "task_completion": [
+        {
+            "id": "open_gretl_and_data",
+            "description": "Open the gretl application and load the 'food.gdt' dataset.",
+            "points": 10,
+            "visual_evidence": "The gretl main window is visible showing variables 'food_exp' and 'income' from the food.gdt dataset."
+        },
+        {
+            "id": "script_editor_open",
+            "description": "Open a new hansl script buffer or gretl console to write the analysis script.",
+            "points": 10,
+            "visual_evidence": "A 'gretl: hansl script' window or the gretl console is open and active."
+        },
+        {
+            "id": "subsample_logic_implementation",
+            "description": "Write hansl code that uses 'smpl' or 'restrict' to filter the data by income < 15 and income >= 15.",
+            "points": 25,
+            "visual_evidence": "The script window shows commands like 'smpl income < 15' and 'smpl income >= 15' or equivalent 'restrict' statements."
+        },
+        {
+            "id": "ols_regression_commands",
+            "description": "Include OLS regression commands for both subsamples in the script.",
+            "points": 20,
+            "visual_evidence": "The script shows 'ols food_exp const income' (or similar) being called for both subsamples."
+        },
+        {
+            "id": "output_redirection",
+            "description": "Include commands to redirect or write the specific statistics to the required file path.",
+            "points": 20,
+            "visual_evidence": "The script contains the path '/home/ga/Documents/gretl_output/subsample_results.txt' and logic to print/outfile the results."
+        },
+        {
+            "id": "verify_output_file",
+            "description": "The final output file is generated with the correct regression statistics.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the content of 'subsample_results.txt' containing slopes, SEs, R-squared, and N (23 and 17)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_calculation",
+            "description": "The agent must use gretl's regression engine rather than manually typing numbers into the text file.",
+            "visual_evidence": "The agent is seen executing the script within gretl or the gretl console, not just using a text editor to create the final report."
+        },
+        {
+            "id": "genuine_software_interaction",
+            "description": "The agent interacts with the gretl GUI/Scripting interface.",
+            "visual_evidence": "Screenshots show the gretl application menus, variable lists, or script execution logs."
+        },
+        {
+            "id": "correct_subsample_counts",
+            "description": "The results must reflect the actual data split (N=23 and N=17).",
+            "visual_evidence": "The output file or gretl execution window shows 'Observations' or 'n' as 23 for the low-income group and 17 for the high-income group."
+        }
+    ],
+    "privileged_info_for_vlm": "For food.gdt: The subsample 'income < 15' must have N=23 observations and a slope for income between 8.0 and 22.0 (actual ~14.59). The subsample 'income >= 15' must have N=17 observations and a slope for income between 4.0 and 18.0 (actual ~9.26). The output must be written to /home/ga/Documents/gretl_output/subsample_results.txt."
+}

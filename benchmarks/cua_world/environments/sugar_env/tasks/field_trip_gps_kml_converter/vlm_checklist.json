@@ -1,0 +1,59 @@
+{
+    "task_id": "field_trip_gps_kml_converter@1",
+    "task_completion": [
+        {
+            "id": "open_terminal_or_pippy",
+            "description": "Open the Sugar Terminal or Pippy activity to begin scripting.",
+            "points": 10,
+            "visual_evidence": "The Terminal or Pippy activity window is visible on the Sugar desktop."
+        },
+        {
+            "id": "create_script_file",
+            "description": "Create a script file named kml_generator.py or kml_generator.sh in /home/ga/Documents/.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command (like 'touch' or 'nano') shows the creation or editing of /home/ga/Documents/kml_generator.py or .sh."
+        },
+        {
+            "id": "script_logic_csv_parsing",
+            "description": "The script contains logic to read inca_trail_track.csv and skip the header row.",
+            "points": 20,
+            "visual_evidence": "The script content (visible in an editor or via 'cat') shows code that opens the CSV and handles the header (e.g., next(reader) or skipping the first line)."
+        },
+        {
+            "id": "script_logic_kml_structure",
+            "description": "The script contains logic to format the output according to the specified KML XML structure.",
+            "points": 25,
+            "visual_evidence": "The script content shows strings or XML tags for <kml>, <Document>, <Placemark>, and <LineString>."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent executes the script to generate the KML file.",
+            "points": 10,
+            "visual_evidence": "A terminal command showing the script being run (e.g., 'python3 kml_generator.py') without errors."
+        },
+        {
+            "id": "verify_kml_output",
+            "description": "A valid KML file named route.kml exists in /home/ga/Documents/ with the correct coordinate format.",
+            "points": 20,
+            "visual_evidence": "The contents of /home/ga/Documents/route.kml are displayed, showing the <coordinates> tag with longitude,latitude,elevation data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_kml_creation",
+            "description": "The agent did not manually type the KML file content without running a script.",
+            "visual_evidence": "The agent must be seen writing and executing a script, not just using 'echo' or a text editor to manually create the final route.kml content."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacts with the actual file system paths specified.",
+            "visual_evidence": "Commands or file dialogs show paths starting with /home/ga/Documents/."
+        },
+        {
+            "id": "script_uses_source_data",
+            "description": "The script actually references the source CSV file.",
+            "visual_evidence": "The script code contains the string 'inca_trail_track.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/inca_trail_track.csv. The output must be /home/ga/Documents/route.kml. The KML coordinate format is strictly 'longitude,latitude,elevation' (note that longitude comes first). The script must skip the first row of the CSV."
+}

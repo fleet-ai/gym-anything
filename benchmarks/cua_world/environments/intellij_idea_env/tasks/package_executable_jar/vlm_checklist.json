@@ -1,0 +1,53 @@
+{
+    "task_id": "package_executable_jar@1",
+    "task_completion": [
+        {
+            "id": "open_project_and_pom",
+            "description": "Open the 'csv-stats' project and the pom.xml file in the IDE.",
+            "points": 10,
+            "visual_evidence": "The IDE (IntelliJ or similar) shows the 'csv-stats' project structure and the pom.xml file is open in the editor."
+        },
+        {
+            "id": "configure_maven_plugin",
+            "description": "Configure a Maven plugin (like maven-assembly-plugin or maven-shade-plugin) in pom.xml to create an executable JAR with dependencies.",
+            "points": 25,
+            "visual_evidence": "The pom.xml file shows a <plugin> configuration containing <mainClass>com.csvstats.App</mainClass> and settings to include dependencies (e.g., jar-with-dependencies or shaded artifact)."
+        },
+        {
+            "id": "run_maven_package",
+            "description": "Execute the Maven 'package' or 'install' command using the IDE's Maven tool window or interface.",
+            "points": 15,
+            "visual_evidence": "The Maven tool window shows the 'package' goal being triggered, or a console output showing 'BUILD SUCCESS' for the maven-project."
+        },
+        {
+            "id": "verify_jar_existence",
+            "description": "Verify that the JAR file 'csv-stats-1.0.jar' exists in the target directory.",
+            "points": 15,
+            "visual_evidence": "The project file explorer shows 'csv-stats-1.0.jar' inside the 'target' folder. The file size should ideally be checked if visible (should be > 50KB)."
+        },
+        {
+            "id": "execute_jar_with_data",
+            "description": "Run the generated JAR file from the terminal/IDE using the sample data provided.",
+            "points": 35,
+            "visual_evidence": "A terminal or run console shows the command 'java -jar target/csv-stats-1.0.jar src/main/resources/sample_data.csv' (or similar path) and displays successful output/statistics from the CSV data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's GUI features rather than just executing a single shell script to solve the task.",
+            "visual_evidence": "Screenshots show the agent interacting with the pom.xml editor, Maven sidebars, or IDE run configurations."
+        },
+        {
+            "id": "genuine_build_process",
+            "description": "The JAR was actually built by Maven, not manually renamed or moved.",
+            "visual_evidence": "The console output shows the Maven build lifecycle logs (Scanning for projects, Building csv-stats 1.0, etc.)."
+        },
+        {
+            "id": "no_hardcoded_output",
+            "description": "The agent did not simply echo the expected CSV stats to the terminal.",
+            "visual_evidence": "The terminal shows a 'java -jar' command being executed, and the output follows the execution of that command."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/csv-stats. The Main-Class must be 'com.csvstats.App'. The output JAR must be 'target/csv-stats-1.0.jar'. Because it must bundle Apache Commons CSV, the JAR size should be significantly larger than a standard empty JAR (approx > 50KB). The verification command is 'java -jar target/csv-stats-1.0.jar src/main/resources/sample_data.csv'."
+}

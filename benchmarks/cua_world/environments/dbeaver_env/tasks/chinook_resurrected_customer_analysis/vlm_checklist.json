@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_resurrected_customer_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent connects to the Chinook SQLite database at the specified path.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing a database management tool (like DBeaver, SQLite Browser, or VS Code SQL extension) open with the file '/home/ga/Documents/databases/chinook.db' loaded."
+        },
+        {
+            "id": "sql_query_formulation",
+            "description": "Agent writes a SQL query filtering for customers active in 2009, inactive in 2010, and active in 2011.",
+            "points": 25,
+            "visual_evidence": "A SQL editor window showing a query with 'WHERE' or 'HAVING' clauses involving strftime or year functions for 2009, 2010, and 2011, and a SUM(Total) for 2011."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "Agent executes the query and views the results containing the required columns.",
+            "points": 20,
+            "visual_evidence": "A results grid showing columns 'CustomerId', 'FirstName', 'LastName', and 'ReturnSpend2011' with data populated."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Agent saves the SQL query to the specified script path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or text editor showing the file '/home/ga/Documents/scripts/resurrected_analysis.sql' containing the SQL code."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Agent exports the query results to the specified CSV path with correct sorting.",
+            "points": 30,
+            "visual_evidence": "A file explorer showing '/home/ga/Documents/exports/resurrected_customers.csv' or a spreadsheet view of this file with rows sorted by 'ReturnSpend2011' in descending order."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used a GUI-based database tool or IDE rather than just executing shell commands to generate the file.",
+            "visual_evidence": "Screenshots show interaction with a graphical SQL client or IDE (e.g., clicking 'Execute', 'Save', or 'Export' buttons)."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the customer data into a CSV file.",
+            "visual_evidence": "The agent is seen writing and running a SQL query rather than manually creating rows in a text editor."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system via the GUI to save files.",
+            "visual_evidence": "Save dialogs or file explorer confirmations showing the paths /home/ga/Documents/scripts/ and /home/ga/Documents/exports/."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. The query must identify customers with (Invoices in 2009 > 0) AND (Invoices in 2010 == 0) AND (Invoices in 2011 > 0). The column 'ReturnSpend2011' must be the SUM of the 'Total' column from the 'invoices' table for the year 2011 only. The final CSV must be at /home/ga/Documents/exports/resurrected_customers.csv, sorted by ReturnSpend2011 DESC. The SQL must be saved at /home/ga/Documents/scripts/resurrected_analysis.sql."
+}

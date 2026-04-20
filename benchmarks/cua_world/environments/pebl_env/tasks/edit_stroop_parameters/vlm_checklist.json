@@ -1,0 +1,59 @@
+{
+    "task_id": "edit_stroop_parameters@1",
+    "task_completion": [
+        {
+            "id": "open_file_manager",
+            "description": "The agent locates and opens the directory containing the PEBL Color Stroop script.",
+            "points": 10,
+            "visual_evidence": "A file manager window or an IDE showing the file 'color-stroop.pbl' in the file list."
+        },
+        {
+            "id": "open_script_in_editor",
+            "description": "The agent opens 'color-stroop.pbl' in a text editor or IDE.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit, VS Code, or the PEBL editor) displaying the source code of 'color-stroop.pbl'."
+        },
+        {
+            "id": "locate_parameters",
+            "description": "The agent scrolls to or searches for the lines defining 'custompractrials' and 'customtrials'.",
+            "points": 15,
+            "visual_evidence": "The editor screen shows the lines containing 'custompractrials' and 'customtrials' (typically near the top of the script)."
+        },
+        {
+            "id": "modify_practice_trials",
+            "description": "The agent changes the value of 'custompractrials' to 16.",
+            "points": 25,
+            "visual_evidence": "The text editor shows the line 'custompractrials <- 16' (or similar assignment syntax)."
+        },
+        {
+            "id": "modify_test_trials",
+            "description": "The agent changes the value of 'customtrials' to 56.",
+            "points": 25,
+            "visual_evidence": "The text editor shows the line 'customtrials <- 56' (or similar assignment syntax)."
+        },
+        {
+            "id": "save_changes",
+            "description": "The agent saves the modified file.",
+            "points": 10,
+            "visual_evidence": "The 'unsaved' indicator (like a dot or asterisk) in the editor tab disappears, or a 'File Saved' notification is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_sed",
+            "description": "The agent did not use terminal commands like 'sed' or 'echo' to overwrite the file without opening it.",
+            "visual_evidence": "The agent uses a GUI-based text editor to perform the edits rather than just typing a single command in the terminal."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the actual file content rather than creating a new dummy file.",
+            "visual_evidence": "The file path in the editor matches the expected location of the PEBL experiment script."
+        },
+        {
+            "id": "manual_edit",
+            "description": "The agent manually types or selects the values rather than running a script to automate the change.",
+            "visual_evidence": "Cursor movement and text selection/deletion are visible in the editor across multiple frames."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is 'color-stroop.pbl'. The original values are 8 for 'custompractrials' and 28 for 'customtrials'. The agent must change them to 16 and 56 respectively. Look for the assignment operator '<-' which is standard in PEBL (PBL) scripting."
+}

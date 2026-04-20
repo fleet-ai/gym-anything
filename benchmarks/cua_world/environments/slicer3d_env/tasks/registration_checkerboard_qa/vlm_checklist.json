@@ -1,0 +1,53 @@
+{
+    "task_id": "registration_checkerboard_qa@1",
+    "task_completion": [
+        {
+            "id": "load_mri_volumes",
+            "description": "Load both 'MRHead' and 'MRHead_Shifted' volumes into the Slicer scene.",
+            "points": 10,
+            "visual_evidence": "The Data module or Subject Hierarchy tree shows both 'MRHead' and 'MRHead_Shifted' nodes present."
+        },
+        {
+            "id": "configure_checkerboard",
+            "description": "Activate the Checkerboard Filter/Visualization mode to compare the two volumes.",
+            "points": 20,
+            "visual_evidence": "The slice viewers (Red/Green/Yellow) show a grid-like alternating pattern of the two MRI volumes."
+        },
+        {
+            "id": "identify_misalignment",
+            "description": "Navigate to a slice where the 4mm anterior shift is visible in the checkerboard pattern.",
+            "points": 20,
+            "visual_evidence": "Discontinuities in anatomical structures (like the skull or brain surface) are visible at the checkerboard boundaries."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "Save the checkerboard visualization as a PNG file to the specified directory.",
+            "points": 20,
+            "visual_evidence": "A file browser or Slicer notification confirms the export of 'registration_qa_checkerboard.png' to ~/Documents/SlicerData/Exports/."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Create a JSON report with the required fields including alignment quality and estimated shift.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows 'registration_qa_report.json' containing fields: checkerboard_configured, alignment_quality, misalignment_detected, estimated_shift_mm, and structures_examined."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform the registration QA rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer modules (e.g., 'Compare Volumes' or 'Checkerboard') and slice viewer controls."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent did not simply hardcode the 4mm shift without visual inspection.",
+            "visual_evidence": "The agent is seen using the ruler tool or zooming in on checkerboard edges to assess the magnitude of the shift."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The files were actually saved to the specified path, not just simulated.",
+            "visual_evidence": "A file explorer window or 'ls' command shows the files exist in ~/Documents/SlicerData/Exports/ with non-zero file sizes."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'MRHead_Shifted' volume has a known 4.0 mm anterior (forward) translation relative to 'MRHead'. The checkerboard visualization should clearly show this offset at the boundaries of the squares. The exported screenshot must be at least 50 KB to be considered valid."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "myoglobin_sasa_core_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1a6m",
+            "description": "Load the sperm whale myoglobin (1A6M) structure into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1A6M' or a similar name, and a protein structure is visible in the viewport."
+        },
+        {
+            "id": "exclude_non_polymer",
+            "description": "Select or isolate protein polymer atoms, excluding heme and water for SASA calculation.",
+            "points": 15,
+            "visual_evidence": "Command history or GUI selection showing 'polymer' or 'not resn HEM and not resn HOH' being used for calculations."
+        },
+        {
+            "id": "compute_sasa",
+            "description": "Compute the Solvent Accessible Surface Area (SASA) for the protein.",
+            "points": 20,
+            "visual_evidence": "The PyMOL upper console/log shows the output of a 'get_area' command or a script calculating area values."
+        },
+        {
+            "id": "color_by_sasa",
+            "description": "Color the protein structure using a color spectrum based on SASA values.",
+            "points": 15,
+            "visual_evidence": "The protein structure in the viewport displays a multi-colored gradient (e.g., blue to red) rather than a single uniform color."
+        },
+        {
+            "id": "save_high_res_image",
+            "description": "Save a high-resolution image to the specified path ~/PyMOL_Data/images/myoglobin_sasa.png.",
+            "points": 15,
+            "visual_evidence": "A 'png' or 'ray' command is visible in the PyMOL log with the correct file path, or a file explorer shows the image in the target directory."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "Write a plain-text report with total SASA, 10 most buried residues, and hydrophobic identification.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command displays the content of ~/PyMOL_Data/myoglobin_sasa_report.txt containing the required data points."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line directly rather than just creating a file.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the 1A6M structure rendered in the 3D viewport."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the final report without performing calculations.",
+            "visual_evidence": "The PyMOL command history shows active commands like 'get_area', 'spectrum', or 'select' preceding the report generation."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the specific requested file paths for output.",
+            "visual_evidence": "The commands or file explorer show the exact paths: ~/PyMOL_Data/images/myoglobin_sasa.png and ~/PyMOL_Data/myoglobin_sasa_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 1A6M. The total protein SASA (excluding heme and water) should be between 5,000 and 12,000 square Angstroms. The report must list at least 8-10 residues with the lowest SASA values (buried residues). Hydrophobic residues commonly found in the core of myoglobin include Leucine (LEU), Valine (VAL), Isoleucine (ILE), and Phenylalanine (PHE)."
+}

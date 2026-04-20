@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_hardening_readonly@1",
+    "task_completion": [
+        {
+            "id": "read_only_enabled",
+            "description": "The docker-compose.yml file is modified to include 'read_only: true' for the acme-ingest service.",
+            "points": 15,
+            "visual_evidence": "A text editor or cat command showing 'read_only: true' under the service definition in ~/projects/acme-ingest/docker-compose.yml."
+        },
+        {
+            "id": "tmpfs_configured",
+            "description": "The docker-compose.yml includes tmpfs mounts for ephemeral paths (/run/acme and /var/lib/acme/cache).",
+            "points": 20,
+            "visual_evidence": "The docker-compose.yml file showing a 'tmpfs' section with entries for '/run/acme' and '/var/lib/acme/cache'."
+        },
+        {
+            "id": "named_volume_configured",
+            "description": "The docker-compose.yml includes a named volume for persistent logs (/var/log/acme).",
+            "points": 20,
+            "visual_evidence": "The docker-compose.yml file showing a named volume (e.g., 'acme_logs:/var/log/acme') and a top-level 'volumes' key defining that volume."
+        },
+        {
+            "id": "container_running",
+            "description": "The acme-ingest container is successfully started and running after the configuration changes.",
+            "points": 20,
+            "visual_evidence": "Output of 'docker ps' or 'docker-compose ps' showing the 'acme-ingest' container with a status of 'Up'."
+        },
+        {
+            "id": "service_healthy",
+            "description": "The application is functional and passes its health check despite the read-only filesystem.",
+            "points": 25,
+            "visual_evidence": "A terminal showing a successful curl request to 'http://localhost:8080/health' returning a 200 OK status or '{\"status\": \"healthy\"}'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create the files on the host to trick the health check.",
+            "visual_evidence": "The agent interacts with docker-compose.yml and uses docker commands rather than just creating local dummy files."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent actually edited the file rather than just echoing the final state into it.",
+            "visual_evidence": "Use of a text editor (vim, nano, code) or incremental 'cat' commands to verify the file content before and after changes."
+        },
+        {
+            "id": "verified_health_check",
+            "description": "The health check was performed against the actual running container port.",
+            "visual_evidence": "The curl command or browser navigation targets localhost:8080/health as specified in the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/acme-ingest. The container name is 'acme-ingest'. To succeed, the docker-compose.yml must have 'read_only: true'. It must also mount tmpfs to '/run/acme' (for the PID file) and '/var/lib/acme/cache'. It must mount a named volume to '/var/log/acme' for persistent logs. The application listens on port 8080, and the health check endpoint is http://localhost:8080/health."
+}

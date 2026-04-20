@@ -1,0 +1,65 @@
+{
+    "task_id": "srad_custom_motor_integration@1",
+    "task_completion": [
+        {
+            "id": "openrocket_launched",
+            "description": "OpenRocket application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket window is open, showing the rocket design interface or the splash screen."
+        },
+        {
+            "id": "baseline_design_loaded",
+            "description": "The baseline rocket design 'srad_start.ork' is loaded into OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The window title bar or file path indicator shows 'srad_start.ork' is open."
+        },
+        {
+            "id": "motor_configuration_dialog",
+            "description": "The agent opens the Motor Configuration or 'Motors and Configurations' tab to select a motor.",
+            "points": 15,
+            "visual_evidence": "The 'Motors and Configurations' tab is active, and the 'Select motor' dialog is visible."
+        },
+        {
+            "id": "custom_motor_selected",
+            "description": "The custom motor (SRAD_Team SRAD_C40) is selected and assigned to the motor mount.",
+            "points": 25,
+            "visual_evidence": "The motor selection list shows 'SRAD_C40' from manufacturer 'SRAD_Team' highlighted or assigned to the motor mount component."
+        },
+        {
+            "id": "flight_simulation_run",
+            "description": "A flight simulation is executed within OpenRocket.",
+            "points": 15,
+            "visual_evidence": "The 'Flight Simulations' tab shows a simulation entry with a green checkmark or status 'Finished', and data for Apogee and Max Velocity are visible in the table."
+        },
+        {
+            "id": "design_saved_as_new_file",
+            "description": "The modified design is saved to the specific path 'srad_simulated_rocket.ork'.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog shows the filename 'srad_simulated_rocket.ork' or the window title updates to this name."
+        },
+        {
+            "id": "report_generated",
+            "description": "A text report is created at the specified path with the simulation results.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command shows 'srad_flight_report.txt' containing numerical values for Apogee (m) and Max Velocity (m/s)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the OpenRocket GUI to configure the motor and run the simulation.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with OpenRocket menus and buttons, rather than just terminal commands."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not create the report before running the simulation.",
+            "visual_evidence": "The timestamp of the report creation follows the visual confirmation of the simulation results in the OpenRocket GUI."
+        },
+        {
+            "id": "authentic_motor_source",
+            "description": "The agent used the provided .eng file rather than a default motor.",
+            "visual_evidence": "The motor selection dialog shows the manufacturer 'SRAD_Team', which is only available if the custom .eng file was correctly loaded/referenced."
+        }
+    ],
+    "privileged_info_for_vlm": "The custom motor file is located at /home/ga/Documents/motors/SRAD_C40.eng. The manufacturer name is 'SRAD_Team' and the designation is 'SRAD_C40'. The baseline file is 'srad_start.ork'. The final saved design must be 'srad_simulated_rocket.ork' and the text report must be at '/home/ga/Documents/exports/srad_flight_report.txt'. The VLM should verify that the Apogee and Max Velocity values in the text report match the values displayed in the OpenRocket 'Flight Simulations' table after the run."
+}

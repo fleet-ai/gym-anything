@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_fleet_qr_codes@1",
+    "task_completion": [
+        {
+            "id": "install_qrcode_library",
+            "description": "Install the 'qrcode' Python library as requested.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'pip install qrcode' or a successful installation message for the qrcode package."
+        },
+        {
+            "id": "access_aerobridge_database",
+            "description": "Access the Aerobridge database or source files at /opt/aerobridge to identify aircraft.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'ls /opt/aerobridge' or a script/command reading from the Aerobridge directory (e.g., reading initial_data.json or querying the database)."
+        },
+        {
+            "id": "identify_aircraft_details",
+            "description": "Identify the UUIDs and registration marks for the aircraft in the fleet.",
+            "points": 20,
+            "visual_evidence": "Terminal output or script logs displaying aircraft UUIDs (e.g., 0797d9ef...) and registration marks (e.g., FE-2212, FE-21)."
+        },
+        {
+            "id": "generate_qr_code_files",
+            "description": "Generate PNG files for each aircraft in the specified output directory.",
+            "points": 30,
+            "visual_evidence": "A file manager window or 'ls' command showing files named 'tag_FE-2212.png' and 'tag_FE-21.png' inside /home/ga/Documents/fleet_tags/."
+        },
+        {
+            "id": "verify_qr_content_logic",
+            "description": "Ensure the QR codes are generated with the correct URL structure.",
+            "points": 25,
+            "visual_evidence": "Python code or terminal commands showing the construction of the URL: http://localhost:8000/admin/registry/aircraft/<uuid>/change/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent should programmatically retrieve aircraft data rather than hardcoding the known UUIDs from the prompt.",
+            "visual_evidence": "Script content showing logic to parse JSON or query a database rather than a list containing the specific UUIDs '0797d9ef...' and '0450852f...'."
+        },
+        {
+            "id": "genuine_library_usage",
+            "description": "The agent actually uses a QR generation library rather than just creating empty files with the correct names.",
+            "visual_evidence": "Code showing 'import qrcode' and the 'make' or 'save' methods being called, or image previews showing actual QR patterns."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent uses the specific requested paths rather than default or temporary directories.",
+            "visual_evidence": "Commands or code explicitly referencing /opt/aerobridge and /home/ga/Documents/fleet_tags/."
+        }
+    ],
+    "privileged_info_for_vlm": "The Aerobridge database contains exactly 2 aircraft. Aircraft 1: UUID '0797d9ef-02d9-41cf-93ff-439aaf1609ae', Registration 'FE-2212'. Aircraft 2: UUID '0450852f-856e-4ecb-beb6-01ccded8529d', Registration 'FE-21'. The resulting files must be 'tag_FE-2212.png' and 'tag_FE-21.png' in /home/ga/Documents/fleet_tags/. The URLs encoded must be http://localhost:8000/admin/registry/aircraft/<uuid>/change/."
+}

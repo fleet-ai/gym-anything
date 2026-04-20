@@ -1,0 +1,59 @@
+{
+    "task_id": "refactor_extract_interface@1",
+    "task_completion": [
+        {
+            "id": "create_payment_gateway_interface",
+            "description": "A new Java file named 'PaymentGateway.java' is created containing the interface definition.",
+            "points": 15,
+            "visual_evidence": "The IDE file explorer shows 'PaymentGateway.java' in the project tree, or the editor shows 'public interface PaymentGateway' in a new tab."
+        },
+        {
+            "id": "interface_methods_defined",
+            "description": "The PaymentGateway interface contains the methods charge, refund, and verifyCard.",
+            "points": 15,
+            "visual_evidence": "The editor shows the 'PaymentGateway' file with method signatures for 'charge', 'refund', and 'verifyCard'."
+        },
+        {
+            "id": "stripe_service_implements_interface",
+            "description": "StripeService.java is modified to implement the PaymentGateway interface.",
+            "points": 20,
+            "visual_evidence": "The editor shows 'public class StripeService implements PaymentGateway' in StripeService.java."
+        },
+        {
+            "id": "stripe_service_private_method",
+            "description": "The connectToStripeAPI method in StripeService remains private and is not part of the interface.",
+            "points": 15,
+            "visual_evidence": "The editor shows 'private void connectToStripeAPI' in StripeService.java and it is absent from PaymentGateway.java."
+        },
+        {
+            "id": "refactor_checkout_service_dependency",
+            "description": "CheckoutService.java is refactored to use the PaymentGateway interface instead of StripeService.",
+            "points": 25,
+            "visual_evidence": "In CheckoutService.java, the field or constructor parameter type is changed from 'StripeService' to 'PaymentGateway'."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project builds or shows no red syntax errors in the refactored files.",
+            "points": 10,
+            "visual_evidence": "The IDE editor tabs for StripeService.java and CheckoutService.java do not show red underlines or error markers in the gutter/scroll bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_ide_refactoring_tools",
+            "description": "The agent used IDE refactoring menus or features rather than just manually deleting and typing text.",
+            "visual_evidence": "Screenshots show the 'Refactor' menu, 'Extract Interface' dialog box, or context menus being used."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use 'sed' or 'echo' commands in the terminal to overwrite the source files.",
+            "visual_evidence": "The terminal history (if visible) does not show complex stream editing commands; focus remains on the IDE GUI."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent navigated the project structure to find the files rather than opening them via absolute paths in a terminal.",
+            "visual_evidence": "The agent is seen clicking through the project explorer (src/main/java/com/platform/payment/...) to open the target classes."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/payment-platform. The interface to be created is 'PaymentGateway' with methods 'charge', 'refund', and 'verifyCard'. The concrete class is 'StripeService' and the client class to be updated is 'CheckoutService'. 'connectToStripeAPI' must remain private in StripeService."
+}

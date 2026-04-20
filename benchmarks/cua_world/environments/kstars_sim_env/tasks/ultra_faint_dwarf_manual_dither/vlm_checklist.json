@@ -1,0 +1,59 @@
+{
+    "task_id": "ultra_faint_dwarf_manual_dither@1",
+    "task_completion": [
+        {
+            "id": "read_dither_plan",
+            "description": "Agent opens and reads the dither_plan.txt file to obtain coordinates and requirements.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/dither_plan.txt."
+        },
+        {
+            "id": "slew_to_center",
+            "description": "Agent slews the telescope to the center position (RA 10.1411, Dec 12.3064).",
+            "points": 15,
+            "visual_evidence": "Telescope control software showing the target coordinates or 'Leo I' as the current position."
+        },
+        {
+            "id": "capture_center_frames",
+            "description": "Agent captures at least 2 frames at the center position using the Luminance filter.",
+            "points": 15,
+            "visual_evidence": "Imaging software showing exposure progress or a file browser showing at least two .fits or .jpg files in the /home/ga/Images/leo1/center directory."
+        },
+        {
+            "id": "execute_dither_offsets",
+            "description": "Agent slews to the North, South, East, and West offset positions specified in the plan.",
+            "points": 30,
+            "visual_evidence": "Sequential screenshots showing the telescope coordinates changing to match the North (Dec 12.3897), South (Dec 12.2231), East (RA 10.1468), and West (RA 10.1354) positions."
+        },
+        {
+            "id": "capture_offset_frames",
+            "description": "Agent captures at least 2 frames at each of the four offset positions.",
+            "points": 20,
+            "visual_evidence": "File browser or imaging logs showing at least 2 frames saved in each sub-directory: /north, /south, /east, and /west."
+        },
+        {
+            "id": "final_log_creation",
+            "description": "Agent creates a final log summarizing the completed observations.",
+            "points": 10,
+            "visual_evidence": "A text file or terminal output displaying a summary of the 5-point dither completion and file storage paths."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the observatory's GUI software for slewing and imaging rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots showing the telescope control and camera control graphical interfaces being interacted with."
+        },
+        {
+            "id": "no_simulated_output",
+            "description": "Agent did not simply 'echo' the expected file structure into existence without running the imaging software.",
+            "visual_evidence": "The imaging software's 'Exposure' or 'Status' bar showing active progress for each frame."
+        },
+        {
+            "id": "coordinate_fidelity",
+            "description": "Agent manually entered or verified the specific coordinates from the dither plan rather than using a default 'Leo I' search result which might differ slightly.",
+            "visual_evidence": "The coordinate input fields in the GUI matching the specific decimal values from the dither_plan.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is Leo I Dwarf Galaxy. Base coordinates (Center): RA 10.1411, Dec 12.3064. Offsets: North (Dec 12.3897), South (Dec 12.2231), East (RA 10.1468), West (RA 10.1354). Required filter: Luminance (L). Minimum frames per position: 2. Storage root: /home/ga/Images/leo1. The agent must use the GUI to perform slews and captures."
+}

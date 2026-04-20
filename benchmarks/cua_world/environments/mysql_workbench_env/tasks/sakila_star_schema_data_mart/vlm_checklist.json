@@ -1,0 +1,59 @@
+{
+    "task_id": "sakila_star_schema_data_mart@1",
+    "task_completion": [
+        {
+            "id": "create_sakila_mart_db",
+            "description": "Create the 'sakila_mart' database/schema in MySQL Workbench.",
+            "points": 10,
+            "visual_evidence": "The 'sakila_mart' schema appearing in the MySQL Workbench Navigator sidebar or a 'CREATE DATABASE sakila_mart' command executed in the SQL editor."
+        },
+        {
+            "id": "dim_date_creation",
+            "description": "Create and populate 'dim_date' table with the specified date range (2005-01-01 to 2006-12-31).",
+            "points": 15,
+            "visual_evidence": "SQL code creating 'dim_date' with columns like date_key, full_date, etc., and evidence of data insertion or a SELECT count showing 730 rows."
+        },
+        {
+            "id": "dimension_tables_creation",
+            "description": "Create 'dim_customer', 'dim_film', and 'dim_store' tables with the required columns.",
+            "points": 20,
+            "visual_evidence": "SQL DDL statements in the editor or the tables appearing under the 'sakila_mart' schema in the Navigator pane."
+        },
+        {
+            "id": "fact_rental_creation",
+            "description": "Create 'fact_rental' table with derived date_key and metrics like rental_duration_days and payment_amount.",
+            "points": 25,
+            "visual_evidence": "SQL code showing the JOINs between sakila.rental, sakila.payment, and the new dimensions to populate fact_rental."
+        },
+        {
+            "id": "performance_view_creation",
+            "description": "Create the 'v_monthly_store_performance' view aggregating revenue and rentals.",
+            "points": 15,
+            "visual_evidence": "SQL code 'CREATE VIEW v_monthly_store_performance' containing aggregations (SUM, COUNT, AVG) and GROUP BY clauses."
+        },
+        {
+            "id": "csv_export_execution",
+            "description": "Export the view results to /home/ga/Documents/exports/monthly_store_performance.csv.",
+            "points": 15,
+            "visual_evidence": "The MySQL Workbench Export wizard, a SELECT ... INTO OUTFILE command, or a file explorer window showing the CSV file in the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used MySQL Workbench GUI rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the MySQL Workbench application window, SQL editor tabs, and Navigator sidebar."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent executed actual SQL queries to transform data rather than manually typing values into a CSV.",
+            "visual_evidence": "The 'Action Output' pane at the bottom of MySQL Workbench showing successful execution of INSERT/CREATE statements with row counts."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the data from the source 'sakila' database.",
+            "visual_evidence": "SQL queries showing references to the original 'sakila' database tables (e.g., sakila.customer, sakila.film)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target database name is 'sakila_mart'. The 'dim_date' table for the range 2005-01-01 to 2006-12-31 should contain exactly 730 rows (2005 and 2006 are not leap years). The 'dim_customer' table should have 599 rows, and 'dim_film' should have 1000 rows. The final export path is /home/ga/Documents/exports/monthly_store_performance.csv."
+}

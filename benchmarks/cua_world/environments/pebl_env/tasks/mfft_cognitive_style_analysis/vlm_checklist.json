@@ -1,0 +1,62 @@
+{
+    "task_id": "mfft_cognitive_style_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_mfft_data",
+            "description": "The agent opens the raw data file ~/pebl/data/mfft_data.csv in a spreadsheet or data analysis tool.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the file 'mfft_data.csv' open in an application like LibreOffice Calc, Excel, or a Python IDE/notebook."
+        },
+        {
+            "id": "exclude_contaminated_participant",
+            "description": "The agent identifies and excludes 'child-99' from the dataset based on the low reaction time criteria.",
+            "points": 15,
+            "visual_evidence": "Code or spreadsheet filters showing the removal of 'child-99' or a dataset where 'child-99' is absent from the analysis list."
+        },
+        {
+            "id": "calculate_participant_metrics",
+            "description": "The agent calculates the mean_first_rt_ms and total_errors for the remaining 30 participants.",
+            "points": 20,
+            "visual_evidence": "A table, dataframe, or spreadsheet showing columns for mean reaction time and total error counts per participant."
+        },
+        {
+            "id": "determine_sample_medians",
+            "description": "The agent calculates the sample medians for both mean_first_rt_ms and total_errors across the valid participants.",
+            "points": 20,
+            "visual_evidence": "Calculated median values displayed in a terminal, notebook cell output, or spreadsheet cell."
+        },
+        {
+            "id": "classify_cognitive_styles",
+            "description": "The agent applies the median-split logic to classify participants into Reflective, Impulsive, Fast-Accurate, or Slow-Inaccurate categories.",
+            "points": 25,
+            "visual_evidence": "A final table or output showing participant IDs alongside their assigned cognitive style classification."
+        },
+        {
+            "id": "final_summary_report",
+            "description": "The agent presents the final results or saves the cleaned and classified data.",
+            "points": 10,
+            "visual_evidence": "A final report, saved CSV file, or summary table visible on the screen."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculates the medians and classifications from the data rather than hardcoding known values.",
+            "points": 0,
+            "visual_evidence": "The agent's code or spreadsheet formulas should show dynamic calculations (e.g., .median() or =MEDIAN()) rather than typing numbers directly."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent actually opens and reads the file ~/pebl/data/mfft_data.csv.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing the file path being accessed in a terminal command or file explorer."
+        },
+        {
+            "id": "logical_consistency",
+            "description": "The classification logic matches the specific median-split rules provided in the prompt.",
+            "points": 0,
+            "visual_evidence": "The code or logic used for classification (e.g., if/else statements) matches the prompt's definitions for Reflective and Impulsive styles."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains exactly 31 participants initially. 'child-99' is the contaminated participant with RTs < 150ms and must be excluded. There are exactly 30 valid participants (child-01 through child-30) to be used for the median calculation and final classification."
+}

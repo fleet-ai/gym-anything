@@ -1,0 +1,59 @@
+{
+    "task_id": "mri_spinal_canal_stenosis_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_t1_head_dataset",
+            "description": "The 'T1 Head' dataset is loaded into Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 't1-head.tif' or 'T1 Head' is visible, showing a grayscale MRI of a head/neck."
+        },
+        {
+            "id": "navigate_target_slices",
+            "description": "The agent navigates to the specified slice range (10-19) for analysis.",
+            "points": 10,
+            "visual_evidence": "The ImageJ status bar or slider shows the current slice number within the range of 10/129 to 19/129."
+        },
+        {
+            "id": "segment_spinal_canal",
+            "description": "The agent uses a selection tool (e.g., polygon, freehand, or thresholding) to outline the spinal canal.",
+            "points": 30,
+            "visual_evidence": "A yellow or colored ROI (Region of Interest) outline is visible around the spinal canal area in the center-bottom of the MRI slices."
+        },
+        {
+            "id": "measure_and_record_areas",
+            "description": "The agent performs measurements for the slices and generates a results table.",
+            "points": 20,
+            "visual_evidence": "An ImageJ 'Results' window is visible containing columns for 'Slice' and 'Area' with multiple entries."
+        },
+        {
+            "id": "export_csv_and_txt",
+            "description": "The agent saves the quantitative data to the specified CSV and TXT files.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or a 'Save As' dialog showing the path ~/Fiji_Data/results/stenosis/ with filenames canal_measurements.csv and diagnosis.txt."
+        },
+        {
+            "id": "save_segmentation_screenshot",
+            "description": "The agent saves a screenshot of the narrowest slice segmentation.",
+            "points": 15,
+            "visual_evidence": "The agent uses a 'Save As' command for an image file named segmentation_evidence.png, showing the ROI on the narrowest slice."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji/ImageJ GUI tools rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (Analyze > Measure) or ROI tools, not just a terminal window."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the Results table are derived from the image, not fabricated.",
+            "visual_evidence": "The 'Area' values in the Results window correspond to the size of the visual ROI drawn on the screen."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent saves files to the specific directory requested in the task.",
+            "visual_evidence": "The file paths visible in save dialogs or terminal confirmation match ~/Fiji_Data/results/stenosis/."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'T1 Head' dataset has 129 slices. The target slices for analysis are 10 through 19. The narrowest slice (maximum stenosis) is expected to fall within the range of slices 13 to 17. Valid area measurements for the spinal canal in this dataset should typically fall between 20 and 1500 square units. The final output must include three specific files: canal_measurements.csv, diagnosis.txt, and segmentation_evidence.png."
+}

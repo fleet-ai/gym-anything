@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_wms_settings@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the GeoServer web interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer dashboard is visible with 'Logged in as admin' or the admin sidebar options (Layer, Stores, etc.) displayed."
+        },
+        {
+            "id": "navigate_to_wms_settings",
+            "description": "Agent navigates to the WMS settings page.",
+            "points": 15,
+            "visual_evidence": "The page header or breadcrumbs show 'Services' > 'WMS' and the WMS configuration form is visible."
+        },
+        {
+            "id": "set_max_rendering_memory",
+            "description": "Agent sets the Max rendering memory to 131072 KB.",
+            "points": 20,
+            "visual_evidence": "The input field for 'Max rendering memory (KB)' contains the value '131072'."
+        },
+        {
+            "id": "set_max_rendering_time",
+            "description": "Agent sets the Max rendering time to 120 seconds.",
+            "points": 20,
+            "visual_evidence": "The input field for 'Max rendering time (s)' contains the value '120'."
+        },
+        {
+            "id": "enable_watermark",
+            "description": "Agent enables the watermark setting.",
+            "points": 15,
+            "visual_evidence": "The checkbox labeled 'Enable watermark' (or similar under the Watermarking section) is checked."
+        },
+        {
+            "id": "save_settings",
+            "description": "Agent clicks the Save button and receives confirmation.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Submit' or 'Save' button at the bottom of the page, and a success message (e.g., 'Settings saved') appears at the top of the screen."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing shell commands to modify config files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser and values being typed into the GeoServer web forms."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the menu to find the WMS settings rather than jumping directly via URL if not provided.",
+            "visual_evidence": "The sidebar menu item 'WMS' under the 'Services' section is highlighted or clicked in the trajectory."
+        },
+        {
+            "id": "no_config_file_bypass",
+            "description": "The agent did not use a text editor to modify wms.xml directly.",
+            "visual_evidence": "No terminal windows or text editors (like vim, nano, or VS Code) are used to edit GeoServer configuration files."
+        }
+    ],
+    "privileged_info_for_vlm": "The default GeoServer settings are 65536 KB for memory, 60 seconds for rendering time, and the watermark is disabled by default. The agent must change these to exactly 131072 KB, 120 seconds, and enable the watermark checkbox. Verification is successful only if the 'Submit' button is clicked and a success message is displayed."
+}

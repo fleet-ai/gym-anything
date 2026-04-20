@@ -1,0 +1,53 @@
+{
+    "task_id": "fastq_quality_filtering@1",
+    "task_completion": [
+        {
+            "id": "open_raw_fastq",
+            "description": "The agent opens the raw FASTQ file in UGENE or a relevant bioinformatics tool.",
+            "points": 10,
+            "visual_evidence": "A window showing the contents or metadata of 'raw_reads.fastq' within the UGENE interface."
+        },
+        {
+            "id": "apply_quality_filter",
+            "description": "The agent configures a filter to remove reads with an average quality score below 20.",
+            "points": 25,
+            "visual_evidence": "A dialog box or workflow step showing a quality threshold set to 20 (Q20) or a filtering parameter applied to the FASTQ data."
+        },
+        {
+            "id": "save_filtered_fastq",
+            "description": "The agent saves the filtered output to the specified path.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer showing 'filtered_reads.fastq' being saved to '~/UGENE_Data/ngs/results/'."
+        },
+        {
+            "id": "convert_to_fasta",
+            "description": "The agent converts the high-quality sequences to FASTA format.",
+            "points": 25,
+            "visual_evidence": "A conversion tool or 'Save As' dialog showing the format changed to FASTA and the filename 'high_quality_reads.fasta'."
+        },
+        {
+            "id": "create_summary_report",
+            "description": "The agent creates a plain text summary report with the required statistics.",
+            "points": 20,
+            "visual_evidence": "A text editor or file preview showing 'qc_report.txt' containing the original read count, final read count, and the threshold (20)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the UGENE GUI rather than just executing bash commands in a terminal.",
+            "visual_evidence": "Screenshots show interactions with UGENE menus, buttons, or workflow designers."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent actually processes the file rather than manually typing a report with placeholder numbers.",
+            "visual_evidence": "Visual confirmation of the filtering/exporting progress bars or tool execution logs within the software."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent uses the specific directory structure requested in the task.",
+            "visual_evidence": "File paths in dialog boxes match '~/UGENE_Data/ngs/results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source dataset 'raw_reads.fastq' contains only 250 synthetic low-quality reads (Quality 0) because the external download for real data failed. If the agent correctly applies the Q20 filter, the final read count will be 0. The agent should still be credited for the correct workflow (setting threshold to 20 and saving files) even if the resulting FASTA file is empty or the report shows 0 final reads."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "nback_adaptive_experiment@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a conditions file with at least 30 rows containing 'letter' and 'is_target' columns.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or CSV editor showing a file at /home/ga/PsychoPyExperiments/conditions/nback_conditions.csv with columns 'letter' and 'is_target' and multiple rows of data."
+        },
+        {
+            "id": "stimulus_component_setup",
+            "description": "Add a Text component to the trial routine to display the consonants.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder interface showing a Text component in the 'trial' routine, with the text field likely set to a variable like $letter."
+        },
+        {
+            "id": "keyboard_response_setup",
+            "description": "Add a Keyboard component to capture participant responses for targets.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder interface showing a Keyboard component in the 'trial' routine."
+        },
+        {
+            "id": "adaptive_logic_code_init",
+            "description": "Implement the initialization of the adaptive n-back logic (starting n=2) in a Code component.",
+            "points": 20,
+            "visual_evidence": "A Code Component 'Begin Experiment' tab showing code initializing a variable (e.g., n = 2) and accuracy tracking structures."
+        },
+        {
+            "id": "adaptive_logic_update",
+            "description": "Implement the logic to increase n if accuracy > 85% and decrease n if accuracy < 55% after 10 trials.",
+            "points": 30,
+            "visual_evidence": "A Code Component 'End Routine' or 'End Loop' tab showing conditional logic (if/else) checking accuracy against 0.85 and 0.55 to modify the n-back level."
+        },
+        {
+            "id": "save_experiment_file",
+            "description": "Save the experiment file to the specified path.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file saved at /home/ga/PsychoPyExperiments/nback_experiment.psyexp."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI rather than just writing raw Python scripts via terminal.",
+            "visual_evidence": "Screenshots show the PsychoPy Builder interface (routines, components, flow) being manipulated by the cursor."
+        },
+        {
+            "id": "genuine_conditions_data",
+            "description": "The conditions file contains a valid distribution of targets.",
+            "visual_evidence": "The CSV file content shows a mix of consonants (B, C, D, etc.) and a target rate that appears to be roughly 25-45%."
+        },
+        {
+            "id": "no_hardcoded_accuracy",
+            "description": "The adaptive logic uses variables to calculate accuracy rather than hardcoded success paths.",
+            "visual_evidence": "The Code component uses dynamic variables (e.g., trials.corr) to calculate performance."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/nback_experiment.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/conditions/nback_conditions.csv, contain at least 30 rows, and include 'letter' and 'is_target' columns. The adaptive logic must start at n=2, increase n if accuracy > 85% over the last 10 trials, and decrease n if accuracy < 55%."
+}

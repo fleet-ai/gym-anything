@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_inventory_demand_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the local MySQL server using the provided credentials (ga/password123) and access the sakila database.",
+            "points": 10,
+            "visual_evidence": "A database client (like MySQL Workbench, DBeaver, or terminal) showing an active connection to the 'sakila' database."
+        },
+        {
+            "id": "view_creation_logic",
+            "description": "Write and execute a SQL query to create the view 'v_july_2005_utilization' with the required columns and logic (handling NULL returns as 24h and excluding negative durations).",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement containing 'v_july_2005_utilization', 'TIMESTAMPDIFF', 'COALESCE' or 'IFNULL' for 24h, and a WHERE clause filtering July 2005 and valid dates."
+        },
+        {
+            "id": "view_verification",
+            "description": "Verify the existence and schema of the created view 'v_july_2005_utilization'.",
+            "points": 15,
+            "visual_evidence": "The database object tree showing 'v_july_2005_utilization' under Views, or a DESCRIBE/SELECT result showing columns: inventory_count, total_rented_hours, theoretical_capacity_hours, and utilization_pct."
+        },
+        {
+            "id": "top_30_query",
+            "description": "Query the view to retrieve the top 30 films sorted by utilization_pct in descending order.",
+            "points": 20,
+            "visual_evidence": "A SQL query showing 'SELECT ... FROM v_july_2005_utilization ORDER BY utilization_pct DESC LIMIT 30' and the resulting data grid."
+        },
+        {
+            "id": "csv_export_execution",
+            "description": "Export the query results to the specific file path /home/ga/Documents/exports/high_utilization_films.csv.",
+            "points": 30,
+            "visual_evidence": "An export wizard dialog, a 'SELECT ... INTO OUTFILE' command, or a file manager showing the CSV file created at the specified path with the correct filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent must calculate values using SQL, not manually typing or hardcoding the final utilization percentages.",
+            "visual_evidence": "The SQL queries should show aggregate functions (SUM, COUNT) and mathematical formulas, not a series of INSERT statements with pre-calculated numbers."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent must interact with the MySQL server rather than just creating a dummy CSV file manually.",
+            "visual_evidence": "Screenshots must show a database management tool or terminal connected to MySQL, not just a text editor creating a CSV from scratch."
+        },
+        {
+            "id": "correct_data_filtering",
+            "description": "The agent must actually filter for July 2005 and exclude invalid records as requested.",
+            "visual_evidence": "The SQL code must contain a WHERE clause specifying the date range '2005-07' and a condition like 'return_date >= rental_date'."
+        }
+    ],
+    "privileged_info_for_vlm": "The target database is 'sakila'. The view must be named 'v_july_2005_utilization'. The analysis period is July 2005 (31 days). Theoretical capacity is (inventory_count * 31 * 24). Open rentals (NULL return_date) must be treated as 24 hours. Records where return_date < rental_date must be excluded. The final output must be the top 30 films by utilization_pct exported to /home/ga/Documents/exports/high_utilization_films.csv."
+}

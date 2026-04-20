@@ -1,0 +1,59 @@
+{
+    "task_id": "asteroid_lightcurve_photometry@1",
+    "task_completion": [
+        {
+            "id": "read_observing_plan",
+            "description": "Agent opens and reads the observing plan file at ~/Documents/lightcurve_plan.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of lightcurve_plan.txt, including target (44) Nysa and coordinates."
+        },
+        {
+            "id": "configure_telescope_coordinates",
+            "description": "Agent inputs the correct RA (18h 32m 15s) and Dec (-25d 08' 42\") into the telescope control software.",
+            "points": 15,
+            "visual_evidence": "The telescope control GUI showing the target coordinates entered into the RA and Dec fields."
+        },
+        {
+            "id": "configure_instrument_settings",
+            "description": "Agent sets the filter to slot 1 (Luminance/Clear) and configures the exposure settings as per the plan.",
+            "points": 15,
+            "visual_evidence": "The camera/filter wheel control GUI showing Filter Slot 1 selected and exposure time settings."
+        },
+        {
+            "id": "execute_observation_sequence",
+            "description": "Agent initiates and completes the photometric sequence of at least 15 frames.",
+            "points": 25,
+            "visual_evidence": "A progress bar, sequence log, or a file explorer showing at least 15 new FITS files being generated in the upload directory."
+        },
+        {
+            "id": "capture_sky_view",
+            "description": "Agent runs the provided script to capture a sky view of the target area.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the execution of the sky view script and the resulting image output."
+        },
+        {
+            "id": "generate_alcdef_file",
+            "description": "Agent generates the final ALCDEF-format lightcurve data file in the upload directory.",
+            "points": 20,
+            "visual_evidence": "A file explorer or text editor showing a file in the upload directory with ALCDEF formatting (e.g., headers like CONTACTNAME, OBJECT, MAGNITUDE)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the telescope and camera GUI interfaces rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with buttons and input fields in the astronomical software GUI."
+        },
+        {
+            "id": "genuine_data_generation",
+            "description": "The FITS files and ALCDEF data were generated through software execution, not by simply renaming existing dummy files.",
+            "visual_evidence": "Timestamps on the files in the file manager matching the time of the agent's activity in the trajectory."
+        },
+        {
+            "id": "no_hardcoded_submission",
+            "description": "The agent did not simply echo the expected ALCDEF format into a file without performing the observations.",
+            "visual_evidence": "The sequence of screenshots must show the telescope/camera software active and 'Exposing' or 'Downloading' data before the ALCDEF file appears."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is (44) Nysa. Required coordinates: RA 18h 32m 15.0s (18.5375h), Dec -25d 08' 42.0\" (-25.145°). Required filter: Slot 1 (Luminance/Clear). Minimum number of FITS images required: 15. The ALCDEF file and images must be saved in the designated upload directory."
+}

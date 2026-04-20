@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_fdsnws_serve_data@1",
+    "task_completion": [
+        {
+            "id": "enable_fdsnws_services",
+            "description": "Enable event, station, and dataselect services in the SeisComP fdsnws configuration.",
+            "points": 15,
+            "visual_evidence": "Configuration files (e.g., fdsnws.cfg) or a GUI configuration tool showing 'event', 'station', and 'dataselect' services set to enabled or true."
+        },
+        {
+            "id": "configure_port_8080",
+            "description": "Set the fdsnws module to listen on port 8080.",
+            "points": 15,
+            "visual_evidence": "Configuration interface or text file showing the 'port' or 'htpasswd' related port setting explicitly set to 8080."
+        },
+        {
+            "id": "start_fdsnws_module",
+            "description": "Start or restart the fdsnws module to apply changes.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'seiscomp start fdsnws' or a status dashboard showing the fdsnws module as 'running'."
+        },
+        {
+            "id": "query_events_xml",
+            "description": "Query earthquake events with minimum magnitude 5 and save to events.xml.",
+            "points": 20,
+            "visual_evidence": "A terminal command using curl or wget targeting localhost:8080/fdsnws/event/1/query?minmag=5 and saving to ~/fdsnws_test/events.xml."
+        },
+        {
+            "id": "query_stations_xml",
+            "description": "Query station metadata for the GE network and save to stations.xml.",
+            "points": 20,
+            "visual_evidence": "A terminal command using curl or wget targeting localhost:8080/fdsnws/station/1/query?net=GE and saving to ~/fdsnws_test/stations.xml."
+        },
+        {
+            "id": "query_dataselect_version",
+            "description": "Query the dataselect service version and save to dataselect_version.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal command using curl or wget targeting localhost:8080/fdsnws/dataselect/1/version and saving to ~/fdsnws_test/dataselect_version.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_service_interaction",
+            "description": "Verify the agent interacted with the SeisComP system rather than just creating empty files.",
+            "visual_evidence": "The content of the saved XML files (visible via 'cat' or 'ls -l') should show non-zero file sizes and XML tags related to seismic data."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Check that the agent didn't manually type the version or event data into files.",
+            "visual_evidence": "The agent should be seen executing curl/wget commands against localhost:8080 rather than using 'echo' to write complex XML content."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "Verify the agent used the specific requested directory.",
+            "visual_evidence": "Commands or file browser showing the path /home/ga/fdsnws_test/ being created and used."
+        }
+    ],
+    "privileged_info_for_vlm": "The fdsnws module must be configured on port 8080. The required files are events.xml (min magnitude 5), stations.xml (GE network), and dataselect_version.txt. These must be stored in /home/ga/fdsnws_test/. The data involves the 2024 Noto Peninsula earthquake and GEOFON stations."
+}

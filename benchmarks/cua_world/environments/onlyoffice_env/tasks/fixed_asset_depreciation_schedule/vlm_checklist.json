@@ -1,0 +1,59 @@
+{
+    "task_id": "fixed_asset_depreciation_schedule@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source CSV and MACRS text files to access asset data and tax tables.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing 'pmg_fixed_assets.csv' and 'macrs_tables.txt' open in a spreadsheet app, text editor, or terminal."
+        },
+        {
+            "id": "create_workbook_structure",
+            "description": "Agent creates a new Excel workbook with headers for MACRS and Straight-Line depreciation calculations.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet application (e.g., LibreOffice Calc) showing columns for Asset Name, 2023 MACRS, Accumulated MACRS, 2023 SL, Accumulated SL, and Net Book Value."
+        },
+        {
+            "id": "calculate_macrs_values",
+            "description": "Agent calculates 2023 MACRS depreciation and accumulated MACRS for all 28 assets.",
+            "points": 25,
+            "visual_evidence": "Spreadsheet showing populated rows for 28 assets with MACRS values; formulas or values should be visible in the cells."
+        },
+        {
+            "id": "calculate_sl_values",
+            "description": "Agent calculates 2023 Straight-Line depreciation (accounting for salvage value) and accumulated SL for all 28 assets.",
+            "points": 25,
+            "visual_evidence": "Spreadsheet showing populated rows for 28 assets with Straight-Line depreciation values and Net Book Value calculations."
+        },
+        {
+            "id": "summary_totals_and_diff",
+            "description": "Agent includes a summary section with totals for MACRS, SL, and the Book-Tax difference.",
+            "points": 15,
+            "visual_evidence": "A summary table or footer in the spreadsheet showing 'Total 2023 MACRS', 'Total 2023 SL', and the difference between the two."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the completed workbook to the specific required path.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog or file explorer showing the file 'depreciation_schedule_2023.xlsx' saved in '~/Documents/Spreadsheets/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses spreadsheet software GUI rather than just generating the file via terminal scripts.",
+            "visual_evidence": "Screenshots of the agent interacting with LibreOffice Calc or a similar GUI spreadsheet tool."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Agent performs calculations within the spreadsheet rather than hard-coding values from the prompt.",
+            "visual_evidence": "Formula bar showing cell references (e.g., =A2*B2) rather than just static numbers that match the ground truth exactly."
+        },
+        {
+            "id": "source_data_usage",
+            "description": "Agent actually references the 28 assets from the source CSV.",
+            "visual_evidence": "The spreadsheet contains 28 rows of data matching the asset names found in pmg_fixed_assets.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The final workbook must contain 28 assets. Total 2023 MACRS depreciation should be between 340,000 and 440,000 (expected ~431,563). Total 2023 Straight-Line depreciation should be between 195,000 and 275,000. The Book-Tax difference (MACRS Total minus SL Total) should be between 80,000 and 220,000. The file must be saved as /home/ga/Documents/Spreadsheets/depreciation_schedule_2023.xlsx."
+}

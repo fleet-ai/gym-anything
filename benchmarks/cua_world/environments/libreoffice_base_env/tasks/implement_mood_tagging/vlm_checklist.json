@@ -1,0 +1,53 @@
+{
+    "task_id": "implement_mood_tagging@1",
+    "task_completion": [
+        {
+            "id": "create_mood_table",
+            "description": "Create the 'Mood' table with columns MoodId (PK) and Name.",
+            "points": 15,
+            "visual_evidence": "SQL command or GUI schema view showing the creation of the 'Mood' table with MoodId and Name columns."
+        },
+        {
+            "id": "populate_mood_data",
+            "description": "Insert 'Energetic', 'Focus', and 'Melancholy' into the Mood table with IDs 1, 2, and 3 respectively.",
+            "points": 15,
+            "visual_evidence": "SQL INSERT statements or a data grid view of the 'Mood' table showing the three specific entries and their IDs."
+        },
+        {
+            "id": "create_trackmood_junction",
+            "description": "Create the 'TrackMood' junction table with TrackId and MoodId as a composite PK and foreign keys.",
+            "points": 20,
+            "visual_evidence": "SQL command or schema diagram showing 'TrackMood' table with foreign key relationships to 'Track' and 'Mood' tables."
+        },
+        {
+            "id": "tag_rock_tracks",
+            "description": "Associate all 'Rock' tracks with the 'Energetic' mood (ID 1) in the TrackMood table.",
+            "points": 25,
+            "visual_evidence": "SQL query or execution log showing an INSERT INTO TrackMood based on a join with the Genre table where Name='Rock'."
+        },
+        {
+            "id": "tag_jazz_tracks",
+            "description": "Associate all 'Jazz' tracks with the 'Focus' mood (ID 2) in the TrackMood table.",
+            "points": 25,
+            "visual_evidence": "SQL query or execution log showing an INSERT INTO TrackMood based on a join with the Genre table where Name='Jazz'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "database_interaction",
+            "description": "The agent interacted with a database management tool or SQLite CLI rather than just printing text.",
+            "visual_evidence": "Screenshots show a database IDE (like DBeaver, DB Browser for SQLite) or a terminal connected to the chinook database file."
+        },
+        {
+            "id": "no_hardcoded_counts",
+            "description": "The agent used subqueries or joins to identify tracks rather than hardcoding a list of IDs.",
+            "visual_evidence": "SQL code shows 'SELECT TrackId FROM Track JOIN Genre...' or similar logic instead of a long list of manual ID integers."
+        },
+        {
+            "id": "file_persistence",
+            "description": "The agent explicitly saved or committed the changes to the database file.",
+            "visual_evidence": "A 'Commit' button click, a 'COMMIT;' SQL command, or a 'Save' action in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The Mood table must have: 1=Energetic, 2=Focus, 3=Melancholy. There are exactly 1297 Rock tracks (should be linked to MoodId 1) and 130 Jazz tracks (should be linked to MoodId 2), totaling 1427 rows in the TrackMood table. The junction table name must be 'TrackMood' and the mood table 'Mood'."
+}

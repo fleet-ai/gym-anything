@@ -1,0 +1,53 @@
+{
+    "task_id": "debug_multifault_simulation@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent opens the Webots simulation environment and loads the soccer world.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the Webots GUI with a soccer field and robot players visible."
+        },
+        {
+            "id": "modify_basictimestep",
+            "description": "The agent modifies the WorldInfo 'basicTimeStep' to a value between 8 and 64.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree or a text editor showing 'basicTimeStep' set to a value <= 64 (e.g., 32 or 16)."
+        },
+        {
+            "id": "modify_gravity",
+            "description": "The agent modifies the WorldInfo 'gravity' to a realistic value (approx. 9.81).",
+            "points": 20,
+            "visual_evidence": "The Scene Tree or a text editor showing the 'gravity' field in WorldInfo changed from 0 to a value >= 9.0."
+        },
+        {
+            "id": "fix_robot_mass",
+            "description": "The agent identifies the BLUE_PLAYER_1 robot and sets its physics mass to a value greater than 0.",
+            "points": 25,
+            "visual_evidence": "The Scene Tree showing the 'physics' field of BLUE_PLAYER_1 with a 'mass' value > 0.1."
+        },
+        {
+            "id": "save_fixed_world",
+            "description": "The agent saves the corrected simulation to the specific path /home/ga/Desktop/fixed_simulation.wbt.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' dialog box or a terminal command showing the file being saved to /home/ga/Desktop/fixed_simulation.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent uses the Webots Scene Tree or built-in editor rather than just script-based file manipulation.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Webots Scene Tree nodes or the internal text editor."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent enters specific numerical values rather than leaving fields blank or using variables.",
+            "visual_evidence": "Actual numbers (e.g., 9.81, 32, 0.5) visible in the input fields of the Webots GUI."
+        },
+        {
+            "id": "genuine_file_path",
+            "description": "The agent saves the file to the desktop as requested, not a temporary directory.",
+            "visual_evidence": "The file path /home/ga/Desktop/fixed_simulation.wbt visible in the file explorer or save dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation is broken in three specific ways: 1. basicTimeStep is set to 256 (must be <= 64 for performance/accuracy). 2. Gravity is set to 0 (must be >= 9.0). 3. BLUE_PLAYER_1 has a mass of 0 (must be > 0.1). The final file must be saved exactly to /home/ga/Desktop/fixed_simulation.wbt."
+}

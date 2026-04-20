@@ -1,0 +1,59 @@
+{
+    "task_id": "manual_mitosis_tracking@1",
+    "task_completion": [
+        {
+            "id": "open_mitosis_sample",
+            "description": "Open the 'Mitosis' sample hyperstack in ImageJ.",
+            "points": 10,
+            "visual_evidence": "An ImageJ window titled 'mitosis.tif' or 'Mitosis' showing a multi-frame cell image."
+        },
+        {
+            "id": "z_projection_created",
+            "description": "Create a Max Intensity Z-Projection to flatten the hyperstack into a 2D time-lapse.",
+            "points": 15,
+            "visual_evidence": "A new ImageJ window titled 'MAX_mitosis.tif' or similar, indicating a Z-projection was performed."
+        },
+        {
+            "id": "identify_target_cell",
+            "description": "Locate the cell near (145, 130) at Frame 1.",
+            "points": 15,
+            "visual_evidence": "The cursor or a selection tool is positioned over the central cell at Frame 1; coordinates in the ImageJ status bar should be near (145, 130)."
+        },
+        {
+            "id": "manual_tracking_process",
+            "description": "Perform manual tracking across frames 1, 6, 11, 16, and 21.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the agent advancing the frame slider and clicking on the cell or recording coordinates at the specified frame intervals."
+        },
+        {
+            "id": "right_most_daughter_frame_21",
+            "description": "Identify and record the right-most daughter cell at Frame 21.",
+            "points": 15,
+            "visual_evidence": "At Frame 21, the selection or cursor is on the daughter cell further to the right (higher X value) compared to the other daughter cell."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the tracking results to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or a terminal command showing the file being saved to '~/ImageJ_Data/results/tracking_trace.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI for image processing and tracking.",
+            "visual_evidence": "Screenshots show the ImageJ menu items being clicked (e.g., Image > Stacks > Z Project) rather than just script execution."
+        },
+        {
+            "id": "genuine_coordinate_recording",
+            "description": "The agent did not simply type the ground truth coordinates without looking at the image.",
+            "visual_evidence": "The cursor position in ImageJ matches the coordinates being recorded in the CSV or results table."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent interacted with the 'Mitosis' sample specifically.",
+            "visual_evidence": "The image window being manipulated is the 'Mitosis' sample provided by ImageJ, not a placeholder."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Mitosis' sample is a standard ImageJ hyperstack. The target cell starts at approximately (145, 130). By Frame 21, the cell has divided; the right-most daughter cell is located at approximately (170, 130). The final CSV must contain 5 rows for frames 1, 6, 11, 16, and 21. Coordinates should be within 25 pixels of: F1:(145,130), F6:(146,130), F11:(145,130), F16:(155,130), F21:(170,130)."
+}

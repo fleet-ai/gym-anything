@@ -1,0 +1,53 @@
+{
+    "task_id": "flood_damage_insurance_claim@1",
+    "task_completion": [
+        {
+            "id": "update_repair_assets",
+            "description": "Update status of ASSET-FD01, ASSET-FD02, and ASSET-FD05 to 'Out for Repair'",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the Snipe-IT asset edit or bulk update page with these three specific asset tags and the status dropdown set to 'Out for Repair'."
+        },
+        {
+            "id": "update_lost_assets",
+            "description": "Update status of ASSET-FD03, ASSET-FD04, and ASSET-FD06 to 'Lost/Stolen'",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the Snipe-IT asset edit or bulk update page with these three specific asset tags and the status dropdown set to 'Lost/Stolen'."
+        },
+        {
+            "id": "update_asset_notes",
+            "description": "Add the specific insurance claim text to the Notes field of all six assets",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the text 'Flood damage - Denver Branch - 2025-03-01 - Insurance Claim #IC-2025-0342' entered into the Notes field for the assets."
+        },
+        {
+            "id": "calculate_values",
+            "description": "Identify purchase/replacement values for all six assets to calculate totals",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent viewing the 'Purchase Cost' or 'Value' column in the Snipe-IT asset list or individual asset pages for the six FD assets."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the insurance claim summary report at the specified desktop path",
+            "points": 30,
+            "visual_evidence": "A screenshot of a text editor or terminal showing the file 'insurance_claim_IC-2025-0342.txt' on the Desktop containing the six asset tags, a total replacement value, a repairable value (FD01, 02, 05), and a write-off value (FD03, 04, 06)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Snipe-IT web interface rather than direct database manipulation",
+            "visual_evidence": "Screenshots must show the browser navigating the Snipe-IT dashboard, asset lists, and edit forms."
+        },
+        {
+            "id": "genuine_data_retrieval",
+            "description": "The agent actually looked up the asset values in the system before writing the report",
+            "visual_evidence": "Screenshots should show the agent viewing the asset details or list view where costs are visible before the report is finalized."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create the report without performing the status updates in Snipe-IT",
+            "visual_evidence": "The trajectory must show 'Success' messages or updated status labels in the Snipe-IT UI for the assets."
+        }
+    ],
+    "privileged_info_for_vlm": "The insurance claim number is IC-2025-0342. The report must be located at /home/ga/Desktop/insurance_claim_IC-2025-0342.txt. Repairable assets (Out for Repair) are ASSET-FD01, ASSET-FD02, and ASSET-FD05. Write-off assets (Lost/Stolen) are ASSET-FD03, ASSET-FD04, and ASSET-FD06. The VLM should verify the math in the report matches the values found in the Snipe-IT 'Purchase Cost' fields for these specific tags."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_tls_cert_export@1",
+    "task_completion": [
+        {
+            "id": "navigate_wikipedia",
+            "description": "Navigate to the Wikipedia homepage in Firefox.",
+            "points": 10,
+            "visual_evidence": "The Firefox address bar shows 'wikipedia.org' and the Wikipedia homepage is rendered in the browser content area."
+        },
+        {
+            "id": "open_security_panel",
+            "description": "Open the site security information panel via the padlock icon.",
+            "points": 10,
+            "visual_evidence": "A dropdown menu or popup is visible showing 'Connection secure' or similar security status after clicking the padlock."
+        },
+        {
+            "id": "open_more_info",
+            "description": "Access the 'More information' window for the connection.",
+            "points": 15,
+            "visual_evidence": "The 'Page Info' window is visible, specifically the 'Security' tab showing website identity details."
+        },
+        {
+            "id": "view_certificate_tab",
+            "description": "Open the 'about:certificate' viewer page.",
+            "points": 20,
+            "visual_evidence": "A new Firefox tab is open with the URL 'about:certificate' showing detailed certificate information for wikipedia.org."
+        },
+        {
+            "id": "initiate_pem_download",
+            "description": "Locate and click the download link for the PEM (cert) format.",
+            "points": 25,
+            "visual_evidence": "The cursor is over or clicking the 'PEM (cert)' link in the certificate viewer, or a file save dialog appears specifically for a .crt or .pem file."
+        },
+        {
+            "id": "verify_download_location",
+            "description": "Confirm the file is saved to the /home/ga/Downloads/ directory.",
+            "points": 20,
+            "visual_evidence": "The Firefox download manager or a file explorer window shows the certificate file located in the /home/ga/Downloads/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the Firefox GUI rather than terminal commands to fetch the certificate.",
+            "visual_evidence": "Screenshots show interactions with the browser's padlock icon and menus; no terminal windows (e.g., openssl commands) are used to download the cert."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual Firefox certificate viewer UI.",
+            "visual_evidence": "The 'about:certificate' page is visible and interacted with; the agent did not simply create a dummy file in the downloads folder."
+        },
+        {
+            "id": "no_manual_url_bypass",
+            "description": "The agent followed the navigation path from the padlock icon rather than jumping directly to a known download URL.",
+            "visual_evidence": "Sequential screenshots show the progression from the padlock to 'More Information' to 'View Certificate'."
+        }
+    ],
+    "privileged_info_for_vlm": "The Wikipedia certificate viewer in Firefox (about:certificate) provides multiple download formats; the task specifically requires 'PEM (cert)'. The default filename usually starts with 'wikipedia-org' and ends in '.crt'. The destination must be /home/ga/Downloads/."
+}

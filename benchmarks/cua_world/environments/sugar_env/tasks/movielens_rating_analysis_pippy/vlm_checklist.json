@@ -1,0 +1,53 @@
+{
+    "task_id": "movielens_rating_analysis_pippy@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named rating_analyzer.py at the specified path.",
+            "points": 10,
+            "visual_evidence": "A file manager or text editor showing the file /home/ga/Documents/rating_analyzer.py exists."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The Python script contains logic to read u.data (tab-separated), calculate the average rating, and count 5-star ratings.",
+            "points": 20,
+            "visual_evidence": "Code visible in an editor showing 'pd.read_csv' or 'open()' with tab delimiters, and logic for mean() and counting ratings equal to 5."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script successfully.",
+            "points": 15,
+            "visual_evidence": "A terminal or IDE console showing the command 'python3 rating_analyzer.py' being run without errors."
+        },
+        {
+            "id": "txt_output_generation",
+            "description": "The script generates rating_summary.txt with the correct labels and values.",
+            "points": 25,
+            "visual_evidence": "Content of /home/ga/Documents/rating_summary.txt showing 'Average' and '5-Star' with the calculated values (3.53 and 21201 for real data, or 2.80 and 3 for synthetic)."
+        },
+        {
+            "id": "html_output_generation",
+            "description": "The script generates rating_summary.html with valid HTML tags and the correct statistics.",
+            "points": 30,
+            "visual_evidence": "Content of /home/ga/Documents/rating_summary.html showing <html>, <body>, or <table> tags containing the average and 5-star count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final answers into the script or output files.",
+            "visual_evidence": "The Python script code should show calculation logic (e.g., .mean(), .count()) rather than print('3.53')."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually reads the dataset file rather than simulating the output.",
+            "visual_evidence": "The code must reference the path /home/ga/Documents/ml-100k/u.data."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the desktop environment/GUI tools to perform the task.",
+            "visual_evidence": "Screenshots show interaction with a text editor (like Gedit or VS Code) and a file manager, not just a full-screen terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "If the agent uses the real MovieLens 100k dataset, the average rating is 3.53 and the 5-star count is 21201. If the environment has been swapped with the synthetic test dataset, the average rating is 2.80 and the 5-star count is 3. The average must be rounded to exactly two decimal places."
+}

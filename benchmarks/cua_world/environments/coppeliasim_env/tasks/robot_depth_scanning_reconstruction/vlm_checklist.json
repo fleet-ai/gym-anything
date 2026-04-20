@@ -1,0 +1,59 @@
+{
+    "task_id": "robot_depth_scanning_reconstruction@1",
+    "task_completion": [
+        {
+            "id": "spawn_primitive_shape",
+            "description": "Spawn a primitive shape at world coordinates (0.5, 0.0, 0.1) in CoppeliaSim.",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim scene hierarchy showing a new primitive object and the 3D view showing the object at the specified location."
+        },
+        {
+            "id": "attach_vision_sensor",
+            "description": "Attach a vision sensor with depth rendering to the robot arm's end-effector.",
+            "points": 15,
+            "visual_evidence": "Scene hierarchy showing a 'Vision_sensor' object parented to the robot's tip/end-effector link."
+        },
+        {
+            "id": "capture_four_views",
+            "description": "Capture depth buffers from at least 4 distinct joint configurations pointing at the target.",
+            "points": 20,
+            "visual_evidence": "The robot arm shown in at least 4 different poses in the simulator, or terminal logs/scripts showing 4 distinct capture iterations."
+        },
+        {
+            "id": "export_depth_csvs",
+            "description": "Save raw normalized depth values to /home/ga/Documents/CoppeliaSim/exports/depth_view_<id>.csv.",
+            "points": 15,
+            "visual_evidence": "File explorer or terminal 'ls' command showing depth_view_0.csv through depth_view_3.csv in the specified directory."
+        },
+        {
+            "id": "generate_merged_pointcloud",
+            "description": "Back-project depth pixels and save aggregated 3D points to merged_pointcloud.csv with specific columns.",
+            "points": 25,
+            "visual_evidence": "A CSV file named 'merged_pointcloud.csv' containing columns: view_id, px, py, world_x, world_y, world_z."
+        },
+        {
+            "id": "save_metadata_report",
+            "description": "Save a metadata report (scanning_report.json) including sensor configurations and pose matrices.",
+            "points": 15,
+            "visual_evidence": "A JSON file named 'scanning_report.json' open in an editor or listed in the exports folder containing resolution and matrix data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "Verify the agent interacted with the CoppeliaSim GUI or ZMQ API rather than just creating dummy files.",
+            "visual_evidence": "Screenshots showing the CoppeliaSim application active, the robot moving, or the vision sensor floating view updating."
+        },
+        {
+            "id": "no_hardcoded_pointcloud",
+            "description": "Ensure the point cloud was generated from sensor data, not manually typed.",
+            "visual_evidence": "The merged_pointcloud.csv should contain a large number of points (at least 500) with floating point precision, which is difficult to fake manually."
+        },
+        {
+            "id": "correct_coordinate_filtering",
+            "description": "Check that background points (depth 1.0) were filtered out of the final point cloud.",
+            "visual_evidence": "The merged_pointcloud.csv should not contain world coordinates corresponding to the far clipping plane or depth values of 1.0."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must capture at least 4 distinct views. The final merged_pointcloud.csv must contain at least 500 points. The target object is located at (0.5, 0.0, 0.1). All exports must be saved to /home/ga/Documents/CoppeliaSim/exports/. Background points where depth equals 1.0 must be excluded from the final reconstruction."
+}

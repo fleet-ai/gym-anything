@@ -1,0 +1,56 @@
+{
+    "task_id": "split_segment_scissors@1",
+    "task_completion": [
+        {
+            "id": "load_patient_data",
+            "description": "The agent successfully loaded the patient 5 data into 3D Slicer.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows a CT volume and the 'Liver_Complete' segmentation loaded in the Data module or Segment Editor."
+        },
+        {
+            "id": "create_new_segments",
+            "description": "Two new segments named 'Liver_Right' and 'Liver_Left' are created in the segment list.",
+            "points": 15,
+            "visual_evidence": "The Segment Editor list shows 'Liver_Right' and 'Liver_Left' as distinct entries."
+        },
+        {
+            "id": "use_scissors_tool",
+            "description": "The agent uses the Scissors tool to split the original segmentation.",
+            "points": 20,
+            "visual_evidence": "The Scissors tool is highlighted/active in the Segment Editor effects panel, and a selection lasso or cut line is visible in the slice views or 3D view."
+        },
+        {
+            "id": "segment_distribution",
+            "description": "The original liver is split into two distinct spatial regions.",
+            "points": 25,
+            "visual_evidence": "The 2D slice views or 3D view show two different colors representing the left and right lobes, covering the area previously occupied by 'Liver_Complete'."
+        },
+        {
+            "id": "verify_volume_constraints",
+            "description": "Each segment represents 25-75% of the original volume.",
+            "points": 30,
+            "visual_evidence": "The 'Segment Statistics' module or the segment list shows volume values (mm3 or cm3) where both 'Liver_Right' and 'Liver_Left' are roughly similar in size, neither being negligible nor nearly the full size of the original."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI rather than Python console scripts to perform the split.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor buttons and the Scissors tool, rather than code being typed into the Python Interactor."
+        },
+        {
+            "id": "genuine_segmentation",
+            "description": "The agent did not simply rename the original segment or create empty segments.",
+            "points": 0,
+            "visual_evidence": "The 3D view shows two distinct, non-overlapping colored volumes that together form the shape of a liver."
+        },
+        {
+            "id": "correct_patient_context",
+            "description": "The agent is working on the specified patient 5 data.",
+            "points": 0,
+            "visual_evidence": "The file paths in the 'Data' module or the window title bar reference 'patient_5' or 'IRCADb'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses patient 5 from the 3D-IRCADb-01 dataset. The original volume is 'Liver_Complete'. The agent must use the 'Scissors' tool in the Segment Editor. Success is defined by the presence of 'Liver_Right' and 'Liver_Left' segments that visually split the liver into two large, roughly equal parts (between 25% and 75% each)."
+}

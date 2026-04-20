@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_patient_interface@1",
+    "task_completion": [
+        {
+            "id": "access_jitsi_interface",
+            "description": "Agent successfully navigated to the Jitsi Meet web interface at http://localhost:8080.",
+            "points": 10,
+            "visual_evidence": "A browser window showing the Jitsi Meet welcome page or a meeting interface at the specified URL."
+        },
+        {
+            "id": "modify_config_file",
+            "description": "Agent accessed and modified the interface_config.js file within the Docker container.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'docker exec' commands or an editor (like nano/vi) open inside the container modifying interface_config.js."
+        },
+        {
+            "id": "verify_welcome_title",
+            "description": "The welcome page title is updated to 'Hospital Virtual Care'.",
+            "points": 20,
+            "visual_evidence": "The browser tab or the main heading on the Jitsi welcome page displays the text 'Hospital Virtual Care'."
+        },
+        {
+            "id": "verify_restricted_settings",
+            "description": "The settings dialog only shows 'Devices' and 'Sounds' sections.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the Jitsi settings dialog showing only 'Devices' and 'Sounds' in the sidebar/tabs, with 'Language', 'Profile', etc., missing."
+        },
+        {
+            "id": "save_screenshot_artifact",
+            "description": "Agent saved the screenshot of the restricted settings to the specific path ~/Documents/restricted_settings.png.",
+            "points": 20,
+            "visual_evidence": "A file manager view or terminal command (ls) confirming the existence of 'restricted_settings.png' in the Documents folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_config_edit",
+            "description": "Agent actually edited the configuration file rather than just navigating to a pre-configured site.",
+            "visual_evidence": "Terminal history showing commands like 'docker exec' and 'sed' or 'vi' targeting the interface_config.js file."
+        },
+        {
+            "id": "live_interaction",
+            "description": "The screenshot in ~/Documents matches the state of the browser seen in the trajectory.",
+            "visual_evidence": "The visual content (tabs, UI state) of restricted_settings.png matches the browser state shown in the final steps of the agent's actions."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "Agent did not use 'inspect element' to temporarily change the UI text for the screenshot.",
+            "visual_evidence": "The agent's trajectory shows a page refresh or a clean navigation to the URL after the file modification, ensuring the changes are persistent."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must modify interface_config.js inside the Docker container. Note that while the task asks for DEFAULT_WELCOME_PAGE_TITLE, this is a non-standard parameter; the agent may need to add it or modify the closest equivalent to change the UI text. The settings dialog must strictly show only 'Devices' and 'Sounds'. The screenshot must be saved specifically to /home/ga/Documents/restricted_settings.png. MOBILE_APP_PROMO must be set to false, which prevents 'Download our app' popups on mobile views/simulations."
+}

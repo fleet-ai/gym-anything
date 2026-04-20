@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_payment_partitioning@1",
+    "task_completion": [
+        {
+            "id": "mysql_workbench_connection",
+            "description": "Connect to the local MySQL instance using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "MySQL Workbench is open and connected to 'localhost' with the 'sakila' database visible in the Navigator pane."
+        },
+        {
+            "id": "create_partitioned_table",
+            "description": "Create the 'payment_archive' table with RANGE partitioning on 'payment_date' year.",
+            "points": 25,
+            "visual_evidence": "SQL editor shows a CREATE TABLE statement for 'payment_archive' using PARTITION BY RANGE (YEAR(payment_date)) with partitions p2005, p2006, and p_future."
+        },
+        {
+            "id": "data_migration",
+            "description": "Populate 'payment_archive' with data from the 'payment' table.",
+            "points": 15,
+            "visual_evidence": "SQL editor shows an INSERT INTO ... SELECT statement or a successful execution log indicating rows were inserted into 'payment_archive'."
+        },
+        {
+            "id": "create_stored_procedure",
+            "description": "Create the 'sp_partition_stats' stored procedure in the 'sakila' database.",
+            "points": 25,
+            "visual_evidence": "SQL editor shows CREATE PROCEDURE sp_partition_stats querying INFORMATION_SCHEMA.PARTITIONS for TABLE_NAME = 'payment_archive'. The procedure appears in the Navigator under 'Stored Procedures'."
+        },
+        {
+            "id": "execute_and_export",
+            "description": "Call the stored procedure and export the results to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "A 'CALL sp_partition_stats()' statement is executed, and the export wizard or a 'SELECT ... INTO OUTFILE' command is shown targeting '/home/ga/Documents/exports/partition_stats.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the MySQL Workbench GUI rather than just the terminal.",
+            "visual_evidence": "Screenshots show interactions with the MySQL Workbench interface, such as the SQL editor, Navigator tree, or Export wizard."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent executed actual SQL queries to retrieve partition data rather than hardcoding values.",
+            "visual_evidence": "The SQL editor contains queries referencing INFORMATION_SCHEMA.PARTITIONS and the 'payment_archive' table."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The export process targeted the specific local file path required.",
+            "visual_evidence": "The export dialog or SQL command explicitly shows the path /home/ga/Documents/exports/partition_stats.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The task is successful if: 1) Table 'payment_archive' is created in 'sakila' with partitions p2005 (LESS THAN 2006), p2006 (LESS THAN 2007), and p_future (LESS THAN MAXVALUE). 2) Data is copied from 'payment'. 3) Stored procedure 'sp_partition_stats' exists and queries INFORMATION_SCHEMA.PARTITIONS for partition names and row counts. 4) The output file is saved to /home/ga/Documents/exports/partition_stats.csv."
+}

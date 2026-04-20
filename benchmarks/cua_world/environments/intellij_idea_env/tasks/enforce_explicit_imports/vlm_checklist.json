@@ -1,0 +1,53 @@
+{
+    "task_id": "enforce_explicit_imports@1",
+    "task_completion": [
+        {
+            "id": "open_project",
+            "description": "The agent has opened the 'inventory-system' project in IntelliJ IDEA.",
+            "points": 10,
+            "visual_evidence": "The IntelliJ IDEA window title or Project tool window shows the 'inventory-system' directory at /home/ga/IdeaProjects/inventory-system."
+        },
+        {
+            "id": "navigate_to_code_style_settings",
+            "description": "The agent navigated to the Java Code Style settings for imports.",
+            "points": 15,
+            "visual_evidence": "A dialog box is visible showing 'Settings' or 'Preferences' -> 'Editor' -> 'Code Style' -> 'Java' -> 'Imports' tab."
+        },
+        {
+            "id": "configure_import_thresholds",
+            "description": "The agent increased the class count thresholds to prevent wildcard imports.",
+            "points": 25,
+            "visual_evidence": "In the Java Code Style settings, the values for 'Class count to use import with '*'' and 'Names count to use static import with '*'' are changed from 5 to a high number (e.g., 99, 500, or 999)."
+        },
+        {
+            "id": "refactor_wildcard_imports",
+            "description": "The agent refactored the code to replace wildcard imports with explicit imports.",
+            "points": 30,
+            "visual_evidence": "Screenshots of Java files (Product.java, InventoryService.java, or FileUtils.java) show specific class imports (e.g., 'import java.util.List;') instead of wildcards (e.g., 'import java.util.*;')."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project compiles successfully after the changes.",
+            "points": 20,
+            "visual_evidence": "The 'Build' output window shows 'Build completed successfully' or there are no red error underlines in the project files after the refactor."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_for_settings",
+            "description": "The agent used the IntelliJ IDEA GUI to change settings rather than editing configuration files via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with the IntelliJ Settings/Preferences dialog."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent used IDE features (like 'Optimize Imports') or manual editing within the editor rather than just running a script to replace text.",
+            "visual_evidence": "The agent is seen using the 'Code' menu, right-clicking, or using keyboard shortcuts within the Java editor."
+        },
+        {
+            "id": "actual_project_files",
+            "description": "The agent is working on the files in the specified project directory.",
+            "visual_evidence": "The file paths in the editor tabs or project tree match /home/ga/IdeaProjects/inventory-system."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/inventory-system. To successfully pass the verification, the agent must set the 'Class count to use import with '*'' threshold in IntelliJ Java Code Style settings to a value greater than 50 (the task target is typically 999). There are 10 wildcard imports across Product.java, InventoryService.java, and FileUtils.java that must be converted to explicit imports."
+}

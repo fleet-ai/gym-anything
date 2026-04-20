@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_http_objects@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_wireshark",
+            "description": "Open the 'http.cap' file in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'http.cap' in the title bar and a list of captured packets."
+        },
+        {
+            "id": "export_http_objects_menu",
+            "description": "Navigate to the 'Export Objects' -> 'HTTP' menu in Wireshark.",
+            "points": 15,
+            "visual_evidence": "The 'Wireshark: Export HTTP object list' dialog box is visible on screen."
+        },
+        {
+            "id": "save_all_objects",
+            "description": "Save all extracted HTTP objects to the specified directory.",
+            "points": 25,
+            "visual_evidence": "A file browser or terminal view showing files appearing in '/home/ga/Documents/extracted_objects/'."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Create the summary report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal command showing the creation of '/home/ga/Documents/http_extraction_report.txt'."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the total count, filenames, and hostnames.",
+            "points": 40,
+            "visual_evidence": "The content of 'http_extraction_report.txt' is displayed, showing a list of files (e.g., download.html, page.html), their source hostnames (e.g., wiki.wireshark.org), and a total count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to extract objects rather than just CLI tools.",
+            "visual_evidence": "Screenshots show the Wireshark 'Export Objects' dialog window being interacted with."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not create the report before actually performing the extraction.",
+            "visual_evidence": "The timestamp of the report creation in the terminal or file manager follows the Wireshark extraction activity."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system to verify the destination directory exists.",
+            "visual_evidence": "Terminal commands like 'mkdir' or 'ls' or file manager navigation to '/home/ga/Documents/extracted_objects/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is located at /home/ga/Documents/captures/http.cap. This is a standard Wireshark sample containing HTTP traffic. The extraction should yield several files including 'download.html' and 'page.html' from the hostname 'wiki.wireshark.org'. The total number of objects in this specific pcap is typically 4-5. The agent must save them to /home/ga/Documents/extracted_objects/ and the report to /home/ga/Documents/http_extraction_report.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_pdf_memory_profiling@1",
+    "task_completion": [
+        {
+            "id": "open_pdf_viewer",
+            "description": "Open the specified PDF file in a Firefox tab.",
+            "points": 10,
+            "visual_evidence": "A Firefox tab showing 'Heavy_Scientific_Report.pdf' rendered in the built-in PDF viewer."
+        },
+        {
+            "id": "navigate_about_memory",
+            "description": "Navigate to the about:memory page in a new tab.",
+            "points": 10,
+            "visual_evidence": "A Firefox tab with 'about:memory' in the address bar and the memory troubleshooting interface visible."
+        },
+        {
+            "id": "trigger_gc_cc",
+            "description": "Click the GC and CC buttons to clear memory.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the cursor interacting with 'GC' and 'CC' buttons under the 'Free memory' section, or status messages indicating they were triggered."
+        },
+        {
+            "id": "save_baseline_report",
+            "description": "Save the baseline memory report with the specific filename 'memory_baseline.json.gz'.",
+            "points": 20,
+            "visual_evidence": "A file save dialog with 'memory_baseline.json.gz' typed into the filename field, followed by a save confirmation."
+        },
+        {
+            "id": "scroll_pdf_bloat",
+            "description": "Scroll through at least 20 pages of the PDF to increase memory usage.",
+            "points": 25,
+            "visual_evidence": "The PDF tab showing rapid scrolling or a page indicator (e.g., '25 / 100') significantly higher than the initial page."
+        },
+        {
+            "id": "save_peak_report",
+            "description": "Save the peak memory report as 'memory_peak.json.gz' without triggering GC/CC first.",
+            "points": 20,
+            "visual_evidence": "A file save dialog with 'memory_peak.json.gz' typed into the filename field. The VLM must verify no GC/CC buttons were clicked between scrolling and this save."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Firefox GUI and file dialogs rather than terminal commands to create the files.",
+            "visual_evidence": "Screenshots show mouse movements and typing within the Firefox browser and system file picker, not a terminal window."
+        },
+        {
+            "id": "explicit_filename_entry",
+            "description": "The agent manually entered the required filenames instead of accepting defaults.",
+            "visual_evidence": "The file save dialog shows the specific requested filenames being typed or present, which differ from the default 'memory-report.json.gz' format."
+        },
+        {
+            "id": "genuine_pdf_rendering",
+            "description": "The agent actually interacted with the PDF content to cause bloat.",
+            "visual_evidence": "Visual confirmation of the PDF scrollbar moving or page numbers changing in the Firefox UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The default filename for Firefox memory reports is usually 'memory-report.json.gz' or includes a timestamp. The task specifically requires 'memory_baseline.json.gz' and 'memory_peak.json.gz'. The 'GC' and 'CC' buttons are located in the 'Free memory' box on the about:memory page. To verify the 20-page scroll, look at the page counter in the PDF toolbar."
+}

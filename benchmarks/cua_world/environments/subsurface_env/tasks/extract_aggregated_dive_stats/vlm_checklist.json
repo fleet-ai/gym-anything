@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_aggregated_dive_stats@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "The agent opens the Subsurface application and loads the dive log data.",
+            "points": 10,
+            "visual_evidence": "The Subsurface GUI is visible on the screen with a list of dives populated."
+        },
+        {
+            "id": "select_target_dives",
+            "description": "The agent identifies and selects Dives #2, #3, and #4 in the dive list.",
+            "points": 15,
+            "visual_evidence": "Dives numbered 2, 3, and 4 are highlighted or selected in the Subsurface dive list pane."
+        },
+        {
+            "id": "extract_dive_durations",
+            "description": "The agent views the duration/bottom time for each of the three target dives.",
+            "points": 20,
+            "visual_evidence": "The 'Duration' or 'Time' column/field is visible for the selected dives (Dives 2, 3, and 4)."
+        },
+        {
+            "id": "extract_max_depth",
+            "description": "The agent identifies the maximum depth reached across the three selected dives.",
+            "points": 20,
+            "visual_evidence": "The 'Depth' or 'Max Depth' field is visible in the dive list or dive information panel for the target dives."
+        },
+        {
+            "id": "create_output_file",
+            "description": "The agent creates the training_stats.txt file in the ~/Documents directory.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal command shows the creation of /home/ga/Documents/training_stats.txt."
+        },
+        {
+            "id": "verify_final_content",
+            "description": "The final file contains the correctly formatted aggregated time in minutes and max depth in meters.",
+            "points": 20,
+            "visual_evidence": "The file content is displayed showing 'Total Time: 59 minutes' and 'Max Depth: 12.19 meters' (or values within the specified tolerances)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_check",
+            "description": "The agent used the Subsurface GUI to find the data rather than parsing the XML file via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with the Subsurface window (clicking dives, reading the info panel) rather than using 'grep' or 'cat' on the .ssrf file."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final values without first opening the application.",
+            "visual_evidence": "The trajectory shows the Subsurface application being opened and the specific dives being inspected before the text file is written."
+        },
+        {
+            "id": "correct_aggregation_logic",
+            "description": "The agent performed the conversion from hours/minutes to total minutes as requested.",
+            "visual_evidence": "The final output shows a single integer for minutes (59) rather than a timestamp format like 0:59."
+        }
+    ],
+    "privileged_info_for_vlm": "The target dives are #2, #3, and #4. Based on the SampleDivesV2.ssrf dataset: Dive #2 is 18 min, Dive #3 is 21 min, and Dive #4 is 20 min. The total aggregated time is 59 minutes. The absolute maximum depth across these three dives is 12.19 meters (found in Dive #2). The output must be saved to ~/Documents/training_stats.txt. Acceptable tolerances are +/- 2.0 minutes for time and +/- 0.5 meters for depth."
+}

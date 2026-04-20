@@ -1,0 +1,59 @@
+{
+    "task_id": "audit_friction_slope_consistency@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_muncie",
+            "description": "Open the HEC-RAS application and load the Muncie project.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window is visible with 'Muncie' project loaded in the title bar or project path."
+        },
+        {
+            "id": "select_plan_04",
+            "description": "Ensure Plan 04 is selected for analysis.",
+            "points": 10,
+            "visual_evidence": "The Plan dropdown or Plan description in the HEC-RAS main window shows 'Plan 04'."
+        },
+        {
+            "id": "access_detailed_output_table",
+            "description": "Open the Detailed Output Table (Cross Section Table) to view hydraulic parameters.",
+            "points": 15,
+            "visual_evidence": "A 'Detailed Output' or 'Cross Section' table window is open showing hydraulic data."
+        },
+        {
+            "id": "extract_hydraulic_parameters",
+            "description": "Navigate through cross-sections to find Vel Chnl, Hydr Rad Chnl, and Frctn Slope at peak flow.",
+            "points": 25,
+            "visual_evidence": "The agent is seen interacting with the table, scrolling through River Stations, or selecting the 'Max Water Surface' profile."
+        },
+        {
+            "id": "calculate_manning_n",
+            "description": "Perform the Manning's n calculation using the provided formula for each cross-section.",
+            "points": 20,
+            "visual_evidence": "Evidence of calculation (e.g., using a calculator app, spreadsheet, or terminal/Python script) using values from the HEC-RAS tables."
+        },
+        {
+            "id": "save_audit_csv",
+            "description": "Generate and save the roughness_audit.csv with all 8 required columns to the specified path.",
+            "points": 20,
+            "visual_evidence": "A CSV file or spreadsheet is visible at ~/Documents/hec_ras_results/roughness_audit.csv containing columns: River_Station, Channel_Velocity_fps, Channel_Hydraulic_Radius_ft, Friction_Slope, Input_Manning_n, Calculated_Manning_n, Residual, and Status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the HEC-RAS GUI to retrieve data rather than guessing values.",
+            "visual_evidence": "Screenshots show the HEC-RAS window active and specific cross-section data tables being opened/viewed."
+        },
+        {
+            "id": "no_hardcoded_metadata",
+            "description": "The agent used the actual Manning's n from the model (0.04) rather than the incorrect value in the metadata (0.035).",
+            "visual_evidence": "The 'Input_Manning_n' column in the final CSV or the HEC-RAS geometry table shows 0.04."
+        },
+        {
+            "id": "mathematical_consistency",
+            "description": "The 'Calculated_Manning_n' and 'Residual' columns are derived from the observed hydraulic data, not fabricated.",
+            "visual_evidence": "The values in the CSV correspond to the formula n = (1.486 / V) * (R^(2/3)) * (S_f^(1/2)) using the data visible in the HEC-RAS screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "The actual Manning's n value in the Muncie Plan 04 geometry for the main channel is 0.04, not 0.035. The agent must use 0.04 as the 'Input_Manning_n'. The output must be a CSV at /home/ga/Documents/hec_ras_results/roughness_audit.csv with exactly 8 columns: River_Station, Channel_Velocity_fps, Channel_Hydraulic_Radius_ft, Friction_Slope, Input_Manning_n, Calculated_Manning_n, Residual, and Status. Status is 'PASS' only if |Input_Manning_n - Calculated_Manning_n| < 0.001."
+}

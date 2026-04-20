@@ -1,0 +1,59 @@
+{
+    "task_id": "usda_nutrition_menu_planner@1",
+    "task_completion": [
+        {
+            "id": "open_csv_data",
+            "description": "The agent opens or reads the nutrition_data.csv file to inspect the dataset.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output showing the contents of /home/ga/Documents/nutrition_data.csv."
+        },
+        {
+            "id": "create_python_script",
+            "description": "The agent writes the Python script 'nutrition_analyzer.py' with logic to filter data and calculate the average.",
+            "points": 20,
+            "visual_evidence": "A code editor or terminal showing the content of /home/ga/Documents/nutrition_analyzer.py including logic for Iron >= 2.5, Vitamin C >= 25.0, and Protein >= 15.0."
+        },
+        {
+            "id": "execute_script",
+            "description": "The agent executes the Python script in the environment.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing the command 'python3 /home/ga/Documents/nutrition_analyzer.py' or similar execution command."
+        },
+        {
+            "id": "report_file_creation",
+            "description": "The report file 'nutrition_report.txt' is created in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal 'ls' command showing nutrition_report.txt exists in /home/ga/Documents/."
+        },
+        {
+            "id": "report_content_headers",
+            "description": "The report contains the four required section headers exactly as specified.",
+            "points": 15,
+            "visual_evidence": "The opened nutrition_report.txt showing '=== HIGH IRON FOODS ===', '=== HIGH VITAMIN C FOODS ===', '=== HIGH PROTEIN FOODS ===', and '=== DATASET STATISTICS ==='."
+        },
+        {
+            "id": "report_data_accuracy",
+            "description": "The report lists the correct food items and the calculated average protein value.",
+            "points": 25,
+            "visual_evidence": "The report text showing 'Average Protein: 10.94 g' and food items like 'spinach', 'lentil', 'beef', 'tofu' under their respective headers."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final values into a file without processing the CSV.",
+            "visual_evidence": "The Python script should contain pandas or csv module code to read the file, not just print statements with the final answers."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the specified file paths rather than creating files in arbitrary locations.",
+            "visual_evidence": "Commands or editor paths showing /home/ga/Documents/ as the working directory."
+        },
+        {
+            "id": "script_execution_flow",
+            "description": "The agent actually ran the script to generate the report rather than manually typing the report content.",
+            "visual_evidence": "The sequence of screenshots should show script execution followed by the appearance/opening of the report file."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 10 items. The calculated average protein is 10.94. High Iron (>=2.5mg): spinach, lentil, beef, tofu. High Vitamin C (>=25.0mg): spinach, orange, broccoli, bell pepper. High Protein (>=15.0g): lentil, chicken, beef, tofu. The report must use the exact '===' headers and format the average as 'Average Protein: 10.94 g'."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_server_config@1",
+    "task_completion": [
+        {
+            "id": "edit_config_file",
+            "description": "The agent edited the configuration file at /home/ga/.jitsi-meet-cfg/web/custom-config.js with the required parameters.",
+            "points": 20,
+            "visual_evidence": "A terminal window or text editor showing the content of /home/ga/.jitsi-meet-cfg/web/custom-config.js containing the specified config keys (defaultLanguage, requireDisplayName, etc.)."
+        },
+        {
+            "id": "verify_french_homepage",
+            "description": "The Jitsi Meet homepage at http://localhost:8080 is displayed in French.",
+            "points": 20,
+            "visual_evidence": "A browser screenshot of http://localhost:8080 showing French text (e.g., 'Démarrer une réunion' instead of 'Start a meeting')."
+        },
+        {
+            "id": "save_screenshot_artifact",
+            "description": "A screenshot of the French home page is saved to ~/jitsi_config_verification.png.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal output showing the existence of the file /home/ga/jitsi_config_verification.png."
+        },
+        {
+            "id": "verify_served_config_content",
+            "description": "The served configuration at http://localhost:8080/custom-config.js contains all required settings.",
+            "points": 30,
+            "visual_evidence": "A browser window or curl output showing the URL http://localhost:8080/custom-config.js with the correct JavaScript object values for all 8 required parameters."
+        },
+        {
+            "id": "save_config_text_artifact",
+            "description": "The served configuration is saved to ~/custom_config_served.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal output (e.g., 'cat ~/custom_config_served.txt') showing the saved configuration content matching the requirements."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent actually visited the localhost URL and didn't just create a fake text file.",
+            "visual_evidence": "The browser address bar must show http://localhost:8080 and the page content must render the Jitsi UI, not just a local file path."
+        },
+        {
+            "id": "no_manual_translation",
+            "description": "The French language is applied via config, not by the agent manually selecting it in the UI settings menu.",
+            "visual_evidence": "The configuration file must show config.defaultLanguage = 'fr' and the page should load in French by default upon navigation."
+        },
+        {
+            "id": "config_source_verification",
+            "description": "The agent retrieved the served config from the web server, not just by copying the local file.",
+            "visual_evidence": "Evidence of the agent using a browser or 'curl'/'wget' specifically targeting the http://localhost:8080/custom-config.js URL."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi configuration is stored locally at /home/ga/.jitsi-meet-cfg/web/custom-config.js but is served to the client at http://localhost:8080/custom-config.js. Required settings: defaultLanguage='fr', requireDisplayName=true, startWithAudioMuted=true, startWithVideoMuted=true, prejoinConfig={enabled:true, hideDisplayName:false}, disableDeepLinking=true, disableThirdPartyRequests=true, enableWelcomePage=true. The French homepage should show 'Lancer une réunion' or 'Démarrer une réunion'."
+}

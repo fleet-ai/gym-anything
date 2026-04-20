@@ -1,0 +1,53 @@
+{
+    "task_id": "exoplanet_transit_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_onlyoffice_csv",
+            "description": "Open the kepler8b_lightcurve.csv file in ONLYOFFICE Spreadsheet.",
+            "points": 10,
+            "visual_evidence": "The ONLYOFFICE Spreadsheet interface is visible showing the raw data from the CSV file."
+        },
+        {
+            "id": "calculate_normalized_flux",
+            "description": "Compute the normalized flux (SAP_FLUX divided by average SAP_FLUX) for each row.",
+            "points": 20,
+            "visual_evidence": "A new column is visible with values near 1.0, and the formula bar shows a division by an AVERAGE() function or a static mean value."
+        },
+        {
+            "id": "calculate_phase_columns",
+            "description": "Compute the Phase and Centered Phase using the specified MOD and IF formulas.",
+            "points": 25,
+            "visual_evidence": "Two columns for Phase and Centered Phase are visible; the formula bar for Centered Phase shows an IF statement checking if Phase > 0.5."
+        },
+        {
+            "id": "calculate_summary_metrics",
+            "description": "Calculate Transit Depth, Radius Ratio, and Planet Radius with clear text labels.",
+            "points": 25,
+            "visual_evidence": "Cells containing labels like 'Transit Depth' and 'Planet Radius' are visible next to calculated numeric values."
+        },
+        {
+            "id": "save_xlsx_file",
+            "description": "Save the completed analysis as an Excel workbook (.xlsx) to the specified path.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog or the window title bar confirms the file is being saved as 'kepler8b_analysis.xlsx' in the ~/Documents/Spreadsheets/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ONLYOFFICE GUI to perform calculations rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with spreadsheet cells, menus, or the formula bar."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent used formulas to derive results rather than typing in the final numbers directly.",
+            "visual_evidence": "The formula bar shows active formulas (e.g., SQRT, MOD, IF) when the result cells are selected."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The agent opened the actual CSV file provided in the task.",
+            "visual_evidence": "The data in the spreadsheet matches the expected columns (TIME, SAP_FLUX) from the source CSV."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected values for the summary metrics are: Transit Depth should be between 0.008 and 0.013; Radius Ratio should be between 0.09 and 0.115; Planet Radius should be between 1.3 and 1.65. The formula for Planet Radius must use the constants 1.48 and 9.73 as specified in the prompt."
+}

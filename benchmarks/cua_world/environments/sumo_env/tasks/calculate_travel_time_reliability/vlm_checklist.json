@@ -1,0 +1,53 @@
+{
+    "task_id": "calculate_travel_time_reliability@1",
+    "task_completion": [
+        {
+            "id": "sumo_command_execution",
+            "description": "Agent executes SUMO commands for the five specified seeds (1001-1005) with the correct depart offset.",
+            "points": 15,
+            "visual_evidence": "Terminal screenshots showing commands like 'sumo -c /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg --seed [1001-1005] --random-depart-offset 120 --tripinfo-output ~/SUMO_Output/tripinfo_[seed].xml'."
+        },
+        {
+            "id": "output_files_generation",
+            "description": "Agent verifies the creation of five tripinfo XML files in the ~/SUMO_Output/ directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or 'ls ~/SUMO_Output/' command showing five distinct XML files corresponding to the five seeds."
+        },
+        {
+            "id": "data_extraction_processing",
+            "description": "Agent parses the XML files to extract 'duration' values for completed trips.",
+            "points": 25,
+            "visual_evidence": "Code execution (Python/Bash) or script output showing the extraction of duration data from the XML tags."
+        },
+        {
+            "id": "metric_calculation",
+            "description": "Agent calculates the total trips, mean duration, and 95th percentile duration from the aggregated data.",
+            "points": 30,
+            "visual_evidence": "Terminal output or script logs showing the math operations or the resulting values for total_trips, mean_duration, and p95_duration."
+        },
+        {
+            "id": "json_report_creation",
+            "description": "Agent saves the calculated metrics to /home/ga/SUMO_Output/reliability_report.json with the correct schema.",
+            "points": 20,
+            "visual_evidence": "A 'cat' command or text editor view showing the content of /home/ga/SUMO_Output/reliability_report.json matching the required JSON schema."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not simply write the JSON file with pre-known values without running simulations.",
+            "visual_evidence": "The trajectory must show the actual execution of the 'sumo' command five separate times or in a loop before the JSON is created."
+        },
+        {
+            "id": "genuine_data_parsing",
+            "description": "Agent interacted with the generated XML files rather than guessing the statistics.",
+            "visual_evidence": "Screenshots showing the agent reading, grepping, or parsing the specific XML files generated in the current session."
+        },
+        {
+            "id": "correct_parameter_usage",
+            "description": "Agent used the specific seeds and offset requested, not default values.",
+            "visual_evidence": "The command line arguments in the screenshots must explicitly show '--seed' values 1001-1005 and '--random-depart-offset 120'."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use the config at /home/ga/SUMO_Scenarios/bologna_acosta/run.sumocfg. The required seeds are 1001, 1002, 1003, 1004, and 1005. The random-depart-offset must be exactly 120. The final output must be a JSON file at /home/ga/SUMO_Output/reliability_report.json containing 'total_trips', 'mean_duration', and 'p95_duration'."
+}

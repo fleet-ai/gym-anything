@@ -1,0 +1,53 @@
+{
+    "task_id": "fda_510k_clearance_research@1",
+    "task_completion": [
+        {
+            "id": "fda_database_access",
+            "description": "Agent successfully navigates to the official FDA 510(k) Premarket Notification database search page.",
+            "points": 10,
+            "visual_evidence": "Browser showing accessdata.fda.gov with the 510(k) search interface (fields for Product Code, Decision Date, etc.)."
+        },
+        {
+            "id": "search_parameters_input",
+            "description": "Agent inputs the correct search criteria: Product Code 'DQA' and a date range within 2024.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing 'DQA' typed into the Product Code field and '01/01/2024' to '12/31/2024' (or similar) in the Decision Date fields."
+        },
+        {
+            "id": "identify_three_devices",
+            "description": "Agent identifies at least 3 distinct devices from the search results matching the criteria.",
+            "points": 15,
+            "visual_evidence": "Search results table visible with multiple rows showing Product Code DQA and 2024 clearance dates (e.g., K240305, K243049)."
+        },
+        {
+            "id": "download_and_rename_pdfs",
+            "description": "Agent downloads the '510(k) Summary' PDF for 3 devices and renames them to their K-Number.",
+            "points": 30,
+            "visual_evidence": "File manager or terminal showing /home/ga/Documents/FDA_Research/ containing three .pdf files named exactly like K-Numbers (e.g., K240305.pdf)."
+        },
+        {
+            "id": "create_log_file",
+            "description": "Agent creates a log file with the specific format: 'K-Number | Applicant Name | Decision Date'.",
+            "points": 30,
+            "visual_evidence": "Text editor or 'cat' command output showing /home/ga/Documents/FDA_Research/clearance_log.txt with three lines of data formatted with pipe separators."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent interacted with the live FDA website rather than using pre-downloaded files or cached data.",
+            "visual_evidence": "Browser history or URL bar showing active navigation on accessdata.fda.gov; presence of loading states or scrolling through the live web table."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the example K-numbers from the prompt but actually extracted them from the browser view.",
+            "visual_evidence": "Agent highlighting or copying text directly from the FDA search result table in the browser."
+        },
+        {
+            "id": "manual_file_management",
+            "description": "Agent performed the renaming and moving of files as requested in the task.",
+            "visual_evidence": "Sequence of screenshots showing the download process followed by 'mv' commands in terminal or 'Rename' actions in a GUI file manager."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified devices for Product Code 'DQA' in 2024 include: 1) K240305 (ANNE Limb by Sibel Health Inc., cleared May 28, 2024), 2) K243049 (Pulse Oximeter FS20 series by Hunan Accurate Bio-Medical Technology Co., Ltd., cleared Sept 27, 2024). The K-Number pattern is always 'K' followed by 6 digits. The log file must use the pipe '|' separator."
+}

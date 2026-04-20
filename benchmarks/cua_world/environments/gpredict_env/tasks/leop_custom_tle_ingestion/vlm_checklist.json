@@ -1,0 +1,53 @@
+{
+    "task_id": "leop_custom_tle_ingestion@1",
+    "task_completion": [
+        {
+            "id": "add_tle_source",
+            "description": "Add the custom TLE source URL to GPredict preferences.",
+            "points": 15,
+            "visual_evidence": "The 'Edit -> Preferences -> TLE Update' window showing 'http://localhost:8080/techsat.txt' added to the list of TLE sources."
+        },
+        {
+            "id": "update_satellite_db",
+            "description": "Perform a TLE update to ingest the new satellite data.",
+            "points": 15,
+            "visual_evidence": "A progress bar or dialog box indicating 'Updating TLE' or 'Fetching TLE data', followed by a confirmation of successful update."
+        },
+        {
+            "id": "create_ground_station",
+            "description": "Create the 'Ottawa_Lab' ground station with specific coordinates.",
+            "points": 20,
+            "visual_evidence": "The 'Ground Stations' configuration window showing a new entry named 'Ottawa_Lab' with Latitude 45.4215 N, Longitude 75.6972 W (or -75.6972), and Altitude 70m."
+        },
+        {
+            "id": "create_tracking_module",
+            "description": "Create a new tracking module named 'LEOP_Tracking'.",
+            "points": 15,
+            "visual_evidence": "A new module window or tab appearing in the GPredict interface with the title 'LEOP_Tracking'."
+        },
+        {
+            "id": "configure_module_sat_gs",
+            "description": "Assign TECHSAT-1 and Ottawa_Lab to the LEOP_Tracking module.",
+            "points": 35,
+            "visual_evidence": "The 'Module Configuration' dialog for 'LEOP_Tracking' showing 'TECHSAT-1' (ID 47438) in the selected satellites list and 'Ottawa_Lab' selected as the ground station."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GPredict GUI to perform configurations rather than just editing config files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with GPredict menus, dialog boxes, and text fields."
+        },
+        {
+            "id": "genuine_tle_fetch",
+            "description": "The agent actually triggered the update process for TLEs.",
+            "visual_evidence": "Visual confirmation of the TLE update dialog or log messages within GPredict showing a connection to localhost:8080."
+        },
+        {
+            "id": "no_pre_existing_config",
+            "description": "The agent did not use a pre-configured module; it created it from scratch.",
+            "visual_evidence": "Sequential screenshots showing the 'New Module' or 'Module Properties' dialog being filled out manually."
+        }
+    ],
+    "privileged_info_for_vlm": "The TLE source is http://localhost:8080/techsat.txt. The satellite is 'TECHSAT-1' with NORAD ID 47438. The ground station 'Ottawa_Lab' must have Latitude: 45.4215, Longitude: -75.6972 (75.6972 W), and Altitude: 70. The tracking module must be named 'LEOP_Tracking'. Ensure the agent logs in with username 'ga' and password 'password123' if prompted by the OS/Environment."
+}

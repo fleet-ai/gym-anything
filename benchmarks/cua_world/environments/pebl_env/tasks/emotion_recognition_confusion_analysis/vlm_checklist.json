@@ -1,0 +1,56 @@
+{
+    "task_id": "emotion_recognition_confusion_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source CSV file at ~/pebl/data/emotion_recognition_data.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'head', or a script opening the CSV file in the specified directory."
+        },
+        {
+            "id": "exclusion_logic_implementation",
+            "description": "Agent writes code or logic to implement the 'Random Responder' (<25% accuracy) and 'Amygdala Deficit' (<10% Fear AND >70% others) exclusion rules.",
+            "points": 20,
+            "visual_evidence": "Code snippets in an editor or terminal showing the specific threshold values (0.25, 0.10, 0.70) and conditional logic."
+        },
+        {
+            "id": "participant_processing",
+            "description": "Agent calculates individual accuracies and identifies participants for exclusion.",
+            "points": 20,
+            "visual_evidence": "Execution output or print statements showing participant IDs (e.g., sub-BOT, sub-AMY) being flagged or processed."
+        },
+        {
+            "id": "confusion_matrix_calculation",
+            "description": "Agent computes a normalized group confusion matrix using only valid participants.",
+            "points": 25,
+            "visual_evidence": "Code or output showing a nested dictionary structure where rows sum to 1.0 (normalization step)."
+        },
+        {
+            "id": "json_file_creation",
+            "description": "Agent saves the final report to ~/pebl/analysis/emotion_report.json with the required schema.",
+            "points": 25,
+            "visual_evidence": "Terminal command 'ls' showing the file exists in the analysis folder, or a 'cat' command displaying the JSON content with 'participants' and 'group_confusion_matrix' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates values from the data rather than hardcoding the expected results.",
+            "points": 0,
+            "visual_evidence": "The script should contain data processing loops (e.g., pandas or csv module) rather than a JSON string manually typed with the final numbers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually reads the provided CSV file.",
+            "points": 0,
+            "visual_evidence": "The file path ~/pebl/data/emotion_recognition_data.csv is visible in the code or terminal commands."
+        },
+        {
+            "id": "correct_exclusion_application",
+            "description": "Agent correctly identifies the specific contaminated participants mentioned in privileged info.",
+            "points": 0,
+            "visual_evidence": "The final JSON or intermediate logs should show 'sub-BOT' and 'sub-AMY' as the excluded participants."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 27 participants total. Two participants must be excluded: 'sub-BOT' (Random Responder) and 'sub-AMY' (Amygdala Deficit). There are 25 valid participants to be included in the group confusion matrix. The final output must be at /home/ga/pebl/analysis/emotion_report.json."
+}

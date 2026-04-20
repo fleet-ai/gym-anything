@@ -1,0 +1,59 @@
+{
+    "task_id": "reassign_user_portfolio@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to SuiteCRM using the provided admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the SuiteCRM dashboard or home screen after the login page."
+        },
+        {
+            "id": "filter_accounts_alex",
+            "description": "Navigate to the Accounts module and filter for records assigned to 'Alex Mercer'.",
+            "points": 15,
+            "visual_evidence": "The Accounts list view showing a filter applied for 'Assigned to: Alex Mercer' or a list of accounts where Alex Mercer is the assigned user."
+        },
+        {
+            "id": "reassign_accounts_jordan",
+            "description": "Mass update or individually reassign all of Alex Mercer's Accounts to 'Jordan Hayes'.",
+            "points": 25,
+            "visual_evidence": "A confirmation message of a successful update, or the Accounts list view now showing 'Jordan Hayes' as the assigned user for the previously identified accounts."
+        },
+        {
+            "id": "filter_opportunities_alex",
+            "description": "Navigate to the Opportunities module and filter for records assigned to 'Alex Mercer'.",
+            "points": 15,
+            "visual_evidence": "The Opportunities list view showing a filter applied for 'Assigned to: Alex Mercer' or a list of opportunities where Alex Mercer is the assigned user."
+        },
+        {
+            "id": "reassign_opportunities_jordan",
+            "description": "Mass update or individually reassign all of Alex Mercer's Opportunities to 'Jordan Hayes'.",
+            "points": 25,
+            "visual_evidence": "A confirmation message of a successful update, or the Opportunities list view now showing 'Jordan Hayes' as the assigned user for the previously identified opportunities."
+        },
+        {
+            "id": "verify_no_taylor_modified",
+            "description": "Ensure records assigned to 'Taylor Reed' remain unchanged.",
+            "points": 10,
+            "visual_evidence": "The agent should ideally check or the VLM should observe that Taylor Reed's records were not selected during mass updates or remain assigned to Taylor Reed in the list view."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the SuiteCRM web interface rather than using terminal/SQL commands.",
+            "visual_evidence": "Screenshots should show mouse movements, clicks on CRM buttons, and form fills in the browser, not just command line execution."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent searched for the records rather than navigating directly to specific record IDs if they weren't provided.",
+            "visual_evidence": "The agent should be seen using the search/filter functionality in the Accounts and Opportunities modules."
+        },
+        {
+            "id": "authentic_session",
+            "description": "The agent interacted with the live application and did not just display static images or mock data.",
+            "visual_evidence": "The URL bar should show the local SuiteCRM instance, and UI elements (menus, loading spinners) should respond to agent actions."
+        }
+    ],
+    "privileged_info_for_vlm": "Alex Mercer (user_amercer_001) initially owns 5 Accounts and 5 Opportunities. Jordan Hayes (user_jhayes_002) is the target recipient. Taylor Reed (user_treed_003) owns 3 Accounts and 3 Opportunities (6 total records) which must remain assigned to Taylor Reed. The agent must use the 'admin' account to perform these changes."
+}

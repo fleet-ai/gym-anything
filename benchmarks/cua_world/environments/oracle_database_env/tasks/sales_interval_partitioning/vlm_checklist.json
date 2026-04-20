@@ -1,0 +1,53 @@
+{
+    "task_id": "sales_interval_partitioning@1",
+    "task_completion": [
+        {
+            "id": "table_creation_ddl",
+            "description": "Create GLOBAL_SALES table with Interval-List partitioning (1-month interval, specific regions, and DEFAULT subpartition).",
+            "points": 25,
+            "visual_evidence": "SQL command or GUI dialog showing 'PARTITION BY RANGE (SALE_DATE) INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))' and 'SUBPARTITION BY LIST (REGION_CODE)' with values 'NA', 'EU', 'AS', 'SA', and 'DEFAULT'."
+        },
+        {
+            "id": "local_partitioned_index",
+            "description": "Create a LOCAL partitioned index on the SALE_DATE column.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE INDEX ... ON GLOBAL_SALES(SALE_DATE) LOCAL' or index properties showing 'LOCAL' partitioning type."
+        },
+        {
+            "id": "data_load_csv",
+            "description": "Load data from /home/ga/Desktop/sales_data_raw.csv into the GLOBAL_SALES table.",
+            "points": 20,
+            "visual_evidence": "Terminal output or GUI log showing successful import of approximately 2000 rows from the specified CSV path."
+        },
+        {
+            "id": "manual_record_insertion",
+            "description": "Insert a specific record for 2028-01-15 in the 'EU' region with amount 999.99.",
+            "points": 15,
+            "visual_evidence": "SQL 'INSERT' statement or data grid showing a row with TRANS_ID, 2028-01-15, EU, 999.99, and a CUSTOMER_ID."
+        },
+        {
+            "id": "export_partition_structure",
+            "description": "Export the partition structure details to /home/ga/Desktop/partition_structure.txt.",
+            "points": 25,
+            "visual_evidence": "Terminal command (e.g., 'cat' or 'ls') or file explorer showing the existence and content of /home/ga/Desktop/partition_structure.txt containing partition/subpartition metadata."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with a real database management tool or CLI (like SQL*Plus or SQL Developer).",
+            "visual_evidence": "Screenshots show an active database connection, query execution progress, or database-specific error messages/logs."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The partition_structure.txt file was generated via database queries, not manually typed.",
+            "visual_evidence": "The content of the exported file shows system-generated metadata (e.g., HIGH_VALUE, PARTITION_NAME) rather than just a summary sentence."
+        },
+        {
+            "id": "actual_csv_processing",
+            "description": "The agent accessed the actual CSV file path provided in the instructions.",
+            "visual_evidence": "Commands or GUI paths referencing '/home/ga/Desktop/sales_data_raw.csv' during the import process."
+        }
+    ],
+    "privileged_info_for_vlm": "The database connection uses user 'hr', password 'hr123', at 'localhost:1521/XEPDB1'. The source CSV contains exactly 2000 rows. The required partitioning is Interval-List: Level 1 is 1-month intervals on SALE_DATE; Level 2 is List subpartitioning on REGION_CODE with values ('NA', 'EU', 'AS', 'SA') and a 'DEFAULT' subpartition. The manual insert must be for 2028-01-15, EU, 999.99."
+}

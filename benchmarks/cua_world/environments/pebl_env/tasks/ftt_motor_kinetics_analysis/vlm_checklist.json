@@ -1,0 +1,53 @@
+{
+    "task_id": "ftt_motor_kinetics_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_raw_data",
+            "description": "Agent locates and opens the raw CSV data file at ~/pebl/data/ftt_tap_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of ftt_tap_data.csv with columns like participant_id, hand, trial, and iti_ms."
+        },
+        {
+            "id": "identify_corrupted_data",
+            "description": "Agent identifies participant P99 as having corrupted data (ITI ~33ms, >250 taps).",
+            "points": 15,
+            "visual_evidence": "Code, terminal output, or notes showing the agent filtering for ITI values around 33ms or tap counts exceeding 250 for participant P99."
+        },
+        {
+            "id": "calculate_individual_metrics",
+            "description": "Agent calculates dominant/nondominant taps and ITI means for valid participants.",
+            "points": 25,
+            "visual_evidence": "Execution of a script or spreadsheet formulas showing calculations for dominant_total_taps and mean_iti_ms."
+        },
+        {
+            "id": "calculate_clinical_indices",
+            "description": "Agent calculates the asymmetry_index_percent and fatigue_index_percent using the specified formulas.",
+            "points": 25,
+            "visual_evidence": "Code or output showing the math: ((dom-nondom)/dom)*100 and ((trial1-trial3)/trial1)*100."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent creates the final JSON report at ~/pebl/analysis/ftt_report.json with the required structure.",
+            "points": 25,
+            "visual_evidence": "A file explorer or text editor showing the content of ftt_report.json, including the 'participants' array, exclusion reasons for P99, and group mean percentages."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final metrics without processing the CSV.",
+            "visual_evidence": "The agent's script or commands should show logic that reads the CSV file and performs arithmetic, rather than just printing a pre-written JSON string."
+        },
+        {
+            "id": "genuine_data_filtering",
+            "description": "Agent actually checks for the 33ms/250-tap threshold rather than just excluding P99 by name.",
+            "visual_evidence": "Code or terminal commands showing a conditional check (e.g., 'if iti < 35' or 'if taps > 250') applied to the dataset."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "Agent uses the specific file paths requested in the task.",
+            "visual_evidence": "Screenshots show the agent working within ~/pebl/data/ and saving to ~/pebl/analysis/."
+        }
+    ],
+    "privileged_info_for_vlm": "The raw data is at ~/pebl/data/ftt_tap_data.csv. Participant 'P99' is the only corrupted entry, characterized by a hardware key-repeat artifact of ~33ms ITI and >250 taps per trial; the report must explicitly exclude P99 with a reason. The final output must be a JSON file at ~/pebl/analysis/ftt_report.json containing both individual metrics and group means for asymmetry and fatigue."
+}

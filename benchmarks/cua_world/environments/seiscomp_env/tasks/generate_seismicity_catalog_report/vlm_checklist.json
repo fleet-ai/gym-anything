@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_seismicity_catalog_report@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The Python script is created at the specified path /home/ga/Documents/generate_report.py.",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal showing the file exists at /home/ga/Documents/generate_report.py."
+        },
+        {
+            "id": "seiscomp_import_and_db_connection",
+            "description": "The script contains code to import the 'seiscomp' module and connect to the MySQL database (mysql://sysop:sysop@localhost/seiscomp).",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal output showing 'import seiscomp' and the specific database connection string."
+        },
+        {
+            "id": "query_logic_implementation",
+            "description": "The script implements logic to iterate through Event objects and resolve PreferredOrigin and PreferredMagnitude.",
+            "points": 25,
+            "visual_evidence": "Code editor showing loops over events and calls to methods like 'preferredOriginID()' or 'preferredMagnitudeID()'."
+        },
+        {
+            "id": "markdown_table_formatting",
+            "description": "The script includes logic to format the output as a Markdown table with the specific columns: Time, EventID, Lat, Lon, Depth, Mag.",
+            "points": 20,
+            "visual_evidence": "Code editor showing print statements or file write operations containing the Markdown table header and pipe separators."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script without errors.",
+            "points": 10,
+            "visual_evidence": "Terminal showing the command 'python3 /home/ga/Documents/generate_report.py' running without a traceback."
+        },
+        {
+            "id": "report_file_generation",
+            "description": "The final report file /home/ga/Documents/seismicity_report.md is generated and contains data.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' command showing the content of /home/ga/Documents/seismicity_report.md with a populated table."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_data",
+            "description": "The agent did not hardcode the earthquake data directly into the script or report.",
+            "visual_evidence": "The Python script should show database query logic, not a list of pre-written earthquake events."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually used the SeisComP API/database rather than just creating a dummy file.",
+            "visual_evidence": "The script must use the 'seiscomp' python module as specified in the environment configuration."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the exact file paths specified in the instructions rather than temporary locations.",
+            "visual_evidence": "Screenshots show work happening at /home/ga/Documents/generate_report.py and /home/ga/Documents/seismicity_report.md."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be located at /home/ga/Documents/generate_report.py and the report at /home/ga/Documents/seismicity_report.md. The database is mysql://sysop:sysop@localhost/seiscomp. The report must be a Markdown table with columns: Time, EventID, Lat, Lon, Depth, Mag. The data includes real Noto Peninsula earthquake data and 5 synthetic aftershocks."
+}

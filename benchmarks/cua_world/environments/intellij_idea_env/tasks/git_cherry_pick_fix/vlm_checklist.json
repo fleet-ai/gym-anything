@@ -1,0 +1,59 @@
+{
+    "task_id": "git_cherry_pick_fix@1",
+    "task_completion": [
+        {
+            "id": "identify_commit_hash",
+            "description": "Agent identifies the correct commit hash for 'FIX: Use constant-time comparison to prevent timing attacks' on the 'feature/v2-upgrade' branch.",
+            "points": 10,
+            "visual_evidence": "A git log or git branch visualization showing the commit history of 'feature/v2-upgrade' with the specific commit message."
+        },
+        {
+            "id": "switch_to_main",
+            "description": "Agent ensures the active branch is 'main' before applying the fix.",
+            "points": 10,
+            "visual_evidence": "The IDE status bar, a 'git branch' command output, or a Git GUI showing 'main' as the checked-out branch."
+        },
+        {
+            "id": "cherry_pick_execution",
+            "description": "Agent performs the cherry-pick operation of the identified commit into the main branch.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 'git cherry-pick [hash]' or a Git GUI dialog confirming the cherry-pick action."
+        },
+        {
+            "id": "verify_security_fix",
+            "description": "The file AuthUtils.java contains the constant-time comparison logic.",
+            "points": 25,
+            "visual_evidence": "The editor showing AuthUtils.java with the line 'MessageDigest.isEqual(inputBytes, storedBytes)' present."
+        },
+        {
+            "id": "verify_no_wip_code",
+            "description": "The file AuthUtils.java does NOT contain the WIP OAuth2 stubs/comments.",
+            "points": 20,
+            "visual_evidence": "The editor showing AuthUtils.java without the text 'TODO: Implement OAuth2 support' or 'OAuth2'."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The project compiles successfully after the cherry-pick.",
+            "points": 15,
+            "visual_evidence": "A terminal showing a successful build command (e.g., 'mvn compile' or 'javac') with no errors, or the IDE's 'Problems' tab being empty/green."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_code_injection",
+            "description": "The agent used git commands to move the code rather than manually typing the fix into the file.",
+            "visual_evidence": "The command history or GUI logs should show a 'cherry-pick' command rather than just 'echo' or manual typing of the entire logic."
+        },
+        {
+            "id": "genuine_repo_interaction",
+            "description": "The agent interacted with the local repository at /home/ga/IdeaProjects/auth-service.",
+            "visual_evidence": "Terminal prompts or file explorer paths showing the correct project directory."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply print 'Success' without running verification commands.",
+            "visual_evidence": "Screenshots must show the actual execution of git log, git cherry-pick, and a build/compile command."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/auth-service. The target file is src/main/java/com/example/auth/AuthUtils.java. The specific commit to cherry-pick has the message 'FIX: Use constant-time comparison to prevent timing attacks'. Success is defined by the presence of 'MessageDigest.isEqual' and the ABSENCE of 'TODO: Implement OAuth2 support' in AuthUtils.java on the main branch. The project must compile after the operation."
+}

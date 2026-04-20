@@ -1,0 +1,59 @@
+{
+    "task_id": "build_interactive_runbook_wizard@1",
+    "task_completion": [
+        {
+            "id": "tiddler_creation",
+            "description": "Create a new tiddler titled 'Production Database Upgrade Wizard'.",
+            "points": 10,
+            "visual_evidence": "A tiddler with the exact title 'Production Database Upgrade Wizard' is open in the TiddlyWiki story river."
+        },
+        {
+            "id": "step_1_content_and_nav",
+            "description": "Step 1 displays content from 'Runbook: 1. Pre-Upgrade Checks' and has a 'Next' button.",
+            "points": 20,
+            "visual_evidence": "The wizard shows transcluded text from the first runbook tiddler and a button labeled 'Next'. No 'Previous' button should be visible in Step 1."
+        },
+        {
+            "id": "step_2_3_navigation",
+            "description": "Steps 2 and 3 display respective runbook content and have both 'Previous' and 'Next' buttons.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the wizard transitioning to Step 2 and 3, displaying the correct transcluded content for each, with both 'Previous' and 'Next' buttons visible."
+        },
+        {
+            "id": "step_4_content_and_finish",
+            "description": "Step 4 displays content from 'Runbook: 4. Verification and Restart' and has 'Previous' and 'Finish' buttons.",
+            "points": 20,
+            "visual_evidence": "The wizard shows the final runbook content with a 'Previous' button and a 'Finish' button."
+        },
+        {
+            "id": "state_tiddler_logic",
+            "description": "The wizard uses '$:/state/upgrade-wizard' to manage visibility so only one step is shown at a time.",
+            "points": 15,
+            "visual_evidence": "The code in the tiddler editor uses the state tiddler '$:/state/upgrade-wizard' in list or reveal widgets to toggle content."
+        },
+        {
+            "id": "finish_button_reset",
+            "description": "The 'Finish' button resets the wizard to Step 1 and the tiddler is saved.",
+            "points": 10,
+            "visual_evidence": "The agent clicks 'Finish' and the view returns to Step 1 content. The tiddler is saved (not in draft mode)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler.",
+            "visual_evidence": "Screenshots show the agent clicking the '+' button, typing in the tiddler editor, and clicking the 'check' (save) icon."
+        },
+        {
+            "id": "no_hardcoded_content",
+            "description": "The agent used transclusion rather than copy-pasting the text of the runbooks.",
+            "visual_evidence": "The tiddler source code contains transclusion syntax like '{{Runbook: 1...}}' rather than the full text of the instructions."
+        },
+        {
+            "id": "genuine_state_usage",
+            "description": "The agent interacted with the buttons to demonstrate the wizard works.",
+            "visual_evidence": "Sequential screenshots show the content changing as the agent clicks 'Next' and 'Previous'."
+        }
+    ],
+    "privileged_info_for_vlm": "The wizard must be titled 'Production Database Upgrade Wizard'. It must transclude content from four specific tiddlers: 'Runbook: 1. Pre-Upgrade Checks', 'Runbook: 2. Stop Application Services', 'Runbook: 3. Run pg_upgrade', and 'Runbook: 4. Verification and Restart'. The state tiddler for navigation must be '$:/state/upgrade-wizard'. The 'Finish' button must reset this state tiddler to the first step."
+}

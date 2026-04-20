@@ -1,0 +1,59 @@
+{
+    "task_id": "measure_signal_to_background_ratio@1",
+    "task_completion": [
+        {
+            "id": "open_dicom_viewer",
+            "description": "The agent opens a DICOM viewer or medical imaging software and loads a scan from the specified directory.",
+            "points": 10,
+            "visual_evidence": "A medical imaging application (e.g., Horos, Weasis, or a custom viewer) is visible on the screen with a CT or XA scan loaded."
+        },
+        {
+            "id": "place_bone_roi",
+            "description": "The agent places a Region of Interest (ROI) tool over a high-density bone structure.",
+            "points": 20,
+            "visual_evidence": "A circular, rectangular, or freehand ROI is visible over a bright (high-density) area of the image, labeled or identified as 'Bone'."
+        },
+        {
+            "id": "place_air_roi",
+            "description": "The agent places a Region of Interest (ROI) tool in the background/air area.",
+            "points": 20,
+            "visual_evidence": "A second ROI is visible in the dark background area of the scan, labeled or identified as 'Air'."
+        },
+        {
+            "id": "extract_mean_values",
+            "description": "The agent identifies the Mean HU/pixel values for both the Bone and Air ROIs from the software interface.",
+            "points": 20,
+            "visual_evidence": "The software's ROI statistics overlay or a side panel shows 'Mean' values for both selected regions."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves a screenshot of the interface showing both ROIs to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output confirms the creation of '~/DICOM/exports/qa_rois.png'."
+        },
+        {
+            "id": "create_text_report",
+            "description": "The agent creates a text file containing the Bone Mean, Air Mean, and the calculated SBR ratio.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the content of '~/DICOM/exports/bone_air_ratio.txt' with the required numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the graphical user interface to measure ROIs rather than just using command-line tools to manipulate files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ROI tools and the imaging software's UI elements."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The values in the text file match the values displayed in the software's ROI statistics.",
+            "visual_evidence": "The Mean values visible in the software screenshot match the numbers written in the final .txt report."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the privileged information values without performing the measurement.",
+            "visual_evidence": "The ROIs are physically drawn on the image in the screenshot, and the values are derived from the specific placement of those ROIs."
+        }
+    ],
+    "privileged_info_for_vlm": "The task may use either a synthetic CT (where Bone Mean is ~976 and Air Mean is ~-1024) or an XA scan (0002.DCM) where Bone Mean is ~200 and Air/Background Mean is 0. If the background/Air mean is 0, the agent may encounter a division by zero error; look for how they handle the ratio calculation. The Bone Mean must be between 100 and 3000. The output must be saved to /home/ga/DICOM/exports/bone_air_ratio.txt and /home/ga/DICOM/exports/qa_rois.png."
+}

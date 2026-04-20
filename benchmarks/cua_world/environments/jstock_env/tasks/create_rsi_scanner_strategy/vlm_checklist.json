@@ -1,0 +1,59 @@
+{
+    "task_id": "create_rsi_scanner_strategy@1",
+    "task_completion": [
+        {
+            "id": "open_indicator_scanner",
+            "description": "The agent successfully opened the Stock Indicator Scanner tool within the application.",
+            "points": 10,
+            "visual_evidence": "A window or tab titled 'Stock Indicator Scanner' or similar is visible in the GUI."
+        },
+        {
+            "id": "initiate_new_strategy",
+            "description": "The agent initiated the creation of a new strategy or rule set.",
+            "points": 10,
+            "visual_evidence": "A 'New', 'Add', or 'Create' dialog/button for strategies is clicked or an empty strategy configuration screen is shown."
+        },
+        {
+            "id": "select_rsi_indicator",
+            "description": "The agent selected the Relative Strength Index (RSI) with a period of 14.",
+            "points": 20,
+            "visual_evidence": "The text 'Relative Strength Index' or 'RSI' and the value '14' are visible in the indicator selection field."
+        },
+        {
+            "id": "configure_operator_and_value",
+            "description": "The agent set the condition to 'Less Than' and the threshold value to '30'.",
+            "points": 25,
+            "visual_evidence": "The operator '<' or 'Less Than' and the numeric value '30' are visible in the rule configuration area."
+        },
+        {
+            "id": "set_strategy_name",
+            "description": "The agent entered the exact name 'Oversold RSI' for the strategy.",
+            "points": 15,
+            "visual_evidence": "The text 'Oversold RSI' is typed into the strategy name or label field."
+        },
+        {
+            "id": "save_strategy",
+            "description": "The agent saved the newly created strategy.",
+            "points": 20,
+            "visual_evidence": "The agent clicks a 'Save', 'OK', or 'Finish' button, and the strategy 'Oversold RSI' appears in the list of saved strategies."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to create the strategy rather than modifying configuration files via the terminal.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the JStock GUI; no terminal commands like 'echo' or 'sed' are used to edit files in ~/.jstock."
+        },
+        {
+            "id": "no_pre_existing_strategy",
+            "description": "The agent did not simply select an existing strategy that was already named 'Oversold RSI'.",
+            "visual_evidence": "The trajectory shows the manual input of the indicator parameters and the name 'Oversold RSI'."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual JStock application interface.",
+            "visual_evidence": "The application window frames, menus, and standard JStock UI components are visible throughout the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The strategy must be named exactly 'Oversold RSI'. The required parameters are: Indicator = Relative Strength Index (14), Operator = Less Than (<), and Value = 30. The configuration is stored in /home/ga/.jstock, but the agent must use the GUI to perform the task."
+}

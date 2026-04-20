@@ -1,0 +1,53 @@
+{
+    "task_id": "internal_nofollow_restriction_audit@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_target",
+            "description": "Agent navigates to https://crawler-test.com/ in a web browser or SEO tool.",
+            "points": 10,
+            "visual_evidence": "The URL bar shows 'https://crawler-test.com/' or the crawler-test.com homepage is visible in the browser/tool window."
+        },
+        {
+            "id": "identify_nofollow_links",
+            "description": "Agent performs an audit or crawl to identify links with the 'nofollow' attribute.",
+            "points": 25,
+            "visual_evidence": "Screenshots show an SEO tool (like Screaming Frog) or browser DevTools filtering for 'nofollow' links or displaying a list of links with 'Follow' set to 'False'."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Agent exports the identified internal nofollow links to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "A file explorer window or terminal output showing the creation of '/home/ga/Documents/SEO/exports/internal_nofollow_report.csv'."
+        },
+        {
+            "id": "csv_content_verification",
+            "description": "The CSV file contains the required 'Source' and 'Destination' columns.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the CSV file opened in a text editor or spreadsheet viewer showing headers 'Source' and 'Destination'."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "Agent creates a summary report at the specified path with the total count and an example URL pair.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the content of '/home/ga/Documents/SEO/reports/nofollow_summary.txt' containing a numeric count and a 'Source -> Destination' example."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the web interface or SEO software rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking buttons in a browser or SEO tool GUI to perform the audit."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The report contains actual data from the site, not just placeholder text.",
+            "visual_evidence": "The summary report and CSV show specific URLs from crawler-test.com (e.g., links containing '/links/nofollow') rather than 'example.com'."
+        },
+        {
+            "id": "path_adherence",
+            "description": "Agent used the exact file paths specified in the task rather than default download folders.",
+            "visual_evidence": "The file paths in the save dialogs or terminal match /home/ga/Documents/SEO/..."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website is https://crawler-test.com/. The agent must export a CSV to /home/ga/Documents/SEO/exports/internal_nofollow_report.csv with columns 'Source' and 'Destination'. The summary report at /home/ga/Documents/SEO/reports/nofollow_summary.txt must contain the total count of nofollow links and one example pair in the format 'Source -> Destination'. Verified nofollow links on this site typically have 'Follow' as 'False' and 'Rel' as 'nofollow' in SEO tools."
+}

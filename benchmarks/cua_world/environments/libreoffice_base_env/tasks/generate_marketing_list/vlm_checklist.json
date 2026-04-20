@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_marketing_list@1",
+    "task_completion": [
+        {
+            "id": "query_creation",
+            "description": "Create a query or SQL command to filter customers by 'Jazz' or 'Blues' genres.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the LibreOffice Base Query Design view or SQL editor containing the keywords 'Jazz', 'Blues', and joins between Customer, Invoice, InvoiceLine, Track, and Genre tables."
+        },
+        {
+            "id": "column_formatting",
+            "description": "Format FormalName as 'LastName, FirstName' and FullAddress with concatenated fields handling NULL states.",
+            "points": 20,
+            "visual_evidence": "SQL code or query results showing columns named 'FormalName' and 'FullAddress' with the specific string concatenations (e.g., using || or COALESCE/IFNULL for the State field)."
+        },
+        {
+            "id": "table_creation",
+            "description": "Create the 'TargetedMailingList' table within the database.",
+            "points": 20,
+            "visual_evidence": "The LibreOffice Base 'Tables' pane showing a new table named 'TargetedMailingList' or a 'CREATE TABLE' / 'INTO' SQL command being executed."
+        },
+        {
+            "id": "export_configuration",
+            "description": "Configure the export to CSV with headers and comma delimiters.",
+            "points": 15,
+            "visual_evidence": "The LibreOffice export wizard or 'Save As' dialog showing the file format set to Text CSV, the 'Field delimiter' set to a comma, and the 'Save with column headers' option checked."
+        },
+        {
+            "id": "file_generation",
+            "description": "Export the file to the specific path /home/ga/Documents/mailing_list.csv.",
+            "points": 30,
+            "visual_evidence": "A file manager window or a terminal 'ls' command showing 'mailing_list.csv' exists in /home/ga/Documents, or the export dialog showing this exact file path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to perform database operations rather than just writing the file via terminal.",
+            "visual_evidence": "Screenshots showing the LibreOffice Base application window active and being interacted with (menus, query builder, or table views)."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent actually executed a query against the database to find the 43 customers.",
+            "visual_evidence": "A result set window in LibreOffice showing data rows (e.g., CustomerId 1, 2, 3...) before the export occurs."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not manually type out the customer list from memory.",
+            "visual_evidence": "The agent using SQL logic or the Query Design tool rather than a text editor to manually create the CSV content."
+        }
+    ],
+    "privileged_info_for_vlm": "The Chinook database contains exactly 43 customers who have purchased Jazz or Blues tracks. The resulting CSV must have 3 columns: CustomerId, FormalName, and FullAddress. The FullAddress must handle NULL states (common in the Chinook 'State' column) to ensure the address string is not nullified. The final file must be at /home/ga/Documents/mailing_list.csv."
+}

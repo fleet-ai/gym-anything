@@ -1,0 +1,59 @@
+{
+    "task_id": "query_cec_module_database@1",
+    "task_completion": [
+        {
+            "id": "locate_cec_database",
+            "description": "Locate and access the CEC Modules database file within the SAM installation directory (/opt/SAM/).",
+            "points": 10,
+            "visual_evidence": "Terminal or file manager showing the path /opt/SAM/ and the identification of the CEC module database file (typically a CSV or library file)."
+        },
+        {
+            "id": "filter_technology_mono",
+            "description": "Apply a filter to the database for modules where the technology contains 'Mono'.",
+            "points": 15,
+            "visual_evidence": "Code snippets, terminal output, or spreadsheet filters showing a search or filter for 'Mono' or 'Mono-c-Si'."
+        },
+        {
+            "id": "filter_power_threshold",
+            "description": "Apply a filter for rated power (Pmp or STC) of at least 380 W.",
+            "points": 15,
+            "visual_evidence": "Evidence of a numerical filter or conditional logic (e.g., >= 380) applied to the power column."
+        },
+        {
+            "id": "calculate_and_filter_efficiency",
+            "description": "Calculate efficiency (Pmp / (Area * 10)) if necessary and filter for modules with at least 20.0% efficiency.",
+            "points": 25,
+            "visual_evidence": "Mathematical operations in a script or spreadsheet showing the efficiency calculation and a filter for values >= 20.0."
+        },
+        {
+            "id": "sort_and_rank_top_15",
+            "description": "Sort the filtered modules by efficiency in descending order and select the top 15.",
+            "points": 20,
+            "visual_evidence": "A list or table showing modules sorted from highest to lowest efficiency, with exactly 15 items selected."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Save the final list to /home/ga/Documents/SAM_Projects/premium_modules_report.json with the correct schema.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer showing the creation of the JSON file at the specified path, or a preview of the JSON content matching the required structure."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_access",
+            "description": "Verify the agent accessed the actual database file in /opt/SAM/ rather than using hardcoded data.",
+            "visual_evidence": "Screenshots showing the agent navigating to /opt/SAM/ or running scripts that open files from that specific directory."
+        },
+        {
+            "id": "calculation_verification",
+            "description": "Ensure the agent performed the efficiency calculation or data extraction rather than hallucinating values.",
+            "visual_evidence": "Intermediate logs, print statements, or code execution showing the processing of raw database rows into the final 15 modules."
+        },
+        {
+            "id": "path_integrity",
+            "description": "Check that the agent used the specific requested output path and filename.",
+            "visual_evidence": "The file path /home/ga/Documents/SAM_Projects/premium_modules_report.json visible in the final save step."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires processing the CEC database found in /opt/SAM/. The agent must filter for 'Mono' technology, Pmp >= 380W, and Efficiency >= 20.0%. Efficiency is calculated as Pmp / (Area * 10). The final output must be a JSON file at /home/ga/Documents/SAM_Projects/premium_modules_report.json containing exactly 15 modules ranked by efficiency. The 'total_modules_matching' field in the JSON must reflect the count of all modules meeting the criteria before the top 15 were sliced."
+}

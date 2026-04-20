@@ -1,0 +1,53 @@
+{
+    "task_id": "materialize_curated_itineraries@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Agent successfully logged into OrientDB Studio at localhost:2480.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio dashboard or 'demodb' database schema view."
+        },
+        {
+            "id": "create_has_visited_links",
+            "description": "Missing 'HasVisited' edges are created between travelers and their respective monuments.",
+            "points": 20,
+            "visual_evidence": "SQL command execution or graph view showing new 'HasVisited' links for Sophie Martin, Luca Rossi, and Elena Petrakis."
+        },
+        {
+            "id": "create_itinerary_summary_schema",
+            "description": "The 'ItinerarySummary' class/schema is created in the database.",
+            "points": 15,
+            "visual_evidence": "Schema management tab showing 'ItinerarySummary' in the list of classes."
+        },
+        {
+            "id": "index_itinerary_summary",
+            "description": "An index is created for the ItinerarySummary schema.",
+            "points": 15,
+            "visual_evidence": "Index tab in OrientDB showing an index associated with the 'ItinerarySummary' class."
+        },
+        {
+            "id": "materialize_summary_rows",
+            "description": "One summary row per cohort traveler is inserted into ItinerarySummary with correct country data.",
+            "points": 40,
+            "visual_evidence": "Query results from 'SELECT FROM ItinerarySummary' showing rows for Sophie Martin (France), Luca Rossi (Italy), and Elena Petrakis (Greece) with entity counts."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just terminal scripts.",
+            "visual_evidence": "Screenshots of the browser showing OrientDB Studio (localhost:2480) being used to run queries or manage schema."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent derived the summary data from the database relationships rather than typing them from memory.",
+            "visual_evidence": "SQL queries in the Studio command editor that use JOINs or traversals (e.g., SELECT FROM Traveler) to calculate counts."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The materialized rows match the specific data in demodb.",
+            "visual_evidence": "The query output shows the specific traveler emails and associated countries (France, Italy, Greece) as defined in the task data."
+        }
+    ],
+    "privileged_info_for_vlm": "The target cohort travelers and their required 'HasVisited' links are: sophie.martin@example.com -> Eiffel Tower (France); luca.rossi@example.com -> Colosseum (Italy); elena.petrakis@example.com -> Parthenon (Greece). The ItinerarySummary table must contain one row per traveler with these specific country mappings and counts of their visited entities."
+}

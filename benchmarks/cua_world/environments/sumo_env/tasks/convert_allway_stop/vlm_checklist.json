@@ -1,0 +1,53 @@
+{
+    "task_id": "convert_allway_stop@1",
+    "task_completion": [
+        {
+            "id": "read_junction_id",
+            "description": "Identify the target junction ID from junction_briefing.txt",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the content of /home/ga/SUMO_Scenarios/bologna_pasubio/junction_briefing.txt."
+        },
+        {
+            "id": "create_xml_patch",
+            "description": "Create the XML node patch file (patch.nod.xml) with the correct junction ID and type set to 'allway_stop'",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command showing the creation/content of patch.nod.xml containing <node id=\"...\" type=\"allway_stop\"/>."
+        },
+        {
+            "id": "generate_network",
+            "description": "Apply the patch to create pasubio_allway.net.xml using netconvert",
+            "points": 25,
+            "visual_evidence": "Terminal command execution of 'netconvert' referencing the base network and the patch file, followed by a success message or the appearance of pasubio_allway.net.xml in the file explorer."
+        },
+        {
+            "id": "create_sumo_config",
+            "description": "Create run_allway.sumocfg referencing the new network and tripinfo output",
+            "points": 20,
+            "visual_evidence": "A text editor showing run_allway.sumocfg with <net-file value=\"pasubio_allway.net.xml\"/> and <tripinfo-output value=\"tripinfos_allway.xml\"/>."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Run the SUMO simulation to completion using the new config file",
+            "points": 25,
+            "visual_evidence": "Terminal output or SUMO GUI showing the simulation running and finishing, and the presence of the generated tripinfos_allway.xml file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't just create an empty tripinfo file to mimic success",
+            "visual_evidence": "The tripinfos_allway.xml file should contain multiple <tripinfo> entries with realistic data (time, speed, etc.) rather than being empty or a placeholder."
+        },
+        {
+            "id": "actual_command_execution",
+            "description": "Verify the agent actually executed the netconvert and sumo commands",
+            "visual_evidence": "Screenshots showing the terminal prompt with the specific commands entered and the resulting standard output/error."
+        },
+        {
+            "id": "correct_directory_context",
+            "description": "Verify the agent is working within /home/ga/SUMO_Scenarios/bologna_pasubio/",
+            "visual_evidence": "Terminal paths, file explorer headers, or editor title bars showing the correct directory path."
+        }
+    ],
+    "privileged_info_for_vlm": "The target directory is /home/ga/SUMO_Scenarios/bologna_pasubio/. The base network is pasubio_buslanes.net.xml. The patch file must be named patch.nod.xml and set the junction type to 'allway_stop'. The output network must be pasubio_allway.net.xml. The configuration file run_allway.sumocfg must link to this network and output results to tripinfos_allway.xml."
+}

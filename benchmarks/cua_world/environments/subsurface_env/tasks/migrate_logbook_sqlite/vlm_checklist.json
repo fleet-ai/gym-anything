@@ -1,0 +1,59 @@
+{
+    "task_id": "migrate_logbook_sqlite@1",
+    "task_completion": [
+        {
+            "id": "open_save_as_dialog",
+            "description": "Agent opens the 'Save As' or 'Export' dialog in Subsurface.",
+            "points": 10,
+            "visual_evidence": "A file dialog window titled 'Save As' or 'Save logbook as' is visible over the Subsurface main window."
+        },
+        {
+            "id": "select_sqlite_format",
+            "description": "Agent selects the SQLite database format in the file dialog.",
+            "points": 15,
+            "visual_evidence": "The file type dropdown in the save dialog shows 'SQLite database' or the filename ends in '.sqlite'."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Agent saves the file to /home/ga/Documents/dive_data.sqlite.",
+            "points": 25,
+            "visual_evidence": "The file path bar or filename field in the save dialog shows '/home/ga/Documents/dive_data.sqlite'."
+        },
+        {
+            "id": "open_preferences",
+            "description": "Agent opens the Subsurface Preferences/Settings window.",
+            "points": 10,
+            "visual_evidence": "The 'Preferences' dialog window is visible."
+        },
+        {
+            "id": "navigate_to_storage_settings",
+            "description": "Agent navigates to the section of preferences dealing with default logbook or storage.",
+            "points": 15,
+            "visual_evidence": "The 'General' or 'Network' tab in Preferences is selected where 'Default logbook' or 'Cloud storage' settings are located."
+        },
+        {
+            "id": "set_default_logbook",
+            "description": "Agent sets the newly created SQLite file as the default logbook on startup.",
+            "points": 25,
+            "visual_evidence": "The text field for 'Default logbook file' or 'Local logbook' in the Preferences window contains '/home/ga/Documents/dive_data.sqlite'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Subsurface GUI rather than terminal commands to move files or edit configs.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the Subsurface interface; no terminal windows are used to move the database or edit .conf files."
+        },
+        {
+            "id": "genuine_file_selection",
+            "description": "The agent manually navigated the file system or typed the path in the GUI.",
+            "visual_evidence": "The file picker dialog is seen navigating to /home/ga/Documents/."
+        },
+        {
+            "id": "preference_persistence",
+            "description": "The agent clicked 'OK' or 'Apply' in the Preferences window to save changes.",
+            "visual_evidence": "The cursor is seen clicking the 'OK' or 'Save' button at the bottom of the Preferences dialog."
+        }
+    ],
+    "privileged_info_for_vlm": "The target SQLite database path is /home/ga/Documents/dive_data.sqlite. The Subsurface configuration file is located at /home/ga/.config/Subsurface/Subsurface.conf. The agent must use the Subsurface GUI to perform the 'Save As' operation and update the 'Default logbook' setting in the Preferences menu."
+}

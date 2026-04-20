@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_email_alerts@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully authenticated into the Nx Witness VMS Web Admin interface.",
+            "points": 10,
+            "visual_evidence": "The browser shows the Nx Witness dashboard or settings page instead of the login screen; the URL may change from /login to /settings or similar."
+        },
+        {
+            "id": "navigate_to_email_settings",
+            "description": "Agent navigated to the specific SMTP or Email notification configuration section.",
+            "points": 10,
+            "visual_evidence": "The screen displays fields for 'SMTP Server', 'Port', and 'Email'."
+        },
+        {
+            "id": "configure_server_and_port",
+            "description": "Agent entered the correct SMTP Host and Port.",
+            "points": 20,
+            "visual_evidence": "The 'SMTP Server' field contains 'smtp.securecorp.net' and the 'Port' field contains '587'."
+        },
+        {
+            "id": "configure_connection_and_sender",
+            "description": "Agent selected TLS connection type and entered the sender email address.",
+            "points": 20,
+            "visual_evidence": "The 'Connection Type' dropdown or radio button is set to 'TLS' (or 'STARTTLS') and the 'Email' or 'Sender' field contains 'vms-alerts@securecorp.net'."
+        },
+        {
+            "id": "configure_authentication",
+            "description": "Agent enabled authentication and entered the SMTP username and password.",
+            "points": 25,
+            "visual_evidence": "The 'User' or 'Username' field contains 'vms-alerts@securecorp.net'. The password field is filled (likely masked)."
+        },
+        {
+            "id": "save_settings",
+            "description": "Agent applied or saved the configuration.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Apply', or 'OK' button. A 'Settings saved' confirmation message may appear."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than attempting to use a terminal or API scripts.",
+            "visual_evidence": "Screenshots show mouse cursor movement and text entry within the browser window, not a command-line interface."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not attempt to bypass the UI by editing local config files directly.",
+            "visual_evidence": "The agent remains within the browser at localhost:7001 throughout the process."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent typed or pasted the specific values provided in the task into the corresponding UI fields.",
+            "visual_evidence": "The specific strings 'smtp.securecorp.net' and 'vms-alerts@securecorp.net' are visible in the UI fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness VMS is located at https://localhost:7001. Valid credentials are admin / Admin1234!. Required SMTP values: Host: smtp.securecorp.net, Port: 587, Connection: TLS, Sender/User: vms-alerts@securecorp.net, Password: S3cur3Ma!l#2024. Note that in some versions of Nx Witness, 'TLS' might be labeled as 'Secure connection using TLS' or 'STARTTLS' depending on the UI localization."
+}

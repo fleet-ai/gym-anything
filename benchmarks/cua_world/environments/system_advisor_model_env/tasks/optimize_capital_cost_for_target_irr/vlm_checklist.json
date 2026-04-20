@@ -1,0 +1,53 @@
+{
+    "task_id": "optimize_capital_cost_for_target_irr@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent locates the Phoenix TMY weather file path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt or the agent navigating to that directory."
+        },
+        {
+            "id": "pysam_configuration",
+            "description": "Agent writes or executes code initializing the 'PVWattsSingleOwner' model with 50,000 kW capacity, array type 2, and 1.3 DC/AC ratio.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing PySAM script with system_capacity=50000, array_type=2, and dc_ac_ratio=1.3."
+        },
+        {
+            "id": "financial_parameters_setup",
+            "description": "Agent sets the PPA price to 0.04 and capacity-based O&M to 15.",
+            "points": 15,
+            "visual_evidence": "Code snippet showing ppa_price_input=0.04 and om_capacity_cost=15 (or equivalent PySAM variable names)."
+        },
+        {
+            "id": "optimization_implementation",
+            "description": "Agent implements a loop or optimization function to find the 'total_installed_cost' for an IRR between 8.45% and 8.55%.",
+            "points": 30,
+            "visual_evidence": "Code showing a while loop, bisection method, or solver targeting the 8.45-8.55% IRR range by adjusting capital costs."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent saves the final results to the specified JSON path with all required keys.",
+            "points": 30,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/Documents/SAM_Projects/target_cost_result.json containing target_installed_cost_usd, target_cost_per_watt_usd, achieved_irr_pct, annual_energy_kwh, and weather_file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "The agent actually uses the PySAM library rather than hardcoding the final answer.",
+            "visual_evidence": "Screenshots must show 'import PySAM' or 'import pusam' and active calls to the simulation engine (.execute())."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent does not simply echo the expected values into a JSON file without running a script.",
+            "visual_evidence": "The trajectory should show the iterative process or the execution of a script that calculates the IRR dynamically."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent uses the specific weather file path provided in the local text file.",
+            "visual_evidence": "The code should show the script reading from /home/ga/.SAM/solar_resource_dir.txt or using the path found within it."
+        }
+    ],
+    "privileged_info_for_vlm": "The target_installed_cost_usd should be approximately $58,774,192 (within the range of 25,000,000 to 75,000,000). The achieved_irr_pct must be between 8.45 and 8.55. The annual_energy_kwh should be greater than 100,000,000. The weather file used must be the Phoenix TMY file specified in /home/ga/.SAM/solar_resource_dir.txt."
+}

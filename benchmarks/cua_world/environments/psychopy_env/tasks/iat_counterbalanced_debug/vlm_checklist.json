@@ -1,0 +1,65 @@
+{
+    "task_id": "iat_counterbalanced_debug@1",
+    "task_completion": [
+        {
+            "id": "open_broken_file",
+            "description": "The agent opens the broken PsychoPy experiment file in the PsychoPy Builder GUI.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the PsychoPy Builder window with '/home/ga/PsychoPyExperiments/iat_broken.psyexp' visible in the title bar or file path."
+        },
+        {
+            "id": "fix_block_order",
+            "description": "The agent corrects the Flow sequence so that compatible blocks (Block 3/4) precede incompatible blocks (Block 6/7).",
+            "points": 20,
+            "visual_evidence": "The Flow panel at the bottom of the PsychoPy window shows the loops/routines for compatible associations appearing before the incompatible ones."
+        },
+        {
+            "id": "fix_practice_reps",
+            "description": "The agent fixes the practice block loop which had nReps set to 0.",
+            "points": 15,
+            "visual_evidence": "A 'Loop Properties' dialog box is visible showing 'nReps' set to a value greater than 0 (e.g., 1 or 20)."
+        },
+        {
+            "id": "fix_code_logic",
+            "description": "The agent corrects the syntax error in the response mapping code component (changing '=' to '==').",
+            "points": 20,
+            "visual_evidence": "A Code Component editor window is open showing corrected Python/JS logic using '==' for comparisons in the 'Each Frame' or 'End Routine' tabs."
+        },
+        {
+            "id": "fix_variable_references",
+            "description": "The agent fixes the text component color reference and the data filename variable prefix ($).",
+            "points": 15,
+            "visual_evidence": "Component property dialogs show '$stim_color' instead of '$category_color' and '$participant' in the Experiment Settings."
+        },
+        {
+            "id": "add_debriefing",
+            "description": "The agent adds a required debriefing screen to the end of the experiment.",
+            "points": 10,
+            "visual_evidence": "A new Routine (e.g., named 'debrief') containing a Text component is visible at the end of the Flow timeline."
+        },
+        {
+            "id": "save_fixed_file",
+            "description": "The agent saves the corrected experiment to the specified new file path.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog or the window title bar confirms the file is saved as '/home/ga/PsychoPyExperiments/iat_fixed.psyexp'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to make changes rather than just editing the XML via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with PsychoPy dialog boxes, the Flow panel, and component properties."
+        },
+        {
+            "id": "no_hardcoding_results",
+            "description": "The agent did not simply create a dummy file but interacted with the existing experiment structure.",
+            "visual_evidence": "The visual layout of the routines and loops in the screenshots matches the complex structure of a 7-block IAT."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent performed the login and navigation steps manually.",
+            "visual_evidence": "Screenshots show the desktop environment, the file browser, and the PsychoPy application launching."
+        }
+    ],
+    "privileged_info_for_vlm": "The broken file has 5 specific bugs: 1) Block 3 and 4 are swapped with 6 and 7 in the Flow. 2) Practice loop nReps is 0. 3) Code component uses '=' instead of '==' for response checking. 4) Text color uses '$category_color' instead of '$stim_color'. 5) Data filename lacks the '$' prefix for the participant variable. The agent must fix these and add a debriefing routine before saving to iat_fixed.psyexp."
+}

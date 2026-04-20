@@ -1,0 +1,59 @@
+{
+    "task_id": "service_queue_execution@1",
+    "task_completion": [
+        {
+            "id": "read_observing_queue",
+            "description": "Agent opens and reads the observing queue file to identify targets.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Documents/observing_queue.txt with targets M44, NGC 2392, and M51."
+        },
+        {
+            "id": "configure_m44_exposures",
+            "description": "Agent configures and executes exposures for M44 (Beehive Cluster).",
+            "points": 20,
+            "visual_evidence": "KStars/Ekos CCD module showing target M44 with B and V filters selected and progress on 10 total exposures."
+        },
+        {
+            "id": "configure_ngc2392_exposures",
+            "description": "Agent configures and executes exposures for NGC 2392 (Eskimo Nebula).",
+            "points": 20,
+            "visual_evidence": "KStars/Ekos CCD module showing target NGC 2392 with Ha and OIII filters selected and progress on 6 total exposures."
+        },
+        {
+            "id": "configure_m51_exposures",
+            "description": "Agent configures and executes exposures for M51 (Whirlpool Galaxy).",
+            "points": 20,
+            "visual_evidence": "KStars/Ekos CCD module showing target M51 with Luminance and R filters selected and progress on 8 total exposures."
+        },
+        {
+            "id": "capture_final_sky_view",
+            "description": "Agent captures a final sky view image to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager or image viewer showing an image saved at ~/Images/queue/final_sky.png."
+        },
+        {
+            "id": "create_session_log",
+            "description": "Agent creates a session log documenting the completed observations.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the creation/content of ~/Documents/session_log.txt mentioning the three targets."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent used the KStars/Ekos GUI to control the telescope and CCD rather than just creating dummy files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with KStars/Ekos buttons (Slew, Capture, Filter selection) and the INDI control panel."
+        },
+        {
+            "id": "genuine_exposure_progress",
+            "description": "The agent waited for actual exposures to complete in the simulator.",
+            "visual_evidence": "Sequential screenshots show the progress bar in the Ekos CCD module increasing or the 'Images Received' count incrementing."
+        },
+        {
+            "id": "no_premade_log_copy",
+            "description": "The agent manually typed or generated the log based on the session rather than copying a hidden solution.",
+            "visual_evidence": "The session log content reflects the specific order and details of the actions taken during the recorded trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The observing queue contains three targets: M44 (requires 10 exposures: 5 B, 5 V), NGC 2392 (requires 6 exposures: 3 Ha, 3 OIII), and M51 (requires 8 exposures: 4 Luminance, 4 R). The agent must use the KStars/Ekos interface to slew to these targets and capture the specified frames. The final sky view must be saved as ~/Images/queue/final_sky.png and the log as ~/Documents/session_log.txt."
+}

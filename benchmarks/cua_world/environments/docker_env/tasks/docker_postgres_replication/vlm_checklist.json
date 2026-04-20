@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_postgres_replication@1",
+    "task_completion": [
+        {
+            "id": "docker_compose_config",
+            "description": "Configure docker-compose.yml with primary and replica services using named volumes db-primary-data and db-replica-data.",
+            "points": 15,
+            "visual_evidence": "Screenshot of docker-compose.yml showing 'primary' and 'replica' service definitions and the specified named volumes."
+        },
+        {
+            "id": "primary_replication_config",
+            "description": "Configure the primary node for replication, including creating the repl_user and setting wal_level to replica.",
+            "points": 20,
+            "visual_evidence": "Terminal output or file content showing 'CREATE ROLE repl_user REPLICATION' or postgresql.conf settings on the primary."
+        },
+        {
+            "id": "replica_bootstrap",
+            "description": "Bootstrap the replica using pg_basebackup from the primary node.",
+            "points": 25,
+            "visual_evidence": "Terminal logs showing the execution of 'pg_basebackup' command targeting the primary service with repl_user."
+        },
+        {
+            "id": "replica_hot_standby",
+            "description": "Configure the replica to run in hot_standby mode.",
+            "points": 15,
+            "visual_evidence": "Screenshot of replica configuration or logs showing 'database system is ready to accept read only connections'."
+        },
+        {
+            "id": "replication_verification",
+            "description": "Verify that data written to the primary is synchronized to the replica.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing a row inserted into the primary and then a SELECT query on the replica returning that same row."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_docker_interaction",
+            "description": "Verify the agent interacted with Docker containers rather than mocking output.",
+            "visual_evidence": "Screenshots showing 'docker ps' or 'docker-compose ps' listing active containers named primary and replica."
+        },
+        {
+            "id": "real_time_logs",
+            "description": "Verify the agent checked live logs for replication status.",
+            "visual_evidence": "Screenshots of 'docker logs' showing streaming replication startup sequences and connection established messages."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Ensure the agent didn't just echo the expected data without querying the database.",
+            "visual_evidence": "Screenshots showing the psql prompt (e.g., 'postgres=#') and the actual execution of SQL commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The project directory is /home/ga/projects/db-cluster. The primary database uses password 'password123'. The replication user must be 'repl_user' with password 'repl_password'. The initial database contains 5 products (Gaming Laptop, Wireless Mouse, Mechanical Keyboard, Monitor 27-inch, USB-C Hub). Verification should confirm the replica is in read-only mode (hot_standby) and successfully receiving WAL logs from the primary."
+}

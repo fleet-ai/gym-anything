@@ -1,0 +1,59 @@
+{
+    "task_id": "sla_business_hours_calc@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or terminal) showing a successful connection to localhost:1521/XEPDB1."
+        },
+        {
+            "id": "schema_exploration",
+            "description": "Agent queries or views the structure of SUPPORT_TICKETS and PUBLIC_HOLIDAYS tables.",
+            "points": 10,
+            "visual_evidence": "SQL queries like 'DESC SUPPORT_TICKETS' or the table schema visible in a GUI sidebar."
+        },
+        {
+            "id": "view_creation_logic",
+            "description": "Agent writes and executes the SQL script to create the SLA_PERFORMANCE_VW with business hour logic (09:00-17:00, Mon-Fri).",
+            "points": 30,
+            "visual_evidence": "SQL editor showing a 'CREATE OR REPLACE VIEW SLA_PERFORMANCE_VW' statement containing logic for excluding weekends and holidays."
+        },
+        {
+            "id": "view_columns_verification",
+            "description": "The created view contains all required columns: TICKET_ID, PRIORITY, OPENED_AT, CLOSED_AT, TOTAL_HOURS, BUSINESS_MINUTES, and SLA_STATUS.",
+            "points": 15,
+            "visual_evidence": "A 'SELECT * FROM SLA_PERFORMANCE_VW' result grid showing these specific column headers."
+        },
+        {
+            "id": "sla_status_calculation",
+            "description": "The SLA_STATUS column correctly identifies 'MET' for <= 480 mins and 'BREACHED' otherwise.",
+            "points": 15,
+            "visual_evidence": "Data rows in the view where BUSINESS_MINUTES > 480 show 'BREACHED' and <= 480 show 'MET'."
+        },
+        {
+            "id": "csv_export_execution",
+            "description": "Agent exports the view data to the specified file path /home/ga/Desktop/sla_report.csv.",
+            "points": 20,
+            "visual_evidence": "An export wizard completion message or a terminal command showing the data being saved to the Desktop as a CSV."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not manually calculate and hardcode the business minutes in the SQL query.",
+            "visual_evidence": "The SQL code should contain logic (CASE statements, date arithmetic, or subqueries) rather than a list of 'VALUES' or 'INSERT' statements with pre-calculated numbers."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "Agent interacted with the actual Oracle database rather than creating a mock local file.",
+            "visual_evidence": "Screenshots show an active connection to an Oracle instance (XEPDB1) and not just a text editor or a local SQLite file."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The CSV was generated from the database view, not manually typed in a text editor.",
+            "visual_evidence": "The agent should be seen using an export tool or a SPOOL/COPY command, not typing '1001, MET, 120' into a blank text file."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is Oracle (localhost:1521/XEPDB1, user: hr). The view name must be SLA_PERFORMANCE_VW. Business hours are 09:00-17:00 Mon-Fri. Key test cases: Ticket 1001 (Fri 16:00 to Mon 10:00) should result in 120 business minutes. Ticket 1002 (Fri 16:30 to Tue 09:30 with Mon as holiday) should result in 60 business minutes. Ticket 1003 (Tue 20:00 to Wed 09:15) should result in 15 business minutes. SLA_STATUS is 'MET' if BUSINESS_MINUTES <= 480."
+}

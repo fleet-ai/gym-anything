@@ -1,0 +1,59 @@
+{
+    "task_id": "gel_electrophoresis_densitometry@1",
+    "task_completion": [
+        {
+            "id": "open_gel_image",
+            "description": "The agent opens the protein gel image in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "A window titled 'protein_gel.tif' or similar is visible within the Fiji/ImageJ interface showing a grayscale gel image."
+        },
+        {
+            "id": "lane_selection_and_plotting",
+            "description": "The agent defines lanes and generates intensity profile plots.",
+            "points": 20,
+            "visual_evidence": "Rectangular selections over the gel lanes and a 'Plot Lanes' window showing peaks corresponding to band intensities."
+        },
+        {
+            "id": "background_subtraction_and_integration",
+            "description": "The agent performs background subtraction (e.g., drawing baseline) and integrates peak areas.",
+            "points": 20,
+            "visual_evidence": "The 'Wand' tool being used to click inside peaks in the profile plot, or a 'Results' table appearing with 'Area' or 'Mean' values."
+        },
+        {
+            "id": "save_lane_profiles",
+            "description": "The agent saves the lane intensity profile plots to the specified path.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or terminal command showing 'lane_profiles.png' saved in ~/Fiji_Data/results/gel/."
+        },
+        {
+            "id": "generate_csv_results",
+            "description": "The agent saves the quantification data (raw, normalized, background, peak area %) to a CSV file.",
+            "points": 20,
+            "visual_evidence": "A CSV file named 'band_quantification.csv' is visible in the file system or opened in a text editor showing columns for lane ID and normalized intensity."
+        },
+        {
+            "id": "summary_report_generation",
+            "description": "The agent generates a text report identifying highest/lowest expression and listing normalized values.",
+            "points": 20,
+            "visual_evidence": "A text file 'densitometry_report.txt' is displayed containing a summary of the findings, specifically identifying the highest and lowest lanes relative to Lane 1."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji/ImageJ GUI tools for densitometry rather than just writing a script to generate dummy data.",
+            "visual_evidence": "Screenshots show the Fiji toolbar, ROI manager, or profile plot windows being actively manipulated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The normalized values in the report match the data derived from the gel image.",
+            "visual_evidence": "The values in the CSV/Report correspond to the relative peak heights seen in the profile plots."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the final report content without performing the analysis steps.",
+            "visual_evidence": "The trajectory shows a logical progression from image opening to plotting to data extraction."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is an 8-bit grayscale gel (originally gel.gif from ImageJ samples). Lane 1 is the reference (loading control), so its normalized intensity must be 1.0. The analysis must be performed using Fiji/ImageJ's 'Gels' analyzer or similar ROI-based densitometry. The final output must include a CSV with specific columns (lane ID, raw intensity, normalized intensity, background intensity, peak area %) and a PNG of the profile plots."
+}

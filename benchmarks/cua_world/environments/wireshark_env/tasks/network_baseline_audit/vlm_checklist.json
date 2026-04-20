@@ -1,0 +1,62 @@
+{
+    "task_id": "network_baseline_audit@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark_pcap",
+            "description": "Agent opens the specified pcapng file in Wireshark or a similar network analysis tool.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing Wireshark (or terminal tool) displaying the contents of 'baseline_audit.pcapng'."
+        },
+        {
+            "id": "analyze_protocols_ips",
+            "description": "Agent extracts or views protocol hierarchies and IP address statistics.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Protocol Hierarchy' window or 'Endpoints' window in Wireshark, or terminal output of 'tshark -z' commands."
+        },
+        {
+            "id": "identify_tcp_retransmissions",
+            "description": "Agent identifies the specific count of TCP retransmissions in the capture.",
+            "points": 20,
+            "visual_evidence": "Screenshot showing a filter for 'tcp.analysis.retransmission' or a summary statistics window showing the retransmission count."
+        },
+        {
+            "id": "calculate_packet_byte_totals",
+            "description": "Agent identifies the total packet count and total byte count for the capture.",
+            "points": 15,
+            "visual_evidence": "Screenshot showing the 'Capture File Properties' window or terminal output showing 116 packets and the total file size/bytes."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the report file at the specified path with the required sections.",
+            "points": 10,
+            "visual_evidence": "Screenshot of a text editor or terminal command creating '/home/ga/Documents/captures/baseline_audit_report.txt'."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The final report contains all required sections: protocols, IPs, ports, retransmissions, and packet/byte counts.",
+            "points": 25,
+            "visual_evidence": "Screenshot of the final 'baseline_audit_report.txt' showing clearly labeled sections for all requested metrics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "Agent performed actual analysis rather than guessing or using placeholder data.",
+            "points": 0,
+            "visual_evidence": "The VLM should see the agent interacting with the pcap file (scrolling, filtering, or running tshark) before writing the report."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "Agent did not simply find a pre-existing report file.",
+            "points": 0,
+            "visual_evidence": "The agent is seen typing or generating the report content based on the analysis performed in the session."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "Agent used the specific file path requested in the task.",
+            "points": 0,
+            "visual_evidence": "The file path '/home/ga/Documents/captures/baseline_audit_report.txt' is visible in the terminal or editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The pcapng file 'baseline_audit.pcapng' contains exactly 116 packets. It is a merge of HTTP, DNS, and TCP traffic. The VLM should verify that the report includes these protocols and that the TCP retransmission count is derived from the actual packet data (the pcap contains specific TCP retransmissions from the 200722_tcp_anon.pcapng component)."
+}

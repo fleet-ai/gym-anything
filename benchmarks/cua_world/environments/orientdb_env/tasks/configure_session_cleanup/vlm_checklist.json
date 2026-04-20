@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_session_cleanup@1",
+    "task_completion": [
+        {
+            "id": "create_usersessions_class",
+            "description": "Create the 'UserSessions' class with properties 'Token' (String), 'Created' (DateTime), and 'UserEmail' (String) in the 'demodb' database.",
+            "points": 15,
+            "visual_evidence": "The OrientDB Studio schema view showing the 'UserSessions' class and its three specific properties with correct data types."
+        },
+        {
+            "id": "populate_test_data",
+            "description": "Populate UserSessions with 5 active sessions (recent) and 5 expired sessions (48 hours old) using real emails from Profiles.",
+            "points": 15,
+            "visual_evidence": "A query result or 'Browse' tab showing 10 records in UserSessions with varying 'Created' timestamps and valid email addresses."
+        },
+        {
+            "id": "create_cleanup_function",
+            "description": "Create a server-side function named 'cleanup_sessions' that deletes records older than 24 hours.",
+            "points": 25,
+            "visual_evidence": "The 'Functions' tab in OrientDB Studio showing a function named 'cleanup_sessions' containing code like 'DELETE FROM UserSessions WHERE Created < ...' (using sysdate() - 86400000 or similar logic)."
+        },
+        {
+            "id": "configure_scheduler",
+            "description": "Configure the OrientDB Scheduler to run the 'cleanup_sessions' function every hour.",
+            "points": 25,
+            "visual_evidence": "The 'Scheduler' or 'Events' configuration screen showing a task linked to 'cleanup_sessions' with a cron expression or interval set to 3600 seconds or 1 hour."
+        },
+        {
+            "id": "verify_policy_execution",
+            "description": "Execute the function and verify that only the 5 active records remain.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the execution of the function followed by a query result showing exactly 5 records remaining in the UserSessions class."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing shell scripts in a terminal.",
+            "visual_evidence": "Screenshots showing the browser window with OrientDB Studio (Schema, Functions, and Scheduler tabs) being interacted with."
+        },
+        {
+            "id": "genuine_data_usage",
+            "description": "The agent used real emails from the Profiles class as requested, not placeholder strings like 'test@test.com'.",
+            "visual_evidence": "The 'UserEmail' column in the UserSessions browse view contains realistic email addresses matching the database's profile data."
+        },
+        {
+            "id": "no_manual_deletion",
+            "description": "The agent deleted records via the function execution, not by manually clicking delete on individual rows in the UI.",
+            "visual_evidence": "The function execution logs or the function editor being open immediately before the record count decreases."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The required class is 'UserSessions'. The cleanup function must be named 'cleanup_sessions'. The retention threshold is exactly 24 hours (86,400,000 milliseconds). The test data must consist of 10 initial records (5 new, 5 old) using emails sourced from the existing 'Profiles' class."
+}

@@ -1,0 +1,56 @@
+{
+    "task_id": "extract_subnetwork_demand@1",
+    "task_completion": [
+        {
+            "id": "identify_center_coordinates",
+            "description": "Agent identifies the geographic center of the original acosta_buslanes.net.xml file.",
+            "points": 10,
+            "visual_evidence": "Terminal output or script showing the calculation of the center coordinates (x, y) or the use of netconvert/sumo-gui to find the network boundary."
+        },
+        {
+            "id": "extract_subnetwork",
+            "description": "Agent uses a tool (like netconvert) to extract a 200x200m subnetwork centered on the identified coordinates, excluding isolated edges.",
+            "points": 25,
+            "visual_evidence": "Command line execution of netconvert with --keep-edges.in-boundary or --boundary parameters and --remove-edges.isolated."
+        },
+        {
+            "id": "adapt_traffic_demand",
+            "description": "Agent adapts the original acosta.rou.xml demand to the new micro-simulation subnetwork.",
+            "points": 25,
+            "visual_evidence": "Command line execution of a tool like cutLines.py or routecheck to filter routes for the new micro.net.xml."
+        },
+        {
+            "id": "create_files_in_output",
+            "description": "Agent saves micro.net.xml, micro.rou.xml, and micro.sumocfg to /home/ga/SUMO_Output/.",
+            "points": 15,
+            "visual_evidence": "File explorer view or 'ls /home/ga/SUMO_Output/' showing all three required files exist."
+        },
+        {
+            "id": "verify_simulation_run",
+            "description": "Agent successfully runs the newly created micro.sumocfg in SUMO or SUMO-GUI.",
+            "points": 25,
+            "visual_evidence": "SUMO-GUI window showing the 200x200m subnetwork loaded with vehicles, or terminal output showing 'Simulation ended' without errors for micro.sumocfg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_paths",
+            "description": "Agent uses the actual file paths provided in the task rather than generic placeholders.",
+            "points": 0,
+            "visual_evidence": "Commands and scripts explicitly reference /home/ga/SUMO_Scenarios/bologna_acosta/ and /home/ga/SUMO_Output/."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent performs actual processing steps rather than just creating empty files.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the content of the generated XML files or the progress of the netconvert/demand-cutting tools."
+        },
+        {
+            "id": "correct_boundary_logic",
+            "description": "Agent calculates a 200x200m area (100m offset from center) rather than guessing coordinates.",
+            "points": 0,
+            "visual_evidence": "Mathematical calculation or specific boundary parameters (minX, minY, maxX, maxY) visible in the terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The original network is located at /home/ga/SUMO_Scenarios/bologna_acosta/acosta_buslanes.net.xml. The subnetwork must be exactly 200x200 meters. The output files must be named micro.net.xml, micro.rou.xml, and micro.sumocfg and placed in /home/ga/SUMO_Output/. The subnetwork extraction must include the flag to remove isolated edges (usually --remove-edges.isolated in netconvert)."
+}

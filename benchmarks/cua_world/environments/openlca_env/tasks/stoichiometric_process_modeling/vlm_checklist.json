@@ -1,0 +1,59 @@
+{
+    "task_id": "stoichiometric_process_modeling@1",
+    "task_completion": [
+        {
+            "id": "create_unit_process",
+            "description": "Create a new Unit Process named 'Quicklime Production, stoichiometric' in the USLCI database.",
+            "points": 15,
+            "visual_evidence": "A process editor window or list entry showing the name 'Quicklime Production, stoichiometric' within the LCA software interface."
+        },
+        {
+            "id": "add_limestone_input",
+            "description": "Add 1000 kg of Limestone as a technosphere flow/input.",
+            "points": 15,
+            "visual_evidence": "The 'Inputs' or 'Technosphere flows' tab showing 'Limestone' with an amount of 1000 and unit 'kg'."
+        },
+        {
+            "id": "add_quicklime_output",
+            "description": "Add 560 kg of Quicklime as a product flow/output.",
+            "points": 15,
+            "visual_evidence": "The 'Outputs' or 'Product flows' tab showing 'Quicklime' with an amount of 560 and unit 'kg'."
+        },
+        {
+            "id": "calculate_co2_stoichiometry",
+            "description": "Calculate and add the required Carbon Dioxide (elementary flow to air) to satisfy mass balance (440 kg).",
+            "points": 35,
+            "visual_evidence": "The 'Outputs' or 'Elementary flows' tab showing 'Carbon dioxide' (to air) with an amount of 440 (or approximately 440) and unit 'kg'."
+        },
+        {
+            "id": "save_process",
+            "description": "Save the newly created process in the software.",
+            "points": 10,
+            "visual_evidence": "The 'Save' button being clicked, or a 'Process saved' confirmation message, or the process appearing as a saved entity in the database tree."
+        },
+        {
+            "id": "save_results_file",
+            "description": "Save the calculated CO2 amount to ~/LCA_Results/stoichiometry_check.txt.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., echo or cat) or a text editor showing the value 440 being saved to the specific file path ~/LCA_Results/stoichiometry_check.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LCA software GUI to create the process rather than just manipulating database files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the LCA software menus, text fields, and buttons."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent performed or showed the calculation (1000 - 560 = 440) rather than just entering the number from memory.",
+            "visual_evidence": "Use of a calculator app, terminal-based math, or manual entry of the subtraction result in the flow field."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply create the text file without actually modeling the process in the software.",
+            "visual_evidence": "Sequential screenshots showing the software being opened and the process being built before the text file is created."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires modeling the calcination of CaCO3 -> CaO + CO2. For 1000 kg of Limestone (input) and 560 kg of Quicklime (output), the mass balance requires exactly 440 kg of Carbon Dioxide (1000 - 560 = 440). The CO2 must be an elementary flow to air. A tolerance of 5% (418-462 kg) is acceptable, but 440 is the exact stoichiometric value."
+}

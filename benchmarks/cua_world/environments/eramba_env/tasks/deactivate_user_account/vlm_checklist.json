@@ -1,0 +1,53 @@
+{
+    "task_id": "deactivate_user_account@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_user_management",
+            "description": "Navigate to the user management or administration section of the application.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of users or a search interface for user accounts."
+        },
+        {
+            "id": "locate_alex_morgan",
+            "description": "Locate the specific user account for 'Alex Morgan' with username 'amorgan'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the user 'Alex Morgan' or 'amorgan' highlighted, selected, or opened in an edit view."
+        },
+        {
+            "id": "update_display_name",
+            "description": "Update the user's name to include the '(CONTRACT ENDED)' suffix.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the text 'Alex Morgan (CONTRACT ENDED)' typed into the name field or displayed in the user profile."
+        },
+        {
+            "id": "deactivate_account_toggle",
+            "description": "Change the account status from active to inactive/deactivated.",
+            "points": 30,
+            "visual_evidence": "The VLM should see a checkbox unchecked, a toggle switched to 'Off', or a status dropdown changed to 'Inactive' or 'Disabled'."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save or submit the changes made to the user account.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the agent clicking a 'Save', 'Update', or 'Submit' button, followed by a success message or the updated list view."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The VLM should see mouse movements and clicks within the browser/GUI, not commands like 'UPDATE users SET active=0' in a terminal window."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menus rather than jumping directly to a specific database ID URL if not previously known.",
+            "visual_evidence": "The VLM should see the agent clicking through navigation menus or using the internal search bar."
+        },
+        {
+            "id": "genuine_form_entry",
+            "description": "The agent manually edited the fields rather than using browser developer tools to force a state change.",
+            "visual_evidence": "The VLM should see the cursor in the input fields and the text being modified within the application UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The target user has the username 'amorgan'. To succeed, the 'active' status must be set to 0 (inactive/disabled) and the name must be exactly 'Alex Morgan (CONTRACT ENDED)'. The initial state of the user is active (1) with the name 'Alex Morgan'."
+}

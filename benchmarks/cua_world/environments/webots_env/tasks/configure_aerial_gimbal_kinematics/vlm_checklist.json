@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_aerial_gimbal_kinematics@1",
+    "task_completion": [
+        {
+            "id": "open_webots_gimbal",
+            "description": "Open the Webots world and locate the GIMBAL_PAYLOAD Robot in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots application is open, and the scene tree (left sidebar) shows 'DEF GIMBAL_PAYLOAD Robot'."
+        },
+        {
+            "id": "configure_pan_motor",
+            "description": "Set Pan Motor minPosition to -3.14, maxPosition to 3.14, and PID to 50.0 0.1 5.0.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a field editor shows 'pan_motor' with minPosition: -3.14, maxPosition: 3.14, and controlPID: [50 0.1 5]."
+        },
+        {
+            "id": "configure_tilt_motor",
+            "description": "Set Tilt Motor minPosition to -1.57, maxPosition to 0.52, and PID to 40.0 0.1 3.0.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a field editor shows 'tilt_motor' with minPosition: -1.57, maxPosition: 0.52, and controlPID: [40 0.1 3]."
+        },
+        {
+            "id": "configure_roll_motor",
+            "description": "Set Roll Motor minPosition to -0.78, maxPosition to 0.78, and PID to 60.0 0.2 4.0.",
+            "points": 25,
+            "visual_evidence": "The scene tree or a field editor shows 'roll_motor' with minPosition: -0.78, maxPosition: 0.78, and controlPID: [60 0.2 4]."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specific path /home/ga/Desktop/stabilized_gimbal.wbt.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a file explorer window shows the file being saved as 'stabilized_gimbal.wbt' on the Desktop."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify fields rather than just editing a text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree or field editor."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent entered the exact numerical values specified, not approximations.",
+            "visual_evidence": "The input fields in the GUI contain the exact decimals (e.g., 0.52, 0.78) requested."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent performed a save action within the software.",
+            "visual_evidence": "The 'File' menu is opened or a 'Save' confirmation appears in the Webots interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure three specific motors under the 'GIMBAL_PAYLOAD' robot. Pan Motor: min -3.14, max 3.14, PID [50, 0.1, 5]. Tilt Motor: min -1.57, max 0.52, PID [40, 0.1, 3]. Roll Motor: min -0.78, max 0.78, PID [60, 0.2, 4]. The final file must be saved as /home/ga/Desktop/stabilized_gimbal.wbt."
+}

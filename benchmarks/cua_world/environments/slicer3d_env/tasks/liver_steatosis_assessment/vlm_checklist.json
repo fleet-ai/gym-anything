@@ -1,0 +1,53 @@
+{
+    "task_id": "liver_steatosis_assessment@1",
+    "task_completion": [
+        {
+            "id": "ct_volume_loaded",
+            "description": "Abdominal CT volume is loaded into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows an axial, sagittal, and coronal view of an abdominal CT scan."
+        },
+        {
+            "id": "liver_roi_placement",
+            "description": "A Region of Interest (ROI) or markup point is placed within the liver parenchyma.",
+            "points": 20,
+            "visual_evidence": "A markup point or closed curve is visible on the liver (right side of the patient) in the slice viewer, and the 'Markups' module or a statistics table shows a liver measurement."
+        },
+        {
+            "id": "spleen_roi_placement",
+            "description": "A Region of Interest (ROI) or markup point is placed within the spleen parenchyma.",
+            "points": 20,
+            "visual_evidence": "A markup point or closed curve is visible on the spleen (left side of the patient) in the slice viewer, and the 'Markups' module or a statistics table shows a spleen measurement."
+        },
+        {
+            "id": "roi_files_saved",
+            "description": "The liver and spleen ROI markup files are saved to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or terminal output shows 'liver_roi.mrk.json' and 'spleen_roi.mrk.json' in the ~/Documents/SlicerData/Steatosis/ folder."
+        },
+        {
+            "id": "report_generation",
+            "description": "A JSON report is generated containing the calculated HU values, ratio, and classification.",
+            "points": 35,
+            "visual_evidence": "A text editor or terminal shows 'steatosis_report.json' with fields: liver_hu (~58), spleen_hu (~52), ls_ratio (~1.1), and classification ('None' or 'Normal')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to place ROIs rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Slicer slice views or Markups toolbar to place points."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The HU values in the report are derived from the software's measurement tools, not just hardcoded from the prompt.",
+            "visual_evidence": "The 'Segment Statistics' or 'Markups' module in Slicer is visible and displays mean HU values that match the final report."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The agent did not simply copy a pre-existing report file.",
+            "visual_evidence": "The agent is seen typing the report content or using a script/command to generate it based on the observed measurements."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth mean attenuation for the liver is 58.0 HU and for the spleen is 52.0 HU. The Liver-to-Spleen (L/S) ratio should be approximately 1.11. Based on the criteria (L/S >= 1.0 and liver >= 40 HU), the classification must be 'Normal' or 'None' (no steatosis)."
+}

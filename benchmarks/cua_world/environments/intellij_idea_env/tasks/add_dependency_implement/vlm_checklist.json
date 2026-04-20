@@ -1,0 +1,59 @@
+{
+    "task_id": "add_dependency_implement@1",
+    "task_completion": [
+        {
+            "id": "open_pom_xml",
+            "description": "The agent opens the pom.xml file in the IntelliJ IDEA editor.",
+            "points": 10,
+            "visual_evidence": "A tab labeled 'pom.xml' is visible and active in the IntelliJ editor area."
+        },
+        {
+            "id": "add_gson_dependency",
+            "description": "The Gson dependency (com.google.code.gson:gson:2.10.1) is added to the pom.xml file.",
+            "points": 15,
+            "visual_evidence": "The pom.xml file content shows a <dependency> block with groupId 'com.google.code.gson', artifactId 'gson', and version '2.10.1'."
+        },
+        {
+            "id": "open_json_exporter",
+            "description": "The agent opens JsonExporter.java in the IntelliJ IDEA editor.",
+            "points": 10,
+            "visual_evidence": "A tab labeled 'JsonExporter.java' is visible and active in the IntelliJ editor area."
+        },
+        {
+            "id": "implement_json_methods",
+            "description": "The toJson, fromJson, exportToFile, and importFromFile methods are implemented using Gson.",
+            "points": 35,
+            "visual_evidence": "The code in JsonExporter.java shows 'new Gson()' or 'new GsonBuilder()' usage, and the logic for serialization/deserialization of Student lists is present in the specified methods."
+        },
+        {
+            "id": "run_unit_tests",
+            "description": "The agent executes the unit tests in JsonExporterTest.java.",
+            "points": 15,
+            "visual_evidence": "The IntelliJ 'Run' or 'Test' tool window is visible, showing 'JsonExporterTest' being executed."
+        },
+        {
+            "id": "tests_passed",
+            "description": "All unit tests in JsonExporterTest.java pass successfully.",
+            "points": 15,
+            "visual_evidence": "The IntelliJ test runner shows a green checkmark or 'Tests passed' status for JsonExporterTest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "used_intellij_editor",
+            "description": "The agent edited the files using the IntelliJ IDEA GUI rather than just using terminal commands like 'echo' or 'sed'.",
+            "visual_evidence": "Screenshots show the agent typing or interacting within the IntelliJ code editor tabs."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent ran the tests through the IntelliJ interface or Maven lifecycle, not by manually printing 'Tests Passed' to the console.",
+            "visual_evidence": "The test results are displayed in the standard IntelliJ test runner UI or a standard Maven test output log."
+        },
+        {
+            "id": "no_hardcoded_test_values",
+            "description": "The agent did not modify the test file to hardcode success or bypass assertions.",
+            "visual_evidence": "The JsonExporterTest.java file (if visible) remains focused on testing the logic rather than being gutted to return true."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/student-records/. The required dependency is com.google.code.gson:gson:2.10.1. The implementation file is src/main/java/com/example/export/JsonExporter.java. The test file to verify success is src/test/java/com/example/export/JsonExporterTest.java. A passing score is defined as the tests in this specific file passing."
+}

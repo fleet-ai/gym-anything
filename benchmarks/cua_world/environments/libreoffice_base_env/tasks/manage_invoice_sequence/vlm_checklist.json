@@ -1,0 +1,53 @@
+{
+    "task_id": "manage_invoice_sequence@1",
+    "task_completion": [
+        {
+            "id": "open_chinook_database",
+            "description": "The agent has the chinook.odb file open in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "A LibreOffice Base window titled 'chinook.odb' is visible on the screen."
+        },
+        {
+            "id": "delete_invoice_line",
+            "description": "The agent deletes the invoice line associated with InvoiceId 412 to satisfy foreign key constraints.",
+            "points": 20,
+            "visual_evidence": "An SQL execution window or a table view showing a DELETE command or the removal of the record with InvoiceId 412 from the 'InvoiceLine' table."
+        },
+        {
+            "id": "delete_invoice_record",
+            "description": "The agent deletes the record with InvoiceId 412 from the Invoice table.",
+            "points": 20,
+            "visual_evidence": "An SQL execution window or table view showing the deletion of InvoiceId 412 from the 'Invoice' table."
+        },
+        {
+            "id": "reset_auto_increment",
+            "description": "The agent executes the command to reset the InvoiceId sequence to 1000.",
+            "points": 30,
+            "visual_evidence": "The SQL command 'ALTER TABLE \"Invoice\" ALTER COLUMN \"InvoiceId\" RESTART WITH 1000' (or equivalent HSQLDB syntax) is typed or executed in the 'SQL Status' or 'Execute SQL Statement' dialog."
+        },
+        {
+            "id": "save_database",
+            "description": "The agent saves the database file to persist the changes.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Save' icon in the toolbar, selects File > Save, or a 'Saving...' progress bar/status message appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, buttons, or the SQL execution dialog box."
+        },
+        {
+            "id": "no_manual_id_entry",
+            "description": "The agent didn't just manually type '1000' into a new row but actually altered the table schema/sequence.",
+            "visual_evidence": "The SQL execution window is used to run the ALTER TABLE command rather than just editing a cell in the table grid."
+        },
+        {
+            "id": "genuine_file_path",
+            "description": "The agent is working on the correct file path.",
+            "visual_evidence": "The title bar or file dialog shows the path /home/ga/chinook.odb."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is HSQLDB format. To delete Invoice 412, the agent must first delete the record in 'InvoiceLine' where InvoiceId = 412 (there is 1 such record) to avoid a referential integrity error. The specific SQL command to reset the sequence is: ALTER TABLE \"Invoice\" ALTER COLUMN \"InvoiceId\" RESTART WITH 1000. The file must be saved within LibreOffice Base to ensure the .odb wrapper updates the underlying database script."
+}

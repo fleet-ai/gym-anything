@@ -1,0 +1,53 @@
+{
+    "task_id": "hvac_index_creation@1",
+    "task_completion": [
+        {
+            "id": "open_source_document",
+            "description": "The agent opens the source document 'hvac_service_manual.docx' in a word processor.",
+            "points": 10,
+            "visual_evidence": "A word processor (like LibreOffice Writer) is visible showing the content of 'hvac_service_manual.docx'."
+        },
+        {
+            "id": "mark_index_entries",
+            "description": "The agent marks the required HVAC terms as index entries throughout the document.",
+            "points": 30,
+            "visual_evidence": "The agent is seen using the 'Mark Entry' dialog or showing field codes (e.g., { XE \"Compressor\" }) next to the specified terms in the text."
+        },
+        {
+            "id": "create_index_page",
+            "description": "A new page is created at the end of the document with the 'Heading 1' titled 'Index'.",
+            "points": 15,
+            "visual_evidence": "The last page of the document shows a 'Heading 1' style text saying 'Index'."
+        },
+        {
+            "id": "insert_alphabetical_index",
+            "description": "An alphabetical index is generated and inserted under the Index heading.",
+            "points": 25,
+            "visual_evidence": "A generated index table or list is visible, sorted alphabetically, containing terms like 'Blower motor', 'Capacitor', 'Compressor', etc., with page numbers."
+        },
+        {
+            "id": "save_indexed_document",
+            "description": "The document is saved to the specific output path '/home/ga/Documents/hvac_manual_indexed.docx'.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog or the window title bar confirms the file is being saved as 'hvac_manual_indexed.docx' in the Documents folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the word processor's GUI features to create the index rather than just typing a list manually.",
+            "visual_evidence": "Screenshots show the use of 'Insert Index', 'Mark Entry', or 'Styles' menus rather than just manual text entry."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use terminal scripts to manipulate the .docx XML directly to bypass the GUI task.",
+            "visual_evidence": "The agent's primary actions occur within the word processor application, not a terminal window."
+        },
+        {
+            "id": "genuine_index_field",
+            "description": "The index is a functional document field, not just a static copy-pasted list.",
+            "visual_evidence": "The index area may show a gray background (field shading) when clicked or the agent is seen clicking 'Update Index'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/hvac_service_manual.docx. The agent must mark exactly these 10 terms: Compressor, Condenser coil, Evaporator coil, Refrigerant, Thermostat, Blower motor, Expansion valve, Economizer, Heat exchanger, and Capacitor. The final document must be saved as /home/ga/Documents/hvac_manual_indexed.docx. The index must be alphabetical (e.g., Blower motor should come before Compressor)."
+}

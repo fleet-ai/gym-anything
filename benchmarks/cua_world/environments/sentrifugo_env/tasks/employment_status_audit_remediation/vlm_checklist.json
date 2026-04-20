@@ -1,0 +1,47 @@
+{
+    "task_id": "employment_status_audit_remediation@1",
+    "task_completion": [
+        {
+            "id": "read_manifest",
+            "description": "Agent opens and reads the manifest file on the desktop to identify required changes.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of 'dol_classification_manifest.txt' on the Desktop."
+        },
+        {
+            "id": "create_employment_statuses",
+            "description": "Agent creates the missing employment status types in Sentrifugo (Part-Time Regular, Contract - Fixed Term, Seasonal Worker, Intern - Paid).",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Employment Status' configuration page in Sentrifugo with the new status types listed or being added."
+        },
+        {
+            "id": "update_employee_profiles",
+            "description": "Agent updates the specific employees (EMP005, EMP008, EMP010, EMP014, EMP016, EMP019) to their correct statuses as per the manifest.",
+            "points": 40,
+            "visual_evidence": "Screenshots of the 'Edit Employee' or 'Employee List' pages showing the updated status for the specific employee IDs mentioned in the manifest."
+        },
+        {
+            "id": "create_leave_type",
+            "description": "Agent creates the 'Unpaid Personal Leave' leave type with code 'UPL' and 0 days.",
+            "points": 30,
+            "visual_evidence": "The 'Leave Management' or 'Leave Types' configuration screen showing 'Unpaid Personal Leave' with code 'UPL' and '0' in the days/limit field."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed the remediation through the Sentrifugo web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots showing the browser navigating the Sentrifugo HRMS menus (Configuration, HR, Leave) and filling out web forms."
+        },
+        {
+            "id": "genuine_manifest_reading",
+            "description": "The agent actually opened the manifest file before performing actions.",
+            "visual_evidence": "A screenshot showing the manifest file content being displayed before the agent navigates to the browser to make changes."
+        },
+        {
+            "id": "no_terminal_shortcuts",
+            "description": "The agent did not use curl or scripts to bypass the UI for data entry.",
+            "visual_evidence": "Absence of terminal commands that interact with the Sentrifugo API or database; presence of mouse cursor and form-filling in the browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The manifest requires: 1) Creating 4 statuses: 'Part-Time Regular', 'Contract - Fixed Term', 'Seasonal Worker', 'Intern - Paid'. 2) Updating 6 employees: EMP005 (Part-Time Regular), EMP008 (Contract - Fixed Term), EMP010 (Part-Time Regular), EMP014 (Seasonal Worker), EMP016 (Intern - Paid), EMP019 (Contract - Fixed Term). 3) Creating a leave type: Name='Unpaid Personal Leave', Code='UPL', Days=0."
+}

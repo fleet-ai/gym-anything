@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_interface_focus_mode@1",
+    "task_completion": [
+        {
+            "id": "access_config_file",
+            "description": "The agent accessed the Jitsi configuration file to modify the interface settings.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the file /home/ga/.jitsi-meet-cfg/web/custom-interface_config.js being edited."
+        },
+        {
+            "id": "set_app_name",
+            "description": "The application name is set to 'ExamPortal' in the configuration or visible in the UI.",
+            "points": 20,
+            "visual_evidence": "The string 'ExamPortal' appearing in the Jitsi web interface (e.g., top left corner or page title) in the branding screenshot."
+        },
+        {
+            "id": "configure_toolbar_buttons",
+            "description": "The toolbar is configured to include only the 8 specified buttons.",
+            "points": 30,
+            "visual_evidence": "The configuration file showing the 'TOOLBAR_BUTTONS' array containing exactly: 'microphone', 'camera', 'desktop', 'fullscreen', 'hangup', 'raisehand', 'chat', and 'tileview'."
+        },
+        {
+            "id": "verify_toolbar_ui",
+            "description": "The live Jitsi interface displays the simplified toolbar with the correct icons.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the Jitsi meeting showing a toolbar with only the 8 requested icons and no others (like settings, invite, or recording)."
+        },
+        {
+            "id": "save_required_screenshots",
+            "description": "The agent saved the two specific screenshots to the ~/Documents folder.",
+            "points": 20,
+            "visual_evidence": "A file manager or terminal output showing focus_mode_toolbar.png and focus_mode_branding.png exist in /home/ga/Documents/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_ui_interaction",
+            "description": "The agent interacted with the Jitsi web interface or configuration files rather than just creating dummy image files.",
+            "visual_evidence": "Screenshots showing the browser navigating to the Jitsi URL and the actual Jitsi UI elements, not just static image viewing."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "The branding 'ExamPortal' is rendered as part of the application UI, not just typed into a text box or overlayed manually.",
+            "visual_evidence": "The 'ExamPortal' text appearing in the standard Jitsi branding location (usually top-left) with consistent CSS styling."
+        },
+        {
+            "id": "config_file_persistence",
+            "description": "The changes were made in the actual configuration path provided in the privileged info.",
+            "visual_evidence": "The file path /home/ga/.jitsi-meet-cfg/web/custom-interface_config.js is visible during the editing process."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi configuration is located at /home/ga/.jitsi-meet-cfg/web/custom-interface_config.js. The expected application name is 'ExamPortal'. The toolbar must contain exactly 8 buttons: microphone, camera, desktop, fullscreen, hangup, raisehand, chat, and tileview. Any additional buttons in the toolbar screenshot indicate a failure to properly filter the interface."
+}

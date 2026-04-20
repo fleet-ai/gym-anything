@@ -1,0 +1,59 @@
+{
+    "task_id": "semiconductor_spc_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the source CSV data and the SPC constants reference file.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing 'wafer_thickness_data.csv' and 'spc_constants_reference.txt' open in a spreadsheet application or text editor."
+        },
+        {
+            "id": "calculate_subgroup_stats",
+            "description": "Agent calculates the Subgroup Mean (X-bar) and Subgroup Range (R) for each of the 30 lots.",
+            "points": 20,
+            "visual_evidence": "Spreadsheet columns showing calculated average and range values for each row of wafer data."
+        },
+        {
+            "id": "calculate_process_parameters",
+            "description": "Agent calculates the Grand Mean (X-double bar) and Average Range (R-bar).",
+            "points": 15,
+            "visual_evidence": "Cells in the spreadsheet containing the average of all subgroup means and the average of all subgroup ranges."
+        },
+        {
+            "id": "calculate_control_limits",
+            "description": "Agent calculates UCL and LCL for both X-bar and R charts using the provided constants (A2, D3, D4).",
+            "points": 20,
+            "visual_evidence": "Spreadsheet showing formulas or values for X-bar UCL/LCL and R-chart UCL/LCL based on the constants 0.577, 0.0, and 2.114."
+        },
+        {
+            "id": "out_of_control_flag",
+            "description": "Agent creates an 'Out of Control Flag' column to identify lots where the Mean is outside the X-bar control limits.",
+            "points": 15,
+            "visual_evidence": "A column titled 'Out of Control Flag' (or similar) with indicators (e.g., TRUE/FALSE, Yes/No) for rows where the mean exceeds limits."
+        },
+        {
+            "id": "save_final_xlsx",
+            "description": "Agent saves the completed analysis as an Excel file in the specified directory.",
+            "points": 20,
+            "visual_evidence": "The file 'wafer_spc_analysis.xlsx' visible in the file explorer or the 'Save As' dialog targeting '~/Documents/Spreadsheets/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses a spreadsheet GUI (like LibreOffice Calc) rather than just executing a python script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent interacting with spreadsheet cells, menus, or toolbars."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent calculates values from the provided data rather than typing in pre-known final answers.",
+            "visual_evidence": "Formula bar showing calculations (e.g., =AVERAGE(...), =MAX()-MIN(...)) instead of static numbers."
+        },
+        {
+            "id": "correct_constants_usage",
+            "description": "Agent uses the specific constants provided in the reference file for n=5.",
+            "visual_evidence": "The values A2=0.577, D3=0.0, and D4=2.114 being used in the control limit formulas."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 30 lots with 5 measurements each (n=5). The SPC constants for n=5 are: A2=0.577, D3=0.0, D4=2.114. The final output must be an Excel file named 'wafer_spc_analysis.xlsx' located in '~/Documents/Spreadsheets/'. The 'Out of Control Flag' must specifically check if the Subgroup Mean is strictly outside the X-bar control limits."
+}

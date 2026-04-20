@@ -1,0 +1,59 @@
+{
+    "task_id": "implement_qc_workflow@1",
+    "task_completion": [
+        {
+            "id": "add_qc_status_column",
+            "description": "Add a 'QC_Status' column to the 'Track' table schema.",
+            "points": 15,
+            "visual_evidence": "The 'Track' table design view or table data view showing a new column header named 'QC_Status'."
+        },
+        {
+            "id": "update_mpeg_approved",
+            "description": "Update 'QC_Status' to 'Approved' for 'MPEG audio file' tracks.",
+            "points": 20,
+            "visual_evidence": "The 'Track' table data view showing 'Approved' in the 'QC_Status' column for rows where the MediaTypeId or Media Type name corresponds to MPEG audio."
+        },
+        {
+            "id": "update_protected_aac_pending",
+            "description": "Update 'QC_Status' to 'Pending Review' for 'Protected AAC audio file' tracks.",
+            "points": 20,
+            "visual_evidence": "The 'Track' table data view showing 'Pending Review' in the 'QC_Status' column for Protected AAC tracks."
+        },
+        {
+            "id": "update_purchased_aac_legacy",
+            "description": "Update 'QC_Status' to 'Legacy' for 'Purchased AAC audio file' tracks.",
+            "points": 15,
+            "visual_evidence": "The 'Track' table data view showing 'Legacy' in the 'QC_Status' column for Purchased AAC tracks."
+        },
+        {
+            "id": "create_pending_query",
+            "description": "Create and save a query named 'v_QC_Pending_List' with specific columns and filter.",
+            "points": 20,
+            "visual_evidence": "A query named 'v_QC_Pending_List' visible in the Queries section of LibreOffice Base, containing columns TrackId, Name, Composer, and QC_Status, filtered for 'Pending Review'."
+        },
+        {
+            "id": "save_database",
+            "description": "Save the database to persist changes.",
+            "points": 10,
+            "visual_evidence": "The 'Save' icon being clicked, or the status bar indicating the document is saved, or the application closing without a 'discard changes' prompt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to perform tasks rather than external scripts.",
+            "visual_evidence": "Screenshots showing the LibreOffice Base Table Design, Table Data View, or Query Design windows being actively used."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The query 'v_QC_Pending_List' shows actual data results from the database.",
+            "visual_evidence": "The query result set window showing multiple rows of data (e.g., TrackId, Name) rather than an empty table or a static text file."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use a terminal to execute SQL updates directly on the underlying database file to bypass the GUI.",
+            "visual_evidence": "Absence of terminal windows executing 'sqlite3' or similar commands; focus remains on the LibreOffice application."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Track' table must be modified to include 'QC_Status'. Mapping requirements: 'MPEG audio file' -> 'Approved'; 'Protected AAC audio file' -> 'Pending Review'; 'Purchased AAC audio file' -> 'Legacy'. The query 'v_QC_Pending_List' must specifically include TrackId, Name, Composer, and QC_Status, and must only show records where QC_Status is 'Pending Review'. Note: In LibreOffice Base, the table name is 'Track' (singular) and the query name must be exactly 'v_QC_Pending_List'."
+}

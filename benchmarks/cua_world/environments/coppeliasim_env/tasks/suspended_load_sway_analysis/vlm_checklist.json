@@ -1,0 +1,59 @@
+{
+    "task_id": "suspended_load_sway_analysis@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_scene_setup",
+            "description": "Programmatically build a 1D gantry crane with a passive suspended pendulum in CoppeliaSim.",
+            "points": 15,
+            "visual_evidence": "CoppeliaSim window showing a scene with a gantry/trolley and a pendulum (rod/string with a mass) attached via a revolute joint."
+        },
+        {
+            "id": "execution_of_trials",
+            "description": "Execute the 2.0-meter horizontal translation using both 'abrupt' and 'smooth' velocity profiles.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the simulation running or code/terminal output showing the execution of two distinct motion profiles (e.g., step vs. S-curve/trapezoidal)."
+        },
+        {
+            "id": "data_recording_duration",
+            "description": "Record simulation data for at least 8 simulated seconds per trial at >= 20 Hz.",
+            "points": 15,
+            "visual_evidence": "Code snippets showing a loop with a 0.05s (or smaller) time step or a CSV file preview with timestamps reaching at least 8.0 seconds."
+        },
+        {
+            "id": "csv_export_verification",
+            "description": "Export time-series data to /home/ga/Documents/CoppeliaSim/exports/sway_timeseries.csv with correct columns.",
+            "points": 20,
+            "visual_evidence": "Terminal output (e.g., 'ls' or 'cat') or a file explorer showing the CSV file at the specified path with columns: trial_name, sim_time_s, trolley_x_m, sway_angle_deg."
+        },
+        {
+            "id": "sway_reduction_analysis",
+            "description": "Compute maximum absolute sway angles and demonstrate a reduction in payload sway.",
+            "points": 15,
+            "visual_evidence": "Terminal output or script logs showing the calculated max sway for both trials and a comparison indicating the smooth profile had less sway."
+        },
+        {
+            "id": "json_report_export",
+            "description": "Export the summary report to /home/ga/Documents/CoppeliaSim/exports/sway_report.json with required fields.",
+            "points": 15,
+            "visual_evidence": "A 'cat' or 'jq' command showing the JSON file content with fields: pendulum_length_m, abrupt_max_sway_deg, smooth_max_sway_deg, sway_reduction_pct."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "Verify the agent actually ran the CoppeliaSim simulation rather than hardcoding results.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim GUI in an active state (play button pressed, simulation time clock running) or logs showing API communication with the simulator."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check that the exported CSV data matches the physical parameters of the task.",
+            "visual_evidence": "The 'trolley_x_m' column in the CSV or terminal output should show values reaching approximately 2.0m, and 'sim_time_s' should reach at least 8s."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Ensure the agent didn't use dummy values for the sway reduction.",
+            "visual_evidence": "The 'sway_reduction_pct' in the JSON report should be a calculated value based on the 'abrupt' and 'smooth' angles, not a round number like 50% or 0%."
+        }
+    ],
+    "privileged_info_for_vlm": "The pendulum length must be 1.0m. The target travel distance is 2.0m. For a 1.0m pendulum, the theoretical oscillation period is approximately 2.006 seconds; the agent's data should reflect this physical reality. A successful 'smooth' profile should result in a sway reduction of at least 25% compared to the 'abrupt' profile."
+}

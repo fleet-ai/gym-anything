@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_ui_component_extraction@1",
+    "task_completion": [
+        {
+            "id": "directory_creation",
+            "description": "Create the directory ~/Documents/UI_Analysis/",
+            "points": 10,
+            "visual_evidence": "A file manager window or terminal output showing the creation or existence of the /Documents/UI_Analysis/ directory."
+        },
+        {
+            "id": "extract_typography_data",
+            "description": "Use Firefox DevTools to find computed font-family and font-size for the <h1>.",
+            "points": 20,
+            "visual_evidence": "Firefox DevTools 'Computed' tab visible, showing the <h1> element selected and its CSS properties (font-family, font-size) displayed."
+        },
+        {
+            "id": "save_typography_file",
+            "description": "Save the extracted typography values to typography.txt.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing typography.txt containing the font-family and font-size values."
+        },
+        {
+            "id": "node_screenshot_capture",
+            "description": "Capture an isolated node screenshot of the <h1> element.",
+            "points": 20,
+            "visual_evidence": "The agent right-clicking the <h1> in the Inspector and selecting 'Screenshot Node', or the resulting heading_component.png file showing only the text 'Resources for developers, by developers' with no surrounding page elements."
+        },
+        {
+            "id": "responsive_mode_setup",
+            "description": "Activate Responsive Design Mode and set viewport to 375x812 with DPR 1.",
+            "points": 15,
+            "visual_evidence": "Firefox showing the Responsive Design Mode toolbar with '375 x 812' entered in the dimensions and '1' or '1.0' in the DPR field."
+        },
+        {
+            "id": "mobile_viewport_screenshot",
+            "description": "Capture and save the mobile viewport screenshot as mobile_viewport.png.",
+            "points": 20,
+            "visual_evidence": "The mobile_viewport.png file visible in the file system, showing the MDN page rendered in a narrow mobile aspect ratio."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_devtools",
+            "description": "Agent used the Firefox DevTools GUI rather than just guessing values.",
+            "visual_evidence": "Screenshots must show the DevTools panel open and the <h1> element highlighted in the DOM tree."
+        },
+        {
+            "id": "no_wayback_header_interference",
+            "description": "Agent correctly targeted the MDN <h1>, not the Wayback Machine archive header.",
+            "visual_evidence": "The Inspector selection or the node screenshot should specifically target the MDN content area, not the top-most 'Internet Archive' banner."
+        },
+        {
+            "id": "genuine_rdm_usage",
+            "description": "Agent used the built-in Firefox Responsive Design Mode tool.",
+            "visual_evidence": "The Firefox UI should show the blue RDM frame or the RDM specific toolbar buttons during the screenshot process."
+        }
+    ],
+    "privileged_info_for_vlm": "The target <h1> text is 'Resources for developers, by developers'. In the archived MDN site, the computed font-family is typically a stack starting with 'Inter' or 'Arial', and the font-size for the main heading is usually 48px or 3rem on desktop. The node screenshot must contain only the heading text on its background. The mobile screenshot must show the site layout adjusted for a 375px width."
+}

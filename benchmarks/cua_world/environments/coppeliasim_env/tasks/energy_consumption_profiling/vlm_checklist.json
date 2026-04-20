@@ -1,0 +1,59 @@
+{
+    "task_id": "energy_consumption_profiling@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "The agent successfully launches the CoppeliaSim application.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI window is visible on the desktop."
+        },
+        {
+            "id": "zmq_api_connection",
+            "description": "The agent writes or executes code that initiates a connection via the ZMQ Remote API.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing 'coppelia.zmqRemoteApi' import or client initialization."
+        },
+        {
+            "id": "motion_profile_execution",
+            "description": "The agent executes at least three distinct motion profiles for the robot arm.",
+            "points": 25,
+            "visual_evidence": "The robot arm is seen in different poses across multiple screenshots, or code shows loops/functions for 3+ distinct trajectories."
+        },
+        {
+            "id": "data_collection_logic",
+            "description": "The agent implements logic to calculate instantaneous power using joint torques and velocities.",
+            "points": 20,
+            "visual_evidence": "Code showing the calculation 'torque * velocity' or 'abs(torque * velocity)' within a simulation loop."
+        },
+        {
+            "id": "csv_export",
+            "description": "The agent saves the per-timestep data to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code showing the saving of data to /home/ga/Documents/CoppeliaSim/exports/energy_profile.csv."
+        },
+        {
+            "id": "json_report_export",
+            "description": "The agent saves aggregate energy statistics to the specified JSON path.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code showing the saving of data to /home/ga/Documents/CoppeliaSim/exports/energy_report.json."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation",
+            "description": "The agent interacted with the CoppeliaSim environment rather than just creating dummy files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim simulation running (play button active or robot moving) while code is executing."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the energy values into the output files.",
+            "visual_evidence": "The agent uses programming logic (Python/ZMQ) to write the files rather than a text editor to manually fill in numbers."
+        },
+        {
+            "id": "distinct_profiles",
+            "description": "The agent actually performed three different movements.",
+            "visual_evidence": "Code or visual simulation states show different target positions or joint configurations for each of the three profiles."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the ZMQ Remote API to communicate with CoppeliaSim. It must execute at least 3 distinct motion profiles. The required output files are exactly /home/ga/Documents/CoppeliaSim/exports/energy_profile.csv (containing torque, velocity, and |torque x velocity|) and /home/ga/Documents/CoppeliaSim/exports/energy_report.json (containing aggregate stats)."
+}

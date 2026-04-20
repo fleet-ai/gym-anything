@@ -1,0 +1,59 @@
+{
+    "task_id": "create_closed_curve_roi@1",
+    "task_completion": [
+        {
+            "id": "load_mri_data",
+            "description": "The BraTS FLAIR MRI volume is loaded into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "The slice viewers (Red, Green, Yellow) show brain MRI scans, and the Data module or Subject Hierarchy lists a volume from the BraTS directory."
+        },
+        {
+            "id": "open_markups_module",
+            "description": "The agent has navigated to the 'Markups' module or selected the 'Closed Curve' tool from the toolbar.",
+            "points": 10,
+            "visual_evidence": "The Markups module panel is visible on the left, or the 'Create Closed Curve' icon is highlighted in the top toolbar."
+        },
+        {
+            "id": "set_markup_name",
+            "description": "The markup node is named exactly 'GTV_Tumor_Margin'.",
+            "points": 15,
+            "visual_evidence": "The text 'GTV_Tumor_Margin' appears in the Markups list or the Subject Hierarchy as the name of the curve node."
+        },
+        {
+            "id": "axial_slice_selection",
+            "description": "The agent is interacting with an axial slice (typically the Red slice viewer) showing a visible tumor.",
+            "points": 10,
+            "visual_evidence": "The Red slice viewer is active and shows a hyperintense (bright) region characteristic of a FLAIR tumor."
+        },
+        {
+            "id": "place_control_points",
+            "description": "At least 10 control points are placed to outline the tumor.",
+            "points": 30,
+            "visual_evidence": "The Markups control point table shows at least 10 rows, or the visual curve in the slice viewer has at least 10 distinct interaction handles/points."
+        },
+        {
+            "id": "closed_curve_geometry",
+            "description": "The markup is a closed curve forming a loop around the tumor.",
+            "points": 25,
+            "visual_evidence": "The curve connects back to the starting point, forming a complete boundary around the bright tumor area in the axial view."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI to place points rather than just executing a script in the Python console.",
+            "visual_evidence": "Screenshots show the mouse cursor or placement icons active over the slice viewer, rather than just a block of code in the Python Interactor."
+        },
+        {
+            "id": "genuine_data_usage",
+            "description": "The agent interacted with the actual BraTS volume provided in the file path.",
+            "visual_evidence": "The volume name in the Slicer UI matches the BraTS naming convention (e.g., BraTS2021_00000_flair)."
+        },
+        {
+            "id": "manual_tracing",
+            "description": "The points are distributed around the tumor boundary manually.",
+            "visual_evidence": "Control points are visible on the screen at the boundary of the hyperintense FLAIR signal."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using 3D Slicer. The FLAIR sequence in BraTS data shows tumors as bright (hyperintense) regions. The agent must use the 'Closed Curve' markup type, not 'Open Curve' or 'Line'. The specific name 'GTV_Tumor_Margin' is case-sensitive and must be visible in the node list."
+}

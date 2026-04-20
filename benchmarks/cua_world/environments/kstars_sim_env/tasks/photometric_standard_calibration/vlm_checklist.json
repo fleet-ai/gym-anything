@@ -1,0 +1,59 @@
+{
+    "task_id": "photometric_standard_calibration@1",
+    "task_completion": [
+        {
+            "id": "read_calibration_spec",
+            "description": "Agent reads the photometric calibration specification file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window displaying the contents of ~/Documents/phot_cal_spec.txt."
+        },
+        {
+            "id": "target_slewing",
+            "description": "Telescope is slewed to the correct coordinates for SA 98.",
+            "points": 15,
+            "visual_evidence": "Observatory control software showing RA 06h 51m 36s and Dec -00d 17m 00s (or approximately 6.86h, -0.283d)."
+        },
+        {
+            "id": "filter_selection_bvr",
+            "description": "Agent selects the required B, V, and R filters for the calibration.",
+            "points": 15,
+            "visual_evidence": "GUI interaction with a filter wheel or imaging sequencer showing slots 3 (B), 2 (V), and 4 (R) being selected or queued."
+        },
+        {
+            "id": "image_acquisition_sequence",
+            "description": "Agent initiates an imaging sequence of at least 5 frames per filter.",
+            "points": 25,
+            "visual_evidence": "Imaging software progress bar or sequence table showing 5 exposures being taken for each of the three filters (B, V, R)."
+        },
+        {
+            "id": "fits_file_generation",
+            "description": "FITS files are generated and visible in the file system or image viewer.",
+            "points": 15,
+            "visual_evidence": "A file explorer or image gallery showing multiple .fits files with timestamps corresponding to the session."
+        },
+        {
+            "id": "file_delivery",
+            "description": "Required output files are moved/uploaded to the specified delivery directory.",
+            "points": 20,
+            "visual_evidence": "Terminal output or file manager showing files located in /home/ga/Images/photcal/sa98."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_priority",
+            "description": "Agent used the observatory GUI software rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the telescope control and camera GUI windows being active and interacted with."
+        },
+        {
+            "id": "genuine_exposure_time",
+            "description": "Agent waited for actual exposures to complete rather than script-simulating file creation.",
+            "visual_evidence": "Sequential screenshots show progress bars or countdown timers for CCD exposures."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not simply echo strings into a file to bypass the imaging process.",
+            "visual_evidence": "The agent is seen configuring exposure settings (time, binning, filter) in the software interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The target is SA 98 (Landolt standard field) at RA 06:51:36 (-6.86h) and Dec -00:17:00 (-0.283d). Required filters are B (Slot 3), V (Slot 2), and R (Slot 4). A minimum of 5 FITS images per filter must be captured. The final output directory is /home/ga/Images/photcal/sa98."
+}

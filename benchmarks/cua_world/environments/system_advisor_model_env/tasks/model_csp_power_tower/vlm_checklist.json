@@ -1,0 +1,59 @@
+{
+    "task_id": "model_csp_power_tower@1",
+    "task_completion": [
+        {
+            "id": "locate_weather_file",
+            "description": "Agent identifies a high-DNI TMY weather file (Tucson, Phoenix, or Daggett) from the specified directory.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file explorer showing the contents of /home/ga/.SAM/solar_resource_dir.txt and the selection of a valid .csv or .tm2 file."
+        },
+        {
+            "id": "pysam_script_creation",
+            "description": "Agent writes a Python script using PySAM to model a Molten Salt Power Tower (MSPT).",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing 'import PySAM.TcsmoltenSalt' or similar MSPT modules and the script being saved to /home/ga/Documents/SAM_Projects/csp_power_tower_model.py."
+        },
+        {
+            "id": "configure_model_parameters",
+            "description": "Agent sets P_ref to 100 MW, tshours to 10, and solar_multiple to 2.4 in the script.",
+            "points": 20,
+            "visual_evidence": "Code snippets showing variables like 'P_ref' set to 100, 'tshours' set to 10, and 'solarm' or 'solar_multiple' set to 2.4."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "Agent runs the Python script to execute the SAM simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal showing the execution of 'python3 /home/ga/Documents/SAM_Projects/csp_power_tower_model.py' without errors."
+        },
+        {
+            "id": "extract_results",
+            "description": "Agent extracts annual energy, capacity factor, and real LCOE from the simulation results.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the retrieval of 'annual_energy', 'capacity_factor', and 'lcoe_real' from the PySAM object."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Agent saves the results to the specified JSON file with the correct structure.",
+            "points": 20,
+            "visual_evidence": "Terminal command 'cat' or a text editor showing the content of /home/ga/Documents/SAM_Projects/csp_power_tower_results.json with the required keys and values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final results without running a simulation.",
+            "visual_evidence": "The Python script should contain logic to execute the model (e.g., .execute()) rather than just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_weather_path",
+            "description": "Agent used the path found in the solar_resource_dir.txt file.",
+            "visual_evidence": "The script or terminal should show the agent reading /home/ga/.SAM/solar_resource_dir.txt to find the weather file path."
+        },
+        {
+            "id": "correct_pysam_usage",
+            "description": "Agent interacted with the PySAM library rather than a mock script.",
+            "visual_evidence": "Presence of PySAM-specific class calls like 'TcsmoltenSalt' or 'Singleowner' in the code."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use PySAM to model a Molten Salt Power Tower. Required inputs: P_ref = 100 MW, tshours = 10, solar_multiple = 2.4. Expected weather files are in /home/ga/.SAM/solar_resource_dir.txt (e.g., Tucson, Phoenix, or Daggett). Plausible Annual Energy (GWh) should be between 200 and 800 GWh. The final JSON must be at /home/ga/Documents/SAM_Projects/csp_power_tower_results.json and the script at /home/ga/Documents/SAM_Projects/csp_power_tower_model.py."
+}

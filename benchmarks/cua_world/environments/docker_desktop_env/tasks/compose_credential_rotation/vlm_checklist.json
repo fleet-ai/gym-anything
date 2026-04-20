@@ -1,0 +1,59 @@
+{
+    "task_id": "compose_credential_rotation@1",
+    "task_completion": [
+        {
+            "id": "edit_docker_compose_db",
+            "description": "Update the PostgreSQL service password in docker-compose.yml to 'SecureNewPass!2024'.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the 'db' service environment variable POSTGRES_PASSWORD set to 'SecureNewPass!2024' in /home/ga/app-stack/docker-compose.yml."
+        },
+        {
+            "id": "edit_docker_compose_adminer",
+            "description": "Update the Adminer service environment variables in docker-compose.yml to use the new password.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the Adminer service environment variables (e.g., ADMINER_PASSWORD or similar connection strings) updated to 'SecureNewPass!2024' in the same compose file."
+        },
+        {
+            "id": "restart_services",
+            "description": "Restart the Docker Compose services to apply the new configuration.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing commands like 'docker-compose up -d' or 'docker-compose restart' being executed, followed by logs indicating services are starting."
+        },
+        {
+            "id": "verify_service_status",
+            "description": "Ensure all services are running after the credential rotation.",
+            "points": 10,
+            "visual_evidence": "Terminal output from 'docker-compose ps' or 'docker ps' showing both the database and Adminer containers with a status of 'Up' or 'Running'."
+        },
+        {
+            "id": "adminer_login_success",
+            "description": "Log in to Adminer at http://localhost:8081 using the new credentials.",
+            "points": 25,
+            "visual_evidence": "A browser screenshot of the Adminer login page with 'appuser' and 'SecureNewPass!2024' entered, or the subsequent page showing a successful connection to the 'appdb' database."
+        },
+        {
+            "id": "verify_data_preservation",
+            "description": "Verify that existing data (5 project rows) is preserved after the rotation.",
+            "points": 15,
+            "visual_evidence": "A browser screenshot of the Adminer interface showing the 'projects' table containing 5 rows of data (e.g., 'Cloud Migration Phase 2', 'Mobile App Redesign', etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_success",
+            "description": "Verify the agent didn't just echo a success message without performing the work.",
+            "visual_evidence": "The agent must be seen interacting with the file system (/home/ga/app-stack/docker-compose.yml) and the browser (localhost:8081), not just printing 'Task Complete' in the terminal."
+        },
+        {
+            "id": "genuine_adminer_interaction",
+            "description": "Verify the agent actually used the Adminer GUI to test the connection.",
+            "visual_evidence": "Screenshots must show the browser navigating to http://localhost:8081 and interacting with the login form and database tables."
+        },
+        {
+            "id": "volume_persistence",
+            "description": "Ensure the agent did not delete the database volumes to 'fix' connection issues.",
+            "visual_evidence": "The 'projects' table must still contain the 5 original rows of data; if the table is empty, the agent likely wiped the volume."
+        }
+    ],
+    "privileged_info_for_vlm": "The project directory is /home/ga/app-stack/. The database service is 'db', the user is 'appuser', the database name is 'appdb', and the new password must be 'SecureNewPass!2024'. Adminer is hosted at http://localhost:8081. Successful verification requires seeing 5 specific rows in the 'projects' table (including 'Cloud Migration Phase 2' and 'Security Compliance Audit') after the password change."
+}

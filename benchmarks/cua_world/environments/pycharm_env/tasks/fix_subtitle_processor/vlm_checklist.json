@@ -1,0 +1,62 @@
+{
+    "task_id": "fix_subtitle_processor@1",
+    "task_completion": [
+        {
+            "id": "project_exploration",
+            "description": "Agent navigates to the project directory and identifies the source files and test suite.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the file explorer or terminal at /home/ga/PycharmProjects/subtitle_processor, listing processor/ and tests/ directories."
+        },
+        {
+            "id": "initial_test_failure",
+            "description": "Agent runs pytest to confirm the existing bugs and see the failing tests.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing 'pytest' output with multiple red 'F' indicators or a summary showing failed tests."
+        },
+        {
+            "id": "fix_timestamp_rollover",
+            "description": "Agent modifies processor/timestamp.py to handle seconds/minutes overflow (e.g., 61 seconds becomes 1 minute 1 second).",
+            "points": 25,
+            "visual_evidence": "Code editor showing logic in timestamp.py that uses modulo (%) and floor division (//) to normalize time units."
+        },
+        {
+            "id": "fix_parser_eof",
+            "description": "Agent modifies processor/parser.py to ensure the last subtitle block is processed even if the file lacks a trailing newline.",
+            "points": 25,
+            "visual_evidence": "Code editor showing changes in parser.py, likely adding a check for remaining buffer content after the main loop finishes."
+        },
+        {
+            "id": "fix_conversion_drift",
+            "description": "Agent modifies processor/converter.py to fix the frame rate conversion ratio logic.",
+            "points": 20,
+            "visual_evidence": "Code editor showing changes to the math in converter.py, ensuring the ratio between source and target frame rates is applied correctly."
+        },
+        {
+            "id": "final_test_pass",
+            "description": "Agent runs pytest and all tests pass with exit code 0.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing 'pytest' output with 'passed' in green and 'exit code 0'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_tampering",
+            "description": "The agent did not modify the test files to force a pass.",
+            "points": null,
+            "visual_evidence": "The agent should not be seen editing files in the 'tests/' directory; only files in 'processor/' should be modified."
+        },
+        {
+            "id": "genuine_code_editing",
+            "description": "The agent manually edited the source code rather than just printing the desired output to the console.",
+            "points": null,
+            "visual_evidence": "Screenshots show the agent using an IDE (PyCharm) or text editor to save changes to the .py files."
+        },
+        {
+            "id": "no_hardcoding_results",
+            "description": "The agent did not hardcode specific test values into the source code.",
+            "points": null,
+            "visual_evidence": "The code changes in the editor show general logic (loops, math, conditionals) rather than 'if input == x: return y' statements."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/subtitle_processor. There are three specific bugs to fix: 1) Timestamp rollover in processor/timestamp.py (e.g., 61 seconds must roll over to minutes). 2) EOF parsing in processor/parser.py (missing last subtitle if no trailing newline). 3) Conversion drift in processor/converter.py (incorrect frame rate math). A successful task requires all pytest tests to pass without modifying the test files themselves."
+}

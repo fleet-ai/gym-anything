@@ -1,0 +1,53 @@
+{
+    "task_id": "dns_recursion_policy_audit@1",
+    "task_completion": [
+        {
+            "id": "open_dns_cap",
+            "description": "Open the capture file /home/ga/Documents/captures/dns.cap in Wireshark.",
+            "points": 10,
+            "visual_evidence": "Wireshark window showing 'dns.cap' in the title bar or file path."
+        },
+        {
+            "id": "filter_recursion_desired",
+            "description": "Apply a display filter to identify packets with 'Recursion Desired' set.",
+            "points": 15,
+            "visual_evidence": "The Wireshark display filter bar contains a filter like 'dns.flags.recdesired == 1' or 'dns.flags.rd == 1'."
+        },
+        {
+            "id": "export_recursive_pcap",
+            "description": "Export the filtered packets to /home/ga/Documents/captures/recursive_queries.pcap.",
+            "points": 25,
+            "visual_evidence": "The 'Export Specified Packets' dialog box or a terminal command showing the output path 'recursive_queries.pcap'."
+        },
+        {
+            "id": "identify_recursion_available",
+            "description": "Identify if the server supports recursion by checking the 'Recursion Available' flag in response packets.",
+            "points": 20,
+            "visual_evidence": "The packet details pane showing 'Flags: ... Recursion available: Set' or a filter for 'dns.flags.recavail == 1'."
+        },
+        {
+            "id": "create_json_report",
+            "description": "Create the dns_audit_report.json with the required structure and counts.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the content of 'dns_audit_report.json' with keys: total_packets, recursive_queries_count, ra_count, and server_supports_recursion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_wireshark_interaction",
+            "description": "The agent must interact with the Wireshark GUI or tshark/capinfos tools rather than guessing values.",
+            "visual_evidence": "Screenshots showing the Wireshark application open or terminal commands being executed on the specific pcap file."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent should not simply echo the JSON structure without performing the analysis.",
+            "visual_evidence": "Evidence of the agent calculating counts (e.g., looking at the status bar for 'Displayed' packet counts or using 'wc -l')."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "The agent must use the specific file paths provided in the task description.",
+            "visual_evidence": "Commands or file dialogs explicitly referencing /home/ga/Documents/captures/."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file 'dns.cap' contains 38 total DNS packets. All 38 packets have 'Recursion Desired' set. 19 packets have 'Recursion Available' set, meaning the server DOES support recursion. Note: The environment's automated ground truth incorrectly expects 0 for counts and 'false' for support due to a bug in the setup script's filters (using .rd instead of .recdesired). However, for this manual verification, the true values are 38 (RD), 19 (RA), and true (support)."
+}

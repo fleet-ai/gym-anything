@@ -1,0 +1,59 @@
+{
+    "task_id": "link_records@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logged into the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OrientDB Studio dashboard is visible, showing 'demodb' as the connected database in the header or sidebar."
+        },
+        {
+            "id": "locate_source_profile",
+            "description": "Agent located the Profile record with the email 'domi@nek.gov'.",
+            "points": 15,
+            "visual_evidence": "A query result or record view showing a Profile with the email 'domi@nek.gov' and its associated RID (Record ID)."
+        },
+        {
+            "id": "locate_target_profile",
+            "description": "Agent located the Profile record with the email 'seari@ubu.edu'.",
+            "points": 15,
+            "visual_evidence": "A query result or record view showing a Profile with the email 'seari@ubu.edu' and its associated RID (Record ID)."
+        },
+        {
+            "id": "initiate_edge_creation",
+            "description": "Agent opened the 'Create Edge' dialog or entered a SQL command to create a 'HasFriend' edge.",
+            "points": 20,
+            "visual_evidence": "The 'Create Edge' UI modal is open with 'HasFriend' selected as the class, or a SQL command like 'CREATE EDGE HasFriend...' is typed into the query editor."
+        },
+        {
+            "id": "execute_link_command",
+            "description": "Agent executed the command to link the two specific profiles.",
+            "points": 20,
+            "visual_evidence": "The 'Run' button is clicked or a 'Success' notification appears after executing the edge creation command between the two RIDs."
+        },
+        {
+            "id": "verify_friendship_exists",
+            "description": "Agent confirms the edge exists between the two profiles.",
+            "points": 20,
+            "visual_evidence": "A graph view showing a 'HasFriend' arrow from domi@nek.gov to seari@ubu.edu, or a query result showing the new edge record in the HasFriend class."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than external scripts or terminal commands.",
+            "visual_evidence": "Screenshots show the browser interacting with the OrientDB Studio UI elements (buttons, query editor, graph explorer)."
+        },
+        {
+            "id": "no_hardcoded_rids",
+            "description": "The agent searched for the emails to find the RIDs rather than guessing them.",
+            "visual_evidence": "The agent performs a search or query for 'domi@nek.gov' and 'seari@ubu.edu' before attempting to link them."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The agent interacted with the live 'demodb' instance.",
+            "visual_evidence": "The URL bar shows localhost:2480 and the database name 'demodb' is visible in the Studio interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' database contains a 'Profile' class for users and a 'HasFriend' edge class. The profile 'domi@nek.gov' (Isaac Black) and 'seari@ubu.edu' (Rosie Thornton) are pre-seeded. To create a friendship, the agent must create a graph edge of class 'HasFriend' where the 'out' (source) is domi@nek.gov and the 'in' (target) is seari@ubu.edu. This is typically done via the 'Graph' tab or the 'SQL Command' tab using: CREATE EDGE HasFriend FROM (SELECT FROM Profile WHERE Email = 'domi@nek.gov') TO (SELECT FROM Profile WHERE Email = 'seari@ubu.edu')."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "storage_hwm_optimization@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "verify_initial_state",
+            "description": "Agent verifies the initial size of the SHIPMENT_LOGS table or the row count.",
+            "points": 15,
+            "visual_evidence": "SQL query results showing approximately 5,000 rows or a table size significantly larger than 30MB (e.g., ~200MB)."
+        },
+        {
+            "id": "hwm_reclaim_execution",
+            "description": "Agent executes commands to reclaim space (e.g., ALTER TABLE MOVE or ALTER TABLE SHRINK SPACE).",
+            "points": 35,
+            "visual_evidence": "SQL command execution text such as 'ALTER TABLE SHIPMENT_LOGS SHRINK SPACE' or 'ALTER TABLE SHIPMENT_LOGS MOVE' followed by a success message."
+        },
+        {
+            "id": "index_rebuild_validation",
+            "description": "Agent ensures the IDX_SHIP_LOG_DATE index is in a VALID state after the table move/shrink.",
+            "points": 20,
+            "visual_evidence": "SQL query output from USER_INDEXES or ALL_INDEXES showing status 'VALID' for 'IDX_SHIP_LOG_DATE'."
+        },
+        {
+            "id": "final_size_verification",
+            "description": "Agent verifies the final table size is below 30MB and row count is still 5,000.",
+            "points": 20,
+            "visual_evidence": "SQL query results showing the table size (bytes/blocks) converted to MB is < 30 and 'SELECT COUNT(*) FROM SHIPMENT_LOGS' returns 5,000."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_table_recreation",
+            "description": "Agent did not simply drop and recreate the table with only 5,000 rows to bypass the HWM issue.",
+            "visual_evidence": "Absence of 'DROP TABLE' or 'CREATE TABLE' commands in the command history; use of 'SHRINK' or 'MOVE' instead."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "The agent interacted with the database via a CLI (sqlplus) or GUI tool, not just echoing text.",
+            "visual_evidence": "Standard Oracle database prompts (SQL>) and system-generated execution times or row counts."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not manually type out the final verification results without running a query.",
+            "visual_evidence": "The screenshot shows the actual query execution and the formatted output table from the database engine."
+        }
+    ],
+    "privileged_info_for_vlm": "The target table is 'SHIPMENT_LOGS' and the index is 'IDX_SHIP_LOG_DATE'. The starting row count is exactly 5,000. The target size must be under 30MB. Connection details: Host=localhost, Port=1521, SID/Service=XEPDB1, User=hr, Password=hr123. Validating the index status is critical if a 'MOVE' operation was used, as it marks indexes as UNUSABLE."
+}

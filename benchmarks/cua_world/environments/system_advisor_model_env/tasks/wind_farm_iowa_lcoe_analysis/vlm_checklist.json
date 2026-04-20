@@ -1,0 +1,53 @@
+{
+    "task_id": "wind_farm_iowa_lcoe_analysis@1",
+    "task_completion": [
+        {
+            "id": "sam_setup_location",
+            "description": "Agent opens SAM and selects/downloads wind resource data for Ames, Iowa (approx. 42.03N, -93.62W).",
+            "points": 15,
+            "visual_evidence": "SAM 'Location and Resource' page showing Iowa coordinates or a downloaded weather file for Ames/Story County."
+        },
+        {
+            "id": "turbine_specs_input",
+            "description": "Agent configures the turbine models (V90-2.0, GE 1.6-100, V110-2.0) with correct hub heights and rotor diameters.",
+            "points": 20,
+            "visual_evidence": "SAM 'Turbine' page showing selection of the specific models or manual entry of 90m/100m/110m rotor diameters and 80m/95m hub heights."
+        },
+        {
+            "id": "financial_parameters_config",
+            "description": "Agent inputs the specific financial parameters: $1,450/kW CAPEX, $42/kW-yr O&M, 7% discount rate, and $0.015/kWh PTC.",
+            "points": 20,
+            "visual_evidence": "SAM 'System Costs' and 'Financial Parameters' pages showing the specified dollar amounts and percentage rates."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Agent runs the simulation for all three configurations to generate performance and financial metrics.",
+            "points": 15,
+            "visual_evidence": "SAM 'Results' page showing calculated values for Annual Energy Production (AEP) and LCOE for the different scenarios."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent saves the final results in the specified JSON format at the correct file path.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal window showing the content of '/home/ga/Documents/SAM_Projects/Iowa_Wind_LCOE_Analysis.json' with all required fields (num_turbines, AEP, LCOE, etc.)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the SAM graphical user interface rather than just writing a script to generate the JSON.",
+            "visual_evidence": "Screenshots showing the SAM application window being navigated and values being entered into the UI fields."
+        },
+        {
+            "id": "genuine_data_retrieval",
+            "description": "Agent actually retrieved wind data rather than using hardcoded placeholder values.",
+            "visual_evidence": "The SAM 'Location and Resource' map or download progress bar for NREL Wind Toolkit data."
+        },
+        {
+            "id": "consistent_financials",
+            "description": "Agent applied the same financial constraints across all three turbine models.",
+            "visual_evidence": "Screenshots showing the financial input pages remain consistent or are updated systematically for each turbine run."
+        }
+    ],
+    "privileged_info_for_vlm": "The target location is Ames, Iowa (42.03, -93.62). Turbine counts for ~10MW: V90-2.0 (5 turbines), GE 1.6-100 (6 turbines = 9.6MW or 7 turbines = 11.2MW; 6 is closer to 10MW), V110-2.0 (5 turbines). The V110-2.0MW typically yields the highest capacity factor and lowest LCOE due to the larger rotor and higher hub height (95m) compared to the others in this specific wind regime."
+}

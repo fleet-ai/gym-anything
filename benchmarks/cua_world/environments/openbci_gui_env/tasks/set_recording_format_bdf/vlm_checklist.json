@@ -1,0 +1,59 @@
+{
+    "task_id": "set_recording_format_bdf@1",
+    "task_completion": [
+        {
+            "id": "select_synthetic_source",
+            "description": "Select 'SYNTHETIC (Live)' as the data source in the OpenBCI GUI.",
+            "points": 10,
+            "visual_evidence": "The 'SYNTHETIC (Live)' option is highlighted or selected in the System Control Panel/Source selection menu."
+        },
+        {
+            "id": "set_bdf_format",
+            "description": "Configure the recording format to BDF+.",
+            "points": 20,
+            "visual_evidence": "The recording format dropdown or radio button is set to 'BDF+' in the GUI settings."
+        },
+        {
+            "id": "start_system_session",
+            "description": "Start the system session to begin data streaming.",
+            "points": 10,
+            "visual_evidence": "The 'Start System' button is clicked and the GUI transitions to the data visualization dashboard."
+        },
+        {
+            "id": "start_recording",
+            "description": "Initiate the data recording process.",
+            "points": 15,
+            "visual_evidence": "The 'Start Recording' button is clicked, and the recording indicator (often a red timer or button state change) becomes active."
+        },
+        {
+            "id": "duration_check",
+            "description": "Record data for at least 5 seconds.",
+            "points": 25,
+            "visual_evidence": "The recording timer in the GUI shows a duration of at least 00:00:05 before the recording is stopped."
+        },
+        {
+            "id": "verify_file_creation",
+            "description": "Verify the .bdf file exists in the default recordings directory.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal window shows a new file with a '.bdf' extension located in the 'OpenBCI_GUI/Recordings' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenBCI GUI to configure settings rather than just creating a dummy file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the GUI buttons and dropdowns for 'Source' and 'Format'."
+        },
+        {
+            "id": "live_data_stream",
+            "description": "The GUI shows active synthetic waveforms during the recording period.",
+            "visual_evidence": "The Time Series widget shows moving synthetic EEG oscillations while the recording timer is incrementing."
+        },
+        {
+            "id": "no_manual_file_rename",
+            "description": "The agent did not manually rename a .txt file to .bdf.",
+            "visual_evidence": "The file properties or the GUI's own recording log indicate the file was natively generated as BDF+."
+        }
+    ],
+    "privileged_info_for_vlm": "The default recordings directory is /home/ga/Documents/OpenBCI_GUI/Recordings. A valid BDF file must have a .bdf extension. The recording must last at least 5 seconds as shown on the GUI's internal clock. The data source must specifically be 'SYNTHETIC (Live)'."
+}

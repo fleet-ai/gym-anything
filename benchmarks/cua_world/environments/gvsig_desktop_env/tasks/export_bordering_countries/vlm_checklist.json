@@ -1,0 +1,53 @@
+{
+    "task_id": "export_bordering_countries@1",
+    "task_completion": [
+        {
+            "id": "open_project_layer",
+            "description": "The agent opens the 'countries_base' project and identifies the 'ne_110m_admin_0_countries' layer.",
+            "points": 10,
+            "visual_evidence": "The gvSIG project manager or main window shows the 'countries_base' project active and the 'ne_110m_admin_0_countries' layer listed in the Table of Contents."
+        },
+        {
+            "id": "select_germany",
+            "description": "The agent selects Germany in the attribute table or on the map to identify its location.",
+            "points": 15,
+            "visual_evidence": "Germany is highlighted (usually in yellow) on the map or selected in the attribute table."
+        },
+        {
+            "id": "spatial_selection_neighbors",
+            "description": "The agent performs a spatial selection or manual selection to identify countries sharing a land border with Germany.",
+            "points": 25,
+            "visual_evidence": "A selection tool (like 'Select by Layer' or manual selection) is used, resulting in the neighboring countries being highlighted on the map."
+        },
+        {
+            "id": "verify_neighbor_selection",
+            "description": "The selection includes the correct 9 neighbors and excludes Germany itself.",
+            "points": 25,
+            "visual_evidence": "The attribute table or map shows Austria, Belgium, Czechia, Denmark, France, Luxembourg, Netherlands, Poland, and Switzerland selected. Germany should NOT be selected."
+        },
+        {
+            "id": "export_to_shapefile",
+            "description": "The agent exports the selected features to the specified file path.",
+            "points": 25,
+            "visual_evidence": "The 'Export to' or 'Save as' dialog is visible with the output path set to /home/ga/gvsig_data/exports/germany_neighbors.shp and the 'Export selected features' option checked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gvSIG GUI to perform the task rather than just using terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks (e.g., Selection menu, Export menu), and gvSIG dialog boxes."
+        },
+        {
+            "id": "no_hardcoded_selection",
+            "description": "The agent did not simply type the names of the countries into a script but used the GIS tools to identify them.",
+            "visual_evidence": "The agent is seen using spatial selection tools or interacting with the map geometry rather than just typing a list of names into a filter."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent followed the software's export wizard/dialog steps.",
+            "visual_evidence": "Sequential screenshots show the export wizard steps (format selection, file path entry, field selection)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target country is Germany. The 9 neighboring countries that must be exported are: Austria, Belgium, Czechia, Denmark, France, Luxembourg, Netherlands, Poland, and Switzerland. Germany itself must be excluded from the final export. The required output path is /home/ga/gvsig_data/exports/germany_neighbors.shp. The layer name in the project is 'ne_110m_admin_0_countries'."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "generate_security_compliance_report@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the MariaDB container 'seb-server-mariadb' using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A terminal or database client showing a successful login to MariaDB with the prompt 'MariaDB [SEBServer]>' or similar."
+        },
+        {
+            "id": "schema_exploration",
+            "description": "Agent explores the EAV schema tables (configuration_node, configuration_attribute, configuration_value).",
+            "points": 15,
+            "visual_evidence": "SQL commands like 'DESCRIBE' or 'SELECT' targeting the three specified tables to understand the EAV structure."
+        },
+        {
+            "id": "query_execution",
+            "description": "Agent executes a query to join the EAV tables and filter for 'EXAM_CONFIG' nodes and the specific boolean attributes.",
+            "points": 30,
+            "visual_evidence": "A complex SQL query visible in the terminal or GUI that joins the three tables and filters for 'allowVirtualMachine' and 'allowScreenSharing'."
+        },
+        {
+            "id": "data_extraction_verification",
+            "description": "The query results show the configuration names alongside their respective boolean values.",
+            "points": 20,
+            "visual_evidence": "A table output in the terminal or database tool showing columns for configuration names and the two security settings."
+        },
+        {
+            "id": "file_creation",
+            "description": "Agent saves the extracted data to the specified CSV file path.",
+            "points": 25,
+            "visual_evidence": "A command like 'SELECT ... INTO OUTFILE' or a redirection/save operation to '~/Documents/compliance_report.csv', followed by a 'cat' or 'ls' command confirming the file exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with the live MariaDB database rather than creating a mock file.",
+            "visual_evidence": "Screenshots must show active SQL queries being sent to the 'seb-server-mariadb' container, not just a text editor manually typing CSV rows."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not copy-paste values from a hidden source or the task prompt.",
+            "visual_evidence": "The agent's workflow should show the logic of mapping EAV IDs to names, indicating they are processing the database structure."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the exact file path specified in the instructions.",
+            "visual_evidence": "The final file must be located at '/home/ga/Documents/compliance_report.csv' as seen in file explorer or terminal commands."
+        }
+    ],
+    "privileged_info_for_vlm": "The database uses an Entity-Attribute-Value (EAV) schema. The agent must join 'configuration_node' (for names), 'configuration_attribute' (for keys like 'allowVirtualMachine'), and 'configuration_value' (for the actual data). The verified output path is /home/ga/Documents/compliance_report.csv. The data is synthetic and seeded during setup; the agent must query the 'seb-server-mariadb' container to find the specific boolean values for 'EXAM_CONFIG' entries."
+}

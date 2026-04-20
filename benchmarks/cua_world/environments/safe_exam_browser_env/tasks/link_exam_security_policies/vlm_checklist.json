@@ -1,0 +1,59 @@
+{
+    "task_id": "link_exam_security_policies@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the SEB Server dashboard using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The SEB Server dashboard or home page is visible, showing the user 'super-admin' logged in."
+        },
+        {
+            "id": "navigate_to_exams",
+            "description": "Navigate to the Exams management section.",
+            "points": 10,
+            "visual_evidence": "A list of exams or an 'Exams' menu item is active on the screen."
+        },
+        {
+            "id": "select_physics_exam",
+            "description": "Locate and select the 'Physics 301 Midterm' exam for editing.",
+            "points": 15,
+            "visual_evidence": "The 'Physics 301 Midterm' exam is highlighted or its specific settings page is open."
+        },
+        {
+            "id": "link_security_template",
+            "description": "Assign the 'High Security Template' to the exam.",
+            "points": 30,
+            "visual_evidence": "The 'High Security Template' is selected in a dropdown or listed as the active Exam Template for the Physics 301 Midterm."
+        },
+        {
+            "id": "link_connection_config",
+            "description": "Assign the 'Campus BYOD Config' to the exam.",
+            "points": 30,
+            "visual_evidence": "The 'Campus BYOD Config' is selected in a dropdown or listed as the active Connection Configuration for the Physics 301 Midterm."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save the updated exam configuration.",
+            "points": 5,
+            "visual_evidence": "A 'Save' button is clicked and a success message or the updated exam list is displayed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within the browser, not just terminal output."
+        },
+        {
+            "id": "no_hardcoded_url_skipping",
+            "description": "The agent navigated through the UI menus rather than jumping directly to a deep-link URL if not provided.",
+            "visual_evidence": "The agent is seen clicking on sidebar menus or navigation tabs to reach the exam settings."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "The agent interacted with the actual SEB Server instance at localhost:8080.",
+            "visual_evidence": "The browser address bar consistently shows http://localhost:8080 during the task."
+        }
+    ],
+    "privileged_info_for_vlm": "The target exam is 'Physics 301 Midterm'. The required Exam Template is 'High Security Template' and the Connection Configuration is 'Campus BYOD Config'. These entities are pre-seeded in the database and should be selectable in the SEB Server UI. If they are missing, the agent is expected to create them with these exact names before linking."
+}

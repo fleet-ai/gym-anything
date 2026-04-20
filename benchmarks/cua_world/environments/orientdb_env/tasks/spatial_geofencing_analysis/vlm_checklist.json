@@ -1,0 +1,53 @@
+{
+    "task_id": "spatial_geofencing_analysis@1",
+    "task_completion": [
+        {
+            "id": "login_demodb",
+            "description": "Connect to the 'demodb' database in OrientDB Studio using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OrientDB Studio interface showing 'demodb' as the active database in the sidebar or header."
+        },
+        {
+            "id": "create_spatial_index",
+            "description": "Create a LUCENE spatial index named 'Hotels.Location' on the 'Hotels' class for 'Latitude' and 'Longitude'.",
+            "points": 25,
+            "visual_evidence": "A SQL command execution or a success message in the 'Schema' or 'Console' tab showing the creation of index 'Hotels.Location' with type 'SPATIAL' and engine 'LUCENE'."
+        },
+        {
+            "id": "add_marketing_zone_property",
+            "description": "Add a string property named 'MarketingZone' to the 'Hotels' class.",
+            "points": 15,
+            "visual_evidence": "The 'Schema' tab for the 'Hotels' class showing 'MarketingZone' as a property with type 'STRING'."
+        },
+        {
+            "id": "execute_spatial_update",
+            "description": "Update the 'MarketingZone' property to 'HistoricCenter' using the specified rectangular polygon coordinates.",
+            "points": 30,
+            "visual_evidence": "An UPDATE SQL query in the console using 'ST_Within' or 'ST_Contains' with the coordinates (12.48 41.89, 12.51 41.89, 12.51 41.91, 12.48 41.91, 12.48 41.89) and a message indicating records were updated."
+        },
+        {
+            "id": "verify_update_results",
+            "description": "Verify that hotels within the zone (like Hotel Artemide) have the 'MarketingZone' set to 'HistoricCenter'.",
+            "points": 20,
+            "visual_evidence": "A query result table showing 'Hotel Artemide' with the 'MarketingZone' column containing the value 'HistoricCenter'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing scripts via a terminal.",
+            "visual_evidence": "Screenshots show the browser with OrientDB Studio (Studio logo, database tabs, and query editor) being interacted with."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not manually edit a single record but used a spatial query to update the database.",
+            "visual_evidence": "The presence of a SQL UPDATE statement containing the POLYGON WKT string in the query editor."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The agent interacted with the actual 'demodb' and not a placeholder or empty database.",
+            "visual_evidence": "The 'Hotels' class is visible in the schema with existing data like Latitude and Longitude values before the update."
+        }
+    ],
+    "privileged_info_for_vlm": "The database name is 'demodb'. The required index name is 'Hotels.Location'. The target value for the new property 'MarketingZone' is 'HistoricCenter'. 'Hotel Artemide' (approx 41.90, 12.49) is inside the target polygon and should be updated. 'Hotel Adlon Kempinski' (Berlin) is outside and should NOT be updated. The polygon WKT is: POLYGON ((12.48 41.89, 12.51 41.89, 12.51 41.91, 12.48 41.91, 12.48 41.89))."
+}

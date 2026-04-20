@@ -1,0 +1,53 @@
+{
+    "task_id": "debug_conditional_breakpoint@1",
+    "task_completion": [
+        {
+            "id": "open_project_and_file",
+            "description": "Open the DataBatchAnalyzer project and the Main.java file in the IDE.",
+            "points": 10,
+            "visual_evidence": "The IDE (likely IntelliJ IDEA) is visible showing the project structure 'DataBatchAnalyzer' and the file 'Main.java' open in the editor."
+        },
+        {
+            "id": "set_conditional_breakpoint",
+            "description": "Set a conditional breakpoint in the processData method for the 888th iteration.",
+            "points": 25,
+            "visual_evidence": "A breakpoint icon (red circle) is visible in the gutter of Main.java, and a pop-up or configuration panel shows the condition 'i == 888'."
+        },
+        {
+            "id": "start_debugger",
+            "description": "Launch the application in Debug mode.",
+            "points": 15,
+            "visual_evidence": "The Debug tool window is active, and the execution has paused at the specified breakpoint line."
+        },
+        {
+            "id": "identify_variable_value",
+            "description": "Locate and identify the value of 'currentProcessValue' in the debugger variables view.",
+            "points": 30,
+            "visual_evidence": "The 'Variables' or 'Debugger' pane shows 'currentProcessValue' with a specific numeric value while the execution is paused at i == 888."
+        },
+        {
+            "id": "save_value_to_file",
+            "description": "Save the numeric value to /home/ga/solution.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., echo) or a text editor showing the numeric value being saved to '/home/ga/solution.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_source_modification",
+            "description": "The agent did not modify the source code to print the value.",
+            "visual_evidence": "The Main.java file does not show any added System.out.println statements or changes to the loop logic; the file remains in its original state."
+        },
+        {
+            "id": "genuine_debugger_usage",
+            "description": "The agent used the IDE's debugging features rather than just running the code.",
+            "visual_evidence": "Screenshots show the IDE's debug control buttons (Step Over, Resume) and the Variables inspection panel active."
+        },
+        {
+            "id": "correct_iteration_check",
+            "description": "The agent verified the value specifically at iteration 888.",
+            "visual_evidence": "The debugger state shows the variable 'i' is equal to 888 at the moment 'currentProcessValue' is recorded."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is named 'DataBatchAnalyzer'. The target file is 'src/main/java/com/example/Main.java'. The agent must find the value of 'currentProcessValue' specifically when the loop index 'i' is 888. The ground truth value is stored in /var/lib/task/ground_truth.txt and should match the value the agent writes to /home/ga/solution.txt."
+}

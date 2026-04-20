@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_flood_wave_travel_time@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the HEC-RAS application and load the Muncie project from the specified directory.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window open showing the project path /home/ga/Documents/hec_ras_projects/Muncie/Muncie.prj."
+        },
+        {
+            "id": "access_hdf_output",
+            "description": "Access the HDF5 output file (p04.hdf or p04.tmp.hdf) or the corresponding Plan output tables in HEC-RAS.",
+            "points": 15,
+            "visual_evidence": "The 'HEC-RAS Mapper' or 'Detailed Output Tables' window open, specifically showing Plan 04 data."
+        },
+        {
+            "id": "identify_stations_and_length",
+            "description": "Identify the most upstream and downstream cross-sections and the reach length between them.",
+            "points": 15,
+            "visual_evidence": "A table or profile view showing Station 15696.24 (upstream) and Station 237.65 (downstream) and the cumulative reach length."
+        },
+        {
+            "id": "extract_peak_flow_data",
+            "description": "Extract the peak flow values and the time they occurred for both the upstream and downstream stations.",
+            "points": 25,
+            "visual_evidence": "The 'Stage and Flow Hydrographs' window or 'Detailed Output Table' showing peak flow values (approx 21000 cfs) and their respective simulation times."
+        },
+        {
+            "id": "calculate_travel_time_celerity",
+            "description": "Calculate the travel time (difference in peak times) and average wave celerity (length divided by travel time).",
+            "points": 20,
+            "visual_evidence": "The agent using a calculator, spreadsheet, or notepad to perform the subtraction (20.17 - 15.00) and division (15458 / time)."
+        },
+        {
+            "id": "save_results_file",
+            "description": "Save the final results with all required labels to the specified text file path.",
+            "points": 15,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) showing the file /home/ga/Documents/hec_ras_results/flood_wave_travel_time.txt with all 9 required labels and values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HEC-RAS GUI to find values rather than just searching for the answer in system files.",
+            "visual_evidence": "Screenshots show the agent navigating HEC-RAS menus, hydrograph plots, or the RAS Mapper."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the final values into a file without opening the source data.",
+            "visual_evidence": "The trajectory shows the agent actively extracting data from the HEC-RAS output windows before writing the file."
+        },
+        {
+            "id": "correct_plan_selection",
+            "description": "The agent used the specific Plan 04 (.p04) data as requested in the task.",
+            "visual_evidence": "The HEC-RAS title bar or Plan selection dropdown shows 'Plan 04' or the file 'Muncie.p04.tmp.hdf' is active."
+        }
+    ],
+    "privileged_info_for_vlm": "Upstream Station: 15696.24 (Peak Flow: 21000.0 cfs at 15.00 hrs). Downstream Station: 237.6455 (Peak Flow: 20998.4 cfs at 20.17 hrs). Reach Length: 15458.6 ft. Travel Time: 5.17 hrs. Average Celerity: ~0.83 ft/s. The agent must use the .p04 HDF file."
+}

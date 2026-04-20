@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_field_injection_to_constructor@1",
+    "task_completion": [
+        {
+            "id": "open_target_file",
+            "description": "Open OrderProcessingService.java in the IDE",
+            "points": 10,
+            "visual_evidence": "The file 'OrderProcessingService.java' is visible in an editor tab within IntelliJ IDEA or a similar IDE."
+        },
+        {
+            "id": "modify_fields_to_final",
+            "description": "Change dependency fields to private final and remove @Autowired from fields",
+            "points": 20,
+            "visual_evidence": "The fields InventoryService, PaymentGateway, and NotificationService are declared as 'private final' and do not have the @Autowired annotation above them."
+        },
+        {
+            "id": "create_constructor",
+            "description": "Add a public constructor that initializes all three dependencies",
+            "points": 30,
+            "visual_evidence": "A public constructor 'public OrderProcessingService(...)' is visible, taking the three services as arguments and assigning them to the class fields."
+        },
+        {
+            "id": "verify_compilation",
+            "description": "Ensure the project compiles successfully after refactoring",
+            "points": 20,
+            "visual_evidence": "The IDE shows no red syntax errors in the file, or a 'Build Successful' message is visible in the build/terminal tool window."
+        },
+        {
+            "id": "run_tests",
+            "description": "Execute existing tests to ensure no regressions",
+            "points": 20,
+            "visual_evidence": "A test runner window (e.g., JUnit tab) shows 'OrderProcessingServiceTest' passing with green checkmarks."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE's graphical interface for editing and navigation",
+            "visual_evidence": "Screenshots show the agent clicking menus, using the project explorer, or using IDE refactoring tools rather than just executing 'sed' or 'echo' commands in a terminal."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "Tests were actually executed through the IDE or build system",
+            "visual_evidence": "The VLM should see the test execution progress bar or the specific output of the JUnit runner, not just a manual print statement saying 'tests passed'."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply create a dummy file to pass checks",
+            "visual_evidence": "The file path in the editor matches '~/IdeaProjects/legacy-orders/src/main/java/com/example/orders/service/OrderProcessingService.java'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/legacy-orders. The target file is OrderProcessingService.java. It initially uses @Autowired on three fields: InventoryService, PaymentGateway, and NotificationService. The refactor is successful only if these three fields become 'private final', a public constructor is added to initialize them, and the tests in OrderProcessingServiceTest.java pass. The Spring version is 6.0.11, which supports implicit constructor injection (the constructor itself does not strictly require @Autowired if it is the only constructor)."
+}

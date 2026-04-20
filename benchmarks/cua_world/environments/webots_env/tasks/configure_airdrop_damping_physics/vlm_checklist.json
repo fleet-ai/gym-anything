@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_airdrop_damping_physics@1",
+    "task_completion": [
+        {
+            "id": "set_mass",
+            "description": "Set the SENSOR_POD mass to 3.2 kg in the Physics node.",
+            "points": 10,
+            "visual_evidence": "The Webots scene tree showing the SENSOR_POD > physics > Physics > mass field set to 3.2."
+        },
+        {
+            "id": "add_damping",
+            "description": "Add a Damping node with linear damping 0.95 and angular damping 0.60.",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree showing SENSOR_POD > physics > Physics > damping > Damping with linearDamping 0.95 and angularDamping 0.6."
+        },
+        {
+            "id": "configure_altimeter",
+            "description": "Update ALTIMETER DistanceSensor type to 'laser' and maxRange to 150.0.",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree showing the ALTIMETER (DistanceSensor) with type 'laser' and maxRange 150."
+        },
+        {
+            "id": "rotate_altimeter",
+            "description": "Set the ALTIMETER rotation to '0 1 0 -1.5708'.",
+            "points": 15,
+            "visual_evidence": "The Webots scene tree showing the ALTIMETER rotation field set to 0 1 0 -1.5708."
+        },
+        {
+            "id": "add_receiver",
+            "description": "Add a Receiver node named 'abort_receiver' on channel 7 to the pod's children.",
+            "points": 20,
+            "visual_evidence": "The Webots scene tree showing a Receiver node under SENSOR_POD > children with name 'abort_receiver' and channel 7."
+        },
+        {
+            "id": "save_world",
+            "description": "Save the configured world to the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog or a file explorer showing 'airdrop_configured.wbt' saved at /home/ga/Desktop/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify nodes rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots showing the Webots scene tree being expanded and field values being typed into the inspector panel."
+        },
+        {
+            "id": "genuine_node_creation",
+            "description": "The agent used the 'Add New' dialog to insert the Damping and Receiver nodes.",
+            "visual_evidence": "The 'Add a node' pop-up window appearing in Webots during the trajectory."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file to the target filename.",
+            "visual_evidence": "The agent is seen manually entering the specific values (3.2, 0.95, 0.6, 150.0) into the Webots interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The SENSOR_POD must have: mass=3.2, linearDamping=0.95, angularDamping=0.60. The ALTIMETER (DistanceSensor) must have: type='laser', maxRange=150.0, rotation='0 1 0 -1.5708'. A Receiver node must be added with name='abort_receiver' and channel=7. The final file must be saved as /home/ga/Desktop/airdrop_configured.wbt."
+}

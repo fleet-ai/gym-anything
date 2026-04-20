@@ -1,0 +1,53 @@
+{
+    "task_id": "bart_rl_learning_model@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_inspection",
+            "description": "Agent loads and inspects the BART CSV data to identify participants.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing the loading of '~/pebl/data/bart/bart_data.csv' and a preview of its columns (participant_id, trial, pumps, exploded)."
+        },
+        {
+            "id": "identify_contaminated_participant",
+            "description": "Agent identifies the participant with zero adjusted mean pumps for exclusion.",
+            "points": 15,
+            "visual_evidence": "Code output or a dataframe filter showing a specific participant ID with 0 pumps across trials, or a print statement identifying the excluded ID."
+        },
+        {
+            "id": "rl_model_implementation",
+            "description": "Agent implements the delta-learning RL model with the specified update rules and p_0 = 0.10.",
+            "points": 25,
+            "visual_evidence": "Code showing the update logic: p_new = p_old + alpha * (1 - p_old) for explosions and p_new = p_old * (1 - alpha) for non-explosions."
+        },
+        {
+            "id": "optimization_process",
+            "description": "Agent performs MSE minimization to find the optimal alpha for each valid participant.",
+            "points": 25,
+            "visual_evidence": "Code or logs showing an optimization loop (e.g., scipy.optimize, grid search) minimizing MSE between floor(1/p)-1 and actual pumps."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the final JSON report with the required structure and group statistics.",
+            "points": 25,
+            "visual_evidence": "A file preview or 'cat' command of '~/pebl/analysis/bart_rl_report.json' showing the 'participants' list (including the excluded one) and 'group_statistics'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_computation",
+            "description": "Agent performed the RL fitting rather than hardcoding results.",
+            "visual_evidence": "The presence of iterative optimization code or mathematical functions specifically implementing the Wallsten et al. formulas."
+        },
+        {
+            "id": "data_source_consistency",
+            "description": "Agent used the provided CSV file for calculations.",
+            "visual_evidence": "Code showing the file path '~/pebl/data/bart/bart_data.csv' being read into the analysis environment."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The JSON report contains specific floating-point values for alpha and MSE, not placeholders.",
+            "visual_evidence": "The final JSON file shows unique, non-integer values for alpha and MSE for different participants."
+        }
+    ],
+    "privileged_info_for_vlm": "The contaminated participant to be excluded is participant_id '10152' (or whichever ID shows 0 pumps). The model must use p_0 = 0.10. The prediction formula is n = floor(1/p) - 1. The exclusion reason in the JSON must mention the zero pump pattern or non-participation."
+}

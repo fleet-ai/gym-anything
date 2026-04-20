@@ -1,0 +1,53 @@
+{
+    "task_id": "cookie_forensic_analysis@1",
+    "task_completion": [
+        {
+            "id": "read_briefing_document",
+            "description": "The agent opens and reads the forensic_briefing.txt file on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/Desktop/forensic_briefing.txt."
+        },
+        {
+            "id": "visit_target_sites",
+            "description": "The agent navigates to CNN, Weather.com, and Wikipedia in a web browser.",
+            "points": 15,
+            "visual_evidence": "Browser screenshots showing the address bar with cnn.com, weather.com, and wikipedia.org."
+        },
+        {
+            "id": "inspect_cookies_gui",
+            "description": "The agent uses browser developer tools or settings to inspect the cookies for the visited sites.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the 'Application' tab in DevTools, the 'Cookies' storage section, or the browser's privacy settings showing cookie lists."
+        },
+        {
+            "id": "identify_tracking_domains",
+            "description": "The agent identifies specific third-party tracking domains (e.g., DoubleClick, Criteo) from the cookie data.",
+            "points": 20,
+            "visual_evidence": "The agent highlighting or recording specific domain names found in the cookie storage list that match known trackers."
+        },
+        {
+            "id": "generate_forensic_report",
+            "description": "The agent creates the cookie_forensic_report.txt file containing cookie counts, identified trackers, and a comparative analysis.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the final content of /home/ga/Desktop/cookie_forensic_report.txt with sections for all three sites and a comparison."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_browser_interaction",
+            "description": "The agent actually visited the websites rather than just writing a report from memory.",
+            "visual_evidence": "Browser history or active tabs showing the target websites were loaded during the session."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the 'known_trackers' list from the prompt without inspecting the browser.",
+            "visual_evidence": "The report should contain specific counts or observations that align with the live browser state seen in screenshots, not just a generic list."
+        },
+        {
+            "id": "gui_based_analysis",
+            "description": "The agent used the browser's graphical interface to inspect cookies rather than just using CLI tools to guess.",
+            "visual_evidence": "Screenshots showing the browser's Developer Tools or Cookie Manager being actively used."
+        }
+    ],
+    "privileged_info_for_vlm": "The target sites are cnn.com, weather.com, and wikipedia.org. The briefing is at /home/ga/Desktop/forensic_briefing.txt and the report must be saved to /home/ga/Desktop/cookie_forensic_report.txt. Expected tracking domains include doubleclick, google-analytics, criteo, and scorecardresearch. Wikipedia is expected to have a significantly lighter tracking footprint compared to CNN and Weather.com."
+}

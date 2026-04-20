@@ -1,0 +1,56 @@
+{
+    "task_id": "fix_volume_shadowed_dependencies@1",
+    "task_completion": [
+        {
+            "id": "identify_error_and_config",
+            "description": "Agent identifies the 'Cannot find module express' error and opens the docker-compose.yml file.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing the 'Cannot find module express' error and a text editor (like VS Code or nano) displaying the contents of /home/ga/projects/shadow-bug/docker-compose.yml."
+        },
+        {
+            "id": "modify_docker_compose_volumes",
+            "description": "Agent modifies docker-compose.yml to include an anonymous volume for /app/node_modules to prevent shadowing.",
+            "points": 30,
+            "visual_evidence": "The docker-compose.yml file in the editor shows a new volume entry '- /app/node_modules' alongside the existing '.:/app' bind mount."
+        },
+        {
+            "id": "restart_docker_containers",
+            "description": "Agent restarts the Docker containers to apply the configuration changes.",
+            "points": 15,
+            "visual_evidence": "Terminal showing commands like 'docker-compose up -d' or 'docker-compose restart' being executed."
+        },
+        {
+            "id": "verify_container_running",
+            "description": "Agent verifies that the 'shadow-app' container is running without crashing.",
+            "points": 15,
+            "visual_evidence": "Terminal output from 'docker ps' showing the 'shadow-app' container with a status of 'Up' or logs showing the server listening on port 3000."
+        },
+        {
+            "id": "test_application_response",
+            "description": "Agent verifies the application is accessible and returns the correct response.",
+            "points": 30,
+            "visual_evidence": "A browser window or curl command output showing 'Hello from Docker!' from http://localhost:3000."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_host_npm_install",
+            "description": "Agent did not run npm install on the host machine to fix the issue.",
+            "points": 0,
+            "visual_evidence": "The terminal history should not show 'npm install' being run in /home/ga/projects/shadow-bug/ on the host; the fix must be in the docker-compose.yml."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the actual files and terminal, not just echoing text.",
+            "points": 0,
+            "visual_evidence": "Screenshots show active editing of files in a text editor and real-time command execution in a terminal emulator."
+        },
+        {
+            "id": "verified_port_access",
+            "description": "The successful response is retrieved from the specific port 3000.",
+            "points": 0,
+            "visual_evidence": "The URL bar in the browser or the curl command explicitly uses 'localhost:3000'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/shadow-bug/. The container name is 'shadow-app'. The application must be fixed by adding an anonymous volume for '/app/node_modules' in the docker-compose.yml to prevent the host bind mount (.:/app) from hiding the container's internal dependencies. A successful fix results in the application responding with 'Hello from Docker!' at http://localhost:3000. The agent is strictly forbidden from running 'npm install' on the host machine."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_postgres_migration@1",
+    "task_completion": [
+        {
+            "id": "source_db_connection",
+            "description": "Establish connection to the source PostgreSQL 13 database (port 5433).",
+            "points": 10,
+            "visual_evidence": "A database client (like DBeaver, pgAdmin, or terminal) showing a successful connection to 'chinook-pg13' on port 5433."
+        },
+        {
+            "id": "dump_generation",
+            "description": "Generate a backup or dump of the 'chinook' database from the source container.",
+            "points": 20,
+            "visual_evidence": "Execution of a pg_dump command or a GUI export process targeting the source database."
+        },
+        {
+            "id": "target_db_connection",
+            "description": "Establish connection to the target PostgreSQL 15 database (port 5434).",
+            "points": 10,
+            "visual_evidence": "A database client showing a successful connection to 'chinook-pg15' on port 5434 using the provided credentials."
+        },
+        {
+            "id": "schema_restoration",
+            "description": "Restore the database schema and tables to the target PostgreSQL 15 instance.",
+            "points": 30,
+            "visual_evidence": "A list of tables in the target database showing the 11 expected tables (Artist, Album, Track, etc.) or a successful restore log."
+        },
+        {
+            "id": "row_count_verification",
+            "description": "Verify that row counts in the target database match the source for 100% fidelity.",
+            "points": 30,
+            "visual_evidence": "SQL query results (e.g., SELECT COUNT(*) FROM ...) showing row counts for tables in the target database, confirming data is present."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually create tables or insert rows one by one.",
+            "visual_evidence": "The agent should be seen using migration tools (pg_dump, pg_restore, or GUI export/import wizards) rather than typing 'CREATE TABLE' or 'INSERT INTO' for every record."
+        },
+        {
+            "id": "genuine_port_usage",
+            "description": "The agent interacted with the specific ports 5433 and 5434.",
+            "visual_evidence": "Screenshots of connection settings or command line arguments must explicitly show ports 5433 (source) and 5434 (target)."
+        },
+        {
+            "id": "actual_query_execution",
+            "description": "Verification results come from live queries, not static text files.",
+            "visual_evidence": "The VLM should see the query being executed in a database tool or terminal and the resulting output table, rather than the agent just reading a README or notes file."
+        }
+    ],
+    "privileged_info_for_vlm": "Source: Container 'chinook-pg13', Port 5433. Target: Container 'chinook-pg15', Port 5434. Database name: 'chinook'. Credentials: User 'chinook', Password 'chinook_secret_2019'. Expected tables (11 total): Artist, Album, MediaType, Genre, Track, Customer, Employee, Invoice, InvoiceLine, Playlist, PlaylistTrack. The migration is from Postgres 13 to Postgres 15."
+}

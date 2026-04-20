@@ -1,0 +1,59 @@
+{
+    "task_id": "polymorphic_attraction_hierarchy@1",
+    "task_completion": [
+        {
+            "id": "create_museums_class",
+            "description": "Create the 'Museums' vertex class extending 'Attractions' with the specified properties.",
+            "points": 15,
+            "visual_evidence": "SQL command or GUI interaction showing 'CREATE CLASS Museums EXTENDS Attractions' and property definitions (Name, Collection, FreeEntry, AnnualVisitors, City, Country)."
+        },
+        {
+            "id": "insert_museum_records",
+            "description": "Insert the five specified museum records into the 'Museums' class.",
+            "points": 25,
+            "visual_evidence": "SQL 'INSERT' commands or a data grid showing the five museums (Louvre, British Museum, Met, Uffizi, Rijksmuseum) with their respective data."
+        },
+        {
+            "id": "modify_attractions_schema",
+            "description": "Add the 'Category' property to the parent 'Attractions' class.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE PROPERTY Attractions.Category STRING' or schema view showing the new property in the parent class."
+        },
+        {
+            "id": "update_museum_category",
+            "description": "Update all records in the 'Museums' class to set 'Category' to 'museum'.",
+            "points": 15,
+            "visual_evidence": "SQL command 'UPDATE Museums SET Category = \"museum\"' and a confirmation message of 5 records updated."
+        },
+        {
+            "id": "polymorphic_query_execution",
+            "description": "Execute the polymorphic query to select Name, Category, and @class from Attractions.",
+            "points": 15,
+            "visual_evidence": "Query results table showing columns for Name, Category, and @class, where @class displays 'Museums' for the new records."
+        },
+        {
+            "id": "export_report_file",
+            "description": "Export the query results to the specified file path.",
+            "points": 15,
+            "visual_evidence": "Terminal command (e.g., 'cat') or text editor showing the content of '/home/ga/attraction_hierarchy_report.txt' containing the museum data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "database_interaction",
+            "description": "Verify the agent interacted with OrientDB and not just a text file.",
+            "visual_evidence": "Screenshots showing the OrientDB Studio (web UI) or the 'console.sh' interactive terminal session."
+        },
+        {
+            "id": "no_hardcoded_file_creation",
+            "description": "Ensure the report file was generated via database export/redirection, not manually typed.",
+            "visual_evidence": "Command history showing a redirect ('>') or an export command from the database client to the file path."
+        },
+        {
+            "id": "schema_hierarchy_verification",
+            "description": "Check that 'Museums' was actually created as a subclass.",
+            "visual_evidence": "Schema view or 'INFO CLASS Museums' output showing 'Super classes: [Attractions]'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values: Louvre Museum (9600000 visitors, FreeEntry: false), British Museum (5800000 visitors, FreeEntry: true), Metropolitan Museum of Art (6500000 visitors, FreeEntry: false), Uffizi Gallery (4400000 visitors, FreeEntry: false), and Rijksmuseum (2700000 visitors, FreeEntry: false). The final report must be at /home/ga/attraction_hierarchy_report.txt and must include the '@class' column, which proves polymorphism by showing 'Museums' records appearing in an 'Attractions' query."
+}

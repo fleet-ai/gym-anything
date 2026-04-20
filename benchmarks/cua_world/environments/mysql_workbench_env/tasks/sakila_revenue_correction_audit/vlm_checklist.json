@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_revenue_correction_audit@1",
+    "task_completion": [
+        {
+            "id": "create_audit_view",
+            "description": "Create the SQL view 'v_audit_underpayments' with the specified columns (payment_id, rental_id, amount, rental_rate, difference).",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement or a database navigator showing 'v_audit_underpayments' under the Views folder."
+        },
+        {
+            "id": "identify_underpayments",
+            "description": "Query the view to identify records where payment amount is strictly less than the rental rate (specifically the $0.01 records).",
+            "points": 15,
+            "visual_evidence": "A results grid showing rows where the 'amount' column is 0.01 and the 'rental_rate' is higher (e.g., 2.99 or 4.99)."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the audit results to /home/ga/Documents/exports/underpayment_audit.csv.",
+            "points": 20,
+            "visual_evidence": "An export confirmation dialog, a file explorer showing the CSV in the specified path, or a terminal command showing the file's existence."
+        },
+        {
+            "id": "update_payment_records",
+            "description": "Execute an UPDATE statement to set payment.amount to match film.rental_rate for the identified records.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing an UPDATE statement joining payment, rental, and inventory/film tables, followed by a 'Query successful' or 'X rows affected' message."
+        },
+        {
+            "id": "verify_fix_empty_view",
+            "description": "Verify the fix by querying 'v_audit_underpayments' and confirming it returns no rows.",
+            "points": 20,
+            "visual_evidence": "A SQL results grid for 'SELECT * FROM v_audit_underpayments' showing an empty set or '0 rows returned'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "database_interaction",
+            "description": "The agent interacted with the Sakila database using a database management tool or SQL interface.",
+            "visual_evidence": "Screenshots show a database IDE (like DBeaver, pgAdmin, or MySQL Workbench) or a terminal connected to a SQL client."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The CSV file was generated via export/query, not manually typed in a text editor.",
+            "visual_evidence": "The process of exporting from the DB tool is visible, or the CSV content matches the structured output of the database query."
+        },
+        {
+            "id": "targeted_update",
+            "description": "The agent used a logic-based UPDATE (matching rental_rate) rather than hardcoding specific IDs found in the prompt.",
+            "visual_evidence": "The SQL UPDATE statement uses a JOIN or subquery to pull the rental_rate from the film table rather than a list of hardcoded payment_ids."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is 'sakila'. Exactly 40 records were corrupted to have an amount of 0.01 for films with rental_rates > 2.99. The view must be named 'v_audit_underpayments'. The export path is /home/ga/Documents/exports/underpayment_audit.csv. A successful fix is confirmed when the view returns zero rows because all amounts now match the rental_rates."
+}

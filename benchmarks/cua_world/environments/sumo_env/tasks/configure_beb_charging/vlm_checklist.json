@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_beb_charging@1",
+    "task_completion": [
+        {
+            "id": "read_briefing",
+            "description": "Agent reads the briefing file to identify the target bus stop and parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of /home/ga/SUMO_Scenarios/bologna_pasubio/beb_briefing.txt."
+        },
+        {
+            "id": "configure_charging_station",
+            "description": "Agent defines the charging station (charger_1) with 300kW power and 0.95 efficiency in an XML additionals file.",
+            "points": 20,
+            "visual_evidence": "Code or XML editor showing <chargingStation id=\"charger_1\" power=\"300000\" efficiency=\"0.95\" ... /> at the specified bus stop."
+        },
+        {
+            "id": "configure_bus_fleet",
+            "description": "Agent configures the vehicle types with battery device parameters (150,000 max capacity, 50,000 actual capacity).",
+            "points": 20,
+            "visual_evidence": "XML editor showing vehicle type definitions with 'maximumBatteryCapacity' set to 150000 and 'actualBatteryCapacity' set to 50000."
+        },
+        {
+            "id": "enable_battery_output",
+            "description": "Agent configures the simulation to generate battery output at the specified path.",
+            "points": 15,
+            "visual_evidence": "A configuration file or command line argument showing '--battery-output /home/ga/SUMO_Output/battery.xml'."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the SUMO simulation to process the vehicle movements and charging.",
+            "points": 15,
+            "visual_evidence": "The SUMO GUI or terminal showing the simulation running and completing."
+        },
+        {
+            "id": "generate_summary",
+            "description": "Agent calculates the number of vehicles with energyCharged > 0 and saves it to charging_summary.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., grep/awk on battery.xml) or script output, followed by the creation of /home/ga/SUMO_Output/charging_summary.txt containing a numerical count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "Agent manually edited configuration files rather than just creating the final output file directly.",
+            "visual_evidence": "Screenshots showing the process of opening and typing in XML files or using a text editor."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent actually ran the SUMO simulation rather than guessing the number of charged vehicles.",
+            "visual_evidence": "Visual confirmation of the SUMO interface or terminal logs showing simulation steps progressing."
+        },
+        {
+            "id": "no_hardcoded_result_copy",
+            "description": "The agent did not simply echo a number into charging_summary.txt without first inspecting the battery.xml output.",
+            "visual_evidence": "Screenshots showing the agent opening or parsing /home/ga/SUMO_Output/battery.xml before writing the summary."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario is located in /home/ga/SUMO_Scenarios/bologna_pasubio. Required parameters: Charging Station ID 'charger_1', Power '300000', Efficiency '0.95'. Vehicle Battery: Max Capacity '150000', Actual Capacity '50000'. Output files must be /home/ga/SUMO_Output/battery.xml and /home/ga/SUMO_Output/charging_summary.txt. The bus stop ID for the charger is found inside beb_briefing.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_visualization@1",
+    "task_completion": [
+        {
+            "id": "open_sumo_gui",
+            "description": "The SUMO-GUI application is launched with the Bologna Pasubio scenario loaded.",
+            "points": 10,
+            "visual_evidence": "The SUMO-GUI window is visible, and the network view shows the Bologna Pasubio road network."
+        },
+        {
+            "id": "open_visualization_settings",
+            "description": "The agent opens the 'Edit Visualisation' or 'View Settings' dialog.",
+            "points": 10,
+            "visual_evidence": "A dialog box titled 'View Settings' or 'Edit Visualisation' is open over the main GUI."
+        },
+        {
+            "id": "set_coloring_by_speed",
+            "description": "The edge/lane coloring scheme is changed to 'by current speed'.",
+            "points": 25,
+            "visual_evidence": "In the View Settings dialog, under the 'Streets' or 'Lanes' tab, the 'Color by' dropdown is set to 'by current speed'."
+        },
+        {
+            "id": "run_simulation_500",
+            "description": "The simulation is executed until the time step counter reaches at least 500.",
+            "points": 20,
+            "visual_evidence": "The 'Time:' field in the SUMO-GUI toolbar shows a value of 500.00 or greater."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves a screenshot of the network view to the specified path.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with 'File' -> 'Screenshot' or uses a tool to save the view, with the file path '~/SUMO_Output/congestion_map.png' visible in a file dialog or terminal command."
+        },
+        {
+            "id": "export_settings_xml",
+            "description": "The visualization settings are exported to the specified XML file.",
+            "points": 20,
+            "visual_evidence": "The agent interacts with the 'Save' icon in the View Settings dialog or 'File' -> 'Save View Settings', targeting '~/SUMO_Output/visualization_settings.xml'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent configured the settings via the GUI rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'View Settings' dialog and dropdown menus."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The simulation shows actual vehicle movement and color changes on the map.",
+            "visual_evidence": "The network view shows colored lanes (green/yellow/red) and vehicle icons, indicating an active simulation state at step 500."
+        },
+        {
+            "id": "path_accuracy",
+            "description": "The agent used the exact file paths specified in the instructions.",
+            "visual_evidence": "The file paths '~/SUMO_Output/congestion_map.png' and '~/SUMO_Output/visualization_settings.xml' are typed or selected in the GUI file dialogs."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario is 'bologna_pasubio'. The simulation must reach at least time step 500. The coloring scheme must be 'by current speed'. Required output files are /home/ga/SUMO_Output/congestion_map.png and /home/ga/SUMO_Output/visualization_settings.xml."
+}

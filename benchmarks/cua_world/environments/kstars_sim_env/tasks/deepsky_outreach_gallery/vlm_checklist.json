@@ -1,0 +1,59 @@
+{
+    "task_id": "deepsky_outreach_gallery@1",
+    "task_completion": [
+        {
+            "id": "kstars_indi_setup",
+            "description": "KStars and INDI control panel are open and connected to the simulator.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the KStars interface and the INDI Control Panel window with 'Connected' status for the CCD and Mount simulators."
+        },
+        {
+            "id": "target_slewing_coordinates",
+            "description": "Agent slews the telescope to the specific RA/Dec coordinates for the five Messier objects (M42, M31, M1, M57, M51).",
+            "points": 15,
+            "visual_evidence": "KStars sky map or INDI Mount tab showing the telescope crosshairs moving to or centered on the specified coordinates for the targets."
+        },
+        {
+            "id": "fits_capture_sequence",
+            "description": "Agent captures at least three 10-second LIGHT frames for each of the five targets using the CCD simulator.",
+            "points": 25,
+            "visual_evidence": "The 'Ekos' Capture module showing a sequence of 3 exposures, 10.00s duration, type 'Light', and the progress bar or file list indicating successful saves."
+        },
+        {
+            "id": "sky_view_generation",
+            "description": "Agent executes the capture_sky_view.sh script with the correct palette and output path for each target.",
+            "points": 20,
+            "visual_evidence": "Terminal window showing the execution of 'bash ~/capture_sky_view.sh' with arguments matching the target's palette (hubble, enhanced, narrowband, vibrant, cool) and path (/home/ga/Outreach/<M-designation>/sky_view.png)."
+        },
+        {
+            "id": "directory_structure_verification",
+            "description": "Files are organized into the correct directory structure under /home/ga/Outreach/.",
+            "points": 10,
+            "visual_evidence": "A file manager window or 'ls -R' command in the terminal showing subdirectories for M42, M31, M1, M57, and M51 containing .fits and .png files."
+        },
+        {
+            "id": "html_gallery_creation",
+            "description": "The final HTML gallery is created with the correct title and content.",
+            "points": 20,
+            "visual_evidence": "A text editor or web browser showing 'gallery.html' with the title 'Jewels of the Night Sky', listing all 5 Messier objects with their common names and displaying the 'sky_view.png' images."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_fits",
+            "description": "FITS images were captured via the Ekos/INDI GUI, not just created via touch command.",
+            "visual_evidence": "Screenshots must show the Ekos Capture module active and the CCD simulator status changing during exposure."
+        },
+        {
+            "id": "genuine_sky_view_script",
+            "description": "The agent used the provided script to generate sky views rather than downloading random images.",
+            "visual_evidence": "Terminal logs showing the execution of '~/capture_sky_view.sh' with the specific required flags."
+        },
+        {
+            "id": "coordinate_accuracy",
+            "description": "The telescope was actually pointed at the specific RA/Dec coordinates provided in the prompt.",
+            "visual_evidence": "The INDI Mount control panel or KStars status bar showing RA/Dec values matching the target list (e.g., M42 at RA 5.5881)."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires 5 specific targets: M42 (hubble), M31 (enhanced), M1 (narrowband), M57 (vibrant), and M51 (cool). Each must have >=3 FITS files (min 1024 bytes) and one sky_view.png (min 50,000 bytes) in /home/ga/Outreach/<M-designation>/. The gallery.html must be at /home/ga/Outreach/gallery.html. The sky_view.png images are real DSS2 Color data fetched via script, while FITS are simulator-generated."
+}

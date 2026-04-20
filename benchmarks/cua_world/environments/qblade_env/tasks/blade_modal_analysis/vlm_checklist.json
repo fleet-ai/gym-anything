@@ -1,0 +1,59 @@
+{
+    "task_id": "blade_modal_analysis@1",
+    "task_completion": [
+        {
+            "id": "airfoil_generation",
+            "description": "Generate NACA 0012 airfoil with 100 panels and perform XFoil analysis (Re=1,000,000, Ncrit=9) with 360-degree extrapolation.",
+            "points": 15,
+            "visual_evidence": "QBlade airfoil design module showing NACA 0012 coordinates, XFoil polar generation dialog with Re=1e6, and the polar extrapolation plot."
+        },
+        {
+            "id": "blade_geometry_setup",
+            "description": "Define 'BeamBlade' geometry: 10m length, constant 1.0m chord, 0 deg twist, and at least 5 sections.",
+            "points": 15,
+            "visual_evidence": "Blade design table showing 'Length' or 'Span' at 10m, 'Chord' column values at 1.0, and at least 5 rows in the section table."
+        },
+        {
+            "id": "internal_structure_config",
+            "description": "Configure 'Simple Shell' structure with density 2000 kg/m^3, Young's Modulus 20 GPa (20,000 MPa), and 0.02m thickness.",
+            "points": 20,
+            "visual_evidence": "Internal Structure Generator window showing 'Simple Shell' selected, material properties fields set to 2000 (rho) and 20000 (E), and thickness set to 0.02."
+        },
+        {
+            "id": "modal_analysis_execution",
+            "description": "Perform the structural modal analysis to calculate natural frequencies.",
+            "points": 20,
+            "visual_evidence": "Structural analysis/Modal analysis dock or window showing a list of 'Eigenfrequencies' or 'Modes' after a successful run."
+        },
+        {
+            "id": "project_save",
+            "description": "Save the project to the specified path /home/ga/Documents/projects/beam_modal.wpa.",
+            "points": 10,
+            "visual_evidence": "File explorer or QBlade title bar/save dialog showing the file path /home/ga/Documents/projects/beam_modal.wpa."
+        },
+        {
+            "id": "export_results_json",
+            "description": "Export the first eigenfrequency (Hz) and total mass (kg) to /home/ga/Documents/modal_results.json.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/Documents/modal_results.json with keys for frequency and mass."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to perform the modeling and analysis rather than just writing a JSON file manually.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with QBlade menus, tables, and the 'Run' buttons."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The results in the JSON file match the values displayed in the QBlade GUI analysis summary.",
+            "visual_evidence": "The frequency value in the final JSON matches the 'Mode 1' frequency shown in the QBlade structural analysis result window."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not use pre-existing project files and built the blade from scratch.",
+            "visual_evidence": "Sequence of screenshots showing the step-by-step entry of geometry and material parameters."
+        }
+    ],
+    "privileged_info_for_vlm": "The blade must be exactly 10m long with a 1.0m chord. Material density is 2000 kg/m^3, Young's Modulus is 20 GPa (often entered as 20,000 MPa or 2e10 Pa), and wall thickness is 0.02m. The structure type must be 'Simple Shell'. The output must be a JSON file at /home/ga/Documents/modal_results.json containing the first natural frequency (Hz) and total mass (kg)."
+}

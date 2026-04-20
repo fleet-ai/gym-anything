@@ -1,0 +1,59 @@
+{
+    "task_id": "accessible_color_remapping@1",
+    "task_completion": [
+        {
+            "id": "open_sample_image",
+            "description": "The 'Fluorescent Cells' sample image is opened in ImageJ.",
+            "points": 10,
+            "visual_evidence": "The ImageJ workspace shows an image window titled 'FluorescentCells.jpg' or similar, displaying red and green cell structures."
+        },
+        {
+            "id": "split_channels",
+            "description": "The original RGB image is split into individual Red, Green, and Blue channels.",
+            "points": 15,
+            "visual_evidence": "Three separate grayscale image windows appear, typically labeled (red), (green), and (blue)."
+        },
+        {
+            "id": "assign_magenta_to_red",
+            "description": "The original Red channel data is assigned the Magenta color/LUT.",
+            "points": 20,
+            "visual_evidence": "A channel settings or LUT menu shows the Red channel data being displayed as Magenta (a mix of red and blue pixels)."
+        },
+        {
+            "id": "merge_channels",
+            "description": "The channels are merged back into a composite image using Magenta, Green, and Blue.",
+            "points": 25,
+            "visual_evidence": "A 'Merge Channels' dialog box or a new composite image window where the previously red areas now appear magenta, and green areas remain green."
+        },
+        {
+            "id": "flatten_image",
+            "description": "The composite image is flattened into a standard RGB format.",
+            "points": 15,
+            "visual_evidence": "The image window header changes from 'Composite' to 'RGB' or a 'Flatten' command is visible in the menu history."
+        },
+        {
+            "id": "save_final_result",
+            "description": "The final image is saved to the specific path ~/ImageJ_Data/results/accessible_composite.tif.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a file explorer window shows the file 'accessible_composite.tif' being saved in the 'results' directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI rather than just executing CLI scripts to process the image.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ImageJ menus (Image > Color > Split Channels, etc.) and dialog boxes."
+        },
+        {
+            "id": "no_direct_copy",
+            "description": "The agent did not simply rename the source file or move a pre-existing result file.",
+            "visual_evidence": "The sequence of screenshots shows the intermediate steps of channel splitting and color re-assignment within the ImageJ interface."
+        },
+        {
+            "id": "authentic_processing",
+            "description": "The final image shows the correct visual transformation (Red -> Magenta).",
+            "visual_evidence": "The final saved image in the screenshot displays a clear magenta and green color scheme, distinct from the original red and green."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image 'FluorescentCells.jpg' is a 512x512 image. The task requires a specific color mapping: the original Red channel must become Magenta, while Green and Blue remain unchanged. Magenta in ImageJ is a combination of the Red and Blue display channels. The final output must be a flattened RGB TIFF file located at ~/ImageJ_Data/results/accessible_composite.tif."
+}

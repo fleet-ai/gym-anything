@@ -1,0 +1,59 @@
+{
+    "task_id": "reset_functional_form@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "Load the food.gdt dataset into gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window showing the 'food.gdt' dataset loaded with variables 'food_exp' and 'income' visible in the variable list."
+        },
+        {
+            "id": "linear_model_estimation",
+            "description": "Estimate a linear OLS model of food_exp on a constant and income.",
+            "points": 15,
+            "visual_evidence": "A gretl model output window showing 'Model 1: OLS, using observations 1-40' with dependent variable 'food_exp' and independent variables 'const' and 'income'."
+        },
+        {
+            "id": "ramsey_reset_test",
+            "description": "Perform Ramsey's RESET test using squared and cubed fitted values on the linear model.",
+            "points": 20,
+            "visual_evidence": "A gretl output window or sub-window titled 'RESET test' showing the inclusion of 'squares and cubes' of fitted values and providing an F-statistic and p-value."
+        },
+        {
+            "id": "log_transformations",
+            "description": "Generate log transformations for food_exp and income (l_food_exp and l_income).",
+            "points": 15,
+            "visual_evidence": "The gretl main variable list now includes 'l_food_exp' and 'l_income' (or similar names like 'ld_food_exp')."
+        },
+        {
+            "id": "log_linear_model_estimation",
+            "description": "Estimate a log-linear OLS model using the transformed variables.",
+            "points": 20,
+            "visual_evidence": "A gretl model output window showing OLS estimation with the log-transformed food expenditure as the dependent variable and log-transformed income as an independent variable."
+        },
+        {
+            "id": "save_output_file",
+            "description": "Save all estimation results and RESET test results to /home/ga/Documents/gretl_output/reset_comparison.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor window (like Mousepad or Gedit) or a terminal 'cat' command showing the file '/home/ga/Documents/gretl_output/reset_comparison.txt' containing the coefficients, R-squared, and RESET test statistics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI to perform the analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots showing the gretl 'Model' menu, 'Tests' menu, or 'Define new variable' dialog boxes being used."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The results in the text file match the gretl output windows and are not manually typed placeholders.",
+            "visual_evidence": "Consistency between the numbers (coefficients, p-values) shown in the gretl GUI windows and the final .txt file."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "The agent saved the file to the specific requested path.",
+            "visual_evidence": "The file path '/home/ga/Documents/gretl_output/reset_comparison.txt' visible in a 'Save As' dialog or a file manager."
+        }
+    ],
+    "privileged_info_for_vlm": "For the linear model (food_exp on income): Intercept is 83.416, Income coefficient is 10.2096, and R-squared is 0.385. For the log-log model (ln_food_exp on ln_income): Intercept is 3.9636, ln_income coefficient (elasticity) is 0.5559, and R-squared is 0.4452. The RESET test should be performed on the linear model using both squared and cubed terms."
+}

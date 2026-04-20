@@ -1,0 +1,59 @@
+{
+    "task_id": "merge_regional_vector_layers@1",
+    "task_completion": [
+        {
+            "id": "load_input_layers",
+            "description": "The agent loads the three regional GeoJSON files from /home/ga/GIS_Data/regions/ into QGIS.",
+            "points": 15,
+            "visual_evidence": "The QGIS Layers Panel shows 'europe_countries', 'africa_countries', and 'south_america_countries' as active layers."
+        },
+        {
+            "id": "open_merge_tool",
+            "description": "The agent opens the 'Merge Vector Layers' tool from the Processing Toolbox or Vector menu.",
+            "points": 10,
+            "visual_evidence": "A dialog window titled 'Merge Vector Layers' is visible on the screen."
+        },
+        {
+            "id": "select_input_layers",
+            "description": "The agent selects all three regional layers as input for the merge operation.",
+            "points": 15,
+            "visual_evidence": "In the 'Merge Vector Layers' dialog, the 'Input layers' field shows '3 inputs selected' or lists all three specific layer names."
+        },
+        {
+            "id": "set_destination_crs",
+            "description": "The agent ensures the destination CRS is set to WGS 84 (EPSG:4326).",
+            "points": 15,
+            "visual_evidence": "The 'Destination CRS' field in the Merge dialog displays 'EPSG:4326 - WGS 84' or the project CRS is confirmed as 4326."
+        },
+        {
+            "id": "configure_output_path",
+            "description": "The agent sets the output file path to /home/ga/GIS_Data/exports/merged_countries.geojson.",
+            "points": 20,
+            "visual_evidence": "The 'Merged' output field in the dialog shows the file path '/home/ga/GIS_Data/exports/merged_countries.geojson'."
+        },
+        {
+            "id": "execute_merge",
+            "description": "The agent runs the merge process and a new layer is generated.",
+            "points": 25,
+            "visual_evidence": "A progress bar completes, and a new layer (often named 'Merged') appears in the Layers Panel, showing features from all three continents on the map canvas."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the QGIS graphical interface rather than just executing shell commands (like ogr2ogr) in the terminal.",
+            "visual_evidence": "Screenshots show interaction with QGIS menus, the Processing Toolbox, and the Merge Vector Layers dialog."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a text file and rename it to .geojson without using GIS software.",
+            "visual_evidence": "The trajectory shows the QGIS 'Save File' or 'Export' dialogs being used to define the output path."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the file system through the QGIS file browser to locate the input data.",
+            "visual_evidence": "The 'Add Vector Layer' or 'Browser' panel is used to navigate to /home/ga/GIS_Data/regions/."
+        }
+    ],
+    "privileged_info_for_vlm": "The input files are located in /home/ga/GIS_Data/regions/. The required output path is /home/ga/GIS_Data/exports/merged_countries.geojson. The mandatory CRS is EPSG:4326 (WGS 84). The merge must include three specific regions: Europe, Africa, and South America."
+}

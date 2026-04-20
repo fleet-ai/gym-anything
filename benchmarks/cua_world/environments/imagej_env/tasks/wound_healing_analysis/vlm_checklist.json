@@ -1,0 +1,59 @@
+{
+    "task_id": "wound_healing_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_imagej_and_load_image",
+            "description": "Open ImageJ and load the scratch assay image from the specified path.",
+            "points": 10,
+            "visual_evidence": "ImageJ/Fiji application window is visible showing 'scratch_assay.tif' with a clear central gap (wound) and textured cell regions."
+        },
+        {
+            "id": "segmentation_process",
+            "description": "Apply image processing (e.g., thresholding, edge detection, or variance filtering) to isolate the wound.",
+            "points": 25,
+            "visual_evidence": "ImageJ dialogs like 'Threshold', 'Find Edges', or 'Variance' are open and being applied to the image."
+        },
+        {
+            "id": "create_binary_mask",
+            "description": "Generate a binary mask where the wound is white (255) and cells are black (0).",
+            "points": 25,
+            "visual_evidence": "A new image window or the original image is converted to a binary (black and white) format where the central gap is white."
+        },
+        {
+            "id": "save_mask_tif",
+            "description": "Save the binary mask to the results directory as a .tif file.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or file explorer shows 'wound_mask.tif' being saved to '~/ImageJ_Data/results/'."
+        },
+        {
+            "id": "measure_wound_area",
+            "description": "Use ImageJ measurement tools to calculate the area of the white (wound) region.",
+            "points": 15,
+            "visual_evidence": "The ImageJ 'Results' table window is visible, showing a row with an 'Area' measurement."
+        },
+        {
+            "id": "save_results_csv",
+            "description": "Save the measurement results table to the results directory as a .csv file.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog for the Results table shows 'wound_results.csv' being saved to '~/ImageJ_Data/results/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the ImageJ GUI rather than just executing shell scripts to generate files.",
+            "visual_evidence": "Screenshots show the ImageJ menu bar, toolbars, and active image windows being manipulated by the cursor."
+        },
+        {
+            "id": "genuine_segmentation",
+            "description": "The mask was generated through image processing, not by manually drawing a rectangle.",
+            "visual_evidence": "Presence of thresholding sliders or filter dialogs rather than just the 'Rectangle' selection tool being used to fill a shape."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent used the correct file paths as specified in the task.",
+            "visual_evidence": "File paths in the 'Open' or 'Save' dialogs match '~/ImageJ_Data/raw/' and '~/ImageJ_Data/results/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The input image 'scratch_assay.tif' may be synthetic (noise + rectangle) if the BBBC download failed. The segmentation is considered successful if the wound (the smooth/gap area) is white (255) and the textured cell area is black (0). A key indicator of a valid segmentation is a texture ratio > 1.2 (standard deviation of cell region vs wound region). The final outputs must be 'wound_mask.tif' and 'wound_results.csv' in the results folder."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "customize_home_dashboard@1",
+    "task_completion": [
+        {
+            "id": "access_home_dashboard",
+            "description": "Agent navigates to the SuiteCRM Home dashboard.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SuiteCRM URL ending in index.php?module=Home or the 'Home' tab is active with a dashboard layout visible."
+        },
+        {
+            "id": "open_add_dashlets_menu",
+            "description": "Agent clicks on 'Add Dashlets' to open the selection menu.",
+            "points": 15,
+            "visual_evidence": "A modal or dropdown menu titled 'Add Dashlets' is visible on the screen."
+        },
+        {
+            "id": "select_projects_dashlet",
+            "description": "Agent selects the 'Projects' dashlet from the list.",
+            "points": 25,
+            "visual_evidence": "The VLM sees the agent clicking on 'Projects' within the dashlet selection list or a 'Projects' dashlet appearing on the dashboard."
+        },
+        {
+            "id": "select_invoices_dashlet",
+            "description": "Agent selects the 'Invoices' dashlet from the list.",
+            "points": 25,
+            "visual_evidence": "The VLM sees the agent clicking on 'Invoices' within the dashlet selection list or an 'Invoices' dashlet appearing on the dashboard."
+        },
+        {
+            "id": "verify_both_dashlets_present",
+            "description": "Both 'Projects' and 'Invoices' dashlets are visible on the Home dashboard simultaneously.",
+            "points": 25,
+            "visual_evidence": "The final screenshot shows the Home dashboard containing two distinct panels/boxes labeled 'Projects' and 'Invoices' (or 'My Projects' / 'My Invoices')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the SuiteCRM web interface rather than executing database queries or terminal commands to modify preferences.",
+            "visual_evidence": "The trajectory shows mouse movements and clicks on the SuiteCRM UI elements; no terminal or SQL console is used to bypass the UI."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent manually navigated through the menus to add dashlets rather than jumping to a pre-configured URL that bypasses the process.",
+            "visual_evidence": "Screenshots show the step-by-step process of opening the 'Add Dashlets' dialog and selecting items."
+        },
+        {
+            "id": "no_manual_html_injection",
+            "description": "The dashlets are actual functional components of the CRM, not just text or images injected into the page source.",
+            "visual_evidence": "The dashlets show standard SuiteCRM styling, headers, and 'refresh' or 'edit' icons consistent with the application's theme."
+        }
+    ],
+    "privileged_info_for_vlm": "The internal module names for the requested dashlets are 'Project' and 'AOS_Invoices'. On the UI, these will typically appear as 'Projects' and 'Invoices'. The task is performed by the admin user (ID 1). Success is defined by the visual presence of both these specific dashlet panels on the Home dashboard."
+}

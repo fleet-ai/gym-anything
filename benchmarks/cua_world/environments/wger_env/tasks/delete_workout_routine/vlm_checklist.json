@@ -1,0 +1,53 @@
+{
+    "task_id": "delete_workout_routine@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger dashboard using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The dashboard or home screen of wger is visible, showing the 'admin' user profile or a logout button."
+        },
+        {
+            "id": "navigate_to_routines",
+            "description": "Agent navigates to the workout routines management section.",
+            "points": 15,
+            "visual_evidence": "A list of workout routines is displayed, including '5x5 Beginner', 'Push-Pull-Legs', and 'Upper-Lower Split'."
+        },
+        {
+            "id": "initiate_deletion",
+            "description": "Agent selects the '5x5 Beginner' routine for deletion.",
+            "points": 20,
+            "visual_evidence": "The agent clicks a delete icon/button next to '5x5 Beginner' or opens its specific management page to find the delete option."
+        },
+        {
+            "id": "confirm_deletion",
+            "description": "Agent confirms the deletion in the system prompt or confirmation page.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog or a 'Delete' button on a confirmation page is clicked specifically for the '5x5 Beginner' routine."
+        },
+        {
+            "id": "verify_removal",
+            "description": "The '5x5 Beginner' routine is no longer present in the list, while others remain.",
+            "points": 30,
+            "visual_evidence": "The routine list is shown again; '5x5 Beginner' is absent, but 'Push-Pull-Legs' and 'Upper-Lower Split' are still visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and browser navigation rather than a terminal window with SQL or Django shell commands."
+        },
+        {
+            "id": "no_accidental_deletion",
+            "description": "The agent did not delete the 'Push-Pull-Legs' or 'Upper-Lower Split' routines.",
+            "visual_evidence": "The final screenshots of the routine list still show 'Push-Pull-Legs' and 'Upper-Lower Split' as active entries."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent interacted with the actual wger application elements.",
+            "visual_evidence": "The URL bar shows localhost and the wger UI elements (buttons, forms) change state in response to agent actions."
+        }
+    ],
+    "privileged_info_for_vlm": "The system initially contains exactly three routines: '5x5 Beginner', 'Push-Pull-Legs', and 'Upper-Lower Split'. The goal is to delete ONLY '5x5 Beginner'. Success is defined by a final state where 'Push-Pull-Legs' and 'Upper-Lower Split' are the only two routines remaining in the list."
+}

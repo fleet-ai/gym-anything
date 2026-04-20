@@ -1,0 +1,59 @@
+{
+    "task_id": "consolidate_crm_tags@1",
+    "task_completion": [
+        {
+            "id": "locate_opportunities",
+            "description": "Locate the three target opportunities: 'Emergency Generators - Apex Corp', 'Rush Order - Beta Industries', and 'Expedited Shipping - Gamma Inc'.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the CRM pipeline or list view containing these specific opportunity names."
+        },
+        {
+            "id": "update_apex_corp_tag",
+            "description": "Standardize 'Emergency Generators - Apex Corp' by removing 'urgent' and adding 'Urgent'.",
+            "points": 15,
+            "visual_evidence": "The opportunity detail view for Apex Corp showing the tag 'Urgent' (capitalized) and the absence of 'urgent' (lowercase)."
+        },
+        {
+            "id": "update_beta_industries_tag",
+            "description": "Standardize 'Rush Order - Beta Industries' by removing 'ASAP' and adding 'Urgent'.",
+            "points": 15,
+            "visual_evidence": "The opportunity detail view for Beta Industries showing the tag 'Urgent' and the absence of 'ASAP'."
+        },
+        {
+            "id": "update_gamma_inc_tag",
+            "description": "Standardize 'Expedited Shipping - Gamma Inc' by removing 'urgent' and 'ASAP' and adding 'Urgent'.",
+            "points": 20,
+            "visual_evidence": "The opportunity detail view for Gamma Inc showing only the 'Urgent' tag present."
+        },
+        {
+            "id": "delete_bad_tag_urgent",
+            "description": "Permanently delete the 'urgent' (lowercase) tag from the system configuration.",
+            "points": 20,
+            "visual_evidence": "Navigation to Configuration > Tags showing the deletion process or the absence of 'urgent' in the master tag list."
+        },
+        {
+            "id": "delete_bad_tag_asap",
+            "description": "Permanently delete the 'ASAP' tag from the system configuration.",
+            "points": 20,
+            "visual_evidence": "Navigation to Configuration > Tags showing the deletion process or the absence of 'ASAP' in the master tag list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the CRM graphical user interface to perform the changes.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI elements, and form editing within the browser, rather than just terminal output."
+        },
+        {
+            "id": "no_bulk_delete_bypass",
+            "description": "The agent actually navigated to the configuration settings to delete the tags rather than just removing them from the leads.",
+            "visual_evidence": "Screenshots showing the 'Configuration' menu and the 'Tags' list view being manipulated."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM modules rather than jumping directly to URLs if not provided.",
+            "visual_evidence": "Sequential screenshots showing the transition from the Dashboard to CRM to Configuration."
+        }
+    ],
+    "privileged_info_for_vlm": "The official tag is 'Urgent' (case-sensitive, capital U). The tags to be removed and deleted are 'urgent' (lowercase) and 'ASAP' (all caps). Target opportunities are: 'Emergency Generators - Apex Corp' (initially has 'urgent'), 'Rush Order - Beta Industries' (initially has 'ASAP'), and 'Expedited Shipping - Gamma Inc' (initially has both 'urgent' and 'ASAP'). All three must end up with only the 'Urgent' tag, and the two incorrect tags must be deleted from the CRM Configuration > Tags menu."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "detector_demand_calibration@1",
+    "task_completion": [
+        {
+            "id": "baseline_counts_generation",
+            "description": "Generate baseline vehicle counts from the SUMO simulation and save to baseline_detector_counts.csv.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/SUMO_Output/baseline_detector_counts.csv with columns detector_id, interval_begin, interval_end, vehicle_count."
+        },
+        {
+            "id": "observed_dataset_creation",
+            "description": "Create a synthetic 'observed' reference dataset by applying a scaling factor and save to observed_detector_counts.csv.",
+            "points": 10,
+            "visual_evidence": "Code execution or file content showing /home/ga/SUMO_Output/observed_detector_counts.csv with values different from the baseline."
+        },
+        {
+            "id": "calibrated_route_file",
+            "description": "Modify the route file to match observed counts and save as acosta_calibrated.rou.xml.",
+            "points": 25,
+            "visual_evidence": "File explorer or editor showing /home/ga/SUMO_Scenarios/bologna_acosta/acosta_calibrated.rou.xml exists."
+        },
+        {
+            "id": "calibrated_config_creation",
+            "description": "Create the simulation configuration file run_calibrated.sumocfg.",
+            "points": 10,
+            "visual_evidence": "File explorer or editor showing /home/ga/SUMO_Scenarios/bologna_acosta/run_calibrated.sumocfg referencing the new route file."
+        },
+        {
+            "id": "calibrated_counts_extraction",
+            "description": "Extract counts from the calibrated simulation to calibrated_detector_counts.csv.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing /home/ga/SUMO_Output/calibrated_detector_counts.csv."
+        },
+        {
+            "id": "calibration_assessment_report",
+            "description": "Produce a calibration assessment report with GEH statistics.",
+            "points": 15,
+            "visual_evidence": "CSV file content for /home/ga/SUMO_Output/calibration_report.csv containing columns: detector_id, observed_count, baseline_count, calibrated_count, baseline_geh, calibrated_geh."
+        },
+        {
+            "id": "calibration_summary_doc",
+            "description": "Document methodology and GEH statistics in calibration_summary.txt.",
+            "points": 10,
+            "visual_evidence": "Text editor or 'cat' command showing /home/ga/SUMO_Output/calibration_summary.txt with a description of the calibration process."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sumo_interaction",
+            "description": "Verify the agent actually ran SUMO simulations rather than fabricating data.",
+            "visual_evidence": "Screenshots showing terminal commands like 'sumo -c ...' or 'duarouter' being executed, or the SUMO GUI/CLI progress bars."
+        },
+        {
+            "id": "no_hardcoded_geh",
+            "description": "Ensure GEH values are calculated from data, not hardcoded.",
+            "visual_evidence": "Code snippets (Python/Bash) showing the GEH formula: sqrt(2 * (m-c)^2 / (m+c))."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the specific paths requested in the task.",
+            "visual_evidence": "Screenshots showing files saved exactly in /home/ga/SUMO_Output/ and /home/ga/SUMO_Scenarios/bologna_acosta/."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario 'bologna_acosta' contains 58 detectors with a reporting frequency of 1800 seconds. A successful calibration should show 'calibrated_geh' values generally lower than 'baseline_geh' values. The standard GEH threshold for a good fit in traffic engineering is < 5.0. The agent must use the files in /home/ga/SUMO_Scenarios/bologna_acosta/ as the source."
+}

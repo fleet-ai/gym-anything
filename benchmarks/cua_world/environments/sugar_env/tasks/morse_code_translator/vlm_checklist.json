@@ -1,0 +1,53 @@
+{
+    "task_id": "morse_code_translator@1",
+    "task_completion": [
+        {
+            "id": "create_directory_and_reference",
+            "description": "Create the directory /home/ga/Documents/morse/ and the reference file morse_reference.txt with A-Z and 0-9 mappings.",
+            "points": 15,
+            "visual_evidence": "Terminal commands showing 'mkdir' and 'cat' or 'nano' creating morse_reference.txt with mappings like 'A .-'."
+        },
+        {
+            "id": "implement_scripts",
+            "description": "Implement encode.sh and decode.sh scripts in the specified directory.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the content of encode.sh and decode.sh or an 'ls' command showing both files in /home/ga/Documents/morse/."
+        },
+        {
+            "id": "encode_sugar_labs",
+            "description": "Encode 'SUGAR LABS' and save to encoded_output.txt.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of encode.sh with 'SUGAR LABS' and a 'cat' command showing the content of encoded_output.txt."
+        },
+        {
+            "id": "decode_sos",
+            "description": "Decode '... --- ...' and save to decoded_output.txt.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of decode.sh with '... --- ...' and a 'cat' command showing 'SOS' in decoded_output.txt."
+        },
+        {
+            "id": "roundtrip_test",
+            "description": "Perform a roundtrip test of 'HELLO WORLD' and save to roundtrip_output.txt.",
+            "points": 20,
+            "visual_evidence": "Terminal commands showing the piping of encode.sh output into decode.sh (or sequential execution) and 'cat roundtrip_output.txt' showing 'HELLO WORLD'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_script_execution",
+            "description": "Verify the agent actually ran the scripts rather than just echo-ing the final strings into files.",
+            "visual_evidence": "Look for command lines like './encode.sh \"SUGAR LABS\" > encoded_output.txt' rather than 'echo \"... ..- --. .- .-. / .-.. .- -... ...\" > encoded_output.txt'."
+        },
+        {
+            "id": "sugar_terminal_usage",
+            "description": "Ensure the agent used the Sugar Terminal activity as requested.",
+            "visual_evidence": "The window frame and interface should match the Sugar Learning Platform's Terminal activity."
+        },
+        {
+            "id": "no_hardcoded_outputs",
+            "description": "Check if the scripts contain logic to read the reference file rather than hardcoding the specific task strings.",
+            "visual_evidence": "Script content (via cat or editors) should show loops, grep, or awk commands referencing morse_reference.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected content for encoded_output.txt is '... ..- --. .- .-. / .-.. .- -... ...'. The expected content for decoded_output.txt is 'SOS'. The expected content for roundtrip_output.txt is 'HELLO WORLD'. The reference file must contain all 26 letters and 10 digits. The word separator for encoding must be ' / '."
+}

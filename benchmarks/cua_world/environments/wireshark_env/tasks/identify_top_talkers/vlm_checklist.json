@@ -1,0 +1,53 @@
+{
+    "task_id": "identify_top_talkers@1",
+    "task_completion": [
+        {
+            "id": "open_wireshark",
+            "description": "The agent opens the Wireshark application.",
+            "points": 10,
+            "visual_evidence": "The Wireshark application window is visible on the desktop."
+        },
+        {
+            "id": "load_pcap_file",
+            "description": "The agent opens the specific capture file '200722_tcp_anon.pcapng'.",
+            "points": 15,
+            "visual_evidence": "The Wireshark title bar or status bar shows '200722_tcp_anon.pcapng' as the active file."
+        },
+        {
+            "id": "access_statistics_endpoints",
+            "description": "The agent navigates to the Endpoints statistics window to analyze traffic volume.",
+            "points": 20,
+            "visual_evidence": "An 'Endpoints' window is open, showing a list of IP addresses and byte counts."
+        },
+        {
+            "id": "identify_top_sender",
+            "description": "The agent identifies the IPv4 address with the highest 'Tx Bytes' or 'Bytes' sent.",
+            "points": 25,
+            "visual_evidence": "The Endpoints window shows 192.168.200.135 with the highest byte count (approx 10,629 bytes), or the agent has highlighted this row."
+        },
+        {
+            "id": "create_output_file",
+            "description": "The agent saves the identified IP address to the specified text file.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal command shows the string '192.168.200.135' being saved to '/home/ga/Documents/captures/top_talker.txt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the Wireshark GUI to analyze the traffic rather than just running a script to find the answer.",
+            "visual_evidence": "Screenshots show the Wireshark GUI, specifically the Endpoints or Statistics menus, being interacted with."
+        },
+        {
+            "id": "no_hardcoded_answer",
+            "description": "The agent did not simply type the IP address without first opening the capture file.",
+            "visual_evidence": "The trajectory shows the capture file being opened and analyzed before the text file is created."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent used the specific file paths provided in the task description.",
+            "visual_evidence": "The file paths /home/ga/Documents/captures/200722_tcp_anon.pcapng and /home/ga/Documents/captures/top_talker.txt are visible in the interaction."
+        }
+    ],
+    "privileged_info_for_vlm": "The capture file '200722_tcp_anon.pcapng' contains 35 packets, all of which are TCP. The IPv4 endpoint that sent the most bytes is 192.168.200.135 (10,629 Tx bytes). The second most active is 192.168.200.21 (894 Tx bytes). The final content of /home/ga/Documents/captures/top_talker.txt must be exactly '192.168.200.135'."
+}

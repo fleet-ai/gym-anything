@@ -1,0 +1,59 @@
+{
+    "task_id": "multivariate_outlier_mahalanobis@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "The 'food.gdt' dataset is loaded into the Gretl main window.",
+            "points": 10,
+            "visual_evidence": "The Gretl main window displays 'food.gdt' in the title bar or lists 'food_exp' and 'income' in the variable list."
+        },
+        {
+            "id": "script_editor_open",
+            "description": "A Gretl hansl script editor window is open with code to calculate Mahalanobis distance.",
+            "points": 15,
+            "visual_evidence": "A 'gretl: hansl script' window is visible containing commands like 'm_dist = mahalanobis(food_exp, income)' or equivalent matrix operations."
+        },
+        {
+            "id": "outlier_logic_defined",
+            "description": "The script includes logic to create the 'is_outlier' variable using the 5.991 threshold.",
+            "points": 20,
+            "visual_evidence": "The script contains a line similar to 'series is_outlier = (m_dist > 5.991)'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The script is executed, and the new variables appear in the Gretl main window.",
+            "points": 25,
+            "visual_evidence": "The main Gretl variable list now includes 'm_dist' and 'is_outlier' alongside the original variables."
+        },
+        {
+            "id": "export_command",
+            "description": "The script or GUI command to export the data to the specific CSV path is visible.",
+            "points": 15,
+            "visual_evidence": "The script contains 'store \"/home/ga/Documents/gretl_output/food_with_outliers.csv\" --csv' or a file export dialog is shown pointing to that path."
+        },
+        {
+            "id": "file_saved_confirmation",
+            "description": "Confirmation that the CSV file has been saved to the target directory.",
+            "points": 15,
+            "visual_evidence": "A Gretl console message indicating the file was written, or a file explorer window showing 'food_with_outliers.csv' in the /home/ga/Documents/gretl_output/ folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gretl_interaction",
+            "description": "The agent used the Gretl application interface rather than just simulating output in a terminal.",
+            "visual_evidence": "Screenshots show the Gretl GUI, script editor, and variable list, not just a standard bash terminal."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent calculated the values using hansl commands rather than manually typing outlier flags.",
+            "visual_evidence": "The script editor shows functional code (mahalanobis function or matrix algebra) rather than a series of 'set' commands for specific observation IDs."
+        },
+        {
+            "id": "correct_threshold_usage",
+            "description": "The agent used the specific threshold of 5.991 as requested.",
+            "visual_evidence": "The value '5.991' is visible in the hansl script code."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset 'food.gdt' contains variables 'food_exp' and 'income'. The threshold 5.991 corresponds to the Chi-Square critical value for 2 degrees of freedom at alpha=0.05. The agent must create 'm_dist' and 'is_outlier' (binary 0/1) and save specifically to '/home/ga/Documents/gretl_output/food_with_outliers.csv'."
+}

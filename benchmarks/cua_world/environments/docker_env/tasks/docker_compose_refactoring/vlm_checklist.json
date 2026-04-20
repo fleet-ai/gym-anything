@@ -1,0 +1,53 @@
+{
+    "task_id": "docker_compose_refactoring@1",
+    "task_completion": [
+        {
+            "id": "create_base_yml",
+            "description": "Create a new docker-compose.base.yml file containing shared configurations.",
+            "points": 15,
+            "visual_evidence": "A file named 'docker-compose.base.yml' is visible in the file explorer or via a terminal command like 'ls' or 'cat' in the project directory."
+        },
+        {
+            "id": "refactor_main_compose",
+            "description": "Update docker-compose.yml to use the 'extends' keyword for the four worker services.",
+            "points": 25,
+            "visual_evidence": "The content of 'docker-compose.yml' shows the 'extends' key being used under transcoder-av1, transcoder-h264, thumbnail-generator, and audio-extractor."
+        },
+        {
+            "id": "h264_restart_policy",
+            "description": "Ensure the transcoder-h264 service specifically includes a 'restart: always' policy.",
+            "points": 15,
+            "visual_evidence": "The 'docker-compose.yml' or 'docker-compose.base.yml' (if applied to all) shows 'restart: always' for the transcoder-h264 service."
+        },
+        {
+            "id": "reduced_line_count",
+            "description": "The line count of the main docker-compose.yml is significantly reduced compared to the original state.",
+            "points": 20,
+            "visual_evidence": "A terminal command like 'wc -l docker-compose.yml' shows a number significantly lower than the original 94 lines, or the file content is visually much shorter in an editor."
+        },
+        {
+            "id": "services_running",
+            "description": "Verify the refactored stack starts correctly and all four services are running.",
+            "points": 25,
+            "visual_evidence": "Output of 'docker compose ps' or 'docker-compose ps' showing all four services (transcoder-av1, transcoder-h264, thumbnail-generator, audio-extractor) with a status of 'Up' or 'Running'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent actually edited the files rather than just printing what they should look like.",
+            "visual_evidence": "Screenshots show the agent using a text editor (like VS Code, nano, or vim) or using redirection/sed to modify the files on disk."
+        },
+        {
+            "id": "actual_docker_interaction",
+            "description": "The agent ran actual docker commands to verify the stack.",
+            "visual_evidence": "Terminal output showing the execution of 'docker compose up' and the resulting container logs or status codes."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'All services running' without running the status command.",
+            "visual_evidence": "The presence of the actual table-formatted output from the Docker CLI in the terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/projects/media-pipeline. The original docker-compose.yml has approximately 94 lines and defines four services: transcoder-av1, transcoder-h264, thumbnail-generator, and audio-extractor. The user is 'ga'. The task is successful only if both the base file is created and the main file is refactored to use 'extends', resulting in a shorter main file and a running stack."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "create_drm_false_memory@1",
+    "task_completion": [
+        {
+            "id": "study_csv_creation",
+            "description": "Create drm_study_words.csv with 36 words across Sleep, Needle, and Sweet lists, excluding the lures.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing drm_study_words.csv with columns 'word', 'listNum', 'listName' and words like 'bed', 'thread', 'sour' but NOT 'sleep', 'needle', or 'sweet'."
+        },
+        {
+            "id": "test_csv_creation",
+            "description": "Create drm_test_words.csv with targets, critical lures, and unrelated foils with correctAns 'o' or 'n'.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet or text editor showing drm_test_words.csv with columns 'word', 'itemType', 'correctAns', 'listNum'. Lures (sleep, needle, sweet) must have 'n' as correctAns."
+        },
+        {
+            "id": "psycho_py_routines",
+            "description": "Define the experiment structure in PsychoPy Builder with study, distractor, and test routines.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder timeline showing distinct routines for instructions, study (word presentation), a distractor/buffer, and test."
+        },
+        {
+            "id": "study_phase_config",
+            "description": "Configure the study routine with 2.0s word presentation and the study conditions file.",
+            "points": 20,
+            "visual_evidence": "The 'Trial properties' or 'Loop' dialog showing 'drm_study_words.csv' linked, and a Text component with duration set to 2.0."
+        },
+        {
+            "id": "test_phase_config",
+            "description": "Configure the test routine to collect 'o' and 'n' key responses using the test conditions file.",
+            "points": 30,
+            "visual_evidence": "The 'Loop' dialog for the test phase showing 'drm_test_words.csv' and a Keyboard component with allowed keys 'o' and 'n'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with PsychoPy components, dialog boxes, and the timeline rather than just writing XML code in a text editor."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The CSV files were created or edited within the environment, not just simulated.",
+            "visual_evidence": "Screenshots show the agent using a CSV editor, LibreOffice, or a text editor to input the specific word lists provided in the instructions."
+        },
+        {
+            "id": "no_hardcoded_responses",
+            "description": "The experiment uses variable references ($word) rather than hardcoded text for stimuli.",
+            "visual_evidence": "The Text component properties in PsychoPy show '$word' (or similar variable) with the 'set every repeat' option selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The study file must have 36 rows (12 words x 3 lists). Critical lures 'sleep', 'needle', and 'sweet' must be in the test CSV (correctAns: 'n') but ABSENT from the study CSV. Study words must appear for 2.0s. Test responses must be 'o' for old (targets) and 'n' for new (lures and foils). Files must be saved in /home/ga/PsychoPyExperiments/."
+}

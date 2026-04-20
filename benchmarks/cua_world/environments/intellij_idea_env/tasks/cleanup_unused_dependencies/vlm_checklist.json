@@ -1,0 +1,54 @@
+{
+    "task_id": "cleanup_unused_dependencies@1",
+    "task_completion": [
+        {
+            "id": "open_pom_xml",
+            "description": "The agent opens the pom.xml file in the project directory to inspect dependencies.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the pom.xml file open in an editor or IDE (e.g., IntelliJ IDEA) within the /home/ga/IdeaProjects/dependency-cleanup directory."
+        },
+        {
+            "id": "verify_unused_status",
+            "description": "The agent searches the source code (src/main/java or src/test/java) to confirm dependencies are unused.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing search results, 'Find in Files' dialogs, or terminal grep commands looking for imports related to Guava, Commons-IO, Jackson, or Commons-Collections."
+        },
+        {
+            "id": "remove_unused_dependencies",
+            "description": "The agent removes the specific unused dependencies from the pom.xml file.",
+            "points": 30,
+            "visual_evidence": "A screenshot of the pom.xml file where the <dependency> blocks for guava, commons-io, jackson-databind, and commons-collections4 have been deleted."
+        },
+        {
+            "id": "trigger_maven_build",
+            "description": "The agent runs a Maven build (e.g., mvn clean compile) to ensure the project still compiles.",
+            "points": 20,
+            "visual_evidence": "A terminal or IDE tool window showing the execution of a Maven command and a 'BUILD SUCCESS' message."
+        },
+        {
+            "id": "run_tests_success",
+            "description": "The agent runs the project tests to ensure no regressions were introduced.",
+            "points": 20,
+            "visual_evidence": "A terminal or IDE test runner showing that all tests passed (e.g., 'Tests run: X, Failures: 0, Errors: 0, Skipped: 0')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_source_code_modification",
+            "description": "The agent did not modify any Java source files to force a successful build.",
+            "points": 0,
+            "visual_evidence": "The file explorer or git status (if used) should not show modifications to files in src/main/java or src/test/java."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the IDE or terminal rather than just outputting a final answer.",
+            "visual_evidence": "The trajectory shows sequential steps of opening files, editing text, and executing commands in the environment."
+        },
+        {
+            "id": "correct_dependency_removal",
+            "description": "The agent only removed the specific unused dependencies and did not delete required ones like Gson or JUnit.",
+            "visual_evidence": "The pom.xml should still contain necessary dependencies for the project to compile and pass tests."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/dependency-cleanup. The specific unused dependencies that must be removed are: 1. guava (com.google.guava), 2. commons-io (org.apache.commons.io), 3. jackson-databind (com.fasterxml.jackson.core), and 4. commons-collections4 (org.apache.commons.collections4). The project uses Gson for JSON and standard Java streams for IO, so those must remain. A successful completion requires a 'BUILD SUCCESS' message after these four are removed."
+}

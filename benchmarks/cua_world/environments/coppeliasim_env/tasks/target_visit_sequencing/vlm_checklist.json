@@ -1,0 +1,53 @@
+{
+    "task_id": "target_visit_sequencing@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_connection",
+            "description": "Agent successfully opens CoppeliaSim and establishes a connection via the ZMQ Remote API on port 23000.",
+            "points": 10,
+            "visual_evidence": "CoppeliaSim application window is visible, and terminal logs or code show connection to port 23000."
+        },
+        {
+            "id": "target_definition",
+            "description": "Agent defines at least 6 target waypoints in the workspace with appropriate spacing.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing 6+ coordinate sets (x, y, z) being defined or visualized in the CoppeliaSim scene."
+        },
+        {
+            "id": "robot_execution_sequences",
+            "description": "The robot arm is observed moving to visit the targets in at least 5 different orderings.",
+            "points": 30,
+            "visual_evidence": "Sequential screenshots showing the robot arm in different poses/positions across multiple execution cycles, or terminal logs showing 'Sequence 1/5', 'Sequence 2/5', etc."
+        },
+        {
+            "id": "csv_export",
+            "description": "Agent exports the visit sequences, times, and distances to the specified CSV file.",
+            "points": 20,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/visit_sequences.csv with columns: sequence_id, visit_order, total_time_s, total_distance_m."
+        },
+        {
+            "id": "json_summary_report",
+            "description": "Agent saves a summary report to the specified JSON path containing all required metrics.",
+            "points": 25,
+            "visual_evidence": "A file explorer view or terminal 'cat' command showing /home/ga/Documents/CoppeliaSim/exports/sequencing_report.json containing num_targets (>=6), num_sequences_tested (>=5), best_sequence_id, and target_positions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim simulation rather than hardcoding results.",
+            "visual_evidence": "Screenshots show the CoppeliaSim play button active or the simulation timer incrementing while the robot moves."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually type out the CSV/JSON content without running the simulation code.",
+            "visual_evidence": "The terminal shows the execution of a Python script or command that generates the files, rather than just 'echo' or 'nano' commands to create the final data."
+        },
+        {
+            "id": "workspace_constraint_validation",
+            "description": "The target positions meet the distance requirements (0.04m separation, 0.15m span).",
+            "visual_evidence": "The target_positions list in the JSON or code shows coordinates that are not identical and span a range of at least 0.15m."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 6+ targets and 5+ sequences. The output files must be located at /home/ga/Documents/CoppeliaSim/exports/visit_sequences.csv and /home/ga/Documents/CoppeliaSim/exports/sequencing_report.json. Targets must be separated by at least 0.04m and the total span of targets must be at least 0.15m. The ZMQ port used must be 23000."
+}

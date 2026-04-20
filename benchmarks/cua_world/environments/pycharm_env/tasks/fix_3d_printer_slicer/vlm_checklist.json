@@ -1,0 +1,56 @@
+{
+    "task_id": "fix_3d_printer_slicer@1",
+    "task_completion": [
+        {
+            "id": "open_engine_py",
+            "description": "The agent opens the file 'py_slicer/engine.py' in an editor or IDE.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing 'engine.py' open in PyCharm or a text editor, with the path /home/ga/PycharmProjects/py_slicer/engine.py visible."
+        },
+        {
+            "id": "identify_bugs",
+            "description": "The agent identifies the logic errors related to horizontal edges, top layers, or open loops in the code.",
+            "points": 15,
+            "visual_evidence": "The agent scrolling through engine.py and highlighting or editing sections of code related to polygon closure or layer height calculations."
+        },
+        {
+            "id": "modify_geometry_logic",
+            "description": "The agent modifies the computational geometry logic in engine.py to fix the reported bugs.",
+            "points": 30,
+            "visual_evidence": "Code changes in engine.py showing logic to close polygon loops (e.g., appending the first point to the end) or adjusting floating point comparisons for horizontal surfaces."
+        },
+        {
+            "id": "run_tests",
+            "description": "The agent executes the test suite 'tests/test_slicing.py'.",
+            "points": 15,
+            "visual_evidence": "A terminal or IDE test runner showing the command 'pytest tests/test_slicing.py' or similar being executed."
+        },
+        {
+            "id": "tests_passing",
+            "description": "The agent achieves a passing state for the tests in 'tests/test_slicing.py'.",
+            "points": 30,
+            "visual_evidence": "A terminal output showing '3 passed' (or similar) and no failures for the test_slicing.py file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "points": 0,
+            "visual_evidence": "The agent should not be seen editing files in the 'tests/' directory; only 'engine.py' should be modified."
+        },
+        {
+            "id": "genuine_code_fix",
+            "description": "The agent fixed the logic rather than hardcoding test outputs.",
+            "points": 0,
+            "visual_evidence": "The changes in engine.py should involve algorithmic logic (loops, geometry math) rather than 'if' statements checking for specific test case names."
+        },
+        {
+            "id": "used_ide_or_editor",
+            "description": "The agent used the provided software environment (PyCharm/Editor) to perform the task.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent interacting with the GUI of the IDE or a text editor rather than just using 'sed' or 'echo' in the terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/py_slicer. There are exactly 3 tests in tests/test_slicing.py that must pass. A score of 70 or higher is required for success. The agent must focus on engine.py and is prohibited from modifying the test files or STL readers."
+}

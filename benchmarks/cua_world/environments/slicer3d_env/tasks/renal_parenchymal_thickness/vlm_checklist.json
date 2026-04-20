@@ -1,0 +1,59 @@
+{
+    "task_id": "renal_parenchymal_thickness@1",
+    "task_completion": [
+        {
+            "id": "load_ct_and_locate_hilar_level",
+            "description": "The agent loads the abdominal CT scan and navigates to the hilar level where the renal arteries/veins enter the kidneys.",
+            "points": 10,
+            "visual_evidence": "3D Slicer (or similar medical imaging software) is open showing an abdominal CT scan at a slice where the renal hilum is visible for both kidneys."
+        },
+        {
+            "id": "measure_right_kidney",
+            "description": "The agent performs three measurements (anterior, posterior, lateral) on the right kidney at the hilar level.",
+            "points": 20,
+            "visual_evidence": "Three distinct measurement rulers or markup lines are visible on the right kidney in the slice viewer, spanning from the outer cortex to the medullary-sinus interface."
+        },
+        {
+            "id": "measure_left_kidney",
+            "description": "The agent performs three measurements (anterior, posterior, lateral) on the left kidney at the hilar level.",
+            "points": 20,
+            "visual_evidence": "Three distinct measurement rulers or markup lines are visible on the left kidney in the slice viewer."
+        },
+        {
+            "id": "save_markup_file",
+            "description": "The agent saves the measurement markups to the specified JSON path.",
+            "points": 15,
+            "visual_evidence": "A file browser or terminal output confirms the creation of '~/Documents/SlicerData/AMOS/renal_thickness_measurements.mrk.json'."
+        },
+        {
+            "id": "calculate_and_classify",
+            "description": "The agent calculates averages and classifies the kidneys based on thickness thresholds.",
+            "points": 15,
+            "visual_evidence": "A report or text editor is visible showing calculations for average_mm and classifications (e.g., 'normal' or 'reduced') for both kidneys."
+        },
+        {
+            "id": "save_final_report",
+            "description": "The agent saves the final report with all required fields including symmetry assessment and overall impression.",
+            "points": 20,
+            "visual_evidence": "The file '~/Documents/SlicerData/AMOS/renal_parenchyma_report.json' is saved and contains the fields: right_kidney, left_kidney, bilateral_difference_mm, symmetry_assessment, and overall_impression."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform measurements rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with measurement tools and manual placement of markup points in the slice viewer."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual rulers placed on the CT scan.",
+            "visual_evidence": "The numerical values in the final JSON report match the lengths of the ruler markups visible in the software's UI/overlay."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo a pre-written JSON file without performing the analysis.",
+            "visual_evidence": "The agent is seen actively navigating through slices and clicking on the kidney anatomy before the report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "For the AMOS dataset, the right kidney is typically label 2 and the left is label 3. Clinical thresholds for renal parenchymal thickness (RPT) are: Normal >= 15mm; Mildly Reduced 10-14mm; Severely Reduced < 10mm. A bilateral difference > 5mm is generally considered asymmetrical."
+}

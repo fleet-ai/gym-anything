@@ -1,0 +1,62 @@
+{
+    "task_id": "virgo_sn_patrol@1",
+    "task_completion": [
+        {
+            "id": "read_assignment",
+            "description": "Agent opens and reads the patrol assignment document to identify targets and parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window displaying the contents of ~/Documents/patrol_assignment.txt."
+        },
+        {
+            "id": "configure_imaging_settings",
+            "description": "Agent sets the correct exposure time (30s) and filter slot (Slot 1) in the imaging software.",
+            "points": 15,
+            "visual_evidence": "Imaging software GUI showing exposure set to 30 and filter selection at slot 1 (or 'Clear/Luminance' if labeled)."
+        },
+        {
+            "id": "capture_m87_m84",
+            "description": "Agent captures at least 4 CCD images for M87 and M84.",
+            "points": 20,
+            "visual_evidence": "Imaging software progress bars or file explorer showing at least 4 .fits or .png files in /home/ga/Images/patrol/virgo/M87 and /home/ga/Images/patrol/virgo/M84."
+        },
+        {
+            "id": "capture_m100_m49",
+            "description": "Agent captures at least 4 CCD images for M100 and M49.",
+            "points": 20,
+            "visual_evidence": "Imaging software progress bars or file explorer showing at least 4 .fits or .png files in /home/ga/Images/patrol/virgo/M100 and /home/ga/Images/patrol/virgo/M49."
+        },
+        {
+            "id": "directory_structure",
+            "description": "Agent organizes images into target-specific subdirectories within the patrol base directory.",
+            "points": 15,
+            "visual_evidence": "File manager showing folders named M87, M84, M100, and M49 inside /home/ga/Images/patrol/virgo/."
+        },
+        {
+            "id": "generate_patrol_log",
+            "description": "Agent creates a formatted patrol log summarizing the session at the specified path.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing the creation/content of /home/ga/Images/patrol/virgo/patrol_log.txt containing a summary of the four galaxies."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the imaging software GUI to capture images rather than just creating dummy files via terminal.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with telescope/camera control software buttons (e.g., 'Start', 'Capture', 'Slew')."
+        },
+        {
+            "id": "genuine_imaging_process",
+            "description": "Agent waited for exposures to complete or showed sequence progress.",
+            "points": 10,
+            "visual_evidence": "Sequential screenshots showing different progress percentages or timestamps in the imaging software."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "Agent did not use 'touch' or 'mkdir' to fake the existence of images without running the camera software.",
+            "points": 10,
+            "visual_evidence": "Absence of terminal commands that bypass the GUI for image generation."
+        }
+    ],
+    "privileged_info_for_vlm": "The four targets are M87, M84, M100, and M49. Required parameters: 4 frames per target, 30-second exposure, and Filter Slot 1. The base directory for output is /home/ga/Images/patrol/virgo/ and the log must be saved as patrol_log.txt in that directory."
+}

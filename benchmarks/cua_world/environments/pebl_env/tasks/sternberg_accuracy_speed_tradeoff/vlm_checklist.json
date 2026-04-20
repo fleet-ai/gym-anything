@@ -1,0 +1,53 @@
+{
+    "task_id": "sternberg_accuracy_speed_tradeoff@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source CSV file at ~/pebl/data/sternberg_data.csv",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the agent opening, reading, or listing the sternberg_data.csv file in a text editor, terminal, or script."
+        },
+        {
+            "id": "participant_exclusion_logic",
+            "description": "Agent identifies and excludes the participant with non-genuine performance (sub-99999) based on impossible reaction times.",
+            "points": 25,
+            "visual_evidence": "Code or terminal output showing logic to filter out participants with extremely low RTs (e.g., < 100ms) or specifically identifying sub-99999 for exclusion."
+        },
+        {
+            "id": "compute_stats",
+            "description": "Agent calculates mean accuracy and mean reaction time grouped by participant and set size (1, 3, 5, 7).",
+            "points": 25,
+            "visual_evidence": "Code execution or output showing aggregation/grouping by 'participant_id' and 'set_size' to calculate means."
+        },
+        {
+            "id": "json_structure",
+            "description": "Agent creates a JSON file with the required 'participants' list and 'group_means' object.",
+            "points": 20,
+            "visual_evidence": "Screenshot of the final sternberg_analysis.json file content showing the specific keys 'participants' and 'group_means'."
+        },
+        {
+            "id": "file_saved",
+            "description": "The final analysis is saved to the correct path: ~/pebl/analysis/sternberg_analysis.json.",
+            "points": 20,
+            "visual_evidence": "Terminal command (e.g., ls or cat) or file explorer showing the file exists at the specified path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the final group means from the task prompt or external knowledge.",
+            "visual_evidence": "The script should show dynamic calculation logic (e.g., using pandas .groupby() or mean()) rather than a dictionary of pre-defined values."
+        },
+        {
+            "id": "genuine_exclusion",
+            "description": "The exclusion of sub-99999 is based on data analysis, not just a hardcoded string without checking values.",
+            "visual_evidence": "Code showing a conditional check on reaction_time or accuracy metrics to justify the exclusion."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "Agent uses the provided desktop environment/GUI tools to perform the task.",
+            "visual_evidence": "Screenshots show interaction with a code editor (like VS Code), a file manager, or a terminal within the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The participant to be excluded is 'sub-99999' because they have ~100% accuracy with impossible reaction times between 50ms and 80ms. There are 11 valid participants remaining. The set sizes are 1, 3, 5, and 7. Expected group means for valid participants: Set Size 1 (Acc: 0.925, RT: 980.9), Set Size 3 (Acc: 0.8388, RT: 1118.7), Set Size 5 (Acc: 0.8101, RT: 1210.5), Set Size 7 (Acc: 0.7652, RT: 1260.7)."
+}

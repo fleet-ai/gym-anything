@@ -1,0 +1,59 @@
+{
+    "task_id": "observatory_dome_sync_commissioning@1",
+    "task_completion": [
+        {
+            "id": "driver_activation",
+            "description": "The 'indi_simulator_dome' driver is active in the INDI control panel or telescope software.",
+            "points": 10,
+            "visual_evidence": "A window showing the INDI Control Panel with 'indi_simulator_dome' listed and a green status indicator or 'Connect' button pressed."
+        },
+        {
+            "id": "dome_slaving_enabled",
+            "description": "Dome slaving (syncing dome movement to telescope movement) is enabled in the settings.",
+            "points": 15,
+            "visual_evidence": "A checkbox or toggle labeled 'Slave Dome', 'Dome Slaving', or similar is checked/active in the dome control interface."
+        },
+        {
+            "id": "target_slewing",
+            "description": "The agent slews the telescope/dome to Sirius, Canopus, and Alpha Centauri.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the telescope software targeting or tracking Sirius, Canopus, and Alpha Centauri sequentially."
+        },
+        {
+            "id": "telemetry_recording",
+            "description": "Synchronized azimuth telemetry is being recorded or compiled into a CSV format.",
+            "points": 20,
+            "visual_evidence": "A text editor or spreadsheet view showing 'dome_sync_report.csv' containing columns for target names and azimuth values."
+        },
+        {
+            "id": "slaving_evidence_screenshot",
+            "description": "A screenshot of the slaving mechanism is saved to the specified path.",
+            "points": 15,
+            "visual_evidence": "A file manager window showing 'dome_slaved_evidence.png' in the /home/ga/Documents/ folder."
+        },
+        {
+            "id": "final_report_saved",
+            "description": "The final telemetry report is saved to the Documents directory.",
+            "points": 15,
+            "visual_evidence": "The file 'dome_sync_report.csv' exists in the /home/ga/Documents/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the astronomical software GUI rather than just writing the CSV via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with INDI controls or telescope tracking buttons."
+        },
+        {
+            "id": "genuine_telemetry",
+            "description": "The azimuth values in the report correspond to the actual positions of the stars at the simulated time.",
+            "visual_evidence": "The azimuth values in the CSV match the coordinates shown in the telescope software UI during the slewing phase."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply 'echo' the final CSV content into a file without opening the observatory software.",
+            "visual_evidence": "The trajectory shows the observatory software (e.g., KStars, Ekos, or INDI panel) being opened and configured."
+        }
+    ],
+    "privileged_info_for_vlm": "The site coordinates must be set to Latitude -31.2722 and Longitude 149.0661. The three required targets for telemetry are Sirius, Canopus, and Alpha Centauri. The driver name is 'indi_simulator_dome'. The report must be at /home/ga/Documents/dome_sync_report.csv and the image at /home/ga/Documents/dome_slaved_evidence.png."
+}

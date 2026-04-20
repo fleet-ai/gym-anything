@@ -1,0 +1,59 @@
+{
+    "task_id": "boyajians_star_anomaly_monitoring@1",
+    "task_completion": [
+        {
+            "id": "telescope_slewed_to_coordinates",
+            "description": "The telescope is slewed to the correct coordinates for KIC 8462852 (RA 20h 06m 15s, Dec +44d 27m 24s).",
+            "points": 15,
+            "visual_evidence": "The telescope control software (e.g., KStars/Ekos) shows the mount pointing at or near RA 20:06:15 and Dec +44:27:24."
+        },
+        {
+            "id": "capture_b_band_frames",
+            "description": "Capture ten 60-second LIGHT frames using the B filter (Slot 3).",
+            "points": 20,
+            "visual_evidence": "The imaging sequence or file browser shows 10 FITS files being captured or saved in the ~/Images/kic8462852/B/ directory with 60s exposure time."
+        },
+        {
+            "id": "capture_v_band_frames",
+            "description": "Capture ten 60-second LIGHT frames using the V filter (Slot 2).",
+            "points": 20,
+            "visual_evidence": "The imaging sequence or file browser shows 10 FITS files being captured or saved in the ~/Images/kic8462852/V/ directory with 60s exposure time."
+        },
+        {
+            "id": "capture_r_band_frames",
+            "description": "Capture ten 60-second LIGHT frames using the R filter (Slot 4).",
+            "points": 20,
+            "visual_evidence": "The imaging sequence or file browser shows 10 FITS files being captured or saved in the ~/Images/kic8462852/R/ directory with 60s exposure time."
+        },
+        {
+            "id": "generate_finding_chart",
+            "description": "Generate a DSS finding chart with a 0.5 FOV and vibrant palette using the provided script.",
+            "points": 15,
+            "visual_evidence": "A terminal window shows the execution of ~/capture_sky_view.sh and the resulting image ~/Images/kic8462852/finding_chart.png is visible in an image viewer."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "Create a summary report with the star's name, coordinates, and frame counts.",
+            "points": 10,
+            "visual_evidence": "The file ~/Documents/tabbys_star_report.txt is opened in a text editor showing 'KIC 8462852', the RA/Dec coordinates, and the count of 10 frames for each band (B, V, R)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_imaging_interaction",
+            "description": "The agent used the imaging software GUI to capture frames rather than just creating empty files via terminal.",
+            "visual_evidence": "Screenshots show the Ekos/INDI capture module active, progress bars for exposures, or the camera status changing to 'Exposing'."
+        },
+        {
+            "id": "script_usage_for_chart",
+            "description": "The agent used the provided shell script to generate the finding chart.",
+            "visual_evidence": "Terminal history shows the command './capture_sky_view.sh' or 'bash capture_sky_view.sh' being executed."
+        },
+        {
+            "id": "no_manual_file_spoofing",
+            "description": "The agent did not use 'touch' or 'cp' to fake the existence of 30 FITS images.",
+            "visual_evidence": "The terminal logs do not show a sequence of 'touch' commands for the .fits files in the B, V, and R directories."
+        }
+    ],
+    "privileged_info_for_vlm": "Target: KIC 8462852. Coordinates: RA 20h 06m 15.4s (20.10427h), Dec +44d 27m 24s (44.4566°). Filter Slots: V=2, B=3, R=4. Required: 10 frames per filter, 60s each. Finding chart must be 0.5 FOV. Report filename: ~/Documents/tabbys_star_report.txt."
+}

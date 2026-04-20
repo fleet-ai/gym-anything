@@ -1,0 +1,59 @@
+{
+    "task_id": "tumor_edema_index@1",
+    "task_completion": [
+        {
+            "id": "slicer_segmentation_loaded",
+            "description": "3D Slicer is open with the brain MRI and tumor segmentation labels visible.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer GUI is visible showing axial/sagittal/coronal views of a brain with colored segmentation overlays (Labels 1, 2, 4)."
+        },
+        {
+            "id": "segment_statistics_open",
+            "description": "The agent has accessed the 'Segment Statistics' module to calculate volumes.",
+            "points": 15,
+            "visual_evidence": "The 'Segment Statistics' module is active in the Slicer sidebar, or a table showing volume data for segments is visible."
+        },
+        {
+            "id": "volume_data_retrieval",
+            "description": "The agent identifies the volumes for Label 2 (edema) and Labels 1/4 (core).",
+            "points": 20,
+            "visual_evidence": "The agent interacts with the Segment Statistics table or uses a python console to extract volume values for the specific labels."
+        },
+        {
+            "id": "pei_calculation",
+            "description": "The agent calculates the PEI ratio (Edema / (Label 1 + Label 4)).",
+            "points": 25,
+            "visual_evidence": "A terminal, python console, or calculator interface shows the division of the edema volume by the sum of the core volumes."
+        },
+        {
+            "id": "prognostic_classification",
+            "description": "The agent assigns a prognostic category based on the PEI ratio.",
+            "points": 15,
+            "visual_evidence": "The agent is seen typing or coding the classification (e.g., Low, Moderate, High) based on the calculated ratio."
+        },
+        {
+            "id": "report_saved",
+            "description": "The final JSON report is saved to the specified path with all required fields.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the content of '~/Documents/SlicerData/BraTS/edema_analysis_report.json' containing edema_volume_ml, core_volume_ml, pei_ratio, prognostic_class, and patient_id."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_slicer_interaction",
+            "description": "The agent interacted with the 3D Slicer software rather than just generating a file.",
+            "visual_evidence": "Screenshots show the mouse cursor or active focus on Slicer menus, modules, or the Slicer Python interactor."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not use the values from the task description or privileged info without calculating them from the UI.",
+            "visual_evidence": "The agent is seen extracting numbers from the Segment Statistics table before writing the JSON file."
+        },
+        {
+            "id": "path_consistency",
+            "description": "The agent saved the file to the exact directory requested in the prompt.",
+            "visual_evidence": "The file path in the save command or file explorer matches '~/Documents/SlicerData/BraTS/edema_analysis_report.json'."
+        }
+    ],
+    "privileged_info_for_vlm": "BraTS 2021 Labels: Label 1 (Necrotic Core), Label 2 (Peritumoral Edema), Label 4 (Enhancing Tumor). Core Volume = Label 1 + Label 4. PEI = Label 2 / Core Volume. Prognostic Categories: Low (PEI < 2.0), Moderate (2.0 <= PEI < 4.0), High (PEI >= 4.0)."
+}

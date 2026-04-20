@@ -1,0 +1,53 @@
+{
+    "task_id": "spec_cross_reference_repair@1",
+    "task_completion": [
+        {
+            "id": "open_correct_file",
+            "description": "Open the initial document 'functional_spec_draft.docx' in a word processor.",
+            "points": 10,
+            "visual_evidence": "The word processor (e.g., LibreOffice Writer) is open showing the file name 'functional_spec_draft.docx' in the title bar or file menu."
+        },
+        {
+            "id": "insert_header_field",
+            "description": "Insert a 'File name' field into the document header.",
+            "points": 15,
+            "visual_evidence": "The document header area is active, and a field showing the filename (likely 'functional_spec_draft.docx' or 'functional_spec_v2.docx') is visible at the top of the pages."
+        },
+        {
+            "id": "cross_ref_patient_admission",
+            "description": "Replace static text in Section 1.2 with a dynamic cross-reference to heading '3.1 Patient Admission'.",
+            "points": 25,
+            "visual_evidence": "The 'Cross-reference' dialog box is seen with 'Heading' selected as the type and '3.1 Patient Admission' selected as the target, or the text in Section 1.2 shows field shading when clicked."
+        },
+        {
+            "id": "page_ref_compliance",
+            "description": "Replace static 'page 8' text in Section 4.0 with a dynamic page reference to '5. Compliance Standards'.",
+            "points": 30,
+            "visual_evidence": "The 'Cross-reference' dialog is seen with 'Page' or 'Page number' selected as the insert reference to, targeting the '5. Compliance Standards' heading."
+        },
+        {
+            "id": "save_as_v2",
+            "description": "Save the modified document as 'functional_spec_v2.docx' in the correct directory.",
+            "points": 20,
+            "visual_evidence": "The 'Save As' dialog box shows the path '/home/ga/Documents/' and the filename 'functional_spec_v2.docx' being entered or saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the word processor's GUI to perform edits rather than using terminal scripts to manipulate the XML/DOCX structure.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with menus like 'Insert' > 'Cross-reference' or 'Insert' > 'Field' within the application."
+        },
+        {
+            "id": "genuine_field_insertion",
+            "description": "The agent inserted actual dynamic fields rather than just re-typing the text.",
+            "visual_evidence": "The UI shows the 'Fields' or 'Cross-reference' dialog boxes; field shading (usually gray background) is visible on the references in the document."
+        },
+        {
+            "id": "no_file_system_bypass",
+            "description": "The agent did not simply rename the old file to the new name using a terminal.",
+            "visual_evidence": "The agent is seen performing 'Save As' within the word processor GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is /home/ga/Documents/functional_spec_draft.docx. The target headings for references are '3.1 Patient Admission' (level 2) and '5. Compliance Standards' (level 1). In Section 1.2, the text 'Section 3.1 Patient Admission' must become a dynamic link. In Section 4.0, the text 'page 8' must become a dynamic page number reference. The header must contain a 'File name' field. The final output must be saved as /home/ga/Documents/functional_spec_v2.docx."
+}

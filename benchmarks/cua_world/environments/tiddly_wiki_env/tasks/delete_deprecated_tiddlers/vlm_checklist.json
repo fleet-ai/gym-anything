@@ -1,0 +1,53 @@
+{
+    "task_id": "delete_deprecated_tiddlers@1",
+    "task_completion": [
+        {
+            "id": "locate_deprecated_tag",
+            "description": "The agent identifies or searches for the 'Deprecated' tag within the TiddlyWiki interface.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Deprecated' tag in the sidebar, a search result for 'Deprecated', or a list of tiddlers filtered by that tag."
+        },
+        {
+            "id": "open_deprecated_tiddlers",
+            "description": "The agent opens the tiddlers specifically tagged as 'Deprecated' to prepare for deletion.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing tiddlers like 'PCR Protocol v1' or 'Supplier List 2022' open in the main story river."
+        },
+        {
+            "id": "initiate_deletion",
+            "description": "The agent accesses the delete function (usually via the 'more' dropdown or edit mode) for the target tiddlers.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the delete icon (trash can) being clicked or the confirmation prompt for deletion appearing."
+        },
+        {
+            "id": "confirm_deletion_sequence",
+            "description": "The agent successfully deletes the specific deprecated tiddlers identified in the privileged info.",
+            "points": 35,
+            "visual_evidence": "Screenshots showing the removal of 'PCR Protocol v1', 'Supplier List 2022', 'Old Lab Safety Rules', 'Western Blot Protocol v2', and 'Budget Proposal Q1 2023'."
+        },
+        {
+            "id": "verify_remaining_tiddlers",
+            "description": "The agent verifies that non-deprecated tiddlers remain in the wiki.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the wiki sidebar or search results still containing tiddlers like 'PCR Protocol v3' or 'Current Supplier List' after the deletions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the TiddlyWiki web interface rather than executing shell commands to modify the underlying files.",
+            "visual_evidence": "The VLM should see mouse movements, clicks on wiki buttons, and browser-based interactions rather than a terminal window executing 'rm' or 'sed' commands."
+        },
+        {
+            "id": "no_bulk_file_deletion",
+            "description": "The agent did not simply delete the entire wiki database or use a script to wipe the directory.",
+            "visual_evidence": "The VLM should see individual tiddlers being handled or the wiki interface remaining functional throughout the process."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated the wiki to find the tags rather than guessing URLs or using pre-known direct links not visible in the UI.",
+            "visual_evidence": "The VLM should see the agent clicking on the 'Tags' tab or using the search bar within the wiki UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The 5 tiddlers that MUST be deleted are: 'PCR Protocol v1', 'Supplier List 2022', 'Old Lab Safety Rules', 'Western Blot Protocol v2', and 'Budget Proposal Q1 2023'. These are all tagged 'Deprecated'. The following tiddlers MUST NOT be deleted: 'PCR Protocol v3', 'Western Blot Protocol v4', 'Lab Meeting Notes 2024-01-15', 'Current Supplier List', 'Lab Safety Guidelines 2024', 'Equipment Inventory', 'Research Project Alpha', and 'Graduate Student Onboarding'."
+}

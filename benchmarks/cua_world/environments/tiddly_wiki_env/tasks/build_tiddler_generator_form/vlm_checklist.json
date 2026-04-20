@@ -1,0 +1,59 @@
+{
+    "task_id": "build_tiddler_generator_form@1",
+    "task_completion": [
+        {
+            "id": "form_tiddler_created",
+            "description": "A tiddler titled 'New Patient Registration Form' is created and open in the TiddlyWiki interface.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a tiddler with the exact title 'New Patient Registration Form' in the story river."
+        },
+        {
+            "id": "input_fields_present",
+            "description": "The form contains input fields for 'patient_name', 'dob', and 'physician'.",
+            "points": 15,
+            "visual_evidence": "The VLM should see three distinct input boxes or labels corresponding to the three required fields within the form tiddler."
+        },
+        {
+            "id": "state_tiddler_usage",
+            "description": "The form code or behavior indicates usage of '$:/temp/NewPatient' for data storage.",
+            "points": 15,
+            "visual_evidence": "In the tiddler's edit mode or via interaction, there is evidence that inputs are mapped to fields of the '$:/temp/NewPatient' tiddler."
+        },
+        {
+            "id": "register_button_exists",
+            "description": "A button labeled 'Register Patient' is visible within the form.",
+            "points": 10,
+            "visual_evidence": "A button element with the exact text 'Register Patient' is visible inside the 'New Patient Registration Form' tiddler."
+        },
+        {
+            "id": "tiddler_generation_logic",
+            "description": "The button is configured to create a new tiddler with the title from 'patient_name', tagged 'Patient', with 'dob' and 'physician' fields.",
+            "points": 25,
+            "visual_evidence": "The VLM should observe the agent writing code (e.g., <$button> with <$action-createtiddler>) that specifies the title, the 'Patient' tag, and the specific fields."
+        },
+        {
+            "id": "body_content_and_cleanup",
+            "description": "The button logic includes the specific body text '!! Intake Notes\\n* ' and an action to delete '$:/temp/NewPatient'.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the specific string '!! Intake Notes' followed by a newline and an asterisk in the code, along with a <$action-deletetiddler> for the state tiddler."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create and edit the tiddler rather than just manipulating files via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking 'plus' buttons, typing into the TiddlyWiki editor, and clicking 'save' icons."
+        },
+        {
+            "id": "no_premade_tiddler",
+            "description": "The agent did not simply import a pre-existing tiddler file containing the solution.",
+            "visual_evidence": "The agent is seen manually typing or constructing the wikitext/macro code within the browser interface."
+        },
+        {
+            "id": "functional_verification",
+            "description": "The agent tests the form to ensure it actually generates a tiddler and clears the state.",
+            "visual_evidence": "Screenshots show a new tiddler appearing with the 'Patient' tag after the 'Register Patient' button is clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "The form must be titled 'New Patient Registration Form'. It must use '$:/temp/NewPatient' as the temporary state tiddler. The generated tiddler must have the tag 'Patient', fields 'dob' and 'physician', and the body must be exactly '!! Intake Notes\\n* ' (note the newline and trailing space). The state tiddler must be deleted upon button click."
+}

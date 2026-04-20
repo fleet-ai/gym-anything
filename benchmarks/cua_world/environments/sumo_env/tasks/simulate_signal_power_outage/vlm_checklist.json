@@ -1,0 +1,53 @@
+{
+    "task_id": "simulate_signal_power_outage@1",
+    "task_completion": [
+        {
+            "id": "modify_network_file",
+            "description": "Generate a modified network file by discarding traffic lights and saving it to the specified output path.",
+            "points": 15,
+            "visual_evidence": "Terminal command or script execution showing 'netconvert' or a similar tool being used with '--discard-params.tls' or '--tls.discard' flags, and the output file /home/ga/SUMO_Output/pasubio_outage.net.xml being created."
+        },
+        {
+            "id": "create_sumo_configs",
+            "description": "Create the baseline and outage .sumocfg files in the output directory.",
+            "points": 15,
+            "visual_evidence": "Text editor or terminal output showing the creation of /home/ga/SUMO_Output/run_baseline.sumocfg and /home/ga/SUMO_Output/run_outage.sumocfg with correct file paths."
+        },
+        {
+            "id": "run_baseline_simulation",
+            "description": "Execute the baseline simulation using the original network.",
+            "points": 20,
+            "visual_evidence": "SUMO-GUI or terminal output showing the simulation running for run_baseline.sumocfg, including the simulation progress bar or 'Simulation ended' message."
+        },
+        {
+            "id": "run_outage_simulation",
+            "description": "Execute the outage simulation using the modified network without the TLS additional file.",
+            "points": 25,
+            "visual_evidence": "SUMO-GUI or terminal output showing the simulation running for run_outage.sumocfg. The configuration should not list pasubio_tls.add.xml in the input files."
+        },
+        {
+            "id": "generate_resilience_report",
+            "description": "Save the final resilience report with average waiting times and teleport counts for both scenarios.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command displaying the contents of /home/ga/SUMO_Output/resilience_report.txt with the four required metrics: Baseline Average Waiting Time, Baseline Teleports, Outage Average Waiting Time, and Outage Teleports."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "Verify the agent actually ran the simulations rather than guessing values.",
+            "visual_evidence": "Screenshots must show the SUMO simulation interface or terminal logs with time-stepped simulation progress, not just a final report being written instantly."
+        },
+        {
+            "id": "correct_network_modification",
+            "description": "Ensure the outage network was actually modified to remove traffic lights.",
+            "visual_evidence": "The command used to generate pasubio_outage.net.xml must include flags to discard traffic lights, or the SUMO-GUI must show junctions without signal indicators (red/green lights) during the outage run."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the specific paths requested in the task.",
+            "visual_evidence": "Commands and file headers must explicitly show paths in /home/ga/SUMO_Output/ and /home/ga/SUMO_Scenarios/bologna_pasubio/."
+        }
+    ],
+    "privileged_info_for_vlm": "The source network is located at /home/ga/SUMO_Scenarios/bologna_pasubio/pasubio_buslanes.net.xml. The modified network must be saved to /home/ga/SUMO_Output/pasubio_outage.net.xml. The outage simulation configuration must exclude pasubio_tls.add.xml to ensure no traffic light logic is applied. All output files, including the final resilience_report.txt, must reside in /home/ga/SUMO_Output/."
+}

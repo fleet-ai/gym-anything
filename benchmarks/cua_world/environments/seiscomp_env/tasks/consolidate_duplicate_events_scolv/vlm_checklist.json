@@ -1,0 +1,53 @@
+{
+    "task_id": "consolidate_duplicate_events_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv_event_list",
+            "description": "The agent has opened the scolv application and navigated to the 'Event list' tab.",
+            "points": 10,
+            "visual_evidence": "The scolv window is visible with the 'Event list' tab selected, showing a list of seismic events."
+        },
+        {
+            "id": "identify_duplicate_events",
+            "description": "The agent identifies the two duplicate events for the 2024-01-01 Noto Peninsula earthquake (approx 07:10 UTC).",
+            "points": 15,
+            "visual_evidence": "The screen shows two distinct event rows in the list with origin times very close to 07:10:09 and 07:10:15 on 2024-01-01."
+        },
+        {
+            "id": "select_multiple_events",
+            "description": "The agent selects both duplicate events in the event list simultaneously.",
+            "points": 20,
+            "visual_evidence": "Two rows in the event list are highlighted/selected at the same time."
+        },
+        {
+            "id": "trigger_merge_action",
+            "description": "The agent initiates the merge command (typically via right-click context menu or a specific button).",
+            "points": 25,
+            "visual_evidence": "A context menu is visible with 'Merge' or 'Move origins to selected event' selected, or a confirmation dialog for merging events appears."
+        },
+        {
+            "id": "verify_consolidated_event",
+            "description": "The agent confirms that only one event remains for that time period and all origins are associated with it.",
+            "points": 30,
+            "visual_evidence": "The event list now shows only one event for the 07:10 UTC time slot, and the 'Origins' tab for that event shows multiple origin entries (the original and the duplicate)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the scolv GUI to perform the merge rather than executing database scripts in the terminal.",
+            "visual_evidence": "The screenshots show mouse movements and menu interactions within the scolv interface; the terminal is not used to run SQL or SeisComP command-line tools for merging."
+        },
+        {
+            "id": "genuine_event_selection",
+            "description": "The agent interacted with the specific events mentioned in the task (2024-01-01 07:10).",
+            "visual_evidence": "The timestamps visible in the scolv event list match the Noto Peninsula earthquake data (approx 07:10 UTC)."
+        },
+        {
+            "id": "no_manual_deletion",
+            "description": "The agent merged the events rather than simply deleting one of them.",
+            "visual_evidence": "The final state shows a single event containing multiple origins in the 'Origins' tab, rather than an event with only one origin remaining after a deletion."
+        }
+    ],
+    "privileged_info_for_vlm": "The target events occur on 2024-01-01. One origin is at 07:10:09.476Z and the duplicate is at 07:10:15.0000Z. The agent must use the 'scolv' (Origin Locator View) GUI. A successful merge is confirmed when these two separate Event IDs are consolidated into one, visible in the 'Event list' and 'Origins' tabs of scolv."
+}

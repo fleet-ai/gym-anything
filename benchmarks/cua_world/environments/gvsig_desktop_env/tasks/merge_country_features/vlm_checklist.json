@@ -1,0 +1,53 @@
+{
+    "task_id": "merge_country_features@1",
+    "task_completion": [
+        {
+            "id": "load_source_layer",
+            "description": "The 'ne_110m_admin_0_countries' layer is loaded into the GIS application.",
+            "points": 10,
+            "visual_evidence": "The layer name 'ne_110m_admin_0_countries' is visible in the Table of Contents or Layers panel."
+        },
+        {
+            "id": "select_benelux_countries",
+            "description": "Belgium, Netherlands, and Luxembourg are selected in the attribute table or on the map.",
+            "points": 15,
+            "visual_evidence": "Three features are highlighted in the attribute table or on the map; names 'Belgium', 'Netherlands', and 'Luxembourg' are visible as selected."
+        },
+        {
+            "id": "merge_operation_execution",
+            "description": "The merge/union tool is used to combine the selected features.",
+            "points": 25,
+            "visual_evidence": "A 'Merge', 'Union', or 'Dissolve' dialog box is visible, showing the selected countries being processed into a single geometry."
+        },
+        {
+            "id": "set_attribute_name",
+            "description": "The 'NAME' attribute of the merged feature is set to 'Benelux Region'.",
+            "points": 20,
+            "visual_evidence": "An attribute editing window or table cell shows the text 'Benelux Region' entered for the 'NAME' field of the new feature."
+        },
+        {
+            "id": "export_shapefile",
+            "description": "The result is exported to a new shapefile named 'sales_regions.shp' at the specified path.",
+            "points": 30,
+            "visual_evidence": "An 'Export' or 'Save As' dialog shows the file path '/home/ga/gvsig_data/exports/sales_regions.shp' being entered or confirmed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GIS software GUI rather than executing a single script in the terminal to solve the task.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks, and dialog interactions within the gvSIG or QGIS interface."
+        },
+        {
+            "id": "genuine_selection",
+            "description": "The agent manually or via query selected the specific three countries rather than just renaming a random feature.",
+            "visual_evidence": "The attribute table shows the specific records for Belgium, Netherlands, and Luxembourg being highlighted."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply rename an existing file to 'sales_regions.shp' without performing the merge.",
+            "visual_evidence": "The visual sequence shows the geometric merge process occurring within the map view."
+        }
+    ],
+    "privileged_info_for_vlm": "The source layer 'ne_110m_admin_0_countries' originally contains 177 features. After merging Belgium, Netherlands, and Luxembourg into one, the resulting 'sales_regions.shp' should contain exactly 175 features. The specific attribute to update is 'NAME' and the value must be exactly 'Benelux Region'. The export path must be /home/ga/gvsig_data/exports/sales_regions.shp."
+}

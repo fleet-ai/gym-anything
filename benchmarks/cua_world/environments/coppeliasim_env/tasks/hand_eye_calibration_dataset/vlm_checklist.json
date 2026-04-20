@@ -1,0 +1,59 @@
+{
+    "task_id": "hand_eye_calibration_dataset@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_connection",
+            "description": "Agent successfully connects to CoppeliaSim via ZMQ Remote API on port 23000.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing a successful connection to the ZMQ API on port 23000, or the CoppeliaSim GUI showing an active remote API connection."
+        },
+        {
+            "id": "camera_attachment",
+            "description": "Agent programmatically attaches a vision sensor to the robot's end-effector with a non-zero translation offset.",
+            "points": 15,
+            "visual_evidence": "Python code using sim.setObjectParent or similar, and the CoppeliaSim scene hierarchy showing a vision sensor as a child of the end-effector."
+        },
+        {
+            "id": "joint_configuration_sampling",
+            "description": "Agent iterates through at least 20 diverse joint configurations to move the robot.",
+            "points": 20,
+            "visual_evidence": "Code containing a loop of at least 20 iterations and screenshots of the robot in different poses within the CoppeliaSim simulator."
+        },
+        {
+            "id": "data_recording",
+            "description": "Agent records synchronized world-frame poses (position and quaternion) for both the end-effector and camera.",
+            "points": 20,
+            "visual_evidence": "Code showing calls to sim.getObjectPosition and sim.getObjectQuaternion (or sim.getObjectMatrix) for both the EE and camera handles relative to the world frame (sim.handle_world)."
+        },
+        {
+            "id": "csv_export",
+            "description": "Agent saves the dataset to /home/ga/Documents/CoppeliaSim/exports/hand_eye_dataset.csv with all 15 required columns.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat' or 'ls') or a file explorer view showing the CSV file exists with headers: sample_id, ee_x, ee_y, ee_z, ee_qx, ee_qy, ee_qz, ee_qw, cam_x, cam_y, cam_z, cam_qx, cam_qy, cam_qz, cam_qw."
+        },
+        {
+            "id": "json_report_export",
+            "description": "Agent saves dataset_report.json with the required fields: total_samples, ee_handle, camera_handle, local_offset_x, local_offset_y, local_offset_z.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer view showing the JSON file with the specified keys and values reflecting the simulation setup."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_interaction",
+            "description": "The agent interacted with the CoppeliaSim software rather than just creating dummy files.",
+            "visual_evidence": "Screenshots must show the CoppeliaSim GUI active, the robot moving, or the scene hierarchy changing, rather than just terminal commands creating text files."
+        },
+        {
+            "id": "no_hardcoded_data",
+            "description": "The CSV data should contain varied floating-point numbers consistent with robot movement, not repeated or placeholder values.",
+            "visual_evidence": "Inspection of the CSV content in the terminal showing unique, high-precision coordinate values for each of the 20+ samples."
+        },
+        {
+            "id": "non_zero_offset_verification",
+            "description": "The camera and end-effector poses must be distinct, confirming a non-zero offset was applied.",
+            "visual_evidence": "Comparison of ee_x/y/z and cam_x/y/z values in the exported CSV; they should not be identical."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 20 or more samples. The CSV must have 15 specific columns: sample_id, ee_x, ee_y, ee_z, ee_qx, ee_qy, ee_qz, ee_qw, cam_x, cam_y, cam_z, cam_qx, cam_qy, cam_qz, cam_qw. The JSON report must include total_samples, ee_handle, camera_handle, and the 3 local_offset components. The output directory is /home/ga/Documents/CoppeliaSim/exports/."
+}

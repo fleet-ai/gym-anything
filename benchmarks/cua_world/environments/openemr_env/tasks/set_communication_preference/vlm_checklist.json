@@ -1,0 +1,59 @@
+{
+    "task_id": "set_communication_preference@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenEMR system using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The OpenEMR dashboard or main navigation menu is visible after the login screen."
+        },
+        {
+            "id": "search_patient",
+            "description": "Agent searches for and selects the correct patient, Sofia Bradtke.",
+            "points": 15,
+            "visual_evidence": "The search bar contains 'Sofia Bradtke' and the patient record for Sofia Bradtke (DOB: 1959-08-06) is selected or opened."
+        },
+        {
+            "id": "navigate_to_choices",
+            "description": "Agent navigates to the 'Choices' or 'Edit' section of the patient's demographics where communication preferences are located.",
+            "points": 15,
+            "visual_evidence": "The 'Choices' tab or the Demographics edit screen is active, showing HIPAA/Communication options."
+        },
+        {
+            "id": "set_email_yes",
+            "description": "Agent sets the 'Allow Email' preference to YES.",
+            "points": 25,
+            "visual_evidence": "The dropdown or radio button for 'Allow Email' (or 'HIPAA Allow Email') is set to 'YES'."
+        },
+        {
+            "id": "set_voice_no",
+            "description": "Agent sets the 'Allow Voice Message' preference to NO.",
+            "points": 25,
+            "visual_evidence": "The dropdown or radio button for 'Allow Voice Message' (or 'HIPAA Allow Voice Message') is set to 'NO'."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent saves the updated patient demographics.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' button, and a confirmation message (e.g., 'Success' or 'Patient Saved') appears, or the screen returns to the patient summary with updated values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenEMR web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser and form elements, not just terminal commands."
+        },
+        {
+            "id": "correct_patient_context",
+            "description": "The agent is modifying the record for Sofia Bradtke specifically, not a different patient.",
+            "visual_evidence": "The patient name 'Sofia Bradtke' and PID '5' are visible in the header or active form during the edit."
+        },
+        {
+            "id": "no_shortcut_url",
+            "description": "The agent navigated through the application menus rather than jumping to a final success URL.",
+            "visual_evidence": "Intermediate steps showing the search process and the demographics form are present in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The patient is Sofia Bradtke (PID: 5, DOB: 1959-08-06). The specific fields to update are 'Allow Email' (must be YES) and 'Allow Voice Message' (must be NO). These are typically found under the 'Choices' tab within the Patient Demographics section of OpenEMR."
+}

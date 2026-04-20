@@ -1,0 +1,59 @@
+{
+    "task_id": "cholera_toxin_ab5_architecture@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1xtc",
+            "description": "Load the Cholera Toxin structure (PDB: 1XTC) into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1XTC' or a renamed object representing the toxin structure."
+        },
+        {
+            "id": "separate_a_from_b",
+            "description": "Visually separate the catalytic A-subunit from the B-pentamer ring.",
+            "points": 15,
+            "visual_evidence": "The viewer shows the A-subunit (chain A) physically moved or translated away from the ring formed by the other subunits."
+        },
+        {
+            "id": "highlight_trp88",
+            "description": "Highlight Tryptophan 88 (Trp88) on all B-subunits.",
+            "points": 20,
+            "visual_evidence": "Specific residues (Trp88) are shown in a different representation (e.g., sticks or spheres) or color on each of the five subunits forming the ring."
+        },
+        {
+            "id": "interface_mapping",
+            "description": "Identify/select B-pentamer residues within 4.0 Angstroms of the A-subunit anchoring helix (residues 195-240).",
+            "points": 25,
+            "visual_evidence": "A selection of residues on the inner part of the B-ring (near the A-subunit's original position) is highlighted, likely using PyMOL's selection indicators (pink dots) or a distinct color."
+        },
+        {
+            "id": "save_publication_figure",
+            "description": "Render and save a publication-quality figure to the specified path.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command history shows a 'png' command with the path '~/PyMOL_Data/images/cholera_ab5.png' or the agent is seen navigating the file export menu."
+        },
+        {
+            "id": "generate_structural_report",
+            "description": "Write a structural report to the specified text file with chain IDs, Trp88 count, and interface list.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the creation of 'cholera_interface_report.txt' containing 'Chain:Resi' formatted data."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line rather than just creating a mock report.",
+            "visual_evidence": "Screenshots show the PyMOL interface, 3D viewport manipulations, and command entries."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent derived the interface residues through software commands rather than typing a pre-known list.",
+            "visual_evidence": "The PyMOL command log shows selection commands using 'within 4.0 of chain A' or similar logic."
+        },
+        {
+            "id": "file_system_adherence",
+            "description": "The agent saved files to the specific requested directories.",
+            "visual_evidence": "Terminal or file explorer screenshots show files located in '~/PyMOL_Data/images/' and '~/PyMOL_Data/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task instructions contain a known discrepancy with the PDB file 1XTC: the prompt identifies the B-pentamer as chains B-F, but in 1XTC, the pentamer chains are actually D, E, F, G, and H. The agent should be evaluated on its attempt to follow the prompt's logic (using chain A as the anchor) even if the chain IDs in the file differ from the prompt's description. The anchoring helix is defined as residues 195-240 of chain A. There should be 5 Trp88 residues total (one per B-subunit)."
+}

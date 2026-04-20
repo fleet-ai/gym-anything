@@ -1,0 +1,59 @@
+{
+    "task_id": "false_alarm_verification@1",
+    "task_completion": [
+        {
+            "id": "open_nx_witness",
+            "description": "The agent successfully launches the Nx Witness application.",
+            "points": 10,
+            "visual_evidence": "The Nx Witness client interface is visible on the desktop."
+        },
+        {
+            "id": "select_parking_lot_camera",
+            "description": "The agent selects and displays the 'Parking Lot Camera' in the player.",
+            "points": 15,
+            "visual_evidence": "The camera name 'Parking Lot Camera' is visible in the resource tree or as a label on the video tile."
+        },
+        {
+            "id": "review_footage",
+            "description": "The agent reviews the video footage by interacting with the timeline or playback controls.",
+            "points": 25,
+            "visual_evidence": "The playback playhead moves across the timeline, or different timestamps of the 'Parking Lot Camera' footage are shown."
+        },
+        {
+            "id": "create_report_file",
+            "description": "The agent creates or opens the report file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal shows the file /home/ga/alarm_review.txt being edited."
+        },
+        {
+            "id": "report_content_requirements",
+            "description": "The report includes the three required components: activity assessment, trigger identification, and recommendation.",
+            "points": 20,
+            "visual_evidence": "The text in alarm_review.txt contains sections or sentences addressing (a) suspicious activity, (b) the trigger, and (c) a recommendation."
+        },
+        {
+            "id": "correct_verdict_dismiss",
+            "description": "The agent correctly identifies the footage as normal and recommends 'DISMISS'.",
+            "points": 20,
+            "visual_evidence": "The text 'DISMISS' is clearly visible in the final report at /home/ga/alarm_review.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_video_review",
+            "description": "The agent actually watched the video rather than just guessing based on the task prompt.",
+            "visual_evidence": "Screenshots show the agent scrubbing through the Nx Witness timeline or playing the video for a duration of time."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Nx Witness GUI to view the footage rather than attempting to bypass the VMS.",
+            "visual_evidence": "The Nx Witness application window is the primary focus during the review phase, not just a command-line media player."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent did not simply echo the expected verdict into the file without opening the video software.",
+            "visual_evidence": "The sequence of screenshots shows the Nx Witness client being used *before* the report file is finalized."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Parking Lot Camera' contains footage from the CUHK Avenue dataset (clips Train01-03). This footage is entirely normal and contains only pedestrians walking or standing. There are no crimes, no running, and no suspicious behavior. The correct recommendation is 'DISMISS'. The report must be saved specifically to /home/ga/alarm_review.txt."
+}

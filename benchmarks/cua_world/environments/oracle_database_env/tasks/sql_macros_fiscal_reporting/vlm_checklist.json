@@ -1,0 +1,53 @@
+{
+    "task_id": "sql_macros_fiscal_reporting@1",
+    "task_completion": [
+        {
+            "id": "db_connection_established",
+            "description": "Connect to the Oracle 21c database using the specified credentials (hr/hr123).",
+            "points": 10,
+            "visual_evidence": "A database client (like SQL Developer, DBeaver, or SQL*Plus) showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "create_scalar_macro",
+            "description": "Create the GET_FISCAL_YEAR Scalar SQL Macro with logic for Oct 1 - Sep 30.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the 'CREATE OR REPLACE FUNCTION GET_FISCAL_YEAR' statement containing 'SQL_MACRO(SCALAR)' and the logic to calculate the fiscal year from a date."
+        },
+        {
+            "id": "create_table_macro",
+            "description": "Create the GET_HIGH_IMPACT_SALES Table SQL Macro with region, amount, and weekend filters.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing 'CREATE OR REPLACE FUNCTION GET_HIGH_IMPACT_SALES' containing 'SQL_MACRO(TABLE)' and a return string with filters for region, amount, and TO_CHAR(date, 'D') or similar for weekends."
+        },
+        {
+            "id": "execute_report_query",
+            "description": "Execute a query using both macros to generate the report for 'EAST' and amount >= 500.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing a SELECT statement that calls GET_HIGH_IMPACT_SALES('EAST', 500) and uses GET_FISCAL_YEAR in the SELECT/GROUP BY clause, with results visible in the data grid."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the query results to a CSV file at the specified path with correct headers.",
+            "points": 20,
+            "visual_evidence": "An export wizard or file explorer showing 'fiscal_impact_report.csv' on /home/ga/Desktop. If the file is opened, it should show headers: FISCAL_YEAR, TOTAL_AMOUNT, TXN_COUNT."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_csv_creation",
+            "description": "Verify the agent didn't just create a text file manually without running SQL.",
+            "visual_evidence": "The agent must be seen interacting with a database tool and executing the SQL macros, not just using a text editor to type CSV data."
+        },
+        {
+            "id": "genuine_macro_usage",
+            "description": "Ensure the agent actually used SQL Macros and not standard views or simple functions.",
+            "visual_evidence": "The SQL code must explicitly contain the keywords 'SQL_MACRO(SCALAR)' and 'SQL_MACRO(TABLE)'."
+        },
+        {
+            "id": "correct_parameter_usage",
+            "description": "Check that the agent used the specific parameters 'EAST' and 500 in the query.",
+            "visual_evidence": "The SQL execution or the macro call in the screenshot must show the literal values 'EAST' and 500 being passed."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create two specific Oracle 21c SQL Macros: GET_FISCAL_YEAR (Scalar) and GET_HIGH_IMPACT_SALES (Table). The table macro must filter for weekends (Saturday/Sunday). The final report must be for region 'EAST', minimum amount 500, and saved to /home/ga/Desktop/fiscal_impact_report.csv with headers FISCAL_YEAR, TOTAL_AMOUNT, TXN_COUNT."
+}

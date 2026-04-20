@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_territory_realignment@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the chinook.db database in a database management tool (e.g., DBeaver).",
+            "points": 10,
+            "visual_evidence": "A database explorer or connection window showing 'chinook.db' active or expanded."
+        },
+        {
+            "id": "import_territory_map",
+            "description": "Import the territory_assignments.csv into a new table named 'territory_map'.",
+            "points": 20,
+            "visual_evidence": "The database schema showing a new table named 'territory_map' in the tables list."
+        },
+        {
+            "id": "update_customers_table",
+            "description": "Update the 'SupportRepId' in the 'customers' table based on the 'territory_map' mappings.",
+            "points": 25,
+            "visual_evidence": "An SQL editor showing an UPDATE statement joining 'customers' and 'territory_map', or a data grid showing changed SupportRepId values."
+        },
+        {
+            "id": "export_summary_csv",
+            "description": "Export the summary report to /home/ga/Documents/exports/reassignment_verification.csv.",
+            "points": 25,
+            "visual_evidence": "An export wizard, file explorer showing the new CSV file, or a terminal command confirming the file creation at the specific path."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL logic to /home/ga/Documents/scripts/update_territories.sql.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or a file explorer showing 'update_territories.sql' in the /home/ga/Documents/scripts/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used a database GUI (like DBeaver) for the operations rather than just terminal-based sqlite3 commands.",
+            "visual_evidence": "Screenshots showing the DBeaver application window, SQL editor, or Import Wizard."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent performed the import and update steps manually or via script execution, not by hardcoding values into a text file.",
+            "visual_evidence": "SQL execution logs, progress bars for CSV import, or data grid refreshes."
+        },
+        {
+            "id": "path_adherence",
+            "description": "The agent used the specific file paths provided in the instructions for both input and output.",
+            "visual_evidence": "File paths visible in the SQL script, export dialogs, or file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The source CSV is at /home/ga/Documents/territory_assignments.csv. Key mappings: USA and Canada should be assigned to RepId 4 (Margaret Park); France should be assigned to RepId 3 (Jane Peacock). The final summary CSV must have columns 'EmployeeName' (concatenated First and Last) and 'CustomerCount'. The database is located at /home/ga/Documents/databases/chinook.db."
+}

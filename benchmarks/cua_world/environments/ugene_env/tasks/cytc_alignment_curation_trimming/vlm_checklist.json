@@ -1,0 +1,59 @@
+{
+    "task_id": "cytc_alignment_curation_trimming@1",
+    "task_completion": [
+        {
+            "id": "load_and_align",
+            "description": "Load 8 sequences from cytochrome_c_multispecies.fasta and perform MUSCLE alignment.",
+            "points": 15,
+            "visual_evidence": "UGENE interface showing the MUSCLE alignment dialog or the resulting alignment with 8 sequences (rows) in the editor."
+        },
+        {
+            "id": "export_initial_alignment",
+            "description": "Export the initial alignment to initial_cytochrome.aln in ClustalW format.",
+            "points": 15,
+            "visual_evidence": "The 'Export as Alignment' dialog box with the file path '~/UGENE_Data/curated_alignment/initial_cytochrome.aln' and format set to ClustalW."
+        },
+        {
+            "id": "remove_outgroup",
+            "description": "Remove the sequence with identifier P00053 from the alignment.",
+            "points": 20,
+            "visual_evidence": "The alignment editor showing the deletion of the row labeled 'P00053' or the sequence list reduced to 7 sequences."
+        },
+        {
+            "id": "trim_columns",
+            "description": "Delete the first 15 and last 15 columns of the alignment.",
+            "points": 25,
+            "visual_evidence": "Selection of columns 1-15 and the final 15 columns in the UGENE alignment editor, followed by the 'Delete' action."
+        },
+        {
+            "id": "export_curated_alignment",
+            "description": "Export the curated alignment to curated_cytochrome.aln in ClustalW format.",
+            "points": 15,
+            "visual_evidence": "The export dialog showing the file path '~/UGENE_Data/curated_alignment/curated_cytochrome.aln' and ClustalW format."
+        },
+        {
+            "id": "create_report",
+            "description": "Create a report file with alignment lengths and a note about P00053 removal.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing curation_report.txt with the initial length, final length, and mention of P00053."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform alignment and editing rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the UGENE application window, menus, and alignment editor active during the process."
+        },
+        {
+            "id": "manual_trimming_interaction",
+            "description": "The agent manually selected and deleted columns/rows within the UGENE interface.",
+            "visual_evidence": "Visual highlighting of columns 1-15 and the row for P00053 before they disappear from the view."
+        },
+        {
+            "id": "genuine_file_saving",
+            "description": "The agent used the software's export/save functions rather than creating files via 'echo' in the terminal.",
+            "visual_evidence": "UGENE 'Export' or 'Save' dialog boxes appearing on screen."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial alignment must contain exactly 8 sequences. The sequence to be removed is P00053 (Cannabis sativa). After removal, 7 sequences should remain. Exactly 15 columns must be removed from the start and 15 from the end. The final report must explicitly mention the removal of P00053 and list the column counts before and after trimming."
+}

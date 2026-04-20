@@ -1,0 +1,59 @@
+{
+    "task_id": "deploy_wfs_stored_query@1",
+    "task_completion": [
+        {
+            "id": "geoserver_login",
+            "description": "Agent successfully logs into the GeoServer web interface.",
+            "points": 10,
+            "visual_evidence": "The GeoServer admin dashboard is visible with the 'admin' user logged in at http://localhost:8080/geoserver/web/."
+        },
+        {
+            "id": "wfs_stored_query_creation",
+            "description": "Agent initiates the creation of a WFS Stored Query or uses the REST API/Terminal to POST the XML definition.",
+            "points": 15,
+            "visual_evidence": "Screenshots show the agent drafting an XML 'CreateStoredQuery' request or navigating to the WFS settings/Demos page to execute the management operation."
+        },
+        {
+            "id": "query_id_and_parameter_config",
+            "description": "The stored query is configured with the ID 'GetLargeCities' and parameter 'minPop'.",
+            "points": 20,
+            "visual_evidence": "The XML request or UI form shows 'GetLargeCities' as the Query ID and 'minPop' as a defined parameter."
+        },
+        {
+            "id": "filter_logic_implementation",
+            "description": "The query logic filters 'ne:ne_populated_places' where 'pop_max' >= 'minPop'.",
+            "points": 25,
+            "visual_evidence": "The XML definition contains a <Filter> or <PropertyIsGreaterThanOrEqualTo> element referencing the 'pop_max' attribute and the '${minPop}' variable."
+        },
+        {
+            "id": "execute_stored_query",
+            "description": "Agent executes the newly created stored query with a value of 10,000,000.",
+            "points": 15,
+            "visual_evidence": "A URL or request body is visible containing 'STOREDQUERY_ID=GetLargeCities' and 'minPop=10000000'."
+        },
+        {
+            "id": "save_xml_response",
+            "description": "The resulting XML response is saved to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A terminal command (e.g., 'curl ... > /home/ga/large_cities_response.xml') or a text editor saving the XML content to that specific path is shown."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_geoserver_interaction",
+            "description": "The agent interacted with the actual GeoServer instance rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots show the GeoServer web interface or HTTP requests directed at localhost:8080/geoserver."
+        },
+        {
+            "id": "no_hardcoded_result_bypass",
+            "description": "The agent did not simply echo a pre-made XML file into the destination without querying the service.",
+            "visual_evidence": "The agent is seen constructing the query or using a tool (like curl or a browser) to fetch the live data from the WFS endpoint."
+        },
+        {
+            "id": "correct_parameter_usage",
+            "description": "The agent used the specific parameter name 'minPop' as required by the task.",
+            "visual_evidence": "The string 'minPop' appears in the XML definition and the final execution request."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires creating a WFS 2.0 Stored Query. The ID must be 'GetLargeCities'. The parameter name must be 'minPop'. The attribute to filter in the 'ne:ne_populated_places' layer is 'pop_max'. Note: While the task description asks for a test value of 10,000,000, internal metadata suggests 5,000,000 might be used in some automated checks; however, the agent should be scored based on the 10,000,000 value requested in the prompt. The final file must be exactly /home/ga/large_cities_response.xml."
+}

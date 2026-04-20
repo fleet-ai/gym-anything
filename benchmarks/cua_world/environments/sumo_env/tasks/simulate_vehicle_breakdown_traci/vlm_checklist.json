@@ -1,0 +1,53 @@
+{
+    "task_id": "simulate_vehicle_breakdown_traci@1",
+    "task_completion": [
+        {
+            "id": "read_target_edges",
+            "description": "The agent reads the target_edges.json file to identify the critical and upstream edges.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing 'cat' or 'open' of /home/ga/SUMO_Scenarios/bologna_pasubio/target_edges.json."
+        },
+        {
+            "id": "create_python_script",
+            "description": "The agent writes the TraCI Python script at /home/ga/SUMO_Output/simulate_breakdown.py with the required logic (step 150 trigger, 300s stop, color change).",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output showing the content of /home/ga/SUMO_Output/simulate_breakdown.py containing 'traci.vehicle.setStop', 'traci.vehicle.setColor', and the CSV writing logic."
+        },
+        {
+            "id": "execute_simulation",
+            "description": "The agent executes the Python script which connects to the SUMO simulation.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of 'python3 /home/ga/SUMO_Output/simulate_breakdown.py' and potentially SUMO log output indicating the simulation is running."
+        },
+        {
+            "id": "verify_csv_generation",
+            "description": "The script generates the breakdown_queue.csv file in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A file listing (ls -l) showing /home/ga/SUMO_Output/breakdown_queue.csv exists after the script execution."
+        },
+        {
+            "id": "validate_csv_content",
+            "description": "The generated CSV contains the correct header and at least 600 steps of data, including the 'NONE' placeholder for early steps.",
+            "points": 30,
+            "visual_evidence": "A terminal showing 'head' or 'cat' of /home/ga/SUMO_Output/breakdown_queue.csv with the header 'step,target_vehicle_id,critical_edge_halted,upstream_edge_halted' and rows showing 'NONE' then a vehicle ID."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_csv",
+            "description": "The agent did not simply echo the CSV content into a file without running a script.",
+            "visual_evidence": "The agent must be seen writing and executing a .py script, not just using 'cat > breakdown_queue.csv' with pre-filled data."
+        },
+        {
+            "id": "genuine_traci_usage",
+            "description": "The agent uses the TraCI library to interact with the simulation rather than manual calculation.",
+            "visual_evidence": "The Python script must contain 'import traci' and calls like 'traci.start' or 'traci.vehicle.setStop'."
+        },
+        {
+            "id": "correct_scenario_path",
+            "description": "The agent uses the specific Bologna Pasubio scenario files provided.",
+            "visual_evidence": "The script or command line must reference /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg."
+        }
+    ],
+    "privileged_info_for_vlm": "The critical edge and upstream edge IDs must be dynamically read from /home/ga/SUMO_Scenarios/bologna_pasubio/target_edges.json. The simulation must run for at least 600 steps. The breakdown starts at step 150 and lasts exactly 300 steps (ending at 450). The CSV must use 'NONE' for the vehicle ID before it is identified at step 150. The script must be saved at /home/ga/SUMO_Output/simulate_breakdown.py."
+}

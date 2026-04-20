@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_tou_orientation_value@1",
+    "task_completion": [
+        {
+            "id": "pysam_import_and_setup",
+            "description": "Agent imports PySAM and initializes the PVWatts or Flat Plate PV model in a script or notebook.",
+            "points": 10,
+            "visual_evidence": "Code showing 'import PySAM.Pvwattsv8' (or similar) and initialization of the system model."
+        },
+        {
+            "id": "weather_file_configuration",
+            "description": "Agent configures the model to use the specific weather file at /home/ga/SAM_Weather_Data/phoenix_az_tmy.csv.",
+            "points": 10,
+            "visual_evidence": "Code setting the solar_resource_file path to '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        },
+        {
+            "id": "system_parameter_input",
+            "description": "Agent sets system parameters: 500 kW capacity, 1.2 DC/AC ratio, 20 degree tilt, 14% losses, and 96% inverter efficiency.",
+            "points": 15,
+            "visual_evidence": "Code snippets showing system_capacity=500, dc_ac_ratio=1.2, tilt=20, losses=14, and inv_eff=96."
+        },
+        {
+            "id": "scenario_simulations",
+            "description": "Agent runs simulations for both South (Azimuth 180) and West (Azimuth 270) orientations.",
+            "points": 20,
+            "visual_evidence": "Code showing two separate execution calls or a loop changing the 'azimuth' parameter between 180 and 270."
+        },
+        {
+            "id": "tou_logic_implementation",
+            "description": "Agent implements the TOU pricing logic: $0.35/kWh for June-Sept, hours 16-18, and $0.08/kWh otherwise.",
+            "points": 25,
+            "visual_evidence": "Code defining a price array or conditional logic checking for months 6-9 and hours 16, 17, 18 to apply the peak rate."
+        },
+        {
+            "id": "json_file_export",
+            "description": "Agent saves the calculated energy and financial values to the specified JSON path with the correct schema.",
+            "points": 20,
+            "visual_evidence": "Code showing the creation of 'tou_orientation_value.json' at '/home/ga/Documents/SAM_Projects/' containing the required keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final energy or value numbers without running calculations.",
+            "visual_evidence": "The script must show the math/logic used to derive the annual value from the hourly power output, not just a print statement of the final numbers."
+        },
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Agent uses the PySAM library rather than manual estimations or external websites.",
+            "visual_evidence": "Screenshots show a Python environment (IDE or Terminal) with PySAM commands being executed."
+        },
+        {
+            "id": "correct_weather_source",
+            "description": "Agent uses the provided local CSV file instead of downloading a different weather file.",
+            "visual_evidence": "The file path in the code matches '/home/ga/SAM_Weather_Data/phoenix_az_tmy.csv'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using PySAM with the Phoenix TMY file. Key parameters: 500kW, 1.2 DC/AC, 20 tilt, 14% loss, 96% inv efficiency. Azimuths: 180 (South) and 270 (West). TOU Peak: $0.35 (Months 6-9, Hours 16-18), Off-Peak: $0.08. Output must be in /home/ga/Documents/SAM_Projects/tou_orientation_value.json. A 5% tolerance is allowed for mathematical results compared to the ground truth."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "build_template_driven_conference_schedule@1",
+    "task_completion": [
+        {
+            "id": "create_session_template",
+            "description": "Create a tiddler named 'SessionTemplate' with formatting for title, time, room, speaker, and body.",
+            "points": 20,
+            "visual_evidence": "A tiddler titled 'SessionTemplate' is visible, containing wikitext that references fields like {{!!time}}, {{!!room}}, and {{!!speaker}}."
+        },
+        {
+            "id": "tag_sessions_myschedule",
+            "description": "Tag the four specific sessions (Matrix 2.0, The State of Wayland, OpenStreetMap in 2024, PostgreSQL 16 Features) with 'MySchedule'.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the 'Tags' field of these four tiddlers containing the text 'MySchedule'."
+        },
+        {
+            "id": "create_dashboard_tiddler",
+            "description": "Create a tiddler named 'My Conference Schedule' and tag it with 'Dashboard'.",
+            "points": 15,
+            "visual_evidence": "A tiddler titled 'My Conference Schedule' is open, and the tag 'Dashboard' is visible in its tag area."
+        },
+        {
+            "id": "dashboard_intro_sentence",
+            "description": "The dashboard tiddler contains an introductory sentence.",
+            "points": 10,
+            "visual_evidence": "The 'My Conference Schedule' tiddler displays a sentence of text before the list of sessions."
+        },
+        {
+            "id": "dynamic_list_implementation",
+            "description": "The dashboard uses a list filter to pull sessions tagged 'MySchedule', sorted by time, using the SessionTemplate.",
+            "points": 35,
+            "visual_evidence": "The 'My Conference Schedule' tiddler shows a list of the four sessions. The visual rendering matches the template (e.g., headings for titles, specific fields displayed). The order should be chronological based on the 'time' field values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface rather than modifying the underlying files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the TiddlyWiki 'Edit' buttons, 'Save' icons, and text input fields in the browser."
+        },
+        {
+            "id": "no_hardcoded_list",
+            "description": "The dashboard uses a dynamic list widget or filter rather than hardcoding the session names manually.",
+            "visual_evidence": "In the edit mode of 'My Conference Schedule', the code should contain a <$list> widget or [tag[MySchedule]] filter rather than just the names of the sessions typed as plain text."
+        },
+        {
+            "id": "genuine_template_usage",
+            "description": "The sessions are rendered via the template, not just listed as links.",
+            "visual_evidence": "The dashboard view shows the full details (room, speaker, time) for each session as defined in the SessionTemplate, not just a simple bulleted list of titles."
+        }
+    ],
+    "privileged_info_for_vlm": "The template must be named 'SessionTemplate'. The dashboard must be named 'My Conference Schedule' and tagged 'Dashboard'. The four sessions to be tagged 'MySchedule' are: 'Matrix 2.0', 'The State of Wayland', 'OpenStreetMap in 2024', and 'PostgreSQL 16 Features'. The dashboard must sort these sessions chronologically by their 'time' field and use the template for rendering."
+}

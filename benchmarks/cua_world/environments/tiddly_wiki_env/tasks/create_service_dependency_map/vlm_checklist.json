@@ -1,0 +1,62 @@
+{
+    "task_id": "create_service_dependency_map@1",
+    "task_completion": [
+        {
+            "id": "service_tiddlers_creation",
+            "description": "Six microservice tiddlers (UserService, ProductCatalog, InventoryService, PaymentGateway, OrderService, NotificationService) are created with the 'Microservice' tag.",
+            "points": 15,
+            "visual_evidence": "The TiddlyWiki sidebar or 'Recent' tab shows all six service names, or the 'Microservice' tag pill is visible with a count of 6."
+        },
+        {
+            "id": "service_fields_metadata",
+            "description": "Microservice tiddlers contain the correct 'team', 'service-status', and 'depends-on' fields.",
+            "points": 20,
+            "visual_evidence": "Screenshots of individual tiddlers (e.g., OrderService) show a 'fields' section at the bottom with keys like 'team', 'service-status', and 'depends-on' populated with the specified values."
+        },
+        {
+            "id": "dependency_map_tiddler",
+            "description": "A tiddler titled 'Service Dependency Map' exists and is tagged 'Architecture'.",
+            "points": 10,
+            "visual_evidence": "A tiddler with the exact title 'Service Dependency Map' is open, showing the 'Architecture' tag pill."
+        },
+        {
+            "id": "dynamic_service_list",
+            "description": "The Map page displays a dynamic list of all microservices and their dependencies.",
+            "points": 15,
+            "visual_evidence": "The 'Service Dependency Map' tiddler displays a list or table containing the six services. The VLM should check that the dependencies match the prompt (e.g., OrderService depends on 4 others)."
+        },
+        {
+            "id": "reverse_dependencies",
+            "description": "The Map page displays reverse dependencies (which services depend on the current one).",
+            "points": 20,
+            "visual_evidence": "The 'Service Dependency Map' shows a 'Reverse Dependencies' or 'Depended on by' section. For example, UserService should be listed as a dependency for PaymentGateway, OrderService, and NotificationService."
+        },
+        {
+            "id": "leaf_services_and_count",
+            "description": "The Map page displays a list of leaf services (no dependencies) and a total count of microservices.",
+            "points": 20,
+            "visual_evidence": "The 'Service Dependency Map' explicitly lists 'UserService' and 'ProductCatalog' as leaf services and displays a total count of 6."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_map",
+            "description": "The Service Dependency Map uses widgets/filters rather than hardcoded text.",
+            "points": 0,
+            "visual_evidence": "If the agent opens the 'Edit' mode of the 'Service Dependency Map', the text should contain TiddlyWiki syntax like '<$list filter=...' or '{{{ [tag[Microservice]] }}}' rather than just a static list of names."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki web interface to create content.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the 'plus' button, edit fields, and save icons within the browser, rather than only executing shell commands."
+        },
+        {
+            "id": "correct_dependency_format",
+            "description": "The 'depends-on' field uses space-separated values as requested.",
+            "points": 0,
+            "visual_evidence": "In the fields section of OrderService, the 'depends-on' value is 'UserService ProductCatalog InventoryService PaymentGateway' without commas."
+        }
+    ],
+    "privileged_info_for_vlm": "The 6 services are: UserService (Platform, production, no deps), ProductCatalog (Commerce, production, no deps), InventoryService (Commerce, production, deps: ProductCatalog), PaymentGateway (Platform, production, deps: UserService), OrderService (Commerce, production, deps: UserService ProductCatalog InventoryService PaymentGateway), and NotificationService (Platform, beta, deps: UserService OrderService). The 'Service Dependency Map' must be dynamic; leaf services are UserService and ProductCatalog. Total count is 6."
+}

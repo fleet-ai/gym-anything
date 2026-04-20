@@ -1,0 +1,53 @@
+{
+    "task_id": "spatial_migration_and_cleanup@1",
+    "task_completion": [
+        {
+            "id": "city_standardization",
+            "description": "Standardize all 'City' field values in the 'Hotels' class to Title Case.",
+            "points": 15,
+            "visual_evidence": "A query result or browse view of the 'Hotels' class showing 'City' values like 'Rome', 'Berlin', 'Paris', 'London', or 'New York' (not all caps or all lowercase)."
+        },
+        {
+            "id": "create_location_property",
+            "description": "Create a new property named 'Location' of type 'OPoint' in the 'Hotels' class.",
+            "points": 15,
+            "visual_evidence": "The schema management view for the 'Hotels' class showing a property named 'Location' with the type 'OPOINT'."
+        },
+        {
+            "id": "populate_location_data",
+            "description": "Populate the 'Location' property using existing Latitude and Longitude values.",
+            "points": 30,
+            "visual_evidence": "A browse view or query result showing the 'Location' column filled with OPoint objects (e.g., '{ \"@type\": \"d\", \"@class\": \"OPoint\", \"coordinates\": [...] }') for the hotel records."
+        },
+        {
+            "id": "create_spatial_index",
+            "description": "Create a SPATIAL index on the 'Location' property.",
+            "points": 25,
+            "visual_evidence": "The 'Indexes' tab or schema view showing an index on 'Hotels.Location' with the type 'SPATIAL' and engine 'LUCENE'."
+        },
+        {
+            "id": "verify_legacy_columns",
+            "description": "Ensure the legacy Latitude and Longitude columns are retained.",
+            "points": 15,
+            "visual_evidence": "A browse view or schema view showing that 'Latitude' and 'Longitude' properties still exist alongside the new 'Location' property."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just terminal commands.",
+            "visual_evidence": "Screenshots showing the OrientDB Studio browser tabs (Browse, Schema, DB) being used to execute queries and manage the schema."
+        },
+        {
+            "id": "genuine_data_migration",
+            "description": "The agent performed an UPDATE query or command to migrate data, not just manual entry for one record.",
+            "visual_evidence": "The 'Query' editor showing an UPDATE command (e.g., UPDATE Hotels SET Location = ...) or a sequence of actions affecting multiple records."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent didn't just type in coordinates manually but used the existing Latitude/Longitude fields.",
+            "visual_evidence": "The SQL command used to populate 'Location' references the 'Latitude' and 'Longitude' property names."
+        }
+    ],
+    "privileged_info_for_vlm": "The target database is 'demodb' and the class is 'Hotels'. The 'Location' property must be of type 'OPoint' (case sensitive in some views). The spatial index must be of type 'SPATIAL'. There are 15 records in the Hotels class including 'Hotel Artemide' and 'Hotel Adlon Kempinski'. Title Case means only the first letter of each word is capitalized (e.g., 'New York', not 'NEW YORK')."
+}

@@ -1,0 +1,62 @@
+{
+    "task_id": "optimize_data_processing@1",
+    "task_completion": [
+        {
+            "id": "open_project_files",
+            "description": "Agent opens the four target files in the PyCharm editor: dedup.py, aggregate.py, topk.py, and join.py.",
+            "points": 10,
+            "visual_evidence": "Tabs for dedup.py, aggregate.py, topk.py, and join.py are visible in the PyCharm editor header."
+        },
+        {
+            "id": "optimize_dedup",
+            "description": "The deduplicate_records function is optimized using a set or dictionary (O(n)) instead of nested loops.",
+            "points": 20,
+            "visual_evidence": "Code in dedup.py shows the use of a 'set()' or 'dict()' to track seen records, replacing O(n^2) logic."
+        },
+        {
+            "id": "optimize_aggregate",
+            "description": "The aggregate_by_category function is optimized using a dictionary for single-pass grouping (O(n)).",
+            "points": 20,
+            "visual_evidence": "Code in aggregate.py shows a single loop iterating through records and updating a dictionary."
+        },
+        {
+            "id": "optimize_topk",
+            "description": "The top_k_by_value function is optimized using a heap (heapq) or efficient sorting (O(n log k)).",
+            "points": 20,
+            "visual_evidence": "Code in topk.py shows the use of 'heapq.nlargest' or an equivalent efficient selection algorithm."
+        },
+        {
+            "id": "optimize_join",
+            "description": "The inner_join function is optimized using a hash join (O(n+m)) instead of nested loops.",
+            "points": 20,
+            "visual_evidence": "Code in join.py shows one list being converted to a dictionary/map before iterating through the second list."
+        },
+        {
+            "id": "pass_performance_tests",
+            "description": "Agent runs the performance tests and they pass within the 2.0s threshold.",
+            "points": 10,
+            "visual_evidence": "PyCharm test runner or terminal output shows 'test_performance.py' passing with green checkmarks or 'PASSED' status."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to lower the bar for passing.",
+            "points": 0,
+            "visual_evidence": "The file 'tests/test_performance.py' is not edited in the editor, or 'git diff' (if used) shows no changes to the tests directory."
+        },
+        {
+            "id": "no_signature_change",
+            "description": "The agent maintained the original function signatures.",
+            "points": 0,
+            "visual_evidence": "The function definitions (def deduplicate_records, etc.) in the .py files match the original requirements and haven't added/removed parameters."
+        },
+        {
+            "id": "genuine_optimization",
+            "description": "The agent implemented algorithmic improvements rather than hardcoding results.",
+            "points": 0,
+            "visual_evidence": "The code shows logic for processing arbitrary lists of data using data structures like sets, dicts, or heaps."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/data_processing. The performance threshold for passing is 2.0 seconds per test. The required optimizations are: deduplicate_records (O(n) using sets/dicts), aggregate_by_category (O(n) using dicts), top_k_by_value (O(n log k) using heapq), and inner_join (O(n+m) using hash join). The performance tests use a dataset of 50,000 records (large_data fixture)."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "palmer_penguins_analysis_pippy@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named penguin_analysis.py at /home/ga/Documents/.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or VS Code) or a terminal showing the creation/saving of '/home/ga/Documents/penguin_analysis.py'."
+        },
+        {
+            "id": "data_loading_logic",
+            "description": "The script contains logic to read penguins.csv and filter out missing values (NA) for body_mass_g and flipper_length_mm.",
+            "points": 20,
+            "visual_evidence": "Code visible in the editor showing 'pd.read_csv', 'dropna', or equivalent filtering logic targeting the specified columns."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "The script calculates averages for Adelie, Chinstrap, and Gentoo species rounded to one decimal place.",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing grouping by 'species', calculating 'mean', and using a rounding function like '.round(1)'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script in the terminal.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing a command like 'python3 /home/ga/Documents/penguin_analysis.py' being run."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The summary file penguin_summary.txt is created in /home/ga/Documents/ with the correct format.",
+            "points": 30,
+            "visual_evidence": "A file explorer showing 'penguin_summary.txt' exists, or a 'cat' command/text editor showing the file content with lines like 'Adelie: mass 3700.7, flipper 189.9'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply echo the final values into the text file without writing/running a script.",
+            "visual_evidence": "The VLM should check that the Python script contains actual calculation logic (e.g., .mean()) rather than just print statements of the final numbers."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent actually opened or referenced the penguins.csv file.",
+            "visual_evidence": "The terminal or script path must point to '/home/ga/Documents/penguins.csv'."
+        },
+        {
+            "id": "gui_usage",
+            "description": "The agent used the desktop environment's tools (text editor, file manager, or terminal emulator) rather than just background API calls.",
+            "visual_evidence": "Screenshots show interaction with GUI windows like Gedit, Mousepad, or the GNOME Terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected values in penguin_summary.txt are: Adelie: mass 3700.7, flipper 189.9; Chinstrap: mass 3733.1, flipper 195.8; Gentoo: mass 5076.0, flipper 217.2. The script must be located at /home/ga/Documents/penguin_analysis.py and the output at /home/ga/Documents/penguin_summary.txt."
+}

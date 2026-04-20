@@ -1,0 +1,53 @@
+{
+    "task_id": "plsql_sql_injection_remediation@1",
+    "task_completion": [
+        {
+            "id": "access_vulnerable_source",
+            "description": "Agent opens or reads the vulnerable source code from /home/ga/Desktop/vulnerable_source.sql or the database.",
+            "points": 10,
+            "visual_evidence": "A text editor, terminal cat command, or SQL IDE showing the original HR_LEGACY_REPORTING package body code."
+        },
+        {
+            "id": "refactor_search_employees",
+            "description": "The SEARCH_EMPLOYEES procedure is refactored to use bind variables (e.g., USING clause) instead of string concatenation for the name pattern.",
+            "points": 25,
+            "visual_evidence": "Code in an editor or SQL tool showing 'EXECUTE IMMEDIATE ... USING' or a cursor with bind variables for the name filter."
+        },
+        {
+            "id": "refactor_rank_departments",
+            "description": "The RANK_DEPARTMENTS procedure is refactored to use DBMS_ASSERT.SIMPLE_SQL_NAME, DBMS_ASSERT.ENQUOTE_NAME, or a whitelist for the sort column.",
+            "points": 25,
+            "visual_evidence": "Code in an editor or SQL tool showing the use of DBMS_ASSERT or a CASE/IF statement validating the input column name."
+        },
+        {
+            "id": "compile_secured_package",
+            "description": "The agent executes the SQL to compile the updated package body in the Oracle database.",
+            "points": 20,
+            "visual_evidence": "A SQL terminal or IDE showing 'Package body created' or 'Package body altered' message after running the CREATE OR REPLACE PACKAGE BODY command."
+        },
+        {
+            "id": "export_secure_sql",
+            "description": "The agent saves the final secured package body code to /home/ga/Desktop/secure_reporting.sql.",
+            "points": 20,
+            "visual_evidence": "A file explorer showing the file exists or a terminal command (like 'cp' or 'save') confirming the content was written to the specific path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually connects to and interacts with the Oracle database rather than just editing a text file.",
+            "visual_evidence": "Screenshots showing a SQL tool (like SQL Developer, sqlplus, or a VS Code SQL extension) connected to localhost:1521."
+        },
+        {
+            "id": "no_hardcoded_bypass",
+            "description": "The agent does not simply create an empty file or copy the vulnerable code back into the output file.",
+            "visual_evidence": "The content of /home/ga/Desktop/secure_reporting.sql must show the logic changes (USING clause or DBMS_ASSERT)."
+        },
+        {
+            "id": "manual_remediation",
+            "description": "The agent performs the refactoring manually or via script, not by downloading a pre-fixed file from an external source.",
+            "visual_evidence": "The agent typing the code changes or using a local editor to modify the source code."
+        }
+    ],
+    "privileged_info_for_vlm": "The target package is 'HR_LEGACY_REPORTING'. The vulnerable source is at '/home/ga/Desktop/vulnerable_source.sql'. The final output must be at '/home/ga/Desktop/secure_reporting.sql'. Correct remediation for SEARCH_EMPLOYEES requires bind variables (USING clause). Correct remediation for RANK_DEPARTMENTS requires input validation (DBMS_ASSERT or whitelist) because column names cannot be bind variables in Oracle dynamic SQL."
+}

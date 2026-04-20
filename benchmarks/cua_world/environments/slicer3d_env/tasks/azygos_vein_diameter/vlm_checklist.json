@@ -1,0 +1,53 @@
+{
+    "task_id": "azygos_vein_diameter@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loaded the chest CT scan into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "A chest CT scan is visible in the axial, sagittal, and coronal viewports of the application."
+        },
+        {
+            "id": "locate_azygos_arch",
+            "description": "The agent navigated to the axial slice level showing the azygos vein arching over the right main bronchus to join the SVC.",
+            "points": 15,
+            "visual_evidence": "The axial view shows the azygos arch clearly; the crosshair or slice slider is positioned at the level of the upper mediastinum."
+        },
+        {
+            "id": "perform_measurement",
+            "description": "The agent placed a measurement ruler or markup line across the short-axis of the azygos vein.",
+            "points": 25,
+            "visual_evidence": "A measurement line/ruler is visible on the axial slice crossing the azygos vein, with a numerical value displayed in the UI."
+        },
+        {
+            "id": "save_markup_json",
+            "description": "The agent saved the measurement markup to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal output confirms the creation of '~/Documents/SlicerData/LIDC/azygos_measurement.mrk.json'."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "The agent created a report JSON with the required fields: diameter_mm, classification, slice_level, and interpretation.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows '~/Documents/SlicerData/LIDC/azygos_report.json' containing the four required keys and values derived from the measurement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the imaging software's GUI tools to measure rather than just writing a report via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ruler tools or markup modules in the software interface."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement value in the report matches the visual measurement shown in the software UI.",
+            "visual_evidence": "The 'diameter_mm' value in the final JSON matches the numerical label visible on the ruler in the CT viewport."
+        },
+        {
+            "id": "no_precomputed_answers",
+            "description": "The agent did not simply cat/echo a pre-existing result file without performing the analysis.",
+            "visual_evidence": "The trajectory shows the step-by-step process of opening the file, scrolling through slices, and placing the markup."
+        }
+    ],
+    "privileged_info_for_vlm": "The normal upper limit for the azygos vein diameter in a supine CT is 10 mm. A diameter > 15 mm is considered definitely dilated. The measurement must be taken at the short-axis of the azygos arch on an axial slice."
+}

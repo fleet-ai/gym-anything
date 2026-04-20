@@ -1,0 +1,59 @@
+{
+    "task_id": "create_rma@1",
+    "task_completion": [
+        {
+            "id": "open_rma_window",
+            "description": "The agent successfully navigated to the 'Customer RMA' window in iDempiere.",
+            "points": 10,
+            "visual_evidence": "The window title or tab shows 'Customer RMA' or 'Return Material Authorization'."
+        },
+        {
+            "id": "select_business_partner",
+            "description": "The Business Partner field is set to 'C&W Construction'.",
+            "points": 15,
+            "visual_evidence": "The 'Business Partner' field contains the text 'C&W Construction'."
+        },
+        {
+            "id": "set_description",
+            "description": "The Name/Description field is set to 'Defective Patio Set Return'.",
+            "points": 15,
+            "visual_evidence": "The 'Name' or 'Description' field contains the exact string 'Defective Patio Set Return'."
+        },
+        {
+            "id": "link_shipment",
+            "description": "The RMA is linked to an existing shipment for the customer.",
+            "points": 20,
+            "visual_evidence": "The 'Shipment/Receipt' field (or 'Inout') is populated with a shipment record associated with C&W Construction."
+        },
+        {
+            "id": "create_rma_line",
+            "description": "At least one RMA line is created with a quantity of 1.",
+            "points": 25,
+            "visual_evidence": "The 'RMA Line' tab or sub-grid shows a record with 'Quantity' set to '1' and a product selected."
+        },
+        {
+            "id": "verify_draft_status",
+            "description": "The document status remains in 'Drafted' or 'In Progress' and is not completed/closed.",
+            "points": 15,
+            "visual_evidence": "The 'DocStatus' or 'Document Status' field shows 'Drafted' (DR) or 'In Progress' (IP)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than executing direct database queries or terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the iDempiere UI elements and form fields."
+        },
+        {
+            "id": "genuine_data_selection",
+            "description": "The agent selected a real shipment from the search/lookup dialog rather than typing a random ID.",
+            "visual_evidence": "Screenshots show the lookup/search window for shipments being used to select a record."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated the menu system or used the search bar to find the RMA window.",
+            "visual_evidence": "The sequence of screenshots shows the navigation process through the iDempiere menu or application tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The business partner must be 'C&W Construction'. The description must be 'Defective Patio Set Return'. The RMA must be linked to a valid shipment. The RMA line quantity must be exactly 1. The document status must be 'Drafted' (often represented as 'DR' in the status field)."
+}

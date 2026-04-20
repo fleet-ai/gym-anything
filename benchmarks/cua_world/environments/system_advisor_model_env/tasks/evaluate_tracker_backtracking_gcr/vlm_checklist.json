@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_tracker_backtracking_gcr@1",
+    "task_completion": [
+        {
+            "id": "import_pysam_pvsamv1",
+            "description": "Agent imports PySAM and initializes the Pvsamv1 module with the FlatPlatePVSingleOwner configuration.",
+            "points": 10,
+            "visual_evidence": "Code in an IDE or terminal showing 'import PySAM.Pvsamv1' and 'Pvsamv1.default(\"FlatPlatePVSingleOwner\")'."
+        },
+        {
+            "id": "configure_phoenix_weather",
+            "description": "Agent sets the weather file to a Phoenix TMY file from the SAM solar_resource directory.",
+            "points": 15,
+            "visual_evidence": "Code setting 'SolarResource.solar_resource_file' to a path containing 'phoenix' and 'tmy' within the SAM installation directory."
+        },
+        {
+            "id": "set_tracking_parameters",
+            "description": "Agent configures 1-axis tracking (mode 1) and 0 tilt as specified.",
+            "points": 10,
+            "visual_evidence": "Code showing 'subarray1_track_mode = 1' and 'subarray1_tilt = 0'."
+        },
+        {
+            "id": "implement_gcr_backtrack_loop",
+            "description": "Agent implements a loop or logic to iterate through GCR values 0.3, 0.4, and 0.5 for both backtracking enabled and disabled.",
+            "points": 25,
+            "visual_evidence": "Code showing a loop over [0.3, 0.4, 0.5] and toggling 'subarray1_backtrack' between 0 and 1."
+        },
+        {
+            "id": "execute_simulations",
+            "description": "Agent executes the Pvsamv1 simulations to generate annual energy results.",
+            "points": 20,
+            "visual_evidence": "Code calling the '.execute()' method on the Pvsamv1 object and accessing 'Outputs.annual_energy'."
+        },
+        {
+            "id": "save_json_results",
+            "description": "Agent calculates percentage gains and saves the correctly structured JSON to the specified path.",
+            "points": 20,
+            "visual_evidence": "Code showing the creation of 'backtracking_impact.json' at '/home/ga/Documents/SAM_Projects/' with the required keys: location_description, weather_file_used, system_capacity_kw, and results."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the energy yield values without running simulations.",
+            "visual_evidence": "The script must show active calls to the PySAM execute() function rather than a dictionary pre-filled with large numerical energy values."
+        },
+        {
+            "id": "genuine_pysam_interaction",
+            "description": "Agent interacts with the PySAM library rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots show a Python environment (VS Code, Jupyter, or Terminal) with PySAM code execution and error-free output."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent uses the specific file paths requested in the task.",
+            "visual_evidence": "The output path in the code matches '/home/ga/Documents/SAM_Projects/backtracking_impact.json' exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The default system capacity for 'FlatPlatePVSingleOwner' is approximately 100,000 kW (100 MW). For Phoenix, AZ, at a GCR of 0.5, enabling backtracking (backtrack=1) must result in a higher annual energy yield than disabling it (backtrack=0) because backtracking eliminates internal row-to-row shading. The GCR values must be exactly 0.3, 0.4, and 0.5."
+}

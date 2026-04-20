@@ -1,0 +1,53 @@
+{
+    "task_id": "survival_weibull_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_dataset",
+            "description": "Open the 'kennan.gdt' dataset in gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window showing 'kennan.gdt' as the active file with variables 'duration' and 'prod' listed."
+        },
+        {
+            "id": "model_specification",
+            "description": "Configure the Weibull duration model with 'duration' as the dependent variable and 'prod' and 'const' as regressors.",
+            "points": 15,
+            "visual_evidence": "The gretl 'Model' dialog or 'Duration data' specification window showing 'duration' selected as the dependent variable and 'const' and 'prod' in the independent variables list."
+        },
+        {
+            "id": "model_estimation",
+            "description": "Execute the Weibull model estimation and display the results window.",
+            "points": 25,
+            "visual_evidence": "A gretl 'Model' output window titled 'Model 1: Weibull, using observations 1-62' (or similar) showing coefficients for 'const', 'prod', and a value for 'sigma'."
+        },
+        {
+            "id": "save_hansl_script",
+            "description": "Save the hansl script to the specified path.",
+            "points": 15,
+            "visual_evidence": "A gretl script editor window or a file explorer window showing 'strike_analysis.inp' saved in '~/Documents/gretl_output/'."
+        },
+        {
+            "id": "generate_report",
+            "description": "Create the 'strike_report.txt' with the required metrics and hazard interpretation.",
+            "points": 35,
+            "visual_evidence": "A text editor showing 'strike_report.txt' containing 'Prod_Coefficient', 'Sigma', and 'Hazard_Shape' with values derived from the model output."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI menus rather than just executing a pre-written script in the terminal.",
+            "visual_evidence": "Screenshots showing the agent clicking through gretl menus (File -> Open, Model -> Limited dependent variable -> Duration data)."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The values in the report match the values displayed in the gretl model output window.",
+            "visual_evidence": "The 'Prod_Coefficient' and 'Sigma' in the text file match the 'coefficient' column in the gretl output window."
+        },
+        {
+            "id": "correct_hazard_logic",
+            "description": "The hazard shape interpretation correctly follows the Weibull sigma logic.",
+            "visual_evidence": "If Sigma > 1, Hazard_Shape is 'Decreasing'; if Sigma < 1, Hazard_Shape is 'Increasing'; if Sigma = 1, Hazard_Shape is 'Constant'."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'kennan.gdt' dataset contains 62 observations. In a Weibull duration model: if the scale parameter 'sigma' (often denoted as 1/p in some software, but gretl explicitly labels it 'sigma') is > 1, the hazard function is Decreasing. If sigma < 1, the hazard is Increasing. For this specific dataset and model, the coefficient for 'prod' is typically negative (approx -0.7 to -0.8) and sigma is typically > 1 (approx 1.1 to 1.2), indicating a Decreasing hazard."
+}

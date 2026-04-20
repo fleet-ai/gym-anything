@@ -1,0 +1,59 @@
+{
+    "task_id": "texture_region_characterization@1",
+    "task_completion": [
+        {
+            "id": "open_mri_stack",
+            "description": "Open the 'MRI Stack' sample image in Fiji.",
+            "points": 10,
+            "visual_evidence": "The Fiji/ImageJ main window is visible, and an image window titled 'mri-stack.tif' (or similar) is open showing a grayscale MRI of a head."
+        },
+        {
+            "id": "select_slice_15",
+            "description": "Navigate to axial slice 15 of the MRI stack.",
+            "points": 10,
+            "visual_evidence": "The slider at the bottom of the MRI image window is positioned at 15/27, or the image metadata/status bar indicates slice 15."
+        },
+        {
+            "id": "define_rois",
+            "description": "Define three distinct ROIs for White Matter, Gray Matter, and CSF.",
+            "points": 25,
+            "visual_evidence": "The ROI Manager window is open containing at least three entries, or selection outlines (boxes/ovals/polygons) are visible on the MRI slice over different tissue types."
+        },
+        {
+            "id": "configure_measurements",
+            "description": "Configure Fiji to measure Mean, Std Dev, and at least one texture metric (Skewness, Kurtosis, etc.).",
+            "points": 15,
+            "visual_evidence": "The 'Set Measurements' dialog box is shown with 'Mean gray value', 'Standard deviation', and 'Skewness' or 'Kurtosis' checked."
+        },
+        {
+            "id": "measure_regions",
+            "description": "Perform measurements on the defined ROIs.",
+            "points": 20,
+            "visual_evidence": "A 'Results' table window is visible in Fiji containing at least three rows with columns for Mean, Std Dev, and the chosen texture metric."
+        },
+        {
+            "id": "save_csv_result",
+            "description": "Save the measurements to the specified CSV file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or a file explorer window shows the file being saved to '~/ImageJ_Data/results/texture_analysis.csv', or a terminal command confirms the file exists at that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform analysis rather than just writing a script or CSV manually.",
+            "visual_evidence": "Screenshots show the Fiji menu being clicked, the ROI Manager active, and the 'Set Measurements' dialog box."
+        },
+        {
+            "id": "genuine_mri_data",
+            "description": "The measurements are derived from the actual MRI Stack sample.",
+            "visual_evidence": "The image window shows the characteristic human head MRI slices of the Fiji 'MRI Stack' sample, not a placeholder or different image."
+        },
+        {
+            "id": "distinct_tissue_values",
+            "description": "The measurements for the three regions should be distinct, reflecting different tissue types.",
+            "visual_evidence": "The Results table shows varying Mean and Std Dev values across the three rows, with a variance in Standard Deviation typically > 0.5."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'MRI Stack' is a standard Fiji sample (27 slices). Slice 15 must be used. The final CSV must be saved to /home/ga/ImageJ_Data/results/texture_analysis.csv and contain at least 3 rows (White Matter, Gray Matter, CSF) with Mean, Std Dev, and a third metric like Skewness or Kurtosis. The verifier specifically checks that the variance of the Standard Deviation values across the three regions is greater than 0.5 to ensure genuine tissue differentiation."
+}

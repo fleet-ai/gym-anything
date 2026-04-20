@@ -1,0 +1,59 @@
+{
+    "task_id": "ship_hydrodynamics_calibration@1",
+    "task_completion": [
+        {
+            "id": "open_source_documents",
+            "description": "Agent opens the Sea_Trials_Report_2025.txt and Sim_Physics_Tech_Note.txt files to retrieve data and formulas.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the text editor or terminal displaying the contents of the source files in the Documents folder."
+        },
+        {
+            "id": "open_config_file",
+            "description": "Agent opens the dynamics.ini file for the MV Gladiator ship model.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the file /opt/bridgecommand/Models/Ship/MV_Gladiator/dynamics.ini open in a text editor."
+        },
+        {
+            "id": "update_dimensions",
+            "description": "Agent updates the Length and Beam values in the dynamics.ini file after converting from feet to meters.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the dynamics.ini file with Length set to approximately 165.0 and Beam set to approximately 23.0."
+        },
+        {
+            "id": "update_hydrodynamics",
+            "description": "Agent updates the RudderArea and DragArea values in the dynamics.ini file based on the calculated results.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the dynamics.ini file with RudderArea set to approximately 455.7 and DragArea set to approximately 16.5."
+        },
+        {
+            "id": "update_description_field",
+            "description": "Agent updates the 'Description' field in the dynamics.ini file to include 'Calibrated 2025'.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the dynamics.ini file with the text 'Calibrated 2025' within the Description field."
+        },
+        {
+            "id": "create_calibration_certificate",
+            "description": "Agent creates a summary file at /home/ga/Documents/calibration_certificate.txt containing the applied values.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the creation or content of calibration_certificate.txt with the updated ship parameters."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Verify the agent didn't just input values without opening the source documents.",
+            "visual_evidence": "The trajectory must show the agent opening and reading Sea_Trials_Report_2025.txt and Sim_Physics_Tech_Note.txt before editing the ini file."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Verify the agent interacted with the file system rather than just simulating a response.",
+            "visual_evidence": "Screenshots must show a text editor (like Gedit, Nano, or Vim) or terminal redirection commands being used to modify the files."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Verify the agent used the specific paths requested in the task.",
+            "visual_evidence": "The file paths /opt/bridgecommand/Models/Ship/MV_Gladiator/dynamics.ini and /home/ga/Documents/calibration_certificate.txt should be visible in the file manager or terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct values for the dynamics.ini file are: Length ≈ 165.0 (from 541.3 ft), Beam ≈ 23.0 (from 75.5 ft), RudderArea ≈ 455.7, and DragArea ≈ 16.5. The 'Description' field must contain the string 'Calibrated 2025'. The summary must be saved to /home/ga/Documents/calibration_certificate.txt. Ensure the agent performed the unit conversion (1 ft = 0.3048 m) and used the formulas from the Tech Note."
+}

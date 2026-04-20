@@ -1,0 +1,62 @@
+{
+    "task_id": "sart_preerror_speeding_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_data_file",
+            "description": "The agent locates and opens the SART data file at ~/pebl/data/sart_data.csv.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the CSV file content or the file being opened in a text editor or spreadsheet tool."
+        },
+        {
+            "id": "filter_excluded_candidate",
+            "description": "The agent identifies and excludes 'cand_99' from the analysis calculations.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a filtering step specifically targeting 'cand_99' for exclusion."
+        },
+        {
+            "id": "calculate_error_rates",
+            "description": "The agent calculates commission and omission error rates for each valid participant.",
+            "points": 20,
+            "visual_evidence": "Intermediate calculations, code execution output, or a spreadsheet showing error rate formulas applied to the data."
+        },
+        {
+            "id": "calculate_pre_error_rts",
+            "description": "The agent calculates pre-error RTs (mean of up to 3 preceding Go trials) for CE and CW trials.",
+            "points": 25,
+            "visual_evidence": "Logic or code showing the windowing of the 3 preceding valid Go trials (stimulus != 3, response 1, rt > 0) for each No-Go trial."
+        },
+        {
+            "id": "calculate_speeding_effect",
+            "description": "The agent calculates the speeding_effect_ms and the group mean speeding effect.",
+            "points": 15,
+            "visual_evidence": "Calculations showing the subtraction of pre_ce_rt_ms from pre_cw_rt_ms and the final group average."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent saves the final results to ~/pebl/analysis/sart_report.json following the specified schema.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the final JSON file content showing the 'participants', 'excluded', and 'group_mean_speeding_effect_ms' keys."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final group mean or participant metrics without calculation.",
+            "points": 0,
+            "visual_evidence": "The agent's code or command history shows active data processing rather than a single print statement of the final values."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent interacted with the actual file system to read the CSV and write the JSON.",
+            "points": 0,
+            "visual_evidence": "Terminal commands or file explorer views showing the existence and manipulation of the specified file paths."
+        },
+        {
+            "id": "logical_derivation",
+            "description": "The agent derived the 'reason' for excluding cand_99 from the data itself.",
+            "points": 0,
+            "visual_evidence": "Analysis showing cand_99 has a 100% commission error rate or is identified as a 'button-mashing artifact'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset is synthetic. Candidate 'cand_99' must be excluded due to a 100% commission error rate (button-mashing). The expected ground truth for the 'group_mean_speeding_effect_ms' is exactly 61.64 ms. Pre-error RTs must only include valid Go trials (stimulus != 3, response 1, rt_ms > 0)."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "labeled_distance_measurement@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image (0002.DCM) is successfully loaded into the viewer.",
+            "points": 10,
+            "visual_evidence": "The viewer displays an X-ray Angiography (XA) image showing cardiac/vessel structures."
+        },
+        {
+            "id": "measurement_tool_active",
+            "description": "The distance measurement tool is selected and active.",
+            "points": 10,
+            "visual_evidence": "The measurement icon is highlighted in the toolbar or the cursor has changed to a crosshair/ruler icon."
+        },
+        {
+            "id": "measurement_drawn",
+            "description": "A measurement line is drawn across the central prominent structure (Aortic Root).",
+            "points": 25,
+            "visual_evidence": "A line with endpoints and a distance value is visible over the central vessel structure."
+        },
+        {
+            "id": "label_applied",
+            "description": "The measurement line is labeled exactly 'Aortic Root'.",
+            "points": 30,
+            "visual_evidence": "A text label reading 'Aortic Root' is visible next to the measurement line or within a properties dialog box."
+        },
+        {
+            "id": "export_dialog_triggered",
+            "description": "The agent initiates the export process to save the view as a PNG.",
+            "points": 10,
+            "visual_evidence": "An 'Export' or 'Save As' dialog window is visible with the file format set to PNG."
+        },
+        {
+            "id": "file_saved_correctly",
+            "description": "The file is saved to the specified path '~/DICOM/exports/labeled_vessel.png'.",
+            "points": 15,
+            "visual_evidence": "The file path '/home/ga/DICOM/exports/labeled_vessel.png' is typed into the save dialog or a confirmation message appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the GUI to perform the measurement and labeling rather than terminal scripts.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on UI buttons, and manual typing in dialog boxes rather than just a terminal window."
+        },
+        {
+            "id": "no_premade_image_copy",
+            "description": "The agent did not simply copy a pre-existing image to the destination path.",
+            "visual_evidence": "The agent is seen interacting with the DICOM viewer's export menu rather than using a 'cp' command in the terminal."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurement line was manually placed on the vessel.",
+            "visual_evidence": "The line endpoints are aligned with the anatomical boundaries of the vessel in the viewer."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the DICOM viewer to open 0002.DCM. It must draw a distance line on the central vessel and label it exactly 'Aortic Root'. The final output must be a PNG file saved to /home/ga/DICOM/exports/labeled_vessel.png with a file size of at least 5000 bytes."
+}

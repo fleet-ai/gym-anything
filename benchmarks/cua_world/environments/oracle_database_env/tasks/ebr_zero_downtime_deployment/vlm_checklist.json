@@ -1,0 +1,53 @@
+{
+    "task_id": "ebr_zero_downtime_deployment@1",
+    "task_completion": [
+        {
+            "id": "create_base_function",
+            "description": "Implement the PAYROLL_CALC package/function in ORA$BASE returning 1000.",
+            "points": 15,
+            "visual_evidence": "SQL editor or terminal showing 'CREATE OR REPLACE' for PAYROLL_CALC with 'RETURN 1000' while connected to ORA$BASE."
+        },
+        {
+            "id": "create_release_v2_edition",
+            "description": "Create the child edition named 'RELEASE_V2'.",
+            "points": 15,
+            "visual_evidence": "SQL command 'CREATE EDITION RELEASE_V2 AS CHILD OF ORA$BASE' or similar DDL execution success message."
+        },
+        {
+            "id": "update_function_v2",
+            "description": "Update the function in RELEASE_V2 to return 10% of salary.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing session set to RELEASE_V2 and the function logic using 'salary * 0.1' or similar calculation from the EMPLOYEES table."
+        },
+        {
+            "id": "generate_validation_report",
+            "description": "Document the output of GET_BONUS(100) from both editions to the specified text file.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/Desktop/patch_validation.txt containing two different values (1000 and 2400) for the same employee ID."
+        },
+        {
+            "id": "set_default_edition",
+            "description": "Set the database-wide default edition to 'RELEASE_V2'.",
+            "points": 20,
+            "visual_evidence": "SQL command 'ALTER DATABASE DEFAULT EDITION = RELEASE_V2' and a confirmation message or a query showing the property has changed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Verify the agent actually executed SQL commands in an Oracle environment.",
+            "visual_evidence": "Screenshots must show a SQL tool (SQL*Plus, SQL Developer, or terminal) with Oracle-specific syntax and system responses, not just a text editor simulating a log."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "Ensure the report file was generated via redirection or script, not just typed manually.",
+            "visual_evidence": "Look for terminal commands like 'spool' or '>' or 'tee' that output the SQL results directly to /home/ga/Desktop/patch_validation.txt."
+        },
+        {
+            "id": "isolation_verification",
+            "description": "Check that the agent switched sessions or editions to prove isolation.",
+            "visual_evidence": "Evidence of 'ALTER SESSION SET EDITION' or reconnecting with a different edition attribute before running the test queries."
+        }
+    ],
+    "privileged_info_for_vlm": "The base edition is 'ORA$BASE'. The new edition must be named 'RELEASE_V2'. For employee 100 (Steven King), the salary in the HR schema is 24,000. Therefore, the expected output for GET_BONUS(100) in ORA$BASE is 1000, and in RELEASE_V2 it is 2400 (10% of 24,000). The final report must be at /home/ga/Desktop/patch_validation.txt."
+}

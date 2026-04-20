@@ -1,0 +1,65 @@
+{
+    "task_id": "lsb_galaxy_deep_survey@1",
+    "task_completion": [
+        {
+            "id": "read_target_coordinates",
+            "description": "Agent reads the target list and coordinates from ~/Documents/lsb_targets.txt",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the contents of lsb_targets.txt with Malin 1, Malin 2, and UGC 1382."
+        },
+        {
+            "id": "capture_dark_frames",
+            "description": "Capture five 25-second DARK frames in the calibration directory",
+            "points": 20,
+            "visual_evidence": "Imaging software or terminal showing the capture of 5 frames with 'DARK' type and '25s' exposure, or a file listing of /home/ga/Images/LSB_survey/calibration/darks_25s/."
+        },
+        {
+            "id": "capture_light_frames_malin1",
+            "description": "Capture four 25-second LIGHT exposures for Malin 1",
+            "points": 15,
+            "visual_evidence": "Imaging software showing 4 exposures for Malin 1 at 25s, or files in /home/ga/Images/LSB_survey/targets/Malin 1/."
+        },
+        {
+            "id": "capture_light_frames_malin2",
+            "description": "Capture four 25-second LIGHT exposures for Malin 2",
+            "points": 15,
+            "visual_evidence": "Imaging software showing 4 exposures for Malin 2 at 25s, or files in /home/ga/Images/LSB_survey/targets/Malin 2/."
+        },
+        {
+            "id": "capture_light_frames_ugc1382",
+            "description": "Capture four 25-second LIGHT exposures for UGC 1382",
+            "points": 15,
+            "visual_evidence": "Imaging software showing 4 exposures for UGC 1382 at 25s, or files in /home/ga/Images/LSB_survey/targets/UGC 1382/."
+        },
+        {
+            "id": "generate_sky_views",
+            "description": "Generate sky view images for all three targets using the specified bash script and palette",
+            "points": 15,
+            "visual_evidence": "Terminal showing the execution of 'bash ~/capture_sky_view.sh' with the '--palette cool' flag for each target path."
+        },
+        {
+            "id": "create_survey_report",
+            "description": "Record the names of the three targets in ~/Documents/lsb_survey_report.txt",
+            "points": 10,
+            "visual_evidence": "A text editor or 'cat' command output showing lsb_survey_report.txt containing 'Malin 1', 'Malin 2', and 'UGC 1382'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_exposure_time",
+            "description": "Verify the agent actually waited for the 25-second exposures rather than just creating empty files",
+            "visual_evidence": "Timestamps in the terminal or progress bars in the imaging software showing elapsed time consistent with 25-second durations."
+        },
+        {
+            "id": "script_parameter_accuracy",
+            "description": "Verify the agent used the exact palette 'cool' as requested in the command",
+            "visual_evidence": "The command line text showing '--palette cool' specifically, not 'warm' or other defaults."
+        },
+        {
+            "id": "directory_structure_adherence",
+            "description": "Verify the agent used the specific directory paths requested rather than default save locations",
+            "visual_evidence": "File paths in the terminal or file manager matching /home/ga/Images/LSB_survey/targets/<target_name>/."
+        }
+    ],
+    "privileged_info_for_vlm": "The targets are Malin 1, Malin 2, and UGC 1382. Required exposure time for all frames (Light and Dark) is exactly 25 seconds. The agent must capture 5 dark frames and 4 light frames per target. The sky view script must be run with the '--palette cool' argument. The final report must be located at ~/Documents/lsb_survey_report.txt."
+}

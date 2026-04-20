@@ -1,0 +1,59 @@
+{
+    "task_id": "sugar_system_inventory@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Bash script at /home/ga/Documents/inventory.sh.",
+            "points": 15,
+            "visual_evidence": "A terminal window showing 'touch', 'nano', 'vim', or 'cat' being used to create /home/ga/Documents/inventory.sh, or a file manager showing the file exists."
+        },
+        {
+            "id": "script_content_logic",
+            "description": "The script contains commands for hostname, sugar activities, disk usage, memory, and gsettings.",
+            "points": 20,
+            "visual_evidence": "Terminal output or a text editor showing the script content containing 'hostname', 'ls /usr/share/sugar/activities/', 'df -h', 'free -m', and 'gsettings get org.sugarlabs.user'."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the script to generate the report.",
+            "points": 15,
+            "visual_evidence": "Terminal showing the command 'bash /home/ga/Documents/inventory.sh' or './inventory.sh' being run."
+        },
+        {
+            "id": "report_existence",
+            "description": "The report file /home/ga/Documents/system_report.txt is successfully created.",
+            "points": 10,
+            "visual_evidence": "Terminal output of 'ls /home/ga/Documents/' showing system_report.txt or a file manager view."
+        },
+        {
+            "id": "report_header_verification",
+            "description": "The report contains all six required section headers exactly as specified.",
+            "points": 20,
+            "visual_evidence": "A text editor or 'cat' output of system_report.txt showing: === HOSTNAME ===, === SUGAR ACTIVITIES ===, === DISK USAGE ===, === MEMORY INFO ===, === SUGAR USER CONFIG ===, and === REPORT TIMESTAMP ===."
+        },
+        {
+            "id": "report_data_accuracy",
+            "description": "The report contains the specific Sugar user configuration data.",
+            "points": 20,
+            "visual_evidence": "The content of system_report.txt under the SUGAR USER CONFIG section shows the nick and color values (e.g., 'Learner' and the color tuple)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_report_creation",
+            "description": "The agent did not manually type the report content instead of using a script.",
+            "visual_evidence": "The agent should be seen writing a script with logic (commands), not just 'echoing' hardcoded strings of system data into a file."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific paths requested in the prompt.",
+            "visual_evidence": "Screenshots show the paths /home/ga/Documents/inventory.sh and /home/ga/Documents/system_report.txt being used, not temporary or home directories."
+        },
+        {
+            "id": "genuine_system_interaction",
+            "description": "The agent actually queried the system for data.",
+            "visual_evidence": "The terminal shows the execution of system commands like 'df', 'free', or 'gsettings' rather than the agent hallucinating values."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be at /home/ga/Documents/inventory.sh and the report at /home/ga/Documents/system_report.txt. The required headers are: === HOSTNAME ===, === SUGAR ACTIVITIES ===, === DISK USAGE ===, === MEMORY INFO ===, === SUGAR USER CONFIG ===, and === REPORT TIMESTAMP ===. The Sugar user nick is 'Learner' and the color is '#FF2B34,#005FE4'."
+}

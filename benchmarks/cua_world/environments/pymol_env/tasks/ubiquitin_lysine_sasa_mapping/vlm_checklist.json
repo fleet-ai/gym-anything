@@ -1,0 +1,59 @@
+{
+    "task_id": "ubiquitin_lysine_sasa_mapping@1",
+    "task_completion": [
+        {
+            "id": "load_pdb_1ubq",
+            "description": "Load the PDB structure 1UBQ into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '1UBQ' and the 3D viewer displays the ubiquitin protein structure."
+        },
+        {
+            "id": "enable_sasa_calculation",
+            "description": "Enable solvent-accessible area calculations in PyMOL (e.g., setting dot_solvent to 1).",
+            "points": 15,
+            "visual_evidence": "The PyMOL command history shows commands like 'set dot_solvent, 1' or 'get_area' being executed."
+        },
+        {
+            "id": "calculate_lysine_sasa",
+            "description": "Calculate SASA for the 7 specific lysine residues (K6, K11, K27, K29, K33, K48, K63).",
+            "points": 25,
+            "visual_evidence": "The PyMOL command history or external terminal shows the agent selecting or iterating through residues 6, 11, 27, 29, 33, 48, and 63 to compute area values."
+        },
+        {
+            "id": "generate_sorted_report",
+            "description": "Create a text report at ~/PyMOL_Data/ubiquitin_lysine_report.txt with SASA values sorted in descending order.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows a file containing the 7 lysines and their numerical SASA values, ordered from highest to lowest."
+        },
+        {
+            "id": "visualize_protein_surface",
+            "description": "Represent the protein as a grey or white surface with lysines as distinct colored spheres.",
+            "points": 15,
+            "visual_evidence": "The 3D viewer shows a grey/white molecular surface with specific residues (lysines) rendered as spheres in a contrasting color (e.g., red)."
+        },
+        {
+            "id": "save_ray_traced_image",
+            "description": "Save a high-resolution ray-traced image to ~/PyMOL_Data/images/ubq_lysines.png.",
+            "points": 15,
+            "visual_evidence": "The PyMOL command history shows a 'ray' command followed by a 'png' command targeting the specified file path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pymol_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line interface rather than just creating files manually.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the 1UBQ structure loaded and commands being typed into the PyMOL prompt."
+        },
+        {
+            "id": "no_hardcoded_sasa",
+            "description": "The agent derived SASA values from PyMOL calculations rather than copy-pasting them from external sources.",
+            "visual_evidence": "The command history shows the 'get_area' command (or similar) being run for the specific lysine selections."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the exact file paths specified in the task for the report and the image.",
+            "visual_evidence": "Terminal or PyMOL commands show the paths '~/PyMOL_Data/ubiquitin_lysine_report.txt' and '~/PyMOL_Data/images/ubq_lysines.png' being used."
+        }
+    ],
+    "privileged_info_for_vlm": "The protein 1UBQ contains exactly 7 lysines at sequence positions 6, 11, 27, 29, 33, 48, and 63. To calculate SASA in PyMOL, the agent should use 'set dot_solvent, 1' followed by 'get_area'. The final report must be sorted descending by the calculated area values. The image must show a grey/white surface with these 7 residues highlighted as spheres."
+}

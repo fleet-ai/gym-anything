@@ -1,0 +1,53 @@
+{
+    "task_id": "archive_expired_chemicals@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into SciNote using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The SciNote dashboard or project overview page is visible after the login screen."
+        },
+        {
+            "id": "navigate_to_chemical_storage",
+            "description": "Agent navigates to the 'Inventory' module and selects the 'Chemical Storage' repository.",
+            "points": 15,
+            "visual_evidence": "The screen shows the 'Inventory' tab active and the repository name 'Chemical Storage' displayed at the top."
+        },
+        {
+            "id": "identify_expired_items",
+            "description": "Agent identifies or selects items with expiry dates before January 1, 2025.",
+            "points": 20,
+            "visual_evidence": "Selection checkboxes are checked for items like Acetonitrile (2022-05-20), Methanol (2023-11-10), and Chloroform (2021-08-30)."
+        },
+        {
+            "id": "archive_action_execution",
+            "description": "Agent triggers the 'Archive' action for the selected expired items.",
+            "points": 25,
+            "visual_evidence": "An 'Archive' button is clicked, or a confirmation modal for archiving items appears on screen."
+        },
+        {
+            "id": "verify_final_inventory_state",
+            "description": "The final inventory view shows only the non-expired items, and the expired ones are gone.",
+            "points": 30,
+            "visual_evidence": "The 'Chemical Storage' list now only displays 'Ethanol 96%' and 'Isopropanol'. The expired items are no longer visible in the active list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SciNote web interface rather than executing database or terminal commands.",
+            "visual_evidence": "Screenshots show mouse cursor movements, clicks on web elements, and browser navigation."
+        },
+        {
+            "id": "no_manual_url_skipping",
+            "description": "The agent navigated through the application menus rather than jumping directly to a specific item ID URL.",
+            "visual_evidence": "The trajectory shows the agent clicking on 'Inventory' and selecting the repository from a list."
+        },
+        {
+            "id": "authentic_selection",
+            "description": "The agent actively checked the names/dates of the items before archiving.",
+            "visual_evidence": "The agent scrolls through the list or hovers over item names to verify the expiry dates in the item titles."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Chemical Storage' repository contains 5 items. Items to ARCHIVE (Expiry < 2025-01-01): Acetonitrile (2022-05-20), Methanol (2023-11-10), and Chloroform (2021-08-30). Items to KEEP (Expiry >= 2025-01-01): Ethanol 96% (2027-01-15) and Isopropanol (2026-05-05). Ensure the agent does not archive the items expiring in 2026 or 2027."
+}

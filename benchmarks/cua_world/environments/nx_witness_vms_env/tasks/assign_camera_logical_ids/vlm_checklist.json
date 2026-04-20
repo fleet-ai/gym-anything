@@ -1,0 +1,53 @@
+{
+    "task_id": "assign_camera_logical_ids@1",
+    "task_completion": [
+        {
+            "id": "authentication_request",
+            "description": "Agent authenticates with the Nx Witness API",
+            "points": 10,
+            "visual_evidence": "A terminal or tool output showing a POST request to /rest/v1/login/sessions with username 'admin' and password 'Admin1234!' resulting in a token."
+        },
+        {
+            "id": "device_discovery",
+            "description": "Agent retrieves the list of devices to find camera IDs",
+            "points": 15,
+            "visual_evidence": "A GET request to /rest/v1/devices and a response containing a list of cameras including 'Parking Lot Camera', 'Entrance Camera', and 'Server Room Camera'."
+        },
+        {
+            "id": "update_parking_lot_camera",
+            "description": "Agent assigns logical ID 101 to the Parking Lot Camera",
+            "points": 25,
+            "visual_evidence": "A PATCH request to /rest/v1/devices/{deviceId} (where deviceId corresponds to the Parking Lot Camera) with the body {\"logicalId\": 101}."
+        },
+        {
+            "id": "update_entrance_camera",
+            "description": "Agent assigns logical ID 102 to the Entrance Camera",
+            "points": 25,
+            "visual_evidence": "A PATCH request to /rest/v1/devices/{deviceId} (where deviceId corresponds to the Entrance Camera) with the body {\"logicalId\": 102}."
+        },
+        {
+            "id": "update_server_room_camera",
+            "description": "Agent assigns logical ID 103 to the Server Room Camera",
+            "points": 25,
+            "visual_evidence": "A PATCH request to /rest/v1/devices/{deviceId} (where deviceId corresponds to the Server Room Camera) with the body {\"logicalId\": 103}."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_ids",
+            "description": "Agent did not guess device IDs without listing devices first",
+            "visual_evidence": "The agent must perform a GET /rest/v1/devices call before attempting any PATCH calls."
+        },
+        {
+            "id": "genuine_api_interaction",
+            "description": "Agent used the specified REST API endpoints rather than local configuration file editing",
+            "visual_evidence": "Screenshots show HTTP requests (curl, python requests, or tool calls) directed at https://localhost:7001."
+        },
+        {
+            "id": "correct_auth_method",
+            "description": "Agent used Bearer token authentication as specified",
+            "visual_evidence": "Subsequent PATCH requests include an Authorization header with a Bearer token obtained from the login session."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using the Nx Witness REST API at https://localhost:7001. Credentials: admin / Admin1234!. Target assignments: Parking Lot Camera -> 101, Entrance Camera -> 102, Server Room Camera -> 103. The agent must first login to get a token, then list devices to find the unique deviceId for each camera name, then use PATCH to update the logicalId."
+}

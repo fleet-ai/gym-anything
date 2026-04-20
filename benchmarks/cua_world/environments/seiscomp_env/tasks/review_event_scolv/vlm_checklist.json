@@ -1,0 +1,59 @@
+{
+    "task_id": "review_event_scolv@1",
+    "task_completion": [
+        {
+            "id": "open_scolv_event",
+            "description": "Open the SeisComP Origin Locator (scolv) and select the 2024 Noto Peninsula earthquake event.",
+            "points": 10,
+            "visual_evidence": "The scolv window is open, showing the event list or the specific origin details for the Noto Peninsula region."
+        },
+        {
+            "id": "fix_depth_13km",
+            "description": "Manually set the origin depth to exactly 13 km and fix it.",
+            "points": 25,
+            "visual_evidence": "In the 'Location' tab of scolv, the Depth input field shows '13' and the 'fixed' checkbox (or 'f' toggle) is enabled/checked."
+        },
+        {
+            "id": "compute_magnitudes",
+            "description": "Compute the magnitudes for the new origin with the fixed depth.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Magnitudes' tab and triggers a calculation, showing a list of station magnitudes or a network magnitude summary."
+        },
+        {
+            "id": "set_event_type_certainty",
+            "description": "Update the Event Type to 'earthquake' and Certainty to 'known' in the Event tab.",
+            "points": 15,
+            "visual_evidence": "In the 'Event' tab, the Type dropdown shows 'earthquake' and the Certainty dropdown shows 'known'."
+        },
+        {
+            "id": "add_comment",
+            "description": "Add the specific comment 'Depth constrained by regional phases' to the event.",
+            "points": 15,
+            "visual_evidence": "A comment field or dialog box within the Event tab contains the exact string 'Depth constrained by regional phases'."
+        },
+        {
+            "id": "commit_changes",
+            "description": "Commit all changes (origin and event parameters) to the database.",
+            "points": 15,
+            "visual_evidence": "The agent clicks the 'Commit' button (often a floppy disk icon or 'Commit' text) and a confirmation or progress bar appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the SeisComP GUI (scolv) rather than direct SQL database manipulation via terminal.",
+            "visual_evidence": "Screenshots show mouse cursor movements and interactions within the scolv graphical interface windows."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The agent actually triggered the magnitude calculation rather than just typing a value.",
+            "visual_evidence": "The 'Magnitudes' tab shows populated station data and calculated averages following a 'Compute' or 'Relocate' action."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated through the tabs (Location, Magnitudes, Event) as required by the SeisComP workflow.",
+            "visual_evidence": "Sequential screenshots show the agent switching between the different functional tabs of the scolv application."
+        }
+    ],
+    "privileged_info_for_vlm": "The target depth must be exactly 13.0 km (tolerance ±0.5 km). The agency ID should be 'GYM'. The required event type is 'earthquake', certainty is 'known', and the mandatory comment is 'Depth constrained by regional phases'. All these must be visible in the SeisComP scolv interface before or during the commit action."
+}

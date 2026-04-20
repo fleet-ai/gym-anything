@@ -1,0 +1,53 @@
+{
+    "task_id": "ab_lag_accuracy_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent locates and opens the source data file ~/pebl/data/ab_data.csv.",
+            "points": 10,
+            "visual_evidence": "A text editor, spreadsheet viewer, or terminal output showing the content of ab_data.csv with columns: participant, trial, lag, t1_correct, and t2_correct."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "Agent identifies and excludes participant 'p00' who has 100% accuracy across all lags.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing a filter operation or a conditional check that identifies p00 as having 1.0 accuracy at all lags and marking them for exclusion."
+        },
+        {
+            "id": "conditional_accuracy_calc",
+            "description": "Agent calculates T2|T1 accuracy (T2 correct given T1 correct) for each lag (1, 2, 3, 4, 5, 7, 8).",
+            "points": 25,
+            "visual_evidence": "Code execution or intermediate output showing the calculation of proportions where t2_correct == 1 grouped by lag, filtered by t1_correct == 1."
+        },
+        {
+            "id": "ab_magnitude_calc",
+            "description": "Agent calculates the AB magnitude (Max T2|T1 - Min T2|T1) for each valid participant.",
+            "points": 20,
+            "visual_evidence": "Code or output showing the subtraction of the minimum lag accuracy from the maximum lag accuracy per participant."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the final JSON report at ~/pebl/analysis/ab_report.json with the required structure.",
+            "points": 30,
+            "visual_evidence": "A file explorer or terminal showing the creation of ab_report.json, or a view of the file content containing 'participants', 'excluded': true for p00, and 'group_means'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "Agent performed actual data processing rather than hardcoding values from the prompt.",
+            "visual_evidence": "Screenshots showing Python code (using pandas or similar) or a script being written and executed to process the 25 participants."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Agent interacted with the specific file paths provided in the task.",
+            "visual_evidence": "Terminal commands or code referencing ~/pebl/data/ab_data.csv and ~/pebl/analysis/ab_report.json."
+        },
+        {
+            "id": "no_hallucinated_lags",
+            "description": "Agent correctly identifies the specific lags present in the data (1, 2, 3, 4, 5, 7, 8) and does not include lag 6.",
+            "visual_evidence": "The final JSON report or intermediate code showing only lags 1, 2, 3, 4, 5, 7, and 8."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 25 participants (p00 to p24). Participant 'p00' is a contaminated entry with 100% accuracy (1.0) for both T1 and T2 across all trials and must be marked as 'excluded': true in the JSON. The valid lags are [1, 2, 3, 4, 5, 7, 8]; lag 6 does not exist in the data. The final report must be saved to /home/ga/pebl/analysis/ab_report.json and must include group means for the 24 valid participants."
+}

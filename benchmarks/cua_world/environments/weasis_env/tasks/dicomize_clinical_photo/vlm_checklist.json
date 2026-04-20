@@ -1,0 +1,65 @@
+{
+    "task_id": "dicomize_clinical_photo@1",
+    "task_completion": [
+        {
+            "id": "open_weasis",
+            "description": "The Weasis application is launched and visible on the desktop.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open and active in the screenshot."
+        },
+        {
+            "id": "import_dialog_opened",
+            "description": "The agent initiates the import process for the clinical photograph.",
+            "points": 10,
+            "visual_evidence": "An 'Import' or 'Dicomize' dialog box is visible, showing the file selection of 'clinical_photo.jpg' from the Desktop."
+        },
+        {
+            "id": "metadata_entry_patient_name",
+            "description": "The Patient Name 'Smith^John' is entered into the metadata fields.",
+            "points": 15,
+            "visual_evidence": "The text 'Smith^John' is typed into the 'Patient Name' field within the Weasis import/metadata editor."
+        },
+        {
+            "id": "metadata_entry_patient_id",
+            "description": "The Patient ID 'DERM001' is entered into the metadata fields.",
+            "points": 15,
+            "visual_evidence": "The text 'DERM001' is typed into the 'Patient ID' field within the Weasis import/metadata editor."
+        },
+        {
+            "id": "metadata_entry_modality",
+            "description": "The Modality 'XC' is selected or entered.",
+            "points": 15,
+            "visual_evidence": "The text 'XC' is visible in the 'Modality' field within the Weasis import/metadata editor."
+        },
+        {
+            "id": "export_configuration",
+            "description": "The agent configures the export destination to the correct directory.",
+            "points": 15,
+            "visual_evidence": "The export path or 'Save' dialog shows the directory '~/DICOM/exports/' or '/home/ga/DICOM/exports/'."
+        },
+        {
+            "id": "successful_export",
+            "description": "The DICOM conversion and export process is completed.",
+            "points": 20,
+            "visual_evidence": "A progress bar completing, a 'Success' notification, or the exported .dcm file appearing in the file browser within the target directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the Weasis GUI rather than command-line tools like 'img2dcm' to perform the conversion.",
+            "visual_evidence": "Screenshots show mouse interactions and typing within the Weasis interface; no terminal commands are used to bypass the GUI for the conversion."
+        },
+        {
+            "id": "no_manual_file_move",
+            "description": "The agent did not simply rename the .jpg to .dcm or move a dummy file.",
+            "visual_evidence": "The screenshots show the actual 'Dicomize' or 'Import' workflow within Weasis where metadata is mapped to DICOM tags."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the specific file located on the Desktop as requested.",
+            "visual_evidence": "The file path '~/Desktop/clinical_photo.jpg' is visible during the import selection process."
+        }
+    ],
+    "privileged_info_for_vlm": "The source image is located at /home/ga/Desktop/clinical_photo.jpg. The required metadata values are: Patient Name = 'Smith^John', Patient ID = 'DERM001', and Modality = 'XC'. The final DICOM file must be exported to /home/ga/DICOM/exports. Verify that the agent uses the Weasis 'Dicomize' or 'Import' feature to apply these specific tags."
+}

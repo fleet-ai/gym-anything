@@ -1,0 +1,53 @@
+{
+    "task_id": "extension_market_eval@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_store",
+            "description": "Agent navigates to the Microsoft Edge Add-ons store URL.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'microsoftedge.microsoft.com/addons' and the Edge Add-ons homepage is visible."
+        },
+        {
+            "id": "search_color_picker",
+            "description": "Agent searches for 'Color Picker' in the store's search bar.",
+            "points": 10,
+            "visual_evidence": "The search bar contains the text 'Color Picker' and the search results page is displayed."
+        },
+        {
+            "id": "extract_extension_details",
+            "description": "Agent clicks on or views the details of the top 3 extensions to gather required data.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the agent interacting with or scrolling through the first three extension listings (e.g., 'Color Picker', 'Click Color Picker', etc.) to view ratings, publishers, and descriptions."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Agent creates a CSV file at the specified path with the correct headers.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output shows the creation of '/home/ga/Desktop/extension_comparison.csv' with headers: Name, Publisher, Rating, Users, Description."
+        },
+        {
+            "id": "populate_csv_data",
+            "description": "Agent populates the CSV with the extracted data for 3 extensions, including the first sentence of descriptions.",
+            "points": 30,
+            "visual_evidence": "The content of the CSV file is displayed, showing three rows of data corresponding to the extensions found in the store."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the browser GUI to find information rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the Edge browser being used to navigate the store and view extension pages."
+        },
+        {
+            "id": "no_hardcoded_data",
+            "description": "Agent did not simply echo the final CSV content without visiting the website.",
+            "visual_evidence": "The trajectory shows a sequence of browsing actions (searching, clicking) before the file creation."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent saved the file to the exact requested path.",
+            "visual_evidence": "The file manager or terminal shows the file exists specifically at /home/ga/Desktop/extension_comparison.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The target search term is 'Color Picker'. The output must be a CSV at /home/ga/Desktop/extension_comparison.csv. Required headers are: Name, Publisher, Rating, Users, Description. Verified extensions in this store include 'Color Picker', 'Click Color Picker', and 'Hex Color Picker'. Ratings should be numeric (e.g., 5.0 or 4.0). The description field must contain only the first sentence of the extension's description."
+}

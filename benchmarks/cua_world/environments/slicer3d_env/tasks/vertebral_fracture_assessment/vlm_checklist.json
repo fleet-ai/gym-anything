@@ -1,0 +1,53 @@
+{
+    "task_id": "vertebral_fracture_assessment@1",
+    "task_completion": [
+        {
+            "id": "dicom_loading",
+            "description": "The agent successfully loads the thoracolumbar spine CT scan into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a CT scan of a spine loaded in the multi-planar reconstruction (MPR) views (Axial, Sagittal, Coronal)."
+        },
+        {
+            "id": "vertebra_identification",
+            "description": "The agent identifies and navigates to the L1 vertebral level for assessment.",
+            "points": 15,
+            "visual_evidence": "The crosshairs or slice view focused on the L1 vertebra, often indicated by counting from the sacrum or rib-bearing T12."
+        },
+        {
+            "id": "height_measurement_placement",
+            "description": "The agent uses measurement tools to mark the anterior and posterior heights of the L1 vertebral body.",
+            "points": 25,
+            "visual_evidence": "Visual rulers, calipers, or markup points placed on the anterior and posterior borders of the L1 vertebral body in the sagittal view."
+        },
+        {
+            "id": "save_markup_file",
+            "description": "The agent saves the measurements to the specified JSON markup file path.",
+            "points": 20,
+            "visual_evidence": "A file browser dialog or terminal output showing the creation/saving of '~/Documents/SlicerData/Spine/vertebral_measurements.mrk.json'."
+        },
+        {
+            "id": "generate_fracture_report",
+            "description": "The agent creates a final report file with the required fields: vertebral_level, anterior_height_mm, posterior_height_mm, compression_ratio, genant_grade, and morphology.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal 'cat' command displaying '~/Documents/SlicerData/Spine/fracture_report.json' containing the calculated values and Genant Grade 2."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent performed measurements using the imaging software's GUI tools rather than just writing a script to generate the output.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with measurement tools or markup points visible on the CT slices."
+        },
+        {
+            "id": "no_hardcoded_shortcut",
+            "description": "The agent did not simply echo the privileged information into the report without opening the image.",
+            "visual_evidence": "The sequence of screenshots must show the CT scan being opened and manipulated before the report is generated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The compression ratio and Genant grade in the report match the visual evidence of the fracture seen in the CT.",
+            "visual_evidence": "The sagittal view should clearly show a wedge-shaped or compressed L1 vertebra consistent with the reported ~31% reduction (Grade 2)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target vertebra is L1. The ground truth Genant classification is Grade 2 (moderate), representing a height reduction between 25% and 40% (specifically ~31%). Measured heights should fall within the 10.8mm to 30.0mm range. The final report must be saved to ~/Documents/SlicerData/Spine/fracture_report.json."
+}

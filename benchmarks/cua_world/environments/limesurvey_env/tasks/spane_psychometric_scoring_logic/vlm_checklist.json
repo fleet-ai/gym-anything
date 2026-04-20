@@ -1,0 +1,53 @@
+{
+    "task_id": "spane_psychometric_scoring_logic@1",
+    "task_completion": [
+        {
+            "id": "survey_creation_settings",
+            "description": "Create a survey titled 'Well-being Study 2025' with 'Group by group' format.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the Survey Summary or General Settings page showing the title 'Well-being Study 2025' and the 'Format' field set to 'Group by group'."
+        },
+        {
+            "id": "spanep_question_setup",
+            "description": "Implement the 'SPANEP' array question with the 6 specific positive sub-questions.",
+            "points": 20,
+            "visual_evidence": "Question editor or preview showing question code 'SPANEP', type 'Array', and sub-questions: Positive, Good, Pleasant, Happy, Joyful, Contented."
+        },
+        {
+            "id": "spanen_question_setup",
+            "description": "Implement the 'SPANEN' array question with the 6 specific negative sub-questions.",
+            "points": 20,
+            "visual_evidence": "Question editor or preview showing question code 'SPANEN', type 'Array', and sub-questions: Negative, Bad, Unpleasant, Sad, Afraid, Angry."
+        },
+        {
+            "id": "scoring_logic_implementation",
+            "description": "Implement calculation questions for CalcP, CalcN, and Balance using correct logic.",
+            "points": 30,
+            "visual_evidence": "Equation question types or logic file showing: CalcP (sum of SPANEP), CalcN (sum of SPANEN), and Balance (CalcP - CalcN)."
+        },
+        {
+            "id": "final_display_and_activation",
+            "description": "Display the final scores in the required format and activate the survey.",
+            "points": 20,
+            "visual_evidence": "A text display question or end message showing the string: 'Your Positive Score is {CalcP}, Negative Score is {CalcN}, and Affect Balance is {Balance}.' and a status indicator showing the survey is 'Active'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey buttons, form fields being filled, and standard browser navigation."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent implemented dynamic placeholders/equations rather than hardcoding static numbers in the final display.",
+            "visual_evidence": "The final display text contains curly braces/ExpressionScript variables (e.g., {CalcP}) rather than fixed integers."
+        },
+        {
+            "id": "authentic_environment",
+            "description": "The agent interacted with the actual LimeSurvey instance at the provided URL.",
+            "visual_evidence": "The browser address bar shows the expected LimeSurvey admin URL and the interface matches the LimeSurvey version provided."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey must be titled 'Well-being Study 2025'. Required question codes are SPANEP (Positive, Good, Pleasant, Happy, Joyful, Contented), SPANEN (Negative, Bad, Unpleasant, Sad, Afraid, Angry), CalcP, CalcN, and Balance. The scoring logic must sum the 1-5 scale values for P and N respectively, and Balance is CalcP minus CalcN. The final output string must match the prompt's template exactly."
+}

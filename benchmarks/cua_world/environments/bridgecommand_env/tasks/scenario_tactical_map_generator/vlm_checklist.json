@@ -1,0 +1,59 @@
+{
+    "task_id": "scenario_tactical_map_generator@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python file named 'generate_tactical_map.py' containing logic to parse INI files and use matplotlib.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the creation and content of 'generate_tactical_map.py'."
+        },
+        {
+            "id": "ini_parsing_logic",
+            "description": "The script contains code to read 'ownship.ini' and 'othership.ini' from a directory provided as a command-line argument.",
+            "points": 20,
+            "visual_evidence": "Code visible in the terminal or editor showing 'configparser' or similar logic targeting 'ownship.ini' and 'othership.ini'."
+        },
+        {
+            "id": "execution_on_test_scenario",
+            "description": "The agent executes the script using the Portsmouth Approach Custom scenario path as an argument.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing 'python3 generate_tactical_map.py \"/opt/bridgecommand/Scenarios/m) Portsmouth Approach Custom/\"'."
+        },
+        {
+            "id": "output_file_generation",
+            "description": "The script successfully generates a file named 'tactical_map.png' in the current working directory.",
+            "points": 15,
+            "visual_evidence": "An 'ls' command or file explorer showing 'tactical_map.png' exists after script execution."
+        },
+        {
+            "id": "map_visual_elements",
+            "description": "The generated PNG shows a plot of Longitude vs Latitude with arrows for headings and text labels for vessel names.",
+            "points": 25,
+            "visual_evidence": "An image viewer showing a plot with X/Y axes, arrow markers, and text labels (e.g., 'Own Ship', 'Traffic 1')."
+        },
+        {
+            "id": "validation_handling",
+            "description": "The script is tested or verified to work with arbitrary scenario paths, handling multiple vessels correctly.",
+            "points": 15,
+            "visual_evidence": "Terminal output or code showing the script being run against a different scenario path or handling a list of vessels from 'othership.ini'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_coordinates",
+            "description": "The agent did not hardcode the coordinates from the test scenario into the script.",
+            "visual_evidence": "The script content shows variables being assigned from file parsing logic rather than fixed numeric values like '50.75'."
+        },
+        {
+            "id": "genuine_matplotlib_usage",
+            "description": "The agent actually used matplotlib to generate the image rather than renaming an existing image.",
+            "visual_evidence": "Terminal logs showing the installation or import of matplotlib and the execution of the python script."
+        },
+        {
+            "id": "dynamic_argument_passing",
+            "description": "The script uses sys.argv or argparse to take the scenario path as an input.",
+            "visual_evidence": "Code in 'generate_tactical_map.py' showing 'sys.argv[1]' or an 'argparse' setup."
+        }
+    ],
+    "privileged_info_for_vlm": "The script must be named 'generate_tactical_map.py' and output 'tactical_map.png'. The test scenario is at '/opt/bridgecommand/Scenarios/m) Portsmouth Approach Custom/'. A hidden validation scenario exists at '/opt/bridgecommand/Scenarios/VALIDATION_HIDDEN_SCENARIO' which contains exactly 3 vessels (1 ownship, 2 otherships). The plot must use arrows for headings and include text labels for vessel names."
+}

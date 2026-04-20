@@ -1,0 +1,53 @@
+{
+    "task_id": "orphan_cleanup_audit@1",
+    "task_completion": [
+        {
+            "id": "orientdb_login",
+            "description": "Agent successfully logged into OrientDB Studio at the specified URL.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the OrientDB Studio dashboard or 'demodb' database schema view after entering credentials."
+        },
+        {
+            "id": "query_orphan_profiles",
+            "description": "Agent executed a query to identify Profiles with zero edges.",
+            "points": 20,
+            "visual_evidence": "The 'Query' tab in OrientDB Studio showing a command like 'SELECT FROM Profile WHERE bothE().size() == 0' or similar logic."
+        },
+        {
+            "id": "query_orphan_hotels",
+            "description": "Agent executed a query to identify Hotels with zero edges.",
+            "points": 20,
+            "visual_evidence": "The 'Query' tab in OrientDB Studio showing a command like 'SELECT FROM Hotel WHERE bothE().size() == 0' or similar logic."
+        },
+        {
+            "id": "delete_orphans",
+            "description": "Agent executed deletion commands for the identified orphan vertices.",
+            "points": 30,
+            "visual_evidence": "SQL editor showing 'DELETE VERTEX' commands or the 'Browse' tab showing the deletion of specific records."
+        },
+        {
+            "id": "audit_report_creation",
+            "description": "Agent created the audit report file with the correct format and content.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing ~/orientdb_audit_report.txt containing 8 profiles, 4 hotels, and a total of 12 deleted."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the OrientDB Studio web interface for database operations rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing the browser with http://localhost:2480/studio/index.html active during the identification process."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not simply echo the privileged information into the report without querying the database.",
+            "visual_evidence": "Screenshots must show the agent running queries in the Studio 'Query' or 'Graph' tabs to find the specific counts/names."
+        },
+        {
+            "id": "correct_database_context",
+            "description": "Agent interacted with the 'demodb' database specifically.",
+            "visual_evidence": "The OrientDB Studio header or connection string clearly showing 'demodb' as the active database."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains exactly 8 orphan Profiles and 4 orphan Hotels (Total 12). Orphan Profile emails: margaret.chen@tempmail.org, robert.williams@oldmail.net, aisha.rahman@defunct.co, peter.novak@closed.org, sarah.murphy@expired.net, liu.wei@inactive.cn, fatima.ali@removed.org, dmitri.volkov@gone.ru. Orphan Hotel names: Albergo Cesari, Pousada do Porto Freixo, Ryokan Shimizu, Hotel Neri. The report must be at ~/orientdb_audit_report.txt."
+}

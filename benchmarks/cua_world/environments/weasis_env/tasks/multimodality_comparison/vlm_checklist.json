@@ -1,0 +1,59 @@
+{
+    "task_id": "multimodality_comparison@1",
+    "task_completion": [
+        {
+            "id": "load_both_modalities",
+            "description": "Load both the CT series from /home/ga/DICOM/studies/pmr_ct/ and the MRI series from /home/ga/DICOM/studies/pmr_mri/ into the Weasis viewer.",
+            "points": 15,
+            "visual_evidence": "The Weasis interface showing thumbnails or image stacks for both CT and MRI modalities in the explorer or main view."
+        },
+        {
+            "id": "side_by_side_layout",
+            "description": "Configure Weasis to display the CT and MRI series simultaneously in a side-by-side or split-screen layout.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing two distinct image viewports within the Weasis application, one containing CT and the other containing MRI."
+        },
+        {
+            "id": "windowing_application",
+            "description": "Apply bone windowing to the CT image and soft tissue windowing to the MRI image.",
+            "points": 15,
+            "visual_evidence": "The CT image should show high contrast for bone (white) with dark soft tissue; the MRI should show clear differentiation of soft tissue structures (gray scales)."
+        },
+        {
+            "id": "line_measurements",
+            "description": "Perform line measurements across a bony structure on the CT and a corresponding region on the MRI.",
+            "points": 25,
+            "visual_evidence": "Measurement lines (calipers) with numerical values in mm visible on both the CT and MRI viewports."
+        },
+        {
+            "id": "export_comparison_image",
+            "description": "Export the side-by-side view to /home/ga/DICOM/exports/comparison_view.png.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output showing the existence of comparison_view.png in the specified directory, or the 'Export' dialog being used."
+        },
+        {
+            "id": "generate_report",
+            "description": "Create a clinical report at /home/ga/DICOM/exports/comparison_report.txt containing measurements and clinical correlation.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the report content with 'mm' measurements and text describing the correlation between CT and MRI findings."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to perform measurements and windowing rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Weasis tools (ruler icon, windowing presets) and the Weasis application window being active."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report match the visual measurements shown in the Weasis GUI.",
+            "visual_evidence": "The numerical values (mm) visible on the screen in Weasis match the text written in comparison_report.txt."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent used the specific DICOM files provided in the pmr_ct and pmr_mri directories.",
+            "visual_evidence": "The file paths in the Weasis import dialog or the metadata displayed in the DICOM viewer match the assigned directories."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use Weasis to correlate CT (bone window) and MRI (soft tissue window). The CT data is located in /home/ga/DICOM/studies/pmr_ct/ and MRI in /home/ga/DICOM/studies/pmr_mri/. The final outputs must be a PNG image at /home/ga/DICOM/exports/comparison_view.png and a text report at /home/ga/DICOM/exports/comparison_report.txt. The report must include specific mm measurements and a clinical correlation statement consistent with a PM&R physician's perspective on joint pain."
+}

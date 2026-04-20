@@ -1,0 +1,53 @@
+{
+    "task_id": "lumbar_lordosis_angle@1",
+    "task_completion": [
+        {
+            "id": "load_ct_scan",
+            "description": "The agent successfully loaded the abdominal CT scan into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan of the abdomen/spine is visible in the slice viewers (axial, sagittal, or coronal views)."
+        },
+        {
+            "id": "identify_l1_s1",
+            "description": "The agent navigated to the sagittal view and identified the L1 and S1 vertebrae.",
+            "points": 15,
+            "visual_evidence": "The sagittal view is active and centered on the lumbar spine, showing the transition from the thoracic to the sacral region."
+        },
+        {
+            "id": "place_measurement_markups",
+            "description": "The agent placed measurement lines or markups on the superior endplate of L1 and the superior endplate of S1.",
+            "points": 30,
+            "visual_evidence": "Two distinct lines or markup points are visible on the superior endplates of L1 and S1 in the sagittal slice viewer."
+        },
+        {
+            "id": "save_markups_file",
+            "description": "The agent saved the measurement markups to the specified JSON file path.",
+            "points": 20,
+            "visual_evidence": "A 'Save' dialog or file browser shows the path ~/Documents/SlicerData/AMOS/lumbar_lordosis_markups.mrk.json being targeted."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "The agent created a report file with the required fields (angle, identification status, classification, method).",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output shows a JSON file at ~/Documents/SlicerData/AMOS/lumbar_lordosis_report.json containing the fields: angle_degrees, l1_identified, s1_identified, classification, and measurement_method."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform measurements rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's markup tools or measurement modules."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The angle reported is derived from the visual evidence in the software, not just hardcoded from privileged info.",
+            "visual_evidence": "The angle value shown in the software's UI (e.g., 'Angle: 48.0') matches the value written to the report JSON."
+        },
+        {
+            "id": "no_file_injection",
+            "description": "The agent did not simply create the output files using 'echo' or 'cat' without opening the CT scan.",
+            "visual_evidence": "The CT scan is visible and manipulated in the GUI before the final report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth lumbar lordosis angle for case amos_0001 is 48.0 degrees. The agent's reported angle is considered correct if it is within +/- 8.0 degrees of this value (40.0 to 56.0 degrees). The classification for 48.0 degrees is 'normal' based on the provided ranges."
+}

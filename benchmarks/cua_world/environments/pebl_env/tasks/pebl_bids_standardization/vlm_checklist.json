@@ -1,0 +1,59 @@
+{
+    "task_id": "pebl_bids_standardization@1",
+    "task_completion": [
+        {
+            "id": "dataset_description_created",
+            "description": "Create dataset_description.json with required keys in the BIDS root.",
+            "points": 10,
+            "visual_evidence": "A file named 'dataset_description.json' in ~/pebl/bids_dataset/ containing 'Name' and 'BIDSVersion' keys."
+        },
+        {
+            "id": "participants_json_created",
+            "description": "Create participants.json data dictionary in the BIDS root.",
+            "points": 10,
+            "visual_evidence": "A file named 'participants.json' exists in ~/pebl/bids_dataset/."
+        },
+        {
+            "id": "participants_tsv_conversion",
+            "description": "Convert demographics.csv to participants.tsv with specific formatting (sub- prefix, participant_id column, tab-separated).",
+            "points": 20,
+            "visual_evidence": "A file 'participants.tsv' in the BIDS root where the first column is 'participant_id', values start with 'sub-', and the file format is tab-separated (not comma-separated)."
+        },
+        {
+            "id": "task_json_sidecars",
+            "description": "Create four task JSON sidecars with SoftwareName: PEBL.",
+            "points": 15,
+            "visual_evidence": "Four files (task-bart_beh.json, task-flanker_beh.json, task-simon_beh.json, task-wcst_beh.json) in the BIDS root, each containing {\"SoftwareName\": \"PEBL\"}."
+        },
+        {
+            "id": "subject_directory_structure",
+            "description": "Organize files into subject-specific behavioral folders.",
+            "points": 15,
+            "visual_evidence": "Directories for 3 participants (e.g., sub-01/beh/) containing the behavioral data files."
+        },
+        {
+            "id": "behavioral_file_renaming",
+            "description": "Rename 12 raw logs to BIDS format, removing suffixes like _raw, _data, _log, or _out.",
+            "points": 30,
+            "visual_evidence": "Files inside beh/ folders named exactly like 'sub-<label>_task-<taskname>_beh.csv' (e.g., sub-01_task-bart_beh.csv). No files should retain suffixes like '_raw.csv' or '_log.csv'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent should use scripts or terminal commands to process the data rather than manually typing out the content of 12 CSV files.",
+            "visual_evidence": "Terminal history or scripts showing loops/commands (sed, awk, python, mv) rather than the agent manually opening a text editor and typing data for every single behavioral file."
+        },
+        {
+            "id": "genuine_data_conversion",
+            "description": "The agent must actually transform the IDs in the participants.tsv file, not just rename the file.",
+            "visual_evidence": "Screenshots showing the transformation process (e.g., adding 'sub-' prefix) or the final TSV file containing the modified ID values."
+        },
+        {
+            "id": "correct_task_scope",
+            "description": "The agent must process exactly the four specified tasks: bart, flanker, simon, and wcst.",
+            "visual_evidence": "The file list in the BIDS directory should only contain these four task names; no extra tasks from the raw directory should be present if they existed."
+        }
+    ],
+    "privileged_info_for_vlm": "The task involves exactly 4 tasks: bart, flanker, simon, and wcst. Note that while the task description mentions PEBL sample data, the actual source files for flanker, simon, and wcst are synthetic 3-line mock files, while the BART data is real (from OpenNeuro sub-10159). The agent must remove suffixes like _raw, _data, _log, and _out during renaming."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "pebl_fmri_gng_adaptation@1",
+    "task_completion": [
+        {
+            "id": "open_script_file",
+            "description": "The agent opens the file ~/pebl/experiments/fmri_gng/gng_task.pbl in a text editor.",
+            "points": 10,
+            "visual_evidence": "A text editor (like gedit, nano, or vim) is visible showing the content of gng_task.pbl."
+        },
+        {
+            "id": "update_timing_vars",
+            "description": "The agent updates gStimDur to 500 and gISIDur to 2500.",
+            "points": 20,
+            "visual_evidence": "The text editor shows lines like 'gStimDur <- 500' and 'gISIDur <- 2500' (or similar assignment syntax)."
+        },
+        {
+            "id": "update_go_key",
+            "description": "The agent updates gGoKey to \"1\".",
+            "points": 15,
+            "visual_evidence": "The text editor shows the variable gGoKey being assigned the value \"1\"."
+        },
+        {
+            "id": "update_colors",
+            "description": "The agent updates gBGColor to \"black\" and gFGColor to \"white\".",
+            "points": 15,
+            "visual_evidence": "The text editor shows gBGColor set to \"black\" and gFGColor set to \"white\"."
+        },
+        {
+            "id": "update_makewindow",
+            "description": "The agent updates the MakeWindow function call to use \"black\".",
+            "points": 20,
+            "visual_evidence": "The text editor shows a line like 'gWin <- MakeWindow(\"black\")' or similar window initialization code using the color black."
+        },
+        {
+            "id": "update_outfile",
+            "description": "The agent updates gOutFile to \"gng_fmri_log.csv\".",
+            "points": 10,
+            "visual_evidence": "The text editor shows gOutFile assigned the string \"gng_fmri_log.csv\"."
+        },
+        {
+            "id": "save_script",
+            "description": "The agent saves the modified script.",
+            "points": 10,
+            "visual_evidence": "The editor's save dialog, a 'file saved' message in the terminal, or the editor closing after edits."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_file_overwrite",
+            "description": "The agent did not simply overwrite the file with a echo/cat command without reading it first.",
+            "visual_evidence": "The agent is seen scrolling through or interacting with the existing script content in an editor."
+        },
+        {
+            "id": "genuine_edit",
+            "description": "The agent manually edited the values rather than using a script to automate the replacement.",
+            "visual_evidence": "Screenshots show the cursor at the specific lines being modified or manual typing in the editor."
+        },
+        {
+            "id": "valid_path",
+            "description": "The agent is working in the correct directory path as specified.",
+            "visual_evidence": "The file path ~/pebl/experiments/fmri_gng/gng_task.pbl is visible in the editor title bar or terminal pwd."
+        }
+    ],
+    "privileged_info_for_vlm": "The script to be edited is located at /home/ga/pebl/experiments/fmri_gng/gng_task.pbl. Required values: gStimDur=500, gISIDur=2500, gGoKey=\"1\", gBGColor=\"black\", gFGColor=\"white\", MakeWindow(\"black\"), and gOutFile=\"gng_fmri_log.csv\". Ensure the agent uses PEBL assignment syntax (usually <- or =) and maintains the .pbl file structure."
+}

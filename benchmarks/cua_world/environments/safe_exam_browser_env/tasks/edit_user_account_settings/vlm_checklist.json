@@ -1,0 +1,59 @@
+{
+    "task_id": "edit_user_account_settings@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the SEB Server using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The SEB Server dashboard or user management interface is visible, showing the user is logged in as 'super-admin'."
+        },
+        {
+            "id": "navigate_to_users",
+            "description": "Agent navigates to the user management or account list section.",
+            "points": 10,
+            "visual_evidence": "A list of users is displayed, including the entry for 'emily.chen'."
+        },
+        {
+            "id": "open_emily_chen_profile",
+            "description": "Agent selects and opens the edit profile page for 'emily.chen'.",
+            "points": 15,
+            "visual_evidence": "An 'Edit User' or 'User Details' form is visible specifically for the username 'emily.chen'."
+        },
+        {
+            "id": "update_email_address",
+            "description": "Agent changes the email address to 'emily.chen@university-tokyo.ac.jp'.",
+            "points": 25,
+            "visual_evidence": "The email input field contains 'emily.chen@university-tokyo.ac.jp' before or during the save action."
+        },
+        {
+            "id": "update_timezone",
+            "description": "Agent changes the timezone to 'Asia/Tokyo'.",
+            "points": 25,
+            "visual_evidence": "The timezone dropdown or selection field shows 'Asia/Tokyo' selected."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent submits the form to save the updated settings.",
+            "points": 15,
+            "visual_evidence": "A 'Save', 'Update', or 'Submit' button is clicked, followed by a success message or the updated user list showing the new values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "The agent interacts with browser elements; no terminal windows showing 'mysql' or 'mariadb' commands are used to update the database."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the application menus to find the user.",
+            "visual_evidence": "Screenshots show the progression from the login page to the dashboard, then to the user list, and finally the edit page."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent did not skip the UI by guessing direct edit URLs if not provided.",
+            "visual_evidence": "The agent is seen clicking on the user 'emily.chen' from a list rather than typing a specific ID-based URL into the address bar immediately."
+        }
+    ],
+    "privileged_info_for_vlm": "The target user is 'emily.chen'. The initial email is 'emily.chen@westlake-university.edu' and the initial timezone is 'UTC'. The agent must change these specifically to 'emily.chen@university-tokyo.ac.jp' and 'Asia/Tokyo'. Verification should confirm these exact strings appear in the SEB Server web UI fields."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "analyze_battery_telemetry@1",
+    "task_completion": [
+        {
+            "id": "access_aerobridge_interface",
+            "description": "Agent accesses the Aerobridge database interface at http://localhost:8000.",
+            "points": 10,
+            "visual_evidence": "A web browser open to http://localhost:8000 showing the Aerobridge login or dashboard."
+        },
+        {
+            "id": "navigate_to_flightlogs",
+            "description": "Agent navigates to the FlightLog records section of the database.",
+            "points": 15,
+            "visual_evidence": "The browser displays a table or list view of 'FlightLog' records."
+        },
+        {
+            "id": "inspect_raw_log_data",
+            "description": "Agent examines the 'raw_log' field of the FlightLog records to find 'BATT_END' values.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent opening individual records or viewing a column containing JSON/text data with 'BATT_END' keys."
+        },
+        {
+            "id": "filter_critical_battery",
+            "description": "Agent identifies or filters records where BATT_END is strictly less than 15.",
+            "points": 25,
+            "visual_evidence": "The agent selecting specific rows, using a search/filter function, or compiling a list of IDs where the battery value is 1-14."
+        },
+        {
+            "id": "generate_csv_report",
+            "description": "Agent creates a CSV file at the specified path with the correct header and data.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal showing the creation of '/home/ga/Documents/critical_battery_report.csv' with the header 'flight_log_id,batt_end_value' and corresponding data rows."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent interacted with the Aerobridge web interface rather than just querying the SQLite database directly via terminal.",
+            "visual_evidence": "Screenshots show the browser being used to browse records at localhost:8000."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the ground truth file or copy-paste the final report from a hidden source.",
+            "visual_evidence": "The agent is seen actively reading/parsing the data from the UI before writing the CSV."
+        },
+        {
+            "id": "correct_threshold_application",
+            "description": "Agent correctly applied the 'strictly less than 15' rule (values of 15 should be excluded).",
+            "visual_evidence": "The final CSV or the filtering process shows only values from 1 to 14."
+        }
+    ],
+    "privileged_info_for_vlm": "The Aerobridge database is located at /opt/aerobridge/aerobridge.sqlite3 but should be accessed via http://localhost:8000. There are 50 total FlightLog objects. The critical threshold is BATT_END < 15 (strictly less than 15). The ground truth data is generated with random seed 42; approximately 30% of records will meet the criteria. The final report must be a CSV at /home/ga/Documents/critical_battery_report.csv with the exact header: flight_log_id,batt_end_value."
+}

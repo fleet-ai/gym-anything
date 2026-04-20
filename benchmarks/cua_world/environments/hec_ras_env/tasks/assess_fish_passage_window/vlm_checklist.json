@@ -1,0 +1,53 @@
+{
+    "task_id": "assess_fish_passage_window@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_muncie",
+            "description": "Open the HEC-RAS application and load the Muncie project.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window is visible with 'Muncie' project loaded in the project path."
+        },
+        {
+            "id": "run_unsteady_simulation",
+            "description": "Execute the RasUnsteady flow simulation.",
+            "points": 20,
+            "visual_evidence": "The 'Unsteady Flow Analysis' window is open and the 'Finished Unsteady Flow Simulation' progress bar or completion message is visible."
+        },
+        {
+            "id": "identify_critical_station",
+            "description": "Analyze results to find the river station with the highest maximum channel velocity.",
+            "points": 20,
+            "visual_evidence": "The agent is seen interacting with HDF5 data, result tables, or profile plots to identify station 14039.64."
+        },
+        {
+            "id": "generate_velocity_plot",
+            "description": "Create a velocity time series plot with a 3.5 ft/s threshold line.",
+            "points": 20,
+            "visual_evidence": "A plot window or the saved 'velocity_hydrograph.png' is visible showing a velocity curve and a horizontal line at the 3.5 mark on the Y-axis."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Save the fish_passage_report.json with the required keys and values.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal output shows the content of /home/ga/Documents/hec_ras_results/fish_passage_report.json containing critical_river_station '14039.64' and passable_duration_hours 0.0."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HEC-RAS GUI to run the simulation rather than just writing a script.",
+            "visual_evidence": "Screenshots show the HEC-RAS Unsteady Flow Analysis window and computation progress dialogs."
+        },
+        {
+            "id": "genuine_data_analysis",
+            "description": "The agent derived the values from the simulation results rather than hardcoding them from the prompt.",
+            "visual_evidence": "Screenshots show the agent opening result tables, HDF View, or the Post-Processor to extract velocity data."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The agent actually saved the files to the specified directory.",
+            "visual_evidence": "A file explorer or 'ls' command shows velocity_hydrograph.png and fish_passage_report.json in /home/ga/Documents/hec_ras_results/."
+        }
+    ],
+    "privileged_info_for_vlm": "The critical river station for the Muncie project is '14039.64'. The maximum channel velocity at this station is approximately 18.40 fps. Because the velocity at this specific station never drops below 12.45 fps during the simulation, the 'passable_duration_hours' (time < 3.5 fps) must be exactly 0.0. The velocity_hydrograph.png must show a threshold line at 3.5 fps that is significantly below the actual velocity curve."
+}

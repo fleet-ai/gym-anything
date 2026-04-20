@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_merchant_plant_wholesale_revenue@1",
+    "task_completion": [
+        {
+            "id": "sam_model_selection",
+            "description": "Select the 'Flat Plate PV' technology and 'Merchant Plant' financial model in SAM.",
+            "points": 10,
+            "visual_evidence": "SAM 'Start' or 'Configuration' screen showing 'Flat Plate PV' and 'Merchant Plant' selected."
+        },
+        {
+            "id": "location_and_tracking_config",
+            "description": "Set weather data to Phoenix, AZ and configure a 100 MW DC system with single-axis tracking and 1.3 DC-to-AC ratio.",
+            "points": 15,
+            "visual_evidence": "The 'Location and Resource' page showing Phoenix, AZ, and the 'System Design' page showing 100,000 kW DC, 1.3 DC-to-AC ratio, and '1-axis tracking'."
+        },
+        {
+            "id": "import_ercot_lmp",
+            "description": "Import the ERCOT LMP CSV file into the Revenue section of the Merchant Plant model.",
+            "points": 25,
+            "visual_evidence": "The 'Revenue' or 'Market' page showing the file path '/home/ga/Documents/SAM_Projects/ercot_hourly_lmp.csv' or a time-series data table populated with 8,760 values."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SAM simulation to generate results.",
+            "points": 15,
+            "visual_evidence": "The 'Results' tab being active and displaying summary metrics like Annual Energy or NPV."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Export the specific performance and financial metrics to the required JSON file path.",
+            "points": 35,
+            "visual_evidence": "A terminal window or text editor showing the content of '/home/ga/Documents/SAM_Projects/merchant_plant_results.json' with the keys: annual_energy_kwh, capacity_factor_pct, year1_energy_revenue_dollars, npv_dollars, and irr_percent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SAM GUI to configure the model rather than just writing a script.",
+            "visual_evidence": "Screenshots showing the SAM application window being interacted with (mouse clicks, data entry in fields)."
+        },
+        {
+            "id": "genuine_data_import",
+            "description": "The agent actually navigated to the CSV file path within the SAM interface.",
+            "visual_evidence": "File explorer or file path input field within SAM showing the correct directory for the LMP data."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not manually type the final JSON values without running the simulation.",
+            "visual_evidence": "The values in the final JSON match the values displayed in the SAM 'Results' summary screen."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation for a 100MW DC tracking system in Phoenix should yield an annual energy between 180,000,000 and 280,000,000 kWh (approx 211.9 GWh). The DC capacity factor should be between 20% and 32% (approx 24.2%). Year 1 energy revenue using the provided ERCOT LMP data should fall between $1,000,000 and $20,000,000 (approx $4.9M). The output file must be exactly /home/ga/Documents/SAM_Projects/merchant_plant_results.json."
+}

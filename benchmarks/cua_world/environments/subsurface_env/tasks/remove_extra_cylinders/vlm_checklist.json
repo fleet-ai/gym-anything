@@ -1,0 +1,53 @@
+{
+    "task_id": "remove_extra_cylinders@1",
+    "task_completion": [
+        {
+            "id": "open_subsurface",
+            "description": "Subsurface application is open and the dive log file is loaded.",
+            "points": 10,
+            "visual_evidence": "The Subsurface window is visible showing a list of dives in the main pane."
+        },
+        {
+            "id": "identify_extra_cylinders",
+            "description": "The agent navigates to the 'Equipment' tab for a dive containing multiple cylinders.",
+            "points": 15,
+            "visual_evidence": "The 'Equipment' tab is selected, and the cylinder list shows more than one entry for a single dive."
+        },
+        {
+            "id": "remove_cylinders_process",
+            "description": "The agent actively removes extra cylinders from dives.",
+            "points": 25,
+            "visual_evidence": "Right-click menus or 'Delete' button interactions are visible on the extra cylinder entries in the Equipment tab."
+        },
+        {
+            "id": "verify_one_cylinder_per_dive",
+            "description": "The agent checks multiple dives to ensure only one cylinder remains in each.",
+            "points": 30,
+            "visual_evidence": "The agent clicks through different dives in the list; for each selected dive, the Equipment tab shows exactly one cylinder."
+        },
+        {
+            "id": "save_file",
+            "description": "The agent saves the changes to the file.",
+            "points": 20,
+            "visual_evidence": "The 'File' menu is opened and 'Save' is clicked, or a save confirmation/progress bar appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Subsurface GUI to remove cylinders rather than editing the XML file via terminal.",
+            "visual_evidence": "Screenshots show mouse interactions with the Subsurface Equipment tab and menus, not just terminal commands like 'sed' or 'vim'."
+        },
+        {
+            "id": "no_dive_deletion",
+            "description": "The agent did not delete any dives to satisfy the cylinder count requirement.",
+            "visual_evidence": "The dive list pane still shows a full list of dives (approximately 29) throughout the process."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual Subsurface software interface.",
+            "visual_evidence": "Standard Subsurface UI elements (Dive List, Profile, Equipment tab) are visible and responding to inputs."
+        }
+    ],
+    "privileged_info_for_vlm": "The task description claims there are 8 dives, but the actual file 'dives.ssrf' contains 29 dives. The agent should clean all 29 dives without deleting any of them. Each dive must end up with exactly one cylinder in the Equipment tab. The target file path is /home/ga/Documents/dives.ssrf."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_exec_module_trigger@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "Create the executable bash script at /home/ga/scripts/log_origin.sh with the correct logic.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'cat' or 'nano' displaying the script content with 'echo \"[$(date)] New Origin: $1\" >> /home/ga/origin_audit.log' and 'chmod +x' being applied."
+        },
+        {
+            "id": "exec_module_subscription",
+            "description": "Configure the 'exec' module to subscribe to the 'LOCATION' messaging group.",
+            "points": 20,
+            "visual_evidence": "SeisComP configuration tool (scconfig) or a configuration file showing 'connection.subscriptions = LOCATION' for the exec module."
+        },
+        {
+            "id": "exec_trigger_configuration",
+            "description": "Configure the 'exec' module to trigger on 'Origin' message classes using the created script.",
+            "points": 25,
+            "visual_evidence": "SeisComP configuration showing a trigger entry with message class 'Origin' and the command path '/home/ga/scripts/log_origin.sh @publicID@' (or similar argument syntax)."
+        },
+        {
+            "id": "module_enabled",
+            "description": "Enable the 'exec' module in the SeisComP system.",
+            "points": 15,
+            "visual_evidence": "The 'scconfig' GUI showing the 'exec' module checkbox enabled or a terminal command 'seiscomp enable exec' being executed."
+        },
+        {
+            "id": "module_running",
+            "description": "Start the 'exec' module and verify it is running in the background.",
+            "points": 25,
+            "visual_evidence": "Terminal output from 'seiscomp status exec' showing the module as 'started' or 'running', or the scconfig status panel showing a green indicator for 'exec'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_log_entry",
+            "description": "The agent did not manually append a fake entry to origin_audit.log to simulate success.",
+            "visual_evidence": "The agent should be seen editing the script and SeisComP configs, not directly echo-ing strings into origin_audit.log."
+        },
+        {
+            "id": "genuine_seiscomp_interaction",
+            "description": "The agent interacted with the actual SeisComP configuration files or GUI.",
+            "visual_evidence": "Screenshots show the SeisComP Management Tool (scconfig) or editing files in /home/ga/.seiscomp/ or /etc/seiscomp/."
+        },
+        {
+            "id": "script_path_accuracy",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "Commands or file editors showing the specific paths /home/ga/scripts/log_origin.sh and /home/ga/origin_audit.log."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires the 'exec' module to be configured. Key verified values: Script path is /home/ga/scripts/log_origin.sh; Log path is /home/ga/origin_audit.log; Messaging group must be 'LOCATION'; Message class trigger must be 'Origin'. The script must accept one argument (PublicID) and format the log line as '[Timestamp] New Origin: [PublicID]'."
+}

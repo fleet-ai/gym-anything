@@ -1,0 +1,53 @@
+{
+    "task_id": "nps_equation_classification@1",
+    "task_completion": [
+        {
+            "id": "survey_creation_title",
+            "description": "Create a survey titled 'Q4 2024 Customer Experience NPS Survey' and set it to anonymize responses.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the survey list or survey settings with the title 'Q4 2024 Customer Experience NPS Survey' and the 'Anonymized responses' setting toggled to 'Yes'."
+        },
+        {
+            "id": "nps_rating_group_and_question",
+            "description": "Create an 'NPS Rating' group with a mandatory 0-10 scale question named 'NPS'.",
+            "points": 15,
+            "visual_evidence": "Question summary or editor showing question code 'NPS', type '5 point choice' or 'Numerical input' configured as a 0-10 scale, and the 'Mandatory' toggle set to 'On'."
+        },
+        {
+            "id": "nps_cat_equation",
+            "description": "Create an equation question named 'NPSCat' that classifies scores into Detractor, Passive, or Promoter.",
+            "points": 25,
+            "visual_evidence": "Question editor for 'NPSCat' showing the 'Equation' question type and logic that uses the 'NPS' code to assign categories based on ranges 0-6, 7-8, and 9-10."
+        },
+        {
+            "id": "follow_up_group_and_conditional_questions",
+            "description": "Create a 'Follow-Up Feedback' group with three Long Free Text questions (DetractorQ, PassiveQ, PromoterQ) with specific conditional logic.",
+            "points": 30,
+            "visual_evidence": "Question list or logic file showing 'DetractorQ', 'PassiveQ', and 'PromoterQ' with relevance equations or conditions linked to the value of 'NPSCat' or the 'NPS' score ranges."
+        },
+        {
+            "id": "survey_activation",
+            "description": "Activate the survey.",
+            "points": 20,
+            "visual_evidence": "Survey overview page showing a green 'Active' status or a 'Stop this survey' button, indicating it is no longer in 'Draft' mode."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LimeSurvey web interface rather than direct database manipulation or CLI.",
+            "visual_evidence": "Screenshots show the browser interacting with the LimeSurvey admin UI elements (buttons, forms, menus)."
+        },
+        {
+            "id": "authentic_configuration",
+            "description": "The agent manually entered the question codes and text rather than using a pre-existing template.",
+            "visual_evidence": "Sequential screenshots showing the 'Add Question' forms being filled out with the specific strings required by the task."
+        },
+        {
+            "id": "no_hardcoding_logic",
+            "description": "The agent correctly implemented the logic for NPSCat rather than just naming the question.",
+            "visual_evidence": "The 'Equation' field for NPSCat contains logic (e.g., if/then or nested ternary operators) referencing the 'NPS' question code."
+        }
+    ],
+    "privileged_info_for_vlm": "The NPS classification logic must follow these verified ranges: Detractor (0-6), Passive (7-8), and Promoter (9-10). The question codes must be exactly 'NPS', 'NPSCat', 'DetractorQ', 'PassiveQ', and 'PromoterQ'. The survey must be set to 'Anonymized responses: Yes' in the participant settings. Activation is confirmed if the survey status changes from 'Draft' to 'Active' in the top toolbar or summary page."
+}

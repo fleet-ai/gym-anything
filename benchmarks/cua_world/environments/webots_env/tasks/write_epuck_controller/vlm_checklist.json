@@ -1,0 +1,53 @@
+{
+    "task_id": "write_epuck_controller@1",
+    "task_completion": [
+        {
+            "id": "open_controller_file",
+            "description": "The agent opens the controller file at the specified path in a text editor or IDE.",
+            "points": 10,
+            "visual_evidence": "A text editor (like VS Code or Gedit) showing the file path /home/ga/webots_projects/epuck_obstacle/controllers/obstacle_avoider/obstacle_avoider.py."
+        },
+        {
+            "id": "implement_sensor_motor_logic",
+            "description": "The agent writes Python code that initializes proximity sensors (ps0-ps7) and motors ('left wheel motor', 'right wheel motor').",
+            "points": 30,
+            "visual_evidence": "Code visible in the editor containing strings like 'getDevice(\"ps0\")' through 'ps7' and 'getDevice(\"left wheel motor\")'."
+        },
+        {
+            "id": "implement_avoidance_algorithm",
+            "description": "The agent implements logic to adjust motor velocity based on sensor values to avoid obstacles.",
+            "points": 30,
+            "visual_evidence": "Code showing a loop with 'sensor.getValue()' and 'motor.setVelocity()' calls, typically involving a threshold or weights for obstacle avoidance."
+        },
+        {
+            "id": "save_controller_file",
+            "description": "The agent saves the Python controller file.",
+            "points": 10,
+            "visual_evidence": "The text editor showing the file as saved (e.g., no 'unsaved' dot/icon) or a 'File -> Save' action."
+        },
+        {
+            "id": "save_webots_world",
+            "description": "The agent saves the updated Webots world to the specific destination path.",
+            "points": 20,
+            "visual_evidence": "The Webots GUI 'Save World As' dialog or a terminal command confirming the move/copy of the .wbt file to /home/ga/Desktop/epuck_avoidance.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_coding_interaction",
+            "description": "The agent actually types or edits the code rather than just creating an empty file.",
+            "visual_evidence": "Screenshots showing the progression of code being written or modified in the editor."
+        },
+        {
+            "id": "webots_gui_usage",
+            "description": "The agent interacts with the Webots simulator interface to verify or save the world.",
+            "visual_evidence": "The Webots application window is active and visible during the task."
+        },
+        {
+            "id": "no_premade_script_execution",
+            "description": "The agent does not simply run a hidden script to solve the task instantly.",
+            "visual_evidence": "The agent is seen manually navigating directories and editing the specific controller file requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The controller must be named 'obstacle_avoider' and located at /home/ga/webots_projects/epuck_obstacle/controllers/obstacle_avoider/obstacle_avoider.py. The robot in the simulation is an 'e-puck'. The final world file must be saved specifically to /home/ga/Desktop/epuck_avoidance.wbt. The controller must use sensors ps0-ps7 and motors 'left wheel motor' and 'right wheel motor'."
+}

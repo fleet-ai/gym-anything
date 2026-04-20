@@ -1,0 +1,53 @@
+{
+    "task_id": "eia_state_energy_analysis@1",
+    "task_completion": [
+        {
+            "id": "navigate_eia_state_pages",
+            "description": "Agent navigated to the EIA state profile pages for Texas, California, and West Virginia.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the browser address bar with URLs containing 'eia.gov/state/?sid=TX', 'CA', and 'WV' or the state names clearly visible on the EIA website."
+        },
+        {
+            "id": "extract_energy_metrics",
+            "description": "Agent located the specific metrics (Total Production, Generation Rank, and Residential Price) on the EIA pages.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the agent highlighting, scrolling to, or hovering over the 'Quick Facts' or 'Data' tables on the EIA state profile pages."
+        },
+        {
+            "id": "create_bookmark_folder",
+            "description": "Agent created a Firefox bookmark folder named 'Grid Analysis'.",
+            "points": 15,
+            "visual_evidence": "Firefox bookmark menu or sidebar showing a folder titled 'Grid Analysis'."
+        },
+        {
+            "id": "bookmarks_added",
+            "description": "The 'Grid Analysis' folder contains bookmarks for the three state profile pages.",
+            "points": 15,
+            "visual_evidence": "The expanded 'Grid Analysis' folder in Firefox showing three bookmark entries corresponding to TX, CA, and WV."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent created a JSON file at '~/Documents/energy_comparison.json' with the correct structure and data.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the content of '~/Documents/energy_comparison.json' with the specified keys and extracted numerical values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the browser GUI to find data rather than just using terminal commands to generate the file.",
+            "visual_evidence": "Screenshots showing active navigation and scrolling within the Firefox browser on the eia.gov domain."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo the JSON content from memory without visiting the website.",
+            "visual_evidence": "The trajectory shows the agent visiting each state's specific EIA page before the JSON file is created."
+        },
+        {
+            "id": "authentic_bookmarking",
+            "description": "The bookmarks were created through the browser interface.",
+            "visual_evidence": "Screenshots showing the 'Add Bookmark' dialog or the bookmark star icon being interacted with in Firefox."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must extract data from eia.gov. Expected data ranges: Texas production > 15,000 Trillion Btu, Rank < 5, Price < 20 cents. California production < 10,000 Trillion Btu, Rank < 15, Price > 20 cents. West Virginia production < 10,000 Trillion Btu, Rank < 25, Price < 20 cents. The bookmark folder must be exactly 'Grid Analysis'. The output file must be at '/home/ga/Documents/energy_comparison.json'."
+}

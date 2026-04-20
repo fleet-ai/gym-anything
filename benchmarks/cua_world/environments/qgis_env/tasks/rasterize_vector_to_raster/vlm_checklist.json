@@ -1,0 +1,59 @@
+{
+    "task_id": "rasterize_vector_to_raster@1",
+    "task_completion": [
+        {
+            "id": "load_vector_layer",
+            "description": "The input vector layer 'sample_polygon.geojson' is loaded into the QGIS Layers panel.",
+            "points": 10,
+            "visual_evidence": "Look for 'sample_polygon' in the QGIS Layers panel on the left side of the screen."
+        },
+        {
+            "id": "open_rasterize_tool",
+            "description": "The 'Rasterize (Vector to Raster)' dialog window is open.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Rasterize (Vector to Raster)' or 'gdal_rasterize' is visible over the QGIS interface."
+        },
+        {
+            "id": "configure_burn_in_field",
+            "description": "The 'Field to use for a burn-in value' is set to 'area_sqkm'.",
+            "points": 15,
+            "visual_evidence": "In the Rasterize dialog, the dropdown for 'Field to use for a burn-in value' shows 'area_sqkm' selected."
+        },
+        {
+            "id": "configure_resolution_and_nodata",
+            "description": "Output units are set to georeferenced units, resolution is 0.005, and nodata is -9999.",
+            "points": 25,
+            "visual_evidence": "In the Rasterize dialog, 'Output raster size units' is 'Georeferenced units', 'Horizontal/Vertical resolution' are both '0.005', and 'Assign a specified nodata value' is '-9999'."
+        },
+        {
+            "id": "configure_extent_and_output_path",
+            "description": "Output extent is set to the input layer and the output file path is correctly specified.",
+            "points": 20,
+            "visual_evidence": "In the Rasterize dialog, 'Output extent' shows coordinates or '[Layer extent]', and the 'Rasterized' output path is set to '/home/ga/GIS_Data/exports/polygon_raster.tif'."
+        },
+        {
+            "id": "save_qgis_project",
+            "description": "The QGIS project is saved to the specified location.",
+            "points": 20,
+            "visual_evidence": "The QGIS title bar shows 'rasterize_project' or the 'Save As' dialog is seen pointing to '/home/ga/GIS_Data/projects/rasterize_project.qgs'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QGIS GUI tools rather than just executing a shell script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with QGIS menus, dialog boxes, and the Processing Toolbox."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not use a text editor or terminal to manually create the output GeoTIFF.",
+            "visual_evidence": "The Rasterize tool's progress bar or log output is visible, showing the GDAL command execution within QGIS."
+        },
+        {
+            "id": "genuine_parameter_entry",
+            "description": "The agent manually entered or selected the specific parameters required by the task.",
+            "visual_evidence": "Screenshots show the agent typing '0.005' or selecting 'area_sqkm' from the dropdown menu."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is /home/ga/GIS_Data/sample_polygon.geojson. The burn-in field 'area_sqkm' contains values 10.5 and 8.2. The required resolution is 0.005 degrees. The output must be saved to /home/ga/GIS_Data/exports/polygon_raster.tif with a nodata value of -9999. The project file must be saved as /home/ga/GIS_Data/projects/rasterize_project.qgs (or .qgz)."
+}

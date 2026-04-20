@@ -1,0 +1,59 @@
+{
+    "task_id": "dual_axis_macro_plot@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "Load the 'usa.gdt' dataset into gretl.",
+            "points": 10,
+            "visual_evidence": "The gretl main window title or file menu shows 'usa.gdt' is open, and variables like 'gdp' and 'inf' are visible in the variable list."
+        },
+        {
+            "id": "define_g_gdp",
+            "description": "Create the new variable 'g_gdp' using the formula 400 * diff(log(gdp)).",
+            "points": 20,
+            "visual_evidence": "A formula entry dialog or console command showing 'g_gdp = 400 * diff(log(gdp))' and the subsequent appearance of 'g_gdp' in the variable list."
+        },
+        {
+            "id": "configure_dual_axis",
+            "description": "Configure a time series plot with 'g_gdp' on the left axis and 'inf' on the right axis.",
+            "points": 25,
+            "visual_evidence": "The plot configuration dialog (e.g., 'Edit Plot') showing 'inf' assigned to the right-hand axis (Y2) while 'g_gdp' remains on the left (Y1)."
+        },
+        {
+            "id": "generate_plot_window",
+            "description": "Generate the time series plot comparing the two variables.",
+            "points": 15,
+            "visual_evidence": "A plot window appears showing two distinct lines (one for growth, one for inflation) with two different Y-axis scales."
+        },
+        {
+            "id": "save_png_output",
+            "description": "Save the plot as a PNG image to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A 'Save as' or 'Export' dialog showing the file path /home/ga/Documents/gretl_output/growth_inflation_plot.png."
+        },
+        {
+            "id": "save_plt_script",
+            "description": "Save the plot as a Gnuplot script (.plt) to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A 'Save as' or 'Export' dialog showing the file path /home/ga/Documents/gretl_output/growth_inflation_plot.plt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the gretl GUI to perform the task rather than just executing a single script in the terminal.",
+            "visual_evidence": "Screenshots show the agent clicking menus (File, Variable, Add, etc.) and interacting with gretl dialog boxes."
+        },
+        {
+            "id": "genuine_variable_creation",
+            "description": "The agent actually calculated the variable rather than renaming an existing one.",
+            "visual_evidence": "The 'Define new variable' dialog or gretl console shows the specific formula '400 * diff(log(gdp))' being typed or entered."
+        },
+        {
+            "id": "path_accuracy",
+            "description": "The agent manually typed or selected the specific output paths requested.",
+            "visual_evidence": "The file save dialogs show the exact paths: /home/ga/Documents/gretl_output/growth_inflation_plot.png and .plt."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset must be 'usa.gdt'. The formula for 'g_gdp' must be exactly '400 * diff(log(gdp))'. The plot must feature 'g_gdp' on the left axis and 'inf' on the right axis. Output files must be saved to /home/ga/Documents/gretl_output/ with the filename 'growth_inflation_plot' in both .png and .plt formats."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_uom_conversion@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_uom_window",
+            "description": "Navigate to the 'Unit of Measure' window in the iDempiere system.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Unit of Measure' window open, indicated by the window title or tab name."
+        },
+        {
+            "id": "create_uom_record",
+            "description": "Create a new UOM record with the name 'Retail Box of 24' and symbol 'BX24'.",
+            "points": 20,
+            "visual_evidence": "A new record in the Unit of Measure window showing 'Retail Box of 24' in the Name field and 'BX24' in the Symbol field."
+        },
+        {
+            "id": "set_uom_precision",
+            "description": "Set the standard precision of the new UOM to 0.",
+            "points": 15,
+            "visual_evidence": "The 'Standard Precision' field in the UOM record is set to '0'."
+        },
+        {
+            "id": "navigate_to_uom_conversion",
+            "description": "Navigate to the 'Unit of Measure Conversion' tab or window.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Unit of Measure Conversion' tab selected or a separate conversion window open."
+        },
+        {
+            "id": "configure_conversion_rate",
+            "description": "Set the conversion from 'Retail Box of 24' to 'Each' (EA) with a multiply rate of 24.",
+            "points": 30,
+            "visual_evidence": "A conversion record showing 'Unit of Measure' (From) as 'Retail Box of 24', 'Unit of Measure To' as 'Each' (or symbol EA), and 'Multiply Rate' as '24'."
+        },
+        {
+            "id": "verify_global_conversion",
+            "description": "Ensure the conversion is global by leaving the Product field empty.",
+            "points": 15,
+            "visual_evidence": "In the conversion record, the 'Product' field is empty/null, indicating it is not restricted to a specific product."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation or scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the iDempiere UI elements and form fields being filled."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent searched for or navigated to the UOM window manually rather than jumping to a pre-filled URL.",
+            "visual_evidence": "The trajectory shows the search bar being used or the menu tree being navigated to find 'Unit of Measure'."
+        },
+        {
+            "id": "genuine_record_creation",
+            "description": "The agent actually saved the record, not just typed the values.",
+            "visual_evidence": "The 'Save' button is clicked, or a 'Record Saved' confirmation message appears in the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The new UOM name must be 'Retail Box of 24' with symbol 'BX24' and precision 0. The conversion must be from 'BX24' to 'Each' (which uses the symbol 'EA' in iDempiere). The Multiply Rate must be exactly 24. The 'Product' field in the conversion record must be empty to ensure it is a global conversion."
+}

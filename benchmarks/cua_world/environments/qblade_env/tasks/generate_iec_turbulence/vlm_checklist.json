@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_iec_turbulence@1",
+    "task_completion": [
+        {
+            "id": "open_turbulent_generator",
+            "description": "Open the QBlade Turbulent Windfield Generator window.",
+            "points": 10,
+            "visual_evidence": "A window or dialog titled 'Turbulent Windfield Generator' or similar is visible within the QBlade interface."
+        },
+        {
+            "id": "configure_grid_and_time",
+            "description": "Set the grid dimensions (32x32), physical size (120mx120m), duration (60s), and time step (0.05s).",
+            "points": 20,
+            "visual_evidence": "Input fields for Grid Points (32, 32), Grid Size (120, 120), Simulation Time (60), and Time Step (0.05) are correctly filled."
+        },
+        {
+            "id": "configure_flow_parameters",
+            "description": "Set Mean Velocity to 18 m/s, Turbulence Intensity to 14%, and Hub Height to 90m.",
+            "points": 20,
+            "visual_evidence": "Input fields for Mean Velocity (18), Turbulence Intensity (14), and Hub Height (90) are correctly filled."
+        },
+        {
+            "id": "select_model_and_seed",
+            "description": "Select the IEC Kaimal Model and set the Random Seed to 9999.",
+            "points": 20,
+            "visual_evidence": "The 'IEC Kaimal' model is selected in a dropdown or radio button, and the Seed field contains '9999'."
+        },
+        {
+            "id": "generate_windfield",
+            "description": "Initiate the generation process.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Generate' or 'Create' button; a progress bar or 'Generation Complete' message may appear."
+        },
+        {
+            "id": "save_binary_file",
+            "description": "Save the file to the specific path /home/ga/Documents/windfields/kaimal_18ms_turb.bin.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or file path input field shows the directory '/home/ga/Documents/windfields/' and the filename 'kaimal_18ms_turb.bin'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI rather than just terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the QBlade software menus and dialog boxes."
+        },
+        {
+            "id": "no_preexisting_file",
+            "description": "The agent did not simply rename an existing file or use a shortcut.",
+            "visual_evidence": "The generation process (progress bar or calculation time) is visible in the GUI before the file is saved."
+        },
+        {
+            "id": "parameter_consistency",
+            "description": "The parameters in the final confirmation or save screen match the task requirements.",
+            "visual_evidence": "The values 18 m/s, 14%, and seed 9999 are visible in the GUI immediately prior to file export."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific QBlade settings: Mean Velocity=18, Turbulence Intensity=14, Hub Height=90, Seed=9999, Model=IEC Kaimal, Grid=32x32, Size=120x120, Time=60s, Step=0.05s. The resulting binary file should be approximately 14.7 MB (14,745,600 bytes) based on 1,228,800 total points (32*32*1200) with 3 velocity components at 4 bytes each. The filename must be exactly kaimal_18ms_turb.bin."
+}

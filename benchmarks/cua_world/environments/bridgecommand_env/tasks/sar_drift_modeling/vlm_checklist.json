@@ -1,0 +1,56 @@
+{
+    "task_id": "sar_drift_modeling@1",
+    "task_completion": [
+        {
+            "id": "drift_analysis_file_creation",
+            "description": "The agent creates the drift_analysis.txt file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the file /home/ga/Documents/drift_analysis.txt exists."
+        },
+        {
+            "id": "vector_math_documentation",
+            "description": "The drift_analysis.txt file contains the vector mathematics for Total Water Movement (TWM).",
+            "points": 20,
+            "visual_evidence": "Text content showing calculations for Leeway (3% of 20kts = 0.6kts from 315°) and Current (1.5kts towards 100°) over 2 hours."
+        },
+        {
+            "id": "environment_ini_config",
+            "description": "The environment.ini file is created with the correct SAR parameters.",
+            "points": 15,
+            "visual_evidence": "File content for /opt/bridgecommand/Scenarios/s) Solent SAR Kayak/environment.ini showing StartTime=15:00, WindDirection=315, WindSpeed=20, Weather=3, VisibilityRange=5.0."
+        },
+        {
+            "id": "ownship_ini_config",
+            "description": "The ownship.ini file is created with the rescue vessel at the LKP.",
+            "points": 15,
+            "visual_evidence": "File content for /opt/bridgecommand/Scenarios/s) Solent SAR Kayak/ownship.ini showing Latitude=50.775 and Longitude=-1.3 (or equivalent DM format 50 46.5 N, 001 18.0 W)."
+        },
+        {
+            "id": "othership_ini_datum_calc",
+            "description": "The othership.ini file is created with the target vessel at the calculated Datum position.",
+            "points": 40,
+            "visual_evidence": "File content for /opt/bridgecommand/Scenarios/s) Solent SAR Kayak/othership.ini showing the calculated Latitude and Longitude (approx 50.766 N, -1.225 W based on ~2.9nm drift at ~110°)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "manual_calculation_evidence",
+            "description": "The agent performed the calculations rather than just writing the final file.",
+            "points": 0,
+            "visual_evidence": "Screenshots showing a calculator, python script, or scratchpad used for vector addition."
+        },
+        {
+            "id": "directory_structure_integrity",
+            "description": "The agent created the specific scenario directory structure required by Bridge Command.",
+            "points": 0,
+            "visual_evidence": "File manager or terminal showing the creation of the 's) Solent SAR Kayak' subdirectory."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent did not use placeholder text like 'CALCULATED_LAT' in the final .ini files.",
+            "points": 0,
+            "visual_evidence": "The .ini files contain actual numerical coordinates for the target vessel."
+        }
+    ],
+    "privileged_info_for_vlm": "LKP is 50.775, -1.300. Drift duration is 2 hours. Current: 1.5kts @ 100 deg (Total 3.0nm @ 100 deg). Leeway: 0.6kts (3% of 20) @ 135 deg (downwind from 315) (Total 1.2nm @ 135 deg). The resulting Datum (TWM) is the vector sum of Current and Leeway over 2 hours. Expected Datum is approximately 50.766 N, 1.225 W (50° 45.9' N, 001° 13.5' W). Environment.ini must strictly match: StartTime=15:00, WindDirection=315, WindSpeed=20, Weather=3, VisibilityRange=5.0."
+}

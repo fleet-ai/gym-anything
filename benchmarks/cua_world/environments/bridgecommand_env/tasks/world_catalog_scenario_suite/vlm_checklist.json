@@ -1,0 +1,59 @@
+{
+    "task_id": "world_catalog_scenario_suite@1",
+    "task_completion": [
+        {
+            "id": "world_catalog_creation",
+            "description": "Create /home/ga/Documents/world_catalog.txt with title, author 'Maritime Training Librarian', 3+ worlds, and ratings.",
+            "points": 15,
+            "visual_evidence": "Screenshot of a text editor or terminal showing the content of /home/ga/Documents/world_catalog.txt with the specified author and world list."
+        },
+        {
+            "id": "scenario_1_open_water",
+            "description": "Create Scenario 1 in /opt/bridgecommand/Scenarios/x1) Open Water Exercise/ with correct ship (MV Pacific Trader), speed (12kts), weather (3.0-5.0), and 2 traffic vessels.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the creation or content of environment.ini, ownship.ini, and othership.ini in the x1 folder, specifically checking the 'Weather' value and 'ShipName'."
+        },
+        {
+            "id": "scenario_2_coastal_pilotage",
+            "description": "Create Scenario 2 in /opt/bridgecommand/Scenarios/x2) Coastal Pilotage Exercise/ with correct ship (MV Dorado Star), speed (8kts), weather (<=2.0), and 3 traffic vessels.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the .ini files in the x2 folder, verifying the ship name 'MV Dorado Star' and the presence of 3 [OtherShip] entries in othership.ini."
+        },
+        {
+            "id": "scenario_3_restricted_visibility",
+            "description": "Create Scenario 3 in /opt/bridgecommand/Scenarios/x3) Restricted Visibility Exercise/ with correct ship (MV Northern Express), speed (10kts), fog (0.5-1.5nm), and 3 specific traffic types.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing .ini files in the x3 folder, verifying 'MV Northern Express' and visibility settings between 0.5 and 1.5."
+        },
+        {
+            "id": "curriculum_mapping",
+            "description": "Create /home/ga/Documents/curriculum_mapping.txt mapping scenarios to STCW competencies.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the curriculum_mapping.txt file content."
+        },
+        {
+            "id": "radar_config_update",
+            "description": "Update /opt/bridgecommand/bc5.ini with specific radar settings: arpa_on=1, full_radar=1, radar_range_resolution=256, max_radar_range=72.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the bc5.ini file showing the updated radar configuration lines."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "file_system_interaction",
+            "description": "Verify the agent actually navigated the file system and didn't just simulate text output.",
+            "visual_evidence": "Screenshots must show a file manager, terminal with 'ls' or 'cat' commands, or a text editor saving to the specific paths mentioned."
+        },
+        {
+            "id": "distinct_worlds",
+            "description": "Ensure three different worlds were used across the three scenarios.",
+            "visual_evidence": "The 'World' or 'WorldName' entry in the environment.ini files for x1, x2, and x3 must be different."
+        },
+        {
+            "id": "genuine_config_edit",
+            "description": "Verify the agent edited the existing bc5.ini rather than creating a dummy file.",
+            "visual_evidence": "Screenshots showing the agent opening /opt/bridgecommand/bc5.ini and modifying the specific radar lines."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create three scenario directories under /opt/bridgecommand/Scenarios/. Scenario 1 (x1) requires MV Pacific Trader, 12kts, Weather 3.0-5.0, and 2 traffic ships. Scenario 2 (x2) requires MV Dorado Star, 8kts, Weather <= 2.0, and 3 traffic ships. Scenario 3 (x3) requires MV Northern Express, 10kts, Visibility 0.5-1.5, and 3 traffic ships (Head-on, Crossing, Overtaking). The world_catalog.txt must list 'Maritime Training Librarian' as the author. The bc5.ini file must be updated with: arpa_on=1, full_radar=1, radar_range_resolution=256, and max_radar_range=72."
+}

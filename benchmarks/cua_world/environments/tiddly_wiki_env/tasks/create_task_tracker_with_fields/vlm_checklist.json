@@ -1,0 +1,59 @@
+{
+    "task_id": "create_task_tracker_with_fields@1",
+    "task_completion": [
+        {
+            "id": "create_five_task_tiddlers",
+            "description": "Five individual tiddlers are created with the specific titles provided in the task description.",
+            "points": 15,
+            "visual_evidence": "The sidebar or 'Recent' tab shows the five task titles: 'Migrate Database...', 'Update API...', 'Fix Authentication...', 'Design New...', and 'Set Up CI-CD...'"
+        },
+        {
+            "id": "verify_tags_and_fields",
+            "description": "Each task tiddler is tagged 'Sprint-Tasks' and contains the custom fields: priority, assignee, status, and due-date.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the tiddler edit or view mode showing the 'Sprint-Tasks' tag and the four custom fields with their respective values (e.g., priority: high, assignee: Sarah Chen)."
+        },
+        {
+            "id": "create_sprint_board_tiddler",
+            "description": "A tiddler named 'Sprint Board' is created and tagged 'Sprint-Tasks'.",
+            "points": 10,
+            "visual_evidence": "A tiddler titled 'Sprint Board' is visible in the story river or sidebar with the tag 'Sprint-Tasks'."
+        },
+        {
+            "id": "sprint_board_headings",
+            "description": "The 'Sprint Board' contains 'Open Tasks' and 'High Priority' headings.",
+            "points": 10,
+            "visual_evidence": "The 'Sprint Board' tiddler displays the text 'Open Tasks' and 'High Priority' as headings (usually bold or larger font)."
+        },
+        {
+            "id": "open_tasks_widget_logic",
+            "description": "The 'Open Tasks' section correctly filters and displays only tasks with status 'open'.",
+            "points": 20,
+            "visual_evidence": "Under 'Open Tasks', the list shows: 'Migrate Database...', 'Fix Authentication...', and 'Set Up CI-CD...'. It should NOT show 'Update API...' (in-progress) or 'Design New...' (done)."
+        },
+        {
+            "id": "high_priority_widget_logic",
+            "description": "The 'High Priority' section correctly filters and displays only tasks with priority 'high'.",
+            "points": 20,
+            "visual_evidence": "Under 'High Priority', the list shows: 'Migrate Database...' and 'Fix Authentication...'. It should NOT show tasks with medium or low priority."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the TiddlyWiki GUI to create tiddlers and fields rather than just editing the underlying file via terminal.",
+            "visual_evidence": "Screenshots show the 'plus' button being clicked, text being typed into the TiddlyWiki editor, and the 'add field' interface being used."
+        },
+        {
+            "id": "no_hardcoded_list",
+            "description": "The agent used <$list> widgets for the Sprint Board instead of manually typing the task names.",
+            "visual_evidence": "The edit mode of the 'Sprint Board' tiddler shows the syntax '<$list filter=\"[tag[Sprint-Tasks]status[open]]\">' or similar, rather than a static bulleted list."
+        },
+        {
+            "id": "field_consistency",
+            "description": "The field names and values match the prompt exactly without typos.",
+            "visual_evidence": "Field names are exactly 'priority', 'assignee', 'status', and 'due-date' (lowercase, no spaces)."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires 5 specific tiddlers tagged 'Sprint-Tasks'. Fields must be: priority, assignee, status, due-date. The 'Sprint Board' must use <$list> widgets. Expected 'Open' tasks: Migrate Database, Fix Authentication, Set Up CI-CD. Expected 'High Priority' tasks: Migrate Database, Fix Authentication. Dates must be in YYYY-MM-DD format as specified in the prompt."
+}

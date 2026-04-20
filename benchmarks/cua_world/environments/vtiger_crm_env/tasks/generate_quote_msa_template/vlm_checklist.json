@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_quote_msa_template@1",
+    "task_completion": [
+        {
+            "id": "read_msa_source_text",
+            "description": "Agent opens and reads the Master_Service_Agreement_Template.txt file.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of ~/Documents/Master_Service_Agreement_Template.txt."
+        },
+        {
+            "id": "navigate_to_print_templates",
+            "description": "Agent navigates to the Print Templates section in Vtiger settings.",
+            "points": 10,
+            "visual_evidence": "The Vtiger CRM interface showing the 'Print Templates' list or creation screen."
+        },
+        {
+            "id": "create_template_metadata",
+            "description": "Agent creates a new template named 'MSA Contract' assigned to the Quotes module.",
+            "points": 15,
+            "visual_evidence": "The template creation form with 'MSA Contract' in the name field and 'Quotes' selected as the module."
+        },
+        {
+            "id": "map_merge_fields",
+            "description": "Agent pastes the text and maps [ORGANIZATION NAME], [QUOTE NUMBER], and [GRAND TOTAL] to Vtiger merge fields.",
+            "points": 25,
+            "visual_evidence": "The template editor showing the MSA text with Vtiger-specific merge tags (e.g., $accounts-accountname$, $quotes-quote_no$, $quotes-hdnGrandTotal$) in place of the brackets."
+        },
+        {
+            "id": "select_target_quote",
+            "description": "Agent locates and selects the quote 'Q-Enterprise Server Deployment'.",
+            "points": 15,
+            "visual_evidence": "The Quotes module list view or detail view showing 'Q-Enterprise Server Deployment' selected."
+        },
+        {
+            "id": "generate_and_save_pdf",
+            "description": "Agent uses the 'MSA Contract' template to generate a PDF and saves it to the specified path.",
+            "points": 25,
+            "visual_evidence": "A file manager or terminal showing 'Enterprise_MSA.pdf' exists in ~/Documents, or a 'Save As' dialog pointing to that path."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the Vtiger web interface to create the template, not just SQL commands.",
+            "visual_evidence": "Screenshots showing the browser interacting with the Vtiger Print Template editor."
+        },
+        {
+            "id": "genuine_pdf_generation",
+            "description": "The agent should trigger the PDF export from within the CRM rather than manually creating a PDF in a text editor.",
+            "visual_evidence": "Screenshots showing the 'Export to PDF' or 'Print' workflow within the Quote record."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent should use merge fields in the template, not type 'Global Tech Industries' directly into the template body.",
+            "visual_evidence": "The template editor showing variable placeholders/tags rather than the final values."
+        }
+    ],
+    "privileged_info_for_vlm": "The source text is in ~/Documents/Master_Service_Agreement_Template.txt. The template must be named 'MSA Contract'. The target quote is 'Q-Enterprise Server Deployment'. Expected data for verification in the final PDF: Organization Name is 'Global Tech Industries', Quote Number starts with 'QUO', and Grand Total is '15400'. The final file must be saved to /home/ga/Documents/Enterprise_MSA.pdf."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "smtp_forensic_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent successfully opens the smtp.pcap file in a network analysis tool like Wireshark or reads it via terminal.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark open with 'smtp.pcap' in the title bar or a terminal command like 'tshark -r /home/ga/Documents/captures/smtp.pcap'."
+        },
+        {
+            "id": "identify_smtp_traffic",
+            "description": "The agent filters or identifies the SMTP protocol packets within the capture.",
+            "points": 15,
+            "visual_evidence": "The display filter 'smtp' applied in Wireshark or a terminal command filtering for SMTP traffic."
+        },
+        {
+            "id": "extract_email_metadata",
+            "description": "The agent locates the sender, recipient, and subject line from the packet details.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the inspection of 'MAIL FROM', 'RCPT TO', and 'Subject' fields in the packet bytes or details pane."
+        },
+        {
+            "id": "identify_server_banner",
+            "description": "The agent identifies the SMTP server software or greeting banner (220 response).",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the first few packets of the SMTP stream where the server identifies itself (e.g., '220 ... ESMTP')."
+        },
+        {
+            "id": "count_smtp_packets",
+            "description": "The agent determines the total number of SMTP-protocol packets.",
+            "points": 15,
+            "visual_evidence": "A terminal command output showing a count (e.g., wc -l) or the Wireshark status bar showing the number of displayed packets after filtering for 'smtp'."
+        },
+        {
+            "id": "generate_final_report",
+            "description": "The agent creates the forensic report at the specified path with all five required items.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the file '/home/ga/Documents/captures/smtp_forensic_report.txt' being saved or displayed via 'cat', containing the sender, recipient, subject, banner, and packet count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_analysis",
+            "description": "The agent actually analyzed the file rather than guessing or using hardcoded values from the prompt.",
+            "visual_evidence": "The agent must be seen interacting with the pcap file (scrolling through packets, applying filters, or using tshark/tcpdump) before writing the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent uses the specific file paths provided in the task description.",
+            "visual_evidence": "The report is saved exactly at /home/ga/Documents/captures/smtp_forensic_report.txt, not in a generic home directory."
+        },
+        {
+            "id": "no_hallucinated_data",
+            "description": "The agent does not invent metadata not present in the pcap.",
+            "visual_evidence": "The values in the report (sender, recipient, subject) must match the verified values found in the pcap analysis."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified facts for smtp.pcap: 1. Sender: gurpartap@patriots.in. 2. Recipient: m_v_punj@yahoo.com. 3. Subject: Test. 4. SMTP Server/Banner: 220 mail.patriots.in ESMTP Postfix. 5. Total SMTP-protocol packets: 32 (Note: total packets in file is 60, but only 32 are SMTP protocol). The report must be at /home/ga/Documents/captures/smtp_forensic_report.txt."
+}

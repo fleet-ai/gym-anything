@@ -1,0 +1,59 @@
+{
+    "task_id": "commandeer_meeting_location@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the calendar application using the provided admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the login screen followed by the calendar interface showing the 'admin' user profile or a successful dashboard view."
+        },
+        {
+            "id": "modify_standup_location",
+            "description": "Update the 'Team Standup' meeting location to 'Zoom Meeting' for next Monday at 9:00 AM.",
+            "points": 20,
+            "visual_evidence": "An edit window or event details view for 'Team Standup' showing the location field changed to 'Zoom Meeting'."
+        },
+        {
+            "id": "create_audit_meeting",
+            "description": "Create a new meeting named 'External Audit Kickoff' at 9:00 AM on the same Monday.",
+            "points": 20,
+            "visual_evidence": "A new event creation window or a calendar slot showing 'External Audit Kickoff' at 9:00 AM on the target Monday."
+        },
+        {
+            "id": "set_audit_location",
+            "description": "Set the location of the 'External Audit Kickoff' to 'Main Conference Room'.",
+            "points": 15,
+            "visual_evidence": "The event details for 'External Audit Kickoff' showing 'Main Conference Room' in the location field."
+        },
+        {
+            "id": "add_audit_attendees",
+            "description": "Add Alice Johnson, Grace Patel, and Karen Lee as attendees to the audit meeting.",
+            "points": 25,
+            "visual_evidence": "The attendee list or 'Guests' section of the 'External Audit Kickoff' meeting showing all three names: Alice Johnson, Grace Patel, and Karen Lee."
+        },
+        {
+            "id": "verify_audit_duration",
+            "description": "Ensure the 'External Audit Kickoff' is scheduled for exactly one hour.",
+            "points": 10,
+            "visual_evidence": "The time range for the meeting showing 9:00 AM to 10:00 AM."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the calendar GUI rather than executing database or CLI commands.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on calendar buttons, and typing into form fields rather than just terminal output."
+        },
+        {
+            "id": "no_event_deletion",
+            "description": "The 'Team Standup' meeting was modified, not deleted and recreated.",
+            "visual_evidence": "The trajectory should show the 'Edit' flow for the existing Standup event rather than a 'Delete' action followed by a new creation."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or selected the attendee names and locations.",
+            "visual_evidence": "The VLM should see the search results or typing for 'Alice Johnson', 'Grace Patel', and 'Karen Lee' in the attendee field."
+        }
+    ],
+    "privileged_info_for_vlm": "The target date is the Monday immediately following the current system date. The 'Team Standup' (09:00-10:00) must be moved to 'Zoom Meeting'. A new event 'External Audit Kickoff' must be created for the same time (09:00-10:00) in the 'Main Conference Room' with attendees Alice Johnson, Grace Patel, and Karen Lee. Credentials are admin/admin."
+}

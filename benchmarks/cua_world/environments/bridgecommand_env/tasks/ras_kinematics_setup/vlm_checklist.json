@@ -1,0 +1,53 @@
+{
+    "task_id": "ras_kinematics_setup@1",
+    "task_completion": [
+        {
+            "id": "math_document_creation",
+            "description": "Create a text file documenting the kinematic calculations for the RAS scenario.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the content of '/home/ga/Documents/ras_calc.txt' with calculations for the approach and station-keeping legs."
+        },
+        {
+            "id": "scenario_directory_setup",
+            "description": "Create the scenario directory in the specified Bridge Command path.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal showing the creation of the directory '/opt/bridgecommand/Scenarios/n) RAS Exercise/'."
+        },
+        {
+            "id": "environment_config",
+            "description": "Configure the environment.ini file in the scenario directory.",
+            "points": 15,
+            "visual_evidence": "A text editor showing 'environment.ini' within the RAS Exercise folder, containing basic scenario parameters."
+        },
+        {
+            "id": "ownship_config",
+            "description": "Configure ownship.ini for 'USS Guide' with correct starting position, heading, and speed.",
+            "points": 20,
+            "visual_evidence": "A text editor showing 'ownship.ini' with Name='USS Guide', Latitude=50.0, Longitude=0.0, InitialHeading=000, and InitialSpeed=10."
+        },
+        {
+            "id": "othership_config_legs",
+            "description": "Configure othership.ini for 'USNS Supply' with the three specified legs and correct kinematics.",
+            "points": 40,
+            "visual_evidence": "A text editor showing 'othership.ini' with Name='USNS Supply', starting 4nm South (Lat 49.9333 approx), and three legs: Leg 1 (14 knots, ~14nm), Leg 2 (10 knots, 5nm), and Leg 3 (15 knots, 2nm at bearing 045)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent manually typed or edited the configuration files rather than just moving existing templates.",
+            "visual_evidence": "Screenshots showing the agent actively typing in a text editor (like gedit, nano, or vim) or using 'echo' commands to build the files."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "The math in ras_calc.txt reflects the actual kinematic requirements of the task.",
+            "visual_evidence": "The document should show the logic: Approach time = 4nm / (14-10)kts = 1hr; Approach distance = 14kts * 1hr = 14nm. Station distance = 10kts * 0.5hr = 5nm."
+        },
+        {
+            "id": "directory_path_accuracy",
+            "description": "The agent used the exact directory path specified in the task, including the 'n) ' prefix.",
+            "visual_evidence": "The terminal or file explorer shows the path exactly as '/opt/bridgecommand/Scenarios/n) RAS Exercise/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct kinematic values for the othership legs are: Leg 1 (Approach) distance is 14.0nm (calculated by relative speed 4kts closing 4nm gap in 1 hour at 14kts ground speed). Leg 2 (Station-keeping) distance is 5.0nm (10 knots for 30 minutes). Leg 3 (Breakaway) is 2.0nm at bearing 045. Ownship 'USS Guide' must be at 50.00N, 0.00E, Speed 10. Othership 'USNS Supply' starts 4nm South (approx 49.9333N)."
+}

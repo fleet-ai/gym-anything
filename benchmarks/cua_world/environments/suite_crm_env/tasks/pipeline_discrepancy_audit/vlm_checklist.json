@@ -1,0 +1,53 @@
+{
+    "task_id": "pipeline_discrepancy_audit@1",
+    "task_completion": [
+        {
+            "id": "access_crm_opportunities",
+            "description": "Agent navigates to the Opportunities module in SuiteCRM to view the pipeline.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the SuiteCRM dashboard or the 'Opportunities' list view page."
+        },
+        {
+            "id": "identify_duplicates",
+            "description": "Agent identifies duplicate opportunity entries (e.g., JPMorgan Chase, NVIDIA, Tesla Gigafactory, AT&T Wireless).",
+            "points": 20,
+            "visual_evidence": "Screenshots show the agent selecting or hovering over duplicate records in the list view or opening detail views of identical opportunities."
+        },
+        {
+            "id": "delete_duplicates",
+            "description": "Agent removes the 4 duplicate entries from the CRM.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Delete' action being confirmed or the list view refreshing with the duplicate records gone."
+        },
+        {
+            "id": "correct_inflated_amounts",
+            "description": "Agent identifies and corrects the 2 artificially inflated amounts (AT&T and Tesla) back to their valid values.",
+            "points": 25,
+            "visual_evidence": "Screenshots show the 'Edit' view for the AT&T and Tesla opportunities with the 'Opportunity Amount' field being modified."
+        },
+        {
+            "id": "verify_final_pipeline",
+            "description": "Agent verifies that the total active pipeline value is now correct and consistent with the forecast.",
+            "points": 20,
+            "visual_evidence": "Screenshots show a final list view or a report summary where the remaining active opportunities sum to the correct total ($19,740,000)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the audit and corrections through the SuiteCRM web interface rather than using the terminal/SQL.",
+            "visual_evidence": "The trajectory shows mouse clicks, form filling, and navigation within the browser; no database manipulation via command line is visible."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the final answer without interacting with the individual records.",
+            "visual_evidence": "The agent is seen opening and editing specific records (AT&T, Tesla) rather than just navigating to a final summary page."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM menus rather than jumping directly to specific record IDs via URL manipulation.",
+            "visual_evidence": "Screenshots show the agent using the CRM's navigation bar or search functionality."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct active pipeline total after cleanup must be exactly $19,740,000. There are 4 duplicate opportunities to be deleted (JPMorgan Chase, NVIDIA, Tesla Gigafactory, AT&T Wireless). There are 2 inflated amounts to be corrected: AT&T should be $2,100,000 and Tesla should be $3,800,000. The valid active opportunities include JPMorgan ($5.5M), Cisco ($0.89M), Goldman Sachs ($1.2M), NVIDIA ($0.75M), AT&T ($2.1M), Tesla ($3.8M), Johnson & Johnson ($1.65M), ExxonMobil ($2.9M), and Deloitte ($0.95M)."
+}

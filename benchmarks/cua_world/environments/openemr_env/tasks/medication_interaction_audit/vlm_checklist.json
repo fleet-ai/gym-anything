@@ -1,0 +1,59 @@
+{
+    "task_id": "medication_interaction_audit@1",
+    "task_completion": [
+        {
+            "id": "patient_search",
+            "description": "Agent searches for and selects the correct patient (James Kowalski).",
+            "points": 10,
+            "visual_evidence": "The patient 'James Kowalski' is selected or his patient dashboard is visible in OpenEMR."
+        },
+        {
+            "id": "access_medication_list",
+            "description": "Agent navigates to the patient's medication list or medical record summary.",
+            "points": 10,
+            "visual_evidence": "The 'Medications' or 'Prescriptions' section of the patient record is displayed."
+        },
+        {
+            "id": "discontinue_metformin",
+            "description": "Agent identifies and discontinues Metformin due to CKD Stage 3b.",
+            "points": 25,
+            "visual_evidence": "Metformin is marked as 'Inactive', 'Discontinued', or removed from the active list in the GUI."
+        },
+        {
+            "id": "discontinue_ibuprofen",
+            "description": "Agent identifies and discontinues Ibuprofen due to CKD Stage 3b.",
+            "points": 25,
+            "visual_evidence": "Ibuprofen is marked as 'Inactive', 'Discontinued', or removed from the active list in the GUI."
+        },
+        {
+            "id": "discontinue_nitrofurantoin",
+            "description": "Agent identifies and discontinues Nitrofurantoin due to CKD Stage 3b.",
+            "points": 20,
+            "visual_evidence": "Nitrofurantoin is marked as 'Inactive', 'Discontinued', or removed from the active list in the GUI."
+        },
+        {
+            "id": "preserve_safe_meds",
+            "description": "Agent leaves safe medications (Amlodipine, Atorvastatin, Lisinopril) active.",
+            "points": 10,
+            "visual_evidence": "Amlodipine, Atorvastatin, and Lisinopril remain in the 'Active' medication list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenEMR web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show mouse movements, clicks on buttons like 'Edit' or 'Discontinue', and form submissions within the browser."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use a terminal to run SQL commands to update the database.",
+            "visual_evidence": "The terminal is not used for 'mysql' or 'psql' commands; the focus remains on the browser."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the patient search and dashboard rather than jumping to a direct URL if not provided.",
+            "visual_evidence": "Sequential screenshots show the search process and clicking through the patient's menu."
+        }
+    ],
+    "privileged_info_for_vlm": "Patient Name: James Kowalski. Diagnosis: CKD Stage 3b. Contraindicated medications that MUST be discontinued: Metformin, Ibuprofen, Nitrofurantoin. Safe medications that MUST remain active: Amlodipine, Atorvastatin, Lisinopril. The agent must perform these actions within the OpenEMR GUI."
+}

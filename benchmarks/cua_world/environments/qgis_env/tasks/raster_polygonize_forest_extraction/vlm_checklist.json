@@ -1,0 +1,53 @@
+{
+    "task_id": "raster_polygonize_forest_extraction@1",
+    "task_completion": [
+        {
+            "id": "load_raster",
+            "description": "The agent loads the landcover_classification.tif raster into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The file 'landcover_classification.tif' is visible in the layers panel or the main map canvas."
+        },
+        {
+            "id": "open_polygonize_tool",
+            "description": "The agent opens the 'Polygonize (Raster to Vector)' tool or equivalent conversion utility.",
+            "points": 15,
+            "visual_evidence": "A dialog box for 'Polygonize', 'Raster to Vector', or 'GDAL polygonize' is active on the screen."
+        },
+        {
+            "id": "execute_polygonization",
+            "description": "The agent runs the conversion process to create a vector layer from the raster.",
+            "points": 20,
+            "visual_evidence": "A new vector layer (often named 'Vectorized' or 'polygons') appears in the layers panel, showing polygon geometries over the raster."
+        },
+        {
+            "id": "filter_forest_features",
+            "description": "The agent filters the vectorized layer to include only features where the DN (or class value) is 1.",
+            "points": 25,
+            "visual_evidence": "The attribute table shows only rows with DN=1, or a 'Filter'/'Query Builder' dialog is shown with the expression 'DN = 1' or 'Value = 1'."
+        },
+        {
+            "id": "export_geojson",
+            "description": "The agent exports the filtered forest features to the specified GeoJSON path.",
+            "points": 30,
+            "visual_evidence": "A 'Save Layer As' or 'Export' dialog is visible with the format set to 'GeoJSON' and the file path set to '/home/ga/GIS_Data/exports/forest_zones.geojson'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the GIS software GUI rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show interactions with menus, toolboxes, and dialog windows within a GIS application like QGIS."
+        },
+        {
+            "id": "genuine_processing",
+            "description": "The agent performs the actual polygonization and filtering steps rather than manually drawing polygons.",
+            "visual_evidence": "The 'Polygonize' tool dialog is configured and the resulting attribute table contains the expected DN values from the raster."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent does not simply create a file with the expected name without performing the GIS operations.",
+            "visual_evidence": "The sequence of screenshots shows the intermediate steps: loading the raster, the conversion process, and the filtering logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The input raster 'landcover_classification.tif' contains three classes: 1 (Forest), 2 (Water), and 3 (Urban). The Forest class (DN=1) consists of exactly 4 distinct 20x20 pixel regions located in the corners of the 100x100 map. The final exported GeoJSON should contain exactly 4 polygon features representing these corner regions. The output path must be exactly /home/ga/GIS_Data/exports/forest_zones.geojson."
+}

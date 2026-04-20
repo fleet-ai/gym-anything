@@ -1,0 +1,53 @@
+{
+    "task_id": "distraction_free_invoice_archival@1",
+    "task_completion": [
+        {
+            "id": "open_invoice_url",
+            "description": "The agent navigates to the specified invoice URL in a web browser.",
+            "points": 10,
+            "visual_evidence": "A browser window showing the address bar with 'file:///workspace/assets/vendor_invoice.html' and the cluttered invoice page."
+        },
+        {
+            "id": "identify_distractions",
+            "description": "The agent identifies or interacts with the elements to be removed (FLASH SALE banner, chat widget, or cookie footer).",
+            "points": 10,
+            "visual_evidence": "The agent right-clicking elements to inspect/delete them, or using a 'Reader Mode' or print preview that excludes these elements."
+        },
+        {
+            "id": "clean_invoice_view",
+            "description": "The agent prepares a view of the invoice where the promotional banner, chat button, and cookie text are no longer visible.",
+            "points": 30,
+            "visual_evidence": "A screenshot of the browser or a print preview dialog where the 'FLASH SALE' banner, floating chat icon, and cookie consent footer are absent."
+        },
+        {
+            "id": "save_pdf_location",
+            "description": "The agent saves the document as a PDF to the specific directory and filename requested.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' or 'Print to PDF' dialog showing the destination path '~/Documents/Invoices/' and filename 'invoice_8492_clean.pdf'."
+        },
+        {
+            "id": "verify_final_content",
+            "description": "The final PDF contains the essential invoice details (Invoice #8492 and total) without the forbidden elements.",
+            "points": 30,
+            "visual_evidence": "A view of the opened PDF file showing 'Invoice #8492' and '$1,240.50', while the top banner area and bottom corners are clear of distractions."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the browser's GUI/Print tools rather than just moving/renaming files via terminal.",
+            "visual_evidence": "Screenshots showing the browser's print menu, developer tools (to delete nodes), or PDF export interface."
+        },
+        {
+            "id": "no_manual_text_creation",
+            "description": "The agent did not simply create a new text document and type the invoice details manually.",
+            "visual_evidence": "The final document retains the visual styling/layout of the original HTML invoice rather than being a plain text file."
+        },
+        {
+            "id": "genuine_cleanup",
+            "description": "The agent actually removed the elements rather than just cropping the screenshot.",
+            "visual_evidence": "The agent interacting with the DOM (Inspect Element -> Delete) or using a specific 'Simplify Page' print setting."
+        }
+    ],
+    "privileged_info_for_vlm": "The source invoice is at file:///workspace/assets/vendor_invoice.html. It contains 'Invoice #8492' and a total of '1,240.50'. The forbidden elements that must NOT be in the final PDF are the 'FLASH SALE' banner, the floating chat widget, and the cookie consent text. The final file must be saved exactly to ~/Documents/Invoices/invoice_8492_clean.pdf."
+}

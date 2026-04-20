@@ -1,0 +1,59 @@
+{
+    "task_id": "telnet_credential_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "The agent successfully opens the telnet-cooked.pcap file using a network analysis tool like Wireshark or tshark.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing Wireshark or a terminal window with the contents of telnet-cooked.pcap visible."
+        },
+        {
+            "id": "extract_credentials",
+            "description": "The agent identifies the login username and password from the Telnet stream.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent following the TCP/Telnet stream or filtering for telnet.data to find 'fake' and 'user'."
+        },
+        {
+            "id": "extract_system_banner",
+            "description": "The agent identifies the OpenBSD system banner displayed at the start of the session.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the packet data or stream containing 'OpenBSD/i386 (oof)' or the specific build date."
+        },
+        {
+            "id": "extract_user_commands",
+            "description": "The agent identifies all commands typed after login: /sbin/ping www.yahoo.com, ls, ls -a, and exit.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the extraction or listing of these specific commands from the pcap data."
+        },
+        {
+            "id": "count_telnet_packets",
+            "description": "The agent determines the total number of Telnet data packets (46).",
+            "points": 10,
+            "visual_evidence": "A screenshot showing a filter like 'telnet' being applied and the resulting count (46) displayed in the status bar or terminal output."
+        },
+        {
+            "id": "create_incident_report",
+            "description": "The agent saves the final report to /home/ga/Documents/captures/telnet_incident_report.txt with all required labels.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the final text file containing the username, password, banner, commands (one per line), and packet count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pcap_analysis",
+            "description": "The agent actually analyzed the file rather than guessing or using pre-existing knowledge.",
+            "visual_evidence": "Screenshots must show the agent interacting with Wireshark, tshark, or tcpdump; the report should not appear instantly without file interaction."
+        },
+        {
+            "id": "correct_credential_extraction",
+            "description": "The agent extracted the 'verified_value' from the pcap, not the 'metadata_value' (which contains placeholders).",
+            "visual_evidence": "The report must show username 'fake' and password 'user', not 'ga' or 'password123'."
+        },
+        {
+            "id": "no_hallucinated_commands",
+            "description": "The agent lists only the commands actually present in the pcap stream.",
+            "visual_evidence": "The report should list exactly: /sbin/ping www.yahoo.com, ls, ls -a, exit. No extra commands like 'whoami' or 'cd'."
+        }
+    ],
+    "privileged_info_for_vlm": "The correct values for the report are: Username: fake; Password: user; System Banner: OpenBSD/i386 (oof) (ttyp2) and OpenBSD 2.6-beta (OOF) #4: Tue Oct 12 20:42:32 CDT 1999; Commands: /sbin/ping www.yahoo.com, ls, ls -a, exit; Telnet packet count: 46. Note: The metadata values 'ga' and 'password123' are incorrect; the agent must use the values found in the pcap data ('fake'/'user')."
+}

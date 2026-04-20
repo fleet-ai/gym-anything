@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_file_transfer_policy@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the SEB Server using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SEB Server dashboard or home page after entering 'super-admin' and 'admin'."
+        },
+        {
+            "id": "navigate_to_exam",
+            "description": "Locate and select the 'CS101 Midterm' exam configuration.",
+            "points": 15,
+            "visual_evidence": "The screen shows the 'CS101 Midterm' exam selected or its specific configuration page open."
+        },
+        {
+            "id": "enable_allow_downloads",
+            "description": "Enable the 'Allow Downloads' setting within the exam configuration.",
+            "points": 30,
+            "visual_evidence": "A checkbox or toggle labeled 'Allow Downloads' (or 'allowDownloads') is checked or set to 'true'/'on'."
+        },
+        {
+            "id": "enable_allow_uploads",
+            "description": "Enable the 'Allow Uploads' setting within the exam configuration.",
+            "points": 30,
+            "visual_evidence": "A checkbox or toggle labeled 'Allow Uploads' (or 'allowUploads') is checked or set to 'true'/'on'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the changes made to the exam configuration.",
+            "points": 15,
+            "visual_evidence": "The agent clicks a 'Save', 'Update', or 'Submit' button, and a success message or the updated configuration view is visible."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and typing within the browser window at http://localhost:8080."
+        },
+        {
+            "id": "no_sql_injection",
+            "description": "The agent did not use the terminal to run SQL commands to bypass the UI.",
+            "visual_evidence": "The terminal is not used to execute 'mysql' or 'mariadb' commands to update the configuration_attribute table."
+        },
+        {
+            "id": "authentic_navigation",
+            "description": "The agent navigated through the SEB Server menus to find the exam.",
+            "visual_evidence": "The trajectory shows the agent searching for or clicking through the list of exams to find 'CS101 Midterm'."
+        }
+    ],
+    "privileged_info_for_vlm": "The exam name is exactly 'CS101 Midterm'. The specific attributes to be enabled are 'allowDownloads' and 'allowUploads'. These are stored in the backend as boolean values; the VLM should verify that the UI elements corresponding to these two specific labels are toggled to the active/enabled state and saved."
+}

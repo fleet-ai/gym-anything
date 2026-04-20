@@ -1,0 +1,59 @@
+{
+    "task_id": "verify_anatomical_orientation@1",
+    "task_completion": [
+        {
+            "id": "ct_scan_loaded",
+            "description": "The abdominal CT scan is loaded and visible in the 3D Slicer slice viewers.",
+            "points": 10,
+            "visual_evidence": "The axial, sagittal, and coronal views show medical imaging data (CT scan) rather than empty black viewers."
+        },
+        {
+            "id": "markups_module_active",
+            "description": "The agent has navigated to the 'Markups' module or is using the 'Fiducial' tool.",
+            "points": 10,
+            "visual_evidence": "The Markups module icon is selected in the toolbar or the Markups panel is visible in the sidebar."
+        },
+        {
+            "id": "liver_marker_placed",
+            "description": "A fiducial marker is placed on the liver with a name containing 'liver'.",
+            "points": 25,
+            "visual_evidence": "A marker is visible on the large organ in the upper right quadrant of the abdomen (patient's right); the Markups list shows a label containing the string 'liver'."
+        },
+        {
+            "id": "spine_marker_placed",
+            "description": "A fiducial marker is placed on the spine with a name containing 'spine'.",
+            "points": 25,
+            "visual_evidence": "A marker is visible on the vertebral column (posterior midline); the Markups list shows a label containing the string 'spine'."
+        },
+        {
+            "id": "heart_marker_placed",
+            "description": "A fiducial marker is placed on the heart with a name containing 'heart'.",
+            "points": 20,
+            "visual_evidence": "A marker is visible in the thoracic region (superior to the diaphragm); the Markups list shows a label containing the string 'heart'."
+        },
+        {
+            "id": "file_saved",
+            "description": "The agent initiates the save process for the markups to the specified path.",
+            "points": 10,
+            "visual_evidence": "The 'Save Data' dialog is open showing 'orientation_markers.mrk.json' or a terminal/file browser confirms the file exists in ~/Documents/SlicerData/AMOS/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI to place markers rather than just creating a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the slice viewers and the Markups module UI."
+        },
+        {
+            "id": "anatomical_accuracy",
+            "description": "The markers are placed on the correct anatomical structures, not random locations.",
+            "visual_evidence": "The 'liver' marker is on the liver, 'spine' on the vertebrae, and 'heart' in the chest cavity."
+        },
+        {
+            "id": "no_preexisting_markers",
+            "description": "The agent did not simply open a pre-existing marker file.",
+            "visual_evidence": "The trajectory shows the sequential addition of markers to an initially empty Markups list."
+        }
+    ],
+    "privileged_info_for_vlm": "For the AMOS 2022 dataset (amos_0001), the liver is identified by label ID 6. Ensure the 'liver' marker is placed on the large organ on the patient's right side. The 'heart' marker should be placed in the superior slices (chest area) above the liver/diaphragm."
+}

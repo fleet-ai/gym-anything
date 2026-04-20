@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_customer_rfm_analysis@1",
+    "task_completion": [
+        {
+            "id": "db_connection",
+            "description": "Connect to the Chinook database at the specified path.",
+            "points": 10,
+            "visual_evidence": "DBeaver or a SQL editor showing a connection to '/home/ga/Documents/databases/chinook.db' and the table list (e.g., Invoice, Customer)."
+        },
+        {
+            "id": "sql_query_construction",
+            "description": "Write a SQL query calculating Recency (relative to 2014-01-01), Frequency, and Monetary values.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing code with '2014-01-01', COUNT(InvoiceId), and SUM(Total)."
+        },
+        {
+            "id": "segmentation_logic",
+            "description": "Implement CASE logic for VIP (>40), Loyal (>=5), and Churn Risk (>365 days).",
+            "points": 20,
+            "visual_evidence": "SQL code showing CASE WHEN statements with the specific thresholds: 40.00, 5, and 365."
+        },
+        {
+            "id": "create_table_view",
+            "description": "Execute the command to create the 'customer_rfm' table or view.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing 'CREATE TABLE customer_rfm' or 'CREATE VIEW customer_rfm' and a 'Success' message or the new object in the database navigator."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the SQL script to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A file explorer or editor title bar showing the file saved at '/home/ga/Documents/scripts/rfm_analysis.sql'."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the RFM analysis results to a CSV file with headers.",
+            "points": 20,
+            "visual_evidence": "An export wizard or terminal command showing the destination '/home/ga/Documents/exports/rfm_segments.csv' and a preview of the CSV with headers: CustomerId, Recency, Frequency, Monetary, Segment."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a database GUI (like DBeaver) for the analysis rather than just terminal scripts.",
+            "visual_evidence": "Screenshots show the DBeaver interface, query execution tabs, and export wizards."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived results from the database, not by manually typing values into a CSV.",
+            "visual_evidence": "The SQL query is visible and executed against the database; the export process is initiated from the query results."
+        },
+        {
+            "id": "correct_paths",
+            "description": "The agent used the exact file paths specified in the task.",
+            "visual_evidence": "File paths in the SQL editor or export dialog match /home/ga/Documents/databases/chinook.db, /home/ga/Documents/exports/rfm_segments.csv, and /home/ga/Documents/scripts/rfm_analysis.sql."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is at /home/ga/Documents/databases/chinook.db. The reference date for Recency is 2014-01-01. Required columns: CustomerId, Recency, Frequency, Monetary, Segment. Segmentation priority: VIP (Monetary > 40.00), Loyal (Frequency >= 5), Churn Risk (Recency > 365), else Standard. Output files must be at /home/ga/Documents/exports/rfm_segments.csv and /home/ga/Documents/scripts/rfm_analysis.sql."
+}

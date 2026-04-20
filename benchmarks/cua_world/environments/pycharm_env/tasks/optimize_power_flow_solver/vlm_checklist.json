@@ -1,0 +1,59 @@
+{
+    "task_id": "optimize_power_flow_solver@1",
+    "task_completion": [
+        {
+            "id": "open_project_pycharm",
+            "description": "Open the power_grid_sim project in PyCharm.",
+            "points": 10,
+            "visual_evidence": "PyCharm window showing the project structure at /home/ga/PycharmProjects/power_grid_sim in the Project tool window."
+        },
+        {
+            "id": "refactor_admittance_matrix",
+            "description": "Refactor power_grid/admittance.py to use NumPy vectorization instead of loops.",
+            "points": 20,
+            "visual_evidence": "Code editor showing power_grid/admittance.py with NumPy operations (e.g., np.array, matrix indexing) replacing for-loops for Y-bus construction."
+        },
+        {
+            "id": "refactor_solver_logic",
+            "description": "Refactor power_grid/solver.py to use matrix-vector operations for power flow calculations.",
+            "points": 25,
+            "visual_evidence": "Code editor showing power_grid/solver.py with vectorized Jacobian calculations or power mismatch updates using NumPy."
+        },
+        {
+            "id": "run_test_suite",
+            "description": "Execute the test suite in the tests/ directory to verify numerical correctness.",
+            "points": 15,
+            "visual_evidence": "PyCharm terminal or test runner showing successful execution of tests (e.g., 'OK' or green checkmarks) for scripts in the tests/ folder."
+        },
+        {
+            "id": "run_benchmark_script",
+            "description": "Run benchmark.py to measure the performance of the optimized solver.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing the execution of 'python benchmark.py' or similar command."
+        },
+        {
+            "id": "verify_performance_target",
+            "description": "Achieve a runtime of under 1.0 second on the 300-bus grid benchmark.",
+            "points": 20,
+            "visual_evidence": "Benchmark output in the terminal explicitly showing a 'Total Time' or 'Runtime' value less than 1.0s."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PyCharm GUI for code editing and project management.",
+            "visual_evidence": "Screenshots show the agent interacting with PyCharm's editor tabs, project tree, or built-in terminal rather than just a standalone system shell."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent actually modified the code logic rather than hardcoding results.",
+            "visual_evidence": "Screenshots show active editing of the .py files with logic changes, not just printing 'Success' or '0.5s' to the console."
+        },
+        {
+            "id": "no_test_tampering",
+            "description": "The agent did not modify the test files to lower the pass threshold.",
+            "visual_evidence": "The files in the tests/ directory remain unchanged in the editor, or the agent is seen only running them, not editing them."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/power_grid_sim. The target runtime for the 300-bus grid is strictly < 1.0 second as measured by benchmark.py. Note that while the task description mentions a 1e-4 precision requirement, the actual test suite only enforces physical power balance constraints (atol=1e-2) and does not strictly compare against a 1e-4 baseline for voltage values."
+}

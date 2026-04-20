@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_regional_market_mapping@1",
+    "task_completion": [
+        {
+            "id": "table_creation_ddl",
+            "description": "Create the 'region_mapping' table with correct schema (Country, RegionCode, RegionName).",
+            "points": 15,
+            "visual_evidence": "SQL editor showing 'CREATE TABLE region_mapping' or the table appearing in the DBeaver database navigator tree under the Chinook database."
+        },
+        {
+            "id": "populate_mapping_table",
+            "description": "Populate the 'region_mapping' table with the specified country-to-region mappings.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing 'INSERT INTO region_mapping' statements or a data grid view of the 'region_mapping' table containing rows like (USA, NA, North America) and (United Kingdom, EMEA, Europe/Middle East/Africa)."
+        },
+        {
+            "id": "create_regional_view",
+            "description": "Create the 'v_regional_sales' view joining invoices and region_mapping.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing 'CREATE VIEW v_regional_sales' with logic for InvoiceCount, TotalRevenue, and AvgOrderValue, or the view appearing in the database navigator."
+        },
+        {
+            "id": "save_sql_script",
+            "description": "Save the DDL/DML script to /home/ga/Documents/scripts/create_regions.sql.",
+            "points": 15,
+            "visual_evidence": "A file explorer window or a 'Save As' dialog showing the file path /home/ga/Documents/scripts/create_regions.sql."
+        },
+        {
+            "id": "export_csv_results",
+            "description": "Export the view results ordered by TotalRevenue descending to the specified CSV path.",
+            "points": 30,
+            "visual_evidence": "DBeaver export wizard or a terminal command showing the export to /home/ga/Documents/exports/regional_sales_summary.csv, and the data sorted with the highest revenue region at the top."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the DBeaver GUI for database operations rather than just executing silent terminal scripts.",
+            "visual_evidence": "Screenshots showing the DBeaver application window, SQL editor tabs, and the Database Navigator."
+        },
+        {
+            "id": "genuine_query_execution",
+            "description": "The agent actually executed queries to see results, not just writing code.",
+            "visual_evidence": "Presence of the 'Results' tab or 'Data' tab in DBeaver showing records from the Chinook database."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent derived the CSV data from the database view rather than manually typing values into a file.",
+            "visual_evidence": "Use of the DBeaver 'Export Data' wizard or a 'SELECT * FROM v_regional_sales' query prior to saving the file."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/Documents/databases/chinook.db. Mapping rules: NA (USA, Canada); LATAM (Brazil, Chile, Argentina); APAC (Australia, India); EMEA (UK, Germany, France, Czech Republic, Austria, Belgium, Denmark, Finland, Hungary, Ireland, Italy, Netherlands, Norway, Poland, Portugal, Spain, Sweden); OTH (all others). The view 'v_regional_sales' must include RegionName, InvoiceCount, TotalRevenue, and AvgOrderValue. The final CSV must be at /home/ga/Documents/exports/regional_sales_summary.csv and the SQL at /home/ga/Documents/scripts/create_regions.sql."
+}

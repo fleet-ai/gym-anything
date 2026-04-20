@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_batch_processing@1",
+    "task_completion": [
+        {
+            "id": "dockerfile_creation",
+            "description": "Create a Dockerfile or build command for the 'book-analyzer:latest' image.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'docker build' or a text editor showing a Dockerfile with the tag 'book-analyzer:latest'."
+        },
+        {
+            "id": "python_script_logic",
+            "description": "Develop a Python script that calculates the 6 required metrics (word count, unique words, top 20 words, avg length, lines, characters).",
+            "points": 15,
+            "visual_evidence": "Code editor or 'cat' command showing Python logic for all 6 specific metrics."
+        },
+        {
+            "id": "pipeline_script_creation",
+            "description": "Create the automation script '~/Desktop/run_pipeline.sh' containing build, parallel run, and merge logic.",
+            "points": 15,
+            "visual_evidence": "File manager showing 'run_pipeline.sh' on the Desktop or a text editor showing the script content."
+        },
+        {
+            "id": "parallel_execution",
+            "description": "Execute the 5 Docker containers in parallel.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing 5 'docker run' commands (likely with '&' for backgrounding) or logs showing concurrent container starts."
+        },
+        {
+            "id": "individual_json_results",
+            "description": "Generate 5 individual JSON result files in '~/projects/book-corpus/results/'.",
+            "points": 15,
+            "visual_evidence": "File manager or 'ls' command showing 5 .json files in the specified results directory."
+        },
+        {
+            "id": "final_merged_report",
+            "description": "Produce the final '~/Desktop/corpus_report.json' with all stats and a total word count summary.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command showing the content of 'corpus_report.json' on the Desktop, containing a 'total word count' field and data for all 5 books."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Verify the agent didn't just echo the expected word counts into a file without running Docker.",
+            "visual_evidence": "Check terminal history for 'docker run' commands and ensure the Python script actually performs file I/O and calculations."
+        },
+        {
+            "id": "genuine_parallelism",
+            "description": "Ensure the agent didn't run the containers sequentially.",
+            "visual_evidence": "Look for the use of '&', 'xargs -P', or 'parallel' in the shell script, rather than a simple for-loop that waits for each container to finish."
+        },
+        {
+            "id": "docker_image_usage",
+            "description": "Verify the 'book-analyzer:latest' image was actually built and used.",
+            "visual_evidence": "Terminal output showing 'docker images' listing the specific tag or 'docker run' referencing that exact image name."
+        }
+    ],
+    "privileged_info_for_vlm": "The final report should show word counts approximately near these values: Pride and Prejudice (~130,415), Moby Dick (~215,845), Sherlock Holmes (~107,558), Frankenstein (~78,106), and Alice in Wonderland (~29,569). The total word count in the summary should be the sum of these five values (approximately 561,493)."
+}

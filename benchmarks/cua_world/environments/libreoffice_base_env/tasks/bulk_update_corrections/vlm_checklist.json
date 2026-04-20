@@ -1,0 +1,53 @@
+{
+    "task_id": "bulk_update_corrections@1",
+    "task_completion": [
+        {
+            "id": "open_database_file",
+            "description": "The agent opens the chinook.odb database file in the database management application.",
+            "points": 10,
+            "visual_evidence": "The database application (e.g., LibreOffice Base) is visible with 'chinook.odb' in the title bar or file path."
+        },
+        {
+            "id": "update_employee_titles",
+            "description": "Update 'Sales Support Agent' to 'Customer Service Representative' in the Employee table.",
+            "points": 25,
+            "visual_evidence": "An SQL execution window or table view showing the UPDATE command or the modified 'Customer Service Representative' values in the Title column of the Employee table."
+        },
+        {
+            "id": "update_customer_countries",
+            "description": "Update 'USA' to 'United States' in the Customer table.",
+            "points": 25,
+            "visual_evidence": "An SQL execution window or table view showing the UPDATE command or the modified 'United States' values in the Country column of the Customer table."
+        },
+        {
+            "id": "update_track_prices",
+            "description": "Update UnitPrice from 0.99 to 1.19 for all tracks with GenreId 1 in the Track table.",
+            "points": 30,
+            "visual_evidence": "An SQL execution window or table view showing the UPDATE command targeting GenreId 1 or the UnitPrice column reflecting 1.19 for Rock tracks."
+        },
+        {
+            "id": "save_database_changes",
+            "description": "The agent saves the changes to the database file.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save' icon, selects 'File > Save', or a 'Changes saved' confirmation message appears."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent uses the database GUI application rather than executing commands in a standalone terminal.",
+            "visual_evidence": "Screenshots show interactions with windows like LibreOffice Base or a similar GUI tool, not just a bash terminal."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent uses bulk update methods (SQL or Replace tool) rather than manually typing over every single row.",
+            "visual_evidence": "The presence of an SQL query window or a 'Find & Replace' dialog for bulk operations."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacts with the actual database software elements, not just creating a text file with the answers.",
+            "visual_evidence": "The cursor and focus indicators are on the database application's UI components (buttons, table cells, query editors)."
+        }
+    ],
+    "privileged_info_for_vlm": "The database file is located at /home/ga/chinook.odb. In the Employee table, 'Sales Support Agent' is the old title and 'Customer Service Representative' is the new one. In the Customer table, 'USA' is the old country and 'United States' is the new one. In the Track table, GenreId 1 corresponds to 'Rock' tracks, which must have their UnitPrice updated from 0.99 to 1.19."
+}

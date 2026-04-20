@@ -1,0 +1,59 @@
+{
+    "task_id": "mars_transfer_trajectory_design@1",
+    "task_completion": [
+        {
+            "id": "gmat_initialization",
+            "description": "GMAT application is launched and the spacecraft is configured in a 200 km circular Earth orbit with 28.5 deg inclination.",
+            "points": 10,
+            "visual_evidence": "GMAT GUI is visible; Spacecraft 'Orbit' tab shows Altitude or SMA corresponding to 200km (approx 6578km SMA) and INC of 28.5."
+        },
+        {
+            "id": "targeting_sequence_setup",
+            "description": "A Target sequence is created in the Mission Tree using a DifferentialCorrector to achieve Mars arrival.",
+            "points": 15,
+            "visual_evidence": "Mission Tree shows a 'Target' sequence containing a 'Vary' command for the TMI burn and an 'Achieve' command for Mars RMAG or RadPer."
+        },
+        {
+            "id": "tmi_burn_execution",
+            "description": "The agent performs the Trans-Mars Injection (TMI) impulsive burn and propagates to Mars.",
+            "points": 20,
+            "visual_evidence": "GMAT Mission Tree shows a 'Maneuver' command (TMI) and a 'Propagate' command with Mars as the stopping condition or target."
+        },
+        {
+            "id": "successful_convergence",
+            "description": "The DifferentialCorrector converges on a solution with a Mars closest approach of less than 500,000 km.",
+            "points": 25,
+            "visual_evidence": "GMAT message window shows 'Targeter converged' or the 'Achieve' status shows a value < 500,000 km for Mars.RMAG/RadPer."
+        },
+        {
+            "id": "results_file_creation",
+            "description": "The agent records C3, TMI DeltaV, TOF, and Closest Approach in the specified results text file.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the content of ~/GMAT_output/mars_transfer_results.txt with the four required numerical values."
+        },
+        {
+            "id": "script_file_saved",
+            "description": "The final GMAT script is saved to the designated output path.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Save As' dialog or a file explorer shows mars_transfer.script saved in ~/GMAT_output/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GMAT GUI to design the trajectory rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with GMAT's Mission Tree, Resource Tree, or Command windows."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "The results in the text file are derived from the GMAT run, not fabricated.",
+            "visual_evidence": "The values in the results.txt file match the values displayed in GMAT's output windows or message logs."
+        },
+        {
+            "id": "requirement_adherence",
+            "description": "The agent accessed the requirements file to determine mission parameters.",
+            "visual_evidence": "Screenshots show the agent opening or cat-ing ~/Desktop/mars_mission_requirements.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The trajectory must be a Type I transfer (TOF between 180-350 days). Valid results should fall within these ranges: Departure C3: 6.0 to 20.0 km^2/s^2; TMI DeltaV: 3.4 to 4.5 km/s; Time of Flight: 180 to 350 days; Mars Closest Approach: < 500,000 km. The output files must be located at /home/ga/GMAT_output/mars_transfer_results.txt and /home/ga/GMAT_output/mars_transfer.script."
+}

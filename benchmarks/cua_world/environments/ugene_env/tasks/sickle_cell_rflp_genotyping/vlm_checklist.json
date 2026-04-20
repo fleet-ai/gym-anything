@@ -1,0 +1,59 @@
+{
+    "task_id": "sickle_cell_rflp_genotyping@1",
+    "task_completion": [
+        {
+            "id": "open_sequences_in_ugene",
+            "description": "Open hbb_wildtype_amplicon.fasta and hbb_mutant_amplicon.fasta in UGENE.",
+            "points": 10,
+            "visual_evidence": "The UGENE interface showing both FASTA files loaded in the Project View or as open sequence tabs."
+        },
+        {
+            "id": "ddei_restriction_digest",
+            "description": "Perform a restriction digest using the DdeI enzyme on both sequences.",
+            "points": 20,
+            "visual_evidence": "The 'Restriction Analysis' or 'Find Restriction Sites' dialog open with 'DdeI' selected, or DdeI annotations appearing on the sequence maps."
+        },
+        {
+            "id": "export_wildtype_genbank",
+            "description": "Export the annotated wild-type sequence as a GenBank file to the results folder.",
+            "points": 15,
+            "visual_evidence": "The 'Export as GenBank' dialog showing the path ~/UGENE_Data/rflp_genotyping/results/hbb_wildtype_ddei.gb."
+        },
+        {
+            "id": "export_mutant_genbank",
+            "description": "Export the annotated mutant sequence as a GenBank file to the results folder.",
+            "points": 15,
+            "visual_evidence": "The 'Export as GenBank' dialog showing the path ~/UGENE_Data/rflp_genotyping/results/hbb_mutant_ddei.gb."
+        },
+        {
+            "id": "calculate_fragment_lengths",
+            "description": "Identify the correct number of sites and fragment lengths for both alleles.",
+            "points": 20,
+            "visual_evidence": "The UGENE 'Digest Sequence' results table or 'Annotations' list showing 2 sites (3 fragments) for WT and 1 site (2 fragments) for Mutant, with lengths matching 100, 97, 203 (WT) and 100, 300 (Mutant)."
+        },
+        {
+            "id": "create_diagnostic_report",
+            "description": "Create the genotyping_report.txt with the required data and comparison.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing genotyping_report.txt containing the specific fragment lengths (100, 97, 203 vs 100, 300) and a concluding statement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI for the restriction analysis rather than just command-line tools.",
+            "visual_evidence": "Screenshots showing the UGENE application window, menus, and dialog boxes being interacted with."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The agent did not simply write the report without performing the analysis in UGENE.",
+            "visual_evidence": "Sequence of screenshots showing the analysis steps in UGENE occurring before the report is finalized."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The GenBank files were exported from within the UGENE interface.",
+            "visual_evidence": "The UGENE 'Export' or 'Save' dialogs visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The Wild-type (WT) amplicon has 2 DdeI sites, resulting in 3 fragments of lengths 100, 97, and 203 bp. The Mutant amplicon has 1 DdeI site, resulting in 2 fragments of lengths 100 and 300 bp. The DdeI recognition site is CTNAG. The report must be saved at ~/UGENE_Data/rflp_genotyping/results/genotyping_report.txt and the GenBank files must be in the same results directory."
+}

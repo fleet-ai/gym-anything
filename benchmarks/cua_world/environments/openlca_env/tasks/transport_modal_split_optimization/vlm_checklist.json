@@ -1,0 +1,59 @@
+{
+    "task_id": "transport_modal_split_optimization@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database and TRACI 2.1 methods into openLCA.",
+            "points": 10,
+            "visual_evidence": "The openLCA navigation pane shows the USLCI database and TRACI 2.1 impact methods loaded in the library."
+        },
+        {
+            "id": "process_creation",
+            "description": "Create a new process named 'freight_route_optimized'.",
+            "points": 15,
+            "visual_evidence": "A process editor tab is open in openLCA with the name 'freight_route_optimized' visible in the 'General information' section."
+        },
+        {
+            "id": "parameter_definition",
+            "description": "Define the 'rail_share' parameter within the process.",
+            "points": 15,
+            "visual_evidence": "The 'Parameters' tab of the 'freight_route_optimized' process shows a parameter named 'rail_share' with a value between 0.0 and 1.0."
+        },
+        {
+            "id": "input_modeling",
+            "description": "Model the transport inputs using the rail_share parameter for 2000 t*km total.",
+            "points": 20,
+            "visual_evidence": "The 'Inputs/Outputs' tab shows 'Transport, combination truck, diesel' and 'Transport, train, diesel' with amounts calculated using formulas involving 'rail_share' and '2000' (e.g., 2000 * rail_share)."
+        },
+        {
+            "id": "impact_calculation",
+            "description": "Run a calculation using TRACI 2.1 to find the Global Warming impact.",
+            "points": 20,
+            "visual_evidence": "A 'Calculation results' tab is visible showing 'TRACI 2.1' as the selected method and 'Global warming' as an impact category with a result value."
+        },
+        {
+            "id": "report_generation",
+            "description": "Write the minimum rail share and GWP impact to the optimization_report.txt file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows the file ~/LCA_Results/optimization_report.txt containing a rail share (2 decimal places) and a GWP value <= 160 kg CO2 eq."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA graphical user interface for modeling and calculation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with openLCA menus, tabs, and dialog boxes rather than just executing scripts in a terminal."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The results in the report match the values shown in the openLCA calculation result UI.",
+            "visual_evidence": "The GWP value and rail_share parameter in the final report correspond to the values visible in the openLCA software windows."
+        },
+        {
+            "id": "no_hardcoded_answer",
+            "description": "The agent performed iterative steps or used the parameter tool to find the share, rather than typing the answer immediately.",
+            "visual_evidence": "The trajectory shows the agent adjusting the 'rail_share' value or using the 'Sensitivity analysis'/'Parameter' tools before finalizing the report."
+        }
+    ],
+    "privileged_info_for_vlm": "The target GWP limit is 160.0 kg CO2 eq for a 2000 t*km transport task. Based on USLCI data, a diesel truck emits ~0.1109 kg CO2/tkm and a diesel train emits ~0.0255 kg CO2/tkm. To meet the 160kg limit: (2000 * (1-x) * 0.1109) + (2000 * x * 0.0255) = 160. Solving for x (rail_share) yields approximately 0.36. The agent's report must show a rail_share of approximately 0.36 or higher and a GWP result <= 160.0. The process name must be 'freight_route_optimized' and the parameter name 'rail_share'."
+}

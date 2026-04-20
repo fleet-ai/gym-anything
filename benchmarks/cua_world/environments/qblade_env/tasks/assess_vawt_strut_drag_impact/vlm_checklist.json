@@ -1,0 +1,59 @@
+{
+    "task_id": "assess_vawt_strut_drag_impact@1",
+    "task_completion": [
+        {
+            "id": "rotor_geometry_setup",
+            "description": "Configure the baseline H-Rotor VAWT geometry (3 blades, Radius=2m, Height=4m, Chord=0.25m, NACA 0018).",
+            "points": 15,
+            "visual_evidence": "Screenshots of the rotor design interface showing the specified dimensions (R=2, H=4, c=0.25) and airfoil selection (NACA 0018)."
+        },
+        {
+            "id": "baseline_simulation_run",
+            "description": "Execute DMS simulations for the baseline configuration (TSR 1-6, Step 0.5, Wind Speed 12m/s).",
+            "points": 20,
+            "visual_evidence": "Simulation setup or progress window showing the TSR range (1 to 6) and wind speed (12m/s) for the baseline rotor."
+        },
+        {
+            "id": "strut_configuration_setup",
+            "description": "Add support struts to the rotor (2 per blade, Strut Chord=0.05m, Strut Cd=1.2).",
+            "points": 15,
+            "visual_evidence": "Strut configuration menu or geometry view showing 2 struts per blade with chord 0.05m and drag coefficient 1.2."
+        },
+        {
+            "id": "strutted_simulation_run",
+            "description": "Execute DMS simulations for the configuration with added struts.",
+            "points": 20,
+            "visual_evidence": "Simulation results or progress bar indicating the strutted model is being analyzed across the same TSR range."
+        },
+        {
+            "id": "project_saved",
+            "description": "Save the project to the specified path /home/ga/Documents/projects/vawt_strut_study.wpa.",
+            "points": 10,
+            "visual_evidence": "File explorer or 'Save As' dialog showing the project path /home/ga/Documents/projects/vawt_strut_study.wpa."
+        },
+        {
+            "id": "report_generation",
+            "description": "Create the final report at /home/ga/Documents/projects/strut_loss_report.txt with required metrics.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the report file containing Baseline Max Cp, Strutted Max Cp, and the percentage reduction."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the simulation software GUI rather than just writing a text file manually.",
+            "visual_evidence": "Screenshots showing the simulation software interface (e.g., QBlade or similar VAWT tool) being actively manipulated."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The Cp values in the report match the values displayed in the simulation software's plots or tables.",
+            "visual_evidence": "Comparison between the final report text and the Cp vs TSR curves/tables shown in the software GUI."
+        },
+        {
+            "id": "no_precomputed_shortcuts",
+            "description": "The agent did not simply copy-paste the final report from a hidden source without performing the simulation steps.",
+            "visual_evidence": "Sequential screenshots showing the setup and execution of the simulation before the report is created."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline H-Rotor with NACA 0018 airfoils typically yields a maximum Power Coefficient (Cp) between 0.3 and 0.55. The project must be saved specifically to /home/ga/Documents/projects/vawt_strut_study.wpa and the report to /home/ga/Documents/projects/strut_loss_report.txt. Ensure the TSR range used is 1 to 6 with 0.5 increments."
+}

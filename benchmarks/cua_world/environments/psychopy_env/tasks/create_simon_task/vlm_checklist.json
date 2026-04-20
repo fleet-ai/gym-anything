@@ -1,0 +1,59 @@
+{
+    "task_id": "create_simon_task@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a CSV conditions file with the required columns and 4 unique combinations of color and position.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet editor or text editor showing 'simon_conditions.csv' with columns 'color', 'pos', and 'corrAns' and at least 4 rows of data."
+        },
+        {
+            "id": "instructions_routine",
+            "description": "Create an 'instructions' routine in PsychoPy Builder containing welcome text.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder 'Flow' pane showing a routine named 'instructions' and the 'Routine' pane showing a Text component."
+        },
+        {
+            "id": "trial_routine_stimulus",
+            "description": "Create a trial routine with a circle stimulus whose color and position are defined by variables.",
+            "points": 25,
+            "visual_evidence": "PsychoPy 'Routine' pane showing a Polygon component with color set to '$color' and position set to '$pos' (or similar variables from the CSV)."
+        },
+        {
+            "id": "trial_routine_keyboard",
+            "description": "Add a keyboard component to the trial routine with specific key mappings (left for red, right for green).",
+            "points": 20,
+            "visual_evidence": "Keyboard component properties dialog showing 'Allowed keys' including 'left' and 'right', and 'Store correct' referencing '$corrAns'."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "Insert a loop around the trial routine linked to the specified conditions file.",
+            "points": 15,
+            "visual_evidence": "PsychoPy 'Flow' pane showing a loop (e.g., 'trials') surrounding the trial routine, with the loop properties dialog showing the path to 'simon_conditions.csv'."
+        },
+        {
+            "id": "save_experiment",
+            "description": "Save the experiment to the specified file path.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing 'simon_task.psyexp' saved in '/home/ga/PsychoPyExperiments/simon_task/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing code or using the terminal.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with PsychoPy components, dialog boxes, and the Flow pane."
+        },
+        {
+            "id": "genuine_csv_creation",
+            "description": "The agent manually entered or generated the CSV data within the environment.",
+            "visual_evidence": "Screenshots of the agent using a CSV editor, LibreOffice Calc, or a text editor to create the conditions file."
+        },
+        {
+            "id": "no_premade_shortcuts",
+            "description": "The agent did not simply open an existing completed experiment file.",
+            "visual_evidence": "The sequence of screenshots shows the progression of adding routines and components to a blank or initial PsychoPy project."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/simon_task/simon_task.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/simon_task/simon_conditions.csv and contain columns 'color', 'pos', and 'corrAns'. Positions must be (-0.5, 0) for Left and (0.5, 0) for Right. Red maps to 'left' and Green maps to 'right'. There must be 4 unique condition rows."
+}

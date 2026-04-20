@@ -1,0 +1,59 @@
+{
+    "task_id": "mbp_conformational_morph@1",
+    "task_completion": [
+        {
+            "id": "fetch_and_clean_structures",
+            "description": "Fetch 1OMP and 1ANF from PDB and remove solvent/heteroatoms.",
+            "points": 10,
+            "visual_evidence": "PyMOL object list showing '1OMP' and '1ANF' (or similar names) with no red dots (water) or non-polymer spheres/sticks visible in the viewport."
+        },
+        {
+            "id": "structural_alignment",
+            "description": "Align the two protein structures to a common reference frame.",
+            "points": 15,
+            "visual_evidence": "The PyMOL viewport shows the two protein structures overlapping/superimposed rather than being far apart in space."
+        },
+        {
+            "id": "morph_generation",
+            "description": "Generate a 30-state morph trajectory between the two states.",
+            "points": 25,
+            "visual_evidence": "A new object (likely named 'morph' or 'm1') appears in the object list, and the PyMOL playback slider at the bottom shows 30 frames/states."
+        },
+        {
+            "id": "save_files",
+            "description": "Save the morph PDB and the superposition image to the specified directory.",
+            "points": 20,
+            "visual_evidence": "Terminal output or a file browser showing the creation of 'mbp_morph.pdb' and 'mbp_superposition.png' in the ~/PyMOL_Data/ directory."
+        },
+        {
+            "id": "visual_representation",
+            "description": "Create a visual representation of the superposition with different colors.",
+            "points": 15,
+            "visual_evidence": "The PyMOL viewport or the saved PNG shows two distinct protein structures superimposed, each colored differently (e.g., one green, one cyan)."
+        },
+        {
+            "id": "structural_report",
+            "description": "Write a report with PDB IDs, RMSD, and frame count.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command showing 'mbp_morph_report.txt' containing the text '1OMP' (open), '1ANF' (closed), an RMSD value, and the number 30."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the PyMOL GUI or command line interface within the application rather than just creating files via script.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the structures rendered in the 3D viewport."
+        },
+        {
+            "id": "genuine_alignment_rmsd",
+            "description": "The RMSD value in the report should reflect the actual alignment performed in the session.",
+            "visual_evidence": "The RMSD value in the report matches the output text visible in the PyMOL upper command history area after the 'align' or 'super' command was run."
+        },
+        {
+            "id": "no_placeholder_content",
+            "description": "The agent did not use placeholder images or empty files.",
+            "visual_evidence": "The 'mbp_superposition.png' file is shown to contain a valid protein structure render, not a blank or generic image."
+        }
+    ],
+    "privileged_info_for_vlm": "The open (apo) state is 1OMP. The closed (holo) state is 1ANF. The morph must contain exactly 30 states. The files must be saved in ~/PyMOL_Data/. 1OMP has no ligands, while 1ANF contains maltose; both must have heteroatoms removed before morphing."
+}

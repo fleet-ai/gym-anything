@@ -1,0 +1,53 @@
+{
+    "task_id": "detect_latency_spikes_tcp_delta@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_file",
+            "description": "Open the source packet capture file in Wireshark or a similar tool.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows Wireshark or a terminal tool (like tshark) opening '200722_tcp_anon.pcapng'."
+        },
+        {
+            "id": "apply_latency_filter",
+            "description": "Apply a filter to identify packets with tcp.time_delta > 0.2.",
+            "points": 20,
+            "visual_evidence": "The display filter bar shows 'tcp.time_delta > 0.2' or a similar command-line filter is executed."
+        },
+        {
+            "id": "export_filtered_packets",
+            "description": "Export the filtered packets to the specified pcapng file.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' or 'Export Specified Packets' dialog box showing the filename 'latency_spikes.pcapng' or a terminal command performing the export."
+        },
+        {
+            "id": "calculate_report_values",
+            "description": "Identify the total count, worst stream index, and max delta value.",
+            "points": 25,
+            "visual_evidence": "The agent is seen inspecting the packet list to find the packet with the highest delta (8.65s) and counting the 5 matching packets."
+        },
+        {
+            "id": "generate_report_file",
+            "description": "Create the latency_report.txt file with the required key-value pairs.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat/echo' command shows the creation of 'latency_report.txt' containing total_spike_packets, worst_stream_index, and max_delta_seconds."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the answers without performing the analysis.",
+            "visual_evidence": "The agent must be seen interacting with the pcap file (filtering or sorting) before writing the report."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific file paths requested in the prompt.",
+            "visual_evidence": "Screenshots show the exact paths ~/Documents/captures/latency_spikes.pcapng and ~/Documents/captures/latency_report.txt."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent used appropriate tools (Wireshark/tshark) rather than just creating a dummy file.",
+            "visual_evidence": "Visual confirmation of network analysis software or command-line packet processing tools in use."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file '200722_tcp_anon.pcapng' contains exactly 5 packets with a tcp.time_delta > 0.2 seconds. The maximum delta is 8.651661 seconds, which occurs in TCP stream index 1 (Frame 26). The report must reflect: total_spike_packets: 5, worst_stream_index: 1, and max_delta_seconds: 8.651661."
+}

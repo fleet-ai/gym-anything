@@ -1,0 +1,53 @@
+{
+    "task_id": "segment_genre_diversity@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "The agent opens the Chinook database in a database management tool or viewer.",
+            "points": 10,
+            "visual_evidence": "A database application (like DB Browser for SQLite or a SQL editor) is visible showing the 'Customer' table or the database schema."
+        },
+        {
+            "id": "add_segment_column",
+            "description": "The agent adds a new column named 'Segment' with type VARCHAR to the 'Customer' table.",
+            "points": 20,
+            "visual_evidence": "An ALTER TABLE statement or a GUI table modification window showing the addition of a 'Segment' column to the 'Customer' table."
+        },
+        {
+            "id": "calculate_genre_diversity",
+            "description": "The agent executes a query to count distinct genres per customer to determine the segment values.",
+            "points": 25,
+            "visual_evidence": "SQL code or query results showing a join between Customer, Invoice, InvoiceLine, and Track tables to count distinct GenreId per CustomerId."
+        },
+        {
+            "id": "populate_segment_values",
+            "description": "The agent updates the 'Segment' column with 'Eclectic' for customers with 4+ genres and 'Casual' for others.",
+            "points": 30,
+            "visual_evidence": "An UPDATE statement or data grid edits showing the 'Segment' column being filled with the strings 'Eclectic' or 'Casual' based on the genre count logic."
+        },
+        {
+            "id": "save_database",
+            "description": "The agent saves or commits the changes to the database file.",
+            "points": 15,
+            "visual_evidence": "The agent clicking a 'Write Changes', 'Save', or 'Commit' button, or executing a COMMIT command in the SQL editor."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_hardcoding",
+            "description": "The agent should not manually type 'Eclectic' for every row without evidence of a query or logic-based update.",
+            "visual_evidence": "The presence of an UPDATE SQL statement with a CASE or JOIN, rather than 59 individual manual cell edits."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacts with the database software UI rather than just using terminal commands if a GUI is available.",
+            "visual_evidence": "Mouse cursor movements, menu selections, or button clicks within the database management application."
+        },
+        {
+            "id": "data_persistence_check",
+            "description": "The agent verifies the data is saved by refreshing or re-querying the table.",
+            "visual_evidence": "A final SELECT * FROM Customer query showing the populated 'Segment' column in the data browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The target table is 'Customer'. The new column must be named 'Segment' (VARCHAR). The logic for 'Eclectic' is >= 4 distinct genres; 'Casual' is < 4. In the standard Chinook dataset, all 59 customers actually have 4 or more distinct genres, meaning all customers should technically be labeled 'Eclectic' if the logic is applied correctly, though the agent must still implement the conditional logic requested."
+}

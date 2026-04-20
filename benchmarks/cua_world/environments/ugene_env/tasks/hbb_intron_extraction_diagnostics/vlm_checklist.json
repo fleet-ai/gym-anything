@@ -1,0 +1,53 @@
+{
+    "task_id": "hbb_intron_extraction_diagnostics@1",
+    "task_completion": [
+        {
+            "id": "open_hbb_genomic",
+            "description": "Open the HBB genomic GenBank file in UGENE",
+            "points": 10,
+            "visual_evidence": "UGENE window showing 'hbb_genomic.gb' loaded in the project view or sequence editor with three existing exon annotations visible."
+        },
+        {
+            "id": "annotate_introns",
+            "description": "Identify and create two new 'intron' annotations between the existing exons",
+            "points": 25,
+            "visual_evidence": "The sequence editor showing two new annotations labeled 'intron' spanning the gaps between the exons (specifically coordinates 143..272 and 496..1345)."
+        },
+        {
+            "id": "export_genbank",
+            "description": "Export the updated sequence with intron annotations to a new GenBank file",
+            "points": 15,
+            "visual_evidence": "The 'Export' or 'Save as' dialog in UGENE showing the file path '~/UGENE_Data/thalassemia_diagnostics/results/hbb_annotated_with_introns.gb'."
+        },
+        {
+            "id": "export_intron_fastas",
+            "description": "Extract and save the raw nucleotide sequences for Intron 1 and Intron 2 as FASTA files",
+            "points": 20,
+            "visual_evidence": "UGENE interface showing the extraction of intron sequences to 'intron1.fasta' and 'intron2.fasta' in the results directory."
+        },
+        {
+            "id": "generate_statistics_report",
+            "description": "Compile a statistics report including coordinates, length, and GC content",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal view showing 'intron_statistics.txt' containing: Intron 1 (143..272, 130 bp), Intron 2 (496..1345, 850 bp), and GC content percentages with at least one decimal place."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the UGENE GUI to perform sequence analysis and annotation",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with UGENE menus, annotation editors, and export dialogs rather than just terminal commands."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "GC content and length were derived from the software/sequence, not hardcoded",
+            "visual_evidence": "The agent is seen using UGENE's 'Statistics' panel or 'Sequence Information' tool to find GC content before writing the report."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The agent verified the existence of the output files in the correct directory",
+            "visual_evidence": "A file manager or 'ls' command showing the four required files in the 'results' folder."
+        }
+    ],
+    "privileged_info_for_vlm": "The HBB genomic fragment is 1608 bp. The provided exon annotations are 51..142, 273..495, and 1346..1474. Therefore, Intron 1 must be coordinates 143..272 (Length: 130 bp) and Intron 2 must be 496..1345 (Length: 850 bp). GC content for Intron 1 is approximately 48.5% and Intron 2 is approximately 37.1%. The agent must use the UGENE GUI for the annotations and exports."
+}

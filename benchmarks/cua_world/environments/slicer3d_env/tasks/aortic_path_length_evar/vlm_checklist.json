@@ -1,0 +1,53 @@
+{
+    "task_id": "aortic_path_length_evar@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT scan is loaded into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows a CT volume in the axial, sagittal, and coronal views."
+        },
+        {
+            "id": "aortic_curve_creation",
+            "description": "An open curve markup is created following the aortic centerline from the hiatus to the bifurcation.",
+            "points": 30,
+            "visual_evidence": "A curve markup named 'aortic_curve' or similar is visible in the 3D view and slice viewers, tracing the aorta; the Markups module shows a list of control points."
+        },
+        {
+            "id": "straight_line_ruler",
+            "description": "A straight-line ruler markup is placed between the aortic hiatus and the bifurcation.",
+            "points": 20,
+            "visual_evidence": "A line/ruler markup is visible connecting the two landmarks; the Markups module shows a 'Line' or 'Ruler' type entry."
+        },
+        {
+            "id": "save_markup_files",
+            "description": "The curve and straight-line markups are saved to the specified JSON file paths.",
+            "points": 20,
+            "visual_evidence": "The Save Data dialog or a terminal command shows files being saved to ~/Documents/SlicerData/AMOS/aortic_curve.mrk.json and aortic_straight.mrk.json."
+        },
+        {
+            "id": "generate_report_json",
+            "description": "A final JSON report is created with the required measurement fields.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output displays evar_measurements.json containing path_length_mm, straight_length_mm, and tortuosity_ratio."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform measurements rather than just writing a script to generate dummy files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Slicer Markups module or placing points in the slice viewers."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual length of the markups in the GUI.",
+            "visual_evidence": "The values in the final JSON report (e.g., path_length_mm) match the 'Length' or 'Size' values displayed in the Slicer Markups module UI."
+        },
+        {
+            "id": "no_precomputed_values",
+            "description": "The agent did not simply echo pre-known values into a file without opening the data.",
+            "visual_evidence": "The CT volume is clearly visible and manipulated (scrolling through slices) before the final report is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The aorta in the AMOS dataset is typically labeled as segment 8 (though some metadata may incorrectly suggest 10). The aortic hiatus is located where the aorta passes through the diaphragm (approx. T12 level), and the bifurcation occurs where it splits into the common iliac arteries (approx. L4 level). The tortuosity ratio must be calculated as (path_length / straight_length)."
+}

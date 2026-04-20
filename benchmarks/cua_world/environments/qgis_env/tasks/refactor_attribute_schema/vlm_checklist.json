@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_attribute_schema@1",
+    "task_completion": [
+        {
+            "id": "load_legacy_layer",
+            "description": "The 'legacy_stations' layer is loaded into the GIS software interface.",
+            "points": 10,
+            "visual_evidence": "The layer name 'legacy_stations' is visible in the Layers panel or Table of Contents."
+        },
+        {
+            "id": "rename_fields",
+            "description": "Fields STN_ID_X, LOC_NM, READ_VAL, and OBS_DT are renamed to station_id, name, temperature, and date respectively.",
+            "points": 25,
+            "visual_evidence": "The attribute table or field properties window shows the new field names: 'station_id', 'name', 'temperature', and 'date'."
+        },
+        {
+            "id": "change_field_types",
+            "description": "The 'temperature' field type is changed to Double/Real and 'date' is changed to Date.",
+            "points": 20,
+            "visual_evidence": "The field properties or metadata window shows 'temperature' as a Double/Real/Decimal type and 'date' as a Date type."
+        },
+        {
+            "id": "remove_forbidden_fields",
+            "description": "The fields 'LEGACY_CD' and 'TECH_N' are removed from the layer schema.",
+            "points": 15,
+            "visual_evidence": "The attribute table or field list no longer displays 'LEGACY_CD' or 'TECH_N'."
+        },
+        {
+            "id": "export_processed_layer",
+            "description": "The processed layer is exported to the specified GeoJSON file path.",
+            "points": 30,
+            "visual_evidence": "An export dialog or file browser shows the destination path '/home/ga/GIS_Data/exports/clean_stations.geojson' and the format as GeoJSON."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI to perform refactoring rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show the agent interacting with attribute tables, field calculators, or layer property dialogs within the GIS application."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent refactored the existing schema rather than manually typing in all 10 station records.",
+            "visual_evidence": "The agent is seen using 'Rename', 'Delete Field', or 'Refactor Fields' tools rather than the 'Add Feature' tool for every row."
+        },
+        {
+            "id": "actual_file_export",
+            "description": "The agent performed a genuine export/save-as action.",
+            "visual_evidence": "The 'Save Layer As' or 'Export' dialog is visible with the correct file path and format selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains 10 features. The final output must be a GeoJSON at /home/ga/GIS_Data/exports/clean_stations.geojson. Required fields (and types) are: station_id (String), name (String), temperature (Double/Real), and date (Date). Forbidden fields that must be removed or renamed are: STN_ID_X, LOC_NM, READ_VAL, OBS_DT, LEGACY_CD, and TECH_N."
+}

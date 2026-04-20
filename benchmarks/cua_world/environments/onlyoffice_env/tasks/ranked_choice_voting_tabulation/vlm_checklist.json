@@ -1,0 +1,59 @@
+{
+    "task_id": "ranked_choice_voting_tabulation@1",
+    "task_completion": [
+        {
+            "id": "open_source_csv",
+            "description": "Agent opens the source CSV file 'alaska_2022_cvr_sample.csv' in a spreadsheet application or data tool.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like LibreOffice Calc) or a data processing tool showing the raw CVR data with columns like 'Rank_1_Choice' and 'Rank_2_Choice'."
+        },
+        {
+            "id": "round_1_tabulation",
+            "description": "Agent calculates the Round 1 totals for Peltola, Palin, and Begich.",
+            "points": 20,
+            "visual_evidence": "A table or cell range showing Round 1 counts: Peltola (1985), Palin (1560), and Begich (1410)."
+        },
+        {
+            "id": "candidate_elimination",
+            "description": "Agent identifies Nick Begich as the candidate to be eliminated based on having the fewest Round 1 votes.",
+            "points": 15,
+            "visual_evidence": "Visual indication (highlighting, notes, or a new table) showing Begich is eliminated for Round 2."
+        },
+        {
+            "id": "vote_redistribution",
+            "description": "Agent redistributes Begich's votes to Palin and Peltola based on the 'Rank_2_Choice' column.",
+            "points": 25,
+            "visual_evidence": "Calculations or a table showing the transfer of votes: 710 to Palin and 405 to Peltola."
+        },
+        {
+            "id": "final_tabulation_sheet",
+            "description": "Agent creates a specific 'Tabulation' sheet within the workbook showing the final results.",
+            "points": 15,
+            "visual_evidence": "A sheet tab named 'Tabulation' is visible in the spreadsheet application."
+        },
+        {
+            "id": "save_final_xlsx",
+            "description": "Agent saves the completed analysis as 'rcv_tabulation_final.xlsx' in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog or the window title bar showing the file path '~/Documents/Spreadsheets/rcv_tabulation_final.xlsx'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a spreadsheet GUI (like LibreOffice Calc) rather than just executing a single python script to generate the file.",
+            "visual_evidence": "Screenshots show the agent interacting with spreadsheet cells, menus, or formulas."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply type the final numbers without showing the source data or intermediate steps.",
+            "visual_evidence": "The agent is seen scrolling through the 5,000-row CSV or using pivot tables/formulas to derive the counts."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The agent saves the file through the application interface.",
+            "visual_evidence": "The 'File' menu or 'Save' icons are used within the spreadsheet software."
+        }
+    ],
+    "privileged_info_for_vlm": "The ground truth values for the tabulation are: Round 1: Mary Peltola = 1985, Sarah Palin = 1560, Nick Begich = 1410. Nick Begich is eliminated. Transfers from Begich: 710 votes go to Sarah Palin, 405 votes go to Mary Peltola. Final Round 2 totals should reflect these additions. The output must be an .xlsx file with a sheet named 'Tabulation'."
+}

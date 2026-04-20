@@ -1,0 +1,53 @@
+{
+    "task_id": "measure_tumor_diameter@1",
+    "task_completion": [
+        {
+            "id": "slicer_interface_loaded",
+            "description": "3D Slicer application is open and the FLAIR MRI volume is loaded into the viewer.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer GUI is visible with brain MRI scans displayed in the Red (axial), Green (coronal), and Yellow (sagittal) slice views."
+        },
+        {
+            "id": "axial_slice_navigation",
+            "description": "The agent has navigated to an axial slice showing the brain tumor at a significant cross-section.",
+            "points": 15,
+            "visual_evidence": "The Red slice viewer shows a clear hyperintense (bright) lesion characteristic of a tumor on a FLAIR sequence."
+        },
+        {
+            "id": "measurement_tool_active",
+            "description": "The agent has selected a measurement tool (e.g., Markups Line or Ruler).",
+            "points": 15,
+            "visual_evidence": "The 'Markups' module is active in the sidebar or the line/ruler icon is highlighted in the toolbar."
+        },
+        {
+            "id": "maximum_diameter_placed",
+            "description": "A measurement line is drawn across the widest part of the tumor on the axial slice.",
+            "points": 30,
+            "visual_evidence": "A line with two endpoints is visible spanning the maximum extent of the bright tumor mass in the axial view."
+        },
+        {
+            "id": "screenshot_saved_path",
+            "description": "The agent saves the screenshot to the specific required directory and filename.",
+            "points": 30,
+            "visual_evidence": "A file browser or save dialog shows the path '~/Documents/SlicerData/Screenshots/tumor_measurement.png' or a terminal command confirms the move/save to this exact location."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Slicer GUI tools to perform the measurement rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the slice views or the Markups toolbar."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The measurement was derived from the image, not by typing a pre-known value into a label.",
+            "visual_evidence": "The measurement line is physically placed on the tumor pixels in the viewer."
+        },
+        {
+            "id": "authentic_software_use",
+            "description": "The agent interacted with the 3D Slicer application directly.",
+            "visual_evidence": "The standard 3D Slicer layout, including the slice controllers and module panel, is visible throughout the process."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires measuring a tumor on a FLAIR MRI. FLAIR images typically show tumors as bright (hyperintense) areas against darker brain tissue. The measurement must be the 'maximum diameter' on the 'axial slice' (typically the Red slice viewer in Slicer). Ensure the measurement line spans the widest part of the bright lesion."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "freezing_solidification_risk@1",
+    "task_completion": [
+        {
+            "id": "access_cameo_chemicals",
+            "description": "Agent navigates to the CAMEO Chemicals website in a web browser.",
+            "points": 10,
+            "visual_evidence": "Browser window showing the CAMEO Chemicals homepage or search interface (cameochemicals.noaa.gov)."
+        },
+        {
+            "id": "search_chemicals",
+            "description": "Agent searches for the specified chemicals (Acetic acid, Acetone, Nitrobenzene, Toluene, Phenol) on the CAMEO site.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing search queries or search result pages for the individual chemicals listed in the task."
+        },
+        {
+            "id": "extract_melting_points",
+            "description": "Agent views the chemical datasheets to find melting or freezing point data.",
+            "points": 25,
+            "visual_evidence": "Screenshots of the 'Physical Properties' section for the chemicals on the CAMEO Chemicals website."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates a text file at the specified path '~/Documents/freezing_risk_report.txt'.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the creation or saving of a file at the correct path."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the correct melting points and solidification status for all five chemicals.",
+            "points": 20,
+            "visual_evidence": "The content of the report file showing the correct values and YES/NO determinations based on the -15 °C threshold."
+        },
+        {
+            "id": "report_format_and_summary",
+            "description": "The report follows the exact required format including TOTAL_AT_RISK and PRIORITY_MOVE_LIST.",
+            "points": 10,
+            "visual_evidence": "The final report file showing the specific 'CHEMICAL: ... | MELTING_POINT_C: ...' format and the summary lines at the bottom."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_web_interaction",
+            "description": "Agent actually browsed the CAMEO website rather than using pre-existing knowledge.",
+            "visual_evidence": "Browser history or active tabs showing the NOAA CAMEO domain; visual evidence of scrolling through the chemical datasheets."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "Agent did not simply echo the final report into a file without researching.",
+            "visual_evidence": "Sequential screenshots showing the research process (searching, reading) before the report is written."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent used the GUI or standard file system paths as requested, not a temporary directory.",
+            "visual_evidence": "File explorer or text editor title bar showing the path '~/Documents/freezing_risk_report.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "Verified Melting Points from CAMEO Chemicals: 1. Acetic acid, glacial: 16.6 °C (Solidifies: YES). 2. Acetone: -94.7 °C (Solidifies: NO). 3. Nitrobenzene: 5.7 °C (Solidifies: YES). 4. Toluene: -95 °C (Solidifies: NO). 5. Phenol: 40.5 °C (Solidifies: YES). TOTAL_AT_RISK: 3. PRIORITY_MOVE_LIST: Acetic acid, glacial, Nitrobenzene, Phenol. Note: Solidification occurs if Melting Point > -15 °C."
+}

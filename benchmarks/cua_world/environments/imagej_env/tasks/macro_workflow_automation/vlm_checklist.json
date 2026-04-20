@@ -1,0 +1,59 @@
+{
+    "task_id": "macro_workflow_automation@1",
+    "task_completion": [
+        {
+            "id": "open_blobs_sample",
+            "description": "The 'Blobs' sample image is opened in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "An image window titled 'blobs.gif' or 'blobs.tif' is visible on the screen."
+        },
+        {
+            "id": "open_macro_editor",
+            "description": "The Script Editor or a new Macro window is opened to write the script.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Script Editor' or 'New Macro' is visible, containing a text area for code."
+        },
+        {
+            "id": "script_content_gaussian",
+            "description": "The script contains the Gaussian Blur command with sigma 2.0.",
+            "points": 20,
+            "visual_evidence": "The text 'Gaussian Blur...' and 'sigma=2' (or 'sigma=2.0') is visible within the script editor window."
+        },
+        {
+            "id": "script_content_threshold",
+            "description": "The script contains the Otsu thresholding command.",
+            "points": 20,
+            "visual_evidence": "The text 'setAutoThreshold(\"Otsu\")' or 'run(\"Threshold...\", \"method=Otsu\")' is visible in the script editor."
+        },
+        {
+            "id": "script_content_analyze",
+            "description": "The script contains the Analyze Particles command with size 20-Infinity and outlines.",
+            "points": 20,
+            "visual_evidence": "The text 'Analyze Particles...' with parameters 'size=20-Infinity' and 'show=Outlines' is visible in the script editor."
+        },
+        {
+            "id": "save_macro_file",
+            "description": "The macro is saved as 'standard_protocol.ijm' in the specified directory.",
+            "points": 20,
+            "visual_evidence": "A 'Save As' dialog or the Script Editor title bar shows the path '/home/ga/ImageJ_Data/macros/standard_protocol.ijm'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI/Script Editor rather than just creating the file via terminal.",
+            "visual_evidence": "Screenshots show the Fiji application window, menu navigation (e.g., File > New > Script), and typing within the Fiji Script Editor."
+        },
+        {
+            "id": "genuine_macro_recording",
+            "description": "The agent used the Macro Recorder or manual typing in the editor rather than a simple copy-paste of a pre-written block.",
+            "visual_evidence": "Sequential screenshots show the script being built or the 'Recorder' window active alongside the editor."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent used the specific parameters required by the task, not default or placeholder values.",
+            "visual_evidence": "The script explicitly shows 'sigma=2', 'Otsu', and 'size=20-Infinity' as requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The macro must be saved to /home/ga/ImageJ_Data/macros/standard_protocol.ijm. Correct ImageJ macro syntax for the requirements: 1. Gaussian Blur: run(\"Gaussian Blur...\", \"sigma=2\"); 2. Otsu: setAutoThreshold(\"Otsu dark\"); 3. Analyze Particles: run(\"Analyze Particles...\", \"size=20-Infinity show=Outlines\"). The 'Blobs' image is a standard Fiji sample found under File > Open Samples > Blobs."
+}

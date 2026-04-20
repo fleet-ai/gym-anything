@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_av_idm_impact@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "The agent runs the baseline SUMO simulation for the Bologna Acosta network.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or GUI interaction showing the execution of sumo or sumo-gui using the bologna_acosta configuration files."
+        },
+        {
+            "id": "baseline_output_generated",
+            "description": "The baseline trip information file is generated at the specified path.",
+            "points": 15,
+            "visual_evidence": "A file listing or terminal output showing /home/ga/SUMO_Output/tripinfos_baseline.xml has been created."
+        },
+        {
+            "id": "av_scenario_configuration",
+            "description": "The agent configures the AV scenario with carFollowModel='IDM' and tau='0.8'.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal command (e.g., cat, sed, or xml editing) showing the modification of vehicle types to use IDM and a tau value of 0.8."
+        },
+        {
+            "id": "av_simulation_run",
+            "description": "The agent runs the modified AV simulation.",
+            "points": 15,
+            "visual_evidence": "Terminal commands or GUI interaction showing the execution of the simulation resulting in /home/ga/SUMO_Output/tripinfos_av.xml."
+        },
+        {
+            "id": "data_analysis_calculation",
+            "description": "The agent calculates the mean duration for both scenarios and the difference.",
+            "points": 15,
+            "visual_evidence": "Python scripts, terminal commands (grep/awk), or spreadsheet use showing the extraction of 'duration' values and calculation of averages."
+        },
+        {
+            "id": "final_report_creation",
+            "description": "The agent creates the final text report with the exact required format and three lines.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command showing /home/ga/SUMO_Output/av_comparison.txt with the three lines: Baseline Avg Duration, AV Avg Duration, and Difference (Baseline - AV) to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_execution",
+            "description": "The agent actually ran the SUMO simulations rather than just creating the text report manually.",
+            "visual_evidence": "Screenshots must show the SUMO progress bar in terminal or the SUMO-GUI running; the tripinfo XML files should be visible before the report is created."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply echo the final values without performing the data extraction.",
+            "visual_evidence": "Evidence of the agent parsing the XML files (e.g., using scripts or command-line tools) to find the duration values."
+        },
+        {
+            "id": "correct_parameter_application",
+            "description": "The agent correctly applied the IDM and tau parameters to the vehicle types.",
+            "visual_evidence": "Screenshots showing the configuration file or command line arguments where 'IDM' and '0.8' are explicitly set."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific file paths: Scenario at /home/ga/SUMO_Scenarios/bologna_acosta/, baseline output at /home/ga/SUMO_Output/tripinfos_baseline.xml, AV output at /home/ga/SUMO_Output/tripinfos_av.xml, and report at /home/ga/SUMO_Output/av_comparison.txt. The AV configuration must use carFollowModel='IDM' and tau='0.8'. The report must have exactly three lines with values rounded to two decimal places."
+}

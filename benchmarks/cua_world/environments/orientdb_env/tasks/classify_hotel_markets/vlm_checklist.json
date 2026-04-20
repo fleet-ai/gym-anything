@@ -1,0 +1,53 @@
+{
+    "task_id": "classify_hotel_markets@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Connect to the 'demodb' database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the OrientDB Studio login screen or a successful connection to 'demodb' with the user 'root'."
+        },
+        {
+            "id": "schema_update",
+            "description": "Add the 'Market' property of type String to the 'Hotels' class.",
+            "points": 15,
+            "visual_evidence": "The OrientDB Studio 'Schema' tab showing the 'Hotels' class with a new property named 'Market' (Type: STRING)."
+        },
+        {
+            "id": "data_analysis_query",
+            "description": "Execute queries to compare Hotel country with Profile nationality via 'HasStayed' edges.",
+            "points": 25,
+            "visual_evidence": "The 'Query' or 'Browse' tab showing SQL commands that join Hotels, HasStayed edges, and Profiles to calculate visitor ratios."
+        },
+        {
+            "id": "market_classification_logic",
+            "description": "Apply the logic: 'International' if >= 50% visitors are from a different country; 'Domestic' otherwise.",
+            "points": 25,
+            "visual_evidence": "Query results or update statements showing the calculation of ratios (e.g., counting total stays vs. stays where nationality != hotel country)."
+        },
+        {
+            "id": "populate_market_property",
+            "description": "Update the 'Market' property for all hotels that have had visitors.",
+            "points": 25,
+            "visual_evidence": "The 'Browse' tab showing the 'Hotels' table with the 'Market' column populated with 'International' or 'Domestic' values for multiple records."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the browser with OrientDB Studio (Schema, Query, and Browse tabs) being actively used."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent derived the classification from database values rather than guessing or copy-pasting from the prompt.",
+            "visual_evidence": "SQL queries in the command editor showing logic like 'WHERE nationality <> country' or similar comparison operators."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The agent interacted with the specific 'demodb' instance.",
+            "visual_evidence": "The database name 'demodb' is visible in the OrientDB Studio header or connection string."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires updating the 'Hotels' class in the 'demodb' OrientDB database. The 'Market' property must be a String. Classification rule: If (Count of Stays where Profile.Nationality != Hotel.Country) / (Total Stays for that Hotel) >= 0.5, then 'International'. Otherwise, 'Domestic'. Only hotels with at least one 'HasStayed' edge should be updated. Key hotels in this DB typically include Hotel Artemide (Rome), The Plaza Hotel (New York), and Park Hyatt Tokyo."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "calculate_plate_loading_progression@1",
+    "task_completion": [
+        {
+            "id": "access_workout_history",
+            "description": "Agent accesses the admin user's workout history to find Squat records.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing a database, spreadsheet, or application interface containing 'Squat' weight entries."
+        },
+        {
+            "id": "identify_max_squat",
+            "description": "Agent identifies the heaviest Squat weight from the history.",
+            "points": 15,
+            "visual_evidence": "The agent highlighting, selecting, or noting the highest numerical value associated with a Squat exercise in the history."
+        },
+        {
+            "id": "calculate_target_weight",
+            "description": "Agent calculates the new target weight by adding 2.5 kg to the historical max.",
+            "points": 15,
+            "visual_evidence": "Calculations shown in a calculator app, terminal, or notepad adding 2.5 to the identified max weight."
+        },
+        {
+            "id": "calculate_plate_distribution",
+            "description": "Agent calculates the plates needed for ONE side of a 20 kg barbell to reach the target weight using the fewest allowed plates.",
+            "points": 35,
+            "visual_evidence": "Evidence of the math: (Target Weight - 20) / 2, then breaking that result down into the specific allowed plate denominations (25, 20, 15, 10, 5, 2.5, 1.25)."
+        },
+        {
+            "id": "save_output_file",
+            "description": "Agent saves the plate weights in descending order, one per line, to ~/next_squat_plates.txt.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file /home/ga/next_squat_plates.txt with plate values listed from largest to smallest."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI to find workout history rather than just reading hidden system files if a GUI was available.",
+            "visual_evidence": "Screenshots showing navigation through a workout app or file explorer GUI."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not simply write the file without performing the calculation steps.",
+            "visual_evidence": "Absence of the final file content appearing instantly without preceding search and calculation steps."
+        },
+        {
+            "id": "correct_plate_logic",
+            "description": "The agent correctly subtracted the 20kg barbell weight before dividing by two for the plates.",
+            "visual_evidence": "Calculation steps showing the subtraction of 20 from the total target weight."
+        }
+    ],
+    "privileged_info_for_vlm": "The barbell weight is 20 kg. The progression increment is 2.5 kg. Allowed plate weights are 25, 20, 15, 10, 5, 2.5, and 1.25 kg. The target weight is (Max Historical Squat + 2.5). The plates to be saved are for ONE side only: (Target - 20) / 2. The output must be in /home/ga/next_squat_plates.txt, descending order, one plate per line."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_ptz_camera_inspection@1",
+    "task_completion": [
+        {
+            "id": "locate_inspection_crawler",
+            "description": "Locate the INSPECTION_CRAWLER robot and its camera system in the Webots scene tree.",
+            "points": 10,
+            "visual_evidence": "The scene tree shows the 'INSPECTION_CRAWLER' node expanded, revealing the camera or PTZ components."
+        },
+        {
+            "id": "configure_pan_motor",
+            "description": "Set the pan_motor minPosition to -1.57 and maxPosition to 1.57.",
+            "points": 20,
+            "visual_evidence": "The Webots field editor shows 'minPosition -1.57' and 'maxPosition 1.57' for the pan_motor node."
+        },
+        {
+            "id": "configure_tilt_motor",
+            "description": "Set the tilt_motor minPosition to -0.78 and maxPosition to 0.78.",
+            "points": 20,
+            "visual_evidence": "The Webots field editor shows 'minPosition -0.78' and 'maxPosition 0.78' for the tilt_motor node."
+        },
+        {
+            "id": "add_zoom_node",
+            "description": "Add a Zoom node to the camera with maxFieldOfView 0.87 and minFieldOfView 0.087.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows a 'Zoom' node under the camera with 'maxFieldOfView 0.87' and 'minFieldOfView 0.087' visible in the field editor."
+        },
+        {
+            "id": "add_focus_node",
+            "description": "Add a Focus node to the camera with minFocalDistance 0.5 and maxFocalDistance 50.0.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows a 'Focus' node under the camera with 'minFocalDistance 0.5' and 'maxFocalDistance 50' visible in the field editor."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specified path on the Desktop.",
+            "points": 10,
+            "visual_evidence": "The 'Save World As...' dialog or a terminal command shows the file being saved to /home/ga/Desktop/ptz_crawler_configured.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify the scene tree and field values.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor, rather than just executing a script."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not simply open a text editor to manually write the .wbt file.",
+            "visual_evidence": "The agent is seen using the Webots interface for the majority of the configuration process."
+        },
+        {
+            "id": "correct_robot_selection",
+            "description": "The agent modified the INSPECTION_CRAWLER and not a different robot in the scene.",
+            "visual_evidence": "The highlighted node in the Webots scene tree is 'INSPECTION_CRAWLER'."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot name is INSPECTION_CRAWLER. Required values: Pan motor range [-1.57, 1.57]; Tilt motor range [-0.78, 0.78]; Zoom node maxFieldOfView 0.87 and minFieldOfView 0.087; Focus node minFocalDistance 0.5 and maxFocalDistance 50.0. The final file must be saved as /home/ga/Desktop/ptz_crawler_configured.wbt."
+}

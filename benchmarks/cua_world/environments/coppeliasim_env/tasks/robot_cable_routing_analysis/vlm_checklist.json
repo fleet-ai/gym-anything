@@ -1,0 +1,59 @@
+{
+    "task_id": "robot_cable_routing_analysis@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_launch",
+            "description": "Launch CoppeliaSim and open the robot arm scene.",
+            "points": 10,
+            "visual_evidence": "The CoppeliaSim GUI is visible, showing a 6-DOF robot arm in the 3D viewport."
+        },
+        {
+            "id": "script_development",
+            "description": "Develop a script to interface with the ZMQ Remote API on port 23000.",
+            "points": 15,
+            "visual_evidence": "Code editor (e.g., VS Code or terminal) showing a script that imports 'zmqRemoteApi' and connects to port 23000."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Execute the simulation across diverse joint configurations.",
+            "points": 20,
+            "visual_evidence": "The robot arm in the CoppeliaSim viewport is seen in different poses, or the simulation play button is active while the script runs."
+        },
+        {
+            "id": "csv_generation",
+            "description": "Generate the cable_measurements.csv file with at least 50 configurations and correct columns.",
+            "points": 25,
+            "visual_evidence": "A terminal or file explorer shows /home/ga/Documents/CoppeliaSim/exports/cable_measurements.csv. Content shows headers like config_id, j1_rad... total_length_m and at least 50 rows of data."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Generate the cable_report.json with required summary statistics.",
+            "points": 20,
+            "visual_evidence": "The file /home/ga/Documents/CoppeliaSim/exports/cable_report.json is visible, containing fields: total_configs, min_length_m, max_length_m, variance_m, and recommended_length_m."
+        },
+        {
+            "id": "mathematical_consistency",
+            "description": "Verify the recommended length calculation (max_length * 1.15).",
+            "points": 10,
+            "visual_evidence": "The JSON file content shows a 'recommended_length_m' value that is exactly 1.15 times the 'max_length_m' value shown in the same file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation",
+            "description": "Verify the agent didn't just hardcode the CSV/JSON without running the simulation.",
+            "visual_evidence": "Screenshots must show the robot arm in multiple distinct poses within CoppeliaSim, not just a static scene."
+        },
+        {
+            "id": "api_interaction",
+            "description": "Ensure the agent used the ZMQ Remote API as requested.",
+            "visual_evidence": "Code or terminal output shows active communication with the ZMQ port (23000) or the use of the Remote API library."
+        },
+        {
+            "id": "file_path_accuracy",
+            "description": "Check that files were saved to the specific requested directory.",
+            "visual_evidence": "The file paths in the terminal or file manager match /home/ga/Documents/CoppeliaSim/exports/ exactly."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must generate at least 50 configurations. The variance_m in the JSON must be the difference between max_length_m and min_length_m (expected to be at least 0.05m). The recommended_length_m must be max_length_m multiplied by 1.15. The cable tie points are relative to Joint 1, 3, 5, and the tip/Joint 6 at offset [0.0, -0.15, 0.05]."
+}

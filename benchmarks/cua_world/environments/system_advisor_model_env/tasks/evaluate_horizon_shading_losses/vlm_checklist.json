@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_horizon_shading_losses@1",
+    "task_completion": [
+        {
+            "id": "weather_file_download",
+            "description": "Download the Salt Lake City TMY3 EPW weather file from the provided URL.",
+            "points": 10,
+            "visual_evidence": "A terminal command (wget/curl) or browser download showing the USA_UT_Salt.Lake.City.Intl.AP.725720_TMY3.epw file being saved."
+        },
+        {
+            "id": "pysam_initialization",
+            "description": "Initialize PySAM.Pvwattsv8 and configure system parameters (10kW, 30 deg tilt, 180 deg azimuth, 1.2 DC/AC).",
+            "points": 15,
+            "visual_evidence": "Code snippets in an editor or terminal showing 'pvwattsv8.default(\"PVWattsResidential\")' or manual setting of 'system_capacity', 'tilt', 'azimuth', and 'inv_eff'."
+        },
+        {
+            "id": "baseline_simulation",
+            "description": "Run the simulation with a flat horizon to establish the baseline annual energy.",
+            "points": 20,
+            "visual_evidence": "Code execution showing the model run without shading inputs and a resulting annual energy value (expected ~14,682 kWh)."
+        },
+        {
+            "id": "horizon_profile_input",
+            "description": "Input the specific 8-point horizon profile (azimuth/elevation pairs) into the PySAM model.",
+            "points": 20,
+            "visual_evidence": "Code showing an array or list containing the pairs (0,10), (45,15), (90,25), (135,20), (180,12), (225,15), (270,22), (315,15) assigned to shading parameters."
+        },
+        {
+            "id": "shaded_simulation_and_calc",
+            "description": "Run the simulation with the horizon profile and calculate the percentage loss.",
+            "points": 20,
+            "visual_evidence": "Code showing the second model run and the calculation ((Baseline - Shaded) / Baseline) * 100."
+        },
+        {
+            "id": "export_json_results",
+            "description": "Export the required fields to /home/ga/Documents/SAM_Projects/horizon_shading_impact.json.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of the JSON file with the correct keys: system_capacity_kw, weather_file, baseline_annual_energy_kwh, shaded_annual_energy_kwh, and energy_loss_percent."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding values.",
+            "visual_evidence": "Presence of 'import PySAM.Pvwattsv8' and calls to '.execute()' in the code screenshots."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "Ensure the agent used the actual weather file data, not generic or synthetic values.",
+            "visual_evidence": "The code must reference the downloaded .epw file path in the 'solar_resource_file' parameter."
+        },
+        {
+            "id": "calculation_consistency",
+            "description": "Check that the energy_loss_percent matches the math derived from the baseline and shaded values shown.",
+            "visual_evidence": "The JSON file content or print statements showing the math: (Baseline - Shaded) / Baseline."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses real Salt Lake City TMY3 data. The expected baseline annual energy for a 10kW system with these parameters is approximately 14,682 kWh (valid range 13,000 - 18,000 kWh). The horizon profile must be applied correctly to see a reduction in energy. The final output must be a JSON file at /home/ga/Documents/SAM_Projects/horizon_shading_impact.json. Note: The provided URL in the prompt may return a 404; the agent is expected to handle the download or find the file to proceed."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_cross_platform_paths@1",
+    "task_completion": [
+        {
+            "id": "identify_hardcoded_paths",
+            "description": "The agent opens the Java source files and identifies the hardcoded Windows paths and backslashes.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing Java files (e.g., Main.java, ConfigLoader.java) open in an editor with strings containing 'C:\\', 'Users\\', or double backslashes visible."
+        },
+        {
+            "id": "fix_path_separators",
+            "description": "The agent replaces hardcoded backslashes with cross-platform alternatives like File.separator or forward slashes.",
+            "points": 20,
+            "visual_evidence": "Code editor showing the removal of '\\\\' and the introduction of '/' or 'File.separator' in path strings."
+        },
+        {
+            "id": "fix_case_sensitivity",
+            "description": "The agent corrects the filename for the configuration file to match the actual Linux filesystem (case-sensitive).",
+            "points": 20,
+            "visual_evidence": "Code editor showing 'Config.properties' changed to 'config.properties' in the source code."
+        },
+        {
+            "id": "successful_compilation",
+            "description": "The Java application is compiled without errors after the refactoring.",
+            "points": 15,
+            "visual_evidence": "Terminal or IDE console showing a successful build message or no red error underlines in the project explorer."
+        },
+        {
+            "id": "application_execution",
+            "description": "The agent runs the application, and it successfully reads the inventory data.",
+            "points": 15,
+            "visual_evidence": "Console output showing the application starting and processing records without a 'FileNotFoundException' or 'Path not found' error."
+        },
+        {
+            "id": "verify_output_generation",
+            "description": "The application generates the summary report at the specified location.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal showing 'output/report.txt' exists, and the content contains a summary of the 50 inventory items."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not manually create the report.txt file using 'touch' or an editor to bypass the Java logic.",
+            "visual_evidence": "The agent should be seen running the Java program (e.g., 'java -jar' or IDE run button) immediately before the report file appears."
+        },
+        {
+            "id": "genuine_refactoring",
+            "description": "The agent actually modified the Java code rather than just moving files on the disk to match the broken paths.",
+            "visual_evidence": "Screenshots must show the code editor with modified Java syntax, not just file renaming in the file explorer."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the IDE/GUI for code editing as intended for a desktop agent task.",
+            "visual_evidence": "Screenshots show an IDE (like IntelliJ or VS Code) or a text editor GUI being used to edit the .java files."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at ~/IdeaProjects/path-issues. The original code contains 'C:\\Users\\...' and 'Config.properties'. To succeed, the agent must change the path to use relative paths (data/inventory.csv), change 'Config.properties' to 'config.properties' (lowercase 'c'), and ensure the output is written to 'output/report.txt'. The inventory file contains exactly 50 rows of data; the final report should reflect this count."
+}

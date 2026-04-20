@@ -1,0 +1,59 @@
+{
+    "task_id": "docker_resource_governance@1",
+    "task_completion": [
+        {
+            "id": "apply_acme_api_limits",
+            "description": "Apply 256MB memory, 0.5 CPUs, and 'unless-stopped' restart policy to 'acme-api'.",
+            "points": 15,
+            "visual_evidence": "Terminal output or Docker Desktop showing 'docker update' or 'docker inspect' for acme-api with Memory: 256MB, NanoCpus: 500000000, and RestartPolicy: unless-stopped."
+        },
+        {
+            "id": "apply_acme_worker_limits",
+            "description": "Apply 512MB memory, 1.0 CPUs, and 'on-failure:3' restart policy to 'acme-worker'.",
+            "points": 15,
+            "visual_evidence": "Terminal output or Docker Desktop showing 'docker update' or 'docker inspect' for acme-worker with Memory: 512MB, NanoCpus: 1000000000, and RestartPolicy: on-failure (MaximumRetryCount: 3)."
+        },
+        {
+            "id": "apply_acme_cache_limits",
+            "description": "Apply 128MB memory, 0.25 CPUs, and 'always' restart policy to 'acme-cache'.",
+            "points": 15,
+            "visual_evidence": "Terminal output or Docker Desktop showing 'docker update' or 'docker inspect' for acme-cache with Memory: 128MB, NanoCpus: 250000000, and RestartPolicy: always."
+        },
+        {
+            "id": "perform_stress_test",
+            "description": "Perform a stress test on 'acme-worker' to trigger an OOM kill.",
+            "points": 25,
+            "visual_evidence": "Terminal showing a command like 'docker exec' running a memory stressor (e.g., stress-ng) or a script designed to consume >512MB RAM inside the acme-worker container."
+        },
+        {
+            "id": "verify_oom_event",
+            "description": "Verify the container was killed due to OOM.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'docker inspect' or 'docker events' indicating an OOMKilled: true status or an exit code 137 for the acme-worker container."
+        },
+        {
+            "id": "document_results",
+            "description": "Create a markdown file at ~/Desktop/resource_governance.md with limits and stress test results.",
+            "points": 15,
+            "visual_evidence": "A text editor or 'cat' command showing the file ~/Desktop/resource_governance.md containing the specified limits for all three containers and the OOM test outcome."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_stress_test",
+            "description": "The agent actually ran a stress test rather than just writing the report.",
+            "visual_evidence": "Screenshots must show the execution of a stress command (like stress, stress-ng, or a python memory hog) targeting the acme-worker container."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report content should reflect the actual container names and specific limits requested.",
+            "visual_evidence": "The markdown file content matches the specific values (256MB, 512MB, 128MB) and container names from the task."
+        },
+        {
+            "id": "real_docker_interaction",
+            "description": "The agent interacted with the Docker CLI or GUI to apply changes.",
+            "visual_evidence": "Terminal history showing 'docker update' or 'docker run' commands with the specific resource flags (--memory, --cpus, --restart)."
+        }
+    ],
+    "privileged_info_for_vlm": "The required values are: acme-api (268435456 bytes, 500000000 nano_cpus, unless-stopped), acme-worker (536870912 bytes, 1000000000 nano_cpus, on-failure with 3 retries), and acme-cache (134217728 bytes, 250000000 nano_cpus, always). An OOM kill typically results in exit code 137 or 'OOMKilled: true' in docker inspect."
+}

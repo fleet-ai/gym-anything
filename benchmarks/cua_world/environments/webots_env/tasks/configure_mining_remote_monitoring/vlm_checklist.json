@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_mining_remote_monitoring@1",
+    "task_completion": [
+        {
+            "id": "open_webots_mining_robot",
+            "description": "Open the Webots simulation and locate the 'MINING_ROBOT' node in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots application is open, and 'MINING_ROBOT' is visible in the Scene Tree on the left."
+        },
+        {
+            "id": "configure_emitter",
+            "description": "Set the 'radio_emitter' Emitter node's range to 500 and channel to 7.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows the 'radio_emitter' child of MINING_ROBOT selected, with the 'range' field set to 500 and 'channel' field set to 7 in the field editor."
+        },
+        {
+            "id": "configure_display",
+            "description": "Set the 'status_display' Display node's width to 320 and height to 240.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows the 'status_display' child of MINING_ROBOT selected, with 'width' set to 320 and 'height' set to 240 in the field editor."
+        },
+        {
+            "id": "add_fog_node",
+            "description": "Add a Fog node at the world root level.",
+            "points": 15,
+            "visual_evidence": "A 'Fog' node appears in the Scene Tree at the same level as the WorldInfo or Viewpoint nodes."
+        },
+        {
+            "id": "configure_fog_properties",
+            "description": "Set Fog visibilityRange to 50.0 and fogType to 'EXPONENTIAL'.",
+            "points": 20,
+            "visual_evidence": "The Fog node is selected; the field editor shows 'visibilityRange' as 50 and 'fogType' as 'EXPONENTIAL'."
+        },
+        {
+            "id": "save_configured_world",
+            "description": "Save the world to the specified path: /home/ga/Desktop/mining_robot_configured.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog is shown with the path /home/ga/Desktop/mining_robot_configured.wbt, or the window title bar reflects the new filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or a text editor to bypass the simulation software.",
+            "visual_evidence": "The agent is seen working within the Webots interface, not just a terminal or basic text editor."
+        },
+        {
+            "id": "genuine_node_addition",
+            "description": "The Fog node was added through the 'Add New' dialog in Webots.",
+            "visual_evidence": "The 'Add a node' pop-up window is visible during the process of adding the Fog node."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must configure the MINING_ROBOT in Webots. Required values: Emitter (range: 500, channel: 7), Display (width: 320, height: 240). A Fog node must be added at the root with visibilityRange: 50.0 and fogType: 'EXPONENTIAL'. The final file must be saved as /home/ga/Desktop/mining_robot_configured.wbt."
+}

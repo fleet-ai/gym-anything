@@ -1,0 +1,53 @@
+{
+    "task_id": "add_exercise_aliases@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the wger fitness manager dashboard.",
+            "points": 10,
+            "visual_evidence": "The browser shows the wger dashboard or exercise list page, and the 'admin' username is visible in the navigation bar."
+        },
+        {
+            "id": "navigate_to_exercises",
+            "description": "Agent navigates to the exercise management or list section.",
+            "points": 10,
+            "visual_evidence": "The screen shows a list of exercises including 'Romanian Deadlift', 'Overhead Press', and 'Bulgarian Split Squat'."
+        },
+        {
+            "id": "add_rdl_alias",
+            "description": "Agent adds the alias 'RDL' to the 'Romanian Deadlift' exercise.",
+            "points": 25,
+            "visual_evidence": "A screenshot shows the 'Romanian Deadlift' edit/alias page with 'RDL' typed into an alias field, or a success message/updated list showing 'Romanian Deadlift' with alias 'RDL'."
+        },
+        {
+            "id": "add_ohp_alias",
+            "description": "Agent adds the alias 'OHP' to the 'Overhead Press' exercise.",
+            "points": 25,
+            "visual_evidence": "A screenshot shows the 'Overhead Press' edit/alias page with 'OHP' typed into an alias field, or a success message/updated list showing 'Overhead Press' with alias 'OHP'."
+        },
+        {
+            "id": "add_bss_alias",
+            "description": "Agent adds the alias 'BSS' to the 'Bulgarian Split Squat' exercise.",
+            "points": 30,
+            "visual_evidence": "A screenshot shows the 'Bulgarian Split Squat' edit/alias page with 'BSS' typed into an alias field, or a success message/updated list showing 'Bulgarian Split Squat' with alias 'BSS'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and form filling in the browser, not just terminal commands like 'sqlite3' or 'curl'."
+        },
+        {
+            "id": "no_exercise_renaming",
+            "description": "The agent did not rename the original exercises to the acronyms.",
+            "visual_evidence": "The original names (e.g., 'Romanian Deadlift') remain visible as the primary titles in the exercise list."
+        },
+        {
+            "id": "no_duplicate_exercises",
+            "description": "The agent did not create new, separate exercise entries for the acronyms.",
+            "visual_evidence": "The exercise list does not show two separate entries for 'RDL' and 'Romanian Deadlift'; instead, the alias is added to the existing entry."
+        }
+    ],
+    "privileged_info_for_vlm": "The three specific exercises to be modified are 'Romanian Deadlift' (alias: RDL), 'Overhead Press' (alias: OHP), and 'Bulgarian Split Squat' (alias: BSS). These exercises are pre-populated in the system. The agent must use the 'Alias' feature within the exercise edit or detail view, not rename the exercise itself."
+}

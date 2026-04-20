@@ -1,0 +1,62 @@
+{
+    "task_id": "retail_markdown_optimization@1",
+    "task_completion": [
+        {
+            "id": "open_source_csv",
+            "description": "Agent opens the source file fw_inventory_sales.csv in a spreadsheet application.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet application (like LibreOffice Calc) showing a file named 'fw_inventory_sales.csv' with columns like Units_Sold_Season and Units_On_Hand."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "Agent calculates AWS, WOS, and STR columns using the specified formulas.",
+            "points": 25,
+            "visual_evidence": "New columns or formulas visible in the spreadsheet for AWS (Sold/Weeks), WOS (On_Hand/AWS), and STR (Sold/(Sold+On_Hand))."
+        },
+        {
+            "id": "apply_markdown_logic",
+            "description": "Agent assigns Markdown_Percent based on the conditional priority logic (50%, 30%, 15%, or 0%).",
+            "points": 25,
+            "visual_evidence": "A 'Markdown_Percent' column containing values like 0.5, 0.3, 0.15, or 0.0, often visible via a nested IF formula in the formula bar."
+        },
+        {
+            "id": "calculate_markdown_cost",
+            "description": "Agent calculates Markdown_Cost (Units_On_Hand * Ticket_Price * Markdown_Percent).",
+            "points": 15,
+            "visual_evidence": "A 'Markdown_Cost' column with values calculated from the product of inventory, price, and the assigned percentage."
+        },
+        {
+            "id": "create_summary_sheet",
+            "description": "Agent creates a 'Markdown Summary' sheet aggregating sum of Markdown_Cost and Units_On_Hand by Department.",
+            "points": 15,
+            "visual_evidence": "A second tab or sheet named 'Markdown Summary' showing a table with Departments (Outerwear, Knitwear, etc.) and their respective totals."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the final workbook as markdown_analysis.xlsx in the correct directory.",
+            "points": 10,
+            "visual_evidence": "The application title bar or a 'Save As' dialog showing the file path ~/Documents/Spreadsheets/markdown_analysis.xlsx."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the spreadsheet GUI to perform calculations rather than just terminal commands.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the cursor interacting with spreadsheet cells, menus, or formula bars."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent used formulas for calculations rather than typing in final numbers manually.",
+            "points": 0,
+            "visual_evidence": "The formula bar shows cell references (e.g., =B2/C2) instead of static values when a cell is selected."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent processed the full dataset of 1000 rows.",
+            "points": 0,
+            "visual_evidence": "The scroll bar or row count in the spreadsheet indicates a large dataset (approx. 1000 rows) is being handled."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains 1000 rows and 5 specific departments: Outerwear, Knitwear, Denim, Accessories, and Footwear. The final output must be an Excel file (.xlsx) named 'markdown_analysis.xlsx' containing a 'Markdown Summary' sheet. The markdown logic follows a strict priority: 50% (WOS>=12 & STR<=40%), then 30% (WOS>=8 & STR<=55%), then 15% (WOS>=4 & STR<=70%)."
+}

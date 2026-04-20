@@ -1,0 +1,62 @@
+{
+    "task_id": "fix_security_linter@1",
+    "task_completion": [
+        {
+            "id": "locate_project_files",
+            "description": "Agent locates and opens the project directory and linter/visitors.py in the IDE.",
+            "points": 10,
+            "visual_evidence": "The file explorer shows /home/ga/PycharmProjects/security_linter and visitors.py is open in the editor tab."
+        },
+        {
+            "id": "identify_test_failures",
+            "description": "Agent runs the test suite to identify current failures related to nested functions and false positives.",
+            "points": 15,
+            "visual_evidence": "A terminal or test runner UI showing failed tests, specifically those related to 'eval', 'Popen', or 'password' variables."
+        },
+        {
+            "id": "fix_ast_traversal",
+            "description": "Agent modifies the AST visitor logic in linter/visitors.py to ensure it traverses into function definitions.",
+            "points": 25,
+            "visual_evidence": "Code changes in visitors.py showing the addition of generic_visit(node) or explicit visits to FunctionDef nodes to ensure nested calls are scanned."
+        },
+        {
+            "id": "fix_eval_popen_logic",
+            "description": "Agent updates the logic to correctly identify eval() and subprocess.Popen(shell=True) as vulnerabilities.",
+            "points": 20,
+            "visual_evidence": "Code in visitors.py showing checks for 'eval' and 'Popen' with a 'shell=True' keyword argument."
+        },
+        {
+            "id": "resolve_password_false_positives",
+            "description": "Agent removes or fixes the logic that incorrectly flags any variable named 'password' as a vulnerability.",
+            "points": 15,
+            "visual_evidence": "Code changes in visitors.py showing the removal or refinement of the string matching logic for the 'password' identifier."
+        },
+        {
+            "id": "verify_all_tests_pass",
+            "description": "Agent runs the test suite and confirms all tests (13 total) pass after the modifications.",
+            "points": 15,
+            "visual_evidence": "A terminal or test runner UI showing '13 passed' or a green progress bar with no failures."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "points": 0,
+            "visual_evidence": "The file explorer or editor tabs do not show modifications to files in the tests/ directory."
+        },
+        {
+            "id": "no_analyzer_modification",
+            "description": "The agent did not modify linter/analyzer.py as per the constraints.",
+            "points": 0,
+            "visual_evidence": "The editor shows changes only in linter/visitors.py; analyzer.py remains untouched."
+        },
+        {
+            "id": "genuine_test_execution",
+            "description": "The agent actually executed the pytest command rather than just printing 'All tests passed'.",
+            "points": 0,
+            "visual_evidence": "The terminal shows the execution of a command like 'pytest' or 'python3 -m pytest' followed by real-time output."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/security_linter. The only file that should be modified is linter/visitors.py. There are exactly 13 tests in the suite that must pass. The agent must fix the AST traversal (likely by adding generic_visit) to catch vulnerabilities inside functions, and specifically fix the logic for 'eval', 'subprocess.Popen(shell=True)', and remove the 'password' variable name check. A score of 70 or higher on the verifier is required for success."
+}

@@ -1,0 +1,65 @@
+{
+    "task_id": "analyze_aerodynamic_braking_effectiveness@1",
+    "task_completion": [
+        {
+            "id": "load_project",
+            "description": "Load the 'NREL 5MW Reference' project from the specified directory.",
+            "points": 10,
+            "visual_evidence": "The QBlade window title or project explorer shows 'NREL 5MW Reference' loaded from ~/Documents/sample_projects/."
+        },
+        {
+            "id": "configure_simulation_0deg",
+            "description": "Set up Rotor BEM simulation for 0° Pitch with TSR range 0 to 20 and step 0.5.",
+            "points": 15,
+            "visual_evidence": "Simulation setup dialog or panel showing Pitch = 0, TSR Start = 0, TSR End = 20, and TSR Step = 0.5."
+        },
+        {
+            "id": "run_simulation_0deg",
+            "description": "Execute the simulation for the 0° Pitch configuration.",
+            "points": 15,
+            "visual_evidence": "A progress bar for the BEM simulation or the appearance of a Cp vs TSR curve for the 0° pitch case in the multi-plot view."
+        },
+        {
+            "id": "configure_and_run_5deg",
+            "description": "Set up and execute Rotor BEM simulation for 5° Pitch with the same TSR parameters.",
+            "points": 20,
+            "visual_evidence": "Simulation settings showing Pitch = 5 and a second curve appearing on the Cp vs TSR graph."
+        },
+        {
+            "id": "save_project_file",
+            "description": "Save the project to the specified path ~/Documents/projects/braking_analysis.wpa.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog showing the path ~/Documents/projects/braking_analysis.wpa or a terminal/file explorer view confirming the file's existence."
+        },
+        {
+            "id": "identify_runaway_tsr",
+            "description": "Determine the TSR values where Cp reaches 0 for both pitch angles.",
+            "points": 15,
+            "visual_evidence": "The agent inspecting the data points on the graph or the results table where Cp crosses the x-axis (Cp=0)."
+        },
+        {
+            "id": "create_report",
+            "description": "Create the text report at ~/Documents/projects/runaway_report.txt with the required format.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file content with 'Runaway_TSR_0deg:' and 'Runaway_TSR_5deg:' labels."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the QBlade GUI to perform simulations rather than just writing a text file.",
+            "visual_evidence": "Screenshots showing the QBlade interface, simulation parameter entry, and graph generation."
+        },
+        {
+            "id": "genuine_data_extraction",
+            "description": "The Runaway TSR values are derived from the simulation results, not hardcoded from memory.",
+            "visual_evidence": "The agent hovering over graph points or looking at the simulation result table before writing the report."
+        },
+        {
+            "id": "file_system_integrity",
+            "description": "The agent saved the files to the specific paths requested in the prompt.",
+            "visual_evidence": "File paths in the 'Save' dialogs or terminal commands match ~/Documents/projects/."
+        }
+    ],
+    "privileged_info_for_vlm": "For the NREL 5MW turbine, the Power Coefficient (Cp) curve typically crosses zero (Runaway TSR) at a TSR between 11.0 and 16.0 for 0° pitch. For 5° pitch, the aerodynamic braking effect shifts this point to a lower TSR, typically between 7.0 and 12.0. The simulation must use a step of 0.5 as specified."
+}

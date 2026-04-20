@@ -1,0 +1,59 @@
+{
+    "task_id": "compute_flood_attenuation@1",
+    "task_completion": [
+        {
+            "id": "open_hdf5_file",
+            "description": "Agent accesses the HDF5 results file 'Muncie.p04.hdf' in the project directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer, terminal command, or script showing the path '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.p04.hdf' being accessed."
+        },
+        {
+            "id": "extract_hydrograph_data",
+            "description": "Agent extracts flow hydrographs for the most upstream and most downstream cross-sections.",
+            "points": 20,
+            "visual_evidence": "Code or a GUI interface showing the selection of the first and last cross-sections and the extraction of 'Flow' or 'Discharge' data."
+        },
+        {
+            "id": "save_csv_data",
+            "description": "Agent saves the extracted flow data to 'flood_attenuation_data.csv' with specific columns.",
+            "points": 15,
+            "visual_evidence": "A file named 'flood_attenuation_data.csv' in '/home/ga/Documents/hec_ras_results/' with columns [Time_hours, Flow_Upstream_cfs, Flow_Downstream_cfs]."
+        },
+        {
+            "id": "generate_plot",
+            "description": "Agent creates an image showing overlaid hydrographs for upstream and downstream locations.",
+            "points": 20,
+            "visual_evidence": "A plot window or a saved file 'flood_attenuation_plot.png' showing two lines representing flow over time."
+        },
+        {
+            "id": "compute_metrics",
+            "description": "Agent calculates peak flow, attenuation (cfs and %), timing lag, and cumulative volumes.",
+            "points": 20,
+            "visual_evidence": "Code execution output or a text editor showing calculations for peak flow, % attenuation, time lag in hours, and acre-ft volumes."
+        },
+        {
+            "id": "save_summary_report",
+            "description": "Agent saves the final analysis results to 'flood_attenuation_summary.txt'.",
+            "points": 15,
+            "visual_evidence": "A text file 'flood_attenuation_summary.txt' in the results directory containing the computed metrics (peak flow, attenuation, lag, volume difference)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_processing",
+            "description": "Agent processed the HDF5 file rather than hardcoding values from the task description.",
+            "visual_evidence": "Code showing the use of an HDF5 library (like h5py) or HEC-RAS API to read 'Muncie.p04.hdf' rather than print statements with pre-defined numbers."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "Agent used the specified results directory for output.",
+            "visual_evidence": "File paths in the code or file manager showing outputs being saved to '/home/ga/Documents/hec_ras_results/'."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The summary report contains specific numerical values derived from the data, not placeholders.",
+            "visual_evidence": "The 'flood_attenuation_summary.txt' file contains actual numbers (e.g., peak flow around 21,000 cfs) rather than 'TBD' or '0'."
+        }
+    ],
+    "privileged_info_for_vlm": "The HDF5 file 'Muncie.p04.hdf' is located in '/home/ga/Documents/hec_ras_projects/Muncie'. The peak upstream flow should be approximately 21,000 cfs. The output directory must be '/home/ga/Documents/hec_ras_results/'. The CSV must have exactly three columns: Time_hours, Flow_Upstream_cfs, and Flow_Downstream_cfs. The plot must be named 'flood_attenuation_plot.png'."
+}

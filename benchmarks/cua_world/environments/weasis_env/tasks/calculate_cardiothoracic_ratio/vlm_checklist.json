@@ -1,0 +1,53 @@
+{
+    "task_id": "calculate_cardiothoracic_ratio@1",
+    "task_completion": [
+        {
+            "id": "open_weasis_dicom",
+            "description": "Open the Weasis medical viewer and load the DICOM image.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible showing a medical image (X-ray or CT slice) in the main viewport."
+        },
+        {
+            "id": "measure_cardiac_diameter",
+            "description": "Use the measurement tool to determine the maximum transverse Cardiac Diameter.",
+            "points": 25,
+            "visual_evidence": "A measurement line or caliper tool is visible across the widest part of the heart shadow with a numerical value in mm."
+        },
+        {
+            "id": "measure_thoracic_diameter",
+            "description": "Use the measurement tool to determine the maximum internal Thoracic Diameter.",
+            "points": 25,
+            "visual_evidence": "A measurement line or caliper tool is visible across the widest internal part of the rib cage with a numerical value in mm."
+        },
+        {
+            "id": "save_screenshot_measurements",
+            "description": "Save a screenshot of the measurements to the specified path.",
+            "points": 15,
+            "visual_evidence": "The agent interacts with a 'Save' or 'Export' dialog, or a terminal command is seen confirming the creation of ~/DICOM/exports/ctr_measurements.png."
+        },
+        {
+            "id": "create_text_report",
+            "description": "Generate the text report with the required three-line format and calculated ratio.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal output shows the file ~/DICOM/exports/ctr_report.txt containing the Cardiac Diameter, Thoracic Diameter, and the calculated Ratio."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_measurement_interaction",
+            "description": "Verify the agent used the Weasis GUI tools to perform measurements rather than hardcoding values.",
+            "visual_evidence": "Screenshots show the cursor interacting with measurement icons (e.g., ruler/caliper) and dragging lines over the image."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Verify the Cardiothoracic Ratio in the report matches the division of the two measured diameters.",
+            "visual_evidence": "The ratio in the final report is mathematically consistent (Cardiac / Thoracic) with the values shown on the screen measurements."
+        },
+        {
+            "id": "no_preexisting_files",
+            "description": "Ensure the agent didn't simply open a pre-existing report or image.",
+            "visual_evidence": "The agent is seen actively typing the report content or using the 'Save As' interface to name the files."
+        }
+    ],
+    "privileged_info_for_vlm": "The DICOM file (Rubo Medical 0002.DCM) is actually an X-Ray Angiography (XA) cine loop with 96 frames, though the task refers to it as an axial CT slice. The agent must save the report to /home/ga/DICOM/exports/ctr_report.txt and the image to /home/ga/DICOM/exports/ctr_measurements.png. The ratio calculation (Cardiac/Thoracic) has a math tolerance of 0.05."
+}

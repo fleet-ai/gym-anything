@@ -1,0 +1,53 @@
+{
+    "task_id": "record_and_archive_calibration@1",
+    "task_completion": [
+        {
+            "id": "open_openbci_gui",
+            "description": "OpenBCI GUI application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is open on the desktop."
+        },
+        {
+            "id": "select_playback_file",
+            "description": "The playback file 'OpenBCI-EEG-S001-EyesOpen.txt' is selected as the data source.",
+            "points": 15,
+            "visual_evidence": "The file selection dialog or the 'Playback File' field in the GUI shows 'OpenBCI-EEG-S001-EyesOpen.txt'."
+        },
+        {
+            "id": "start_session",
+            "description": "The session is started and data is streaming.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' button has been clicked and the EEG waveform displays are active/moving."
+        },
+        {
+            "id": "record_duration",
+            "description": "A recording is initiated and lasts for at least 5 seconds.",
+            "points": 30,
+            "visual_evidence": "The 'Start Recording' button is toggled to 'Stop Recording', and the elapsed recording time or system clock shows a delta of at least 5 seconds before recording stops."
+        },
+        {
+            "id": "rename_file",
+            "description": "The recorded file is renamed to 'alpha_calibration.txt' in the specified directory.",
+            "points": 30,
+            "visual_evidence": "A file manager (Nautilus) or terminal window shows the file 'alpha_calibration.txt' exists within '~/Documents/OpenBCI_GUI/Recordings/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenBCI GUI for recording rather than simulating data via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with GUI buttons (Start Session, Record) and the live waveform visualization."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create an empty file named 'alpha_calibration.txt' using 'touch'.",
+            "visual_evidence": "The file size or content preview in a file manager should reflect a real EEG data log (multiple columns of numbers), not an empty or 0-byte file."
+        },
+        {
+            "id": "genuine_playback",
+            "description": "The agent used the specific playback file requested.",
+            "visual_evidence": "The GUI source configuration panel shows the path to 'OpenBCI-EEG-S001-EyesOpen.txt'."
+        }
+    ],
+    "privileged_info_for_vlm": "The recording must be at least 5 seconds long. At a sample rate of 250Hz, the final 'alpha_calibration.txt' should contain at least 1250 rows of data plus header lines (approx 1256 lines total). The target directory is /home/ga/Documents/OpenBCI_GUI/Recordings. The source file for playback is OpenBCI-EEG-S001-EyesOpen.txt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "encrypted_c2_dns_exfiltration@1",
+    "task_completion": [
+        {
+            "id": "wireshark_tls_config",
+            "description": "Configure Wireshark or a similar tool to use the TLS session key log for decryption.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the TLS preferences dialog with ~/Documents/captures/tls_keys.log set as the (Pre)-Master-Secret log filename, or decrypted 'Hypertext Transfer Protocol' tabs appearing in the packet details."
+        },
+        {
+            "id": "identify_c2_session",
+            "description": "Locate the decrypted HTTPS session containing the C2 command JSON object.",
+            "points": 15,
+            "visual_evidence": "A packet capture tool showing a decrypted HTTP response body containing a JSON object with keys like 'exfil_domain' or 'obfuscation_key'."
+        },
+        {
+            "id": "dns_tunnel_identification",
+            "description": "Filter and identify the DNS queries targeting the exfiltration domain.",
+            "points": 15,
+            "visual_evidence": "Wireshark or terminal output showing a list of DNS queries (Type A or TXT) directed at the specific domain identified in the C2 command (e.g., secure-updates.corp-cdn.net or similar)."
+        },
+        {
+            "id": "reconstruct_exfiltrated_data",
+            "description": "Extract and reassemble the encoded data chunks from the DNS queries.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the concatenation of subdomains or DNS data strings, or a script being run to process these chunks."
+        },
+        {
+            "id": "decode_stolen_data",
+            "description": "Apply the obfuscation key/decoding logic to the reconstructed data to reveal the original content.",
+            "points": 25,
+            "visual_evidence": "Terminal output or a file viewer showing the decoded 'stolen' text, which should look like a standard document or log file (e.g., containing a 'first line' as requested)."
+        },
+        {
+            "id": "generate_forensic_json",
+            "description": "Create the final forensic_evidence.json file with all required fields.",
+            "points": 10,
+            "visual_evidence": "A screenshot of the ~/Documents/forensic_evidence.json file containing the SNI, command text, exfil domain, source IP, SHA-256, and first line."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the final JSON values without performing analysis.",
+            "visual_evidence": "The trajectory must show the agent interacting with Wireshark, tshark, or custom python scripts to parse the PCAP; it should not show the agent opening a 'solution' file or guessing the SHA-256."
+        },
+        {
+            "id": "genuine_decryption_process",
+            "description": "The agent actually used the provided key log file.",
+            "visual_evidence": "Screenshots must show the agent either passing the keylog path to a command line tool (like tshark -o tls.keylog_file:...) or configuring it in a GUI."
+        },
+        {
+            "id": "data_reconstruction_logic",
+            "description": "The agent performed reconstruction of DNS chunks.",
+            "visual_evidence": "Evidence of the agent handling multiple DNS packets to form a single string, rather than extracting the data from a single packet."
+        }
+    ],
+    "privileged_info_for_vlm": "The C2 server SNI is 'secure-updates.corp-cdn.net'. The C2 server IP is 10.0.1.20. The TLS key log at ~/Documents/captures/tls_keys.log is essential for decrypting the HTTPS traffic to see the JSON command. The exfiltrated data is hidden within DNS queries (tunneling) to a domain specified in that JSON. The agent must reconstruct these DNS labels in order and decode them using the provided key to find the SHA-256 and the first line of the stolen file."
+}

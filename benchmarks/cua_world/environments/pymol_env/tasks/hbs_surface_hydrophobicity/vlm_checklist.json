@@ -1,0 +1,59 @@
+{
+    "task_id": "hbs_surface_hydrophobicity@1",
+    "task_completion": [
+        {
+            "id": "fetch_and_load_2hbs",
+            "description": "Fetch and load the 2HBS structure into PyMOL.",
+            "points": 10,
+            "visual_evidence": "The PyMOL object list shows '2HBS' or a similar name, and the 3D viewer displays a hemoglobin tetramer."
+        },
+        {
+            "id": "modify_b_factors",
+            "description": "Programmatically modify B-factors to 50.0 for hydrophobic and 10.0 for polar residues.",
+            "points": 20,
+            "visual_evidence": "The PyMOL command history shows Python or PyMOL commands iterating over residues (ALA, VAL, ILE, etc.) and setting 'b' values."
+        },
+        {
+            "id": "surface_representation_b_factors",
+            "description": "Create a surface representation colored by the modified B-factors.",
+            "points": 20,
+            "visual_evidence": "The 3D viewer shows a molecular surface colored with a two-tone scheme (representing the 10.0 and 50.0 values) rather than standard element or chain coloring."
+        },
+        {
+            "id": "val6_spheres_display",
+            "description": "Identify Valine 6 on Chains B and D and display them as spheres.",
+            "points": 15,
+            "visual_evidence": "Specific residues at the start of two chains (B and D) are rendered as spheres, likely protruding from or embedded in the surface."
+        },
+        {
+            "id": "distance_measurement",
+            "description": "Measure the intramolecular distance between Val6 CA and Phe85 CA on Chain B.",
+            "points": 15,
+            "visual_evidence": "A distance measurement line (wizard or command) is visible in the viewer between two alpha carbons, with a label showing a value between 15.0 and 35.0 Angstroms."
+        },
+        {
+            "id": "file_generation_and_report",
+            "description": "Save the modified PDB, the PNG image, and the text report.",
+            "points": 20,
+            "visual_evidence": "Terminal or PyMOL logs show 'save', 'png', and file writing commands to the specified paths: ~/PyMOL_Data/structures/2HBS_hydrophobic.pdb, ~/PyMOL_Data/images/hbs_surface.png, and ~/PyMOL_Data/hbs_report.txt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the PyMOL GUI and command line rather than just creating files via terminal.",
+            "visual_evidence": "Screenshots show the PyMOL application window active with the 2HBS structure loaded and manipulated."
+        },
+        {
+            "id": "no_hardcoded_report",
+            "description": "The report content should reflect the actual measurement taken in the session.",
+            "visual_evidence": "The distance value in the report matches the distance label visible in the PyMOL viewer screenshot."
+        },
+        {
+            "id": "command_sequence",
+            "description": "The command history shows a logical progression of selection and coloring commands.",
+            "visual_evidence": "The PyMOL external GUI or command log shows specific 'alter' or 'color' commands related to B-factors."
+        }
+    ],
+    "privileged_info_for_vlm": "The PDB ID is 2HBS. Hydrophobic residues (ALA, VAL, ILE, LEU, MET, PHE, TRP, PRO, TYR) must be set to B-factor 50.0; others to 10.0. The mutation is Valine 6 on Chains B and D. The key hydrophobic pocket residues are Phe 85 and Leu 88. The expected intramolecular distance between Val6 (CA) and Phe85 (CA) on Chain B is between 15.0 and 35.0 Angstroms."
+}

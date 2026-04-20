@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_portfolio_summary@1",
+    "task_completion": [
+        {
+            "id": "open_jstock",
+            "description": "The agent successfully opens the JStock application.",
+            "points": 10,
+            "visual_evidence": "The JStock application window is visible on the desktop."
+        },
+        {
+            "id": "access_portfolio_tab",
+            "description": "The agent navigates to the 'Portfolio' tab to view stock holdings.",
+            "points": 15,
+            "visual_evidence": "The 'Portfolio' tab is selected/active, showing a list of stocks (AAPL, MSFT, NVDA)."
+        },
+        {
+            "id": "access_watchlist_tab",
+            "description": "The agent navigates to the 'Watchlist' tab to view the watchlist stocks.",
+            "points": 15,
+            "visual_evidence": "The 'Watchlist' tab is selected/active, showing symbols like AAPL, MSFT, GOOGL, AMZN, NVDA."
+        },
+        {
+            "id": "create_summary_file",
+            "description": "The agent opens a text editor or uses a terminal to create the summary file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A text editor (like gedit or mousepad) or a terminal window is open showing the creation of ~/portfolio_summary.txt."
+        },
+        {
+            "id": "correct_portfolio_data",
+            "description": "The agent enters the correct portfolio details including units, purchase price, and net purchase value for each stock.",
+            "points": 25,
+            "visual_evidence": "The text file content shows AAPL (100 shares at $185.2), MSFT (50 shares at $374.5), and NVDA (25 shares at $615.3) with correct calculations."
+        },
+        {
+            "id": "correct_watchlist_and_total",
+            "description": "The agent enters the correct watchlist symbols and the accurate total net purchase value.",
+            "points": 25,
+            "visual_evidence": "The text file shows the total value as $52627.5 and lists the 5 watchlist symbols correctly."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the JStock GUI to retrieve data rather than just reading configuration files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with JStock tabs or the application being in the foreground while data is gathered."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply echo the final string into a file without opening the application.",
+            "visual_evidence": "The JStock application must appear in the trajectory before the file is saved."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent used the application's data display rather than guessing common stock values.",
+            "visual_evidence": "The values in the text file match the specific numbers visible in the JStock GUI screenshots."
+        }
+    ],
+    "privileged_info_for_vlm": "Portfolio: AAPL (100 units @ 185.2 = 18520.0), MSFT (50 units @ 374.5 = 18725.0), NVDA (25 units @ 615.3 = 15382.5). Total Net Purchase Value: 52627.5. Watchlist: AAPL, MSFT, GOOGL, AMZN, NVDA. File path: /home/ga/portfolio_summary.txt. Portfolio Name: 'My Portfolio'. Watchlist Name: 'My Watchlist'."
+}

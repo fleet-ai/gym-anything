@@ -1,0 +1,59 @@
+{
+    "task_id": "verify_ct_tissue_calibration@1",
+    "task_completion": [
+        {
+            "id": "load_ct_volume",
+            "description": "The abdominal CT volume (amos_0001) is loaded into the 3D Slicer workspace.",
+            "points": 10,
+            "visual_evidence": "The 3D Slicer interface shows axial, sagittal, and coronal views of an abdominal CT scan."
+        },
+        {
+            "id": "place_air_fiducial",
+            "description": "A fiducial marker is placed on air (outside the body or in the bowel) with a name containing 'air'.",
+            "points": 20,
+            "visual_evidence": "A marker is visible in the 'Markups' list or on the slice views labeled with 'air'; the probe tool or status bar shows a value near -1000 HU at that location."
+        },
+        {
+            "id": "place_fat_fiducial",
+            "description": "A fiducial marker is placed on subcutaneous or visceral fat with a name containing 'fat'.",
+            "points": 20,
+            "visual_evidence": "A marker is visible labeled with 'fat'; the probe tool shows a value between -150 and -50 HU at that location."
+        },
+        {
+            "id": "place_liver_fiducial",
+            "description": "A fiducial marker is placed on the liver tissue with a name containing 'liver'.",
+            "points": 20,
+            "visual_evidence": "A marker is visible labeled with 'liver'; the probe tool shows a value between 30 and 80 HU at that location."
+        },
+        {
+            "id": "place_bone_fiducial",
+            "description": "A fiducial marker is placed on bone (spine/vertebrae) with a name containing 'bone', 'spine', or 'vertebr'.",
+            "points": 20,
+            "visual_evidence": "A marker is visible labeled with 'bone' or 'spine'; the probe tool shows a value above 300 HU at that location."
+        },
+        {
+            "id": "save_scene",
+            "description": "The scene is saved to the specified directory ~/Documents/SlicerData/AMOS/.",
+            "points": 10,
+            "visual_evidence": "The 'Save Scene' dialog box is shown with the file path set to ~/Documents/SlicerData/AMOS/ or a terminal/file explorer confirmation of the saved .mrb/.mrml file."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to place markers rather than just script execution.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Markups module or the slice views to place points."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The markers are placed on the actual corresponding tissues, not random locations.",
+            "visual_evidence": "The visual location of the markers in the CT slices matches the anatomical structures (e.g., 'liver' marker is inside the liver organ)."
+        },
+        {
+            "id": "spatial_separation",
+            "description": "Markers are not clustered in one spot to ensure calibration across the volume.",
+            "visual_evidence": "The markers are visually distributed across different areas of the scan, appearing at least 20mm apart on the slice grid."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected Hounsfield Unit (HU) ranges for the tissues are: Air (-1050 to -950), Fat (-150 to -50), Liver (30 to 80), and Bone (300 to 1500+). There must be exactly 4 markers. Markers must be named according to their tissue type (air, fat, liver, bone/spine). The minimum distance between any two markers must be 20mm."
+}

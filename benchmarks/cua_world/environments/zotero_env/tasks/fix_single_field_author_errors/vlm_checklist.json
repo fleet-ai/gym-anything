@@ -1,0 +1,56 @@
+{
+    "task_id": "fix_single_field_author_errors@1",
+    "task_completion": [
+        {
+            "id": "locate_papers",
+            "description": "The agent locates the three specific papers in the library interface.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the titles 'A Mathematical Theory of Communication', 'Computing Machinery and Intelligence', and 'A Method for the Construction of Minimum-Redundancy Codes' in the library list or search results."
+        },
+        {
+            "id": "identify_single_field_state",
+            "description": "The agent identifies that the authors are currently in 'Single Field' mode (often represented by a single text box or a specific icon like a building/square).",
+            "points": 15,
+            "visual_evidence": "The author field for the target papers showing the full name (e.g., 'Claude E. Shannon') in a single input box without a comma or distinct Last/First separation."
+        },
+        {
+            "id": "convert_shannon_metadata",
+            "description": "The author for 'A Mathematical Theory of Communication' is converted to two fields: Last: Shannon, First: Claude E.",
+            "points": 25,
+            "visual_evidence": "The metadata pane for this paper showing two distinct input boxes for the author, with 'Shannon' in the last name field and 'Claude E.' in the first name field."
+        },
+        {
+            "id": "convert_turing_metadata",
+            "description": "The author for 'Computing Machinery and Intelligence' is converted to two fields: Last: Turing, First: Alan.",
+            "points": 25,
+            "visual_evidence": "The metadata pane for this paper showing two distinct input boxes for the author, with 'Turing' in the last name field and 'Alan' in the first name field."
+        },
+        {
+            "id": "convert_huffman_metadata",
+            "description": "The author for 'A Method for the Construction of Minimum-Redundancy Codes' is converted to two fields: Last: Huffman, First: David A.",
+            "points": 25,
+            "visual_evidence": "The metadata pane for this paper showing two distinct input boxes for the author, with 'Huffman' in the last name field and 'David A.' in the first name field."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the application's graphical user interface to change metadata.",
+            "points": 0,
+            "visual_evidence": "The cursor or focus indicators are seen interacting with the metadata fields or toggle buttons in the GUI, rather than executing database scripts in a terminal."
+        },
+        {
+            "id": "no_bulk_deletion",
+            "description": "The agent did not simply delete and re-import the papers to fix the error.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows the editing of existing records' metadata fields rather than the 'Add New' or 'Import' dialogs."
+        },
+        {
+            "id": "genuine_field_toggle",
+            "description": "The agent used the specific UI toggle to switch from Single Field to Two Fields.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent clicking the small icon next to the author name that toggles between 'Single Field' (organization) and 'Two Field' (person) modes."
+        }
+    ],
+    "privileged_info_for_vlm": "The three papers must be changed from 'Single Field' (one text box) to 'Two Fields' (Last Name, First Name). Correct values: 1. Last: Shannon, First: Claude E. 2. Last: Turing, First: Alan. 3. Last: Huffman, First: David A. In many reference managers (like Zotero), the 'Single Field' mode is indicated by a single white box or a 'building' icon, while 'Two Field' mode shows two distinct boxes separated by a comma or space."
+}

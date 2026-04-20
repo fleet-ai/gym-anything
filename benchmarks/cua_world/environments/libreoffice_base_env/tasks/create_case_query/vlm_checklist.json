@@ -1,0 +1,59 @@
+{
+    "task_id": "create_case_query@1",
+    "task_completion": [
+        {
+            "id": "open_libreoffice_base",
+            "description": "LibreOffice Base is open with the chinook.odb database loaded.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base window is visible, showing 'chinook.odb' in the title bar or main interface."
+        },
+        {
+            "id": "sql_design_view",
+            "description": "The agent has opened the SQL command window or Query Design view in SQL mode to input the CASE WHEN logic.",
+            "points": 15,
+            "visual_evidence": "A 'Query Design' or 'SQL Command' window is open, showing text input for a SQL query."
+        },
+        {
+            "id": "correct_sql_logic",
+            "description": "The SQL query contains the required CASE WHEN logic for DurationCategory and PriceCategory with correct thresholds.",
+            "points": 30,
+            "visual_evidence": "The SQL text includes 'CASE WHEN Milliseconds < 180000 THEN 'Short'' and 'CASE WHEN UnitPrice < 1.0 THEN 'Budget'' (or similar logic) and 'ORDER BY \"Name\" ASC'."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "The query is executed, showing the columns TrackId, Name, Milliseconds, UnitPrice, DurationCategory, and PriceCategory.",
+            "points": 25,
+            "visual_evidence": "A data grid/table view showing the results of the query with the specific column headers 'DurationCategory' and 'PriceCategory'."
+        },
+        {
+            "id": "save_query_name",
+            "description": "The query is saved with the exact name 'TrackCategories'.",
+            "points": 10,
+            "visual_evidence": "A 'Save As' dialog or the main database 'Queries' list showing the name 'TrackCategories'."
+        },
+        {
+            "id": "save_database_file",
+            "description": "The main database file is saved to ensure persistence.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the 'Save' icon in the main LibreOffice Base window or uses File > Save."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI rather than just executing a shell script to modify the .odb file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, buttons, and the SQL editor."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply create a static table; it used a dynamic SQL query.",
+            "visual_evidence": "The SQL editor window is visible with the CASE WHEN syntax, rather than just a manual data entry screen."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the actual LibreOffice application interface.",
+            "visual_evidence": "Standard LibreOffice Base UI elements (Tables/Queries/Forms/Reports sidebar) are visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The query must be named 'TrackCategories'. Required aliases: 'DurationCategory' (Short < 180000, Medium 180000-360000, Long > 360000) and 'PriceCategory' (Budget < 1.0, Standard 1.0-1.5, Premium > 1.5). Note: In the Chinook DB, UnitPrice is typically 0.99 (Budget) or 1.99 (Premium). The results must be ordered by 'Name' ascending."
+}

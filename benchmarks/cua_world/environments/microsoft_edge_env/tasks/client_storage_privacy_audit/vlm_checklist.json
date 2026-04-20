@@ -1,0 +1,59 @@
+{
+    "task_id": "client_storage_privacy_audit@1",
+    "task_completion": [
+        {
+            "id": "browser_navigation",
+            "description": "Agent navigates to Wikipedia, GitHub, and Reddit in Microsoft Edge.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the Edge browser address bar with en.wikipedia.org, github.com, and reddit.com loaded."
+        },
+        {
+            "id": "devtools_inspection",
+            "description": "Agent opens DevTools and inspects the Application/Storage tab for the target sites.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the Edge DevTools panel open, specifically the 'Application' tab with 'Cookies', 'Local Storage', 'Session Storage', or 'IndexedDB' selected."
+        },
+        {
+            "id": "data_collection_evidence",
+            "description": "Agent views specific storage keys or cookie names for each site.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing lists of cookie names (e.g., 'WMF-Last-Access') or local storage keys in the DevTools data grid for the three domains."
+        },
+        {
+            "id": "report_creation",
+            "description": "Agent creates the report file at the specified path on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor (like Gedit or VS Code) or a terminal 'cat' command showing the file /home/ga/Desktop/storage_audit_report.txt exists."
+        },
+        {
+            "id": "report_content_details",
+            "description": "The report contains specific names of keys/cookies and counts for all four storage categories for each site.",
+            "points": 30,
+            "visual_evidence": "The content of storage_audit_report.txt visible in a screenshot, containing sections for Wikipedia, GitHub, and Reddit with counts for Cookies, Local Storage, Session Storage, and IndexedDB."
+        },
+        {
+            "id": "report_summary_comparison",
+            "description": "The report includes a summary identifying which site stores the most data.",
+            "points": 10,
+            "visual_evidence": "The end of the report file contains a concluding sentence or section comparing the data volumes and naming the site with the highest count."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "Agent interacted with the browser GUI rather than just simulating file creation.",
+            "visual_evidence": "Screenshots must show the browser window and DevTools active; the report should not appear instantly without the agent visiting the sites."
+        },
+        {
+            "id": "no_placeholder_data",
+            "description": "The report contains actual keys found during the session, not generic placeholders.",
+            "visual_evidence": "The report text should list real keys like 'user_session' (GitHub) or 'session_id' rather than 'key1, key2'."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "The agent used the exact file path specified in the instructions.",
+            "visual_evidence": "The file manager or terminal shows the file specifically at /home/ga/Desktop/storage_audit_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must audit Wikipedia, GitHub, and Reddit. The report must be saved to /home/ga/Desktop/storage_audit_report.txt. Required storage categories to audit: Cookies, Local Storage, Session Storage, and IndexedDB. The report must include specific key names, approximate counts for each category per site, and a final summary identifying the site with the most data."
+}

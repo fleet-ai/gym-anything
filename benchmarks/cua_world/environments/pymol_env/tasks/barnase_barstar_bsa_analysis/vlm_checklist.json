@@ -1,0 +1,62 @@
+{
+    "task_id": "barnase_barstar_bsa_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_and_clean_pdb",
+            "description": "Load PDB 1BRS and isolate Chains A and D, removing all other chains and solvent.",
+            "points": 10,
+            "visual_evidence": "PyMOL object list shows 1BRS or specific objects for Chain A and D; the 3D viewer shows only two protein chains without water molecules (red dots) or extra chains (B, C, E, F)."
+        },
+        {
+            "id": "sasa_calculation_process",
+            "description": "Evidence of computing SASA for individual chains and the complex.",
+            "points": 15,
+            "visual_evidence": "PyMOL command history or log shows the use of 'get_area' command on separate objects (Chain A, Chain D) and the combined complex."
+        },
+        {
+            "id": "footprint_identification",
+            "description": "Identification of Chain A residues within 4.5 Angstroms of Chain D.",
+            "points": 15,
+            "visual_evidence": "PyMOL command history shows a selection command using 'within 4.5 of chain D' or similar logic; selected residues are highlighted in the sequence viewer or 3D window."
+        },
+        {
+            "id": "report_generation",
+            "description": "Creation of bsa_report.txt with BSA value and footprint residues.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows /home/ga/PyMOL_Data/bsa_report.txt containing a numerical BSA value in Å² and a list of residues (e.g., HIS-102, TYR-103)."
+        },
+        {
+            "id": "visual_representation_setup",
+            "description": "Chain A rendered as white surface and Chain D as blue cartoon.",
+            "points": 20,
+            "visual_evidence": "The PyMOL viewer shows one partner as a solid white surface and the other as a blue ribbon/cartoon structure."
+        },
+        {
+            "id": "final_render_output",
+            "description": "Footprint residues colored red on the white surface and image saved.",
+            "points": 20,
+            "visual_evidence": "The 3D viewer shows red patches on the white surface of Chain A where it contacts Chain D. A file named barnase_footprint.png is confirmed saved in the images directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the PyMOL GUI or command line directly.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the PyMOL application window active with mouse movements or typed commands in the PyMOL internal console, not just a pre-written script execution."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The BSA value and footprint were derived from the loaded model, not copy-pasted from external sources.",
+            "points": 0,
+            "visual_evidence": "The command log shows the 'get_area' results being printed before the report is written; the footprint selection count matches the residues listed in the report."
+        },
+        {
+            "id": "file_system_compliance",
+            "description": "Files are saved in the specific requested paths.",
+            "points": 0,
+            "visual_evidence": "File browser or terminal output confirms the full paths /home/ga/PyMOL_Data/bsa_report.txt and /home/ga/PyMOL_Data/images/barnase_footprint.png."
+        }
+    ],
+    "privileged_info_for_vlm": "For PDB 1BRS (Chains A and D), the total BSA is approximately 1500-1650 Å². Key footprint residues in Chain A (Barnase) typically include Lys27, Arg59, Glu60, Lys62, Gly64, Arg83, Arg87, His102, and Tyr103. Chain A is Barnase; Chain D is Barstar."
+}

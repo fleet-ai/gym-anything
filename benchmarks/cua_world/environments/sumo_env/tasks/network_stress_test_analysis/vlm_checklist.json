@@ -1,0 +1,59 @@
+{
+    "task_id": "network_stress_test_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_sumo_baseline",
+            "description": "Open the Bologna Pasubio configuration in the SUMO GUI for the baseline run.",
+            "points": 10,
+            "visual_evidence": "SUMO-GUI window showing the Bologna Pasubio network map and the file path /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg in the title bar or logs."
+        },
+        {
+            "id": "run_baseline_simulation",
+            "description": "Execute the baseline simulation to completion.",
+            "points": 15,
+            "visual_evidence": "SUMO-GUI showing vehicles moving on the map and the simulation time progressing until the 'Simulation ended' message appears in the message console."
+        },
+        {
+            "id": "configure_stress_test",
+            "description": "Configure the simulation with a traffic demand scale of 1.2 for the stress test.",
+            "points": 15,
+            "visual_evidence": "The 'Simulation' or 'Settings' dialog in SUMO-GUI showing the 'Scale' parameter set to 1.2, or a command line/config edit showing '--scale 1.2'."
+        },
+        {
+            "id": "run_stress_simulation",
+            "description": "Execute the stress test simulation (1.2x scale) to completion.",
+            "points": 15,
+            "visual_evidence": "SUMO-GUI showing the simulation running with the scaled traffic and reaching the end of the simulation period."
+        },
+        {
+            "id": "extract_metrics",
+            "description": "Extract halting vehicle counts and average speeds from the simulation outputs.",
+            "points": 25,
+            "visual_evidence": "The agent opening the summary XML files or viewing the 'Simulation Statistics' tab in SUMO to find 'halting' and 'meanSpeed' values."
+        },
+        {
+            "id": "generate_report",
+            "description": "Create the final report file with the required four metrics.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the file /home/ga/SUMO_Output/stress_test_report.txt containing the keys baseline_max_halting, stress_max_halting, baseline_min_speed, and stress_min_speed with their respective values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran the simulation rather than just creating the report.",
+            "visual_evidence": "Screenshots must show the SUMO-GUI animation state changing over time and the progress bar moving."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "Check that the agent didn't simply echo the privileged values without opening the simulation files.",
+            "visual_evidence": "The agent must be seen interacting with the SUMO-GUI or opening the generated XML summary files before writing the report."
+        },
+        {
+            "id": "correct_scale_application",
+            "description": "Ensure the 1.2 scaling factor was actually applied to the stress test.",
+            "visual_evidence": "Visual confirmation of the '1.2' value in the SUMO configuration settings or the command line execution string."
+        }
+    ],
+    "privileged_info_for_vlm": "The baseline simulation should yield a baseline_max_halting of 591 and a baseline_min_speed of -1.0. The stress test (1.2x scale) should yield a stress_max_halting of 822 and a stress_min_speed of -1.0. The report must be saved at /home/ga/SUMO_Output/stress_test_report.txt."
+}

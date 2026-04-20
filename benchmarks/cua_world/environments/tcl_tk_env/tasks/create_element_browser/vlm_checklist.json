@@ -1,0 +1,59 @@
+{
+    "task_id": "create_element_browser@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates the Tcl/Tk script file at the specified path.",
+            "points": 10,
+            "visual_evidence": "A terminal command or text editor showing the creation of '~/Documents/element_browser.tcl'."
+        },
+        {
+            "id": "application_launch",
+            "description": "The agent executes the script using the 'wish' command and a window appears.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'wish ~/Documents/element_browser.tcl' followed by a new GUI window appearing on the desktop."
+        },
+        {
+            "id": "gui_components_present",
+            "description": "The GUI contains a search entry, a listbox, and a detail panel.",
+            "points": 15,
+            "visual_evidence": "The application window shows an input field at the top, a vertical list of items, and a labeled area for element details."
+        },
+        {
+            "id": "data_loading",
+            "description": "The listbox is populated with element names from the CSV (Hydrogen, Helium, etc.).",
+            "points": 20,
+            "visual_evidence": "The listbox component is not empty and displays names of chemical elements (1-36)."
+        },
+        {
+            "id": "search_filtering",
+            "description": "The search entry field filters the listbox items as text is entered.",
+            "points": 20,
+            "visual_evidence": "Screenshots show text being typed into the search bar and the number of items in the listbox decreasing to match the query."
+        },
+        {
+            "id": "detail_panel_functionality",
+            "description": "Clicking an element updates the detail panel with atomic number, symbol, name, weight, category, and phase.",
+            "points": 20,
+            "visual_evidence": "An element is selected in the listbox, and the detail panel displays specific data (e.g., 'Atomic Number: 1', 'Symbol: H') corresponding to that element."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the GUI elements rather than just printing data to the terminal.",
+            "visual_evidence": "Mouse cursor positioning over the GUI listbox or entry field and subsequent visual changes in the application window."
+        },
+        {
+            "id": "no_hardcoded_mockup",
+            "description": "The application displays data from the CSV, not just a static image or hardcoded single-element UI.",
+            "visual_evidence": "The listbox contains multiple elements (up to 36) and changes dynamically when different items are clicked."
+        },
+        {
+            "id": "correct_execution_environment",
+            "description": "The script is run from the specified file path using the correct interpreter.",
+            "visual_evidence": "The terminal command shows 'wish' being used on the file located in '~/Documents/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The periodic table data for elements 1-36 must be read from ~/Documents/periodic_table.csv. Element 1 is Hydrogen (H, 1.008), Element 6 is Carbon (C, 12.011), and Element 36 is Krypton (Kr, 83.798). The detail panel must show all six required fields: atomic number, symbol, name, atomic weight, category, and phase."
+}

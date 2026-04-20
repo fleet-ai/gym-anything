@@ -1,0 +1,59 @@
+{
+    "task_id": "tls_handshake_audit@1",
+    "task_completion": [
+        {
+            "id": "wireshark_open_pcap",
+            "description": "Wireshark is open and the file tls_traffic.pcap is loaded.",
+            "points": 10,
+            "visual_evidence": "The Wireshark window title bar or status bar shows 'tls_traffic.pcap' and packet rows are visible."
+        },
+        {
+            "id": "tls_handshake_filtering",
+            "description": "The agent applies a display filter to isolate TLS handshake messages.",
+            "points": 15,
+            "visual_evidence": "The Wireshark filter bar contains 'tls.handshake.type' or 'tls' and the packet list updates accordingly."
+        },
+        {
+            "id": "analyze_client_hello",
+            "description": "The agent inspects Client Hello packets to count messages and identify TLS versions/SNIs.",
+            "points": 20,
+            "visual_evidence": "The Packet Details pane shows the 'Handshake Protocol: Client Hello' section expanded, revealing SNI and Version fields."
+        },
+        {
+            "id": "analyze_server_hello",
+            "description": "The agent inspects Server Hello packets to count completed handshakes and identify cipher suites.",
+            "points": 20,
+            "visual_evidence": "The Packet Details pane shows 'Handshake Protocol: Server Hello' with the 'Cipher Suite' field visible."
+        },
+        {
+            "id": "generate_report_content",
+            "description": "The agent drafts the audit report with the required structured headers and data points.",
+            "points": 15,
+            "visual_evidence": "A text editor (e.g., Gedit, Mousepad) or terminal shows the 'TLS SECURITY AUDIT REPORT' content being typed."
+        },
+        {
+            "id": "save_report_file",
+            "description": "The report is saved to the specific path ~/Documents/tls_audit_report.txt.",
+            "points": 20,
+            "visual_evidence": "A file manager showing the file in ~/Documents or a terminal command 'cat ~/Documents/tls_audit_report.txt' displaying the final report."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the Wireshark GUI for analysis rather than just running shell scripts to parse the pcap.",
+            "visual_evidence": "Screenshots show the agent interacting with the Wireshark packet list and details panes."
+        },
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent does not use pre-existing knowledge of the domains to fill the report without looking at the packets.",
+            "visual_evidence": "The agent is seen clicking on specific packets that correspond to the domains (Google, Wikipedia, etc.) before writing them in the report."
+        },
+        {
+            "id": "correct_file_path",
+            "description": "The agent uses the specific pcap file provided in the instructions.",
+            "visual_evidence": "The file path /home/ga/Documents/captures/tls_traffic.pcap is visible in the Wireshark 'Open' dialog or title bar."
+        }
+    ],
+    "privileged_info_for_vlm": "The pcap contains real traffic to 5 domains: www.google.com, www.example.com, www.wikipedia.org, www.cloudflare.com, and api.github.com. The agent must identify these in the SNI list. Weak TLS versions (1.0 or 1.1) should be marked 'Yes' if found in the Client Hello record layer. The report must follow the exact 'TLS SECURITY AUDIT REPORT' header format."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "compare_pv_module_technologies@1",
+    "task_completion": [
+        {
+            "id": "weather_data_access",
+            "description": "Agent locates and reads the Phoenix TMY weather file path from the specified text file.",
+            "points": 10,
+            "visual_evidence": "Terminal output or text editor showing the content of /home/ga/.SAM/solar_resource_dir.txt containing a Phoenix TMY path."
+        },
+        {
+            "id": "pysam_initialization",
+            "description": "Agent writes a Python script importing PySAM.Pvwattsv8 and setting the system capacity to 50,000 kW.",
+            "points": 15,
+            "visual_evidence": "Code editor or terminal showing 'import PySAM.Pvwattsv8' and 'system_capacity = 50000' (or 50 MW equivalent)."
+        },
+        {
+            "id": "parameter_configuration",
+            "description": "Agent configures the simulation with the specific parameters: DC/AC ratio 1.2, Inverter Efficiency 96%, Array Type 2, Tilt 0, and Losses 14.08%.",
+            "points": 20,
+            "visual_evidence": "Python script showing dc_ac_ratio=1.2, inv_eff=96.0, array_type=2, tilt=0, and losses=14.08."
+        },
+        {
+            "id": "module_type_comparison",
+            "description": "Agent runs the simulation twice, once with module_type=0 (Standard) and once with module_type=2 (Thin Film).",
+            "points": 25,
+            "visual_evidence": "Code showing a loop or two distinct execution blocks where 'module_type' is changed from 0 to 2."
+        },
+        {
+            "id": "calculation_of_gain",
+            "description": "Agent calculates the percentage energy gain of Thin Film over Standard modules.",
+            "points": 15,
+            "visual_evidence": "Python code or terminal output showing the math: ((ThinFilm_Energy / Standard_Energy) - 1) * 100."
+        },
+        {
+            "id": "json_output_creation",
+            "description": "Agent saves the final results to the specified JSON path with the correct structure.",
+            "points": 15,
+            "visual_evidence": "Terminal command 'cat /home/ga/Documents/SAM_Projects/module_comparison.json' showing the populated JSON object."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "The agent actually executed the PySAM simulation rather than hardcoding values.",
+            "visual_evidence": "Terminal logs showing the execution of a python script and the absence of hardcoded annual_energy_kwh values in the source code before execution."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific weather file path provided in the system configuration file.",
+            "visual_evidence": "The Python script references the path string retrieved from /home/ga/.SAM/solar_resource_dir.txt."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The final JSON contains actual calculated floats, not template strings like '<float>'.",
+            "visual_evidence": "The content of module_comparison.json shows specific numerical values for annual_energy_kwh and capacity_factor_percent."
+        }
+    ],
+    "privileged_info_for_vlm": "The simulation must use Phoenix TMY data. For a 50MW system with 0 tilt and tracking (array_type 2), the expected annual energy for Standard modules (type 0) is approximately 103,568,078 kWh. For Thin Film (type 2), it is approximately 104,684,689 kWh. Note that metadata suggesting values over 110M kWh is incorrect for a 0-degree tilt; the VLM should verify that the agent used 'tilt: 0' as instructed, which results in the ~103-104M range."
+}

@@ -1,0 +1,62 @@
+{
+    "task_id": "metacognition_calibration_analysis@1",
+    "task_completion": [
+        {
+            "id": "load_dataset",
+            "description": "The agent successfully loads the dataset from ~/pebl/data/metacognition_data.csv.",
+            "points": 10,
+            "visual_evidence": "Code or terminal output showing the reading of 'metacognition_data.csv' into a data structure (e.g., a pandas DataFrame)."
+        },
+        {
+            "id": "filter_timeouts",
+            "description": "The agent filters out timeout trials where 'correct' equals -1.",
+            "points": 15,
+            "visual_evidence": "Code snippet or log showing a filtering operation where 'correct != -1' or equivalent logic."
+        },
+        {
+            "id": "filter_participants",
+            "description": "The agent identifies and removes participants with confidence ratings below 50.",
+            "points": 20,
+            "visual_evidence": "Code showing the exclusion of participant IDs (specifically sub-99) who have confidence values < 50."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "The agent calculates Accuracy, Mean Confidence (0-1 scale), Overconfidence Bias, and Brier Score.",
+            "points": 25,
+            "visual_evidence": "Code or output showing the formulas: Overconfidence = (Confidence/100 - Accuracy) and Brier Score = mean((Confidence/100 - Correct)^2)."
+        },
+        {
+            "id": "domain_grouping",
+            "description": "The agent calculates metrics for 'memory' and 'perceptual' domains separately and computes group means.",
+            "points": 15,
+            "visual_evidence": "Code showing a 'groupby' operation on 'task_domain' and the calculation of means across the remaining valid participants."
+        },
+        {
+            "id": "save_report",
+            "description": "The agent saves the final results to ~/pebl/analysis/metacognition_report.json.",
+            "points": 15,
+            "visual_evidence": "Terminal command or code execution showing the creation of 'metacognition_report.json' in the specified directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final metric values or the contaminated participant ID without analysis.",
+            "points": 0,
+            "visual_evidence": "The agent should be seen writing code to calculate values rather than typing the final numbers directly into a JSON file."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "The agent actually reads the CSV file rather than assuming its contents.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the agent opening or 'cat'-ing the CSV file to inspect the schema."
+        },
+        {
+            "id": "proper_path_usage",
+            "description": "The agent uses the specified file paths rather than creating temporary files in the home directory.",
+            "points": 0,
+            "visual_evidence": "The agent interacts with ~/pebl/data/ and ~/pebl/analysis/ as requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a contaminated participant 'sub-99' who has impossible confidence values (20, 0, 35) and must be excluded. The Brier Score must use confidence on a 0-1 scale (confidence/100). The final report must be saved to /home/ga/pebl/analysis/metacognition_report.json. Metric tolerances are 0.01 for individual metrics and 0.005 for group means."
+}

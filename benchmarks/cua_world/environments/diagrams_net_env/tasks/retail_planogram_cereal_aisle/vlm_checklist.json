@@ -1,0 +1,59 @@
+{
+    "task_id": "retail_planogram_cereal_aisle@1",
+    "task_completion": [
+        {
+            "id": "open_template",
+            "description": "Agent opens the correct template file in Diagrams.net.",
+            "points": 10,
+            "visual_evidence": "The Diagrams.net (draw.io) interface is visible showing the 'planogram_template.drawio' file content, likely a blank or structured shelving unit."
+        },
+        {
+            "id": "data_retrieval",
+            "description": "Agent accesses the product list and merchandising strategy files.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the agent opening 'product_list.csv' and 'merchandising_strategy.txt' in a text editor or terminal to read the data."
+        },
+        {
+            "id": "correct_scaling",
+            "description": "Product rectangles are scaled at 10px per 1 inch.",
+            "points": 20,
+            "visual_evidence": "The VLM should check the properties/dimensions of the rectangles in the Diagrams.net sidebar. For example, a 10-inch tall product should be 100px high."
+        },
+        {
+            "id": "merchandising_placement",
+            "description": "Products are placed on shelves according to category and margin (High-margin at 50-60\", Kids at 0-20\", Value at top).",
+            "points": 30,
+            "visual_evidence": "Rectangles labeled with product names (e.g., FiberCrunch) are positioned at specific Y-coordinates or shelf levels corresponding to the strategy rules."
+        },
+        {
+            "id": "lowest_margin_star",
+            "description": "The product with the lowest margin is identified with a 'Star' shape labeled 'SALE'.",
+            "points": 15,
+            "visual_evidence": "A star-shaped element is visible on the planogram with the text 'SALE' overlaid on or next to the specific product rectangle."
+        },
+        {
+            "id": "export_pdf",
+            "description": "The final planogram is exported to the specified PDF path.",
+            "points": 15,
+            "visual_evidence": "The Diagrams.net export menu is used, or a file explorer shows 'planogram_export.pdf' created in the ~/Diagrams/ directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Diagrams.net GUI to create the planogram rather than just generating a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Diagrams.net canvas, dragging shapes, or typing labels."
+        },
+        {
+            "id": "no_placeholder_cheating",
+            "description": "The agent used actual data from the CSV rather than generic 'Product A' labels.",
+            "visual_evidence": "Labels on the rectangles match specific names from the CSV (e.g., 'FiberCrunch') rather than placeholder text."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The PDF was generated through the application's export flow.",
+            "visual_evidence": "The export dialog or 'Save As' screen is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The scale is 10 pixels = 1 inch. The total fixture height is 72 inches (720px). FiberCrunch (SKU 101) is an 'Adult' category item with 'High' margin ($2.50) and should be at eye level (50-60 inches from bottom). The agent must identify the lowest margin item from product_list.csv to mark with a Star/SALE label. The final output must be a PDF at /home/ga/Diagrams/planogram_export.pdf."
+}

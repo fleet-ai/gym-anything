@@ -1,0 +1,53 @@
+{
+    "task_id": "finalize_tentative_schedule@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_calendar",
+            "description": "Agent navigates to the Calendar application in Odoo.",
+            "points": 10,
+            "visual_evidence": "The Odoo Calendar view is visible, showing a weekly or monthly grid."
+        },
+        {
+            "id": "locate_tentative_events",
+            "description": "Agent identifies the three 'Hold: Q3 Budget Review' events on Tuesday, Wednesday, and Thursday.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the agent clicking on or hovering over the events titled 'Hold: Q3 Budget Review'."
+        },
+        {
+            "id": "delete_tuesday_hold",
+            "description": "Agent deletes the 'Hold: Q3 Budget Review' event on Tuesday.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion is shown, or the Tuesday slot becomes empty/the event disappears from the Tuesday column."
+        },
+        {
+            "id": "delete_thursday_hold",
+            "description": "Agent deletes the 'Hold: Q3 Budget Review' event on Thursday.",
+            "points": 25,
+            "visual_evidence": "A confirmation dialog for deletion is shown, or the Thursday slot becomes empty/the event disappears from the Thursday column."
+        },
+        {
+            "id": "rename_wednesday_event",
+            "description": "Agent renames the Wednesday 2:00 PM event from 'Hold: Q3 Budget Review' to 'Q3 Budget Review'.",
+            "points": 30,
+            "visual_evidence": "The event edit modal or inline edit shows the text 'Q3 Budget Review' (without 'Hold:') and the time remains 2:00 PM (14:00) on Wednesday."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Odoo graphical user interface to manage events.",
+            "visual_evidence": "The agent is seen clicking buttons (Delete, Edit, Save) within the Odoo web interface rather than using a terminal or script."
+        },
+        {
+            "id": "no_manual_url_manipulation",
+            "description": "The agent navigated through the app menus rather than guessing direct database IDs in the URL.",
+            "visual_evidence": "The agent clicks on the Calendar icon or uses the search bar within the Odoo UI."
+        },
+        {
+            "id": "authentic_event_modification",
+            "description": "The agent actually opened the specific Wednesday event to rename it rather than creating a new one.",
+            "visual_evidence": "The edit dialog for the existing Wednesday 2:00 PM event is visible, showing the original 'Hold' title being modified."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial state contains three events titled 'Hold: Q3 Budget Review' on Tuesday (10:00), Wednesday (14:00), and Thursday (11:00). The final successful state must show ONLY one event on Wednesday at 2:00 PM (14:00) named exactly 'Q3 Budget Review'. The Tuesday and Thursday events must be completely removed. Any event still containing the word 'Hold' indicates a failure."
+}

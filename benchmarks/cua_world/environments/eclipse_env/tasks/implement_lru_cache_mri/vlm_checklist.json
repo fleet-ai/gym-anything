@@ -1,0 +1,59 @@
+{
+    "task_id": "implement_lru_cache_mri@1",
+    "task_completion": [
+        {
+            "id": "open_mri_slice_cache",
+            "description": "Open the MRISliceCache.java file in the Eclipse editor.",
+            "points": 10,
+            "visual_evidence": "The file 'MRISliceCache.java' is visible in an editor tab within the Eclipse IDE."
+        },
+        {
+            "id": "import_linked_hash_map",
+            "description": "Import LinkedHashMap and Map in the MRISliceCache class.",
+            "points": 10,
+            "visual_evidence": "The import statements 'import java.util.LinkedHashMap;' and 'import java.util.Map;' (or similar) are visible at the top of the file."
+        },
+        {
+            "id": "implement_linked_hash_map",
+            "description": "Change the internal storage from HashMap to LinkedHashMap with access-order enabled.",
+            "points": 25,
+            "visual_evidence": "Code showing the instantiation of LinkedHashMap, typically using the constructor: new LinkedHashMap<>(..., 0.75f, true)."
+        },
+        {
+            "id": "implement_remove_eldest",
+            "description": "Override the removeEldestEntry method to enforce the maximum capacity of 20.",
+            "points": 30,
+            "visual_evidence": "The method 'protected boolean removeEldestEntry(Map.Entry eldest)' is visible, returning 'size() > 20'."
+        },
+        {
+            "id": "run_stability_test",
+            "description": "Execute the CacheStabilityTest to verify the implementation.",
+            "points": 10,
+            "visual_evidence": "The Eclipse JUnit view or a terminal output showing 'CacheStabilityTest' being initiated."
+        },
+        {
+            "id": "test_pass_confirmation",
+            "description": "Verify that CacheStabilityTest passes successfully.",
+            "points": 15,
+            "visual_evidence": "A green bar in the Eclipse JUnit view or a 'Tests run: X, Failures: 0, Errors: 0' message in the console."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test file to force a pass.",
+            "visual_evidence": "The editor tabs or file explorer do not show unsaved changes or recent edits to 'CacheStabilityTest.java' that would bypass the 20-item limit check."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "The agent used the Eclipse IDE interface for refactoring rather than just using terminal commands.",
+            "visual_evidence": "Screenshots show the agent clicking menus, using the editor, or interacting with the Package Explorer."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply print 'Test Passed' to the console manually.",
+            "visual_evidence": "The test results are shown within the standard JUnit framework UI or as part of a legitimate build tool (Maven/Gradle) output stream."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/eclipse-workspace/MedicalImagingSystem. The target file for modification is src/main/java/com/medsys/imaging/MRISliceCache.java. The required implementation must use a LinkedHashMap with the accessOrder flag set to true (for LRU) and override removeEldestEntry to return true when size exceeds 20. The verification test is src/test/java/com/medsys/imaging/CacheStabilityTest.java."
+}

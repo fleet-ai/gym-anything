@@ -1,0 +1,59 @@
+{
+    "task_id": "sabermetric_batting_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_onlyoffice_and_load_data",
+            "description": "Open ONLYOFFICE Spreadsheet Editor and import the raw CSV data from the specified path.",
+            "points": 10,
+            "visual_evidence": "ONLYOFFICE Spreadsheet Editor is open showing the raw 2023 MLB batting data (columns like H, AB, BB, etc.) in the grid."
+        },
+        {
+            "id": "calculate_sabermetrics",
+            "description": "Calculate BA, OBP, SLG, OPS, and ISO for every batter using spreadsheet formulas.",
+            "points": 25,
+            "visual_evidence": "New columns labeled BA, OBP, SLG, OPS, and ISO are visible with calculated values. Formula bar shows calculations like =(H/AB) or similar for the selected cell."
+        },
+        {
+            "id": "create_rankings_sheet",
+            "description": "Create a 'Rankings' sheet with batters sorted by OPS in descending order.",
+            "points": 20,
+            "visual_evidence": "A sheet tab named 'Rankings' is visible. The data is sorted such that the highest OPS values (e.g., Shohei Ohtani) are at the top."
+        },
+        {
+            "id": "create_leaders_sheet",
+            "description": "Create a 'Leaders' sheet identifying the top player in BA, HR, RBI, OBP, SLG, and OPS.",
+            "points": 20,
+            "visual_evidence": "A sheet tab named 'Leaders' is visible. It contains a table or list mapping the categories (BA, HR, etc.) to specific player names."
+        },
+        {
+            "id": "create_league_summary_sheet",
+            "description": "Create a 'League Summary' sheet with averages for BA/OBP/SLG/OPS, sums for HR/RBI, and a count of batters.",
+            "points": 15,
+            "visual_evidence": "A sheet tab named 'League Summary' is visible showing aggregated values (AVERAGE, SUM, and COUNT functions)."
+        },
+        {
+            "id": "save_workbook",
+            "description": "Save the final workbook as an .xlsx file to the specified directory.",
+            "points": 10,
+            "visual_evidence": "The ONLYOFFICE title bar or the 'Save As' dialog shows the filename 'batting_analysis_2023.xlsx' and the path '~/Documents/Spreadsheets/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "Verify the agent used the ONLYOFFICE GUI for analysis rather than executing python/bash scripts to generate the file.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with ONLYOFFICE menus, cell formulas being typed, and sheet tabs being created manually."
+        },
+        {
+            "id": "no_external_scripts",
+            "description": "Ensure the agent did not use the terminal to perform the data processing (e.g., using pandas or awk).",
+            "visual_evidence": "The terminal is not used for data manipulation; it may only be used to launch the application or check file paths."
+        },
+        {
+            "id": "genuine_formula_usage",
+            "description": "Verify that the values in the spreadsheet are results of formulas, not hardcoded numbers.",
+            "visual_evidence": "When a calculated cell (like OPS) is selected, the formula bar shows a spreadsheet formula (e.g., =B2+C2) rather than a static number."
+        }
+    ],
+    "privileged_info_for_vlm": "The data contains 20 players. Key leaders to verify: Top OPS is Shohei Ohtani, Top HR is Matt Olson, and Top BA is Luis Arraez. The formulas required are: BA = H/AB; OBP = (H+BB+HBP)/(AB+BB+HBP+SF); SLG = (H-2B-3B-HR + 2*2B + 3*3B + 4*HR)/AB; OPS = OBP+SLG; ISO = SLG-BA. The final file must be saved as batting_analysis_2023.xlsx."
+}

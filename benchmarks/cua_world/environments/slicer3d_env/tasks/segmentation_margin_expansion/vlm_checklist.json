@@ -1,0 +1,59 @@
+{
+    "task_id": "segmentation_margin_expansion@1",
+    "task_completion": [
+        {
+            "id": "load_gtv_segmentation",
+            "description": "The agent has loaded the initial GTV segmentation into the 3D Slicer environment.",
+            "points": 10,
+            "visual_evidence": "The 'Segment Editor' or 'Segments' module is visible with a segment named 'GTV' listed in the table."
+        },
+        {
+            "id": "create_ctv_margin",
+            "description": "A new segment named 'CTV' is created using a 5mm margin expansion from the GTV.",
+            "points": 20,
+            "visual_evidence": "A segment named 'CTV' appears in the segment list. The 'Margin' effect tool may be visible with '5.0 mm' entered in the parameters."
+        },
+        {
+            "id": "create_ptv_margin",
+            "description": "A new segment named 'PTV' is created using an 8mm margin expansion from the GTV.",
+            "points": 20,
+            "visual_evidence": "A segment named 'PTV' appears in the segment list. The 'Margin' effect tool may be visible with '8.0 mm' entered in the parameters."
+        },
+        {
+            "id": "verify_nested_segments",
+            "description": "All three segments (GTV, CTV, PTV) exist simultaneously and are nested correctly.",
+            "points": 20,
+            "visual_evidence": "The 2D slice views show three concentric colored outlines (GTV innermost, PTV outermost). The segment list shows all three names with visibility toggled on."
+        },
+        {
+            "id": "save_segmentation_file",
+            "description": "The segmentation is saved to the specific NRRD file path.",
+            "points": 15,
+            "visual_evidence": "The 'Save Data' dialog is visible showing 'treatment_volumes.seg.nrrd' being saved to the '~/Documents/SlicerData/BraTS/' directory."
+        },
+        {
+            "id": "export_volume_report",
+            "description": "A JSON report is generated containing the required volume and margin fields.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows a JSON file named 'treatment_volumes_report.json' with keys: gtv_volume_ml, ctv_volume_ml, ptv_volume_ml, ctv_margin_mm, and ptv_margin_mm."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to perform segmentations rather than just writing a script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Segment Editor, Margin tool buttons, and the segment list."
+        },
+        {
+            "id": "genuine_margin_calculation",
+            "description": "The agent did not manually draw the margins but used the software's margin tool.",
+            "visual_evidence": "The 'Margin' effect is active in the Segment Editor panel when CTV and PTV are being created."
+        },
+        {
+            "id": "file_system_actual_save",
+            "description": "The agent actually performed a save operation in the software.",
+            "visual_evidence": "The Slicer 'Save Data' interface or a file explorer showing the newly created files with recent timestamps."
+        }
+    ],
+    "privileged_info_for_vlm": "The CTV must have a 5mm margin and the PTV must have an 8mm margin relative to the GTV. The final report must be in JSON format and include exactly these five fields: gtv_volume_ml, ctv_volume_ml, ptv_volume_ml, ctv_margin_mm, ptv_margin_mm."
+}

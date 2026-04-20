@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_printer_routing@1",
+    "task_completion": [
+        {
+            "id": "back_office_access",
+            "description": "Agent successfully accessed the Back Office using the PIN 1111.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the PIN entry screen with '1111' entered or the Back Office main menu displayed after login."
+        },
+        {
+            "id": "printer_configuration_menu",
+            "description": "Agent navigated to the Virtual Printer configuration section.",
+            "points": 10,
+            "visual_evidence": "The VLM should see a list of printers or a 'Virtual Printers' management window within the Back Office."
+        },
+        {
+            "id": "create_bar_printer",
+            "description": "Agent created a new virtual printer named 'Bar Printer'.",
+            "points": 25,
+            "visual_evidence": "A dialog box or form showing the name 'Bar Printer' being typed into a 'Name' field and saved."
+        },
+        {
+            "id": "menu_category_selection",
+            "description": "Agent navigated to the Menu Categories configuration and selected 'Beverages'.",
+            "points": 15,
+            "visual_evidence": "The 'Menu Categories' list is visible with the 'Beverages' category highlighted or opened for editing."
+        },
+        {
+            "id": "route_category_to_printer",
+            "description": "Agent assigned the 'Bar Printer' to the 'Beverages' menu category.",
+            "points": 30,
+            "visual_evidence": "In the 'Beverages' category edit screen, the 'Bar Printer' is selected in a dropdown or list for printer routing."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Agent saved the changes to the menu category.",
+            "points": 10,
+            "visual_evidence": "The agent clicks an 'OK' or 'Save' button, and the configuration window closes or shows a success message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Floreant POS graphical user interface rather than executing database commands in a terminal.",
+            "visual_evidence": "The screenshots should show mouse movements and clicks within the Java application, not a terminal window running SQL queries."
+        },
+        {
+            "id": "no_manual_db_edit",
+            "description": "The agent did not bypass the UI by editing configuration files directly.",
+            "visual_evidence": "The agent remains within the Floreant POS application windows throughout the task."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually typed the printer name and PIN.",
+            "visual_evidence": "The VLM should see the text 'Bar Printer' and '1111' appearing in the appropriate UI fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The Back Office PIN is 1111. The target printer name must be exactly 'Bar Printer'. The target menu category is 'Beverages'. The task is performed in Floreant POS; configuration changes are made in the 'Back Office' -> 'Configuration' or 'Explorers' sections."
+}

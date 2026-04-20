@@ -1,0 +1,53 @@
+{
+    "task_id": "convert_notes_to_tags@1",
+    "task_completion": [
+        {
+            "id": "locate_urgent_papers",
+            "description": "Identify papers with 'Status: Urgent' child notes.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the agent selecting or expanding 'Attention Is All You Need' and 'Deep Learning' to reveal child notes containing the text 'Status: Urgent'."
+        },
+        {
+            "id": "apply_priority_high_tags",
+            "description": "Apply the 'priority:high' tag to the identified urgent papers.",
+            "points": 25,
+            "visual_evidence": "The VLM should see the 'priority:high' tag appearing in the Tags pane or the item details for 'Attention Is All You Need' and 'Deep Learning'."
+        },
+        {
+            "id": "apply_priority_low_tag",
+            "description": "Apply the 'priority:low' tag to the paper with 'Status: Later' note.",
+            "points": 20,
+            "visual_evidence": "The VLM should see the 'priority:low' tag applied to 'Computing Machinery and Intelligence' after identifying its 'Status: Later' note."
+        },
+        {
+            "id": "delete_status_notes",
+            "description": "Delete the redundant 'Status: Urgent' and 'Status: Later' child notes.",
+            "points": 30,
+            "visual_evidence": "The VLM should see the agent right-clicking and deleting the specific child notes containing 'Status: Urgent' and 'Status: Later'. These notes should no longer appear under the papers in the library view."
+        },
+        {
+            "id": "preserve_other_notes",
+            "description": "Ensure non-status notes like 'Key reference' are not deleted.",
+            "points": 15,
+            "visual_evidence": "The VLM should see that the paper 'On the Electrodynamics of Moving Bodies' still has its 'Key reference' note intact and has not been modified with priority tags."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Zotero GUI to perform actions rather than terminal scripts.",
+            "visual_evidence": "The VLM should see mouse movements, clicks on Zotero menus, and typing within the Zotero tag/note fields, not commands being run in a terminal window."
+        },
+        {
+            "id": "no_bulk_deletion_of_valid_notes",
+            "description": "The agent did not simply delete all notes to clear the status notes.",
+            "visual_evidence": "The VLM should observe the agent specifically selecting the 'Status' notes for deletion while leaving other items or notes (like 'Key reference') untouched."
+        },
+        {
+            "id": "genuine_tag_creation",
+            "description": "The agent manually entered or selected the tags in the Zotero interface.",
+            "visual_evidence": "The VLM should see the tag entry box being used or the 'Add' button in the Tags selector being clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "Urgent papers requiring the 'priority:high' tag are 'Attention Is All You Need' and 'Deep Learning'. The paper requiring the 'priority:low' tag is 'Computing Machinery and Intelligence'. The paper 'On the Electrodynamics of Moving Bodies' contains a 'Key reference' note and must remain unmodified. The agent must delete the specific notes containing 'Status: Urgent' and 'Status: Later' after tagging."
+}

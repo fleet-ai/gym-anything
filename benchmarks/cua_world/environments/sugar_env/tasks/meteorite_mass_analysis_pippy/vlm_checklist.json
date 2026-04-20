@@ -1,0 +1,59 @@
+{
+    "task_id": "meteorite_mass_analysis_pippy@1",
+    "task_completion": [
+        {
+            "id": "script_creation",
+            "description": "The agent creates a Python script named meteorite_analysis.py in /home/ga/Documents/.",
+            "points": 10,
+            "visual_evidence": "A text editor (Pippy or nano) or file manager showing the file name 'meteorite_analysis.py' and the correct path."
+        },
+        {
+            "id": "script_logic_csv_handling",
+            "description": "The script contains code to read meteorites.csv and skip rows with missing mass values.",
+            "points": 20,
+            "visual_evidence": "Code visible in the editor showing 'import csv', opening '/home/ga/Documents/meteorites.csv', and a conditional check for empty mass strings."
+        },
+        {
+            "id": "script_logic_conversion_sorting",
+            "description": "The script converts mass to kg (mass/1000) and sorts the data in descending order.",
+            "points": 20,
+            "visual_evidence": "Code visible in the editor showing division by 1000 and a sort function (e.g., sorted() with reverse=True) based on the mass."
+        },
+        {
+            "id": "script_logic_html_generation",
+            "description": "The script contains code to generate an HTML table with Name, Year, Mass (kg), and Class columns.",
+            "points": 20,
+            "visual_evidence": "Code visible in the editor showing HTML string construction with <table>, <tr>, and <td> tags including the four specified headers."
+        },
+        {
+            "id": "script_execution",
+            "description": "The agent executes the Python script using the python3 command or Pippy's run button.",
+            "points": 15,
+            "visual_evidence": "A terminal showing 'python3 meteorite_analysis.py' being executed or the Pippy 'Run' activity without syntax errors."
+        },
+        {
+            "id": "output_file_verification",
+            "description": "The file top_meteorites.html is created in /home/ga/Documents/.",
+            "points": 15,
+            "visual_evidence": "A file manager or terminal 'ls' command showing 'top_meteorites.html' exists in the Documents folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the meteorite names or values directly into the script or HTML.",
+            "visual_evidence": "The Python script should show logic for reading the CSV and iterating through rows, rather than a static HTML string containing specific meteorite names like 'Hoba'."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the OS GUI or terminal to perform tasks rather than just outputting text to the chat.",
+            "visual_evidence": "Screenshots show the mouse cursor, keyboard input into Pippy/Terminal, and file system changes."
+        },
+        {
+            "id": "standard_library_usage",
+            "description": "The agent used the built-in csv module and not pandas.",
+            "visual_evidence": "The script's import section shows 'import csv' and lacks 'import pandas'."
+        }
+    ],
+    "privileged_info_for_vlm": "The source file is located at /home/ga/Documents/meteorites.csv. The script must handle the 'mass (g)' column, convert it to kg (divide by 1000), and output exactly 10 rows to /home/ga/Documents/top_meteorites.html. The HTML must contain a <table> element. The most massive meteorite in standard NASA datasets is typically 'Hoba', which should appear at the top of the generated list if the sort is correct."
+}

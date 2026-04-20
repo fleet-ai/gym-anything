@@ -1,0 +1,59 @@
+{
+    "task_id": "evaluate_network_azimuthal_gap@1",
+    "task_completion": [
+        {
+            "id": "database_access",
+            "description": "Agent accesses the SeisComP MySQL database or SCML inventory to retrieve earthquake and station data.",
+            "points": 15,
+            "visual_evidence": "Terminal commands showing 'mysql -u sysop -p' or scripts querying the 'seiscomp' database, or opening of SCML/StationXML files."
+        },
+        {
+            "id": "retrieve_epicenter",
+            "description": "Agent identifies the preferred origin coordinates for the 2024 Noto Peninsula earthquake.",
+            "points": 15,
+            "visual_evidence": "Output in terminal or script showing latitude and longitude for the Noto earthquake (approx 37.5°N, 137.2°E)."
+        },
+        {
+            "id": "retrieve_station_coords",
+            "description": "Agent retrieves coordinates for the five GE stations: TOLI, GSI, KWP, SANI, and BKB.",
+            "points": 20,
+            "visual_evidence": "Logs or variables in a script showing the latitude/longitude pairs for all five specific station codes."
+        },
+        {
+            "id": "calculate_current_gap",
+            "description": "Agent computes the azimuthal gap for the existing 5-station network.",
+            "points": 20,
+            "visual_evidence": "Calculation steps or code output showing the sorting of azimuths and finding the largest gap between them."
+        },
+        {
+            "id": "calculate_proposed_gap",
+            "description": "Agent recomputes the gap including the proposed Tokyo station (35.689, 139.692).",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the inclusion of the Tokyo coordinates in a new azimuthal gap calculation."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent saves the final results to /home/ga/azimuthal_gap_report.json with the correct schema.",
+            "points": 10,
+            "visual_evidence": "Terminal command 'cat /home/ga/azimuthal_gap_report.json' showing the JSON content with epicenter, current_gap, proposed_gap, and improvement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not simply write the JSON file with pre-known values without performing queries or calculations.",
+            "visual_evidence": "The trajectory should show the agent actively querying the database or processing the inventory files before generating the report."
+        },
+        {
+            "id": "correct_station_usage",
+            "description": "Agent used the specific five stations requested (TOLI, GSI, KWP, SANI, BKB) rather than a generic set.",
+            "visual_evidence": "The code or database queries must explicitly filter for or list these five station codes."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The 'improvement' value in the JSON matches the mathematical difference between the current and proposed gaps.",
+            "visual_evidence": "The JSON content shows 'improvement_degrees' equals 'current_gap_degrees' minus 'proposed_gap_degrees'."
+        }
+    ],
+    "privileged_info_for_vlm": "The 2024 Noto Peninsula earthquake epicenter is approximately 37.5°N, 137.2°E. The proposed station GE.TK01 is at 35.689°N, 139.692°E. The agent must use the SeisComP database (user/pass: sysop/sysop) to find the 5 specific GE stations (TOLI, GSI, KWP, SANI, BKB). The final report must be at /home/ga/azimuthal_gap_report.json. Azimuthal gap is the largest gap between consecutive station azimuths relative to the epicenter."
+}

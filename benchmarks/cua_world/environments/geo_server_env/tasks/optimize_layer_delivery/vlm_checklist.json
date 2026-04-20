@@ -1,0 +1,59 @@
+{
+    "task_id": "optimize_layer_delivery@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_layer_edit",
+            "description": "Navigate to the edit page for the 'ne:ne_countries' layer.",
+            "points": 10,
+            "visual_evidence": "The browser shows the GeoServer 'Edit Layer' page for 'ne_countries', typically indicated by the breadcrumb or page title."
+        },
+        {
+            "id": "navigate_to_publishing_tab",
+            "description": "Access the 'Publishing' tab within the layer configuration.",
+            "points": 10,
+            "visual_evidence": "The 'Publishing' tab is selected/active, showing WMS-specific settings."
+        },
+        {
+            "id": "enable_http_cache",
+            "description": "Enable HTTP Response Cache Headers and set the cache time to 86400.",
+            "points": 25,
+            "visual_evidence": "The 'Response Cache Headers' checkbox is checked and the 'Cache Time' input field contains the value '86400'."
+        },
+        {
+            "id": "configure_attribution_text_logo",
+            "description": "Set the WMS Attribution title and logo URL.",
+            "points": 25,
+            "visual_evidence": "The 'Attribution' section shows 'Title' as 'Provided by Natural Earth' and 'Logo URL' as 'http://localhost:8080/geoserver/ne_logo.png'."
+        },
+        {
+            "id": "configure_attribution_metadata",
+            "description": "Set the WMS Attribution logo type, width, and height.",
+            "points": 20,
+            "visual_evidence": "The 'Logo Content Type' is 'image/png', 'Logo Width' is '88', and 'Logo Height' is '31'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save the layer configuration changes.",
+            "points": 10,
+            "visual_evidence": "The agent clicks the 'Save' button at the bottom of the page, and the UI returns to the Layer list with a success message."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GeoServer web interface rather than direct API calls or terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the browser and navigating through the GeoServer menu items."
+        },
+        {
+            "id": "correct_layer_context",
+            "description": "The agent is editing the specific 'ne_countries' layer and not a different layer.",
+            "visual_evidence": "The layer name 'ne_countries' is visible in the header or the 'Name' field of the configuration page."
+        },
+        {
+            "id": "no_prefilled_values",
+            "description": "The agent manually entered the specific values required by the task.",
+            "visual_evidence": "Screenshots show the agent typing or pasting the values into the empty or default fields (e.g., 86400, the logo URL)."
+        }
+    ],
+    "privileged_info_for_vlm": "The required cache time is 86400 seconds (24 hours). The attribution title must be 'Provided by Natural Earth'. The logo URL is 'http://localhost:8080/geoserver/ne_logo.png' with type 'image/png' and dimensions 88x31. These settings are located under the 'Publishing' tab of the layer configuration in GeoServer."
+}

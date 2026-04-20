@@ -1,0 +1,53 @@
+{
+    "task_id": "chinook_payroll_etl@1",
+    "task_completion": [
+        {
+            "id": "sql_script_creation",
+            "description": "The agent creates the SQL script file at the specified path with the correct logic.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the content of /home/ga/Documents/scripts/calculate_commissions.sql containing logic for 2011 dates and the 15%/10%/5% genre-based rates."
+        },
+        {
+            "id": "source_db_connection",
+            "description": "The agent connects to or queries the chinook.db database to extract sales data.",
+            "points": 10,
+            "visual_evidence": "A database browser or terminal showing a connection to /home/ga/Documents/databases/chinook.db and execution of SELECT statements."
+        },
+        {
+            "id": "payroll_db_table_creation",
+            "description": "The agent creates the 'commissions_2011' table in the payroll.db database.",
+            "points": 20,
+            "visual_evidence": "A SQL command or database GUI showing the creation of 'commissions_2011' with columns EmployeeId, FullName, and TotalCommission in /home/ga/Documents/databases/payroll.db."
+        },
+        {
+            "id": "data_transformation_and_load",
+            "description": "The agent populates the 'commissions_2011' table with calculated values.",
+            "points": 35,
+            "visual_evidence": "A terminal or DB tool showing an INSERT INTO ... SELECT statement or a 'Success' message after running the ETL script."
+        },
+        {
+            "id": "final_table_verification",
+            "description": "The final table contains the correct columns and formatted data (FullName and rounded TotalCommission).",
+            "points": 20,
+            "visual_evidence": "A screenshot of the 'commissions_2011' table content showing names like 'Jane Peacock' and numeric values rounded to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent did not manually calculate and hardcode the commission values into the SQL script.",
+            "visual_evidence": "The SQL script should contain JOINs and CASE statements for rates, not just a list of INSERT statements with pre-calculated numbers."
+        },
+        {
+            "id": "genuine_db_interaction",
+            "description": "The agent interacted with the actual database files rather than creating dummy files.",
+            "visual_evidence": "File paths in the commands or GUI match /home/ga/Documents/databases/chinook.db and payroll.db."
+        },
+        {
+            "id": "script_persistence",
+            "description": "The agent actually saved the script to the disk as requested.",
+            "visual_evidence": "A file manager or 'ls' command showing calculate_commissions.sql exists in the /home/ga/Documents/scripts/ directory."
+        }
+    ],
+    "privileged_info_for_vlm": "The Chinook database contains 3 Sales Support Agents: Jane Peacock (ID 3), Margaret Park (ID 4), and Steve Johnson (ID 5). In the 2011 data (v1.4.0), Rock is GenreId 1 and Latin is GenreId 7. The VLM should verify that the SQL logic uses InvoiceDate LIKE '2011%' or strftime('%Y', InvoiceDate) = '2011'. TotalCommission must be rounded to 2 decimal places and FullName must be 'FirstName LastName'."
+}

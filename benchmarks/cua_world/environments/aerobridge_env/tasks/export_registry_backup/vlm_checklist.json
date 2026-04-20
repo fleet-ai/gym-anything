@@ -1,0 +1,53 @@
+{
+    "task_id": "export_registry_backup@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_aerobridge",
+            "description": "Agent navigates to the Aerobridge project directory (/opt/aerobridge) or opens a terminal to interact with the system.",
+            "points": 10,
+            "visual_evidence": "Terminal showing 'cd /opt/aerobridge' or a file manager open at that location."
+        },
+        {
+            "id": "activate_environment",
+            "description": "Agent activates the required virtual environment (/opt/aerobridge_venv).",
+            "points": 15,
+            "visual_evidence": "Terminal prompt showing the activated environment name (e.g., '(aerobridge_venv)') or the command 'source /opt/aerobridge_venv/bin/activate'."
+        },
+        {
+            "id": "execute_dumpdata_command",
+            "description": "Agent executes the Django dumpdata command for the 'registry' app with the correct indentation and output path.",
+            "points": 30,
+            "visual_evidence": "Terminal showing a command like 'python manage.py dumpdata registry --indent 2 --output /home/ga/Documents/registry_backup.json'."
+        },
+        {
+            "id": "verify_file_creation",
+            "description": "Agent verifies that the backup file exists in the target directory.",
+            "points": 15,
+            "visual_evidence": "Terminal showing 'ls /home/ga/Documents/' with 'registry_backup.json' visible, or a file manager showing the file."
+        },
+        {
+            "id": "verify_json_content",
+            "description": "Agent opens the file to confirm it contains JSON data with 2-space indentation and registry models.",
+            "points": 30,
+            "visual_evidence": "A text editor or 'cat' command output showing JSON content starting with '[' and containing fields like 'model': 'registry.aircraft' with visible 2-space indentation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_json_creation",
+            "description": "The agent did not manually type out or copy-paste the JSON content into a file without running the export command.",
+            "visual_evidence": "The trajectory must show the execution of the 'dumpdata' command rather than just 'echo' or manual typing of a large JSON block."
+        },
+        {
+            "id": "genuine_app_interaction",
+            "description": "The agent used the specific Aerobridge environment and settings rather than a generic mock setup.",
+            "visual_evidence": "Commands should reference /opt/aerobridge or use the specific virtual environment path."
+        },
+        {
+            "id": "correct_indentation_check",
+            "description": "The agent ensured the 2-space indentation requirement was met via the command flag.",
+            "visual_evidence": "The command line must explicitly include '--indent 2'."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exporting the 'registry' app from a Django project located at /opt/aerobridge. The correct command is 'python manage.py dumpdata registry --indent 2 --output /home/ga/Documents/registry_backup.json'. The resulting file should be a JSON array of objects where the 'model' field starts with 'registry.' (e.g., registry.aircraft, registry.person). The file size should be at least 1024 bytes due to the initial data fixtures containing multiple aircraft and personnel records."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "kymograph_velocity_analysis@1",
+    "task_completion": [
+        {
+            "id": "fiji_open_and_data_loaded",
+            "description": "Fiji (ImageJ) is open with the HeLa cell time-lapse dataset loaded.",
+            "points": 10,
+            "visual_evidence": "The Fiji main window and an image stack window showing fluorescent nuclei (H2B-GFP) are visible."
+        },
+        {
+            "id": "roi_selection_path",
+            "description": "A segmented line or path of at least 200 pixels is drawn over a moving nucleus for kymograph generation.",
+            "points": 15,
+            "visual_evidence": "A line selection (ROI) is visible on the image stack; the status bar or ROI Manager may show the length or coordinates."
+        },
+        {
+            "id": "kymograph_generation",
+            "description": "A kymograph image is generated from the selected path and saved to the correct location.",
+            "points": 20,
+            "visual_evidence": "A new image window showing a kymograph (time vs. distance) is visible, and a file save dialog or file explorer shows 'kymograph_main.png' in the results folder."
+        },
+        {
+            "id": "velocity_measurement_process",
+            "description": "The agent measures the slope or coordinates on the kymograph for at least three tracks.",
+            "points": 25,
+            "visual_evidence": "Lines or points are drawn on the kymograph image, or the 'Results' table in Fiji shows multiple measurements (dx, dy, or angle)."
+        },
+        {
+            "id": "csv_export_velocity",
+            "description": "A CSV file is exported with 'track_id' and 'velocity_um_per_hr' for at least three measurements.",
+            "points": 15,
+            "visual_evidence": "A CSV file named 'velocity_measurements.csv' is visible in the file system or open in a text editor showing the required columns."
+        },
+        {
+            "id": "summary_report_generation",
+            "description": "A summary report is saved containing the number of tracks and the mean velocity.",
+            "points": 15,
+            "visual_evidence": "A text file 'kymograph_report.txt' is visible in the results folder with the specified summary statistics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_fiji",
+            "description": "The agent used the Fiji GUI to perform analysis rather than just writing files via terminal.",
+            "visual_evidence": "Screenshots show the Fiji menu being used (e.g., Image > Stacks > Reslice or Multi Kymograph plugin) and active ROI manipulation."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "The velocity values are derived from the image data, not hardcoded.",
+            "visual_evidence": "The measurements in the Fiji Results table or CSV correspond to the slopes/paths visible on the kymograph."
+        },
+        {
+            "id": "path_length_compliance",
+            "description": "The migration path used for the kymograph is at least 200 pixels long.",
+            "visual_evidence": "The Fiji status bar or ROI info shows a length (L) >= 200 when the path is selected."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset is Fluo-N2DL-HeLa. Calibration: 0.645 µm/pixel. Time interval: 0.5 hours/frame. Formula: Velocity = (dx_pixels * 0.645) / (dy_frames * 0.5). Expected velocities should generally fall between 1.0 and 150.0 µm/hr. The kymograph must be saved as 'kymograph_main.png' and the CSV must contain 'track_id' and 'velocity_um_per_hr'."
+}

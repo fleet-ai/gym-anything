@@ -1,0 +1,59 @@
+{
+    "task_id": "transcript_style_chaining@1",
+    "task_completion": [
+        {
+            "id": "open_raw_document",
+            "description": "Open the raw document /home/ga/Documents/council_minutes_raw.odt in LibreOffice Writer.",
+            "points": 10,
+            "visual_evidence": "LibreOffice Writer window is open showing the content of 'council_minutes_raw.odt'."
+        },
+        {
+            "id": "create_speaker_label_style",
+            "description": "Create the 'Speaker Label' style with Bold font, 6pt Spacing Above, and 'Keep with next paragraph' enabled.",
+            "points": 20,
+            "visual_evidence": "The 'Paragraph Style' dialog for 'Speaker Label' showing the 'Indents & Spacing' tab (6pt above), 'Text Flow' tab (Keep with next paragraph), and 'Font' tab (Bold)."
+        },
+        {
+            "id": "create_minute_text_style",
+            "description": "Create the 'Minute Text' style with a 0.5 inch (1.27 cm) Left Indent and Regular font.",
+            "points": 20,
+            "visual_evidence": "The 'Paragraph Style' dialog for 'Minute Text' showing the 'Indents & Spacing' tab (Left indent 1.27cm or 0.5\") and 'Font' tab (Regular)."
+        },
+        {
+            "id": "configure_style_chaining",
+            "description": "Set 'Minute Text' as the Next Style for 'Speaker Label', and 'Speaker Label' as the Next Style for 'Minute Text'.",
+            "points": 15,
+            "visual_evidence": "The 'Organizer' tab in the Paragraph Style dialog for both styles showing the 'Next Style' field correctly mapped to the other style."
+        },
+        {
+            "id": "apply_styles_to_content",
+            "description": "Apply 'Speaker Label' to lines ending in ':' and 'Minute Text' to dialogue paragraphs.",
+            "points": 25,
+            "visual_evidence": "The document main view showing speaker names (e.g., 'Mayor Miller:') in bold and the following dialogue paragraphs indented."
+        },
+        {
+            "id": "save_formatted_document",
+            "description": "Save the final document as /home/ga/Documents/council_minutes_formatted.odt.",
+            "points": 10,
+            "visual_evidence": "The 'Save As' dialog or the window title bar showing the filename 'council_minutes_formatted.odt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice GUI to configure styles rather than just editing XML or using terminal scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, style sidebars, or dialog boxes."
+        },
+        {
+            "id": "genuine_style_creation",
+            "description": "The agent actually created new custom styles rather than manually formatting individual lines.",
+            "visual_evidence": "The 'Styles' sidebar or 'Paragraph Style' dropdown shows 'Speaker Label' and 'Minute Text' as active style names."
+        },
+        {
+            "id": "no_manual_spacing",
+            "description": "The agent did not use repeated spaces or tabs to create the 0.5 inch indent.",
+            "visual_evidence": "The horizontal ruler in LibreOffice shows the indent marker at 1.27cm/0.5\" when the cursor is in a 'Minute Text' paragraph."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file is /home/ga/Documents/council_minutes_raw.odt and the output must be /home/ga/Documents/council_minutes_formatted.odt. The 'Speaker Label' style must have 'Minute Text' as its Next Style. The 'Minute Text' style must have 'Speaker Label' as its Next Style. Speaker names are identified by a trailing colon (e.g., 'Mayor Miller:', 'Councilmember Chen:'). There are 14 such speaker lines in the source text."
+}

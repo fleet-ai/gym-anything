@@ -1,0 +1,47 @@
+{
+    "task_id": "split_pipeline_stage_and_redistribute@1",
+    "task_completion": [
+        {
+            "id": "rename_proposition_stage",
+            "description": "Rename the existing 'Proposition' stage to 'Proposition (Draft)'.",
+            "points": 15,
+            "visual_evidence": "The CRM pipeline view or settings page shows a stage named 'Proposition (Draft)' where 'Proposition' used to be."
+        },
+        {
+            "id": "create_proposition_final_stage",
+            "description": "Create a new stage named 'Proposition (Final)' immediately following 'Proposition (Draft)'.",
+            "points": 20,
+            "visual_evidence": "The CRM pipeline view shows 'Proposition (Final)' as a column located to the right of 'Proposition (Draft)'."
+        },
+        {
+            "id": "move_high_prob_leads",
+            "description": "Move opportunities with probability > 70% to 'Proposition (Final)'.",
+            "points": 35,
+            "visual_evidence": "Opportunities 'Global Logistics Contract', 'Enterprise License Upgrade', and 'Q3 Managed Services' are visible in the 'Proposition (Final)' column."
+        },
+        {
+            "id": "retain_low_prob_leads",
+            "description": "Keep opportunities with probability <= 70% in 'Proposition (Draft)'.",
+            "points": 30,
+            "visual_evidence": "Opportunities 'Office Expansion Inquiry', 'Initial Consultation', and 'Hardware Refresh Estimate' remain visible in the 'Proposition (Draft)' column."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the CRM graphical user interface to perform the changes rather than executing database scripts via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with CRM menus, drag-and-drop actions for opportunities, or stage configuration forms."
+        },
+        {
+            "id": "no_manual_probability_edits",
+            "description": "The agent did not manually change the probability percentages of the leads to force them into categories.",
+            "visual_evidence": "The probability values for the leads (e.g., 90%, 85%, 75%, 40%, 50%, 65%) remain unchanged in the lead detail views or cards."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the CRM pipeline or settings naturally.",
+            "visual_evidence": "The sequence of screenshots shows the transition from the dashboard to the pipeline view and the stage editor."
+        }
+    ],
+    "privileged_info_for_vlm": "The threshold for moving leads is 70%. High-probability leads (>70%) that MUST be moved to 'Proposition (Final)' are: 'Global Logistics Contract' (90%), 'Enterprise License Upgrade' (85%), and 'Q3 Managed Services' (75%). Low-probability leads (<=70%) that MUST stay in 'Proposition (Draft)' are: 'Office Expansion Inquiry' (40%), 'Initial Consultation' (50%), and 'Hardware Refresh Estimate' (65%)."
+}

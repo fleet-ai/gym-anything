@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_proctoring_features@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log into the SEB Server using super-admin credentials",
+            "points": 10,
+            "visual_evidence": "The SEB Server dashboard or main navigation menu is visible after entering 'super-admin' and 'admin'."
+        },
+        {
+            "id": "create_exam_config",
+            "description": "Initiate the creation of a new exam configuration named 'Distance Learning 101'",
+            "points": 20,
+            "visual_evidence": "A form or dialog box showing the name field populated with 'Distance Learning 101'."
+        },
+        {
+            "id": "enable_chat_feature",
+            "description": "Enable the Chat feature within the proctoring settings",
+            "points": 25,
+            "visual_evidence": "A checkbox or toggle for 'Chat' or 'Enable Chat' is selected/checked in the proctoring configuration section."
+        },
+        {
+            "id": "set_connection_retries",
+            "description": "Set the Connection Retries value to 10",
+            "points": 25,
+            "visual_evidence": "An input field labeled 'Connection Retries' (or similar) contains the numerical value '10'."
+        },
+        {
+            "id": "save_configuration",
+            "description": "Save or submit the exam configuration",
+            "points": 20,
+            "visual_evidence": "The agent clicks a 'Save', 'Create', or 'Submit' button, followed by a success message or the new config appearing in the list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than direct database manipulation or CLI scripts",
+            "visual_evidence": "Screenshots show mouse movements, typing in browser forms, and navigation within the SEB Server UI; no terminal windows executing SQL or curl commands are used for the configuration."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent navigated the menu system to find proctoring settings",
+            "visual_evidence": "The trajectory shows the agent clicking through tabs (e.g., 'Proctoring' or 'Settings') rather than jumping to a final URL if that URL isn't naturally discovered."
+        },
+        {
+            "id": "genuine_input",
+            "description": "The agent manually entered the specific values required",
+            "visual_evidence": "The VLM should see the cursor in the 'Name' and 'Retries' fields with the specific text 'Distance Learning 101' and '10' being typed or pasted into the UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The exam configuration must be named exactly 'Distance Learning 101'. The 'Chat' feature must be enabled (checked/on). The 'Connection Retries' field must be set to exactly '10'. These settings are verified against the SEBServer MariaDB backend."
+}

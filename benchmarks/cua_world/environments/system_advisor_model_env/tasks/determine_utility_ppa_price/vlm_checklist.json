@@ -1,0 +1,59 @@
+{
+    "task_id": "determine_utility_ppa_price@1",
+    "task_completion": [
+        {
+            "id": "pysam_script_initialization",
+            "description": "Agent writes or opens a Python script importing PySAM (specifically 'Pvwattsv8' and 'Singleowner' or 'PySAM.PpaSingleOwner').",
+            "points": 10,
+            "visual_evidence": "Code editor or terminal showing 'import PySAM' and the initialization of the PVWatts and Single Owner models."
+        },
+        {
+            "id": "system_parameter_configuration",
+            "description": "Agent configures the 50 MW DC capacity, 1.2 DC:AC ratio, and single-axis tracking (array_type=2).",
+            "points": 15,
+            "visual_evidence": "Code snippets showing 'system_capacity' set to 50000 and 'array_type' set to 2."
+        },
+        {
+            "id": "financial_parameter_configuration",
+            "description": "Agent sets the financial parameters: 30% ITC, 54% debt fraction, and 11% target IRR.",
+            "points": 15,
+            "visual_evidence": "Code showing 'itc_fed_percent' as 30, 'debt_fraction' as 54, and 'target_irr' as 11."
+        },
+        {
+            "id": "weather_file_access",
+            "description": "Agent reads the weather file path from /home/ga/.SAM/solar_resource_dir.txt and loads a TMY file.",
+            "points": 15,
+            "visual_evidence": "Code or terminal output showing the opening of the solar_resource_dir.txt file and assignment of a .csv or .tm2 file to the solar_resource_file parameter."
+        },
+        {
+            "id": "ppa_solve_execution",
+            "description": "Agent executes the simulation and calls the PPA price solver to achieve the target IRR.",
+            "points": 20,
+            "visual_evidence": "Code showing a call to a solver function (e.g., 'ppa_price_solve') or a loop/method that iterates to find the PPA price for the 11% IRR."
+        },
+        {
+            "id": "json_results_generation",
+            "description": "Agent saves the required metrics to the specified JSON file path.",
+            "points": 25,
+            "visual_evidence": "Terminal output or code showing the creation of '/home/ga/Documents/SAM_Projects/utility_pv_ppa_results.json' containing keys like 'ppa_price_year1_cents_per_kwh' and 'annual_energy_year1_kwh'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding the final PPA price.",
+            "visual_evidence": "The presence of PySAM error messages, documentation lookups, or step-by-step execution of Python code rather than a single print statement of the answer."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Verify the agent interacted with the local file system for weather data and output.",
+            "visual_evidence": "Screenshots showing the agent navigating to /home/ga/.SAM/ or /home/ga/Documents/SAM_Projects/."
+        },
+        {
+            "id": "no_precomputed_values",
+            "description": "Ensure the agent did not use an external online calculator or pre-existing result file.",
+            "visual_evidence": "The agent's browser history or terminal logs should show active coding or script execution, not just downloading a finished JSON file."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using PySAM (Python) specifically. For a 50MW plant with 1.2 DC/AC ratio and 14.08% losses in a SW US location (like Phoenix or Albuquerque), the Year 1 PPA price typically falls between 3.0 and 6.0 ¢/kWh to achieve an 11% IRR. The JSON must contain exactly 9 keys. The weather file path must be sourced from the specific text file provided in the instructions."
+}

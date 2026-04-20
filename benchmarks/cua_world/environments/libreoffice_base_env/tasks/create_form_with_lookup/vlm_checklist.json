@@ -1,0 +1,59 @@
+{
+    "task_id": "create_form_with_lookup@1",
+    "task_completion": [
+        {
+            "id": "open_libreoffice_base",
+            "description": "Open the Chinook database file in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base application is visible with 'chinook.odb' in the title bar or recent files."
+        },
+        {
+            "id": "form_design_view",
+            "description": "Initiate form creation and select the 'Customer' table as the data source.",
+            "points": 15,
+            "visual_evidence": "The Form Design window or Form Wizard is open, showing 'Customer' as the selected table or data source."
+        },
+        {
+            "id": "fields_added",
+            "description": "Include the specific required fields: CustomerId, FirstName, LastName, Email, and SupportRepId.",
+            "points": 20,
+            "visual_evidence": "The form layout shows labels and input controls for CustomerId, FirstName, LastName, Email, and SupportRepId."
+        },
+        {
+            "id": "list_box_configuration",
+            "description": "Configure the SupportRepId field as a List Box linked to the Employee table.",
+            "points": 30,
+            "visual_evidence": "The properties window for the SupportRepId control shows it is a 'List Box'. The 'Data' tab or SQL query builder shows a join or selection from the 'Employee' table involving FirstName, LastName, and EmployeeId."
+        },
+        {
+            "id": "concatenated_display",
+            "description": "The List Box displays concatenated names while storing the ID.",
+            "points": 15,
+            "visual_evidence": "In the form view, the SupportRepId dropdown displays full names (e.g., 'Jane Peacock') rather than just numeric IDs."
+        },
+        {
+            "id": "save_form",
+            "description": "Save the form with the exact name 'CustomerEntry'.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base main window shows a form named 'CustomerEntry' in the Forms section."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create the form rather than executing raw SQL scripts in the terminal to bypass the UI.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreOffice menus, wizards, or property dialogs."
+        },
+        {
+            "id": "genuine_lookup_setup",
+            "description": "The agent actually configured the List Box properties rather than just typing names into a text box.",
+            "visual_evidence": "The 'Control Properties' dialog for the List Box is visible with the 'Type of list contents' set to 'Sql' or 'Table'."
+        },
+        {
+            "id": "no_placeholder_shortcuts",
+            "description": "The agent did not simply create a blank form and name it 'CustomerEntry'.",
+            "visual_evidence": "The final form is shown containing actual data fields and functional UI elements."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. The form must be named 'CustomerEntry'. It must target the 'Customer' table. The 'SupportRepId' field must be a List Box. This List Box must pull from the 'Employee' table, displaying 'FirstName' and 'LastName' (concatenated) as the display value, while bound to the 'EmployeeId' as the data value."
+}

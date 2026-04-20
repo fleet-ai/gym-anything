@@ -1,0 +1,53 @@
+{
+    "task_id": "extract_waveforms_scart@1",
+    "task_completion": [
+        {
+            "id": "open_terminal",
+            "description": "Agent opens a terminal to access the SeisComP scart tool.",
+            "points": 10,
+            "visual_evidence": "A terminal window is visible on the desktop."
+        },
+        {
+            "id": "command_construction",
+            "description": "Agent types a command using /home/ga/seiscomp/bin/scart with the correct SDS archive path and station parameters.",
+            "points": 20,
+            "visual_evidence": "The terminal shows a command containing '/home/ga/seiscomp/bin/scart', '-I /home/ga/seiscomp/var/lib/archive', and 'GE.BKB..BHZ'."
+        },
+        {
+            "id": "time_range_specification",
+            "description": "Agent specifies the correct date (January 1, 2024) in the scart command.",
+            "points": 20,
+            "visual_evidence": "The command includes date arguments for the start and end of 2024-01-01 (e.g., '2024-01-01 00:00:00' and '2024-01-02 00:00:00' or similar syntax)."
+        },
+        {
+            "id": "output_redirection",
+            "description": "Agent directs the output of the scart command to the specified file path.",
+            "points": 20,
+            "visual_evidence": "The command shows output redirection or an output flag pointing to '/home/ga/extracted_BKB_BHZ.mseed'."
+        },
+        {
+            "id": "execution_and_verification",
+            "description": "Agent executes the command and verifies the file exists.",
+            "points": 30,
+            "visual_evidence": "The terminal shows the command has finished executing without errors, and a subsequent 'ls -l' or file manager view shows '/home/ga/extracted_BKB_BHZ.mseed' with a non-zero file size."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_copy",
+            "description": "The agent did not simply create an empty file or copy a dummy file to the destination.",
+            "visual_evidence": "The terminal history shows the actual execution of the scart binary, not just 'touch' or 'cp' from an unrelated source."
+        },
+        {
+            "id": "correct_binary_path",
+            "description": "The agent used the specific SeisComP path provided in the instructions.",
+            "visual_evidence": "The command explicitly uses '/home/ga/seiscomp/bin/scart' rather than a generic system-wide 'scart' command."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the command line to perform the extraction.",
+            "visual_evidence": "Screenshots show the progression of typing and executing the command in the terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The target data is for Network: GE, Station: BKB, Channel: BHZ for the date 2024-01-01. The scart tool is located at /home/ga/seiscomp/bin/scart and the archive is at /home/ga/seiscomp/var/lib/archive. The final output file must be /home/ga/extracted_BKB_BHZ.mseed and should be at least 512 bytes in size to be a valid miniSEED file."
+}

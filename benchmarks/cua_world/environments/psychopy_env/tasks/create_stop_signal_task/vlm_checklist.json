@@ -1,0 +1,59 @@
+{
+    "task_id": "create_stop_signal_task@1",
+    "task_completion": [
+        {
+            "id": "conditions_file_creation",
+            "description": "Create a CSV conditions file with at least 12 rows and required columns (direction, corrAns, stop_signal, ssd).",
+            "points": 15,
+            "visual_evidence": "A spreadsheet editor or text editor showing 'sst_conditions.csv' with columns 'direction', 'corrAns', 'stop_signal', and 'ssd', containing at least 12 rows of data."
+        },
+        {
+            "id": "instructions_routine",
+            "description": "Create an instructions routine in the PsychoPy Builder timeline.",
+            "points": 10,
+            "visual_evidence": "The PsychoPy Builder interface showing a routine named 'instructions' (or similar) placed before the trial loop in the flow panel."
+        },
+        {
+            "id": "trial_routine_components",
+            "description": "Configure the trial routine with a 0.5s fixation, an arrow stimulus, and a keyboard component.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy 'trial' routine view showing a Polygon/Text component (fixation) starting at 0.0s with 0.5s duration, an Image/Shape component (arrow), and a Keyboard component."
+        },
+        {
+            "id": "sound_component_logic",
+            "description": "Configure the sound component to use the beep asset and trigger based on the 'ssd' variable for stop trials.",
+            "points": 25,
+            "visual_evidence": "The Sound component properties window showing the sound file path as '~/assets/beep.wav' (or absolute path) and the 'Start' time field set to the variable '$ssd'."
+        },
+        {
+            "id": "loop_configuration",
+            "description": "Implement a random loop using the created conditions file.",
+            "points": 15,
+            "visual_evidence": "The 'Loop Properties' dialog in PsychoPy showing the 'conditions' field pointing to 'sst_conditions.csv' and 'loopType' set to 'random'."
+        },
+        {
+            "id": "save_experiment",
+            "description": "Save the experiment to the specified path.",
+            "points": 15,
+            "visual_evidence": "The PsychoPy window title bar or a file explorer showing the file 'stop_signal.psyexp' saved in '/home/ga/PsychoPyExperiments/sst_task/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing raw XML/Python code.",
+            "visual_evidence": "Screenshots showing the agent interacting with PsychoPy component icons, property dialogs, and the flow timeline."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent manually entered the conditions data or used a spreadsheet tool rather than generating it via a single terminal command.",
+            "visual_evidence": "Screenshots of the agent typing into a spreadsheet or text editor to create the CSV."
+        },
+        {
+            "id": "asset_path_verification",
+            "description": "The agent correctly referenced the existing beep.wav asset.",
+            "visual_evidence": "The sound component property field explicitly contains the string '~/assets/beep.wav' or '/home/ga/assets/beep.wav'."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/sst_task/stop_signal.psyexp. The conditions file must be at /home/ga/PsychoPyExperiments/sst_task/sst_conditions.csv and contain columns: direction, corrAns, stop_signal, and ssd. The sound asset is located at /home/ga/assets/beep.wav. The stop signal (sound) should only play when 'stop_signal' is 1; this is typically achieved in PsychoPy by setting the sound volume to '$stop_signal' or using a code snippet, though the primary check is the start time being '$ssd'."
+}

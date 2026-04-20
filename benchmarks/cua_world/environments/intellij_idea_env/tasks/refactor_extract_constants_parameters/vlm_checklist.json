@@ -1,0 +1,59 @@
+{
+    "task_id": "refactor_extract_constants_parameters@1",
+    "task_completion": [
+        {
+            "id": "open_pricing_calculator",
+            "description": "Open PricingCalculator.java in the IDE",
+            "points": 10,
+            "visual_evidence": "The file PricingCalculator.java is visible in an editor tab within the IDE (IntelliJ/VS Code)."
+        },
+        {
+            "id": "extract_tax_constant",
+            "description": "Extract the tax rate to a private static final constant named TAX_MULTIPLIER",
+            "points": 15,
+            "visual_evidence": "A line 'private static final double TAX_MULTIPLIER = 1.0825;' (or similar type) is visible in PricingCalculator.java, and the value 1.0825 is replaced by the constant name in the logic."
+        },
+        {
+            "id": "extract_shipping_constant",
+            "description": "Extract the shipping cost to a private static final constant named SHIPPING_COST",
+            "points": 15,
+            "visual_evidence": "A line 'private static final double SHIPPING_COST = 15.00;' (or similar type) is visible in PricingCalculator.java, and the value 15.00 is replaced by the constant name in the logic."
+        },
+        {
+            "id": "parameterize_target_tier",
+            "description": "Add targetTier parameter to calculateFinalPrice method and replace the hardcoded 'PLATINUM' string",
+            "points": 25,
+            "visual_evidence": "The method signature of calculateFinalPrice in PricingCalculator.java now includes 'String targetTier' as a parameter, and the logic uses this variable instead of the literal \"PLATINUM\"."
+        },
+        {
+            "id": "update_checkout_service",
+            "description": "Update CheckoutService.java to pass the required argument to calculateFinalPrice",
+            "points": 20,
+            "visual_evidence": "CheckoutService.java is opened in the editor, and the call to calculateFinalPrice is updated to include a third argument (likely \"PLATINUM\")."
+        },
+        {
+            "id": "verify_compilation",
+            "description": "Ensure the project compiles successfully after refactoring",
+            "points": 15,
+            "visual_evidence": "A terminal output showing a successful build command (e.g., 'mvn compile', 'javac', or IDE build success notification) with no errors."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply delete the logic to pass tests",
+            "visual_evidence": "The code in PricingCalculator.java still contains the mathematical logic for price calculation, just using the new constants and parameters."
+        },
+        {
+            "id": "genuine_ide_interaction",
+            "description": "The agent used the IDE's editor to modify files rather than just echo commands in the terminal",
+            "visual_evidence": "Screenshots show the agent clicking, typing, or using refactoring tools within the IDE interface."
+        },
+        {
+            "id": "correct_naming_convention",
+            "description": "The agent used the exact names specified in the instructions",
+            "visual_evidence": "The code explicitly shows 'TAX_MULTIPLIER', 'SHIPPING_COST', and 'targetTier' spelled exactly as requested."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/ecommerce-pricing. The files to be modified are src/main/java/com/example/pricing/PricingCalculator.java and src/main/java/com/example/pricing/CheckoutService.java. The required constant names are TAX_MULTIPLIER (1.0825) and SHIPPING_COST (15.00). The new parameter name for the calculateFinalPrice method must be targetTier."
+}

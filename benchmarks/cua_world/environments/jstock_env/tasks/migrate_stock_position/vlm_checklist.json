@@ -1,0 +1,53 @@
+{
+    "task_id": "migrate_stock_position@1",
+    "task_completion": [
+        {
+            "id": "create_semiconductor_fund",
+            "description": "Create a new portfolio named 'Semiconductor Fund'.",
+            "points": 15,
+            "visual_evidence": "A new tab or portfolio entry labeled 'Semiconductor Fund' appears in the JStock interface."
+        },
+        {
+            "id": "add_nvda_to_new_portfolio",
+            "description": "Add the NVDA transaction to the 'Semiconductor Fund' portfolio.",
+            "points": 20,
+            "visual_evidence": "The 'Add Transaction' dialog or the 'Semiconductor Fund' table shows NVDA being entered."
+        },
+        {
+            "id": "verify_nvda_details",
+            "description": "Ensure the NVDA transaction in 'Semiconductor Fund' uses the exact historical date, units, and price.",
+            "points": 30,
+            "visual_evidence": "In the 'Semiconductor Fund' view, the NVDA row must show: Symbol: NVDA, Units: 25, Price: 615.3, and Date: Feb 01, 2024."
+        },
+        {
+            "id": "delete_original_nvda",
+            "description": "Delete the NVDA transaction from the 'My Portfolio' tab.",
+            "points": 20,
+            "visual_evidence": "The 'My Portfolio' tab is shown and the NVDA row is no longer present in the list."
+        },
+        {
+            "id": "preserve_other_stocks",
+            "description": "Ensure AAPL and MSFT remain in 'My Portfolio'.",
+            "points": 15,
+            "visual_evidence": "The 'My Portfolio' tab is shown and still contains the AAPL and MSFT rows after NVDA is deleted."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the JStock GUI to perform the migration rather than manipulating files via the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with JStock menus, buttons, and dialog boxes; no terminal commands like 'sed' or 'echo' are used to modify JStock data files."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "The agent did not simply edit the underlying XML/CSV data files to achieve the result.",
+            "visual_evidence": "The agent is seen navigating the JStock application interface rather than opening a text editor or terminal to modify the JStock database directory."
+        },
+        {
+            "id": "genuine_transaction_entry",
+            "description": "The agent manually entered or transferred the data through the application's 'Add' or 'Buy' transaction flow.",
+            "visual_evidence": "The 'Buy' or 'Add Transaction' dialog box is visible with the specific values (25 units, 615.3 price) typed into the fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The target stock to move is NVDA. The specific values that must be matched in the new 'Semiconductor Fund' portfolio are: Units = 25.0, Purchase Price = 615.3, and Date = Feb 01, 2024. The original portfolio 'My Portfolio' must still contain AAPL and MSFT at the end of the task."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "targeted_ocean_reentry_design@1",
+    "task_completion": [
+        {
+            "id": "read_spec_file",
+            "description": "Agent opens and reads the satellite_disposal_spec.txt file on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of ~/Desktop/satellite_disposal_spec.txt."
+        },
+        {
+            "id": "gmat_script_creation",
+            "description": "Agent creates a GMAT script at the specified path with Earth gravity and drag models.",
+            "points": 15,
+            "visual_evidence": "GMAT interface or text editor showing a script being saved to ~/GMAT_output/targeted_reentry.script containing 'GravityField' and 'DragForce' configurations."
+        },
+        {
+            "id": "impulsive_burn_setup",
+            "description": "Agent configures a retrograde ImpulsiveBurn maneuver in GMAT.",
+            "points": 15,
+            "visual_evidence": "GMAT 'ImpulsiveBurn' resource window or script text showing a negative Delta-V component (usually in the V direction of the VNB frame)."
+        },
+        {
+            "id": "run_gmat_simulation",
+            "description": "Agent executes the GMAT script to model the reentry trajectory.",
+            "points": 20,
+            "visual_evidence": "GMAT 'Run' button being pressed or the 'Mission Tree' showing execution progress/completion."
+        },
+        {
+            "id": "generate_trajectory_report",
+            "description": "Agent generates the reentry_trajectory.txt report with the required four columns.",
+            "points": 20,
+            "visual_evidence": "A file at ~/GMAT_output/reentry_trajectory.txt containing columns for ElapsedDays, Altitude, Latitude, and Longitude."
+        },
+        {
+            "id": "verify_summary_output",
+            "description": "Agent generates the disposal_summary.txt with DeltaV, Reentry_Latitude, and Reentry_Longitude within SPOUA bounds.",
+            "points": 20,
+            "visual_evidence": "A file at ~/GMAT_output/disposal_summary.txt showing Latitude between -55.0 and -35.0 and Longitude between 220.0 and 250.0."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gmat_gui_usage",
+            "description": "Agent uses the GMAT graphical interface rather than just writing text files manually.",
+            "visual_evidence": "Screenshots showing the GMAT application window active and being interacted with."
+        },
+        {
+            "id": "no_hardcoded_summary",
+            "description": "Agent does not simply echo the target coordinates into a file without running a simulation.",
+            "visual_evidence": "The trajectory report file should contain many rows of data, indicating a numerical integration was performed."
+        },
+        {
+            "id": "authentic_interaction",
+            "description": "Agent logs in using the provided credentials if prompted.",
+            "visual_evidence": "Terminal or login prompt showing 'ga' and 'password123' being entered."
+        }
+    ],
+    "privileged_info_for_vlm": "The target reentry altitude is 80.0 km (tolerance +/- 1.0 km). The SPOUA bounding box for the final coordinates in disposal_summary.txt must be: Latitude [-55.0, -35.0] and Longitude [220.0, 250.0]. The script must be at ~/GMAT_output/targeted_reentry.script and the summary at ~/GMAT_output/disposal_summary.txt."
+}

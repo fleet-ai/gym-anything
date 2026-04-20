@@ -1,0 +1,59 @@
+{
+    "task_id": "fix_excel_sales_report@1",
+    "task_completion": [
+        {
+            "id": "script_modification_dates",
+            "description": "The script is modified to handle European date format (DD/MM/YYYY).",
+            "points": 15,
+            "visual_evidence": "Code in generate_report.py showing pd.to_datetime with dayfirst=True or a specific format string like '%d/%m/%Y'."
+        },
+        {
+            "id": "revenue_calculation_logic",
+            "description": "The script calculates Net Revenue correctly (Quantity * UnitPrice), accounting for negative quantities.",
+            "points": 20,
+            "visual_evidence": "Code in generate_report.py showing a calculation like df['Quantity'] * df['UnitPrice'] and logic ensuring negative quantities are handled (e.g., not absolute-valued if they represent returns)."
+        },
+        {
+            "id": "dynamic_aov_formula",
+            "description": "The script implements a dynamic Excel formula for Average Order Value based on the dataset size.",
+            "points": 20,
+            "visual_evidence": "Code in generate_report.py using openpyxl or pandas to write an Excel formula (e.g., =AVERAGE(...) or =SUM(...)/COUNT(...)) that uses variables for row ranges rather than hardcoded numbers."
+        },
+        {
+            "id": "conditional_formatting_rule",
+            "description": "Conditional formatting is applied to highlight values over $500 in Green.",
+            "points": 20,
+            "visual_evidence": "Code in generate_report.py showing openpyxl's Rule or formatting logic with 'greaterThan' 500 and a green fill color (e.g., '00FF00')."
+        },
+        {
+            "id": "successful_execution",
+            "description": "The script runs without errors in the terminal or IDE.",
+            "points": 10,
+            "visual_evidence": "A terminal window showing 'python generate_report.py' finishing with no traceback or error messages."
+        },
+        {
+            "id": "output_file_verification",
+            "description": "The final Excel report is generated and contains the expected data and formatting.",
+            "points": 15,
+            "visual_evidence": "A screenshot of weekly_sales_report.xlsx open in a viewer showing a column with values > 500 highlighted in green and calculated revenue/AOV fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_excel_edits",
+            "description": "The agent fixed the script rather than manually editing the Excel file.",
+            "visual_evidence": "The agent is seen editing generate_report.py in a text editor/IDE, not just typing values directly into an Excel-like interface."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent used the provided transactions.csv data.",
+            "visual_evidence": "The script code references 'data/transactions.csv' and the terminal shows the script being executed in the project directory."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the final values into the script.",
+            "visual_evidence": "The code in generate_report.py shows logic/formulas (e.g., df.sum(), formulas with row indices) rather than static numbers like '1234.56'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/sales_reporting. The source data is data/transactions.csv (European date format). The script to fix is generate_report.py. The output must be weekly_sales_report.xlsx. The conditional formatting threshold is exactly 500 (greaterThan) with a Green highlight."
+}

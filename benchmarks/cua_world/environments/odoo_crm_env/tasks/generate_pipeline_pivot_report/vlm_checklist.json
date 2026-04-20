@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_pipeline_pivot_report@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_crm_pivot",
+            "description": "Navigate to the CRM module and switch to the Pivot view.",
+            "points": 10,
+            "visual_evidence": "The Odoo CRM interface is visible with the pivot table icon (grid/table icon) selected in the top right view switcher."
+        },
+        {
+            "id": "set_measure_expected_revenue",
+            "description": "Set 'Expected Revenue' as the only active measure in the pivot table.",
+            "points": 20,
+            "visual_evidence": "The 'Measures' dropdown menu is open or the table header shows 'Expected Revenue'. Other measures like 'Count' must be deselected."
+        },
+        {
+            "id": "group_rows_by_salesperson",
+            "description": "Group the pivot table rows by 'Salesperson'.",
+            "points": 20,
+            "visual_evidence": "The vertical axis (rows) of the pivot table displays names like 'Alice Sales' and 'Mitchell Admin'."
+        },
+        {
+            "id": "group_columns_by_stage",
+            "description": "Group the pivot table columns by 'Stage'.",
+            "points": 20,
+            "visual_evidence": "The horizontal axis (columns) of the pivot table displays stage names such as 'New', 'Qualified', or 'Won'."
+        },
+        {
+            "id": "export_pivot_file",
+            "description": "Click the 'Download xlsx' button to export the report.",
+            "points": 15,
+            "visual_evidence": "The agent clicks the download/export icon (usually a cloud with an arrow or a file icon) next to the Measures button."
+        },
+        {
+            "id": "save_to_correct_path",
+            "description": "Save the exported file to /home/ga/Documents/revenue_report.xlsx.",
+            "points": 15,
+            "visual_evidence": "A file manager dialog or terminal command shows the file being moved/saved to '/home/ga/Documents/' with the specific name 'revenue_report.xlsx'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_required",
+            "description": "The agent must use the Odoo web interface to configure the report, not just generate a file via script.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Odoo's 'Measures' and 'Group By' menus."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent should not manually type the revenue values into a spreadsheet.",
+            "visual_evidence": "The agent uses the Odoo 'Download' or 'Export' button rather than creating a blank Excel file and typing data."
+        },
+        {
+            "id": "actual_crm_data",
+            "description": "The report must reflect the actual data present in the CRM (Alice Sales and Mitchell Admin).",
+            "visual_evidence": "The pivot table in the browser shows data for 'Alice Sales' and 'Mitchell Admin' before export."
+        }
+    ],
+    "privileged_info_for_vlm": "The pivot table must show 'Expected Revenue' as the measure. Rows must be 'Salesperson' (expecting 'Alice Sales' and 'Mitchell Admin'). Columns must be 'Stage' (expecting 'New', 'Qualified', and 'Won'). The final file must be named 'revenue_report.xlsx' and located in '/home/ga/Documents/'."
+}

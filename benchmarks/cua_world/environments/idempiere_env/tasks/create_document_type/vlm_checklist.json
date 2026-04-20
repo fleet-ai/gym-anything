@@ -1,0 +1,59 @@
+{
+    "task_id": "create_document_type@1",
+    "task_completion": [
+        {
+            "id": "sequence_creation_window",
+            "description": "Navigate to the 'Sequence' window and create a new record.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Sequence' window open in the iDempiere interface with a new record being initialized."
+        },
+        {
+            "id": "sequence_details_configured",
+            "description": "Configure the sequence with name 'Web_Sales_Seq_2025', Start No 900000, Increment 1, and Current Next 900000.",
+            "points": 25,
+            "visual_evidence": "A screenshot showing the Sequence window fields: Name='Web_Sales_Seq_2025', Start No='900,000', Increment='1', and Current Next='900,000' filled in."
+        },
+        {
+            "id": "document_type_window",
+            "description": "Navigate to the 'Document Type' window and create a new record.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Document Type' window open with a new record entry started."
+        },
+        {
+            "id": "document_type_identity",
+            "description": "Set the Document Type Name to 'Web Standard Order' and GL Category to 'Sales'.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the Document Type window with Name='Web Standard Order' and GL Category='Sales' selected."
+        },
+        {
+            "id": "document_type_logic",
+            "description": "Set Document Base Type to 'Sales Order' and Sales Order Sub Type to 'Standard Order'.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing Document Base Type='Sales Order' (internal code SOO) and Sales Order Sub Type='Standard Order' (internal code SO)."
+        },
+        {
+            "id": "sequence_assignment",
+            "description": "Assign the newly created 'Web_Sales_Seq_2025' to the Document Type.",
+            "points": 15,
+            "visual_evidence": "The 'Document Sequence' field in the Document Type window should show 'Web_Sales_Seq_2025' selected before saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation or terminal scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the iDempiere UI elements, dropdowns, and save buttons."
+        },
+        {
+            "id": "no_preexisting_data",
+            "description": "The agent actually typed or selected the values rather than finding a pre-existing record.",
+            "visual_evidence": "The sequence of screenshots shows the 'New Record' button being clicked and empty fields being populated."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent successfully saved the records.",
+            "visual_evidence": "The 'Save' icon (diskette) is clicked, and a success message or the record transitioning from 'dirty' to 'saved' state is visible."
+        }
+    ],
+    "privileged_info_for_vlm": "The sequence name must be exactly 'Web_Sales_Seq_2025'. The Document Base Type 'Sales Order' corresponds to the internal code 'SOO'. The Sales Order Sub Type 'Standard Order' corresponds to the internal code 'SO'. The sequence start and current next values must both be 900000."
+}

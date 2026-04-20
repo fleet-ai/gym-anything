@@ -1,0 +1,53 @@
+{
+    "task_id": "vwm_color_reproduction_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "The agent accesses and reads the source data file ~/pebl/data/color_wheel_data.csv.",
+            "points": 10,
+            "visual_evidence": "A terminal command (e.g., cat, head, pandas read_csv) or a text editor showing the contents of color_wheel_data.csv."
+        },
+        {
+            "id": "circular_error_calculation",
+            "description": "The agent implements logic to calculate signed angular error (-180 to 180) and absolute angular error.",
+            "points": 20,
+            "visual_evidence": "Code snippets in a script or notebook showing the circular subtraction logic (e.g., (a - b + 180) % 360 - 180)."
+        },
+        {
+            "id": "metric_computation",
+            "description": "The agent calculates MAE, guess rate (>60 deg), and precision_sd (SD of errors <= 60 deg) per participant and set size.",
+            "points": 25,
+            "visual_evidence": "Code or intermediate outputs showing grouping by participant_id and set_size with the specific 60-degree threshold applied."
+        },
+        {
+            "id": "participant_exclusion",
+            "description": "The agent identifies and excludes participants with an overall guess rate > 0.50.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing the identification of participant s99 as having a high guess rate and marking them for exclusion."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "The agent generates the final JSON report at ~/pebl/analysis/vwm_report.json with the required structure.",
+            "points": 30,
+            "visual_evidence": "A terminal command or file explorer showing the creation of vwm_report.json, and a view of the file content containing participant metrics and group means."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the exclusion of s99 or the final means without performing the calculations.",
+            "visual_evidence": "The script should show dynamic calculation logic (e.g., mean(), std()) rather than print statements with pre-calculated numbers."
+        },
+        {
+            "id": "proper_circular_logic",
+            "description": "The agent used circular arithmetic rather than simple linear subtraction for errors.",
+            "visual_evidence": "The code must show a modulo 360 operation or a conditional check to handle the wrap-around of the color wheel."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the specific file paths requested in the task description.",
+            "visual_evidence": "Screenshots show the agent saving the output specifically to ~/pebl/analysis/vwm_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "Participant 's99' is a synthetic outlier with a 100% guess rate (uniform random responding) and must be excluded from the group means. The final report must be saved to /home/ga/pebl/analysis/vwm_report.json. The guess rate threshold for exclusion is strictly > 0.50, and the precision threshold for SD calculation is errors <= 60 degrees."
+}

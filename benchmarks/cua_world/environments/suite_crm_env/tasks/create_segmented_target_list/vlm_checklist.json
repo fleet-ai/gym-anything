@@ -1,0 +1,59 @@
+{
+    "task_id": "create_segmented_target_list@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into SuiteCRM using provided credentials.",
+            "points": 10,
+            "visual_evidence": "The SuiteCRM dashboard or home screen is visible after the login page."
+        },
+        {
+            "id": "create_target_list_form",
+            "description": "Agent navigates to the 'Create Target List' page.",
+            "points": 10,
+            "visual_evidence": "A form titled 'Create Target List' or 'Target Lists' edit view is visible."
+        },
+        {
+            "id": "target_list_naming",
+            "description": "The Target List is named 'Seattle Regional Campaign' and Type is set to 'Default'.",
+            "points": 15,
+            "visual_evidence": "The 'Name' field contains 'Seattle Regional Campaign' and the 'Type' dropdown shows 'Default' in the form or saved record."
+        },
+        {
+            "id": "filter_contacts_seattle",
+            "description": "Agent filters the Contacts module by Primary Address City = 'Seattle'.",
+            "points": 20,
+            "visual_evidence": "The Contacts list view shows a filter applied where 'City' or 'Primary Address City' is set to 'Seattle'."
+        },
+        {
+            "id": "select_all_seattle_contacts",
+            "description": "Agent selects all contacts resulting from the Seattle filter.",
+            "points": 15,
+            "visual_evidence": "Checkboxes next to the filtered contact names (e.g., Elena Rostova, Marcus Chen) are checked."
+        },
+        {
+            "id": "add_to_target_list",
+            "description": "Agent adds the selected Seattle contacts to the 'Seattle Regional Campaign' list.",
+            "points": 30,
+            "visual_evidence": "The 'Seattle Regional Campaign' Target List detail view shows a subpanel of 'Contacts' containing exactly 5 entries, all with the city 'Seattle'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the SuiteCRM web interface rather than executing SQL commands in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within the browser, not just terminal output."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent selected contacts from the database rather than manually typing contact names into the list.",
+            "visual_evidence": "The agent is seen using the 'Select' or 'Bulk Action' buttons in the Contacts module."
+        },
+        {
+            "id": "accurate_filtering",
+            "description": "The agent did not add non-Seattle contacts to the list.",
+            "visual_evidence": "The final Target List subpanel does not show any contacts with cities other than Seattle."
+        }
+    ],
+    "privileged_info_for_vlm": "The database contains exactly 5 contacts with the Primary Address City 'Seattle': Elena Rostova, Marcus Chen, Sarah Jenkins, Michael Chang, and Jessica Alba. The Target List must be named exactly 'Seattle Regional Campaign'. Any list containing more or fewer than these 5 specific contacts, or contacts from other cities, is incorrect."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "tumor_enhancement_pattern@1",
+    "task_completion": [
+        {
+            "id": "load_t1_and_t1ce",
+            "description": "Load the T1 and T1ce MRI volumes into 3D Slicer from the specified BraTS directory.",
+            "points": 10,
+            "visual_evidence": "3D Slicer Data Probe or Subject Hierarchy showing 'BraTS2021_00000_t1.nii.gz' and 'BraTS2021_00000_t1ce.nii.gz' loaded as volumes."
+        },
+        {
+            "id": "place_tumor_roi",
+            "description": "Place ROI markups within the tumor region to sample intensity values.",
+            "points": 15,
+            "visual_evidence": "Visual markers (points or closed curves) placed on the hyperintense/enhancing region of the tumor in the slice viewer."
+        },
+        {
+            "id": "place_wm_roi",
+            "description": "Place ROI markups in normal white matter to serve as a baseline.",
+            "points": 15,
+            "visual_evidence": "Visual markers placed in a healthy-looking, non-enhancing white matter region of the brain."
+        },
+        {
+            "id": "calculate_metrics",
+            "description": "Extract mean intensity values for both ROIs across both sequences to calculate enhancement metrics.",
+            "points": 25,
+            "visual_evidence": "The 'Segment Statistics' or 'Markups' module open showing mean intensity values for T1 and T1ce sequences for both the tumor and white matter ROIs."
+        },
+        {
+            "id": "save_roi_markups",
+            "description": "Save the ROI markups to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save Data' dialog or a terminal command showing the export of 'enhancement_rois.mrk.json' to the ~/Documents/SlicerData/BraTS/ directory."
+        },
+        {
+            "id": "export_final_report",
+            "description": "Export the final enhancement report with all required fields to the specified JSON file.",
+            "points": 20,
+            "visual_evidence": "A text editor, terminal 'cat' command, or Slicer log showing 'enhancement_report.json' containing fields like t1_tumor_mean, enhancement_ratio, and classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the 3D Slicer GUI to place ROIs and visualize data rather than just script execution.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the Slicer slice views and the Markups module."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The agent did not hardcode or hallucinate values from the task description.",
+            "visual_evidence": "The values in the final report correspond to the intensity values visible in the Slicer 'Data Probe' or 'Segment Statistics' UI for the specific case."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent used the correct case ID (BraTS2021_00000) and directory structure.",
+            "visual_evidence": "File paths in the Slicer 'Add Data' dialog or terminal showing /home/ga/Documents/SlicerData/BraTS/BraTS2021_00000/."
+        }
+    ],
+    "privileged_info_for_vlm": "The task uses case BraTS2021_00000. The enhancement ratio must be calculated as (T1ce_Tumor / T1ce_WM) / (T1_Tumor / T1_WM) or similar relative metric; the allowed error for the ratio is 0.3 and 25% for relative enhancement. The classification and pattern must be derived from these calculated values. The output directory is /home/ga/Documents/SlicerData/BraTS/."
+}

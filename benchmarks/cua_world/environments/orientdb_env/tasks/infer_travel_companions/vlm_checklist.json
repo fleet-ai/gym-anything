@@ -1,0 +1,53 @@
+{
+    "task_id": "infer_travel_companions@1",
+    "task_completion": [
+        {
+            "id": "review_creation_john",
+            "description": "Create a 5-star review for 'Hotel Artemide' by 'john.smith@example.com' dated '2023-12-25' with comment 'Great Xmas!'",
+            "points": 15,
+            "visual_evidence": "Screenshot showing a database entry or form submission for a review with the specified email, hotel name, date, and comment."
+        },
+        {
+            "id": "review_creation_maria",
+            "description": "Create a 5-star review for 'Hotel Artemide' by 'maria.garcia@example.com' dated '2023-12-25' with comment 'Lovely holiday!'",
+            "points": 15,
+            "visual_evidence": "Screenshot showing a database entry or form submission for a second review with Maria's email and the specified details."
+        },
+        {
+            "id": "edge_class_creation",
+            "description": "Create the 'PotentialCompanion' edge class in the database schema.",
+            "points": 20,
+            "visual_evidence": "Database schema view or command output showing the successful creation of a class named 'PotentialCompanion'."
+        },
+        {
+            "id": "link_users_logic",
+            "description": "Identify and link users who reviewed the same hotel on the same date.",
+            "points": 25,
+            "visual_evidence": "A query or script execution screen showing logic that filters reviews by hotel and date to find matching pairs of users."
+        },
+        {
+            "id": "verify_edge_population",
+            "description": "Populate the 'PotentialCompanion' edge between John Smith and Maria Garcia.",
+            "points": 25,
+            "visual_evidence": "A graph visualization or query result showing an edge of type 'PotentialCompanion' connecting the records for john.smith@example.com and maria.garcia@example.com."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the database management GUI (e.g., OrientDB Studio) rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the browser-based database interface, query editor, or schema manager being used."
+        },
+        {
+            "id": "no_hardcoded_links",
+            "description": "The agent derived the companion link from the data rather than hardcoding the specific emails into a manual link command.",
+            "visual_evidence": "The SQL or script used contains a JOIN or subquery on 'hotel' and 'date' rather than just 'WHERE email = john.smith...'."
+        },
+        {
+            "id": "genuine_database_state",
+            "description": "The agent interacted with the 'demodb' database specifically.",
+            "visual_evidence": "The database name 'demodb' is visible in the connection string or UI header."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires seeding two specific reviews: John Smith (john.smith@example.com) and Maria Garcia (maria.garcia@example.com) both reviewed 'Hotel Artemide' on '2023-12-25'. The agent must create a new edge class named 'PotentialCompanion'. The final result must show a graph edge of this class connecting these two specific users because they share the same hotel and date in their reviews."
+}

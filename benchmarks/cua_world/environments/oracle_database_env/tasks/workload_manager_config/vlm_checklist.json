@@ -1,0 +1,59 @@
+{
+    "task_id": "workload_manager_config@1",
+    "task_completion": [
+        {
+            "id": "create_consumer_groups",
+            "description": "Create consumer groups CRITICAL_APP_CG and BATCH_REPORT_CG.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the creation or listing of consumer groups named 'CRITICAL_APP_CG' and 'BATCH_REPORT_CG' in the Oracle management interface."
+        },
+        {
+            "id": "create_resource_plan",
+            "description": "Create a resource plan named STABILITY_PLAN.",
+            "points": 10,
+            "visual_evidence": "A dialog box or table showing a new resource plan with the name 'STABILITY_PLAN'."
+        },
+        {
+            "id": "configure_plan_directives",
+            "description": "Set CPU allocations at Level 1: 60% for CRITICAL_APP_CG, 20% for BATCH_REPORT_CG, and 20% for OTHER_GROUPS.",
+            "points": 25,
+            "visual_evidence": "The Resource Plan Directives screen showing 'STABILITY_PLAN' with Level 1 CPU percentages: CRITICAL_APP_CG (60), BATCH_REPORT_CG (20), and OTHER_GROUPS (20)."
+        },
+        {
+            "id": "configure_switch_rule",
+            "description": "Set an automatic switch for CRITICAL_APP_CG to BATCH_REPORT_CG if a call exceeds 60 seconds.",
+            "points": 20,
+            "visual_evidence": "Directive settings for CRITICAL_APP_CG showing 'Switch Time' or 'Switch Elapsed Time' set to 60 and 'Switch Group' set to BATCH_REPORT_CG."
+        },
+        {
+            "id": "map_users_and_privileges",
+            "description": "Map APP_USER to CRITICAL_APP_CG and RPT_USER to BATCH_REPORT_CG with switch privileges.",
+            "points": 20,
+            "visual_evidence": "User mapping or privilege screens showing APP_USER associated with CRITICAL_APP_CG and RPT_USER associated with BATCH_REPORT_CG."
+        },
+        {
+            "id": "enable_resource_plan",
+            "description": "Enable STABILITY_PLAN as the active resource plan.",
+            "points": 10,
+            "visual_evidence": "A confirmation message or system status screen showing 'STABILITY_PLAN' is the currently active resource plan."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Oracle Enterprise Manager or a similar GUI tool rather than just executing SQL scripts in a terminal.",
+            "visual_evidence": "Screenshots show mouse movements, clicks, and form filling within a graphical database management interface."
+        },
+        {
+            "id": "genuine_user_context",
+            "description": "The agent is logged in as SYSTEM to perform administrative tasks.",
+            "visual_evidence": "The UI header or login screen displays 'SYSTEM' as the active user."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply display a text file claiming success.",
+            "visual_evidence": "The progression of screenshots shows the actual configuration steps in the live database software."
+        }
+    ],
+    "privileged_info_for_vlm": "The resource plan must be named 'STABILITY_PLAN'. Consumer groups are 'CRITICAL_APP_CG' and 'BATCH_REPORT_CG'. CPU allocations at Management Level 1 must be: CRITICAL_APP_CG=60%, BATCH_REPORT_CG=20%, OTHER_GROUPS=20%. CRITICAL_APP_CG must have a switch rule to BATCH_REPORT_CG after 60 seconds. APP_USER maps to CRITICAL_APP_CG and RPT_USER maps to BATCH_REPORT_CG. The plan must be set to active."
+}

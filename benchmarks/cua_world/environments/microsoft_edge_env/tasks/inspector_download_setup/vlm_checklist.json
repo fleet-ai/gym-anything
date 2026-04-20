@@ -1,0 +1,59 @@
+{
+    "task_id": "inspector_download_setup@1",
+    "task_completion": [
+        {
+            "id": "directory_structure_creation",
+            "description": "Create the root directory /home/ga/Documents/InspectionDocs/ with subfolders OSHA, FEMA, and General.",
+            "points": 15,
+            "visual_evidence": "File manager (Nautilus) showing the InspectionDocs folder containing three subfolders named OSHA, FEMA, and General."
+        },
+        {
+            "id": "browser_download_settings",
+            "description": "Set the browser's default download location to /home/ga/Documents/InspectionDocs/ and enable automatic saving.",
+            "points": 15,
+            "visual_evidence": "Browser settings page (e.g., Firefox or Chrome) showing the 'Downloads' path set to /home/ga/Documents/InspectionDocs and the 'Always ask where to save' option disabled."
+        },
+        {
+            "id": "download_osha_pdf",
+            "description": "Download a workplace safety PDF from osha.gov and place it in the OSHA subfolder.",
+            "points": 20,
+            "visual_evidence": "Browser showing a PDF download from an osha.gov URL, and the file manager showing a PDF file inside /home/ga/Documents/InspectionDocs/OSHA/."
+        },
+        {
+            "id": "download_fema_pdf",
+            "description": "Download a fire safety PDF from fema.gov or usfa.fema.gov and place it in the FEMA subfolder.",
+            "points": 20,
+            "visual_evidence": "Browser showing a PDF download from a fema.gov or usfa.fema.gov URL, and the file manager showing a PDF file inside /home/ga/Documents/InspectionDocs/FEMA/."
+        },
+        {
+            "id": "download_general_pdf",
+            "description": "Download a government PDF from a third agency (EPA, HUD, NIST, etc.) and place it in the General subfolder.",
+            "points": 15,
+            "visual_evidence": "Browser showing a PDF download from a .gov site (not OSHA/FEMA), and the file manager showing a PDF file inside /home/ga/Documents/InspectionDocs/General/."
+        },
+        {
+            "id": "manifest_file_creation",
+            "description": "Create a manifest file at /home/ga/Desktop/download_manifest.txt with filenames, URLs, descriptions, and a total count.",
+            "points": 15,
+            "visual_evidence": "A text editor or file preview showing download_manifest.txt on the Desktop containing 3 entries (filename, URL, description) and a 'Total: 3' or similar count at the bottom."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_check",
+            "description": "The agent used the browser GUI to navigate and download files rather than just using 'wget' or 'curl' in the terminal.",
+            "visual_evidence": "Screenshots showing the browser open, navigating to government websites, and interacting with download buttons/settings."
+        },
+        {
+            "id": "genuine_file_content",
+            "description": "The downloaded files are actual PDFs from the specified domains, not empty files created with 'touch'.",
+            "visual_evidence": "File manager showing non-zero file sizes or the PDF viewer displaying actual document content."
+        },
+        {
+            "id": "manual_manifest_entry",
+            "description": "The manifest file contains specific URLs and descriptions corresponding to the actual files found, not placeholder text.",
+            "visual_evidence": "The text in download_manifest.txt matches the specific documents and URLs seen in the browser history/tabs."
+        }
+    ],
+    "privileged_info_for_vlm": "The root directory must be /home/ga/Documents/InspectionDocs/. Required subfolders are OSHA, FEMA, and General. Required domains for PDFs are osha.gov, fema.gov (or usfa.fema.gov), and one other .gov site (e.g., epa.gov, hud.gov, nist.gov). The manifest must be on the Desktop and include filename, source URL, a one-line description for each of the 3 files, and a total count."
+}

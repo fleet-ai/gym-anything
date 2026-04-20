@@ -1,0 +1,59 @@
+{
+    "task_id": "emission_zone_impact_study@1",
+    "task_completion": [
+        {
+            "id": "baseline_emission_generation",
+            "description": "Generate the baseline emission XML file using the HBEFA2 emission classes for the Pasubio scenario.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/SUMO_Output/baseline_emissions.xml."
+        },
+        {
+            "id": "lez_implementation_edges",
+            "description": "Implement LEZ by restricting high-polluting vehicles on at least five core edges.",
+            "points": 20,
+            "visual_evidence": "Code or configuration files (e.g., .add.xml or .net.xml) showing 'disallow' or 'allow' attributes modified for at least 5 specific edge IDs."
+        },
+        {
+            "id": "lez_implementation_strategies",
+            "description": "Apply at least two distinct restriction strategies (e.g., vehicle class bans and lane-specific restrictions).",
+            "points": 15,
+            "visual_evidence": "Screenshots of configuration files showing two different methods of restriction, such as modifying edge permissions and changing vehicle type definitions."
+        },
+        {
+            "id": "lez_emission_generation",
+            "description": "Generate the LEZ emission XML output after implementing restrictions.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/SUMO_Output/lez_emissions.xml."
+        },
+        {
+            "id": "comparative_csv_report",
+            "description": "Produce a CSV report with specific columns (pollutant, baseline_total_mg, lez_total_mg, reduction_pct) for CO2, CO, NOx, PMx, and HC.",
+            "points": 20,
+            "visual_evidence": "A view of /home/ga/SUMO_Output/emission_impact_report.csv containing the required columns and data for all five pollutants."
+        },
+        {
+            "id": "professional_summary_doc",
+            "description": "Document LEZ design, numerical results, and policy recommendations in a summary text file.",
+            "points": 15,
+            "visual_evidence": "A view of /home/ga/SUMO_Output/emission_impact_summary.txt containing text descriptions of the LEZ design and policy advice."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sumo_execution",
+            "description": "Verify the agent actually ran SUMO simulations rather than fabricating numbers.",
+            "visual_evidence": "Terminal logs showing 'sumo' or 'sumo-gui' commands being executed with the specific configuration files for Pasubio."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check that the CSV values match the data seen in the XML emission files.",
+            "visual_evidence": "The numerical values for total emissions in the XML files should correspond to the 'total_mg' values in the CSV report."
+        },
+        {
+            "id": "no_hardcoded_placeholders",
+            "description": "Ensure the agent didn't just create empty files or files with placeholder text.",
+            "visual_evidence": "The content of the CSV and TXT files should contain specific numerical data and professional analysis, not just headers."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires working within /home/ga/SUMO_Scenarios/bologna_pasubio/. The agent must modify at least 5 edges and use 2 distinct strategies (e.g., edge-based bans and vType modifications). Required output files are baseline_emissions.xml, lez_emissions.xml, emission_impact_report.csv (must include CO2, CO, NOx, PMx, HC), and emission_impact_summary.txt. The agent is acting as an ARPAE environmental scientist."
+}

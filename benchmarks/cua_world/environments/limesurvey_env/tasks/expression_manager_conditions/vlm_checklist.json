@@ -1,0 +1,53 @@
+{
+    "task_id": "expression_manager_conditions@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the LimeSurvey admin panel successfully.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the LimeSurvey administration dashboard or the survey list after entering credentials."
+        },
+        {
+            "id": "select_survey",
+            "description": "Navigate to the 'Annual Tech Summit 2024 — Attendee Feedback' survey.",
+            "points": 10,
+            "visual_evidence": "The survey title 'Annual Tech Summit 2024 — Attendee Feedback' is visible in the survey summary or editor view."
+        },
+        {
+            "id": "group_relevance_logic",
+            "description": "Set the 'Session Feedback' group relevance logic to depend on ATTENDED_SESSIONS being 'Yes'.",
+            "points": 25,
+            "visual_evidence": "In the group settings or Expression Manager field for 'Session Feedback', the relevance equation shows 'ATTENDED_SESSIONS == \"Y\"' or similar logic indicating a dependency on the Yes/No question."
+        },
+        {
+            "id": "question_relevance_logic",
+            "description": "Set IMPROVE_COMMENTS relevance logic to display only if OVERALL_RATING is 6 or below.",
+            "points": 30,
+            "visual_evidence": "In the question settings for IMPROVE_COMMENTS, the relevance equation field contains 'OVERALL_RATING <= 6' or 'OVERALL_RATING.NAOK <= 6'."
+        },
+        {
+            "id": "end_url_configuration",
+            "description": "Configure the survey end redirect URL to the specified external link.",
+            "points": 25,
+            "visual_evidence": "In the Survey Settings (Text elements or Publication & access), the 'End URL' field is set to 'http://techsummit.example.com/thank-you'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database commands via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LimeSurvey buttons, input fields, and save icons."
+        },
+        {
+            "id": "actual_survey_modification",
+            "description": "The agent modified the specific survey requested, not a default or placeholder survey.",
+            "visual_evidence": "The survey ID or title 'Annual Tech Summit 2024 — Attendee Feedback' is consistently visible during the configuration process."
+        },
+        {
+            "id": "no_manual_url_bypass",
+            "description": "The agent navigated through the survey settings menus to find the logic and URL fields.",
+            "visual_evidence": "The trajectory shows the agent clicking through 'Settings', 'Questions', or 'Groups' rather than jumping directly to a final success page."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey title is 'Annual Tech Summit 2024 — Attendee Feedback'. The question code for the Yes/No session question is 'ATTENDED_SESSIONS' (Yes is usually stored as 'Y'). The question code for the rating is 'OVERALL_RATING' and the improvement text is 'IMPROVE_COMMENTS'. The relevance logic for the group should be 'ATTENDED_SESSIONS == \"Y\"' and for the question 'OVERALL_RATING <= 6'. The target End URL is 'http://techsummit.example.com/thank-you'."
+}

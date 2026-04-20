@@ -1,0 +1,59 @@
+{
+    "task_id": "sma_angle_measurement@1",
+    "task_completion": [
+        {
+            "id": "ct_scan_loaded",
+            "description": "The abdominal CT scan is loaded into the medical imaging software (e.g., 3D Slicer).",
+            "points": 10,
+            "visual_evidence": "A CT scan showing abdominal anatomy is visible in the software's slice viewers (Axial, Sagittal, or Coronal)."
+        },
+        {
+            "id": "sagittal_view_alignment",
+            "description": "The agent navigates to a sagittal view where the aorta and SMA origin are clearly visible.",
+            "points": 15,
+            "visual_evidence": "The sagittal slice viewer shows the longitudinal profile of the abdominal aorta and the branching of the superior mesenteric artery."
+        },
+        {
+            "id": "angle_measurement_performed",
+            "description": "The agent uses a measurement tool to calculate the angle between the aorta and the SMA.",
+            "points": 25,
+            "visual_evidence": "An angle markup tool or lines are visible on the sagittal CT slice, with a numerical degree value displayed in the UI."
+        },
+        {
+            "id": "distance_measurement_performed",
+            "description": "The agent measures the distance between the aorta and the SMA (aortomesenteric distance).",
+            "points": 20,
+            "visual_evidence": "A ruler or line measurement tool is visible measuring the gap between the two vessels, with a value in millimeters (mm) displayed."
+        },
+        {
+            "id": "markup_file_saved",
+            "description": "The angle markup is saved to the specified file path.",
+            "points": 15,
+            "visual_evidence": "A 'Save' dialog or file explorer window shows the file 'sma_angle.mrk.json' being saved to '~/Documents/SlicerData/AMOS/'."
+        },
+        {
+            "id": "report_file_generated",
+            "description": "A JSON report is created containing the angle, distance, and classification.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output shows the creation of 'sma_report.json' with fields for angle, distance, and classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform measurements rather than just writing a script to generate the output files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Slicer's measurement tools and adjusting slice views."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the report correspond to the visual markups shown in the GUI.",
+            "visual_evidence": "The numerical values for the angle and distance in the final JSON report match the values visible in the software's measurement overlays."
+        },
+        {
+            "id": "no_predefined_answer_copying",
+            "description": "The agent did not simply copy the values from the task prompt or privileged info without performing the measurement.",
+            "visual_evidence": "The agent is seen manually placing points for the angle and distance tools on the CT scan."
+        }
+    ],
+    "privileged_info_for_vlm": "Normal aortomesenteric angle is >= 38 degrees. SMA syndrome is likely if the angle is <= 25 degrees and the aortomesenteric distance is <= 8 mm. The expected angle for this specific case (amos_0001) is approximately 40.0 degrees (normal), with an allowable error of +/- 5 degrees."
+}

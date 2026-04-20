@@ -1,0 +1,59 @@
+{
+    "task_id": "enable_browser_media_access@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the SEB Server at localhost:8080 using super-admin credentials.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SEB Server dashboard or main menu after entering 'super-admin' and 'admin'."
+        },
+        {
+            "id": "locate_configuration",
+            "description": "Agent navigates to the configurations list and identifies 'Oral Communication 2025'.",
+            "points": 15,
+            "visual_evidence": "A list of configurations is visible, and the item 'Oral Communication 2025' is highlighted or clicked."
+        },
+        {
+            "id": "open_edit_mode",
+            "description": "Agent opens the edit or settings view for the 'Oral Communication 2025' configuration.",
+            "points": 15,
+            "visual_evidence": "The UI displays an 'Edit' or 'Settings' page specifically for the 'Oral Communication 2025' entry."
+        },
+        {
+            "id": "enable_camera_policy",
+            "description": "Agent enables the Camera (Video Capture) policy within the configuration settings.",
+            "points": 25,
+            "visual_evidence": "A checkbox or toggle associated with 'Camera', 'Video Capture', or 'allowVideoCapture' is switched to the enabled/on state."
+        },
+        {
+            "id": "enable_microphone_policy",
+            "description": "Agent enables the Microphone (Audio Capture) policy within the configuration settings.",
+            "points": 25,
+            "visual_evidence": "A checkbox or toggle associated with 'Microphone', 'Audio Capture', or 'allowAudioCapture' is switched to the enabled/on state."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent saves the updated configuration settings.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save', 'Update', or 'Submit' button, followed by a success message or a return to the configuration list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show interactions with the browser UI; no terminal windows showing SQL commands (e.g., UPDATE configurations SET...) are used to solve the task."
+        },
+        {
+            "id": "correct_target_config",
+            "description": "The agent modified the specific configuration requested, not a default or newly created one.",
+            "visual_evidence": "The name 'Oral Communication 2025' is clearly visible in the header or breadcrumbs of the editing screen."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the SEB Server menus rather than jumping to a guessed URL.",
+            "visual_evidence": "The trajectory shows the agent clicking through the SEB Server sidebar or menu items to reach the configuration list."
+        }
+    ],
+    "privileged_info_for_vlm": "The target configuration is named 'Oral Communication 2025'. The underlying technical keys that must be enabled are 'allowVideoCapture' (for Camera) and 'allowAudioCapture' (for Microphone). These are typically found under browser or hardware settings within the SEB Server web UI."
+}

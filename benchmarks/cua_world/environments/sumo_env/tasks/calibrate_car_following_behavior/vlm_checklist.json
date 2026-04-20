@@ -1,0 +1,53 @@
+{
+    "task_id": "calibrate_car_following_behavior@1",
+    "task_completion": [
+        {
+            "id": "create_vtypes_xml",
+            "description": "Create the cautious_vtypes.add.xml file with the specified Krauss parameters (tau: 1.8, minGap: 3.5, sigma: 0.8).",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing the content of /home/ga/SUMO_Output/cautious_vtypes.add.xml with the correct numerical values for tau, minGap, and sigma."
+        },
+        {
+            "id": "create_sumo_config",
+            "description": "Create the cautious_run.sumocfg file referencing the new vtypes and the original network/route files.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing /home/ga/SUMO_Output/cautious_run.sumocfg, specifically checking for the <additional-files> or <input> tags pointing to the new XML."
+        },
+        {
+            "id": "run_simulations",
+            "description": "Execute both the baseline and cautious SUMO simulations to generate tripinfo XML files.",
+            "points": 25,
+            "visual_evidence": "Terminal commands showing 'sumo -c ...' execution or the SUMO GUI running, followed by the presence of baseline_tripinfo.xml and cautious_tripinfo.xml in the output directory."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Produce the calibration_impact.json report with average duration and timeLoss for both scenarios.",
+            "points": 25,
+            "visual_evidence": "A view of the /home/ga/SUMO_Output/calibration_impact.json file containing the keys 'baseline_avg_duration', 'baseline_avg_timeLoss', 'cautious_avg_duration', and 'cautious_avg_timeLoss'."
+        },
+        {
+            "id": "create_comparison_chart",
+            "description": "Generate the comparison_chart.png bar chart visualizing the impact.",
+            "points": 20,
+            "visual_evidence": "An image viewer or file explorer showing /home/ga/SUMO_Output/comparison_chart.png, depicting a bar chart comparing the two simulation runs."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_simulation_run",
+            "description": "Verify the agent actually ran the SUMO simulation rather than hardcoding results.",
+            "visual_evidence": "Screenshots showing the SUMO simulation progress (CLI progress bars or GUI animation) and the generation of large XML tripinfo files."
+        },
+        {
+            "id": "data_consistency",
+            "description": "Check that the values in the JSON report match the data derived from the tripinfo XML files.",
+            "visual_evidence": "Comparison between the raw XML 'duration' values in tripinfo files and the averages calculated in the JSON report."
+        },
+        {
+            "id": "parameter_accuracy",
+            "description": "Ensure the specific Krauss parameters were not defaulted but explicitly set.",
+            "visual_evidence": "The cautious_vtypes.add.xml file must explicitly show tau=\"1.8\", minGap=\"3.5\", and sigma=\"0.8\"."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires modifying the Krauss car-following model in SUMO. Verified parameters: tau=1.8, minGap=3.5, sigma=0.8. The scenario is located at /home/ga/SUMO_Scenarios/bologna_pasubio/run.sumocfg. All outputs must be saved in /home/ga/SUMO_Output/. The JSON report must contain exactly four keys: baseline_avg_duration, baseline_avg_timeLoss, cautious_avg_duration, and cautious_avg_timeLoss."
+}

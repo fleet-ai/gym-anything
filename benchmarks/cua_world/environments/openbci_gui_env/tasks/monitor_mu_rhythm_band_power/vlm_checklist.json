@@ -1,0 +1,59 @@
+{
+    "task_id": "monitor_mu_rhythm_band_power@1",
+    "task_completion": [
+        {
+            "id": "openbci_gui_launched",
+            "description": "OpenBCI GUI application is open and visible.",
+            "points": 10,
+            "visual_evidence": "The OpenBCI GUI window is visible on the desktop."
+        },
+        {
+            "id": "playback_file_selected",
+            "description": "The correct playback file 'OpenBCI-EEG-S001-MotorImagery.txt' is selected in the data source settings.",
+            "points": 15,
+            "visual_evidence": "The file selection dialog or the 'Playback File' path field in the GUI shows 'OpenBCI-EEG-S001-MotorImagery.txt'."
+        },
+        {
+            "id": "stream_started",
+            "description": "The data stream has been started and is actively running.",
+            "points": 15,
+            "visual_evidence": "The 'Start Session' or 'Start Data Stream' button has been pressed, and live waveforms or scrolling data are visible in the Time Series widget."
+        },
+        {
+            "id": "band_power_widget_active",
+            "description": "The Band Power widget is open and visible in the GUI layout.",
+            "points": 15,
+            "visual_evidence": "A widget titled 'Band Power' is visible in one of the GUI containers."
+        },
+        {
+            "id": "channels_3_4_configured",
+            "description": "The Band Power widget is configured to display only Channel 3 and Channel 4.",
+            "points": 30,
+            "visual_evidence": "In the Band Power widget settings or display, only bars/data for channels 3 and 4 are highlighted or visible, while others are deselected or hidden."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the configuration is saved to the specified directory.",
+            "points": 15,
+            "visual_evidence": "A file manager window or terminal output confirms the creation of 'mu_rhythm_config.png' in '~/Documents/OpenBCI_GUI/Screenshots/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent interacted with the GUI elements rather than just using terminal commands to move files.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the OpenBCI GUI menus, buttons, or widget settings."
+        },
+        {
+            "id": "genuine_data_stream",
+            "description": "The data shown in the Band Power widget is dynamic and corresponds to the loaded EEG file.",
+            "visual_evidence": "The Band Power bars show non-zero, fluctuating values consistent with live playback of EEG data."
+        },
+        {
+            "id": "no_image_manipulation",
+            "description": "The final screenshot is a genuine capture of the application, not a mock-up.",
+            "visual_evidence": "The screenshot 'mu_rhythm_config.png' matches the state of the GUI seen in the trajectory steps (window positions, background, etc.)."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is 'OpenBCI-EEG-S001-MotorImagery.txt'. In OpenBCI GUI, Channel 3 and 4 correspond to the motor cortex (C3 and C4). The Band Power widget must specifically show only these two channels. The final screenshot must be saved at '~/Documents/OpenBCI_GUI/Screenshots/mu_rhythm_config.png' and should show at least 5 seconds of elapsed time on the playback clock."
+}

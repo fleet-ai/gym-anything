@@ -1,0 +1,53 @@
+{
+    "task_id": "mmo_distance_estimation_setup@1",
+    "task_completion": [
+        {
+            "id": "scenario_directory_creation",
+            "description": "Create the scenario directory 'm) MMO Calibration' in the correct path.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal window showing the directory '/opt/bridgecommand/Scenarios/m) MMO Calibration' has been created."
+        },
+        {
+            "id": "environment_config",
+            "description": "Configure environment.ini with Solent setting, daylight (08:00-16:00), visibility >=10nm, and weather <=1.",
+            "points": 15,
+            "visual_evidence": "Text editor showing environment.ini with 'World=Solent', 'Time=08:00' (or within range), 'Visibility' value >= 10, and 'Weather' value <= 1."
+        },
+        {
+            "id": "ownship_config",
+            "description": "Configure ownship.ini with 'Ocean Explorer' at 50.7000 N, 1.3000 W, heading 090, speed 0.",
+            "points": 20,
+            "visual_evidence": "Text editor showing ownship.ini with 'Model=Ocean Explorer', 'Latitude=50.7', 'Longitude=-1.3', 'Heading=90', and 'Speed=0'."
+        },
+        {
+            "id": "othership_config_targets",
+            "description": "Configure othership.ini with four stationary 'Buoy-Can-Black' targets at specified relative positions.",
+            "points": 30,
+            "visual_evidence": "Text editor showing othership.ini containing four entries for 'Buoy-Can-Black' (or similar) with coordinates calculated for 500m ahead, 500m starboard, 1000m port, and 200m astern."
+        },
+        {
+            "id": "calibration_card_creation",
+            "description": "Save the calculated coordinates for the four targets to '/home/ga/Documents/calibration_card.txt'.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal 'cat' command showing the file '/home/ga/Documents/calibration_card.txt' containing four sets of GPS coordinates."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_creation",
+            "description": "Verify the agent actually created/edited files rather than just displaying text.",
+            "visual_evidence": "Screenshots show the agent using a text editor (like gedit, nano, or vim) or 'echo/cat' redirection to write to the specific file paths."
+        },
+        {
+            "id": "coordinate_calculation_logic",
+            "description": "Verify the agent performed calculations for the target coordinates based on the ownship position.",
+            "visual_evidence": "The agent's terminal history or notes show math/logic for converting meters to decimal degrees or using a tool to find the offset coordinates."
+        },
+        {
+            "id": "no_premade_scenario",
+            "description": "Ensure the agent didn't simply load an existing scenario of the same name.",
+            "visual_evidence": "The agent is seen typing the configuration values or creating the directory from scratch in the file system."
+        }
+    ],
+    "privileged_info_for_vlm": "The scenario must be named 'm) MMO Calibration'. Ownship: Lat 50.7, Long -1.3 (1.3W), Heading 090. Target 1 (500m Ahead): Bearing 090 from ownship. Target 2 (500m Starboard): Bearing 180 from ownship. Target 3 (1000m Port): Bearing 000 from ownship. Target 4 (200m Astern): Bearing 270 from ownship. Note: 1 minute of latitude is approx 1852m; 1 minute of longitude at 50.7N is approx 1174m. Target 1 should be approx 50.7000N, -1.2929W. Target 4 should be approx 50.7000N, -1.3028W."
+}

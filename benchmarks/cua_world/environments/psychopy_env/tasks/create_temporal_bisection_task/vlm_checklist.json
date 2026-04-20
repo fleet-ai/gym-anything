@@ -1,0 +1,53 @@
+{
+    "task_id": "create_temporal_bisection_task@1",
+    "task_completion": [
+        {
+            "id": "csv_files_creation",
+            "description": "Create anchors.csv and probes.csv with correct columns and values in the specified directory.",
+            "points": 15,
+            "visual_evidence": "Screenshots of a file explorer or spreadsheet editor showing anchors.csv (stim_dur, corr_key, label) and probes.csv (stim_dur) in /home/ga/PsychoPyExperiments/conditions/."
+        },
+        {
+            "id": "psyexp_setup_routines",
+            "description": "Create the temporal_bisection.psyexp file with three distinct routines: demo, training, and testing.",
+            "points": 15,
+            "visual_evidence": "PsychoPy Builder interface showing three routine tabs or icons in the Flow pane named 'demo', 'training', and 'testing'."
+        },
+        {
+            "id": "demo_routine_config",
+            "description": "Configure the 'demo' routine with a pink circle and text label using anchors.csv.",
+            "points": 20,
+            "visual_evidence": "PsychoPy component properties showing a Polygon (pink) and Text component with '$label', and a Loop dialog showing 'anchors.csv' and nReps=5."
+        },
+        {
+            "id": "training_routine_config",
+            "description": "Configure the 'training' routine with a pink circle, key response ('s', 'l'), and feedback logic using anchors.csv.",
+            "points": 25,
+            "visual_evidence": "PsychoPy Builder showing a Keyboard component with allowed keys 's','l' and a Code or Text component for 'Correct'/'Wrong' feedback; Loop dialog linked to 'anchors.csv' with nReps=5."
+        },
+        {
+            "id": "testing_routine_config",
+            "description": "Configure the 'testing' routine with a pink circle and key response using probes.csv.",
+            "points": 25,
+            "visual_evidence": "PsychoPy Builder showing a Polygon component (pink) with duration set to '$stim_dur' (set to 'set every repeat') and a Loop dialog linked to 'probes.csv' with nReps=10."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the PsychoPy Builder GUI to construct the experiment rather than just writing XML/Python code manually.",
+            "visual_evidence": "Screenshots showing the PsychoPy Builder window, component dialogs, and the Flow timeline being manipulated."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent used variables ($stim_dur, $label) in component properties instead of hardcoded values.",
+            "visual_evidence": "Component property fields in PsychoPy showing '$' prefixed variables and the 'set every repeat' dropdown selection."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "The agent actually saved the files to the specified paths.",
+            "visual_evidence": "The PsychoPy title bar or 'Save As' dialog showing the path /home/ga/PsychoPyExperiments/temporal_bisection.psyexp."
+        }
+    ],
+    "privileged_info_for_vlm": "The experiment must be saved at /home/ga/PsychoPyExperiments/temporal_bisection.psyexp. The conditions files must be at /home/ga/PsychoPyExperiments/conditions/anchors.csv (columns: stim_dur, corr_key, label; values: 0.4/s/Short, 1.6/l/Long) and /home/ga/PsychoPyExperiments/conditions/probes.csv (column: stim_dur; values: 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6). All durations in PsychoPy components must be set to 'set every repeat' to function correctly with the loops."
+}

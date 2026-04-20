@@ -1,0 +1,53 @@
+{
+    "task_id": "reorder_workout_exercises@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_routines",
+            "description": "Agent navigates to the 'Strength & Size Phase 1' routine page.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the routine name 'Strength & Size Phase 1' in the page header or list."
+        },
+        {
+            "id": "locate_lower_body_day",
+            "description": "Agent locates and views the 'Lower Body Focus' training day.",
+            "points": 10,
+            "visual_evidence": "The text 'Lower Body Focus' is visible as a heading or section within the routine."
+        },
+        {
+            "id": "initiate_reorder",
+            "description": "Agent enters the reordering interface or uses the drag-and-drop/arrow controls for the exercises.",
+            "points": 20,
+            "visual_evidence": "The UI shows reordering handles, arrows, or a specific 'Reorder' mode active for the exercises."
+        },
+        {
+            "id": "correct_sequence_set",
+            "description": "The exercises are arranged in the specific order: Squat, Leg Extension, Standing Calf Raises.",
+            "points": 40,
+            "visual_evidence": "A screenshot shows the list of exercises with 'Squat' at the top, followed by 'Leg Extension', and 'Standing Calf Raises' at the bottom."
+        },
+        {
+            "id": "save_changes",
+            "description": "Agent saves the new order of exercises.",
+            "points": 20,
+            "visual_evidence": "The agent clicks a 'Save', 'Submit', or 'Done' button, or a success message appears confirming the update."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the wger web interface rather than executing Django management commands or SQL in a terminal.",
+            "visual_evidence": "The trajectory shows mouse clicks and browser navigation rather than terminal commands like 'python manage.py shell'."
+        },
+        {
+            "id": "no_exercise_deletion",
+            "description": "The agent reordered existing exercises rather than deleting them and adding new ones.",
+            "visual_evidence": "The logs or screenshots do not show the 'Delete' confirmation dialogs or the 'Add Exercise' search flow for these specific items."
+        },
+        {
+            "id": "genuine_navigation",
+            "description": "The agent navigated through the application menus to find the routine.",
+            "visual_evidence": "Screenshots show the agent clicking through the 'Workout' or 'Routines' menu items."
+        }
+    ],
+    "privileged_info_for_vlm": "The routine is named 'Strength & Size Phase 1' and the specific day to edit is 'Lower Body Focus'. The required final order is: 1. Squat, 2. Leg Extension, 3. Standing Calf Raises. The agent must use the GUI to reorder them; deleting and recreating the exercises is not permitted."
+}

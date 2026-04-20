@@ -1,0 +1,56 @@
+{
+    "task_id": "high_stakes_assessment_hardening@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logged into the SEB Server as super-admin.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SEB Server dashboard or management interface, and the user 'super-admin' is visible in the session info."
+        },
+        {
+            "id": "create_exam_template",
+            "description": "An exam template named 'CPA Board Exam Template' was created.",
+            "points": 15,
+            "visual_evidence": "A list or detail view showing a template with the exact name 'CPA Board Exam Template'."
+        },
+        {
+            "id": "configure_indicators",
+            "description": "The template includes 'Connection Monitor' and 'Security Alert Monitor' with specific thresholds.",
+            "points": 25,
+            "visual_evidence": "The template configuration page shows 'Connection Monitor' (Last Ping Time, 5000/12000) and 'Security Alert Monitor' (Error-Log Counter, 3/5)."
+        },
+        {
+            "id": "create_secure_connection",
+            "description": "A secure connection named 'CPA Exam Connection' was configured with the specified password.",
+            "points": 25,
+            "visual_evidence": "The connection settings show the name 'CPA Exam Connection' and a password field (likely masked) being set to 'CPASecure2024'."
+        },
+        {
+            "id": "create_exam_instance",
+            "description": "A new exam named 'CPA Board Exam - Maximum Security' was created using the configured template and connection.",
+            "points": 25,
+            "visual_evidence": "The exam list or creation confirmation shows 'CPA Board Exam - Maximum Security' linked to the previously created template and connection."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than direct database manipulation via terminal.",
+            "points": 0,
+            "visual_evidence": "Screenshots show the mouse cursor interacting with form fields, buttons, and menus in the browser."
+        },
+        {
+            "id": "genuine_input",
+            "description": "The agent typed or pasted the specific security strings into the application fields.",
+            "points": 0,
+            "visual_evidence": "The browser's address bar shows localhost:8080 and the UI elements reflect the specific names and thresholds required."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a script to automate the API calls directly without UI interaction.",
+            "points": 0,
+            "visual_evidence": "The trajectory shows step-by-step navigation through the SEB Server's multi-page configuration wizard."
+        }
+    ],
+    "privileged_info_for_vlm": "The SEB Server is at http://localhost:8080. Credentials: super-admin / admin. Required names: Exam: 'CPA Board Exam - Maximum Security'; Connection: 'CPA Exam Connection' (Password: CPASecure2024); Template: 'CPA Board Exam Template'. Indicators: 'Connection Monitor' (Last Ping Time, Warning: 5000, Danger: 12000) and 'Security Alert Monitor' (Error-Log Counter, Warning: 3, Danger: 5)."
+}

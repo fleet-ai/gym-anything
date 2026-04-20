@@ -1,0 +1,65 @@
+{
+    "task_id": "record_medical_record_amendment@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into the OpenEMR system as admin.",
+            "points": 5,
+            "visual_evidence": "The OpenEMR dashboard or main navigation menu is visible after entering credentials 'admin/pass'."
+        },
+        {
+            "id": "patient_selection",
+            "description": "Agent navigates to and selects the correct patient, Jayson Fadel (DOB: 1992-06-30).",
+            "points": 10,
+            "visual_evidence": "The patient dashboard or record for 'Jayson Fadel' is active, showing PID 3 or the correct DOB."
+        },
+        {
+            "id": "amendment_form_entry",
+            "description": "Agent opens the interface to add a new medical record amendment.",
+            "points": 15,
+            "visual_evidence": "A form or dialog titled 'Amendment', 'Medical Record Amendment', or similar is visible."
+        },
+        {
+            "id": "correct_metadata_fields",
+            "description": "Agent sets the amendment type to 'Correction' and status to 'Approved'.",
+            "points": 20,
+            "visual_evidence": "Dropdowns or radio buttons for 'Type' show 'Correction' and 'Status' show 'Approved' in the form."
+        },
+        {
+            "id": "description_content",
+            "description": "Agent enters the specific description regarding the occupation change to Licensed Practical Nurse.",
+            "points": 25,
+            "visual_evidence": "The description field contains text mentioning 'Licensed Practical Nurse', 'Unemployed', and '2015'."
+        },
+        {
+            "id": "response_content",
+            "description": "Agent enters the specific response regarding the approval and update of the occupation field.",
+            "points": 15,
+            "visual_evidence": "The response or comments field contains the text: 'Amendment approved. Occupation field has been updated to reflect accurate employment information.'"
+        },
+        {
+            "id": "save_confirmation",
+            "description": "Agent saves the amendment and it appears in the patient's record.",
+            "points": 10,
+            "visual_evidence": "A success message is displayed, or the new amendment entry is visible in the patient's history/list of amendments."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenEMR web interface rather than executing SQL commands or terminal scripts to inject the record.",
+            "visual_evidence": "Screenshots show mouse cursor movements, typing into browser forms, and web navigation rather than just terminal windows."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent searched for the patient rather than navigating to a direct URL if not previously known.",
+            "visual_evidence": "The agent is seen using the patient search bar or finder tool."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent typed or pasted the description and response into the actual UI fields.",
+            "visual_evidence": "Text is visible within the OpenEMR form fields before the 'Save' or 'Submit' button is clicked."
+        }
+    ],
+    "privileged_info_for_vlm": "The target patient is Jayson Fadel (PID 3), born 1992-06-30. The amendment must be a 'Correction' with an 'Approved' status. Key details to verify in the description: 'Licensed Practical Nurse', 'Unemployed', and '2015'. The response field must exactly or closely match: 'Amendment approved. Occupation field has been updated to reflect accurate employment information.'"
+}

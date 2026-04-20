@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_quadruped_impedance@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots application and the initial world is loaded.",
+            "points": 10,
+            "visual_evidence": "The Webots GUI is visible, showing a 3D scene with a quadruped robot and the Scene Tree on the left."
+        },
+        {
+            "id": "set_basic_timestep",
+            "description": "The WorldInfo basicTimeStep is set to 8.",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree, under 'WorldInfo', the 'basicTimeStep' field is visible and set to 8."
+        },
+        {
+            "id": "locate_knee_joints",
+            "description": "The agent has navigated the robot hierarchy to find the knee joints (FL_KNEE, FR_KNEE, RL_KNEE, RR_KNEE).",
+            "points": 15,
+            "visual_evidence": "The Scene Tree shows the expansion of the CUSTOM_QUADRUPED robot nodes, specifically targeting the HingeJoints or RotationalMotors associated with the knees."
+        },
+        {
+            "id": "configure_knee_impedance",
+            "description": "The springConstant and dampingConstant are set to 40.0 and 2.0 respectively for all four knee joints.",
+            "points": 30,
+            "visual_evidence": "Screenshots show the 'springConstant' field set to 40 and 'dampingConstant' field set to 2 in the joint parameters for the knee nodes."
+        },
+        {
+            "id": "verify_hip_unmodified",
+            "description": "The hip joints (FL_HIP, FR_HIP, RL_HIP, RR_HIP) remain unmodified.",
+            "points": 10,
+            "visual_evidence": "The Scene Tree or field editor shows hip joint parameters (spring/damping) are either at default (0) or haven't been edited by the agent."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world is saved to the specific path /home/ga/Desktop/quadruped_impedance.wbt.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog box is visible with the path /home/ga/Desktop/quadruped_impedance.wbt entered, or the window title bar reflects the new filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Webots GUI to modify parameters rather than just writing a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Scene Tree and field editor in Webots."
+        },
+        {
+            "id": "no_scripted_shortcut",
+            "description": "The agent did not use a python script or sed command to bypass the manual configuration task.",
+            "visual_evidence": "The terminal history (if visible) does not show commands that programmatically edit the .wbt file."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent performed a real save operation within the application.",
+            "visual_evidence": "The Webots 'File' menu or save icon is clicked, and the file explorer/save dialog appears."
+        }
+    ],
+    "privileged_info_for_vlm": "The target basicTimeStep is exactly 8. For the four knee joints (FL_KNEE, FR_KNEE, RL_KNEE, RR_KNEE), the springConstant must be 40.0 and dampingConstant must be 2.0. Hip joints must not be changed. The final file must be saved as /home/ga/Desktop/quadruped_impedance.wbt."
+}

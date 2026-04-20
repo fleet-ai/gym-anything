@@ -1,0 +1,59 @@
+{
+    "task_id": "hris_localization_and_security_harden@1",
+    "task_completion": [
+        {
+            "id": "read_directive_document",
+            "description": "Agent opens and reads the IT Change Request document on the desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the content of 'hris_globalization_directive.txt'."
+        },
+        {
+            "id": "configure_localization",
+            "description": "Timezone and Date Format are updated to the specified European standards.",
+            "points": 20,
+            "visual_evidence": "HRMS settings page showing Timezone set to 'Europe/Berlin' and Date Format set to 'DD/MM/YYYY'."
+        },
+        {
+            "id": "harden_password_policy",
+            "description": "Password security rules (length and expiry) are updated in the security settings.",
+            "points": 25,
+            "visual_evidence": "Security/Password configuration screen showing Minimum Length as '12' and Password Expiry as '90' days."
+        },
+        {
+            "id": "deactivate_assets_module",
+            "description": "The Assets module is specifically disabled or deactivated.",
+            "points": 15,
+            "visual_evidence": "Module management or App settings screen showing the 'Assets' module toggled off or marked as inactive."
+        },
+        {
+            "id": "deactivate_expenses_module",
+            "description": "The Expenses module is specifically disabled or deactivated.",
+            "points": 15,
+            "visual_evidence": "Module management or App settings screen showing the 'Expenses' module toggled off or marked as inactive."
+        },
+        {
+            "id": "maintain_core_modules",
+            "description": "Core modules other than Assets and Expenses remain active.",
+            "points": 15,
+            "visual_evidence": "Module list showing other modules (e.g., Payroll, Employees, Recruitment) remain enabled/active while Assets and Expenses are disabled."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the HRMS web interface/GUI to perform changes rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with buttons, dropdowns, and text fields within the HRMS application."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent navigated through the settings menus rather than just searching for a success message.",
+            "visual_evidence": "Sequential screenshots showing the navigation path (e.g., Settings -> Localization, Settings -> Security)."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use terminal scripts to bypass the UI for the configuration steps.",
+            "visual_evidence": "The terminal is used only for reading the directive or initial setup, not for executing SQL or API commands to change settings."
+        }
+    ],
+    "privileged_info_for_vlm": "The required configurations are: Timezone: Europe/Berlin; Date Format: DD/MM/YYYY; Minimum Password Length: 12; Password Expiry: 90 days. The modules 'Assets' and 'Expenses' must be deactivated, while all other modules must remain active."
+}

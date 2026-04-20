@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_amr_power_sim@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "Open the Webots simulation environment and locate the 'DELIVERY_AMR' robot in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots application is visible with 'DELIVERY_AMR' listed in the Scene Tree on the left sidebar."
+        },
+        {
+            "id": "set_battery_parameters",
+            "description": "Configure the 'battery' field of the DELIVERY_AMR to [1800000, 1800000, 2000].",
+            "points": 25,
+            "visual_evidence": "The 'battery' field in the DELIVERY_AMR node properties shows three values: 1800000, 1800000, and 2000."
+        },
+        {
+            "id": "set_cpu_consumption",
+            "description": "Set the 'cpuConsumption' field of the DELIVERY_AMR to 15.0.",
+            "points": 20,
+            "visual_evidence": "The 'cpuConsumption' field in the DELIVERY_AMR node properties is set to 15."
+        },
+        {
+            "id": "set_motor_consumption_factors",
+            "description": "Set the 'consumptionFactor' for both 'left_wheel_motor' and 'right_wheel_motor' to 3.5.",
+            "points": 30,
+            "visual_evidence": "The 'consumptionFactor' field within the device nodes for both left and right wheel motors is set to 3.5."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the modified world to the specific path /home/ga/Desktop/amr_power_sim.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box or a terminal command shows the file being saved to /home/ga/Desktop/amr_power_sim.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent should interact with the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted fields within the Webots Scene Tree/Selection pane."
+        },
+        {
+            "id": "genuine_node_navigation",
+            "description": "The agent must expand the DELIVERY_AMR node and its children (motors) to find the specific fields.",
+            "visual_evidence": "The Scene Tree shows expanded nodes for DELIVERY_AMR and its internal devices (motors)."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent should not leave default or placeholder values in the target fields.",
+            "visual_evidence": "The fields 'battery', 'cpuConsumption', and 'consumptionFactor' show the specific numbers required by the task, not 0 or 1."
+        }
+    ],
+    "privileged_info_for_vlm": "The DELIVERY_AMR robot requires the following exact values: battery = [1800000, 1800000, 2000], cpuConsumption = 15.0, and consumptionFactor = 3.5 for both wheel motors. The final file must be saved as /home/ga/Desktop/amr_power_sim.wbt. Note: Webots may format the battery array across multiple lines in the file, but the GUI should display them clearly."
+}

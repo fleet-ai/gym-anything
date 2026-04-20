@@ -1,0 +1,59 @@
+{
+    "task_id": "calibrate_spatial_scale@1",
+    "task_completion": [
+        {
+            "id": "weasis_launched",
+            "description": "The Weasis medical viewer is launched and visible on the screen.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open, showing the user interface and toolbars."
+        },
+        {
+            "id": "dicom_loaded",
+            "description": "The DICOM image is loaded into the main viewer area.",
+            "points": 10,
+            "visual_evidence": "A medical image (DICOM) is displayed in the central viewport of Weasis."
+        },
+        {
+            "id": "calibration_tool_active",
+            "description": "The agent accesses the spatial calibration tool or menu.",
+            "points": 15,
+            "visual_evidence": "A calibration dialog box, context menu, or tool setting for 'Calibrate' or 'Spatial Scale' is visible."
+        },
+        {
+            "id": "scale_calibrated",
+            "description": "The agent sets the pixel scale based on a 50 mm reference.",
+            "points": 25,
+            "visual_evidence": "Input fields in a calibration dialog showing '50' and 'mm' being entered or applied to a drawn reference line."
+        },
+        {
+            "id": "measurement_overlay_visible",
+            "description": "A 50 mm horizontal measurement overlay is placed across the center of the image.",
+            "points": 25,
+            "visual_evidence": "A horizontal line tool is visible across the center of the image with a text label indicating '50 mm' (or very close to it)."
+        },
+        {
+            "id": "export_initiated",
+            "description": "The agent uses the export/save function to save the view as a JPEG.",
+            "points": 15,
+            "visual_evidence": "An 'Export' or 'Save As' dialog is visible with the format set to JPEG and the path pointing to /home/ga/DICOM/exports/calibrated_scale.jpg."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to perform calibration rather than command-line manipulation of the DICOM header.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis menus and drawing tools."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The 50mm measurement is a real overlay in the software, not a text box manually placed to hide an incorrect scale.",
+            "visual_evidence": "The measurement line has the standard Weasis UI styling (e.g., handles at ends, specific font style)."
+        },
+        {
+            "id": "no_file_system_faking",
+            "description": "The agent did not simply move a pre-existing image to the export path using the terminal.",
+            "visual_evidence": "The export process is visible within the Weasis application interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The target measurement value is exactly 50 mm. The final exported file must be a JPEG located at /home/ga/DICOM/exports/calibrated_scale.jpg. The calibration must be performed on a horizontal line across the center of the image."
+}

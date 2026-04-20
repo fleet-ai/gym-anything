@@ -1,0 +1,59 @@
+{
+    "task_id": "crane_lift_plan@1",
+    "task_completion": [
+        {
+            "id": "layer_creation",
+            "description": "Create the four required layers: CRANE_SETUP, BUILDING, LOAD_PATH, and ANNOTATIONS with their specified colors.",
+            "points": 15,
+            "visual_evidence": "The Layer List widget in LibreCAD shows the four layer names with corresponding color icons (Red, White/Black, Green, Yellow)."
+        },
+        {
+            "id": "crane_setup_geometry",
+            "description": "Draw a 6.4m x 7.4m rectangle and a 3.6m radius circle centered at (0,0) on the CRANE_SETUP layer.",
+            "points": 20,
+            "visual_evidence": "A red rectangle and a red circle are visible in the center of the drawing area. Coordinate readouts or grid spacing confirm the dimensions (rectangle width ~6.4, height ~7.4; circle radius ~3.6)."
+        },
+        {
+            "id": "building_wall",
+            "description": "Draw a vertical wall line from (6.0, -10.0) to (6.0, 15.0) on the BUILDING layer.",
+            "points": 15,
+            "visual_evidence": "A vertical line is visible to the right of the crane setup. The status bar or coordinate ruler shows the line positioned at X=6.0, spanning from Y=-10 to Y=15."
+        },
+        {
+            "id": "load_path_elements",
+            "description": "Draw 0.5m radius circles at (-10, 5) and (12, 8) with a connecting line on the LOAD_PATH layer.",
+            "points": 20,
+            "visual_evidence": "Two small green circles are visible, one to the left and one to the right of the wall, connected by a green line passing through the crane area."
+        },
+        {
+            "id": "annotations",
+            "description": "Place text labels 'CRANE CENTER', 'PICK', 'SET', and 'WALL' near their respective objects on the ANNOTATIONS layer.",
+            "points": 15,
+            "visual_evidence": "Yellow text labels are visible in the drawing area near the center, the two small circles, and the vertical line."
+        },
+        {
+            "id": "file_saved",
+            "description": "Save the drawing to the specific path /home/ga/Documents/LibreCAD/crane_lift_plan.dxf.",
+            "points": 15,
+            "visual_evidence": "The LibreCAD title bar shows 'crane_lift_plan.dxf' and the 'Save As' or 'Save' dialog confirms the directory path /home/ga/Documents/LibreCAD/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreCAD GUI to create the drawing rather than just creating a file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with LibreCAD toolbars (Line, Circle, Layer tools) and the drawing area."
+        },
+        {
+            "id": "genuine_drawing_process",
+            "description": "The agent manually entered coordinates or used the grid to place elements accurately.",
+            "visual_evidence": "The command line at the bottom of the LibreCAD window shows coordinate inputs (e.g., '0,0' or '6,15') or the agent is seen selecting specific drawing tools."
+        },
+        {
+            "id": "no_premade_file",
+            "description": "The agent did not simply open an existing DXF file.",
+            "visual_evidence": "The trajectory shows the progression from an empty 'Untitled' drawing to the finished plan."
+        }
+    ],
+    "privileged_info_for_vlm": "The drawing must use meters. Key coordinates: Crane center (0,0); Tail swing radius 3.6m; Wall at X=6.0 (Y: -10 to 15); Pick Point at (-10, 5); Set Point at (12, 8). Required layers: CRANE_SETUP (Red), BUILDING (White/Black), LOAD_PATH (Green), ANNOTATIONS (Yellow). File must be saved as /home/ga/Documents/LibreCAD/crane_lift_plan.dxf."
+}

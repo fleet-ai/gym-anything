@@ -1,0 +1,59 @@
+{
+    "task_id": "camera_fov_coverage_optimization@1",
+    "task_completion": [
+        {
+            "id": "coppeliasim_initialization",
+            "description": "CoppeliaSim is launched and a 3x3 grid of target spheres is visible in the scene.",
+            "points": 10,
+            "visual_evidence": "Screenshot of the CoppeliaSim GUI showing a 3x3 grid of spheres on the floor area."
+        },
+        {
+            "id": "python_script_implementation",
+            "description": "A Python script using ZMQ Remote API is written to sweep camera Z-height and pitch angles.",
+            "points": 20,
+            "visual_evidence": "Code editor (e.g., VS Code or Text Editor) showing Python code importing 'zmqRemoteApi' and containing loops for Z (1.0-4.0m) and pitch (0-45 deg)."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The simulation is running and the camera pose is visibly changing during the sweep.",
+            "points": 20,
+            "visual_evidence": "CoppeliaSim interface showing the 'Play' button active and the vision sensor object moving to different heights/angles in the scene view."
+        },
+        {
+            "id": "csv_data_generation",
+            "description": "The camera_coverage_sweep.csv file is generated with at least 16 rows of data.",
+            "points": 20,
+            "visual_evidence": "A file explorer or terminal showing 'camera_coverage_sweep.csv' in /home/ga/Documents/CoppeliaSim/exports/ with columns for pose_id, z_m, pitch_deg, and visible_count."
+        },
+        {
+            "id": "json_optimization_results",
+            "description": "The optimal_camera_placement.json file is generated with the required summary fields.",
+            "points": 15,
+            "visual_evidence": "Content of 'optimal_camera_placement.json' displayed, showing fields: total_poses_tested (>=16), max_visible_count, optimal_z_m, and optimal_pitch_deg."
+        },
+        {
+            "id": "final_file_exports",
+            "description": "All four required files (CSV, JSON, PY, TTT) are saved in the specified exports directory.",
+            "points": 15,
+            "visual_evidence": "File manager showing coverage_script.py, optimized_scene.ttt, camera_coverage_sweep.csv, and optimal_camera_placement.json in /home/ga/Documents/CoppeliaSim/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sim_interaction",
+            "description": "The agent interacted with the CoppeliaSim software rather than just creating mock files.",
+            "visual_evidence": "Screenshots show the CoppeliaSim application window active with the 3D scene updating, not just terminal commands creating files."
+        },
+        {
+            "id": "script_execution_evidence",
+            "description": "The Python script was actually executed via terminal or IDE to drive the simulation.",
+            "visual_evidence": "Terminal output showing the execution of 'python3 coverage_script.py' or similar, with logs indicating connection to the ZMQ API."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The results in the CSV/JSON files appear to be derived from simulation logic, not pre-written strings.",
+            "visual_evidence": "The CSV file contains varying 'visible_count' values corresponding to different Z and pitch coordinates."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must test at least 16 unique poses (4 heights x 4 pitch angles). The heights must be between 1.0m and 4.0m, and pitch between 0 and 45 degrees. All output files must be located in /home/ga/Documents/CoppeliaSim/exports/. The grid must be 3x3 (9 spheres total)."
+}

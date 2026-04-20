@@ -1,0 +1,53 @@
+{
+    "task_id": "selective_measurement_deletion@1",
+    "task_completion": [
+        {
+            "id": "dicom_loaded",
+            "description": "The CT scan (0002.DCM) is loaded into the Weasis viewer.",
+            "points": 10,
+            "visual_evidence": "The Weasis application is open showing a medical image (CT/XA scan) in the main viewport."
+        },
+        {
+            "id": "three_measurements_drawn",
+            "description": "Three distinct distance measurements are drawn on the image.",
+            "points": 25,
+            "visual_evidence": "Three separate measurement lines or annotations (usually with distance values) are visible on different anatomical regions of the scan."
+        },
+        {
+            "id": "measurement_selection",
+            "description": "One measurement is selected for deletion.",
+            "points": 15,
+            "visual_evidence": "Visual indicators of selection (e.g., highlighted handles, color change, or a bounding box) appear on exactly one of the three measurements."
+        },
+        {
+            "id": "selective_deletion_performed",
+            "description": "Exactly one measurement is deleted, leaving two remaining.",
+            "points": 30,
+            "visual_evidence": "The viewer now shows exactly two measurement annotations where there were previously three."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot of the viewer with two measurements is saved to the specific export path.",
+            "points": 20,
+            "visual_evidence": "The UI shows an export dialog or file explorer confirming the file 'selective_deletion.png' is saved in ~/DICOM/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI tools to draw and delete measurements.",
+            "visual_evidence": "The cursor is seen interacting with the measurement toolbar icons and the image canvas; no evidence of script-based image manipulation."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual Weasis application interface.",
+            "visual_evidence": "Standard Weasis UI elements (menus, toolbars, DICOM metadata overlays) are visible throughout the process."
+        },
+        {
+            "id": "no_file_system_faking",
+            "description": "The final image is a genuine capture of the viewer state, not a pre-existing file.",
+            "visual_evidence": "The content of the exported screenshot matches the state of the viewer seen in the preceding trajectory steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires exactly 3 initial measurements and exactly 2 final measurements. The target file path is /home/ga/DICOM/exports/selective_deletion.png. The source DICOM file is 0002.DCM from Rubo Medical."
+}

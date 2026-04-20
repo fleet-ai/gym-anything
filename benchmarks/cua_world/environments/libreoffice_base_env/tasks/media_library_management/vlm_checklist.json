@@ -1,0 +1,53 @@
+{
+    "task_id": "media_library_management@1",
+    "task_completion": [
+        {
+            "id": "query_full_track_catalog",
+            "description": "Create a saved SQL query named 'FullTrackCatalog' with the specified 5-table join and columns.",
+            "points": 25,
+            "visual_evidence": "LibreOffice Base 'Queries' pane showing 'FullTrackCatalog'. The SQL editor or query results should show columns: TrackId, TrackName, AlbumTitle, ArtistName, GenreName, MediaTypeName, Milliseconds, and UnitPrice."
+        },
+        {
+            "id": "query_genre_media_breakdown",
+            "description": "Create a saved SQL query named 'GenreMediaBreakdown' with grouping and aggregation.",
+            "points": 20,
+            "visual_evidence": "LibreOffice Base 'Queries' pane showing 'GenreMediaBreakdown'. Query results should show columns for Genre, Media Type, TrackCount (count), and total revenue (sum of UnitPrice)."
+        },
+        {
+            "id": "table_track_review_creation",
+            "description": "Create a table named 'TrackReview' with the specified schema (ReviewId, TrackId, Rating, ReviewText, ReviewDate).",
+            "points": 15,
+            "visual_evidence": "LibreOffice Base 'Tables' pane showing 'TrackReview'. Table design view or column headers showing the 5 required fields."
+        },
+        {
+            "id": "table_track_review_data",
+            "description": "Insert at least 5 rows into the 'TrackReview' table with valid TrackIds and ratings.",
+            "points": 15,
+            "visual_evidence": "Data view of 'TrackReview' table showing at least 5 rows of data. Ratings must be between 1-5 and TrackIds between 1-3503."
+        },
+        {
+            "id": "report_media_catalog",
+            "description": "Create a report named 'Media Catalog' or 'Track Catalog' presenting the catalog data.",
+            "points": 25,
+            "visual_evidence": "LibreOffice Base 'Reports' pane showing a report named 'Media Catalog' or 'Track Catalog'. Opening the report shows a formatted document containing track/artist/album information."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI to create objects rather than just executing background scripts.",
+            "visual_evidence": "Screenshots show the LibreOffice Base application window, Query Design/SQL view, Table Design view, and Report Wizard/Builder."
+        },
+        {
+            "id": "database_persistence",
+            "description": "The created queries and tables are visible in the main LibreOffice Base navigation pane.",
+            "visual_evidence": "The left-hand 'Database' objects list (Tables, Queries, Reports) shows the newly created items 'FullTrackCatalog', 'GenreMediaBreakdown', 'TrackReview', and the report."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or scripted the insertion of 5 distinct reviews into the GUI table view or via SQL command within the app.",
+            "visual_evidence": "Screenshots of the 'TrackReview' table data entry grid or an 'INSERT INTO' SQL execution window within LibreOffice."
+        }
+    ],
+    "privileged_info_for_vlm": "The Chinook database contains 3503 tracks (IDs 1-3503), 275 artists, 347 albums, 25 genres, and 5 media types. TrackId 1 is 'For Those About To Rock (We Salute You)' by AC/DC (Rock, MPEG audio file). Valid MediaTypes include MPEG audio file, Protected AAC audio file, Protected MPEG-4 video file, Purchased AAC audio file, and AAC audio file. Ensure the 'FullTrackCatalog' query uses aliases (e.g., 'Name' AS 'TrackName') as requested."
+}

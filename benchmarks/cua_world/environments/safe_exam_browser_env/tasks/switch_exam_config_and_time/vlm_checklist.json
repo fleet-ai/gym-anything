@@ -1,0 +1,59 @@
+{
+    "task_id": "switch_exam_config_and_time@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the SEB Server as super-admin/admin.",
+            "points": 10,
+            "visual_evidence": "The SEB Server dashboard or exam list is visible, showing the user is logged in (often indicated by a logout button or username 'super-admin' in the corner)."
+        },
+        {
+            "id": "locate_exam",
+            "description": "Navigate to and select the exam 'Intro to Psychology 101'.",
+            "points": 15,
+            "visual_evidence": "The exam 'Intro to Psychology 101' is highlighted or its specific edit/details page is open."
+        },
+        {
+            "id": "update_seb_config",
+            "description": "Change the linked SEB Configuration to 'Calculator Permitted Config'.",
+            "points": 25,
+            "visual_evidence": "A dropdown or selection field for 'SEB Configuration' (or similar) shows 'Calculator Permitted Config' selected."
+        },
+        {
+            "id": "update_end_date",
+            "description": "Set the exam End Date to 2026-06-15.",
+            "points": 20,
+            "visual_evidence": "The date picker or input field for 'End Time' or 'Valid Until' shows the date '2026-06-15'."
+        },
+        {
+            "id": "update_end_time",
+            "description": "Set the exam End Time to 14:00.",
+            "points": 20,
+            "visual_evidence": "The time input field associated with the end date shows '14:00'."
+        },
+        {
+            "id": "save_changes",
+            "description": "Save the updated exam configuration.",
+            "points": 10,
+            "visual_evidence": "The agent clicks a 'Save', 'Update', or 'Submit' button, followed by a success message or the updated values appearing in the read-only exam list."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than direct database manipulation via terminal.",
+            "visual_evidence": "Screenshots show the browser being used to navigate the SEB Server UI; no SQL commands are seen being executed in a terminal to update the 'exams' table."
+        },
+        {
+            "id": "no_hardcoded_url_shortcuts",
+            "description": "The agent navigated through the application menus to find the exam.",
+            "visual_evidence": "The trajectory shows the agent clicking through the exam list or search function rather than jumping directly to a specific edit URL that wasn't previously discovered."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually selected or typed the new configuration and time values.",
+            "visual_evidence": "The cursor is seen interacting with the dropdown for 'Calculator Permitted Config' and the date/time picker widgets."
+        }
+    ],
+    "privileged_info_for_vlm": "The target exam is 'Intro to Psychology 101'. The required configuration change is specifically to 'Calculator Permitted Config'. The final end timestamp must be exactly 2026-06-15 at 14:00. Ensure the agent does not confuse this with the 'Standard Secure Config' which was the likely previous state."
+}

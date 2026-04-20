@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_surveillance_drone@1",
+    "task_completion": [
+        {
+            "id": "open_drone_scenario",
+            "description": "Open the drone simulation environment in the Webots editor.",
+            "points": 10,
+            "visual_evidence": "The Webots application is open showing a drone model and a scene tree on the left."
+        },
+        {
+            "id": "configure_camera_resolution",
+            "description": "Set the surveillance_camera width to 1280 and height to 720.",
+            "points": 20,
+            "visual_evidence": "In the scene tree or node editor, the 'Camera' node shows 'width 1280' and 'height 720'."
+        },
+        {
+            "id": "configure_camera_fov",
+            "description": "Set the surveillance_camera field of view to 0.7854 radians.",
+            "points": 15,
+            "visual_evidence": "In the scene tree or node editor, the 'Camera' node shows 'fieldOfView 0.7854'."
+        },
+        {
+            "id": "add_gps_sensor",
+            "description": "Add a GPS sensor node named 'gps' to the drone's children.",
+            "points": 25,
+            "visual_evidence": "A 'GPS' node is visible under the drone's 'children' list in the scene tree, with the name field set to 'gps'."
+        },
+        {
+            "id": "set_drone_altitude",
+            "description": "Set the drone's Z translation (altitude) to 5.0 meters.",
+            "points": 15,
+            "visual_evidence": "The 'translation' field of the drone's root node shows the third value (Z) as 5.0."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path on the Desktop.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the file explorer shows the file being saved as '/home/ga/Desktop/surveillance_drone.wbt'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node parameters rather than just editing text files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots scene tree and field editor."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a text file with the final content using a text editor.",
+            "visual_evidence": "The agent is seen navigating the 3D viewport or the hierarchical node tree of the simulator."
+        },
+        {
+            "id": "genuine_save_process",
+            "description": "The agent used the 'File > Save World As' menu or equivalent GUI shortcut.",
+            "visual_evidence": "The Webots menu or a file save dialog is visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The starting state has a camera resolution of 320x240, FOV of 1.5708, and altitude of 0.5m. The agent must change these to: Width=1280, Height=720, FOV=0.7854, and Z-translation=5.0. A GPS node named 'gps' must be added to the children list. The final file must be saved specifically to /home/ga/Desktop/surveillance_drone.wbt."
+}

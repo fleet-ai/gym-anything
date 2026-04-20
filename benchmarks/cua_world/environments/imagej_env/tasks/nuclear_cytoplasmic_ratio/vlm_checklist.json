@@ -1,0 +1,59 @@
+{
+    "task_id": "nuclear_cytoplasmic_ratio@1",
+    "task_completion": [
+        {
+            "id": "load_sample_image",
+            "description": "The 'Fluorescent Cells' sample image is opened in Fiji/ImageJ.",
+            "points": 10,
+            "visual_evidence": "An image window titled 'Fluorescent Cells' showing a multi-channel biological image (blue, green, red) is visible."
+        },
+        {
+            "id": "channel_separation",
+            "description": "The agent accesses or splits the channels to isolate the Blue (nuclear) and Green (cytoplasmic) signals.",
+            "points": 15,
+            "visual_evidence": "The ImageJ 'Channels Tool' window is open, or separate grayscale windows for 'C3' (Blue) and 'C2' (Green) are visible."
+        },
+        {
+            "id": "nuclear_roi_definition",
+            "description": "The agent defines regions of interest (ROIs) for at least 3 nuclei using the Blue channel.",
+            "points": 20,
+            "visual_evidence": "The ROI Manager window is visible containing at least 3 entries, and selection outlines are visible over the nuclei in the image."
+        },
+        {
+            "id": "cytoplasmic_measurement",
+            "description": "The agent measures the mean intensity of the Green channel for both nuclear and cytoplasmic regions.",
+            "points": 25,
+            "visual_evidence": "The 'Results' table or 'ROI Manager' shows measurements for 'Mean' intensity, and there is evidence of the agent selecting cytoplasmic areas (e.g., rings around nuclei or cell bodies)."
+        },
+        {
+            "id": "ratio_calculation",
+            "description": "The agent calculates the N/C ratio (Nuclear Mean / Cytoplasmic Mean) for each of the 3 cells.",
+            "points": 15,
+            "visual_evidence": "A results table, spreadsheet, or calculator interface shows a column for 'Ratio' or 'N/C' with calculated values."
+        },
+        {
+            "id": "save_results_csv",
+            "description": "The final results are saved to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "A 'Save As' dialog box or a file explorer window shows the file 'nc_ratio_results.csv' being saved to '~/ImageJ_Data/results/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji/ImageJ GUI to perform analysis rather than just writing a script or using the terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus, the ROI Manager, and the Results table."
+        },
+        {
+            "id": "genuine_measurement",
+            "description": "The measurements in the results table correspond to the actual image content, not placeholder values.",
+            "visual_evidence": "The 'Mean' values in the results table are non-identical and vary slightly between the 3 cells, reflecting real image data."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent did not simply create a CSV file with pre-known values without performing the image analysis steps.",
+            "visual_evidence": "The trajectory shows the intermediate steps of selecting ROIs and clicking 'Measure' before the CSV is generated."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires analyzing at least 3 cells. The Blue channel (C3) must be used for nuclear localization and the Green channel (C2) for intensity measurements. The final CSV must be saved at ~/ImageJ_Data/results/nc_ratio_results.csv and contain columns for Nuclear Mean, Cytoplasmic Mean, and N/C Ratio. Biologically plausible N/C ratios for these cells typically range from 0.1 to 4.0; values like 20.0 are likely errors."
+}

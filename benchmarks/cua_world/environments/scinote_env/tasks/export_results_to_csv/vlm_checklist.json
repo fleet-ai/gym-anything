@@ -1,0 +1,59 @@
+{
+    "task_id": "export_results_to_csv@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Agent successfully logs into SciNote using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The SciNote dashboard or project list is visible after entering the email and password."
+        },
+        {
+            "id": "navigate_to_project",
+            "description": "Agent navigates to the 'Enzyme Characterization' project.",
+            "points": 10,
+            "visual_evidence": "The 'Enzyme Characterization' project page is active or selected in the sidebar."
+        },
+        {
+            "id": "navigate_to_experiment",
+            "description": "Agent navigates to the 'Kinetics Run 1' experiment.",
+            "points": 15,
+            "visual_evidence": "The experiment title 'Kinetics Run 1' is displayed at the top of the workspace."
+        },
+        {
+            "id": "locate_task_and_table",
+            "description": "Agent opens the 'Plate Reader Output' task and locates the 'Absorbance Data' table.",
+            "points": 20,
+            "visual_evidence": "The 'Plate Reader Output' task view is open, showing a table titled 'Absorbance Data' containing time and absorbance values."
+        },
+        {
+            "id": "initiate_export",
+            "description": "Agent uses the GUI export/download function for the specific result table.",
+            "points": 20,
+            "visual_evidence": "An export menu, 'Download as CSV' button, or file save dialog is visible specifically for the Absorbance Data table."
+        },
+        {
+            "id": "save_to_destination",
+            "description": "Agent saves the file to the specific path ~/Documents/kinetics_data.csv.",
+            "points": 25,
+            "visual_evidence": "A file explorer or 'Save As' dialog shows the path /home/ga/Documents/ and the filename kinetics_data.csv being entered or confirmed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage_only",
+            "description": "The agent used the SciNote web interface rather than executing direct database queries or terminal commands to generate the file.",
+            "visual_evidence": "Screenshots show mouse movements and clicks within the browser/SciNote UI rather than just a terminal window."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type the data into a new CSV file but used the export feature.",
+            "visual_evidence": "The agent interacts with the 'Export' or 'Download' buttons in the SciNote table interface."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent exported the specific 'Absorbance Data' table, not a general experiment report.",
+            "visual_evidence": "The UI interaction is focused on the specific table element within the task, not a global 'Export Project' button."
+        }
+    ],
+    "privileged_info_for_vlm": "The exported CSV must contain 6 rows of data. The headers are 'Time (min)' and 'Absorbance (AU)'. Key data points to verify the correct table: at Time 10, Absorbance is 0.45; at Time 30, Absorbance is 0.80; at Time 60, Absorbance is 0.95. The file must be saved specifically to /home/ga/Documents/kinetics_data.csv."
+}

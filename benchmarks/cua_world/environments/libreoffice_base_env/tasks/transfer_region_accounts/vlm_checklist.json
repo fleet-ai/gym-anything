@@ -1,0 +1,59 @@
+{
+    "task_id": "transfer_region_accounts@1",
+    "task_completion": [
+        {
+            "id": "open_database",
+            "description": "Open the Chinook database file in LibreOffice Base.",
+            "points": 10,
+            "visual_evidence": "The LibreOffice Base application is visible showing the 'chinook.odb' file name in the title bar or main interface."
+        },
+        {
+            "id": "create_transfer_log_table",
+            "description": "Create a new table named 'TransferLog' with the specified columns: CustomerId, OldRepId, NewRepId, and TransferDate.",
+            "points": 20,
+            "visual_evidence": "A SQL execution window or Table Design view showing the creation of 'TransferLog' with columns CustomerId (INTEGER), OldRepId (INTEGER), NewRepId (INTEGER), and TransferDate (DATE/TIMESTAMP)."
+        },
+        {
+            "id": "identify_target_customers",
+            "description": "Identify customers in USA and Canada currently assigned to SupportRepId 3.",
+            "points": 15,
+            "visual_evidence": "A query result or filtered view of the 'Customer' table showing records where Country is 'USA' or 'Canada' and SupportRepId is 3."
+        },
+        {
+            "id": "update_customer_records",
+            "description": "Update the SupportRepId to 4 for the identified customers in the Customer table.",
+            "points": 25,
+            "visual_evidence": "An UPDATE SQL statement being executed or the 'Customer' table showing SupportRepId changed to 4 for the relevant records (e.g., CustomerIds 14-33)."
+        },
+        {
+            "id": "populate_transfer_log",
+            "description": "Insert records into the 'TransferLog' table for each transferred customer.",
+            "points": 20,
+            "visual_evidence": "An INSERT SQL statement or the 'TransferLog' table populated with rows containing CustomerIds (14-33), OldRepId (3), NewRepId (4), and the current date."
+        },
+        {
+            "id": "save_database",
+            "description": "Ensure the database changes are saved/committed.",
+            "points": 10,
+            "visual_evidence": "The agent clicking the 'Save' icon, selecting File > Save, or a 'Command executed successfully' message after a COMMIT statement."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the LibreOffice Base GUI or its internal SQL tool rather than external terminal commands to modify the database.",
+            "visual_evidence": "Screenshots show the LibreOffice Base interface, Table view, or 'SQL Status' dialogs rather than a standalone Linux terminal."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent did not simply type the final result into a text file but actually interacted with the database tables.",
+            "visual_evidence": "Visual confirmation of the 'Customer' table data changing or SQL execution progress bars/messages."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent didn't copy-paste the list of IDs from the task prompt without verifying them in the database.",
+            "visual_evidence": "The agent is seen opening the 'Customer' table or running a SELECT query to identify which customers belong to SupportRepId 3 in the target countries."
+        }
+    ],
+    "privileged_info_for_vlm": "The database is located at /home/ga/chinook.odb. Source SupportRepId is 3 (Jane Peacock); Target SupportRepId is 4 (Margaret Park). Target countries are USA and Canada. Affected CustomerIds are: Canada (14, 15, 29, 30, 31, 32, 33) and USA (16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28). The agent must create a table named 'TransferLog' and update the 'Customer' table."
+}

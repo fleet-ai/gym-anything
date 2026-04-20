@@ -1,0 +1,53 @@
+{
+    "task_id": "match_recognize_stock_analysis@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle HR database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL client showing a successful connection message to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "query_formulation",
+            "description": "Agent writes a SQL query targeting the STOCK_PRICES table for ORCL stock with logic for a V-shape reversal.",
+            "points": 20,
+            "visual_evidence": "A SQL editor or terminal showing a query with 'FROM STOCK_PRICES', 'WHERE SYMBOL = 'ORCL'', and logic for consecutive price drops/increases."
+        },
+        {
+            "id": "v_shape_logic_implementation",
+            "description": "The SQL query correctly implements the 5.0% drop threshold and the 2-day down/2-day up requirement.",
+            "points": 30,
+            "visual_evidence": "The SQL code contains a calculation comparing the bottom price to a starting price (e.g., (start-bottom)/start >= 0.05) and checks for at least 2 days of movement in each direction."
+        },
+        {
+            "id": "query_execution_results",
+            "description": "The agent executes the query and retrieves the specific V-shape pattern data.",
+            "points": 20,
+            "visual_evidence": "A result set or table output showing dates around 2026-02-03 to 2026-02-05 with prices matching the reversal pattern."
+        },
+        {
+            "id": "save_sql_file",
+            "description": "The SQL query used for the analysis is saved to the specified directory.",
+            "points": 20,
+            "visual_evidence": "A file manager window or terminal command showing the SQL file exists at /home/ga/Desktop/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent actually queried the database rather than hardcoding the known result from the prompt.",
+            "visual_evidence": "Screenshots show the execution of the SQL command and the database returning rows, rather than the agent just typing the answer into a file."
+        },
+        {
+            "id": "no_hardcoded_dates",
+            "description": "The SQL query uses logic to find the pattern rather than hardcoding '2026-02-05' in the WHERE clause.",
+            "visual_evidence": "The SQL query text uses pattern matching (like MATCH_RECOGNIZE) or window functions/joins to identify the shape."
+        },
+        {
+            "id": "file_creation_verification",
+            "description": "The agent saved the file via the environment's tools, not just simulating the action.",
+            "visual_evidence": "A 'save' dialog, a 'cat' command, or a file explorer showing the file on the Desktop."
+        }
+    ],
+    "privileged_info_for_vlm": "The synthetic data contains a V-shape reversal for ORCL. The pattern starts on 2026-02-03 (Price: 154.67), hits a bottom on 2026-02-05 (Price: 136.48), representing an 11.76% drop. The agent must use a 5% threshold in its SQL. The final SQL file must be saved to /home/ga/Desktop/."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "fitts_throughput_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses the source data file at ~/pebl/data/fitts_data.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'head', or a script reading the CSV file from the specified path."
+        },
+        {
+            "id": "data_processing_script",
+            "description": "Agent writes or executes code to calculate Fitts' Law parameters (intercept, slope, R-squared) and ISO throughput.",
+            "points": 25,
+            "visual_evidence": "Code editor or terminal showing a script (Python/R) performing regressions and throughput calculations (IDe/MT)."
+        },
+        {
+            "id": "anomaly_detection",
+            "description": "Agent identifies and excludes the non-human participant (P99) based on performance metrics.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing a filtering step or a conditional check that identifies P99 as an outlier/automated user."
+        },
+        {
+            "id": "report_generation",
+            "description": "Agent generates the final JSON report at ~/pebl/analysis/fitts_report.json with the required structure.",
+            "points": 15,
+            "visual_evidence": "Terminal command showing the creation of the JSON file or the file content displayed in an editor."
+        },
+        {
+            "id": "individual_metrics_accuracy",
+            "description": "The report contains correct metrics for 15 valid participants and marks the excluded participant correctly.",
+            "points": 15,
+            "visual_evidence": "JSON content showing 15 entries with 'intercept_ms', 'slope_ms_per_bit', etc., and one entry for P99 with 'excluded': true."
+        },
+        {
+            "id": "group_aggregates_accuracy",
+            "description": "The report includes group means for throughput, slope, and R-squared across valid participants.",
+            "points": 15,
+            "visual_evidence": "JSON content showing 'group_mean_throughput_bps', 'group_mean_slope_ms_per_bit', and 'group_mean_r_squared' fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "Agent did not hardcode the final values without performing the calculations.",
+            "visual_evidence": "The script should show logic for calculating means and regressions rather than just printing a pre-written JSON string."
+        },
+        {
+            "id": "genuine_data_interaction",
+            "description": "Agent actually reads the CSV file rather than assuming the participant IDs or values.",
+            "visual_evidence": "Terminal logs showing the file being opened or loaded into a dataframe (e.g., pd.read_csv)."
+        },
+        {
+            "id": "logical_exclusion_criteria",
+            "description": "The exclusion of the participant is based on data analysis, not just a guess.",
+            "visual_evidence": "Code showing a threshold check (e.g., throughput > 10 or R-squared == 1.0) to identify the bot."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 16 participants total. P99 is a synthetic 'auto-clicker' that must be excluded for having non-human performance (perfect R-squared or impossible speed). There are exactly 15 valid participants (P01-P15). The VLM should verify that P99 is the one marked 'excluded': true in the final JSON. Expected tolerances for values: individual throughput ±0.5, individual R-squared ±0.1, group throughput ±0.35, group slope ±20.0, and group R-squared ±0.06."
+}

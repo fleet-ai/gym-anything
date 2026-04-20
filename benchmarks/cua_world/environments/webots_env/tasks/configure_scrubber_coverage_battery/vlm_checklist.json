@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_scrubber_coverage_battery@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has the Webots simulation environment open with the SCRUBBER_ROBOT visible in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots application window is active, and 'SCRUBBER_ROBOT' is listed in the Scene Tree on the left."
+        },
+        {
+            "id": "add_pen_node",
+            "description": "A 'Pen' node has been added to the children of the SCRUBBER_ROBOT node.",
+            "points": 15,
+            "visual_evidence": "In the Scene Tree, under SCRUBBER_ROBOT > children, a 'Pen' node is visible."
+        },
+        {
+            "id": "configure_pen_properties",
+            "description": "The Pen node is configured with the name 'cleaning_trace', inkColor 0 0 1, leadSize 0.65, and maxDistance 0.5.",
+            "points": 25,
+            "visual_evidence": "The field editor for the Pen node shows: name 'cleaning_trace', inkColor [0 0 1], leadSize 0.65, and maxDistance 0.5."
+        },
+        {
+            "id": "set_pen_write_true",
+            "description": "The 'write' field of the Pen node is set to TRUE.",
+            "points": 10,
+            "visual_evidence": "The 'write' checkbox or field in the Pen node properties is checked or set to TRUE."
+        },
+        {
+            "id": "configure_battery_field",
+            "description": "The 'battery' field of the SCRUBBER_ROBOT node is set to [8640000, 8640000, 2000].",
+            "points": 25,
+            "visual_evidence": "The field editor for the SCRUBBER_ROBOT node shows the battery field with three values: 8640000, 8640000, and 2000."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The world is saved to the specific path /home/ga/Desktop/factory_scrubber_configured.wbt.",
+            "points": 15,
+            "visual_evidence": "The 'Save World As...' dialog box is shown with the path /home/ga/Desktop/factory_scrubber_configured.wbt, or the window title reflects the new filename."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify nodes rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the agent clicking on the Scene Tree and typing values into the Webots field editor."
+        },
+        {
+            "id": "no_script_execution",
+            "description": "The agent did not run a python script to automate the file generation without opening the software.",
+            "visual_evidence": "The agent is seen interacting with the Webots interface, not just running a single command in the terminal to produce the output file."
+        },
+        {
+            "id": "correct_node_selection",
+            "description": "The agent specifically modified the SCRUBBER_ROBOT node and not a different robot or object.",
+            "visual_evidence": "The Scene Tree highlights the SCRUBBER_ROBOT node during the editing process."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot node is named 'SCRUBBER_ROBOT'. The Pen node must be named 'cleaning_trace' (case sensitive). The inkColor is blue [0 0 1]. The battery values are exactly 8640000 (energy), 8640000 (max energy), and 2000 (voltage). The final file must be saved to /home/ga/Desktop/factory_scrubber_configured.wbt."
+}

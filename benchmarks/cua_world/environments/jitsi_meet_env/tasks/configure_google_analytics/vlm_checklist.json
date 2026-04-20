@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_google_analytics@1",
+    "task_completion": [
+        {
+            "id": "open_config_file",
+            "description": "Agent opens the Jitsi Meet configuration file (config.js or custom-config.js) for editing.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal showing the contents of /home/ga/.jitsi-meet-cfg/web/config.js or custom-config.js."
+        },
+        {
+            "id": "configure_google_analytics_id",
+            "description": "Agent sets the googleAnalyticsTrackingId to 'UA-88224411-1' in the configuration file.",
+            "points": 25,
+            "visual_evidence": "The line 'googleAnalyticsTrackingId: \"UA-88224411-1\"' (or similar syntax) visible in the editor or via a 'cat' command."
+        },
+        {
+            "id": "enable_analytics_script",
+            "description": "Agent ensures the analytics script 'libs/analytics-ga.min.js' is referenced or enabled in the config.",
+            "points": 15,
+            "visual_evidence": "The configuration file showing the analytics handler or script path 'libs/analytics-ga.min.js'."
+        },
+        {
+            "id": "verify_active_configuration",
+            "description": "Agent verifies the configuration is active, typically by checking the browser console or network tab of the Jitsi instance.",
+            "points": 30,
+            "visual_evidence": "A browser window showing the Jitsi Meet interface with the Developer Tools open, specifically showing the Tracking ID in the DOM, console logs, or a network request to google-analytics.com."
+        },
+        {
+            "id": "save_verification_screenshot",
+            "description": "Agent saves a screenshot of the verification to the specified path.",
+            "points": 20,
+            "visual_evidence": "A terminal command showing 'screenshot' or 'save' to '~/analytics_verification.png' or a file explorer showing the file exists in the home directory."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual configuration files and browser, rather than just creating a dummy image.",
+            "visual_evidence": "Screenshots show a sequence of file editing followed by browser verification, not just the final image creation."
+        },
+        {
+            "id": "no_hardcoded_success",
+            "description": "The agent did not simply echo 'success' or create an empty file named analytics_verification.png.",
+            "visual_evidence": "The content of the verification screenshot (if viewed) or the process shows the actual Jitsi interface and config values."
+        },
+        {
+            "id": "correct_tracking_id_usage",
+            "description": "The agent used the specific Tracking ID provided in the task, not a placeholder.",
+            "visual_evidence": "The string 'UA-88224411-1' is visible in the configuration and verification steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The Jitsi Meet configuration is located at /home/ga/.jitsi-meet-cfg/web/config.js or custom-config.js. To enable Google Analytics, the 'googleAnalyticsTrackingId' must be set to 'UA-88224411-1'. The standard analytics script used by Jitsi is 'libs/analytics-ga.min.js'. Verification is successful if the Jitsi web interface loads this ID, which can be seen in the browser's page source or network traffic to Google Analytics."
+}

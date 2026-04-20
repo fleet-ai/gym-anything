@@ -1,0 +1,53 @@
+{
+    "task_id": "create_custom_field@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_studio_contacts",
+            "description": "Navigate to the Studio section for the Contacts module.",
+            "points": 10,
+            "visual_evidence": "The screen shows the SuiteCRM Studio interface with the 'Contacts' module selected and the 'Fields' folder visible or open."
+        },
+        {
+            "id": "configure_field_metadata",
+            "description": "Set the Field Data Type to 'DropDown', Field Name to 'preferred_contact_method', and Display Label to 'Preferred Contact Method'.",
+            "points": 20,
+            "visual_evidence": "The 'Add Field' form shows 'Data Type: DropDown', 'Field Name: preferred_contact_method', and 'Display Label: Preferred Contact Method' typed into the fields."
+        },
+        {
+            "id": "create_dropdown_list",
+            "description": "Create a new dropdown list named 'preferred_contact_method_list' with the specified keys and labels.",
+            "points": 30,
+            "visual_evidence": "The 'Dropdown Editor' or 'Add Field' screen shows a list containing keys 'phone', 'email', 'sms', and 'mail' with their corresponding labels. The list name is set to 'preferred_contact_method_list'."
+        },
+        {
+            "id": "set_field_properties",
+            "description": "Set the Default Value to 'Email' and ensure 'Required' and 'Audited' are unchecked.",
+            "points": 20,
+            "visual_evidence": "The field configuration screen shows 'Default Value' set to 'Email' (or the 'email' key), and the checkboxes for 'Required Field' and 'Audit' are not selected."
+        },
+        {
+            "id": "save_and_deploy_field",
+            "description": "Save the new field configuration.",
+            "points": 20,
+            "visual_evidence": "The agent clicks the 'Save' button in the Studio field editor, and the field 'preferred_contact_method_c' appears in the list of Contact fields."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the SuiteCRM web interface rather than executing database commands or scripts via a terminal.",
+            "visual_evidence": "The screenshots show mouse movements, clicks, and typing within the SuiteCRM browser window; no terminal windows showing SQL 'INSERT' or 'ALTER' commands are used to bypass the UI."
+        },
+        {
+            "id": "genuine_studio_usage",
+            "description": "The agent interacted with the actual Studio component of SuiteCRM.",
+            "visual_evidence": "The screenshots show the standard SuiteCRM Studio breadcrumbs and sidebar (e.g., Home > Administration > Studio > Contacts > Fields)."
+        },
+        {
+            "id": "no_layout_modification",
+            "description": "The agent followed the constraint to not add the field to any layouts.",
+            "visual_evidence": "The agent does not navigate to 'Layouts' (EditView, DetailView, etc.) or drag the new field onto a layout grid after saving it."
+        }
+    ],
+    "privileged_info_for_vlm": "The field name in the database will automatically be appended with '_c' by SuiteCRM, resulting in 'preferred_contact_method_c'. The field type 'DropDown' corresponds to 'enum' in the backend. The dropdown list must be named exactly 'preferred_contact_method_list' and contain the keys: phone, email, sms, mail. The default value must be 'email'."
+}

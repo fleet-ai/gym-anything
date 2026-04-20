@@ -1,0 +1,53 @@
+{
+    "task_id": "nback_dprime_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the nback_data.csv file.",
+            "points": 10,
+            "visual_evidence": "Terminal output showing 'cat', 'head', or a Python script reading '~/pebl/data/nback_data.csv'."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "Agent implements the log-linear correction (0.5 adjustment) and d-prime formula (Z-scores).",
+            "points": 25,
+            "visual_evidence": "Code snippets in a text editor or terminal showing the math for Hit Rate/FAR adjustments and the use of scipy.stats.norm.ppf or similar for Z-scores."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent identifies and excludes participants with an overall False Alarm Rate > 0.80.",
+            "points": 20,
+            "visual_evidence": "Code or terminal output showing the identification of participant s99 as having a high FAR and excluding them from group means."
+        },
+        {
+            "id": "json_report_creation",
+            "description": "Agent saves the analysis results to the specified JSON file path.",
+            "points": 15,
+            "visual_evidence": "Terminal command or code execution showing the creation of '~/pebl/analysis/nback_report.json'."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The JSON report contains individual d-prime values for 3 levels, exclusion status, and group means.",
+            "points": 30,
+            "visual_evidence": "A 'cat' or 'jq' command displaying the contents of nback_report.json with 'participants' list and 'group_mean_dprime' object."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent calculates values from the data rather than hardcoding known values from the prompt or external knowledge.",
+            "visual_evidence": "Python scripts or commands showing data processing logic (e.g., groupby, mean) rather than a script that just writes a static JSON string."
+        },
+        {
+            "id": "genuine_file_interaction",
+            "description": "Agent interacts with the actual file system and provided CSV.",
+            "visual_evidence": "File explorer or terminal 'ls' commands confirming the existence of the input data and the creation of the output directory/file."
+        },
+        {
+            "id": "correct_exclusion_target",
+            "description": "Agent correctly identifies s99 as the specific participant to exclude based on data analysis.",
+            "visual_evidence": "Terminal output or code logs specifically naming 's99' as the excluded participant due to FAR > 0.80."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 25 participants (s01-s24 and s99). Participant s99 is a 'button masher' with a 100% False Alarm Rate (FAR = 1.0) and must be excluded from the group mean. The log-linear correction requires adding 0.5 to hits/false alarms and 1 to the total trials (or equivalent adjustment to 0.5/N to (N-0.5)/N) to avoid infinite Z-scores. The final report must be at ~/pebl/analysis/nback_report.json."
+}

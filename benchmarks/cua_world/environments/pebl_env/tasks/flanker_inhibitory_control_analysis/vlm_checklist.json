@@ -1,0 +1,59 @@
+{
+    "task_id": "flanker_inhibitory_control_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_data_file",
+            "description": "The agent locates and opens the source data file at ~/pebl/data/flanker_rt_data.csv.",
+            "points": 10,
+            "visual_evidence": "A file explorer or text editor showing the contents of flanker_rt_data.csv with columns for participant ID, condition, and reaction time."
+        },
+        {
+            "id": "data_cleaning_exclusion",
+            "description": "The agent identifies participants with data quality issues or applies RT-based exclusion criteria.",
+            "points": 20,
+            "visual_evidence": "Code or logs showing the identification of 'excluded' participants or filtering logic based on protocol violations/RT thresholds."
+        },
+        {
+            "id": "calculate_individual_means",
+            "description": "The agent calculates mean reaction times for congruent, incongruent, and neutral conditions for each valid participant.",
+            "points": 20,
+            "visual_evidence": "Calculations, code output, or a dataframe showing mean RTs grouped by participant and condition."
+        },
+        {
+            "id": "calculate_interference_scores",
+            "description": "The agent computes the interference score (Incongruent RT - Congruent RT) for each valid participant.",
+            "points": 20,
+            "visual_evidence": "Code or intermediate output showing the subtraction of congruent means from incongruent means."
+        },
+        {
+            "id": "group_mean_calculation",
+            "description": "The agent calculates the overall group mean interference score across all non-excluded participants.",
+            "points": 10,
+            "visual_evidence": "A final calculation step showing the average of the individual interference scores."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "The agent writes the final JSON report to ~/pebl/analysis/flanker_report.json with all required keys.",
+            "points": 20,
+            "visual_evidence": "A terminal command or editor view showing the saved JSON file containing 'participants' (with id, interference_score_ms, mean_rt_congruent_ms, etc.) and 'group_mean_interference_ms'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply write a pre-determined JSON file without performing data analysis.",
+            "visual_evidence": "The agent must be seen writing code (Python, R, etc.) or using a spreadsheet tool to process the CSV data before generating the JSON."
+        },
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GUI environment (file explorer, code editor, or IDE) rather than just executing hidden background scripts.",
+            "visual_evidence": "Screenshots show the agent interacting with windows, clicking buttons, or typing in an visible editor/terminal."
+        },
+        {
+            "id": "genuine_file_access",
+            "description": "The agent actually opened the specific file path mentioned in the prompt.",
+            "visual_evidence": "The file path ~/pebl/data/flanker_rt_data.csv is visible in the agent's workspace or command history."
+        }
+    ],
+    "privileged_info_for_vlm": "The interference score must be (Mean Incongruent RT - Mean Congruent RT). Participants marked as 'excluded': true must have a 'reason' string. The 'group_mean_interference_ms' must only include data from participants where 'excluded' is not true."
+}

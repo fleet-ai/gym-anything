@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_satellite_reaction_wheels@1",
+    "task_completion": [
+        {
+            "id": "set_world_gravity",
+            "description": "Set WorldInfo gravity to 0 0 0.",
+            "points": 10,
+            "visual_evidence": "The Webots scene tree shows WorldInfo > gravity set to [0 0 0] or the field editor displays these values."
+        },
+        {
+            "id": "add_cubesat_damping",
+            "description": "Add a Damping node to the CUBESAT Robot physics with linear and angular fields set to 0.0.",
+            "points": 20,
+            "visual_evidence": "The scene tree shows CUBESAT (Robot) > physics (Physics) > damping (Damping) with linearDamping and angularDamping both set to 0."
+        },
+        {
+            "id": "configure_motor_parameters",
+            "description": "Set RotationalMotor maxVelocity to 600.0 and maxTorque to 0.05 for all three joints.",
+            "points": 25,
+            "visual_evidence": "The scene tree or field editor shows the RotationalMotor nodes for yaw_joint, pitch_joint, and roll_joint with maxVelocity 600 and maxTorque 0.05."
+        },
+        {
+            "id": "configure_flywheel_mass",
+            "description": "Set the flywheel mass to 0.12 kg in the physics node for all three reaction wheels.",
+            "points": 25,
+            "visual_evidence": "The scene tree shows the Solid/flywheel children of the joints having a physics node with mass set to 0.12."
+        },
+        {
+            "id": "save_configured_world",
+            "description": "Save the configured world to the specified path on the Desktop.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As' dialog or the file explorer shows the file 'cubesat_adcs_configured.wbt' being saved to /home/ga/Desktop/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify node parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree and Field Editor."
+        },
+        {
+            "id": "no_shortcut_scripts",
+            "description": "The agent did not run a python/bash script to programmatically modify the .wbt file.",
+            "visual_evidence": "The terminal history (if visible) does not show execution of scripts like 'sed' or custom python scripts to edit the world file."
+        },
+        {
+            "id": "genuine_save_action",
+            "description": "The agent used the File menu or shortcut to save the world, confirming the changes were committed through the application.",
+            "visual_evidence": "The File menu is seen open with 'Save World As...' selected or a confirmation of the save appears in the Webots console."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific values in Webots: WorldInfo gravity [0 0 0]; CUBESAT Robot physics damping (linear/angular) = 0.0; yaw_joint, pitch_joint, and roll_joint motors must have maxVelocity = 600.0 and maxTorque = 0.05; all three flywheel masses = 0.12. The final file must be named 'cubesat_adcs_configured.wbt' on the Desktop."
+}

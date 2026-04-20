@@ -1,0 +1,65 @@
+{
+    "task_id": "sakila_window_analytics_reporting@1",
+    "task_completion": [
+        {
+            "id": "create_v_film_revenue_ranked",
+            "description": "Create the view 'v_film_revenue_ranked' using RANK() or DENSE_RANK() to rank films by revenue within categories.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement for v_film_revenue_ranked with window functions, or the view appearing in the database navigator."
+        },
+        {
+            "id": "create_v_customer_rfm",
+            "description": "Create the view 'v_customer_rfm' using NTILE(4) for recency, frequency, and monetary scores.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the CREATE VIEW statement for v_customer_rfm with NTILE(4) functions, or the view appearing in the database navigator."
+        },
+        {
+            "id": "create_rpt_table",
+            "description": "Create the reporting table 'rpt_monthly_category_performance' with a composite primary key.",
+            "points": 10,
+            "visual_evidence": "SQL code creating the table with PRIMARY KEY (report_month, category_name) or table schema details in a GUI."
+        },
+        {
+            "id": "create_sp_refresh",
+            "description": "Create the stored procedure 'sp_refresh_category_performance' using CTEs to calculate monthly revenue metrics.",
+            "points": 25,
+            "visual_evidence": "SQL editor showing the CREATE PROCEDURE sp_refresh_category_performance code containing CTEs (WITH clauses) and a TRUNCATE/INSERT logic."
+        },
+        {
+            "id": "execute_procedure",
+            "description": "Execute the stored procedure to populate the reporting table.",
+            "points": 10,
+            "visual_evidence": "A 'CALL sp_refresh_category_performance();' command being executed or a success message in the SQL console."
+        },
+        {
+            "id": "export_film_revenue_csv",
+            "description": "Export the results of 'v_film_revenue_ranked' to the specified CSV path.",
+            "points": 12,
+            "visual_evidence": "Export wizard, SELECT INTO OUTFILE command, or a file explorer showing 'film_revenue_ranked.csv' in /home/ga/Documents/exports/."
+        },
+        {
+            "id": "export_monthly_performance_csv",
+            "description": "Export the contents of 'rpt_monthly_category_performance' to the specified CSV path.",
+            "points": 13,
+            "visual_evidence": "Export wizard, SELECT INTO OUTFILE command, or a file explorer showing 'monthly_category_performance.csv' in /home/ga/Documents/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_database_interaction",
+            "description": "The agent interacted with a database management tool (like DBeaver, MySQL Workbench, or command line) rather than just creating text files.",
+            "visual_evidence": "Screenshots show a database IDE or a terminal connected to a MySQL prompt."
+        },
+        {
+            "id": "no_hardcoded_csv",
+            "description": "The agent did not manually type out the CSV content but generated it from the database.",
+            "visual_evidence": "SQL execution logs or export dialogs showing the source of the data is the database objects."
+        },
+        {
+            "id": "schema_adherence",
+            "description": "The agent used the correct Sakila schema joins as specified in the prompt.",
+            "visual_evidence": "SQL queries showing joins between film, film_category, category, inventory, rental, and payment."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must create two views: 'v_film_revenue_ranked' (using RANK/DENSE_RANK) and 'v_customer_rfm' (using NTILE(4)). It must create a table 'rpt_monthly_category_performance' and a stored procedure 'sp_refresh_category_performance' that uses CTEs. The final outputs must be two CSV files located exactly at /home/ga/Documents/exports/film_revenue_ranked.csv and /home/ga/Documents/exports/monthly_category_performance.csv. Database credentials are user: ga, password: password123, host: localhost."
+}

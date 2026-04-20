@@ -1,0 +1,54 @@
+{
+    "task_id": "configure_single_channel_emg_trigger@1",
+    "task_completion": [
+        {
+            "id": "playback_file_selected",
+            "description": "The correct playback file 'OpenBCI-EEG-S001-MotorImagery.txt' is selected in the OpenBCI GUI.",
+            "points": 15,
+            "visual_evidence": "The file selection dialog or the 'Playback File' path in the GUI shows 'OpenBCI-EEG-S001-MotorImagery.txt'."
+        },
+        {
+            "id": "emg_widget_active",
+            "description": "The EMG widget is opened and visible in the GUI layout.",
+            "points": 15,
+            "visual_evidence": "A widget titled 'EMG' is visible in one of the GUI panels."
+        },
+        {
+            "id": "channel_1_enabled",
+            "description": "Channel 1 is active/enabled within the EMG widget settings.",
+            "points": 15,
+            "visual_evidence": "In the EMG widget, the toggle or indicator for Channel 1 (uV or bar graph) is active/colored."
+        },
+        {
+            "id": "channels_2_to_8_disabled",
+            "description": "Channels 2 through 8 are disabled in the EMG widget to isolate Channel 1.",
+            "points": 25,
+            "visual_evidence": "In the EMG widget settings or channel selection, channels 2, 3, 4, 5, 6, 7, and 8 are toggled off or grayed out."
+        },
+        {
+            "id": "threshold_adjusted",
+            "description": "The EMG threshold is adjusted above the baseline noise floor.",
+            "points": 30,
+            "visual_evidence": "The horizontal threshold line in the EMG widget is positioned above the resting signal level (noise floor) of the Channel 1 trace."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent interacted with the OpenBCI GUI elements rather than just using terminal commands.",
+            "visual_evidence": "Screenshots show the mouse cursor moving to and clicking GUI buttons, dropdowns, or toggles within the OpenBCI application."
+        },
+        {
+            "id": "genuine_playback",
+            "description": "The system is in a 'Streaming' or 'Playback' state showing live data movement.",
+            "points": 0,
+            "visual_evidence": "The time-series or EMG graphs show active waveform movement rather than a static, empty, or flat-lined display."
+        },
+        {
+            "id": "no_config_file_injection",
+            "description": "The agent did not simply overwrite a configuration file via terminal to bypass the UI.",
+            "visual_evidence": "The trajectory shows the manual selection of channels and threshold adjustment within the GUI interface."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file is 'OpenBCI-EEG-S001-MotorImagery.txt'. The EMG widget must be used. Channel 1 must be the ONLY active channel in the EMG widget (Channels 2-8 must be disabled). The threshold line in the EMG widget must be visibly higher than the resting signal amplitude to prevent false triggers."
+}

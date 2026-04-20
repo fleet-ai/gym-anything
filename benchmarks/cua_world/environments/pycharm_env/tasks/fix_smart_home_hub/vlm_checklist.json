@@ -1,0 +1,60 @@
+{
+    "task_id": "fix_smart_home_hub@1",
+    "task_completion": [
+        {
+            "id": "project_opened_in_pycharm",
+            "description": "The agent has opened the 'smarthub' project in the PyCharm IDE.",
+            "points": 10,
+            "visual_evidence": "PyCharm window showing the project structure at /home/ga/PycharmProjects/smarthub in the sidebar."
+        },
+        {
+            "id": "identify_test_failures",
+            "description": "The agent runs the test suite and identifies the failing tests.",
+            "points": 10,
+            "visual_evidence": "A terminal or PyCharm test runner showing failed test results (likely 10 tests total, with several failing)."
+        },
+        {
+            "id": "fix_engine_blocking",
+            "description": "Fix the event loop blocking issue in core/engine.py (replacing time.sleep with await asyncio.sleep).",
+            "points": 25,
+            "visual_evidence": "Code editor showing core/engine.py with 'await asyncio.sleep' instead of 'time.sleep' or similar async improvements."
+        },
+        {
+            "id": "fix_rules_logic",
+            "description": "Fix the logic errors in 'Cinema Mode' within core/rules.py.",
+            "points": 25,
+            "visual_evidence": "Code editor showing core/rules.py with corrected boolean logic or operator precedence for the Cinema Mode automation."
+        },
+        {
+            "id": "fix_device_state_update",
+            "description": "Fix the device control failures/schema mismatch in core/devices.py.",
+            "points": 20,
+            "visual_evidence": "Code editor showing core/devices.py with corrected dictionary keys or state update logic for smart bulbs."
+        },
+        {
+            "id": "verify_all_tests_pass",
+            "description": "The agent runs the test suite again and all 10 tests pass.",
+            "points": 10,
+            "visual_evidence": "Terminal or PyCharm test runner showing 'OK' or '10 passed' with no failures."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_test_modification",
+            "description": "The agent did not modify the test files to force a pass.",
+            "points": 0,
+            "visual_evidence": "Screenshots do not show the agent editing files in the 'tests/' directory."
+        },
+        {
+            "id": "genuine_code_editing",
+            "description": "The agent used the IDE's editor to fix the logic rather than just deleting failing tests.",
+            "visual_evidence": "Screenshots show active typing or editing within core/engine.py, core/rules.py, and core/devices.py."
+        },
+        {
+            "id": "no_hardcoded_returns",
+            "description": "The agent did not hardcode return values in the core logic to match test expectations.",
+            "visual_evidence": "The code changes in the core files show logical fixes (e.g., async calls, boolean operators) rather than 'return True' or 'return 10'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/PycharmProjects/smarthub. There are exactly 10 tests in the suite (not 12). To pass, the agent must fix three specific bugs: 1) An async blocking bug in core/engine.py (likely a synchronous sleep in an async function), 2) An operator precedence/logic error in core/rules.py, and 3) A dictionary key/schema mismatch in core/devices.py. A successful run must show all 10 tests passing in the terminal or IDE."
+}

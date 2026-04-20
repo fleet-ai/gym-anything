@@ -1,0 +1,53 @@
+{
+    "task_id": "deploy_swarm_experiment@1",
+    "task_completion": [
+        {
+            "id": "open_webots_world",
+            "description": "The agent has opened the Webots soccer simulation environment.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows the Webots application window with a soccer field and robots (B1, B2, Y1, etc.) visible."
+        },
+        {
+            "id": "identify_controller_error",
+            "description": "The agent inspects the robot nodes and identifies the 'soccer_player_broken' controller error.",
+            "points": 15,
+            "visual_evidence": "The Scene Tree in Webots is expanded, showing a robot node with the controller field set to 'soccer_player_broken'."
+        },
+        {
+            "id": "fix_robot_controllers",
+            "description": "The agent updates the controller for all robots to the valid 'soccer_player' controller.",
+            "points": 30,
+            "visual_evidence": "The Scene Tree or a pop-up dialog shows the controller field being changed from 'soccer_player_broken' to 'soccer_player' for the robots."
+        },
+        {
+            "id": "adjust_basic_time_step",
+            "description": "The agent modifies the WorldInfo basicTimeStep to a lower value suitable for the simulation.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree shows WorldInfo selected, and the 'basicTimeStep' field being edited from 128 to a smaller value (e.g., 32 or 16)."
+        },
+        {
+            "id": "save_world_file",
+            "description": "The agent saves the corrected world to the specific requested path.",
+            "points": 25,
+            "visual_evidence": "A 'Save As' dialog or a terminal command shows the file being saved to /home/ga/Desktop/swarm_ready.wbt."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify the world properties rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree or field editor."
+        },
+        {
+            "id": "genuine_configuration",
+            "description": "The agent did not simply create an empty file at the destination path.",
+            "visual_evidence": "The final screenshots show the Webots environment with the robots and the 'swarm_ready.wbt' filename in the title bar."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "The agent actually inspected the nodes to find the broken controller name rather than guessing.",
+            "visual_evidence": "The agent is seen scrolling through or expanding the robot nodes in the Scene Tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial world has 6 robots with the controller set to 'soccer_player_broken', which must be changed to 'soccer_player'. The WorldInfo 'basicTimeStep' is initially 128 and needs to be reduced (typically to 32 or 16) for proper physics. The final file must be saved exactly to /home/ga/Desktop/swarm_ready.wbt. Note: Despite initial reports, robots are NOT overlapping in this specific task instance."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "modify_plot_with_weather_data@1",
+    "task_completion": [
+        {
+            "id": "open_script_and_csv",
+            "description": "The agent opens plot.tcl and pittsburgh_weather.csv to inspect the code and data.",
+            "points": 10,
+            "visual_evidence": "Screenshots show the contents of ~/Documents/plot.tcl and ~/Documents/pittsburgh_weather.csv in a text editor or terminal (cat/less)."
+        },
+        {
+            "id": "modify_script_logic",
+            "description": "The agent modifies the Tcl script to parse the CSV file and extract the Avg_Temp_F column.",
+            "points": 25,
+            "visual_evidence": "The text editor shows code changes in plot.tcl involving file opening, CSV parsing, or list manipulation related to the weather data."
+        },
+        {
+            "id": "execute_wish_command",
+            "description": "The agent runs the modified script using the 'wish' command in the terminal.",
+            "points": 15,
+            "visual_evidence": "The terminal shows the command 'wish ~/Documents/plot.tcl' being executed."
+        },
+        {
+            "id": "verify_axes_labels",
+            "description": "The displayed plot window shows the correct X and Y axis labels.",
+            "points": 20,
+            "visual_evidence": "The GUI window shows 'Jan' through 'Dec' on the X-axis and temperature/Fahrenheit labels on the Y-axis."
+        },
+        {
+            "id": "verify_data_points",
+            "description": "The plot displays 12 distinct data points corresponding to the monthly average temperatures.",
+            "points": 30,
+            "visual_evidence": "The canvas in the Tk window shows a line or scatter plot with 12 points that follow a seasonal temperature curve (lower at ends, higher in middle)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent should read from the CSV rather than hardcoding the temperature values directly into the script.",
+            "visual_evidence": "The code in plot.tcl should contain file I/O commands (open/gets/read) rather than a static list of 12 temperature numbers."
+        },
+        {
+            "id": "genuine_wish_execution",
+            "description": "The plot must be rendered by the 'wish' interpreter, not by an image viewer opening a pre-rendered screenshot.",
+            "visual_evidence": "The window decorations should indicate a Tk/Wish application, and the terminal should show the active process."
+        },
+        {
+            "id": "interaction_with_files",
+            "description": "The agent must interact with the specific files in ~/Documents/.",
+            "visual_evidence": "File paths in the editor and terminal must match ~/Documents/plot.tcl and ~/Documents/pittsburgh_weather.csv."
+        }
+    ],
+    "privileged_info_for_vlm": "The CSV 'pittsburgh_weather.csv' contains a column 'Avg_Temp_F'. The expected temperature trend for Pittsburgh should show a bell-like curve starting low in Jan (~28-30°F), peaking in July (~72-75°F), and dropping back down in Dec (~32-35°F). The script must use the 'wish' interpreter to display the GUI."
+}

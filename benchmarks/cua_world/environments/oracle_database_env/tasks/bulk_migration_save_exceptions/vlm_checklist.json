@@ -1,0 +1,59 @@
+{
+    "task_id": "bulk_migration_save_exceptions@1",
+    "task_completion": [
+        {
+            "id": "locate_reference_script",
+            "description": "The agent locates and opens the reference script on the Desktop.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of a SQL script located on the Desktop."
+        },
+        {
+            "id": "connect_to_database",
+            "description": "The agent connects to the Oracle database using the HR schema credentials.",
+            "points": 10,
+            "visual_evidence": "A terminal or SQL tool showing a successful connection to localhost:1521/XEPDB1 as user 'hr'."
+        },
+        {
+            "id": "implement_bulk_collect",
+            "description": "The stored procedure code includes the BULK COLLECT INTO clause to fetch data from STAGE_SALES_LEGACY.",
+            "points": 20,
+            "visual_evidence": "Code editor showing 'BULK COLLECT INTO' within the MIGRATE_SALES_BULK procedure definition."
+        },
+        {
+            "id": "implement_forall_save_exceptions",
+            "description": "The stored procedure code utilizes the FORALL ... SAVE EXCEPTIONS syntax for the insert operation.",
+            "points": 30,
+            "visual_evidence": "Code editor showing the keywords 'FORALL' and 'SAVE EXCEPTIONS' used with an INSERT statement into FACT_SALES_PROD."
+        },
+        {
+            "id": "implement_error_logging",
+            "description": "The procedure includes an exception handler that loops through SQL%BULK_EXCEPTIONS and inserts into MIGRATION_ERRORS.",
+            "points": 20,
+            "visual_evidence": "Code editor showing a loop over 'SQL%BULK_EXCEPTIONS' and an INSERT into the 'MIGRATION_ERRORS' table."
+        },
+        {
+            "id": "compile_procedure",
+            "description": "The agent executes the DDL to create/compile the MIGRATE_SALES_BULK procedure in the HR schema.",
+            "points": 10,
+            "visual_evidence": "A 'Procedure MIGRATE_SALES_BULK compiled' or 'Procedure created' message in a SQL console."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually insert records into the target or error tables to simulate success.",
+            "visual_evidence": "The agent's command history or SQL editor should not show manual INSERT statements for individual data rows, only the procedure logic."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the database environment rather than just creating a text file with the solution.",
+            "visual_evidence": "Screenshots show an active SQL session (SQL*Plus, SQLcl, or a GUI tool) with execution feedback."
+        },
+        {
+            "id": "used_reference_script",
+            "description": "The agent actually opened the file on the Desktop as instructed.",
+            "visual_evidence": "A file explorer or 'cat' command showing the Desktop directory and the reference script."
+        }
+    ],
+    "privileged_info_for_vlm": "The procedure must be named MIGRATE_SALES_BULK and reside in the HR schema. It must migrate data from STAGE_SALES_LEGACY to FACT_SALES_PROD. It is required to use BULK COLLECT and FORALL with the SAVE EXCEPTIONS clause. Errors (specifically for 1,063 records with negative values) must be logged to the MIGRATION_ERRORS table, capturing the Sale ID and the error message (SQLERRM). Connection details: User 'hr', Password 'hr123', DSN 'localhost:1521/XEPDB1'."
+}

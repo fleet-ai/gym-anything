@@ -1,0 +1,53 @@
+{
+    "task_id": "subitizing_enumeration_analysis@1",
+    "task_completion": [
+        {
+            "id": "locate_dataset",
+            "description": "Agent locates and opens the enumeration_data.csv file in the pebl directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer or terminal showing the path ~/pebl/data/enumeration_data.csv or the contents of the CSV file being displayed."
+        },
+        {
+            "id": "identify_contaminated_participant",
+            "description": "Agent identifies the participant (sub-99) meeting the 'response mashing' exclusion criteria.",
+            "points": 15,
+            "visual_evidence": "Code or logs showing the identification of a participant with high accuracy for 1 dot, 0% accuracy for >1 dot, and fast RTs."
+        },
+        {
+            "id": "calculate_slopes_and_accuracy",
+            "description": "Agent performs linear regression for subitizing (1-3 dots) and counting (5-8 dots) slopes and calculates accuracy ranges.",
+            "points": 30,
+            "visual_evidence": "Python code, script execution, or data processing logs showing the calculation of 'subitizing_slope_ms', 'counting_slope_ms', 'accuracy_1_to_4', and 'accuracy_5_to_9'."
+        },
+        {
+            "id": "calculate_group_means",
+            "description": "Agent calculates the group means for both slopes across all valid (non-excluded) participants.",
+            "points": 20,
+            "visual_evidence": "Code or output showing the averaging of slopes for the final report section."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Agent saves the final analysis results to the specified JSON file path.",
+            "points": 25,
+            "visual_evidence": "A file editor or terminal command showing the creation/content of ~/pebl/analysis/subitizing_report.json containing the required keys (participant list, exclusion reasons, slopes, accuracies, and group means)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_data_processing",
+            "description": "The agent actually processed the CSV data rather than hardcoding the results.",
+            "visual_evidence": "Screenshots showing the agent writing or running code (e.g., pandas, numpy, or scipy) to analyze the data rather than just typing the final numbers into a JSON file."
+        },
+        {
+            "id": "correct_exclusion_logic",
+            "description": "The agent correctly applied the exclusion logic for 'sub-99' based on the data criteria.",
+            "visual_evidence": "Code or logic in the terminal showing a conditional check for accuracy and RT thresholds to exclude the specific participant."
+        },
+        {
+            "id": "output_path_adherence",
+            "description": "The agent used the exact file path specified in the task.",
+            "visual_evidence": "The file path ~/pebl/analysis/subitizing_report.json is visible in the saving command or file explorer."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains a contaminated participant 'sub-99' who must be excluded for having ~100% accuracy at 1 dot but 0% accuracy for >1 dot with fast reaction times. The final report must be a JSON file located at /home/ga/pebl/analysis/subitizing_report.json. The subitizing slope is calculated on 1-3 dots and the counting slope on 5-8 dots using only correct trials."
+}

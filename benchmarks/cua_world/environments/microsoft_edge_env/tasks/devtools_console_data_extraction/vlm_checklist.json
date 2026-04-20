@@ -1,0 +1,53 @@
+{
+    "task_id": "devtools_console_data_extraction@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_wikipedia",
+            "description": "Navigate to the correct Wikipedia page for country populations.",
+            "points": 10,
+            "visual_evidence": "The browser address bar shows 'https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population' and the page content matches the title."
+        },
+        {
+            "id": "open_devtools_console",
+            "description": "Open the browser's Developer Tools console to perform programmatic extraction.",
+            "points": 15,
+            "visual_evidence": "The browser's DevTools panel is visible, specifically the 'Console' tab."
+        },
+        {
+            "id": "execute_extraction_script",
+            "description": "Execute JavaScript code in the console to scrape country names and population figures.",
+            "points": 25,
+            "visual_evidence": "Code is visible in the console that targets table rows/cells (e.g., document.querySelectorAll('table')) and extracts text content related to countries and numbers."
+        },
+        {
+            "id": "create_csv_file",
+            "description": "Save the extracted data to '/home/ga/Desktop/country_populations.csv' with correct headers and at least 50 rows.",
+            "points": 30,
+            "visual_evidence": "A file manager or text editor shows a file at the specified path containing 'Country,Population' as the first line, followed by many rows of data (e.g., 'India,1,428,627,663')."
+        },
+        {
+            "id": "create_log_file",
+            "description": "Create a log file at '/home/ga/Desktop/extraction_log.txt' with the source URL and row count.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command shows a file at the specified path containing the Wikipedia URL and a total count of rows (e.g., 'Total rows: 241')."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_typing",
+            "description": "The agent did not manually type out the country data into the CSV.",
+            "visual_evidence": "The agent is seen writing or executing a script in the console rather than opening a blank CSV and typing 'China, 1411750000' etc. manually."
+        },
+        {
+            "id": "genuine_web_interaction",
+            "description": "The agent interacted with the live Wikipedia page rather than a local file or mock site.",
+            "visual_evidence": "The URL in the browser is the live Wikipedia domain, and the page shows standard Wikipedia navigation elements."
+        },
+        {
+            "id": "programmatic_extraction_method",
+            "description": "The agent used the DevTools console as requested instead of just using terminal commands like 'curl' or 'wget'.",
+            "visual_evidence": "Screenshots show the browser DevTools panel active and containing the extraction logic."
+        }
+    ],
+    "privileged_info_for_vlm": "The target URL is https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population. The table contains over 200 entries, including India, China, and the United States. The CSV must have the header 'Country,Population'. The log file must contain the URL and the count of rows extracted (which should be > 50)."
+}

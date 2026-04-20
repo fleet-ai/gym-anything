@@ -1,0 +1,53 @@
+{
+    "task_id": "attach_expense_receipt@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_expenses",
+            "description": "Agent navigates to the Expenses module in Odoo.",
+            "points": 10,
+            "visual_evidence": "The screen shows the Odoo dashboard with the Expenses app selected or the Expenses list view."
+        },
+        {
+            "id": "locate_expense_record",
+            "description": "Agent identifies the specific expense record for 'Client Lunch' ($125.50) by 'Marc Demo'.",
+            "points": 20,
+            "visual_evidence": "The screen shows a list or form view where the record 'Client Lunch' is highlighted or opened, with the employee name 'Marc Demo' and amount '125.50' visible."
+        },
+        {
+            "id": "open_file_picker",
+            "description": "Agent initiates the attachment process by clicking 'Attach Receipt' or the paperclip icon.",
+            "points": 15,
+            "visual_evidence": "A file upload dialog or file explorer window appears over the Odoo interface."
+        },
+        {
+            "id": "select_correct_file",
+            "description": "Agent selects the file 'receipt_lunch.jpg' from the specified directory.",
+            "points": 25,
+            "visual_evidence": "The file picker shows '/home/ga/Documents' and the file 'receipt_lunch.jpg' being selected or clicked."
+        },
+        {
+            "id": "verify_attachment_success",
+            "description": "The receipt is successfully attached to the expense record.",
+            "points": 30,
+            "visual_evidence": "The Odoo expense form now shows an attached document, a thumbnail of the receipt, or the 'Documents' smart button count has increased. The filename 'receipt_lunch.jpg' should be visible in the chatter or attachment side-bar."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Odoo web interface rather than executing database or file system commands via terminal.",
+            "visual_evidence": "The screenshots show mouse movements and clicks within the browser, not a terminal window performing 'mv' or 'psql' commands."
+        },
+        {
+            "id": "genuine_file_upload",
+            "description": "The agent actually uploaded the file through the UI rather than just renaming an existing attachment.",
+            "visual_evidence": "The file explorer dialog is visible and the agent navigates to the specific path /home/ga/Documents/."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent searched for or clicked the specific record rather than jumping to a pre-known URL.",
+            "visual_evidence": "The agent is seen using the search bar or scrolling through the list to find Marc Demo's expense."
+        }
+    ],
+    "privileged_info_for_vlm": "The target expense is named 'Client Lunch', submitted by 'Marc Demo', with a total of 125.50. The source file is located at /home/ga/Documents/receipt_lunch.jpg. Success is confirmed when 'receipt_lunch.jpg' appears as an attachment on the 'Client Lunch' record in the Odoo Expenses module."
+}

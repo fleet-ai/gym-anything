@@ -1,0 +1,59 @@
+{
+    "task_id": "granular_cookie_clearing@1",
+    "task_completion": [
+        {
+            "id": "open_edge_settings",
+            "description": "Open Microsoft Edge and navigate to the Cookies and Site Data settings page.",
+            "points": 10,
+            "visual_evidence": "The browser is open and the URL bar shows 'edge://settings/siteData' or the 'Cookies and site data' section is visible in the settings menu."
+        },
+        {
+            "id": "locate_github_cookies",
+            "description": "Search for or locate 'github.com' within the site data list.",
+            "points": 15,
+            "visual_evidence": "The text 'github.com' is visible in the list of sites with stored data, or entered into the search bar on the site data page."
+        },
+        {
+            "id": "delete_github_cookies",
+            "description": "Remove all cookies and site data specifically for 'github.com'.",
+            "points": 25,
+            "visual_evidence": "The agent clicks the trash icon or 'Remove' button next to 'github.com', and 'github.com' disappears from the list."
+        },
+        {
+            "id": "locate_stackoverflow_cookies",
+            "description": "Search for or locate 'stackoverflow.com' within the site data list.",
+            "points": 15,
+            "visual_evidence": "The text 'stackoverflow.com' is visible in the list of sites with stored data, or entered into the search bar on the site data page."
+        },
+        {
+            "id": "delete_stackoverflow_cookies",
+            "description": "Remove all cookies and site data specifically for 'stackoverflow.com'.",
+            "points": 25,
+            "visual_evidence": "The agent clicks the trash icon or 'Remove' button next to 'stackoverflow.com', and 'stackoverflow.com' disappears from the list."
+        },
+        {
+            "id": "verify_google_preserved",
+            "description": "Ensure 'google.com' data remains untouched in the list.",
+            "points": 10,
+            "visual_evidence": "The list of site data still shows 'google.com' after the other deletions, or the agent scrolls past it without clicking delete."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_deletion",
+            "description": "The agent did not use the terminal to delete the SQLite cookie database file directly.",
+            "visual_evidence": "The agent performs the task through the Edge browser GUI rather than typing 'rm' or 'sqlite3' commands in a terminal window."
+        },
+        {
+            "id": "no_bulk_clear",
+            "description": "The agent did not use the 'Clear browsing data' (Ctrl+Shift+Del) menu to clear all cookies at once.",
+            "visual_evidence": "The agent uses the 'All cookies and site data' list to delete items individually rather than the bulk 'Clear now' button which would wipe google.com."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the actual Microsoft Edge application.",
+            "visual_evidence": "The mouse cursor moves to and clicks on specific UI elements like the trash icon or search bar within the Edge browser window."
+        }
+    ],
+    "privileged_info_for_vlm": "The browser is Microsoft Edge. The specific domains to be deleted are 'github.com' and 'stackoverflow.com'. The domain 'google.com' must remain in the cookie storage. The most direct way to do this in Edge is via edge://settings/siteData. Deleting the entire 'Network/Cookies' file via terminal is a failure as it would remove Google data."
+}

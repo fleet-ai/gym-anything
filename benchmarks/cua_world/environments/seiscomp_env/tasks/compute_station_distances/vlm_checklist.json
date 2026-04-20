@@ -1,0 +1,53 @@
+{
+    "task_id": "compute_station_distances@1",
+    "task_completion": [
+        {
+            "id": "database_query_execution",
+            "description": "Agent queries the SeisComP database or uses CLI tools to retrieve earthquake origin parameters and GE station coordinates.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing SQL queries (mysql) or SeisComP CLI commands (scorgls, scinv) returning latitude/longitude for the event and stations TOLI, GSI, KWP, SANI, BKB."
+        },
+        {
+            "id": "haversine_calculation_logic",
+            "description": "Agent implements the Haversine formula in Python or a script to calculate distances.",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing a Python script containing the Haversine formula (arcsin, sqrt, sin, cos) and the radius R=6371."
+        },
+        {
+            "id": "csv_generation_and_sorting",
+            "description": "Agent creates the CSV file with the correct header and sorts the stations by ascending distance.",
+            "points": 25,
+            "visual_evidence": "Terminal command 'cat ~/Documents/station_distances.csv' showing the header 'station,network,latitude,longitude,distance_km' and 5 rows sorted by the distance column."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "Agent creates the summary report with earthquake parameters and min/max distance stations.",
+            "points": 20,
+            "visual_evidence": "Terminal command 'cat ~/Documents/distance_summary.txt' showing the origin time, lat/lon, depth, and identification of the nearest and farthest stations."
+        },
+        {
+            "id": "data_accuracy_verification",
+            "description": "The calculated distances and coordinates in the files match the expected values within tolerance.",
+            "points": 20,
+            "visual_evidence": "The CSV/TXT files show distances approximately: TOLI (~4382km), SANI (~4548km), BKB (~4776km), GSI (~5713km), KWP (~8398km)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "Agent did not simply echo the final values into files without querying the database.",
+            "visual_evidence": "The trajectory must show the agent actively browsing the database or running scinv/scorgls before the files are created."
+        },
+        {
+            "id": "genuine_tool_usage",
+            "description": "Agent used the provided SeisComP environment tools rather than external web searches for coordinates.",
+            "visual_evidence": "Screenshots show interaction with the local mysql instance or SeisComP CLI tools."
+        },
+        {
+            "id": "formula_application",
+            "description": "Agent actually calculated the distances using the specified formula rather than guessing.",
+            "visual_evidence": "Presence of a calculation script or execution of a python block containing the Haversine math."
+        }
+    ],
+    "privileged_info_for_vlm": "The 2024 Noto Peninsula earthquake (us6000m0xl) origin is at 37.4874 N, 137.271 E. The GE network station coordinates and their Haversine distances (R=6371) are: TOLI (4381.7 km), SANI (4547.5 km), BKB (4775.5 km), GSI (5712.5 km), and KWP (8397.6 km). The CSV must be sorted in this order (TOLI first, KWP last). Coordinates must be within 0.01 degrees and distances within 5 km of these values."
+}

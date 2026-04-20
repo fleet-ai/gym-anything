@@ -1,0 +1,59 @@
+{
+    "task_id": "model_custom_orc_generator@1",
+    "task_completion": [
+        {
+            "id": "sam_initialization",
+            "description": "Open SAM and select 'Generic System' with 'LCOE Calculator (FCR Method)'.",
+            "points": 10,
+            "visual_evidence": "SAM window open showing the 'Generic System' model and 'LCOE Calculator (FCR Method)' financial model selected in the configuration wizard."
+        },
+        {
+            "id": "system_capacity_setup",
+            "description": "Set nameplate capacity to 250 kW and degradation/losses to 0%.",
+            "points": 15,
+            "visual_evidence": "The 'System Design' or 'Power Plant' page showing 'Nameplate capacity' set to 250 kW and loss/degradation fields set to 0."
+        },
+        {
+            "id": "generation_profile_input",
+            "description": "Input the specific 8760-hour generation profile (200 kW for indices 0-6551 and 7296-8759; 0 kW for 6552-7295).",
+            "points": 25,
+            "visual_evidence": "The 'Generic System' power profile input table or time-series data window showing 200 kW values for the specified ranges and 0 kW for the October-equivalent range."
+        },
+        {
+            "id": "financial_parameters_setup",
+            "description": "Configure financial parameters: $1,250,000 cost, $10,000 fixed O&M, and 8% FCR.",
+            "points": 20,
+            "visual_evidence": "The 'Financial Parameters' or 'System Costs' page showing 'Total installed cost' as 1,250,000, 'Fixed annual operating cost' as 10,000, and 'Fixed charge rate' as 0.08 or 8%."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "Run the simulation and view results.",
+            "points": 10,
+            "visual_evidence": "The 'Results' tab active in SAM showing calculated values for Annual Energy and LCOE."
+        },
+        {
+            "id": "file_export",
+            "description": "Save the project and export results to the specified JSON path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or terminal showing 'orc_model.sam' (or .py) and 'orc_recovery_results.json' in /home/ga/Documents/SAM_Projects/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Verify the agent used the SAM GUI for modeling rather than just writing a script to generate the JSON.",
+            "visual_evidence": "Screenshots showing the SAM application window being interacted with (clicking buttons, typing in fields) rather than just a text editor or terminal."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Ensure the LCOE and Energy values in the final JSON match the SAM interface results.",
+            "visual_evidence": "The values in the exported JSON file match the values displayed in the SAM 'Results' summary screen."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Check that the agent didn't simply echo the expected values into a file without running a model.",
+            "visual_evidence": "The agent is seen navigating the SAM interface and clicking 'Simulate' before the JSON file is created."
+        }
+    ],
+    "privileged_info_for_vlm": "The expected results for this specific configuration are: Annual Energy = 1,603,200 kWh; Capacity Factor = 73.205%; LCOE = 6.861 cents/kWh. The generation profile has 200 kW for 8,016 hours and 0 kW for 744 hours. The LCOE is calculated as ((1,250,000 * 0.08) + 10,000) / 1,603,200 * 100."
+}

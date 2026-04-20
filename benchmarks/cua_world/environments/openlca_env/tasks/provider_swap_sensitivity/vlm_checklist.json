@@ -1,0 +1,53 @@
+{
+    "task_id": "provider_swap_sensitivity@1",
+    "task_completion": [
+        {
+            "id": "database_import",
+            "description": "Import the USLCI database and LCIA methods into openLCA.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing the 'Import' wizard in openLCA, selecting the zip files from ~/LCA_Imports, or the navigation pane populated with USLCI processes and TRACI methods."
+        },
+        {
+            "id": "initial_gwp_calculation",
+            "description": "Calculate the initial GWP for a metal manufacturing process using TRACI 2.1.",
+            "points": 20,
+            "visual_evidence": "The 'Analysis' or 'Calculation' tab in openLCA showing a metal process (e.g., Steel or Aluminum) selected with TRACI 2.1 as the LCIA method and a resulting GWP value."
+        },
+        {
+            "id": "provider_swap",
+            "description": "Modify the product system by swapping the default electricity provider for a different regional grid or source.",
+            "points": 25,
+            "visual_evidence": "The 'Inputs/Outputs' tab or 'Model Graph' of the product system showing a change from the default electricity provider (e.g., 'at grid') to a specific regional provider (e.g., WECC, RFC, or a specific fuel source)."
+        },
+        {
+            "id": "recalculate_lcia",
+            "description": "Recalculate the LCIA results after the provider swap.",
+            "points": 20,
+            "visual_evidence": "A new 'Analysis' result window or tab showing updated GWP values corresponding to the modified product system."
+        },
+        {
+            "id": "export_results_csv",
+            "description": "Export the sensitivity analysis results to the specified CSV file path.",
+            "points": 25,
+            "visual_evidence": "The 'Export' dialog showing the destination path ~/LCA_Results/provider_sensitivity.csv, or a file explorer/text editor showing the CSV content with the process name, both providers, and both GWP values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the openLCA GUI to perform calculations rather than just creating a file via terminal.",
+            "visual_evidence": "Screenshots showing the openLCA application window active, mouse movements over LCA elements, and the calculation progress bars."
+        },
+        {
+            "id": "genuine_data_source",
+            "description": "The results are derived from the imported USLCI database, not hardcoded values.",
+            "visual_evidence": "The navigation tree in openLCA showing the USLCI database structure and the specific metal processes being opened."
+        },
+        {
+            "id": "no_manual_csv_creation",
+            "description": "The agent did not manually type the CSV content into a text editor without running the software.",
+            "visual_evidence": "The agent should be seen using the export function within openLCA or copying data directly from the software's result tables."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires the use of the USLCI database and TRACI 2.1 LCIA method. The output file must be located at /home/ga/LCA_Results/provider_sensitivity.csv. This file must contain at least five data points: the manufacturing process name, the original electricity provider name, the new electricity provider name, the original GWP value, and the new GWP value. Realistic GWP values for steel or aluminum manufacturing in USLCI typically fall between 0.82 and 2.83 kg CO2-eq/kg."
+}

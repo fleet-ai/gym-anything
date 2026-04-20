@@ -1,0 +1,54 @@
+{
+    "task_id": "generate_asset_inventory@1",
+    "task_completion": [
+        {
+            "id": "access_api_documentation_or_endpoint",
+            "description": "Agent accesses the Nx Witness REST API endpoint or documentation at localhost:7001.",
+            "points": 10,
+            "visual_evidence": "Browser or terminal showing a connection attempt to https://localhost:7001 or the Nx Witness Web Admin interface."
+        },
+        {
+            "id": "authenticate_with_credentials",
+            "description": "Agent authenticates using the provided admin/Admin1234! credentials.",
+            "points": 15,
+            "visual_evidence": "Login screen with credentials entered, or a terminal command/script containing the 'admin:Admin1234!' string or a generated auth token."
+        },
+        {
+            "id": "query_inventory_data",
+            "description": "Agent queries the API for System, Servers, Cameras, Users, and Layouts data.",
+            "points": 25,
+            "visual_evidence": "Terminal output, script code, or browser network logs showing requests to /rest/v1/system, /rest/v1/servers, /rest/v1/devices (or cameras), /rest/v1/users, and /rest/v1/layouts."
+        },
+        {
+            "id": "format_json_structure",
+            "description": "Agent constructs a JSON object following the specific required schema including the summary and timestamp.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing a JSON structure with keys: report_generated_at, system, servers, cameras, users, layouts, and summary."
+        },
+        {
+            "id": "save_final_report",
+            "description": "Agent saves the final inventory report to the specified file path.",
+            "points": 25,
+            "visual_evidence": "A command like 'cat', 'save', or 'tee' showing the content being written to /home/ga/Documents/system_inventory.json, or a file explorer showing the file exists."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_sensitive_data",
+            "description": "The final report must not contain password hashes or authentication tokens.",
+            "points": 0,
+            "visual_evidence": "Review of the final JSON content to ensure fields like 'passwordHash', 'token', or 'digest' are absent or null."
+        },
+        {
+            "id": "genuine_api_interaction",
+            "description": "The agent must actually query the API rather than hardcoding the values from the task description.",
+            "visual_evidence": "Presence of network requests (curl, python requests, or browser) to localhost:7001/rest/v1/."
+        },
+        {
+            "id": "correct_system_name",
+            "description": "The report should reflect the actual system name 'GymAnythingVMS' found in the environment.",
+            "visual_evidence": "The 'system' object in the generated JSON contains the name 'GymAnythingVMS'."
+        }
+    ],
+    "privileged_info_for_vlm": "The Nx Witness VMS is named 'GymAnythingVMS'. The REST API is accessible at https://localhost:7001 and all valid endpoints use the '/rest/v1' prefix (e.g., /rest/v1/servers). The credentials are admin / Admin1234!. The final output must be a JSON file at /home/ga/Documents/system_inventory.json and must strictly exclude sensitive fields like password hashes."
+}

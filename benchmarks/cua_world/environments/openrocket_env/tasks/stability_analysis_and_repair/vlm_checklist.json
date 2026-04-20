@@ -1,0 +1,59 @@
+{
+    "task_id": "stability_analysis_and_repair@1",
+    "task_completion": [
+        {
+            "id": "open_rocket_launch",
+            "description": "The agent successfully opens the OpenRocket application.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket GUI window is visible on the desktop."
+        },
+        {
+            "id": "load_specific_file",
+            "description": "The agent opens the specific file located at /home/ga/Documents/rockets/stability_check.ork.",
+            "points": 15,
+            "visual_evidence": "The OpenRocket title bar or file menu shows 'stability_check.ork' is loaded."
+        },
+        {
+            "id": "identify_instability",
+            "description": "The agent views the stability margin, which should initially be low or negative due to the modified fins.",
+            "points": 15,
+            "visual_evidence": "The 'Stability' metric in the OpenRocket status bar or component analysis window shows a value (likely red or near 0 cal)."
+        },
+        {
+            "id": "modify_fin_geometry",
+            "description": "The agent adjusts the fin height to restore stability.",
+            "points": 30,
+            "visual_evidence": "The 'Fin set' configuration dialog is open and the 'Height' slider or text field is being increased from the initial 1.5cm."
+        },
+        {
+            "id": "verify_stability_increase",
+            "description": "The agent confirms the stability margin has increased to a safe level (typically > 1.0 cal).",
+            "points": 15,
+            "visual_evidence": "The stability margin indicator in the GUI shows a higher numerical value and/or the Center of Pressure (CP) is significantly behind the Center of Gravity (CG)."
+        },
+        {
+            "id": "generate_report",
+            "description": "The agent creates the final stability report at the specified path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal shows the content of /home/ga/Documents/exports/stability_report.txt containing stability analysis details."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to perform the repair rather than just editing the XML file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with OpenRocket sliders, buttons, or dialogs."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "The report content reflects the actual state of the modified rocket, not just a copy-paste of the task description.",
+            "visual_evidence": "The report text includes specific stability margin values (e.g., '1.5 cal') seen in the GUI."
+        },
+        {
+            "id": "no_file_spoofing",
+            "description": "The agent did not simply create a dummy report file without actually fixing the rocket design.",
+            "visual_evidence": "The trajectory shows the rocket geometry changing in the OpenRocket 2D/3D view before the report is written."
+        }
+    ],
+    "privileged_info_for_vlm": "The initial rocket file has fins with a height of 0.015m (1.5cm), which makes it unstable. To pass, the agent must increase the fin height (the verifier looks for a height >= 0.05m). The final report must be saved to /home/ga/Documents/exports/stability_report.txt. A stable rocket in OpenRocket typically has a stability margin of at least 1.0 to 2.0 calibers."
+}

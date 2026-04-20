@@ -1,0 +1,59 @@
+{
+    "task_id": "create_sales_order@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_sales_orders",
+            "description": "Navigate to the Sales Order creation page in Vtiger CRM.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Vtiger CRM interface with a 'Creating New Sales Order' header or a form for Sales Order entry."
+        },
+        {
+            "id": "header_details_entry",
+            "description": "Enter the Subject, Status, and Due Date correctly.",
+            "points": 15,
+            "visual_evidence": "The 'Subject' field shows 'SO-2024-GF-SEASONAL', 'Status' is set to 'Created', and 'Due Date' is '2025-03-31'."
+        },
+        {
+            "id": "entity_selection",
+            "description": "Select the correct Organization and Contact Name.",
+            "points": 15,
+            "visual_evidence": "The 'Organization Name' field shows 'Greenfield Properties LLC' and the 'Contact Name' field shows 'Diana Greenfield'."
+        },
+        {
+            "id": "billing_address_entry",
+            "description": "Enter the specific billing address provided.",
+            "points": 10,
+            "visual_evidence": "The Billing Address text area contains '450 Oak Valley Drive, Portland, OR 97201, United States'."
+        },
+        {
+            "id": "line_items_entry",
+            "description": "Add all three specific products with their respective quantities and list prices.",
+            "points": 30,
+            "visual_evidence": "Three line items are visible: 1. Premium Lawn Fertilizer 50lb (Qty: 20, Price: 45.00), 2. Cedar Bark Mulch (Qty: 15, Price: 38.00), 3. Irrigation Drip Kit (Qty: 8, Price: 125.00)."
+        },
+        {
+            "id": "save_and_verify_total",
+            "description": "Save the Sales Order and verify the calculated total.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Save'. The resulting Detail View shows a Grand Total of 2,470.00 (or within a small margin if taxes are auto-applied)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than direct database manipulation or terminal scripts.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with form fields, dropdowns, and the 'Save' button in the browser."
+        },
+        {
+            "id": "no_manual_total_override",
+            "description": "The total was calculated by the system based on line items, not manually typed into a summary field.",
+            "visual_evidence": "The agent is seen entering individual product rows and quantities rather than just editing a final total field."
+        },
+        {
+            "id": "genuine_app_usage",
+            "description": "The agent interacted with the Vtiger CRM application and not a mock-up or text file.",
+            "visual_evidence": "The URL bar shows the CRM domain and the UI elements (sidebar, logo, breadcrumbs) are consistent with Vtiger CRM."
+        }
+    ],
+    "privileged_info_for_vlm": "The Sales Order must have Subject: SO-2024-GF-SEASONAL. Organization: Greenfield Properties LLC. Contact: Diana Greenfield. Status: Created. Due Date: 2025-03-31. The calculated Grand Total for the three line items (20*45 + 15*38 + 8*125) must be exactly 2,470.00."
+}

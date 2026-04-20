@@ -1,0 +1,53 @@
+{
+    "task_id": "classify_channel_shape@1",
+    "task_completion": [
+        {
+            "id": "open_muncie_project",
+            "description": "Open the HEC-RAS project located at /home/ga/Documents/hec_ras_projects/Muncie/.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window showing the project path or 'Muncie' in the title bar/project field."
+        },
+        {
+            "id": "run_unsteady_plan_04",
+            "description": "Execute the unsteady flow simulation for Plan 04.",
+            "points": 20,
+            "visual_evidence": "The 'Unsteady Flow Analysis' window open with 'Plan: Plan 04' selected, and a computation progress bar or 'Finished Compute' message."
+        },
+        {
+            "id": "access_hdf5_output",
+            "description": "Access the HDF5 output data or the RAS Mapper to extract cross-section geometry and WSE.",
+            "points": 15,
+            "visual_evidence": "RAS Mapper window open or a file explorer showing the .p04.hdf output file being accessed/processed."
+        },
+        {
+            "id": "calculate_shape_factors",
+            "description": "Calculate Shape Factors (SF) and Classifications for the river stations.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet, script, or calculator interface showing calculations involving Flow Area, Top Width, and Max Depth (Peak WSE - Min El)."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the final analysis to /home/ga/Documents/hec_ras_results/channel_shape_analysis.csv.",
+            "points": 30,
+            "visual_evidence": "A CSV file or text editor showing the saved data with columns: River_Station, Peak_WSE, Flow_Area, Top_Width, Hydraulic_Depth, Max_Depth, Shape_Factor, and Classification."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_ras_interaction",
+            "description": "The agent interacted with the HEC-RAS GUI to run the simulation rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots showing the HEC-RAS Unsteady Flow Analysis compute window active and processing."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply copy-paste a pre-existing result file.",
+            "visual_evidence": "The agent is seen performing data extraction or running a script that reads from the HDF5 output file."
+        },
+        {
+            "id": "correct_plan_selection",
+            "description": "The agent specifically selected Plan 04 as required by the task.",
+            "visual_evidence": "The Plan selection dropdown or label in the HEC-RAS Analysis window explicitly shows 'Plan 04'."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/Documents/hec_ras_projects/Muncie/. The simulation must be run for 'Plan 04'. The output CSV must be saved to /home/ga/Documents/hec_ras_results/channel_shape_analysis.csv and must contain exactly these 8 columns: River_Station, Peak_WSE, Flow_Area, Top_Width, Hydraulic_Depth, Max_Depth, Shape_Factor, and Classification. Classification thresholds: <0.65 is Triangular, 0.65-0.85 is Parabolic, >0.85 is Rectangular."
+}

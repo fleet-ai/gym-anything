@@ -1,0 +1,59 @@
+{
+    "task_id": "reformat_optimize_codebase@1",
+    "task_completion": [
+        {
+            "id": "open_project_and_files",
+            "description": "The agent opens the 'inventory-manager' project and navigates to the Java source files in the Project tool window.",
+            "points": 10,
+            "visual_evidence": "IntelliJ IDEA window showing the 'inventory-manager' project structure with files under src/main/java/com/inventory/ visible in the sidebar."
+        },
+        {
+            "id": "trigger_reformat_action",
+            "description": "The agent initiates the 'Reformat Code' action for the directory or specific files.",
+            "points": 15,
+            "visual_evidence": "The 'Reformat Code' dialog box appearing, or the 'Code' menu being opened with 'Reformat Code' highlighted."
+        },
+        {
+            "id": "trigger_optimize_imports",
+            "description": "The agent initiates the 'Optimize Imports' action to remove unused and wildcard imports.",
+            "points": 15,
+            "visual_evidence": "The 'Optimize Imports' dialog box appearing, or the 'Code' menu being opened with 'Optimize Imports' highlighted."
+        },
+        {
+            "id": "verify_indentation_and_whitespace",
+            "description": "Java files show consistent 4-space indentation and no trailing whitespace or excessive blank lines.",
+            "points": 20,
+            "visual_evidence": "Code editor screenshots showing aligned 4-space indentation (no tab characters) and clean spacing between methods/classes."
+        },
+        {
+            "id": "verify_imports_cleaned",
+            "description": "Wildcard imports (like java.util.*) and unused imports (like java.awt.Color) are replaced or removed.",
+            "points": 25,
+            "visual_evidence": "The top of Java files (e.g., Product.java) showing specific imports instead of '*' and the absence of the 'java.awt.Color' import."
+        },
+        {
+            "id": "successful_maven_build",
+            "description": "The agent runs a Maven build to ensure the formatting didn't break the code.",
+            "points": 15,
+            "visual_evidence": "The IntelliJ 'Run' or 'Terminal' tool window showing a 'BUILD SUCCESS' message from Maven."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used IntelliJ's built-in formatting and import optimization features rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing IntelliJ menus, dialogs (Reformat File/Optimize Imports), or keyboard shortcut overlays rather than just a series of 'sed' or 'awk' commands in the terminal."
+        },
+        {
+            "id": "genuine_file_editing",
+            "description": "The agent actually modified the files in the editor rather than just overwriting them with pre-formatted content.",
+            "visual_evidence": "The editor showing the 'diff' or the file content changing within the IntelliJ IDE interface."
+        },
+        {
+            "id": "no_manual_deletion",
+            "description": "The agent used the 'Optimize Imports' feature rather than manually deleting lines one by one.",
+            "visual_evidence": "The 'Optimize Imports' dialog or the bulk disappearance of multiple unused/wildcard imports simultaneously."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is located at /home/ga/IdeaProjects/inventory-manager. The .editorconfig mandates indent_size = 4 and no tabs. Specifically, Product.java initially contains a wildcard 'import java.util.*;' and an unused 'import java.awt.Color;' which must be removed/fixed. The source files are located in src/main/java/com/inventory/."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "bulk_import_intranet_users@1",
+    "task_completion": [
+        {
+            "id": "create_employee_role",
+            "description": "Create a new user role named 'Employee' with the slug 'employee'.",
+            "points": 15,
+            "visual_evidence": "A screenshot showing the 'Add New Role' screen or a list of roles where 'Employee' (slug: employee) is present."
+        },
+        {
+            "id": "configure_role_capabilities",
+            "description": "Assign only 'read', 'read_private_posts', and 'read_private_pages' capabilities to the Employee role.",
+            "points": 15,
+            "visual_evidence": "A capability management screen showing only the three specified checkboxes (read, read_private_posts, read_private_pages) selected for the Employee role."
+        },
+        {
+            "id": "delete_subscriber_role",
+            "description": "Remove the default 'Subscriber' role from WordPress.",
+            "points": 10,
+            "visual_evidence": "The User Roles list page where the 'Subscriber' role is no longer visible."
+        },
+        {
+            "id": "bulk_import_mapping",
+            "description": "Map CSV columns (email, first name, last name, department) to WordPress user fields and custom meta.",
+            "points": 25,
+            "visual_evidence": "The import configuration screen showing 'email' mapped to Email, 'first_name' to First Name, 'last_name' to Last Name, and 'department' mapped to a custom field/meta key named 'department'."
+        },
+        {
+            "id": "verify_user_count",
+            "description": "Ensure all 25 users from the CSV are imported.",
+            "points": 15,
+            "visual_evidence": "The WordPress Users list showing a total count of approximately 26 users (25 imported + 1 admin) or a 'successful import' message indicating 25 records processed."
+        },
+        {
+            "id": "verify_user_details_and_meta",
+            "description": "Spot check that users have the correct role and department meta assigned.",
+            "points": 20,
+            "visual_evidence": "An individual 'Edit User' profile page (e.g., for Alice Smith) showing the Role as 'Employee' and a custom field 'department' with the value 'Engineering'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the WordPress dashboard GUI to perform the tasks rather than just executing CLI commands.",
+            "visual_evidence": "Screenshots showing the browser interacting with the WordPress admin panel (/wp-admin) and import plugin interfaces."
+        },
+        {
+            "id": "actual_csv_usage",
+            "description": "The agent accessed and uploaded the actual 'staff_directory.csv' file.",
+            "visual_evidence": "A file picker dialog or an upload screen showing 'staff_directory.csv' being selected or processed."
+        },
+        {
+            "id": "no_manual_entry",
+            "description": "The agent did not manually create users one by one.",
+            "visual_evidence": "Evidence of using a bulk import tool or plugin interface rather than repeated 'Add New User' form submissions."
+        }
+    ],
+    "privileged_info_for_vlm": "The CSV contains 25 users. The role slug must be 'employee'. Required capabilities: read, read_private_posts, read_private_pages. The 'Subscriber' role must be deleted. Key spot checks: Alice Smith (asmith@corpnet.local) is in Engineering; Elena Williams (ewilliams@corpnet.local) is in Human Resources; Yara Rodriguez (yrodriguez@corpnet.local) is in Sales. The department must be stored under the meta key 'department'."
+}

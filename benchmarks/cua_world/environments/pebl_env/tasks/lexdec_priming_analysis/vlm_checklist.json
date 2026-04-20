@@ -1,0 +1,53 @@
+{
+    "task_id": "lexdec_priming_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_access",
+            "description": "Agent accesses and reads the raw CSV data at ~/pebl/data/lexdec_priming_data.csv.",
+            "points": 10,
+            "visual_evidence": "Terminal output or code editor showing the content or structure of lexdec_priming_data.csv."
+        },
+        {
+            "id": "participant_calculations",
+            "description": "Agent calculates RT effects (priming and lexicality) and d-prime for individual participants using correct trial filtering and standard corrections.",
+            "points": 25,
+            "visual_evidence": "Code snippets or intermediate logs showing the math for RT differences and Z-score transformations for d-prime."
+        },
+        {
+            "id": "exclusion_logic",
+            "description": "Agent explicitly identifies and excludes participant 'sub-99' from the group-level analysis.",
+            "points": 15,
+            "visual_evidence": "Code or comments showing 'sub-99' being filtered out or marked as excluded: true."
+        },
+        {
+            "id": "group_means_calculation",
+            "description": "Agent computes the group-level means for priming, lexicality, and d-prime based on the valid participants.",
+            "points": 20,
+            "visual_evidence": "Code output or terminal logs showing the calculation of 'group_means' excluding sub-99."
+        },
+        {
+            "id": "json_report_generation",
+            "description": "Agent generates the final JSON report at ~/pebl/analysis/priming_report.json with the required structure.",
+            "points": 30,
+            "visual_evidence": "A file explorer view or 'cat' command showing the content of ~/pebl/analysis/priming_report.json containing 'participants' and 'group_means'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoding",
+            "description": "Agent did not hardcode the results from the task description or privileged info.",
+            "visual_evidence": "The code should show active processing of the CSV file rather than just printing a pre-defined JSON string."
+        },
+        {
+            "id": "genuine_computation",
+            "description": "Agent uses libraries (like pandas, numpy, or scipy) to perform statistical calculations.",
+            "visual_evidence": "Import statements and function calls for mean, Z-score (norm.ppf), or data filtering in the code editor."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "Agent actually creates the directory and file in the specified path.",
+            "visual_evidence": "Commands like 'mkdir -p' or file saving logs showing the path ~/pebl/analysis/."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 20 real participants plus one contaminated participant (sub-99). sub-99 is a random responder with ~50% accuracy and d-prime near 0; it must be excluded from group means. For d-prime, standard correction requires replacing 0 with 0.5/120 and 1 with 119.5/120. The final output must be a JSON file at ~/pebl/analysis/priming_report.json."
+}

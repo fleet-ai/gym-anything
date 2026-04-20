@@ -1,0 +1,53 @@
+{
+    "task_id": "filter_dicom_worklist@1",
+    "task_completion": [
+        {
+            "id": "open_weasis",
+            "description": "The Weasis medical viewer application is launched and visible.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is open on the desktop."
+        },
+        {
+            "id": "import_directory",
+            "description": "The agent initiates an import of the DICOM directory from the specified path.",
+            "points": 15,
+            "visual_evidence": "An import dialog or file browser is visible pointing to ~/DICOM/trauma_transfer/."
+        },
+        {
+            "id": "locate_patient_id",
+            "description": "The agent filters or selects the study specifically for Patient ID 'TRAUMA-007'.",
+            "points": 25,
+            "visual_evidence": "The text 'TRAUMA-007' is visible in the search bar, worklist, or patient metadata panel within Weasis."
+        },
+        {
+            "id": "load_viewer",
+            "description": "The DICOM image for TRAUMA-007 is loaded into the main viewing area.",
+            "points": 25,
+            "visual_evidence": "A geometric cross pattern (intersecting lines) is displayed in the central viewer pane."
+        },
+        {
+            "id": "save_screenshot",
+            "description": "The agent saves the viewer screenshot to the specified export path.",
+            "points": 25,
+            "visual_evidence": "A file save dialog or terminal confirmation shows the image being saved to ~/DICOM/exports/target_patient.png."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Weasis GUI to find and view the image rather than just moving files via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis menus, search bars, or the image list."
+        },
+        {
+            "id": "genuine_render",
+            "description": "The screenshot contains the actual rendered DICOM data, not a placeholder.",
+            "visual_evidence": "The viewer shows the specific geometric cross pattern associated with TRAUMA-007."
+        },
+        {
+            "id": "no_manual_copy",
+            "description": "The agent did not simply rename an existing file to target_patient.png.",
+            "visual_evidence": "The trajectory shows the process of opening the file in the viewer and using an export/save function."
+        }
+    ],
+    "privileged_info_for_vlm": "The target patient ID is 'TRAUMA-007'. The DICOM file for this patient contains a specific visual pattern: a bright geometric cross (intersecting lines). The agent must import files from ~/DICOM/trauma_transfer/ and the final output must be saved to ~/DICOM/exports/target_patient.png."
+}

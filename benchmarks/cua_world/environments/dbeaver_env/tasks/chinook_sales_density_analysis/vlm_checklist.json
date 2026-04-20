@@ -1,0 +1,59 @@
+{
+    "task_id": "chinook_sales_density_analysis@1",
+    "task_completion": [
+        {
+            "id": "db_connection",
+            "description": "Connect to the Chinook SQLite database at the specified path.",
+            "points": 10,
+            "visual_evidence": "Database navigator or connection properties showing '/home/ga/Documents/databases/chinook.db' active in a SQL client (e.g., DBeaver)."
+        },
+        {
+            "id": "dim_date_creation",
+            "description": "Create the dim_date table with the specified schema and date range (2009-01-01 to 2013-12-31).",
+            "points": 20,
+            "visual_evidence": "SQL editor showing CREATE TABLE dim_date with columns DateValue, Year, Month, MonthName, DayOfWeek, IsWeekend, or the table appearing in the database schema tree."
+        },
+        {
+            "id": "dim_date_population",
+            "description": "Populate dim_date with a continuous sequence of 1,826 rows.",
+            "points": 20,
+            "visual_evidence": "A SELECT COUNT(*) FROM dim_date query result showing 1826, or a data grid showing continuous dates from 2009-01-01 onwards."
+        },
+        {
+            "id": "view_creation",
+            "description": "Create the v_monthly_density view joining dim_date and invoices with required aggregations.",
+            "points": 25,
+            "visual_evidence": "SQL code for CREATE VIEW v_monthly_density containing logic for MonthKey, TotalDays, ZeroSalesDays, and TotalRevenue, or the view appearing in the 'Views' folder."
+        },
+        {
+            "id": "view_content_verification",
+            "description": "The view results are sorted by MonthKey and show correct columns.",
+            "points": 15,
+            "visual_evidence": "Data grid showing columns MonthKey (YYYY-MM), TotalDays, ZeroSalesDays, and TotalRevenue, sorted chronologically."
+        },
+        {
+            "id": "csv_export",
+            "description": "Export the view results to the specified CSV path.",
+            "points": 10,
+            "visual_evidence": "Export wizard completion message, or a file explorer window showing 'sales_density.csv' in '/home/ga/Documents/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a database GUI (like DBeaver) rather than just executing scripts in a hidden terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with SQL editors, table trees, or export wizards within a GUI application."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent calculated ZeroSalesDays and TotalRevenue via SQL joins/aggregations rather than typing in known values.",
+            "visual_evidence": "SQL queries show JOIN and GROUP BY clauses rather than INSERT statements with pre-calculated numbers."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The agent used the software's export functionality.",
+            "visual_evidence": "Presence of export dialogs, progress bars, or 'Export Task' success notifications in the GUI."
+        }
+    ],
+    "privileged_info_for_vlm": "The dim_date table must contain exactly 1,826 rows to cover the range 2009-01-01 to 2013-12-31 (including the 2012 leap year). The earliest invoice in the database is 2009-01-01 and the latest is 2013-12-22. The view v_monthly_density must group by MonthKey (format YYYY-MM). ZeroSalesDays is the count of dates in dim_date for which no corresponding invoice exists in the invoices table for that month."
+}

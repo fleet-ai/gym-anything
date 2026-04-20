@@ -1,0 +1,59 @@
+{
+    "task_id": "generate_network_speed_heatmap@1",
+    "task_completion": [
+        {
+            "id": "create_edgedata_xml",
+            "description": "Create the additional file edgedata.add.xml with correct output path and frequency.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal output showing the content of /home/ga/SUMO_Output/edgedata.add.xml containing <edgeData id=\"...\" file=\"edge_metrics.xml\" freq=\"1000\"/>."
+        },
+        {
+            "id": "create_sumocfg",
+            "description": "Create the SUMO configuration file run_heatmap.sumocfg referencing the correct network, routes, and additional files.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing run_heatmap.sumocfg with <net-file value=\"...acosta_buslanes.net.xml\"/>, <route-files value=\"...acosta_vtypes.add.xml,...acosta.rou.xml,...acosta_busses.rou.xml\"/>, and <additional-files value=\"edgedata.add.xml\"/>."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Execute the SUMO simulation until the end time of 1000.",
+            "points": 15,
+            "visual_evidence": "Terminal output showing 'sumo -c run_heatmap.sumocfg --end 1000' or the SUMO GUI reaching step 1000.00."
+        },
+        {
+            "id": "verify_metrics_generation",
+            "description": "Verify that the edge_metrics.xml file was generated after the simulation.",
+            "points": 10,
+            "visual_evidence": "A file explorer or 'ls' command showing /home/ga/SUMO_Output/edge_metrics.xml exists and has content."
+        },
+        {
+            "id": "develop_plotting_script",
+            "description": "Create the Python script plot_heatmap.py using sumolib to parse metrics and map to geometry.",
+            "points": 25,
+            "visual_evidence": "A text editor showing plot_heatmap.py importing 'sumolib' and 'matplotlib', parsing 'edge_metrics.xml', and saving to 'speed_heatmap.png'."
+        },
+        {
+            "id": "generate_heatmap_image",
+            "description": "Run the Python script to generate the final spatial speed heatmap image.",
+            "points": 25,
+            "visual_evidence": "An image viewer or file explorer showing /home/ga/SUMO_Output/speed_heatmap.png, which should depict a road network with color-coded edges representing speed."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_image",
+            "description": "The agent did not simply copy a pre-existing image to the destination.",
+            "visual_evidence": "The agent is seen writing the Python code and executing it in the terminal, rather than just using a 'cp' or 'mv' command for an image file."
+        },
+        {
+            "id": "genuine_simulation_run",
+            "description": "The simulation was actually executed to produce the data.",
+            "visual_evidence": "Terminal logs showing the SUMO simulation progress (Loading configuration, Step #, etc.) before the Python script is run."
+        },
+        {
+            "id": "correct_file_paths",
+            "description": "The agent used the specific absolute paths required by the task.",
+            "visual_evidence": "Commands and scripts explicitly reference /home/ga/SUMO_Output/ and /home/ga/SUMO_Scenarios/ as specified."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires specific file paths: Output directory is /home/ga/SUMO_Output. The network file is acosta_buslanes.net.xml. The simulation must run to 1000s. The edge data frequency must be 1000s. The final output must be a PNG file named speed_heatmap.png generated via a Python script using sumolib."
+}

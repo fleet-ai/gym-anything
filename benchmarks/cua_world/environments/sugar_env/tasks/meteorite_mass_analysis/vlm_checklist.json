@@ -1,0 +1,53 @@
+{
+    "task_id": "meteorite_mass_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_sugar_platform",
+            "description": "The agent accesses the Sugar Learning Platform or a text editor within the environment to begin the task.",
+            "points": 10,
+            "visual_evidence": "A screenshot showing the Sugar desktop interface or a text editor (like Pippy or Browse) being opened."
+        },
+        {
+            "id": "create_python_script",
+            "description": "A Python script named 'meteorite_analyzer.py' is created in the /home/ga/Documents/ directory.",
+            "points": 20,
+            "visual_evidence": "A file manager view or a text editor showing the file path /home/ga/Documents/meteorite_analyzer.py and Python code that reads 'meteorites.csv'."
+        },
+        {
+            "id": "script_logic_implementation",
+            "description": "The script contains logic to filter non-numeric mass data, sort by mass descending, and calculate an average.",
+            "points": 25,
+            "visual_evidence": "Code visible in the editor showing 'sort', 'head(10)' or similar, and a calculation for 'mean' or 'average' while handling NaNs/empty strings."
+        },
+        {
+            "id": "generate_output_file",
+            "description": "The script is executed and generates the 'top_10_meteorites.txt' file in the correct directory.",
+            "points": 20,
+            "visual_evidence": "A terminal or file manager showing the existence of /home/ga/Documents/top_10_meteorites.txt after the script runs."
+        },
+        {
+            "id": "verify_output_content",
+            "description": "The output file contains the top 10 meteorites in the specified format and the correct average mass rounded to two decimal places.",
+            "points": 25,
+            "visual_evidence": "A screenshot of top_10_meteorites.txt showing '1. Hoba - [Mass] g' as the first entry and 'Average Mass: 21653608.81 g' at the end."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not simply echo the final results into a file without writing a functional script.",
+            "visual_evidence": "The Python script must contain logic (e.g., pandas or csv module) to process the CSV, not just print statements with the final numbers."
+        },
+        {
+            "id": "proper_file_paths",
+            "description": "The agent used the absolute paths specified in the task rather than working in a temporary directory.",
+            "visual_evidence": "Code or terminal commands explicitly referencing /home/ga/Documents/."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the Sugar environment tools (like the Journal or specific Sugar Activities) to manage files.",
+            "visual_evidence": "Screenshots showing the Sugar Learning Platform UI elements rather than just a standard Linux terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The meteorite dataset contains 16 valid entries. The top three meteorites are Hoba, Campo del Cielo, and Cape York. The calculated average mass of all valid entries is exactly 21653608.81. The output file must follow the format '1. [Name] - [Mass] g' and the average must be 'Average Mass: 21653608.81 g'."
+}

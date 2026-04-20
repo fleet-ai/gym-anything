@@ -1,0 +1,53 @@
+{
+    "task_id": "eol_hardware_refresh_cycle@1",
+    "task_completion": [
+        {
+            "id": "create_status_label",
+            "description": "Create a status label named 'Pending E-Waste' with the type 'Undeployable'.",
+            "points": 10,
+            "visual_evidence": "Screenshot showing the creation form or the list of status labels containing 'Pending E-Waste' with status 'Undeployable'."
+        },
+        {
+            "id": "identify_eol_laptops",
+            "description": "Identify laptops purchased before 2022-06-01 that are currently checked out.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the asset list filtered by category 'Laptops', purchase dates prior to 2022-06-01, and a 'Checked Out' status."
+        },
+        {
+            "id": "check_in_eol_assets",
+            "description": "Check in the identified EOL laptops from their current users.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the 'Checkin' action being performed or the asset history showing the return of the EOL laptops."
+        },
+        {
+            "id": "update_eol_status",
+            "description": "Update the status of the reclaimed EOL laptops to 'Pending E-Waste'.",
+            "points": 25,
+            "visual_evidence": "Asset detail pages or bulk update screens showing the EOL laptops now have the 'Pending E-Waste' status label."
+        },
+        {
+            "id": "checkout_replacements",
+            "description": "Check out replacement laptops from the 'Ready to Deploy' pool to the same users who had the EOL laptops.",
+            "points": 30,
+            "visual_evidence": "Screenshots showing the 'Checkout' process for 'Ready to Deploy' laptops being assigned to the users who previously held the EOL assets."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent performed the task through the web interface rather than using terminal commands or scripts.",
+            "visual_evidence": "The trajectory shows mouse movements, clicks, and form filling in the browser rather than commands in a terminal window."
+        },
+        {
+            "id": "no_modification_of_valid_assets",
+            "description": "The agent did not modify laptops purchased on or after 2022-06-01 or assets in other categories (e.g., Monitors).",
+            "visual_evidence": "The asset list or logs show that assets with purchase dates after the threshold or non-laptop categories remain unchanged."
+        },
+        {
+            "id": "genuine_application_usage",
+            "description": "The agent interacted with the actual IT asset management software elements.",
+            "visual_evidence": "Screenshots show the specific UI of the asset management system (e.g., Snipe-IT) with consistent data and navigation."
+        }
+    ],
+    "privileged_info_for_vlm": "The target status label must be exactly 'Pending E-Waste' with the type 'Undeployable'. The EOL cutoff date is 2022-06-01; only laptops purchased before this date should be processed. Only assets in the 'Laptops' category should be affected. Replacement laptops must come from the 'Ready to Deploy' status pool and be assigned to the original users."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "ppm_steganography_lab@1",
+    "task_completion": [
+        {
+            "id": "create_scripts",
+            "description": "The agent creates encode.py and decode.py in /home/ga/Documents/.",
+            "points": 10,
+            "visual_evidence": "File manager or terminal output showing encode.py and decode.py exist in the specified directory."
+        },
+        {
+            "id": "implement_lsb_logic",
+            "description": "The scripts implement LSB steganography for P3 PPM images without using external libraries like PIL.",
+            "points": 25,
+            "visual_evidence": "Code editor or 'cat' command showing Python code that manipulates pixel values using bitwise operations or modulo 2, and handles the 4-token PPM header (P3, width, height, maxval)."
+        },
+        {
+            "id": "encoding_parameters",
+            "description": "The implementation uses 8-bit MSB-first encoding and a Null byte terminator.",
+            "points": 20,
+            "visual_evidence": "Code snippets showing loops of 8 bits, bit-shifting or formatting characters to 8-bit binary strings (MSB first), and appending/checking for a null byte (0x00 or '00000000')."
+        },
+        {
+            "id": "execute_encoding",
+            "description": "The agent runs encode.py to embed the specific message into stego_image.ppm.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing the execution of encode.py with the message 'OLPC CS Curriculum: Steganography Lab' and the creation of stego_image.ppm."
+        },
+        {
+            "id": "verify_decoding",
+            "description": "The agent runs decode.py on the stego image and it prints the correct message to stdout.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing 'python3 decode.py /home/ga/Documents/stego_image.ppm' resulting in the exact text: 'OLPC CS Curriculum: Steganography Lab'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_external_libraries",
+            "description": "The agent did not use PIL, Pillow, or other image processing libraries.",
+            "visual_evidence": "The 'import' section of the Python scripts should not contain 'PIL' or 'Pillow'; it should use standard library modules like 'sys' or 're'."
+        },
+        {
+            "id": "genuine_decoding",
+            "description": "The decode.py script actually processes the file rather than just printing a hardcoded string.",
+            "visual_evidence": "The decode.py source code shows logic to open a file, skip the header, and extract bits, rather than a simple 'print(\"OLPC CS...\")' statement."
+        },
+        {
+            "id": "cli_argument_handling",
+            "description": "The decode.py script accepts the file path as a command-line argument as requested.",
+            "visual_evidence": "The terminal command shows a path passed to the script, and the code uses sys.argv to access it."
+        }
+    ],
+    "privileged_info_for_vlm": "The required message to embed is 'OLPC CS Curriculum: Steganography Lab'. The encoding must be LSB, 8-bit MSB-first, with a Null byte (0x00) terminator. The P3 PPM header consists of 4 tokens (Magic Number, Width, Height, Max Value) which must be skipped before reading/writing pixel data. No external libraries like PIL/Pillow are allowed."
+}

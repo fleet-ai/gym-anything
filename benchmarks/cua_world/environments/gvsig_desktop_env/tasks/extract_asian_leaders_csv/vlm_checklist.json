@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_asian_leaders_csv@1",
+    "task_completion": [
+        {
+            "id": "load_layer",
+            "description": "The 'ne_110m_admin_0_countries' layer is loaded into the GIS software.",
+            "points": 10,
+            "visual_evidence": "The layer name 'ne_110m_admin_0_countries' is visible in the layers list or table of contents."
+        },
+        {
+            "id": "open_attribute_table",
+            "description": "The agent opens the attribute table or a query builder to filter data.",
+            "points": 10,
+            "visual_evidence": "A table view or query dialog showing columns like 'CONTINENT' and 'GDP_MD' is visible."
+        },
+        {
+            "id": "apply_continent_filter",
+            "description": "The agent filters the records where 'CONTINENT' is 'Asia'.",
+            "points": 20,
+            "visual_evidence": "A filter expression (e.g., CONTINENT = 'Asia') is typed into a query box or the table shows only Asian countries."
+        },
+        {
+            "id": "sort_by_gdp",
+            "description": "The agent sorts the filtered records by GDP in descending order.",
+            "points": 20,
+            "visual_evidence": "The attribute table shows the 'GDP_MD' (or GDP_MD_EST) column sorted with the highest values at the top (e.g., China, Japan, India)."
+        },
+        {
+            "id": "select_top_five",
+            "description": "The agent selects the top 5 records from the sorted list.",
+            "points": 15,
+            "visual_evidence": "Five rows in the attribute table are highlighted or selected."
+        },
+        {
+            "id": "export_to_csv",
+            "description": "The agent initiates the export of the selected records to a CSV file at the specified path.",
+            "points": 25,
+            "visual_evidence": "An export or 'Save As' dialog is visible with the format set to CSV and the file path set to /home/ga/gvsig_data/exports/asian_leaders.csv."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the GIS software GUI rather than just executing terminal commands.",
+            "visual_evidence": "Screenshots show mouse movements, menu clicks, and dialog interactions within the gvSIG/GIS interface."
+        },
+        {
+            "id": "no_manual_data_entry",
+            "description": "The agent did not manually type the country names into a file but used the software's export function.",
+            "visual_evidence": "The agent is seen using 'Export' or 'Save Selection' menus rather than a text editor to create the CSV."
+        },
+        {
+            "id": "correct_data_source",
+            "description": "The agent interacted with the actual 'ne_110m_admin_0_countries' layer data.",
+            "visual_evidence": "The attribute table values for China, Japan, and India are visible during the process, matching the dataset's expected values."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file path is /home/ga/gvsig_data/exports/asian_leaders.csv. Although the task mentions 'GDP_MD_EST', the actual column name in the Natural Earth dataset is 'GDP_MD'. The top 3 countries by GDP in Asia for this dataset are China, Japan, and India. The agent must filter for CONTINENT='Asia' and export exactly 5 records."
+}

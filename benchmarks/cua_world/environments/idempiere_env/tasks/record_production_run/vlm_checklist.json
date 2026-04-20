@@ -1,0 +1,59 @@
+{
+    "task_id": "record_production_run@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_production",
+            "description": "Navigate to the 'Production' window in iDempiere.",
+            "points": 10,
+            "visual_evidence": "The iDempiere window title or tab shows 'Production' or 'Production (Single)'."
+        },
+        {
+            "id": "select_target_product",
+            "description": "Select 'Patio Set' as the product to be produced.",
+            "points": 15,
+            "visual_evidence": "The 'Product' field in the Production header contains 'Patio Set'."
+        },
+        {
+            "id": "set_production_quantity",
+            "description": "Set the production quantity to 5.",
+            "points": 15,
+            "visual_evidence": "The 'Production Quantity' or 'Movement Quantity' field in the header shows '5'."
+        },
+        {
+            "id": "set_current_date",
+            "description": "Set the movement date to today's date.",
+            "points": 10,
+            "visual_evidence": "The 'Movement Date' field is populated with the current date."
+        },
+        {
+            "id": "verify_components",
+            "description": "Ensure the production plan includes 20 'Patio Chair' and 5 'Patio Table' components.",
+            "points": 25,
+            "visual_evidence": "In the Production Line tab or component list, 'Patio Chair' shows a quantity of 20 (or -20) and 'Patio Table' shows a quantity of 5 (or -5)."
+        },
+        {
+            "id": "complete_production",
+            "description": "Process or complete the production run to update inventory.",
+            "points": 25,
+            "visual_evidence": "The 'DocAction' button is clicked, and the 'Document Status' changes to 'Completed' or 'Closed'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the iDempiere web interface rather than direct database manipulation.",
+            "visual_evidence": "Screenshots show the cursor interacting with iDempiere menus, fields, and buttons."
+        },
+        {
+            "id": "genuine_data_entry",
+            "description": "The agent manually entered or selected the specific quantities and products required.",
+            "visual_evidence": "The 'Patio Set', '20', and '5' values appear in the appropriate UI fields within the iDempiere application."
+        },
+        {
+            "id": "no_terminal_bypass",
+            "description": "The agent did not use a terminal or command line to execute SQL scripts to bypass the UI.",
+            "visual_evidence": "No terminal windows with SQL commands (e.g., 'UPDATE M_Storage') are visible in the trajectory."
+        }
+    ],
+    "privileged_info_for_vlm": "The target product is 'Patio Set'. The required quantity is 5. The Bill of Materials (BOM) for this task requires 4 'Patio Chair' and 1 'Patio Table' per set, totaling 20 'Patio Chair' and 5 'Patio Table' for the run. The task is successful only if the document status reaches 'Completed' within the iDempiere Production window."
+}

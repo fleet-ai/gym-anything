@@ -1,0 +1,59 @@
+{
+    "task_id": "archive_historical_flight_plans@1",
+    "task_completion": [
+        {
+            "id": "login_aerobridge_admin",
+            "description": "Log into the Aerobridge system using admin credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the Aerobridge dashboard or login screen with 'admin' entered, followed by a successful login to the Django administration panel."
+        },
+        {
+            "id": "locate_flight_plan_model",
+            "description": "Navigate to the 'Flight plans' model within the 'Flight_Passport' or 'Gcs_Operations' application section.",
+            "points": 15,
+            "visual_evidence": "The VLM should see the 'Flight plans' link clicked or the list view of Flight Plan records displayed in the browser."
+        },
+        {
+            "id": "identify_pre_2024_records",
+            "description": "Identify and select flight records with a start time strictly before January 1, 2024.",
+            "points": 20,
+            "visual_evidence": "The VLM should see a list of flight plans where records dated 2022 or 2023 are highlighted, filtered, or selected via checkboxes."
+        },
+        {
+            "id": "serialize_to_json",
+            "description": "Export or serialize the selected historical records to the specified JSON file path.",
+            "points": 30,
+            "visual_evidence": "The VLM should see a terminal command or a GUI export action referencing the path '/home/ga/archive_pre2024.json' containing the serialized data."
+        },
+        {
+            "id": "delete_historical_records",
+            "description": "Delete the identified historical records from the database.",
+            "points": 15,
+            "visual_evidence": "The VLM should see a confirmation prompt for deletion or the 'Flight plans' list updated with the pre-2024 records removed."
+        },
+        {
+            "id": "verify_remaining_records",
+            "description": "Ensure flight plans starting on or after January 1, 2024, remain in the system.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the 'Flight plans' list showing records with start dates like '2024-01-01' or '2025-05-20' still present after the deletion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Aerobridge web interface for identification and deletion rather than just executing raw SQL commands.",
+            "visual_evidence": "The VLM should see the browser window with the Aerobridge Django admin interface being navigated."
+        },
+        {
+            "id": "correct_cutoff_application",
+            "description": "The agent correctly applied the 'strictly before' logic (records on 2024-01-01 must stay).",
+            "visual_evidence": "The VLM should check that records dated exactly 2024-01-01 were not selected for deletion in the screenshots."
+        },
+        {
+            "id": "genuine_file_creation",
+            "description": "The archive file was created through a process involving the data from the app, not just an empty file creation.",
+            "visual_evidence": "The VLM should see the content of '/home/ga/archive_pre2024.json' being viewed or generated, containing flight plan data."
+        }
+    ],
+    "privileged_info_for_vlm": "The cutoff date is 2024-01-01; records from 2022 and 2023 (e.g., 2022-06-15, 2023-11-20, 2023-12-31) must be archived and deleted. Records from 2024-01-01 00:00:01 onwards must remain. The archive path is /home/ga/archive_pre2024.json. Admin credentials are 'admin' / 'adminpass123'."
+}

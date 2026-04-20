@@ -1,0 +1,53 @@
+{
+    "task_id": "clean_orphan_origins_db@1",
+    "task_completion": [
+        {
+            "id": "open_seiscomp_tools",
+            "description": "Agent opens SeisComP database management or exploration tools (e.g., scdb, scolv, or a database browser).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing a SeisComP-related GUI or a terminal window with database queries being executed."
+        },
+        {
+            "id": "identify_orphan_origins",
+            "description": "Agent identifies the specific orphan Origin records not associated with any Event.",
+            "points": 25,
+            "visual_evidence": "Terminal output or GUI lists showing the IDs 'smi:org/gfz/orphan_test_1', 'smi:org/gfz/orphan_test_2', and 'smi:org/gfz/orphan_test_3'."
+        },
+        {
+            "id": "create_output_file",
+            "description": "Agent writes the identified orphan publicIDs to /home/ga/orphan_origins.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat', 'echo', or 'vi') showing the creation or content of /home/ga/orphan_origins.txt with the correct IDs."
+        },
+        {
+            "id": "delete_orphan_records",
+            "description": "Agent executes the deletion of the identified orphan records from the database.",
+            "points": 30,
+            "visual_evidence": "Execution of a deletion command (e.g., 'scevtls -d', SQL DELETE, or GUI delete action) targeting the specific orphan IDs."
+        },
+        {
+            "id": "verify_catalog_integrity",
+            "description": "Agent confirms that valid catalog events (like the Noto earthquake) remain in the database.",
+            "points": 15,
+            "visual_evidence": "A query or GUI view showing that non-orphan records (e.g., Noto earthquake events) are still present after the deletion."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_answers",
+            "description": "The agent did not simply echo the IDs into the file without querying the database first.",
+            "visual_evidence": "The trajectory must show a database query or search step before the file is written."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "The agent interacted with the SeisComP environment rather than just creating a dummy file.",
+            "visual_evidence": "Screenshots show SeisComP commands (scdb, scevtls) or SQL queries specific to the SeisComP schema."
+        },
+        {
+            "id": "targeted_deletion",
+            "description": "The agent specifically targeted the orphan IDs and did not perform a bulk wipe of the database.",
+            "visual_evidence": "Commands or GUI actions show specific filters or IDs being selected for deletion."
+        }
+    ],
+    "privileged_info_for_vlm": "The specific orphan Origin IDs to be identified and deleted are: 'smi:org/gfz/orphan_test_1', 'smi:org/gfz/orphan_test_2', and 'smi:org/gfz/orphan_test_3'. These must be written to /home/ga/orphan_origins.txt. The Noto earthquake data must remain in the database."
+}

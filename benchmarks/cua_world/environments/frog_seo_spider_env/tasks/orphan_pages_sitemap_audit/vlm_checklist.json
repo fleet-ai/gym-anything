@@ -1,0 +1,53 @@
+{
+    "task_id": "orphan_pages_sitemap_audit@1",
+    "task_completion": [
+        {
+            "id": "screaming_frog_launch",
+            "description": "Launch Screaming Frog SEO Spider and enter the target URL.",
+            "points": 10,
+            "visual_evidence": "Screaming Frog window is open with 'https://books.toscrape.com/' entered in the 'Enter URL to spider' field."
+        },
+        {
+            "id": "sitemap_configuration",
+            "description": "Attempt to configure the sitemap for the audit.",
+            "points": 15,
+            "visual_evidence": "The agent is seen in the 'Configuration > Spider > Crawl' or 'Sitemaps' tab, or attempting to add the sitemap URL 'https://books.toscrape.com/sitemap.xml'."
+        },
+        {
+            "id": "crawl_execution",
+            "description": "Execute the crawl of the website.",
+            "points": 20,
+            "visual_evidence": "The progress bar in Screaming Frog shows the crawl reaching 100% and the 'Internal' tab is populated with URLs from the domain."
+        },
+        {
+            "id": "export_csv_files",
+            "description": "Export the 'Orphan Pages' and 'Internal HTML' reports as CSV files to the specified directory.",
+            "points": 25,
+            "visual_evidence": "The agent uses the 'Export' button or 'Bulk Export' menu. A file explorer window or terminal command shows 'orphan_pages.csv' and 'internal_html.csv' (or similar names) in '~/Documents/SEO/exports/'."
+        },
+        {
+            "id": "summary_report_creation",
+            "description": "Create the summary report text file with required metrics and sitemap status.",
+            "points": 30,
+            "visual_evidence": "A text editor or terminal shows 'orphan_pages_report.txt' in '~/Documents/SEO/reports/' containing the total URLs, orphan count, and a note that the sitemap was unavailable/missing."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Screaming Frog GUI rather than just command-line scripts to simulate the audit.",
+            "visual_evidence": "Screenshots show the Screaming Frog application window, mouse movements, and menu interactions."
+        },
+        {
+            "id": "genuine_crawl_data",
+            "description": "The data in the reports reflects the actual crawl of books.toscrape.com.",
+            "visual_evidence": "The 'Internal' tab in the GUI shows URLs like 'https://books.toscrape.com/catalogue/...' and not placeholder or generic data."
+        },
+        {
+            "id": "sitemap_absence_handling",
+            "description": "The agent correctly identifies and reports the sitemap as missing rather than hallucinating its contents.",
+            "visual_evidence": "The final report or Screaming Frog 'Sitemaps' tab shows a 404 error or a 'No sitemap found' message."
+        }
+    ],
+    "privileged_info_for_vlm": "The target website 'https://books.toscrape.com/' is live, but the sitemap at 'https://books.toscrape.com/sitemap.xml' does not exist (404 error). The agent must document this absence in the final report. The expected export directory is '~/Documents/SEO/exports/' and the report path is '~/Documents/SEO/reports/orphan_pages_report.txt'."
+}

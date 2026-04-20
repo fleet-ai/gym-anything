@@ -1,0 +1,59 @@
+{
+    "task_id": "extract_longitudinal_profile@1",
+    "task_completion": [
+        {
+            "id": "open_hec_ras_project",
+            "description": "Open the Muncie HEC-RAS project from the specified directory.",
+            "points": 10,
+            "visual_evidence": "HEC-RAS main window showing the project path '/home/ga/Documents/hec_ras_projects/Muncie/Muncie.prj'."
+        },
+        {
+            "id": "verify_simulation_results",
+            "description": "Ensure the unsteady flow simulation (Plan 04) has been run and results are available.",
+            "points": 15,
+            "visual_evidence": "HEC-RAS Unsteady Flow Analysis window showing a completed computation or the presence of the .p04.hdf file in the file browser."
+        },
+        {
+            "id": "create_python_script",
+            "description": "Create the extract_profile.py script in the results directory.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal showing the creation/content of '/home/ga/Documents/hec_ras_results/extract_profile.py'."
+        },
+        {
+            "id": "generate_csv_output",
+            "description": "Generate the longitudinal_profile.csv file with the required columns.",
+            "points": 20,
+            "visual_evidence": "A file browser or terminal showing 'longitudinal_profile.csv' in the results folder; content should show columns: river_station, bed_elevation_ft, wse_ft, flow_depth_ft."
+        },
+        {
+            "id": "generate_plot_output",
+            "description": "Generate the longitudinal_profile.png plot showing Bed Elevation and Peak WSE.",
+            "points": 20,
+            "visual_evidence": "An image viewer or file browser showing 'longitudinal_profile.png' containing a line chart with at least two series (Bed Elevation and WSE) plotted against River Station."
+        },
+        {
+            "id": "generate_summary_text",
+            "description": "Generate the profile_summary.txt file with calculated statistics.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal showing 'profile_summary.txt' containing values for total cross-sections, max WSE, min bed elevation, and max flow depth."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_python_execution",
+            "description": "Verify the script was actually executed to generate data rather than manual file creation.",
+            "visual_evidence": "Terminal output showing the execution of 'python3 extract_profile.py' or logs indicating the script processed the HDF5 file."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "Check that the agent didn't just echo the summary values into a file without calculation.",
+            "visual_evidence": "The Python script 'extract_profile.py' should contain logic to read HDF5 data (e.g., using h5py or similar libraries) rather than just print statements of final numbers."
+        },
+        {
+            "id": "correct_directory_usage",
+            "description": "Ensure the agent used the specific paths provided in the task.",
+            "visual_evidence": "Screenshots showing file operations occurring within '/home/ga/Documents/hec_ras_results/' and reading from '/home/ga/Documents/hec_ras_projects/Muncie/'."
+        }
+    ],
+    "privileged_info_for_vlm": "The Muncie HEC-RAS project is located at /home/ga/Documents/hec_ras_projects/Muncie. The simulation file is Muncie.p04.hdf. There are exactly 61 cross-sections in this model. The script must be named extract_profile.py and all outputs (CSV, PNG, TXT) must be placed in /home/ga/Documents/hec_ras_results/. The CSV must include river_station, bed_elevation_ft, wse_ft, and flow_depth_ft."
+}

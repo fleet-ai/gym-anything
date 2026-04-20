@@ -1,0 +1,59 @@
+{
+    "task_id": "cross_taxa_consensus_extraction@1",
+    "task_completion": [
+        {
+            "id": "open_fasta_ugene",
+            "description": "Open cytochrome_c_diverse.fasta in UGENE alignment viewer",
+            "points": 10,
+            "visual_evidence": "The UGENE window shows the 'Alignment Editor' tab with 8 sequences loaded from the specified file path."
+        },
+        {
+            "id": "muscle_alignment_execution",
+            "description": "Perform multiple sequence alignment using the MUSCLE algorithm",
+            "points": 15,
+            "visual_evidence": "The MUSCLE alignment dialog is visible, or the alignment viewer shows sequences shifted with gaps, indicating an alignment has been performed."
+        },
+        {
+            "id": "consensus_threshold_config",
+            "description": "Configure consensus sequence threshold to 100%",
+            "points": 20,
+            "visual_evidence": "The 'Consensus' settings panel or properties area shows the threshold slider or input box set to 100%."
+        },
+        {
+            "id": "export_consensus_fasta",
+            "description": "Export the 100% consensus sequence to strict_consensus.fasta",
+            "points": 15,
+            "visual_evidence": "The 'Export' or 'Save' dialog is shown with the file path ~/UGENE_Data/evolution/results/strict_consensus.fasta and the format set to FASTA."
+        },
+        {
+            "id": "identify_conserved_blocks",
+            "description": "Analyze the consensus to identify conserved blocks and motifs",
+            "points": 20,
+            "visual_evidence": "The agent is seen inspecting the consensus row in the alignment viewer or opening the exported FASTA file to count characters."
+        },
+        {
+            "id": "generate_text_report",
+            "description": "Create the conservation_report.txt with all required metrics",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal view shows conservation_report.txt containing: alignment length, count of conserved positions, the longest motif string, and its length."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the UGENE GUI for alignment and consensus configuration rather than CLI tools",
+            "visual_evidence": "Screenshots show mouse interactions with UGENE menus (Align -> Align with MUSCLE) and the Consensus settings panel."
+        },
+        {
+            "id": "genuine_consensus_calculation",
+            "description": "The agent did not hallucinate the consensus motif without viewing the data",
+            "visual_evidence": "The agent is seen scrolling through the alignment or using the 'Find' tool to identify the longest stretch of non-ambiguity characters."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "The agent saved files to the exact paths specified in the instructions",
+            "visual_evidence": "The file save dialogs or terminal 'ls' commands confirm the paths ~/UGENE_Data/evolution/results/strict_consensus.fasta and conservation_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The alignment length for these 8 Cytochrome c sequences is 112 columns. At a 100% threshold, there are 46 completely conserved positions. The longest continuous conserved motif is 'VQKCAQCHTV' (length 10), located at positions 11-20 of the alignment."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "construction_project_cost_estimate@1",
+    "task_completion": [
+        {
+            "id": "open_source_files",
+            "description": "Agent opens the project specifications, material prices, and labor rates files.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing project_specifications.txt, material_prices.csv, and labor_rates.csv open in a text editor or spreadsheet application."
+        },
+        {
+            "id": "create_excel_structure",
+            "description": "Agent creates a new Excel workbook named medical_office_estimate.xlsx with appropriate headers.",
+            "points": 15,
+            "visual_evidence": "A spreadsheet application window showing a file named 'medical_office_estimate.xlsx' with column headers like 'Description', 'Quantity', 'Unit', 'Material Cost', 'Labor Cost', and 'Total'."
+        },
+        {
+            "id": "input_specifications_data",
+            "description": "Agent populates the workbook with line items derived from the project specifications.",
+            "points": 20,
+            "visual_evidence": "The spreadsheet contains rows for medical office divisions such as concrete, plumbing, electrical, and finishes as listed in the specifications file."
+        },
+        {
+            "id": "apply_pricing_and_rates",
+            "description": "Agent applies the specific material prices and labor rates from the source CSV files to the estimate.",
+            "points": 30,
+            "visual_evidence": "The spreadsheet shows numerical values in the cost columns that correspond to the data found in material_prices.csv and labor_rates.csv."
+        },
+        {
+            "id": "calculate_totals",
+            "description": "Agent uses formulas to calculate sub-totals and a grand total for the 4,200 sq ft project.",
+            "points": 15,
+            "visual_evidence": "The spreadsheet shows calculated totals at the bottom of columns or for each line item; the grand total should be visible."
+        },
+        {
+            "id": "save_final_workbook",
+            "description": "Agent saves the completed workbook to the specified directory.",
+            "points": 10,
+            "visual_evidence": "A file explorer window or a 'Save As' dialog confirming medical_office_estimate.xlsx is saved in ~/Documents/Spreadsheets/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_bypass",
+            "description": "Agent used spreadsheet software (e.g., LibreOffice Calc, Excel) to create the file rather than just using 'touch' or 'echo' in the terminal.",
+            "visual_evidence": "Screenshots show the agent interacting with a GUI-based spreadsheet application."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "Agent did not simply type a single final number but built a multi-row estimate.",
+            "visual_evidence": "The spreadsheet contains multiple rows of data reflecting different construction divisions, not just a single 'Total' line."
+        },
+        {
+            "id": "source_file_interaction",
+            "description": "Agent actually opened and read the source files provided in the Documents folder.",
+            "visual_evidence": "Screenshots show the source .txt and .csv files being opened or displayed on screen before the data appears in the spreadsheet."
+        }
+    ],
+    "privileged_info_for_vlm": "The project is a 4,200 sq ft medical office build-out. The final estimate should fall within the range of $350,000 to $800,000 based on a reference cost of approximately $236.56 per sq ft for full construction, adjusted for a tenant improvement (TI) factor. Expected divisions include concrete, metal, wood, millwork, doors, finishes, mechanical, HVAC, plumbing, electrical, fire protection, and flooring. The agent must use the specific pricing found in material_prices.csv and labor_rates.csv."
+}

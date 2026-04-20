@@ -1,0 +1,59 @@
+{
+    "task_id": "format_annotation_for_publication@1",
+    "task_completion": [
+        {
+            "id": "medical_image_loaded",
+            "description": "The medical image (CT scan) is successfully loaded into the viewer interface.",
+            "points": 10,
+            "visual_evidence": "A DICOM/CT image is visible in the main viewport of the application."
+        },
+        {
+            "id": "arrow_tool_selected",
+            "description": "The agent selects the arrow annotation tool from the toolbar.",
+            "points": 10,
+            "visual_evidence": "The arrow icon in the toolbar is highlighted, or the cursor changes to a crosshair/drawing mode."
+        },
+        {
+            "id": "arrow_drawn_on_image",
+            "description": "An arrow annotation is drawn onto the medical image.",
+            "points": 20,
+            "visual_evidence": "An arrow graphic is visible overlaid on the CT image slices."
+        },
+        {
+            "id": "color_set_to_red",
+            "description": "The annotation color is changed to red.",
+            "points": 20,
+            "visual_evidence": "The arrow annotation on the image appears red (R > 150, G < 80, B < 80)."
+        },
+        {
+            "id": "thickness_set_to_three",
+            "description": "The line thickness of the annotation is set to at least 3.",
+            "points": 20,
+            "visual_evidence": "The properties panel or line settings show a value of 3 or higher, and the arrow appears visibly thicker than the default line."
+        },
+        {
+            "id": "exported_to_correct_path",
+            "description": "The view is exported as a PNG to the specific directory and filename requested.",
+            "points": 20,
+            "visual_evidence": "An export dialog or file explorer shows the path ~/DICOM/exports/publication_figure.png being typed or saved."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the application GUI to create the annotation rather than script injection.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the drawing tools and property panels."
+        },
+        {
+            "id": "genuine_export_process",
+            "description": "The agent used the software's export/save function.",
+            "visual_evidence": "The 'Export' or 'Save As' menu/dialog is visible in the trajectory."
+        },
+        {
+            "id": "no_terminal_cheating",
+            "description": "The agent did not use the terminal to move or rename a pre-existing image to the target path.",
+            "visual_evidence": "The terminal is not used to execute 'mv' or 'cp' commands for the final output file."
+        }
+    ],
+    "privileged_info_for_vlm": "The target file must be a PNG located at /home/ga/DICOM/exports/publication_figure.png. The annotation must be Red (specifically high Red channel values compared to Green/Blue) and have a thickness setting of 3 or greater. The patient data in the image should correspond to PatientID: ANN001."
+}

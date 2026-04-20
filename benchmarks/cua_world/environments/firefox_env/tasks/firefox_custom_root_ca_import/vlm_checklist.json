@@ -1,0 +1,59 @@
+{
+    "task_id": "firefox_custom_root_ca_import@1",
+    "task_completion": [
+        {
+            "id": "open_firefox_settings",
+            "description": "Agent opens Firefox Settings and navigates to the Certificates section.",
+            "points": 10,
+            "visual_evidence": "Screenshot shows Firefox 'Settings' or 'Preferences' page, specifically the 'Privacy & Security' tab or the 'Certificate Manager' dialog."
+        },
+        {
+            "id": "import_ca_dialog",
+            "description": "Agent initiates the import of the certificate from the Downloads folder.",
+            "points": 15,
+            "visual_evidence": "A file picker dialog is visible showing 'corporate_root_ca.crt' being selected from the 'Downloads' directory."
+        },
+        {
+            "id": "trust_checkbox_selected",
+            "description": "Agent checks the specific trust box during the import process.",
+            "points": 20,
+            "visual_evidence": "The 'Downloading Certificate' dialog is visible with the checkbox 'Trust this CA to identify websites' explicitly checked."
+        },
+        {
+            "id": "navigate_internal_url",
+            "description": "Agent navigates to the internal HTTPS URL.",
+            "points": 15,
+            "visual_evidence": "The Firefox address bar shows 'https://internal.corp.local:8443' and the page begins to load."
+        },
+        {
+            "id": "secure_connection_verified",
+            "description": "The website loads without a certificate warning/interstitial page.",
+            "points": 20,
+            "visual_evidence": "The browser displays the IT policy content. There is a padlock icon in the address bar indicating a secure connection, and NO 'Warning: Potential Security Risk Ahead' screen is visible."
+        },
+        {
+            "id": "save_policy_heading",
+            "description": "Agent saves the specific heading text to the designated text file.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal command shows the content of '~/Documents/policy_focus.txt' containing the heading text from the IT policy webpage."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_security_bypass",
+            "description": "Agent did not click 'Accept the Risk and Continue' to bypass the certificate error.",
+            "visual_evidence": "The trajectory must not show the agent clicking the 'Advanced' button followed by 'Accept the Risk and Continue' on a Firefox warning page."
+        },
+        {
+            "id": "gui_interaction_for_import",
+            "description": "Agent used the Firefox GUI to import the certificate rather than command-line NSS tools.",
+            "visual_evidence": "Screenshots show the Firefox Settings/Certificate Manager UI being used to import the .crt file."
+        },
+        {
+            "id": "genuine_page_load",
+            "description": "The IT policy text was retrieved from the browser, not guessed.",
+            "visual_evidence": "The text saved in policy_focus.txt matches the text visible on the rendered webpage at internal.corp.local:8443."
+        }
+    ],
+    "privileged_info_for_vlm": "The internal site is located at https://internal.corp.local:8443. The certificate file is ~/Downloads/corporate_root_ca.crt. The task is only successful if the 'Trust this CA to identify websites' box is checked during import; otherwise, the browser will still show a security warning. The final output must be a file at ~/Documents/policy_focus.txt containing the main heading found on the webpage."
+}

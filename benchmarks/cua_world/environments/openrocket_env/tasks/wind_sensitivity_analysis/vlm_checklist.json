@@ -1,0 +1,53 @@
+{
+    "task_id": "wind_sensitivity_analysis@1",
+    "task_completion": [
+        {
+            "id": "open_rocket_file",
+            "description": "Open the specified rocket design file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket application is visible with the file 'wind_sensitivity.ork' loaded, showing the rocket design in the main view."
+        },
+        {
+            "id": "configure_wind_simulations",
+            "description": "Configure at least 6 flight simulations with varying wind speeds.",
+            "points": 20,
+            "visual_evidence": "The 'Flight simulations' tab or a simulation configuration dialog showing multiple simulation entries with different 'Average wind speed' values ranging from 0 m/s to at least 10 m/s."
+        },
+        {
+            "id": "run_simulations",
+            "description": "Execute the simulations to generate flight data.",
+            "points": 15,
+            "visual_evidence": "The simulation list shows green checkmarks or status indicators signifying that the simulations have been successfully run."
+        },
+        {
+            "id": "export_csv_data",
+            "description": "Export the simulation results (wind speed, apogee, ground hit distance) to the specified CSV path.",
+            "points": 25,
+            "visual_evidence": "The 'Export data' dialog or a file explorer window showing the creation/saving of 'wind_sensitivity.csv' in /home/ga/Documents/exports/."
+        },
+        {
+            "id": "create_report",
+            "description": "Write a launch readiness report with a wind speed recommendation.",
+            "points": 30,
+            "visual_evidence": "A text editor (like Gedit or Mousepad) showing 'wind_report.txt' containing a summary of wind impact on apogee/ground hit and a specific maximum wind speed threshold recommendation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI rather than just command-line scripts to generate data.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with OpenRocket menus, simulation buttons, and dialog boxes."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The data in the report and CSV matches the results shown in the OpenRocket simulation table.",
+            "visual_evidence": "The values for apogee and ground hit distance visible in the OpenRocket 'Flight simulations' table match the values written in the report or CSV."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply rename an existing file but actively configured the parameters.",
+            "visual_evidence": "Screenshots show the agent manually editing the 'Wind speed' field in the simulation environment settings."
+        }
+    ],
+    "privileged_info_for_vlm": "The agent must use the file /home/ga/Documents/rockets/wind_sensitivity.ork. It must create at least 6 simulations. One simulation must be 0 m/s, and the maximum wind speed must reach at least 9.9 m/s (effectively 10 m/s). The CSV must be saved to /home/ga/Documents/exports/wind_sensitivity.csv and the report to /home/ga/Documents/exports/wind_report.txt. The report must include a specific numerical recommendation for a wind speed threshold."
+}

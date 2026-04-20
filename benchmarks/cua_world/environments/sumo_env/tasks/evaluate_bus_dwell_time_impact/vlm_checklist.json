@@ -1,0 +1,53 @@
+{
+    "task_id": "evaluate_bus_dwell_time_impact@1",
+    "task_completion": [
+        {
+            "id": "create_modified_route_file",
+            "description": "Create 'pasubio_busses_slow.rou.xml' with all <stop> elements set to duration=\"60\" and no 'until' attribute.",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal output showing the content of 'pasubio_busses_slow.rou.xml' with <stop duration=\"60\" ... /> and the absence of 'until' attributes."
+        },
+        {
+            "id": "create_sumo_config",
+            "description": "Create 'run_slow_buses.sumocfg' referencing the new route file and specifying the tripinfo output path.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal output showing 'run_slow_buses.sumocfg' containing references to 'pasubio_busses_slow.rou.xml' and '<tripinfo-output value=\"/home/ga/SUMO_Output/tripinfos_slow.xml\"/>'."
+        },
+        {
+            "id": "run_sumo_simulation",
+            "description": "Execute the SUMO simulation using the new configuration file to generate results.",
+            "points": 25,
+            "visual_evidence": "Terminal output showing the execution of 'sumo' or 'sumo-gui' with the '-c run_slow_buses.sumocfg' argument, or a progress bar/log indicating the simulation finished."
+        },
+        {
+            "id": "generate_tripinfo_output",
+            "description": "Verify the existence of the 'tripinfos_slow.xml' output file in the correct directory.",
+            "points": 15,
+            "visual_evidence": "A file browser or 'ls' command showing 'tripinfos_slow.xml' inside '/home/ga/SUMO_Output/'."
+        },
+        {
+            "id": "calculate_and_save_report",
+            "description": "Calculate the average duration for vehicles with 'bus' in their ID and save to 'bus_impact_report.txt' in the specified format.",
+            "points": 25,
+            "visual_evidence": "A text editor or 'cat' command showing the content of '/home/ga/SUMO_Output/bus_impact_report.txt' with the line 'average_bus_duration_seconds: <VALUE>' where the value is rounded to two decimal places."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_file_modification",
+            "description": "The agent actually edited the XML files rather than just creating a report with a hardcoded number.",
+            "visual_evidence": "Screenshots showing the use of 'sed', 'python' scripts, or text editors (like nano/vim/gedit) to modify the route and config files."
+        },
+        {
+            "id": "simulation_execution",
+            "description": "The agent ran the SUMO simulation to generate the tripinfo data.",
+            "visual_evidence": "Terminal logs showing the SUMO simulation process running and completing, rather than the agent manually creating a fake tripinfos_slow.xml file."
+        },
+        {
+            "id": "calculation_logic",
+            "description": "The agent performed a calculation based on the generated XML data.",
+            "visual_evidence": "A python script or command-line pipe (e.g., grep/awk) used to parse the XML and compute the average duration."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires filtering vehicles by checking if 'bus' is in their ID (case-insensitive). Note that in this specific Bologna Pasubio scenario, bus IDs might be numeric; however, the agent must follow the instruction to look for 'bus' in the ID string. The output report must be at /home/ga/SUMO_Output/bus_impact_report.txt and follow the exact format: 'average_bus_duration_seconds: <VALUE>'."
+}

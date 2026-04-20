@@ -1,0 +1,59 @@
+{
+    "task_id": "recursive_demand_forecasting@1",
+    "task_completion": [
+        {
+            "id": "database_connection",
+            "description": "Agent successfully connects to the Oracle database using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "A SQL developer tool or terminal showing a successful connection to 'localhost:1521/XEPDB1' as user 'hr'."
+        },
+        {
+            "id": "query_historical_data",
+            "description": "Agent queries the WEEKLY_SALES table to retrieve the 10 weeks of historical data for the 5 products.",
+            "points": 15,
+            "visual_evidence": "SQL query execution showing 'SELECT * FROM WEEKLY_SALES' or similar, with results displaying products like 'Ceramic_Bearing_50mm' and weeks 1-10."
+        },
+        {
+            "id": "create_demand_forecast_table",
+            "description": "Agent creates the DEMAND_FORECAST table with the specified schema (PRODUCT_NAME, WEEK_NUM, QTY, DATA_TYPE).",
+            "points": 15,
+            "visual_evidence": "A 'CREATE TABLE DEMAND_FORECAST' statement being executed or the table structure visible in the database explorer."
+        },
+        {
+            "id": "insert_actual_data",
+            "description": "Agent populates the DEMAND_FORECAST table with the historical data (Weeks 1-10) labeled as 'ACTUAL'.",
+            "points": 15,
+            "visual_evidence": "An INSERT or MERGE statement moving data from WEEKLY_SALES to DEMAND_FORECAST with DATA_TYPE set to 'ACTUAL'."
+        },
+        {
+            "id": "calculate_recursive_forecast",
+            "description": "Agent implements the recursive weighted moving average formula for weeks 11-15 using the 0.5, 0.3, 0.2 weights and rounding to 2 decimal places.",
+            "points": 30,
+            "visual_evidence": "SQL scripts or PL/SQL blocks showing the formula 'ROUND((0.5 * Qty(n-1)) + (0.3 * Qty(n-2)) + (0.2 * Qty(n-3)), 2)' applied iteratively for weeks 11 through 15."
+        },
+        {
+            "id": "verify_final_table_count",
+            "description": "The DEMAND_FORECAST table contains exactly 75 rows (5 products * 15 weeks).",
+            "points": 15,
+            "visual_evidence": "A 'SELECT COUNT(*) FROM DEMAND_FORECAST' query showing the result 75, or a scrollable view of the table showing 15 entries per product."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent calculates the forecast using the formula rather than hardcoding pre-calculated values into insert statements.",
+            "visual_evidence": "The SQL code should show the mathematical formula or a loop/recursion logic, not just 'INSERT INTO ... VALUES ('Product', 11, 123.45, 'FORECAST')' for all rows."
+        },
+        {
+            "id": "genuine_database_interaction",
+            "description": "Agent uses a database client or command-line SQL tool to interact with the Oracle instance.",
+            "visual_evidence": "Screenshots show an active SQL editor (like SQL Developer, DBeaver, or SQL*Plus) with execution logs, not just a text editor."
+        },
+        {
+            "id": "schema_adherence",
+            "description": "Agent uses the specific table names and column names requested in the prompt.",
+            "visual_evidence": "The table name 'DEMAND_FORECAST' and column 'DATA_TYPE' are used exactly as specified in the code and results."
+        }
+    ],
+    "privileged_info_for_vlm": "The source table is 'WEEKLY_SALES'. The target table must be 'DEMAND_FORECAST'. There are 5 products: Ceramic_Bearing_50mm, Hydraulic_Seal_X2, Linear_Actuator_v1, Stepper_Motor_NEMA23, and Timing_Belt_GT2. History is Weeks 1-10. Forecast is Weeks 11-15. Formula: Qty(n) = ROUND((0.5 * Qty(n-1)) + (0.3 * Qty(n-2)) + (0.2 * Qty(n-3)), 2). Total rows expected: 75. The calculation must be recursive, meaning the forecast for Week 12 must use the calculated forecast of Week 11."
+}

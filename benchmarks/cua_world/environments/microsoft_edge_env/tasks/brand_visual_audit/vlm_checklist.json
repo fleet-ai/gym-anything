@@ -1,0 +1,59 @@
+{
+    "task_id": "brand_visual_audit@1",
+    "task_completion": [
+        {
+            "id": "visit_github",
+            "description": "Agent navigates to github.com and inspects elements.",
+            "points": 10,
+            "visual_evidence": "Browser shows github.com; evidence of using DevTools or color picker to inspect headers/buttons."
+        },
+        {
+            "id": "visit_python",
+            "description": "Agent navigates to python.org and inspects elements.",
+            "points": 10,
+            "visual_evidence": "Browser shows python.org; evidence of using DevTools or color picker to inspect headers/buttons."
+        },
+        {
+            "id": "extract_github_data",
+            "description": "Agent identifies hex codes, font families, and sizes for GitHub.",
+            "points": 25,
+            "visual_evidence": "Terminal or text editor shows GitHub-specific data being recorded (e.g., #24292e, -apple-system, 32px)."
+        },
+        {
+            "id": "extract_python_data",
+            "description": "Agent identifies hex codes, font families, and sizes for Python.org.",
+            "points": 25,
+            "visual_evidence": "Terminal or text editor shows Python-specific data being recorded (e.g., #3776ab, Source Sans Pro, 24px)."
+        },
+        {
+            "id": "save_report_file",
+            "description": "Agent saves the structured report to /home/ga/Desktop/brand_audit.txt.",
+            "points": 10,
+            "visual_evidence": "A file manager or terminal command (ls) shows brand_audit.txt exists on the Desktop."
+        },
+        {
+            "id": "report_content_verification",
+            "description": "The report contains separate sections for both sites with at least 3 hex codes, font stacks, and sizes for each.",
+            "points": 20,
+            "visual_evidence": "The content of brand_audit.txt is displayed, showing structured sections for GitHub and Python with the required metrics."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hallucination",
+            "description": "Agent did not generate the report without visiting the websites.",
+            "visual_evidence": "The browser history or tabs must show active navigation to both github.com and python.org before the file is created."
+        },
+        {
+            "id": "genuine_inspection",
+            "description": "Agent used browser tools to find styles rather than guessing common brand colors.",
+            "visual_evidence": "Screenshots show the 'Inspect Element' pane or 'Computed' styles tab open for specific elements like headers or buttons."
+        },
+        {
+            "id": "file_creation_method",
+            "description": "Agent created the file via text editor or terminal redirection, not just displaying text in the console.",
+            "visual_evidence": "A screenshot shows a text editor (like Gedit or VS Code) or a 'cat >' / 'echo' command targeting the specific path."
+        }
+    ],
+    "privileged_info_for_vlm": "GitHub typically uses a system font stack starting with '-apple-system, BlinkMacSystemFont, Segoe UI'. Common GitHub hex codes include #24292f (header), #0969da (blue links/buttons), and #ffffff. Python.org uses 'Source Sans Pro' or 'Lucida Grande'. Common Python hex codes include #3776ab (blue), #ffd43b (yellow), and #1e415e. The final report file must be at least 800 bytes to receive full credit according to the internal verifier logic."
+}

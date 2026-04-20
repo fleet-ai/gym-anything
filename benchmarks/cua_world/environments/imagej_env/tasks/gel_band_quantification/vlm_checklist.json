@@ -1,0 +1,53 @@
+{
+    "task_id": "gel_band_quantification@1",
+    "task_completion": [
+        {
+            "id": "open_gel_sample",
+            "description": "Open the 'Gel' sample image using Fiji's built-in sample menu.",
+            "points": 10,
+            "visual_evidence": "A window titled 'Gel' is visible within the Fiji/ImageJ interface, showing a grayscale gel electrophoresis image."
+        },
+        {
+            "id": "lane_selection",
+            "description": "Define lanes using the Rectangular Selection tool and the 'Select First Lane' command.",
+            "points": 15,
+            "visual_evidence": "Rectangular selection boxes are drawn over the gel lanes, and a 'Lane Profile' plot window appears after selecting lanes."
+        },
+        {
+            "id": "peak_integration",
+            "description": "Use the Wand tool or line tool to close off peaks in the profile plot and measure their areas.",
+            "points": 25,
+            "visual_evidence": "The Lane Profile plot shows straight lines drawn across the base of peaks to enclose them, and the 'Results' table begins populating with area measurements."
+        },
+        {
+            "id": "data_calculation",
+            "description": "Calculate background-corrected integrated optical density and relative percentages.",
+            "points": 25,
+            "visual_evidence": "A spreadsheet, text editor, or Fiji Results table is visible showing calculations where values are expressed as percentages relative to the highest value in a lane."
+        },
+        {
+            "id": "save_csv_results",
+            "description": "Save the final results table to the specified file path with all required columns.",
+            "points": 25,
+            "visual_evidence": "A file explorer window or terminal output confirms the existence of '~/ImageJ_Data/results/gel_quantification.csv' containing columns for lane number, band position, integrated intensity, and relative intensity."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Fiji GUI to perform the analysis rather than script-injecting the final CSV.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Fiji menus (Analyze > Gels) and the manual drawing of lines on the profile plots."
+        },
+        {
+            "id": "authentic_image_source",
+            "description": "The agent used the actual 'Gel' sample from Fiji, not a placeholder or external image.",
+            "visual_evidence": "The image window header matches the standard Fiji 'Gel' sample (8-bit, grayscale, specific band pattern)."
+        },
+        {
+            "id": "manual_quantification_process",
+            "description": "The agent did not skip the profile plot step, which is necessary for standard Fiji gel quantification.",
+            "visual_evidence": "The 'Lane Profile' window is visible at some point in the trajectory, showing the peaks corresponding to the bands."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'Gel' sample is a standard Fiji 8-bit grayscale image accessible via File > Open Samples > Gel. Correct quantification in Fiji requires using the 'Analyze > Gels' menu. The process involves: 1. Selecting lanes with the rectangle tool (Ctrl+1, Ctrl+2), 2. Generating profile plots (Ctrl+3), 3. Closing peak bottoms with the line tool, and 4. Clicking inside peaks with the Wand tool to generate area data. The final CSV must be saved in ~/ImageJ_Data/results/."
+}

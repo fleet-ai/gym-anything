@@ -1,0 +1,53 @@
+{
+    "task_id": "hardware_recall_processing@1",
+    "task_completion": [
+        {
+            "id": "create_status_label",
+            "description": "Create a status label named 'Hardware Recall' with the type 'Undeployable'.",
+            "points": 15,
+            "visual_evidence": "Screenshot of the 'Create Status Label' form filled out with Name: 'Hardware Recall' and Status Type: 'Undeployable', or the label appearing in the Status Labels list."
+        },
+        {
+            "id": "check_in_assets",
+            "description": "Check in all currently deployed 'HP EliteBook 840 G7' laptops.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the 'Checkin Asset' process for G7 models or the asset list showing G7 laptops with a 'Ready to Deploy' or 'Hardware Recall' status instead of being assigned to users."
+        },
+        {
+            "id": "assign_recall_status",
+            "description": "Assign the 'Hardware Recall' status label to all 'HP EliteBook 840 G7' assets.",
+            "points": 25,
+            "visual_evidence": "The asset list or individual asset pages for 'HP EliteBook 840 G7' showing the Status field updated to 'Hardware Recall'."
+        },
+        {
+            "id": "upload_recall_notice",
+            "description": "Attach 'CPSC_Recall_Notice.pdf' to the 'HP EliteBook 840 G7' asset model.",
+            "points": 25,
+            "visual_evidence": "The 'Files' tab of the 'HP EliteBook 840 G7' Asset Model page showing 'CPSC_Recall_Notice.pdf' has been uploaded."
+        },
+        {
+            "id": "verify_g8_unmodified",
+            "description": "Ensure 'HP EliteBook 840 G8' laptops remain unmodified.",
+            "points": 10,
+            "visual_evidence": "The asset list showing 'HP EliteBook 840 G8' laptops still having their original status (e.g., 'Deployed' or 'Ready to Deploy') and not 'Hardware Recall'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Snipe-IT web interface rather than executing direct database queries or CLI scripts to modify assets.",
+            "visual_evidence": "Screenshots show the browser navigating through Snipe-IT menus, clicking buttons, and filling web forms."
+        },
+        {
+            "id": "file_source_verification",
+            "description": "The agent uploaded the specific file from the local directory as requested.",
+            "visual_evidence": "The file upload dialog or file path in the browser shows '~/Documents/CPSC_Recall_Notice.pdf' being selected."
+        },
+        {
+            "id": "no_bulk_deletion",
+            "description": "The agent did not delete assets to 'remove' them from the fleet, but followed the recall/quarantine process.",
+            "visual_evidence": "The asset list still contains the G7 records, just with updated statuses."
+        }
+    ],
+    "privileged_info_for_vlm": "The target model for the recall is 'HP EliteBook 840 G7'. The control model that must NOT be modified is 'HP EliteBook 840 G8'. The required status label name is 'Hardware Recall' and its type must be 'Undeployable'. The recall notice PDF must be attached to the Asset Model (G7), not just individual assets."
+}

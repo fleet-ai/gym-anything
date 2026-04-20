@@ -1,0 +1,59 @@
+{
+    "task_id": "gapdh_denovo_annotation@1",
+    "task_completion": [
+        {
+            "id": "load_raw_fasta",
+            "description": "The agent loads the raw GAPDH mRNA sequence from ~/UGENE_Data/gapdh/gapdh_raw.fasta into UGENE.",
+            "points": 10,
+            "visual_evidence": "UGENE interface showing 'gapdh_raw.fasta' open in the Sequence View or Project View."
+        },
+        {
+            "id": "orf_search_execution",
+            "description": "The agent performs an ORF search with a minimum length of 300 nucleotides.",
+            "points": 15,
+            "visual_evidence": "The 'Find ORFs' dialog box with 'Min length' set to 300, or the resulting ORF annotations appearing on the sequence map."
+        },
+        {
+            "id": "motif_search_execution",
+            "description": "The agent searches for the Kozak consensus motif and the polyadenylation signal (AATAAA).",
+            "points": 15,
+            "visual_evidence": "The 'Search' or 'Find Pattern' dialog showing the strings '[AGC]CCATGG', 'GCCACCATG', or 'AATAAA' being entered or found."
+        },
+        {
+            "id": "export_genbank",
+            "description": "The agent exports the annotated sequence as a GenBank file to the specified results directory.",
+            "points": 20,
+            "visual_evidence": "The 'Export as GenBank' dialog showing the output path ~/UGENE_Data/gapdh/results/gapdh_annotated.gb."
+        },
+        {
+            "id": "translate_and_export_protein",
+            "description": "The agent translates the longest ORF and exports it as a FASTA file.",
+            "points": 20,
+            "visual_evidence": "The 'Export Sequence' or 'Translate' dialog showing the output path ~/UGENE_Data/gapdh/results/gapdh_protein.fa."
+        },
+        {
+            "id": "generate_report",
+            "description": "The agent creates a plain text summary report with the required statistics.",
+            "points": 20,
+            "visual_evidence": "A text editor (like Gedit or UGENE's internal editor) showing annotation_report.txt with the ORF count, protein length, and motif confirmation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent uses the UGENE GUI to perform biological analysis rather than just using terminal commands to create files.",
+            "visual_evidence": "Screenshots showing the UGENE application window, menus, and sequence visualization active during the process."
+        },
+        {
+            "id": "genuine_translation",
+            "description": "The protein length in the report matches the actual translation of the synthetic sequence.",
+            "visual_evidence": "The report text should mention a protein length of approximately 430 amino acids, reflecting the synthetic duplication in the provided data."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent does not simply copy-paste content from a hidden source but interacts with the software.",
+            "visual_evidence": "The agent is seen clicking through UGENE menus (e.g., 'Analyze' -> 'Find ORFs') rather than just typing 'cp' or 'echo' in a terminal."
+        }
+    ],
+    "privileged_info_for_vlm": "The input sequence is a synthetic version of NM_002046.7 with duplications. The longest ORF resulting from this specific file is 430 amino acids long. The agent must use the UGENE GUI for the annotation and translation. The required export paths are ~/UGENE_Data/gapdh/results/gapdh_annotated.gb, ~/UGENE_Data/gapdh/results/gapdh_protein.fa, and ~/UGENE_Data/gapdh/results/annotation_report.txt."
+}

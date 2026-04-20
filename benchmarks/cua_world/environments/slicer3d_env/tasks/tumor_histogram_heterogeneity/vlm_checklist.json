@@ -1,0 +1,53 @@
+{
+    "task_id": "tumor_histogram_heterogeneity@1",
+    "task_completion": [
+        {
+            "id": "load_mri_and_segmentation",
+            "description": "Load the T1ce MRI volume and the corresponding tumor segmentation into the medical imaging software (e.g., 3Slicer).",
+            "points": 10,
+            "visual_evidence": "Screenshots showing both the brain MRI and the segmentation mask (label map or closed surface) overlaid in the slice viewers."
+        },
+        {
+            "id": "calculate_statistics",
+            "description": "Use a quantification tool (e.g., Segment Statistics) to calculate intensity values for the tumor region.",
+            "points": 20,
+            "visual_evidence": "A statistics table or module interface showing calculated values for Mean, SD, Min, and Max for the tumor segment."
+        },
+        {
+            "id": "export_csv_statistics",
+            "description": "Export the calculated intensity statistics to the specific CSV file path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or terminal output showing the creation of '~/Documents/SlicerData/BraTS/tumor_statistics.csv'."
+        },
+        {
+            "id": "calculate_cv_and_classification",
+            "description": "Calculate the Coefficient of Variation (CV) and determine the heterogeneity classification based on the intensity data.",
+            "points": 25,
+            "visual_evidence": "A text editor or terminal showing the calculation of CV (SD/Mean * 100) and the assignment of a heterogeneity class (e.g., Homogeneous, Mild, Moderate, or High)."
+        },
+        {
+            "id": "generate_json_report",
+            "description": "Create the final JSON report with all required fields: mean_intensity, std_intensity, min_intensity, max_intensity, coefficient_of_variation_percent, and heterogeneity_class.",
+            "points": 25,
+            "visual_evidence": "A screenshot of the content of '~/Documents/SlicerData/BraTS/heterogeneity_report.json' containing all six specified keys and their corresponding values."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the medical imaging software GUI to perform the segmentation analysis rather than just scripting the output.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with Slicer modules like 'Segment Statistics' or 'Data'."
+        },
+        {
+            "id": "genuine_data_processing",
+            "description": "The statistics in the report match the visual data shown in the software interface.",
+            "visual_evidence": "The numbers (Mean, SD) visible in the software's statistics table match the numbers written into the CSV and JSON files."
+        },
+        {
+            "id": "no_premade_files",
+            "description": "The agent did not simply find an existing report but generated it during the session.",
+            "visual_evidence": "The file save dialog or terminal 'cat' command showing the file being written or created after the analysis steps."
+        }
+    ],
+    "privileged_info_for_vlm": "The heterogeneity classification thresholds are: CV < 20% = Homogeneous; 20% <= CV < 35% = Mild; 35% <= CV < 50% = Moderate; CV >= 50% = High/Heterogeneous. The CV is calculated as (Standard Deviation / Mean) * 100. Ensure the JSON keys exactly match: mean_intensity, std_intensity, min_intensity, max_intensity, coefficient_of_variation_percent, and heterogeneity_class."
+}

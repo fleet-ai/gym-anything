@@ -1,0 +1,59 @@
+{
+    "task_id": "mass_update_accounts@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_accounts",
+            "description": "Agent navigates to the Accounts module in SuiteCRM.",
+            "points": 10,
+            "visual_evidence": "The browser shows the SuiteCRM Accounts list view or the Accounts module menu item being clicked."
+        },
+        {
+            "id": "filter_technology_industry",
+            "description": "Agent filters the account list to show only those with the 'Technology' industry.",
+            "points": 20,
+            "visual_evidence": "The search/filter panel is visible with 'Technology' selected in the Industry field, or the resulting list shows only Technology accounts."
+        },
+        {
+            "id": "select_all_filtered_accounts",
+            "description": "Agent selects all accounts that match the 'Technology' filter criteria.",
+            "points": 15,
+            "visual_evidence": "Checkboxes next to the Technology accounts are checked, or the 'Select All' checkbox in the header is clicked while the filter is active."
+        },
+        {
+            "id": "access_mass_update",
+            "description": "Agent opens the Mass Update panel/tool from the Actions menu.",
+            "points": 15,
+            "visual_evidence": "The 'Mass Update' option is selected from the 'Bulk Action' or 'Actions' dropdown, and the Mass Update form appears at the bottom or in a modal."
+        },
+        {
+            "id": "set_rating_to_hot",
+            "description": "Agent sets the 'Rating' field to 'Hot' within the Mass Update interface.",
+            "points": 20,
+            "visual_evidence": "The Mass Update panel shows the 'Rating' dropdown set to 'Hot' before the update is executed."
+        },
+        {
+            "id": "execute_and_verify_update",
+            "description": "Agent executes the update and verifies that exactly 6 accounts were updated to 'Hot'.",
+            "points": 20,
+            "visual_evidence": "The agent clicks 'Update'. The final screen shows the list of Technology accounts now displaying 'Hot' in the Rating column. Exactly 6 accounts should be visible/affected."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_terminal_sql",
+            "description": "The agent did not use the terminal to execute SQL queries to update the database directly.",
+            "visual_evidence": "The terminal logs (if visible) do not show SQL update commands; the agent remains in the browser GUI for the update process."
+        },
+        {
+            "id": "genuine_gui_interaction",
+            "description": "The agent interacted with the SuiteCRM UI elements rather than just navigating to a success URL.",
+            "visual_evidence": "Screenshots show the cursor or highlights on the Industry filter, checkboxes, and the Mass Update button."
+        },
+        {
+            "id": "no_manual_single_edits",
+            "description": "The agent used the Mass Update feature as requested rather than editing 6 accounts individually.",
+            "visual_evidence": "The agent is seen using the Bulk Action/Mass Update menu rather than clicking the 'Edit' pencil icon for each row one by one."
+        }
+    ],
+    "privileged_info_for_vlm": "The target industry is 'Technology' and the target rating is 'Hot'. There are exactly 6 accounts in the database that match the 'Technology' industry criteria. The agent must use the 'Mass Update' feature specifically."
+}

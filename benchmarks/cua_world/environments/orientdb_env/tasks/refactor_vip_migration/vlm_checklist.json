@@ -1,0 +1,53 @@
+{
+    "task_id": "refactor_vip_migration@1",
+    "task_completion": [
+        {
+            "id": "schema_creation",
+            "description": "Create the new classes: VIPProfiles (extending Profiles), Managers (vertex), and ManagedBy (edge).",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the OrientDB Schema tab or SQL commands creating 'VIPProfiles' (super-class Profiles), 'Managers' (super-class V), and 'ManagedBy' (super-class E)."
+        },
+        {
+            "id": "manager_vertex_creation",
+            "description": "Create a manager vertex named 'Akira Kurosawa' in the Managers class.",
+            "points": 10,
+            "visual_evidence": "A screenshot of a 'CREATE VERTEX Managers SET Name = \"Akira Kurosawa\"' command or the Browse tab showing a record in the Managers class with the name Akira Kurosawa."
+        },
+        {
+            "id": "profile_migration",
+            "description": "Migrate Japanese profiles (Yuki Tanaka and Kai Yamamoto) from Profiles to VIPProfiles.",
+            "points": 30,
+            "visual_evidence": "SQL commands using 'MOVE VERTEX' or 'UPDATE' to change the class of records where Nationality='Japanese' to VIPProfiles. The VLM should see the class change for these specific records."
+        },
+        {
+            "id": "verify_data_preservation",
+            "description": "Ensure existing data (Name, Nationality, etc.) is preserved in the new VIPProfiles class.",
+            "points": 15,
+            "visual_evidence": "A query result showing the VIPProfiles class containing the migrated records with their original attributes (e.g., Yuki Tanaka, Nationality: Japanese) intact."
+        },
+        {
+            "id": "edge_creation",
+            "description": "Link all VIPProfiles to the Akira Kurosawa manager using ManagedBy edges.",
+            "points": 30,
+            "visual_evidence": "SQL commands (e.g., 'CREATE EDGE ManagedBy FROM (SELECT FROM VIPProfiles) TO (SELECT FROM Managers WHERE Name = \"Akira Kurosawa\")') or a graph visualization showing edges between the VIP profiles and the manager."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OrientDB Studio web interface to perform the tasks.",
+            "visual_evidence": "Screenshots show the browser window with the OrientDB Studio URL and UI elements (Schema, Browse, Graph tabs) rather than just a terminal."
+        },
+        {
+            "id": "genuine_database_query",
+            "description": "The agent queried the database to identify Japanese profiles rather than guessing.",
+            "visual_evidence": "A screenshot showing a SELECT query filtered by Nationality='Japanese' or a browse view of the Profiles class."
+        },
+        {
+            "id": "no_hardcoded_rids",
+            "description": "The agent used logical queries or class-based migration rather than hardcoding specific Record IDs (RIDs) without looking them up.",
+            "visual_evidence": "SQL commands use class names or WHERE clauses (Nationality='Japanese') instead of arbitrary RIDs like #12:1."
+        }
+    ],
+    "privileged_info_for_vlm": "The 'demodb' contains exactly two Japanese profiles: Yuki Tanaka and Kai Yamamoto. The agent must create three classes: VIPProfiles (extends Profiles), Managers (extends V), and ManagedBy (extends E). It must move the two Japanese profiles to VIPProfiles and link them to a new Manager vertex named 'Akira Kurosawa' via the ManagedBy edge."
+}

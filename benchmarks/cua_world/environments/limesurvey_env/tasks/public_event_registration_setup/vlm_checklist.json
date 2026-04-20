@@ -1,0 +1,53 @@
+{
+    "task_id": "public_event_registration_setup@1",
+    "task_completion": [
+        {
+            "id": "login_success",
+            "description": "Log in to the admin panel using the provided credentials.",
+            "points": 10,
+            "visual_evidence": "The VLM should see the LimeSurvey admin dashboard or the 'Global Tech Summit 2024' survey overview page after entering 'admin' and 'Admin123!'."
+        },
+        {
+            "id": "enable_public_registration",
+            "description": "Enable public registration for the survey.",
+            "points": 15,
+            "visual_evidence": "In the 'Publication & access' or 'Participant settings' menu, the 'Allow public registration' toggle or dropdown is set to 'Yes' or 'On'."
+        },
+        {
+            "id": "enable_captcha",
+            "description": "Enable CAPTCHA protection for the registration form.",
+            "points": 15,
+            "visual_evidence": "In the survey settings, the option 'Use CAPTCHA for registration' is set to 'Yes' or 'On'."
+        },
+        {
+            "id": "add_organization_attribute",
+            "description": "Add 'Organization' as a mandatory and visible attribute in the participant settings.",
+            "points": 30,
+            "visual_evidence": "In the 'Participant attributes' management screen, an attribute named 'Organization' is listed with 'Mandatory' set to 'Yes' and 'Visible' set to 'Yes'."
+        },
+        {
+            "id": "add_job_title_attribute",
+            "description": "Add 'Job Title' as a mandatory and visible attribute in the participant settings.",
+            "points": 30,
+            "visual_evidence": "In the 'Participant attributes' management screen, an attribute named 'Job Title' is listed with 'Mandatory' set to 'Yes' and 'Visible' set to 'Yes'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the web interface rather than executing database scripts or CLI commands to modify settings.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the LimeSurvey web UI elements and navigating through menus."
+        },
+        {
+            "id": "no_hardcoded_url_skip",
+            "description": "The agent navigated through the survey settings menus rather than jumping directly to a final success URL.",
+            "visual_evidence": "The trajectory shows intermediate steps like clicking 'Participant settings' or 'Survey settings' before reaching the attribute configuration page."
+        },
+        {
+            "id": "authentic_input",
+            "description": "The agent manually typed or selected the attribute names and settings.",
+            "visual_evidence": "Screenshots show the 'Organization' and 'Job Title' text being entered into the attribute name fields in the browser."
+        }
+    ],
+    "privileged_info_for_vlm": "The survey title is 'Global Tech Summit 2024'. Admin credentials are admin/Admin123!. To satisfy the requirements, the 'allowregister' and 'registration_captcha' settings must both be set to 'Y' (Yes). Two specific participant attributes must be created and configured as mandatory: 'Organization' and 'Job Title'. These are typically found under 'Survey participants' -> 'Manage attributes'."
+}

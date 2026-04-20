@@ -1,0 +1,59 @@
+{
+    "task_id": "mars_sso_design@1",
+    "task_completion": [
+        {
+            "id": "read_spec_file",
+            "description": "Agent opens and reads the mission specification file at ~/Desktop/mars_sso_spec.txt.",
+            "points": 10,
+            "visual_evidence": "A text editor or terminal window showing the contents of mars_sso_spec.txt."
+        },
+        {
+            "id": "gmat_orbit_setup",
+            "description": "Agent configures the spacecraft orbit in GMAT with SMA = 3796.19 km, ECC = 0.0, and the calculated inclination (~92.9 deg).",
+            "points": 20,
+            "visual_evidence": "GMAT 'Spacecraft' properties window showing SMA, ECC, and Inclination values."
+        },
+        {
+            "id": "gmat_gravity_model",
+            "description": "Agent configures the Force Model to use Mars50c with Degree and Order >= 2.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagator' or 'ForceModel' dialog showing 'Mars50c' selected with Degree/Order fields set to at least 2."
+        },
+        {
+            "id": "gmat_propagation_time",
+            "description": "Agent sets the propagation duration to exactly 60 Earth days.",
+            "points": 15,
+            "visual_evidence": "GMAT 'Propagate' command dialog or script showing 'ElapsedDays = 60' or equivalent seconds (5184000)."
+        },
+        {
+            "id": "save_gmat_script",
+            "description": "Agent saves the GMAT script to the specified path ~/Documents/missions/mars_sso.script.",
+            "points": 20,
+            "visual_evidence": "GMAT title bar or 'Save As' dialog showing the file path /home/ga/Documents/missions/mars_sso.script."
+        },
+        {
+            "id": "export_report",
+            "description": "Agent runs the mission and exports a report to ~/GMAT_output/mars_sso_report.txt.",
+            "points": 20,
+            "visual_evidence": "GMAT 'ReportFile' resource configuration or a file explorer showing the generated report in the GMAT_output folder."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the GMAT graphical user interface to configure the mission rather than just writing a script via terminal.",
+            "visual_evidence": "Screenshots showing the GMAT application window, resource tree, and property dialogs being manipulated."
+        },
+        {
+            "id": "genuine_calculation",
+            "description": "Agent calculated the inclination based on the spec file rather than guessing.",
+            "visual_evidence": "Calculator app or scratchpad usage showing the derivation of ~92.9 degrees."
+        },
+        {
+            "id": "no_premade_script",
+            "description": "Agent did not simply open an existing script but built the mission resources manually.",
+            "visual_evidence": "Sequential screenshots showing the creation and naming of new resources in the GMAT tree."
+        }
+    ],
+    "privileged_info_for_vlm": "The target Semi-Major Axis (SMA) is 3796.19 km (Mars radius 3396.19 + 400 km altitude). The correct Sun-Synchronous inclination for this altitude at Mars is approximately 92.9 degrees (acceptable range 92.8 to 93.0). The propagation must be 60 Earth days. The gravity model must be Mars50c. Output files must be in ~/Documents/missions/mars_sso.script and ~/GMAT_output/mars_sso_report.txt."
+}

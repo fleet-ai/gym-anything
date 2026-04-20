@@ -1,0 +1,59 @@
+{
+    "task_id": "mac_oui_inventory@1",
+    "task_completion": [
+        {
+            "id": "open_pcap_files",
+            "description": "Agent opens the specified capture files in Wireshark or a packet analysis tool.",
+            "points": 10,
+            "visual_evidence": "Screenshots showing Wireshark or a terminal-based packet analyzer (like tshark) opening http.cap, dns.cap, telnet-cooked.pcap, or smtp.pcap."
+        },
+        {
+            "id": "extract_mac_and_vendor",
+            "description": "Agent identifies MAC addresses and performs OUI lookups for hardware vendors.",
+            "points": 20,
+            "visual_evidence": "Screenshots showing the agent viewing Ethernet layer details in Wireshark or running commands/scripts to map MAC addresses to vendors."
+        },
+        {
+            "id": "calculate_packet_statistics",
+            "description": "Agent calculates total packets sent and received for each unique MAC address across all files.",
+            "points": 25,
+            "visual_evidence": "Screenshots showing the use of 'Endpoints' statistics in Wireshark, or terminal output showing packet counts per MAC address."
+        },
+        {
+            "id": "identify_most_active_sender",
+            "description": "Agent identifies the MAC address with the highest 'Packets Sent' count.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing a sorted list of senders or a specific note/command identifying 00:a0:cc:3b:bf:fa as the top sender."
+        },
+        {
+            "id": "create_report_file",
+            "description": "Agent creates the report file at the specified path with the correct header.",
+            "points": 10,
+            "visual_evidence": "A screenshot of a text editor or terminal showing the creation of ~/Documents/captures/mac_inventory_report.txt with the '=== MAC Address Network Inventory Report ===' header."
+        },
+        {
+            "id": "verify_report_content",
+            "description": "The final report contains the correct total count, most active sender details, and per-device inventory.",
+            "points": 20,
+            "visual_evidence": "A screenshot of the final mac_inventory_report.txt showing 12 unique MACs, the most active sender (00:a0:cc:3b:bf:fa), and the per-device breakdown."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_hardcoded_values",
+            "description": "Agent did not simply echo the ground truth values without analyzing the files.",
+            "visual_evidence": "The agent should be seen interacting with the PCAP files (Wireshark GUI or tshark) before the report is generated."
+        },
+        {
+            "id": "genuine_analysis",
+            "description": "Agent performs actual packet analysis rather than just listing files.",
+            "visual_evidence": "Screenshots should show packet-level details or statistical summaries within an analysis tool, not just a directory listing."
+        },
+        {
+            "id": "correct_path_usage",
+            "description": "Agent uses the specific file paths provided in the task.",
+            "visual_evidence": "Commands or file-open dialogs should explicitly reference ~/Documents/captures/."
+        }
+    ],
+    "privileged_info_for_vlm": "The total number of unique MAC addresses across all files is 12. The most active sender is MAC address 00:a0:cc:3b:bf:fa (Vendor: GVC Corporation) which is primarily found in telnet-cooked.pcap. The report must be saved to /home/ga/Documents/captures/mac_inventory_report.txt and follow the specific colon-separated MAC format and header structure defined in the prompt."
+}

@@ -1,0 +1,59 @@
+{
+    "task_id": "create_subitizing_experiment@1",
+    "task_completion": [
+        {
+            "id": "stimulus_script_creation",
+            "description": "The agent creates the stimulus generation script 'generate_stimuli.py' in the correct directory.",
+            "points": 10,
+            "visual_evidence": "A code editor or terminal showing the file path /home/ga/PsychoPyExperiments/subitizing/generate_stimuli.py and code for generating dot images."
+        },
+        {
+            "id": "assets_generation",
+            "description": "The agent generates 8 stimulus images (1.png to 8.png) in the 'assets' folder.",
+            "points": 15,
+            "visual_evidence": "A file explorer or terminal output showing 8 image files (1.png through 8.png) inside the /home/ga/PsychoPyExperiments/subitizing/assets/ directory."
+        },
+        {
+            "id": "conditions_file_setup",
+            "description": "The agent creates a conditions.csv file to manage the stimuli.",
+            "points": 10,
+            "visual_evidence": "A spreadsheet view or text editor showing conditions.csv with paths to the generated images."
+        },
+        {
+            "id": "psychopy_routine_setup",
+            "description": "The PsychoPy experiment is configured with a fixation cross and an image stimulus.",
+            "points": 20,
+            "visual_evidence": "The PsychoPy Builder interface showing a routine containing at least a 'polygon' (fixation) and an 'image' component."
+        },
+        {
+            "id": "timing_configuration",
+            "description": "The fixation cross is set to 500ms and the stimulus image is set to exactly 200ms.",
+            "points": 25,
+            "visual_evidence": "PsychoPy component properties windows showing 'Start: 0.0' and 'Duration: 0.5' for the fixation, and 'Start: 0.5' and 'Duration: 0.2' for the image stimulus."
+        },
+        {
+            "id": "keyboard_response_setup",
+            "description": "A keyboard component is configured to accept keys 1-8 and end the routine.",
+            "points": 20,
+            "visual_evidence": "PsychoPy Keyboard component properties showing 'Allowed keys: '1', '2', '3', '4', '5', '6', '7', '8'' and the 'Force end of routine' box checked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "psychopy_gui_usage",
+            "description": "The agent uses the PsychoPy Builder GUI to create the experiment rather than just writing raw Python code.",
+            "visual_evidence": "Screenshots showing the PsychoPy Builder window with components being added and edited."
+        },
+        {
+            "id": "genuine_stimuli_generation",
+            "description": "The agent actually runs the script to generate images rather than manually placing dummy files.",
+            "visual_evidence": "Terminal output showing the execution of 'python generate_stimuli.py' or similar command."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent does not bypass the experiment logic by hardcoding a success message.",
+            "visual_evidence": "The PsychoPy 'subitizing_task.psyexp' file properties or code view showing dynamic loading of images via the conditions file."
+        }
+    ],
+    "privileged_info_for_vlm": "The project must be located at /home/ga/PsychoPyExperiments/subitizing/. The stimulus duration must be exactly 0.2 seconds (200ms). There must be exactly 8 images named 1.png through 8.png in an 'assets' subfolder. The keyboard component must specifically allow keys 1, 2, 3, 4, 5, 6, 7, and 8."
+}

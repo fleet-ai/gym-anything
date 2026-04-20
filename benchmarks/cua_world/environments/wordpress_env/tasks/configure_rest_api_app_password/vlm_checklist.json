@@ -1,0 +1,59 @@
+{
+    "task_id": "configure_rest_api_app_password@1",
+    "task_completion": [
+        {
+            "id": "navigate_to_user_profile",
+            "description": "Navigate to the 'Users' or 'Profile' section in the WordPress dashboard to manage application passwords.",
+            "points": 10,
+            "visual_evidence": "The WordPress dashboard showing the 'Edit User' or 'Profile' page for the admin user."
+        },
+        {
+            "id": "create_app_password",
+            "description": "Create a new Application Password named 'MobileApp_iOS'.",
+            "points": 20,
+            "visual_evidence": "A screenshot showing the name 'MobileApp_iOS' entered into the application password field and the resulting generated password displayed in a success box."
+        },
+        {
+            "id": "save_credentials_file",
+            "description": "Save the credentials in 'admin:PASSWORD' format to /home/ga/mobile_api_credentials.txt.",
+            "points": 20,
+            "visual_evidence": "A terminal window or text editor showing the file /home/ga/mobile_api_credentials.txt containing the admin username and the generated password."
+        },
+        {
+            "id": "create_new_post",
+            "description": "Initiate the creation of a new post with the correct title.",
+            "points": 10,
+            "visual_evidence": "The WordPress post editor open with the title 'App Configuration Endpoint' entered."
+        },
+        {
+            "id": "set_post_to_private",
+            "description": "Set the post visibility to 'Private'.",
+            "points": 15,
+            "visual_evidence": "The post settings sidebar showing 'Visibility: Private' selected or a confirmation dialog for publishing a private post."
+        },
+        {
+            "id": "insert_json_content",
+            "description": "Insert the specific JSON data into the post body.",
+            "points": 25,
+            "visual_evidence": "The post editor showing the JSON block with app_version '2.4.1', maintenance_mode false, and the specified features and api_base."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_priority",
+            "description": "The agent should use the WordPress web interface to create the password and post, rather than direct database manipulation.",
+            "visual_evidence": "Screenshots showing the agent clicking buttons and typing within the WordPress browser interface."
+        },
+        {
+            "id": "no_placeholder_values",
+            "description": "The agent must use the actual generated password, not a placeholder like 'PASSWORD' or '1234'.",
+            "visual_evidence": "The credentials file and post content should contain the specific values generated during the session."
+        },
+        {
+            "id": "genuine_post_creation",
+            "description": "The post must be created through the WordPress editor, not just simulated.",
+            "visual_evidence": "The 'Post published' or 'Post updated' notification appearing in the WordPress UI."
+        }
+    ],
+    "privileged_info_for_vlm": "The Application Password must be named 'MobileApp_iOS'. The credentials file must be at /home/ga/mobile_api_credentials.txt in 'admin:PASSWORD' format. The post title must be 'App Configuration Endpoint', its status must be 'Private', and the JSON must contain: app_version: '2.4.1', maintenance_mode: false, features: ['push_notifications', 'dark_mode', 'offline_sync'], and api_base: 'https://api.nimbustech.com/v2'."
+}

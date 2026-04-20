@@ -1,0 +1,59 @@
+{
+    "task_id": "matrix_reasoning_ctt_analysis@1",
+    "task_completion": [
+        {
+            "id": "data_loading_and_filtering",
+            "description": "Agent loads the CSV and filters out participants with a mean RT < 1500ms.",
+            "points": 15,
+            "visual_evidence": "Python code or terminal output showing the calculation of mean RT per participant and the exclusion of those below the 1500ms threshold."
+        },
+        {
+            "id": "item_difficulty_calculation",
+            "description": "Agent calculates the Item Difficulty (mean accuracy) for all 30 items.",
+            "points": 15,
+            "visual_evidence": "Python code or dataframes showing the calculation of the mean of the 'correct' column grouped by 'item_id'."
+        },
+        {
+            "id": "corrected_item_total_correlation",
+            "description": "Agent calculates the Pearson correlation between each item and the sum of the remaining 29 items.",
+            "points": 25,
+            "visual_evidence": "Python code showing a loop or vectorized operation calculating the correlation of an item with the total score minus that specific item."
+        },
+        {
+            "id": "cronbach_alpha_calculation",
+            "description": "Agent calculates Cronbach's Alpha using sample variance for the valid participants.",
+            "points": 20,
+            "visual_evidence": "Python code showing the Cronbach's Alpha formula implementation, specifically using sample variance (N-1) for the components."
+        },
+        {
+            "id": "identify_miskeyed_item",
+            "description": "Agent identifies the single item with a negative corrected item-total correlation.",
+            "points": 10,
+            "visual_evidence": "Code output or a variable assignment identifying the specific item_id where the correlation value is less than zero."
+        },
+        {
+            "id": "export_json_report",
+            "description": "Agent exports the final results to ~/pebl/analysis/item_analysis_report.json with the specified schema.",
+            "points": 15,
+            "visual_evidence": "A screenshot of the terminal or file explorer showing the creation of the JSON file, or the code block executing the export with the correct dictionary structure."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_python_execution",
+            "description": "The agent performed the analysis using Python scripts rather than manually typing values into a JSON file.",
+            "visual_evidence": "Screenshots must show an IDE (like VS Code), a Jupyter notebook, or a terminal running a .py script, rather than just a text editor creating the final JSON from scratch."
+        },
+        {
+            "id": "no_hardcoded_results",
+            "description": "The agent did not hardcode the 'bad_item' or 'cronbach_alpha' values without calculation.",
+            "visual_evidence": "The code should show the logic for finding the minimum correlation or filtering for negative values, rather than 'bad_item = 12' (or similar) appearing without a search step."
+        },
+        {
+            "id": "file_system_interaction",
+            "description": "The agent interacted with the specified file paths.",
+            "visual_evidence": "The code must reference '~/pebl/data/matrix_reasoning_data.csv' and '~/pebl/analysis/item_analysis_report.json'."
+        }
+    ],
+    "privileged_info_for_vlm": "The dataset contains 30 items. The filtering step must be done at the participant level (mean RT across all items). Cronbach's Alpha must use sample variance (ddof=1). The 'bad_item' is the one where the Pearson correlation between that item's score and the sum of all other items is negative. The final JSON must include the list of excluded participant IDs, the overall alpha, the specific bad item details, and the full list of 30 item metrics."
+}

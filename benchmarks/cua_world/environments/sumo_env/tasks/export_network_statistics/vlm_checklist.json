@@ -1,0 +1,59 @@
+{
+    "task_id": "export_network_statistics@1",
+    "task_completion": [
+        {
+            "id": "sumo_gui_launched",
+            "description": "The SUMO-GUI application is open and displaying the Bologna Pasubio scenario.",
+            "points": 10,
+            "visual_evidence": "A window titled 'SUMO-GUI' is visible, showing a road network map (Bologna Pasubio)."
+        },
+        {
+            "id": "open_visualization_settings",
+            "description": "The agent opens the 'Edit Visualisation' or 'Street' settings dialog.",
+            "points": 15,
+            "visual_evidence": "A dialog box titled 'Edit Visualisation Settings' or similar is visible over the main GUI."
+        },
+        {
+            "id": "select_occupancy_coloring",
+            "description": "The coloring scheme is changed to 'by current occupancy (lanewise, brutto)'.",
+            "points": 25,
+            "visual_evidence": "In the visualization settings, the dropdown or selection for 'Color by' or 'Coloring' shows 'by current occupancy (lanewise, brutto)' selected."
+        },
+        {
+            "id": "simulation_started",
+            "description": "The simulation is started to generate traffic density data.",
+            "points": 20,
+            "visual_evidence": "The 'Play' button in the toolbar is pressed (appears toggled), and the simulation time/step counter in the top bar is incrementing."
+        },
+        {
+            "id": "visual_density_change",
+            "description": "The road network colors change to reflect traffic density.",
+            "points": 15,
+            "visual_evidence": "The edges/streets in the map view change from default colors to a color scale (e.g., green to red) representing occupancy."
+        },
+        {
+            "id": "screenshot_saved",
+            "description": "A screenshot is captured and saved to the specified path.",
+            "points": 15,
+            "visual_evidence": "A terminal command or file explorer view confirms the creation of '/home/ga/SUMO_Output/occupancy_coloring.png'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent interacted with the GUI menus to change settings rather than just using CLI flags.",
+            "visual_evidence": "Screenshots show the mouse cursor or highlighted menu items/dialogs within the SUMO-GUI interface."
+        },
+        {
+            "id": "genuine_simulation_run",
+            "description": "The simulation was actually run to produce the density visualization.",
+            "visual_evidence": "The simulation time in the GUI is greater than 0.00 and vehicles are visible on the network."
+        },
+        {
+            "id": "correct_scenario_loaded",
+            "description": "The agent is working on the Bologna Pasubio network, not a default or empty network.",
+            "visual_evidence": "The network layout matches the complex urban structure of the Bologna Pasubio scenario."
+        }
+    ],
+    "privileged_info_for_vlm": "The task must be performed in the 'bologna_pasubio' scenario. The specific coloring scheme required is 'by current occupancy (lanewise, brutto)'. The final output must be a screenshot saved at '/home/ga/SUMO_Output/occupancy_coloring.png'. Verify that the simulation was actually running (time > 0) when the screenshot was taken to ensure density data was present."
+}

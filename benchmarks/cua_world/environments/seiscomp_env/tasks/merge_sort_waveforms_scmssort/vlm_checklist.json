@@ -1,0 +1,53 @@
+{
+    "task_id": "merge_sort_waveforms_scmssort@1",
+    "task_completion": [
+        {
+            "id": "locate_source_files",
+            "description": "Agent navigates to or lists the SeisComP SDS archive directory to identify source miniSEED files.",
+            "points": 10,
+            "visual_evidence": "Terminal output or file manager showing files in /home/ga/seiscomp/var/lib/archive/."
+        },
+        {
+            "id": "execute_merge_command",
+            "description": "Agent executes a command (likely using scmssort) to merge the files into the specified output path.",
+            "points": 25,
+            "visual_evidence": "Terminal command showing 'scmssort' (or similar seismic tool) targeting /home/ga/merged_waveforms.mseed."
+        },
+        {
+            "id": "verify_merged_file_exists",
+            "description": "The merged file exists at the correct location with a non-trivial file size.",
+            "points": 20,
+            "visual_evidence": "Terminal output (ls -l) showing /home/ga/merged_waveforms.mseed with a size of approximately 187,392 bytes (must be > 51,200 bytes)."
+        },
+        {
+            "id": "generate_inventory_file",
+            "description": "Agent generates the text-based record inventory listing the traces.",
+            "points": 25,
+            "visual_evidence": "Terminal command or script execution creating /home/ga/waveform_inventory.txt."
+        },
+        {
+            "id": "verify_inventory_content",
+            "description": "The inventory file contains the required metadata (network, station, channel, time range) for the traces.",
+            "points": 20,
+            "visual_evidence": "Screenshot of 'cat /home/ga/waveform_inventory.txt' showing at least 3 lines with network code 'GE' and stations BKB, GSI, and SANI."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "no_manual_inventory_creation",
+            "description": "Agent did not manually type out the inventory file without processing the data.",
+            "visual_evidence": "The inventory generation should follow a command that reads the mseed file (e.g., scmsort -i or msview) rather than a simple 'echo' or 'cat >' of hardcoded strings."
+        },
+        {
+            "id": "genuine_source_interaction",
+            "description": "Agent actually accessed the SDS archive path provided in the task.",
+            "visual_evidence": "Commands or file explorer views must explicitly reference /home/ga/seiscomp/var/lib/archive/."
+        },
+        {
+            "id": "correct_tool_usage",
+            "description": "Agent used seismic-specific utilities rather than generic file concatenation which would corrupt miniSEED headers.",
+            "visual_evidence": "Use of 'scmssort' or other SeisComP/miniSEED specific tools in the command history."
+        }
+    ],
+    "privileged_info_for_vlm": "The source data contains 3 traces from the 'GE' network (stations: BKB, GSI, SANI). The final merged file /home/ga/merged_waveforms.mseed should be approximately 187 KB (minimum 51,200 bytes). The inventory file /home/ga/waveform_inventory.txt must contain at least 3 lines, each including the 'GE' network code and the specific station codes mentioned."
+}

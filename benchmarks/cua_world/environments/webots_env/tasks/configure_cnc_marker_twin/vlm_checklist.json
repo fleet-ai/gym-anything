@@ -1,0 +1,53 @@
+{
+    "task_id": "configure_cnc_marker_twin@1",
+    "task_completion": [
+        {
+            "id": "open_webots_scene",
+            "description": "Open the Webots application and locate the CNC_PLOTTER robot in the scene tree.",
+            "points": 10,
+            "visual_evidence": "The Webots interface is visible with 'CNC_PLOTTER' listed in the Scene Tree on the left side."
+        },
+        {
+            "id": "configure_x_limits",
+            "description": "Set the X_LIMITS SliderJoint parameters: minStop to 0.0 and maxStop to 0.4.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree or a pop-up dialog shows the 'X_LIMITS' node expanded with 'minStop' set to 0 and 'maxStop' set to 0.4."
+        },
+        {
+            "id": "configure_y_limits",
+            "description": "Set the Y_LIMITS SliderJoint parameters: minStop to 0.0 and maxStop to 0.3.",
+            "points": 20,
+            "visual_evidence": "The Scene Tree or a pop-up dialog shows the 'Y_LIMITS' node expanded with 'minStop' set to 0 and 'maxStop' set to 0.3."
+        },
+        {
+            "id": "configure_pen_properties",
+            "description": "Set the MARKING_PEN node properties: write to TRUE, inkColor to 1 0 0, and leadSize to 0.002.",
+            "points": 30,
+            "visual_evidence": "The 'MARKING_PEN' node is selected in the Scene Tree, showing 'write' as TRUE/checked, 'inkColor' as 1 0 0 (red), and 'leadSize' as 0.002 in the field editor."
+        },
+        {
+            "id": "save_world_file",
+            "description": "Save the configured world to the specified path on the Desktop.",
+            "points": 20,
+            "visual_evidence": "The 'Save World As...' dialog is visible with the path '/home/ga/Desktop/cnc_digital_twin.wbt' entered, or a file manager window shows the file exists at that location after saving."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the Webots GUI to modify parameters rather than just editing the text file via terminal.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with the Webots Scene Tree fields or property editor."
+        },
+        {
+            "id": "no_manual_file_creation",
+            "description": "The agent did not simply create a dummy file using 'touch' or 'echo' to bypass the simulation software.",
+            "visual_evidence": "The Webots application window is active during the configuration process."
+        },
+        {
+            "id": "authentic_parameter_entry",
+            "description": "The agent manually entered the specific values required by the task.",
+            "visual_evidence": "Sequential screenshots show the values 0.4, 0.3, and 0.002 being typed or selected in the Webots property fields."
+        }
+    ],
+    "privileged_info_for_vlm": "The robot name is 'CNC_PLOTTER'. Required SliderJoint limits: X (minStop: 0.0, maxStop: 0.4), Y (minStop: 0.0, maxStop: 0.3). Pen settings: write=TRUE, inkColor=[1, 0, 0], leadSize=0.002. The final file must be saved exactly as /home/ga/Desktop/cnc_digital_twin.wbt."
+}

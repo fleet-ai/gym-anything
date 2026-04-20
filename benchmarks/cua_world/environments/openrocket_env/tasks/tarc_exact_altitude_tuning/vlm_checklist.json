@@ -1,0 +1,59 @@
+{
+    "task_id": "tarc_exact_altitude_tuning@1",
+    "task_completion": [
+        {
+            "id": "open_rocket_file",
+            "description": "Open the initial rocket design file in OpenRocket.",
+            "points": 10,
+            "visual_evidence": "The OpenRocket application window is visible showing 'simple_model_rocket.ork' or the rocket design interface."
+        },
+        {
+            "id": "motor_replacement",
+            "description": "Replace the current motor with an Estes C6-5.",
+            "points": 15,
+            "visual_evidence": "The 'Motors and Configurations' tab or a motor selection dialog shows 'Estes C6-5' assigned to the motor mount."
+        },
+        {
+            "id": "add_tuning_ballast",
+            "description": "Add a 'Mass Component' named 'Tuning Ballast' inside the nose cone.",
+            "points": 15,
+            "visual_evidence": "The component tree shows a 'Mass component' named 'Tuning Ballast' nested under the 'Nose cone'."
+        },
+        {
+            "id": "altitude_tuning",
+            "description": "Adjust the ballast mass to achieve an apogee of 200.0m (± 2.0m).",
+            "points": 30,
+            "visual_evidence": "The simulation summary or flight profile plot shows an 'Apogee' or 'Max altitude' value between 198.0m and 202.0m."
+        },
+        {
+            "id": "save_design",
+            "description": "Save the final design to the specified path.",
+            "points": 15,
+            "visual_evidence": "The 'Save As' dialog or the window title bar shows the path '/home/ga/Documents/rockets/tuned_altitude_rocket.ork'."
+        },
+        {
+            "id": "export_report",
+            "description": "Export a tuning report with the motor, final mass, and final apogee.",
+            "points": 15,
+            "visual_evidence": "A text editor or terminal 'cat' command shows '/home/ga/Documents/exports/ballast_tuning_report.txt' containing 'C6-5', the ballast mass value, and the ~200m apogee."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used the OpenRocket GUI to modify the rocket rather than just editing XML/text files directly.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with OpenRocket menus, component dialogs, and simulation buttons."
+        },
+        {
+            "id": "genuine_simulation",
+            "description": "The altitude result comes from a genuine simulation run within the software.",
+            "visual_evidence": "The OpenRocket 'Flight simulations' tab shows a run with a green checkmark or updated data corresponding to the C6-5 motor."
+        },
+        {
+            "id": "no_manual_report_faking",
+            "description": "The report content matches the values seen in the GUI during the tuning process.",
+            "visual_evidence": "The mass and altitude values in the final .txt file match the values visible in the OpenRocket component and simulation windows."
+        }
+    ],
+    "privileged_info_for_vlm": "The target altitude is 200.0 meters with a tolerance of ± 2.0 meters (198.0m - 202.0m). The motor must be an Estes C6 (specifically C6-5). The ballast must be a 'Mass Component' named 'Tuning Ballast' located inside the nose cone. The final files must be saved at /home/ga/Documents/rockets/tuned_altitude_rocket.ork and /home/ga/Documents/exports/ballast_tuning_report.txt."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "estimate_avoided_co2_emissions@1",
+    "task_completion": [
+        {
+            "id": "read_weather_path",
+            "description": "Agent reads the weather file path from /home/ga/.SAM/weather_file_for_task.txt",
+            "points": 10,
+            "visual_evidence": "A terminal window or text editor showing the content of /home/ga/.SAM/weather_file_for_task.txt."
+        },
+        {
+            "id": "initialize_pysam_pvwattsv8",
+            "description": "Agent writes or executes Python code importing PySAM.Pvwattsv8 and setting the system parameters (50kW, 20 deg tilt, 180 deg azimuth).",
+            "points": 20,
+            "visual_evidence": "Code editor or terminal showing Python script with 'import PySAM.Pvwattsv8' and the specified system parameters."
+        },
+        {
+            "id": "run_simulation",
+            "description": "Agent executes the PySAM simulation using the weather file and parameters.",
+            "points": 20,
+            "visual_evidence": "Terminal output or IDE console showing the execution of the simulation script without errors."
+        },
+        {
+            "id": "calculate_co2_and_equivalencies",
+            "description": "Agent calculates avoided CO2 (using 0.3856 factor), car equivalencies (4.6 factor), and tree equivalencies (0.060 factor).",
+            "points": 30,
+            "visual_evidence": "Python code or print statements showing the math: annual_mwh * 0.3856, avoided_co2 / 4.6, and avoided_co2 / 0.060."
+        },
+        {
+            "id": "save_json_report",
+            "description": "Agent saves the final results to /home/ga/Documents/SAM_Projects/co2_avoided_report.json with the correct structure.",
+            "points": 20,
+            "visual_evidence": "A terminal command (e.g., 'cat') or file explorer showing the created JSON file with all required keys: system_capacity_kw, annual_energy_kwh, avoided_co2_mt, etc."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_pysam_usage",
+            "description": "Verify the agent actually used the PySAM library rather than hardcoding the final energy values.",
+            "visual_evidence": "Screenshots must show the import and instantiation of PySAM.Pvwattsv8() and the call to .execute()."
+        },
+        {
+            "id": "weather_file_source",
+            "description": "Verify the agent used the specific weather file path provided in the text file.",
+            "visual_evidence": "The code should show a variable or string matching the path found in /home/ga/.SAM/weather_file_for_task.txt."
+        },
+        {
+            "id": "no_precomputed_results",
+            "description": "Check if the agent copy-pasted the final CO2 values from a hidden source.",
+            "visual_evidence": "The agent should be seen performing the multiplication of MWh by 0.3856 in the script."
+        }
+    ],
+    "privileged_info_for_vlm": "The weather file path is stored in /home/ga/.SAM/weather_file_for_task.txt. The required constants are: Emission Factor = 0.3856 MT CO2/MWh; Car Factor = 4.6 MT/year; Tree Factor = 0.060 MT/seedling. For a 50kW system, the annual energy production (annual_energy_kwh) should typically fall between 50,000 and 100,000 kWh depending on the specific weather file location. The output must be a JSON file at /home/ga/Documents/SAM_Projects/co2_avoided_report.json."
+}

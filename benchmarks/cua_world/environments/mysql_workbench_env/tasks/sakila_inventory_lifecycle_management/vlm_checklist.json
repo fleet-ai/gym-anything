@@ -1,0 +1,59 @@
+{
+    "task_id": "sakila_inventory_lifecycle_management@1",
+    "task_completion": [
+        {
+            "id": "alter_inventory_table",
+            "description": "Alter the inventory table to add the 'status' ENUM column with default 'Active'.",
+            "points": 15,
+            "visual_evidence": "SQL editor showing the ALTER TABLE statement or the table schema view with the new 'status' column and ENUM types."
+        },
+        {
+            "id": "create_stored_procedure",
+            "description": "Implement the sp_set_inventory_status stored procedure with logic to check for active rentals.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the CREATE PROCEDURE code including the check for NULL return_date in the rental table."
+        },
+        {
+            "id": "create_rental_trigger",
+            "description": "Create the trg_prevent_renting_unavailable BEFORE INSERT trigger on the rental table.",
+            "points": 20,
+            "visual_evidence": "SQL editor showing the CREATE TRIGGER code with the SIGNAL SQLSTATE '45000' logic for non-Active status."
+        },
+        {
+            "id": "update_inventory_items",
+            "description": "Update inventory item 10 to 'Damaged' and item 11 to 'Lost'.",
+            "points": 15,
+            "visual_evidence": "SQL execution logs or a SELECT query result showing inventory_id 10 as 'Damaged' and 11 as 'Lost'."
+        },
+        {
+            "id": "test_procedure_error",
+            "description": "Attempt to update a rented item (like item 1) to verify the procedure raises an error.",
+            "points": 15,
+            "visual_evidence": "An error message in the SQL output/console area resulting from calling sp_set_inventory_status on a rented item."
+        },
+        {
+            "id": "export_csv_file",
+            "description": "Export the list of non-Active inventory items to the specified CSV path.",
+            "points": 15,
+            "visual_evidence": "The export wizard completion screen or a file explorer showing unavailable_inventory.csv in /home/ga/Documents/exports/."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "Verify the agent used a database GUI (like MySQL Workbench) rather than just terminal commands.",
+            "visual_evidence": "Screenshots show the MySQL Workbench interface, query tabs, and result grids."
+        },
+        {
+            "id": "genuine_interaction",
+            "description": "Ensure the agent did not simply create a dummy CSV file manually.",
+            "visual_evidence": "Screenshots show the SQL SELECT query and the export process/wizard within the database tool."
+        },
+        {
+            "id": "no_hardcoding",
+            "description": "Verify the stored procedure and trigger contain the required logic, not just hardcoded success/failure.",
+            "visual_evidence": "The SQL code in the editor contains conditional logic (IF statements) and subqueries to check rental status."
+        }
+    ],
+    "privileged_info_for_vlm": "The database user is 'ga' with password 'password123'. Inventory item 1 is specifically set up as 'rented' (return_date is NULL) to test the stored procedure's error handling. The final export must be located at /home/ga/Documents/exports/unavailable_inventory.csv and must contain at least inventory items 10 (Damaged) and 11 (Lost)."
+}

@@ -1,0 +1,53 @@
+{
+    "task_id": "sakila_legacy_normalization@1",
+    "task_completion": [
+        {
+            "id": "database_creation",
+            "description": "Create the 'rental_norm' database and the four required normalized tables with correct schemas.",
+            "points": 15,
+            "visual_evidence": "SQL editor or database browser showing the 'rental_norm' database containing tables: 'norm_customers', 'norm_films', 'norm_stores', and 'norm_rentals'."
+        },
+        {
+            "id": "data_migration_deduplication",
+            "description": "Migrate data from 'rental_flat' to the new tables, ensuring customers are deduplicated by email and films by title/year.",
+            "points": 25,
+            "visual_evidence": "SQL execution logs or table row counts showing approximately 599 customers and 958 films, indicating successful deduplication during INSERT."
+        },
+        {
+            "id": "foreign_key_integrity",
+            "description": "Populate 'norm_rentals' with correct foreign key references to the other three tables.",
+            "points": 20,
+            "visual_evidence": "A SELECT query or table view of 'norm_rentals' showing integer IDs for customer_id, film_id, and store_id rather than raw text names/titles."
+        },
+        {
+            "id": "view_creation",
+            "description": "Create the 'v_rental_denormalized' view joining all four tables.",
+            "points": 20,
+            "visual_evidence": "SQL command creating the view or the view appearing in the database navigator; a 'SELECT * FROM v_rental_denormalized' showing a flat structure similar to the original."
+        },
+        {
+            "id": "csv_export",
+            "description": "Export the 'norm_customers' table to the specified file path.",
+            "points": 20,
+            "visual_evidence": "A file explorer window or terminal 'ls' command showing 'normalized_customers.csv' exists in '/home/ga/Documents/exports/'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "The agent used a database management GUI (like DBeaver, pgAdmin, or MySQL Workbench) rather than just terminal scripts.",
+            "visual_evidence": "Screenshots showing a GUI-based SQL editor or database navigation tree."
+        },
+        {
+            "id": "no_hardcoded_values",
+            "description": "The agent performed actual SQL migrations rather than manually typing in data values.",
+            "visual_evidence": "SQL scripts showing 'INSERT INTO ... SELECT DISTINCT ...' patterns rather than 'VALUES (...)' with hundreds of manual entries."
+        },
+        {
+            "id": "genuine_export",
+            "description": "The CSV export was generated via the database tool's export feature or SQL command.",
+            "visual_evidence": "An export wizard dialog or a 'COPY' / 'INTO OUTFILE' SQL command visible in the history."
+        }
+    ],
+    "privileged_info_for_vlm": "The source database is 'legacy_data'. The target database is 'rental_norm'. Expected record counts after deduplication: 'norm_customers' should have 599 records, 'norm_films' should have 958 records, and 'norm_stores' should have 2 records. The export path must be exactly '/home/ga/Documents/exports/normalized_customers.csv'."
+}

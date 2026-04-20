@@ -1,0 +1,53 @@
+{
+    "task_id": "yso_variable_nebula_roi_monitoring@1",
+    "task_completion": [
+        {
+            "id": "open_roi_plan",
+            "description": "Agent opens the 'yso_roi_plan.txt' file to retrieve observation parameters.",
+            "points": 10,
+            "visual_evidence": "A text editor or file viewer window is visible showing the contents of yso_roi_plan.txt, including target names and ROI dimensions."
+        },
+        {
+            "id": "configure_roi_settings",
+            "description": "Agent configures the CCD settings to use a 1024x1024 Region of Interest (ROI).",
+            "points": 20,
+            "visual_evidence": "The INDI control panel or camera settings tab shows width and height fields set to 1024, or an ROI selection box of that size on the image preview."
+        },
+        {
+            "id": "observe_targets",
+            "description": "Agent slews to and captures images of the three specified targets: NGC 2261, NGC 1555, and McNeil's Nebula.",
+            "points": 30,
+            "visual_evidence": "The telescope control software (e.g., KStars/Ekos) shows the mount slewing to different coordinates, and the image preview displays distinct nebular regions for each target."
+        },
+        {
+            "id": "capture_sky_context",
+            "description": "Agent captures a final sky context image as requested.",
+            "points": 15,
+            "visual_evidence": "A final image capture is initiated, often showing a wider field or a different exposure setting than the ROI captures."
+        },
+        {
+            "id": "restore_full_frame",
+            "description": "Agent restores the CCD settings to full-frame mode (4096x4096) after observations.",
+            "points": 25,
+            "visual_evidence": "The INDI control panel or camera settings show the width and height fields returned to 4096, or the 'Reset'/'Full Frame' button is clicked."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction",
+            "description": "Agent used the graphical user interface rather than terminal scripts to control the telescope.",
+            "visual_evidence": "Screenshots show mouse cursor movement and interaction with buttons/menus in KStars, Ekos, or INDI panels rather than just a terminal window."
+        },
+        {
+            "id": "genuine_slewing",
+            "description": "Agent actually moved the telescope to the specific coordinates for each target.",
+            "visual_evidence": "The sky map or coordinate display updates to show RA/Dec values corresponding to the targets (e.g., RA ~6.65h for NGC 2261)."
+        },
+        {
+            "id": "no_manual_file_edit",
+            "description": "Agent did not manually edit the output logs to fake completion.",
+            "visual_evidence": "The sequence of actions shows the software performing the captures in real-time."
+        }
+    ],
+    "privileged_info_for_vlm": "The target coordinates are: NGC 2261 (RA 6.6528h, Dec 8.7444°), NGC 1555 (RA 4.3658h, Dec 19.5353°), and McNeil's Nebula (RA 5.7706h, Dec -0.0986°). The required ROI size is exactly 1024x1024. The full-frame resolution of the CCD is 4096x4096; the agent must return the settings to these values at the end of the task."
+}

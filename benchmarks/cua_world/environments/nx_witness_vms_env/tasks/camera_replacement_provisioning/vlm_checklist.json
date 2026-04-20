@@ -1,0 +1,59 @@
+{
+    "task_id": "camera_replacement_provisioning@1",
+    "task_completion": [
+        {
+            "id": "access_nx_interface",
+            "description": "Access the Nx Witness Web Admin or API interface using provided credentials.",
+            "points": 10,
+            "visual_evidence": "Browser showing the Nx Witness login page or the authenticated Web Admin dashboard at https://localhost:7001."
+        },
+        {
+            "id": "identify_faulty_config",
+            "description": "Identify the recording configuration (FPS and Quality) of 'Server Room (Faulty)'.",
+            "points": 15,
+            "visual_evidence": "Camera settings page for 'Server Room (Faulty)' showing recording parameters (specifically FPS: 7 and Quality: Low)."
+        },
+        {
+            "id": "rename_and_disable_faulty",
+            "description": "Rename 'Server Room (Faulty)' to 'Server Room (Decommissioned)' and disable it.",
+            "points": 20,
+            "visual_evidence": "Camera list or settings showing the camera name updated to 'Server Room (Decommissioned)' and the 'Enabled' toggle or status set to Off/Disabled."
+        },
+        {
+            "id": "provision_new_camera",
+            "description": "Rename 'New_Camera_Detected_0042' to 'Server Room Camera' and ensure it is enabled.",
+            "points": 20,
+            "visual_evidence": "Camera list or settings showing the camera name updated to 'Server Room Camera' and the 'Enabled' toggle or status set to On/Enabled."
+        },
+        {
+            "id": "transfer_recording_schedule",
+            "description": "Apply the recording schedule (FPS and Quality) from the old camera to the new one.",
+            "points": 20,
+            "visual_evidence": "Recording settings for 'Server Room Camera' showing FPS set to 7 and Quality set to Low."
+        },
+        {
+            "id": "create_maintenance_log",
+            "description": "Document the swap in a JSON maintenance log at the specified path.",
+            "points": 15,
+            "visual_evidence": "A terminal window or text editor showing the file /home/ga/maintenance_report.json containing details of the camera swap."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_ui_interaction",
+            "description": "The agent interacted with the Nx Witness interface rather than just creating a fake log.",
+            "visual_evidence": "Screenshots show navigation through the Nx Witness Web Admin menus (Camera Settings, Recording tab) rather than only terminal commands."
+        },
+        {
+            "id": "no_hardcoded_shortcuts",
+            "description": "The agent actually checked the faulty camera's settings before applying them to the new one.",
+            "visual_evidence": "Sequence of screenshots shows the agent opening the settings for 'Server Room (Faulty)' before opening 'Server Room Camera'."
+        },
+        {
+            "id": "file_system_verification",
+            "description": "The maintenance log was created via a text editor or echo command in the environment.",
+            "visual_evidence": "Terminal output or file explorer showing the actual creation/saving of /home/ga/maintenance_report.json."
+        }
+    ],
+    "privileged_info_for_vlm": "The faulty camera's original configuration is FPS: 7 and Quality: 'low'. The VLM should verify that these specific values were transferred to the 'Server Room Camera'. The credentials for the Nx Witness system are admin / Admin1234! and the API/Web interface is at https://localhost:7001."
+}

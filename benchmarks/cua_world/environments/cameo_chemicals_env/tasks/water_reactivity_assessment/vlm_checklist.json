@@ -1,0 +1,53 @@
+{
+    "task_id": "water_reactivity_assessment@1",
+    "task_completion": [
+        {
+            "id": "cameo_website_access",
+            "description": "The agent successfully navigated to the CAMEO Chemicals website.",
+            "points": 10,
+            "visual_evidence": "A browser window showing the CAMEO Chemicals homepage (cameochemicals.noaa.gov)."
+        },
+        {
+            "id": "chemical_search_execution",
+            "description": "The agent searched for the specified chemicals (Sodium, Calcium Carbide, Acetone, Potassium, Ethanol) using CAS numbers or names.",
+            "points": 15,
+            "visual_evidence": "Screenshots showing the search bar with the chemical names/CAS numbers or the search results page for these substances."
+        },
+        {
+            "id": "reactivity_data_retrieval",
+            "description": "The agent accessed the 'Reactivity' or 'Hazards' section for the chemicals to determine water reactivity.",
+            "points": 20,
+            "visual_evidence": "Screenshots of the chemical datasheet pages on CAMEO, specifically showing the 'Air & Water Reactions' or 'Reactivity Profile' sections."
+        },
+        {
+            "id": "report_creation",
+            "description": "The agent created a text file at the specified path /home/ga/Documents/water_reactivity_report.txt.",
+            "points": 15,
+            "visual_evidence": "A file manager view or a terminal 'ls' command showing the existence of the file in the correct directory."
+        },
+        {
+            "id": "report_content_accuracy",
+            "description": "The report contains the correct YES/NO classification and gas identification for all five chemicals.",
+            "points": 40,
+            "visual_evidence": "The content of the report (viewed via text editor or 'cat' command) listing: Sodium (YES, Hydrogen), Calcium Carbide (YES, Acetylene), Acetone (NO), Potassium (YES, Hydrogen), Ethanol (NO)."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_verified",
+            "description": "The agent used the web browser GUI to find information rather than just generating the file from internal knowledge.",
+            "visual_evidence": "Screenshots showing the mouse cursor interacting with the CAMEO website and scrolling through the chemical datasheets."
+        },
+        {
+            "id": "no_precomputed_shortcuts",
+            "description": "The agent did not simply echo the final report into a file without visiting the source website.",
+            "visual_evidence": "The trajectory must show the browser being opened and the CAMEO search process occurring before the report is written."
+        },
+        {
+            "id": "authentic_source_usage",
+            "description": "The information was sourced specifically from CAMEO Chemicals as requested.",
+            "visual_evidence": "The browser's address bar showing cameochemicals.noaa.gov during the data gathering phase."
+        }
+    ],
+    "privileged_info_for_vlm": "Sodium (CAS 7440-23-5): Water-Reactive YES, produces Hydrogen gas. Calcium Carbide (CAS 75-20-7): Water-Reactive YES, produces Acetylene gas. Acetone (CAS 67-64-1): Water-Reactive NO. Potassium (CAS 7440-09-7): Water-Reactive YES, produces Hydrogen gas. Ethanol (CAS 64-17-5): Water-Reactive NO. The report must be located at /home/ga/Documents/water_reactivity_report.txt."
+}

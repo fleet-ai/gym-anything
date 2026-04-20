@@ -1,0 +1,59 @@
+{
+    "task_id": "rotate_flip_transform@1",
+    "task_completion": [
+        {
+            "id": "open_weasis_and_load_image",
+            "description": "The Weasis DICOM viewer is open and the radiograph (0002.DCM) is loaded in the main viewport.",
+            "points": 10,
+            "visual_evidence": "The Weasis application window is visible with a medical X-ray image displayed in the central viewing area."
+        },
+        {
+            "id": "apply_90_clockwise_rotation",
+            "description": "A 90-degree clockwise rotation is applied to the image.",
+            "points": 20,
+            "visual_evidence": "The image orientation in the viewport changes; the VLM should see the 'Rotate 90 CW' button being clicked or the image orientation indicator (e.g., 'R', 'L', 'S', 'I' markers) shifting 90 degrees clockwise."
+        },
+        {
+            "id": "apply_horizontal_flip",
+            "description": "A horizontal flip (mirroring) is applied to the image.",
+            "points": 20,
+            "visual_evidence": "The image is mirrored horizontally; the VLM should see the 'Flip Horizontal' icon selected or the anatomical markers (e.g., 'L' becoming a mirrored 'L' or swapping sides) reflecting a flip."
+        },
+        {
+            "id": "open_export_dialog",
+            "description": "The user opens the export menu to save the transformed image.",
+            "points": 10,
+            "visual_evidence": "An 'Export' or 'Save As' dialog box is visible over the Weasis interface."
+        },
+        {
+            "id": "configure_export_settings",
+            "description": "The export format is set to JPEG and the file path is specified.",
+            "points": 20,
+            "visual_evidence": "In the export dialog, 'JPEG' is selected as the format and the path '~/DICOM/exports/transformed_view.jpg' (or equivalent directory) is typed or selected."
+        },
+        {
+            "id": "confirm_export_completion",
+            "description": "The export process is finalized and the file is saved.",
+            "points": 20,
+            "visual_evidence": "The export dialog closes, and a success notification or the presence of the file in a file manager/terminal at the specified path is shown."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_interaction_only",
+            "description": "The agent used the Weasis GUI to perform transformations rather than command-line image processing tools.",
+            "visual_evidence": "Screenshots show the mouse cursor interacting with Weasis menu items or toolbar icons for rotation and flipping."
+        },
+        {
+            "id": "no_pre_existing_file_manipulation",
+            "description": "The agent did not simply rename an existing file to the target path.",
+            "visual_evidence": "The sequence of screenshots shows the image being actively manipulated within the Weasis viewer before the export occurs."
+        },
+        {
+            "id": "genuine_software_usage",
+            "description": "The agent interacted with the actual Weasis application interface.",
+            "visual_evidence": "The Weasis UI elements (thumbnails, DICOM tags, transformation tools) are visible and responsive to agent actions."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires a 90-degree clockwise rotation followed by a horizontal flip on file 0002.DCM. The final output must be a JPEG saved specifically to /home/ga/DICOM/exports/transformed_view.jpg. The VLM should verify that both transformations (rotate AND flip) were applied in the GUI before the export was triggered."
+}

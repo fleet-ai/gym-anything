@@ -1,0 +1,53 @@
+{
+    "task_id": "contaminated_alignment_qc@1",
+    "task_completion": [
+        {
+            "id": "load_mixed_sequences",
+            "description": "Load the mixed protein sequences from the specified FASTA file into UGENE.",
+            "points": 10,
+            "visual_evidence": "UGENE interface showing the file 'mixed_protein_sequences.fasta' open, displaying a list of protein sequences (Hemoglobins and Cytochrome)."
+        },
+        {
+            "id": "identify_and_remove_contaminant",
+            "description": "Identify and remove the Cytochrome c contaminant (P99999) from the sequence list.",
+            "points": 20,
+            "visual_evidence": "The sequence list in UGENE no longer contains the accession P99999, or a screenshot shows the user selecting and deleting the Cytochrome c sequence."
+        },
+        {
+            "id": "perform_alignment",
+            "description": "Create a multiple sequence alignment of the remaining 8 hemoglobin sequences.",
+            "points": 25,
+            "visual_evidence": "UGENE Alignment Editor showing a multiple sequence alignment (MSA) with 8 sequences (P68871, P02088, P02112, P02132, Q90485, P02070, P02062, P02067)."
+        },
+        {
+            "id": "export_alignment_files",
+            "description": "Export the alignment in both ClustalW (.aln) and FASTA (.fasta) formats to the results directory.",
+            "points": 25,
+            "visual_evidence": "Export dialogs or a file manager view showing 'cleaned_alignment.aln' and 'cleaned_alignment.fasta' saved in ~/UGENE_Data/qc_analysis/results/."
+        },
+        {
+            "id": "create_qc_report",
+            "description": "Write a QC report specifying the removed contaminant (P99999), justification, and final sequence count (8).",
+            "points": 20,
+            "visual_evidence": "A text editor or terminal 'cat' command showing 'qc_report.txt' with the text 'P99999', a reason (e.g., non-homologous/cytochrome), and the count '8'."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "gui_usage",
+            "description": "The agent used the UGENE GUI to perform the alignment and sequence manipulation rather than just using command-line tools like 'clustalo'.",
+            "visual_evidence": "Screenshots show the UGENE application window, alignment editor, and menu interactions."
+        },
+        {
+            "id": "genuine_removal",
+            "description": "The agent actually identified the specific contaminant P99999 rather than deleting sequences at random.",
+            "visual_evidence": "The sequence list or alignment view specifically shows the absence of P99999 while the 8 hemoglobin sequences remain."
+        },
+        {
+            "id": "no_premade_report",
+            "description": "The agent typed or generated the report based on the session findings rather than copying a pre-existing file.",
+            "visual_evidence": "The agent interacting with a text editor (like gedit or UGENE's internal editor) to create the qc_report.txt."
+        }
+    ],
+    "privileged_info_for_vlm": "The input file contains 9 sequences: 8 Hemoglobin beta sequences (P68871, P02088, P02112, P02132, Q90485, P02070, P02062, P02067) and 1 Cytochrome c contaminant (P99999). The agent must remove P99999. The final alignment and exported files must contain exactly 8 sequences. The QC report must explicitly mention P99999 as the removed sequence and 8 as the final count."
+}

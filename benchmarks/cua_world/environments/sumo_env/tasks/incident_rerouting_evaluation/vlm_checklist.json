@@ -1,0 +1,59 @@
+{
+    "task_id": "incident_rerouting_evaluation@1",
+    "task_completion": [
+        {
+            "id": "baseline_simulation_run",
+            "description": "Run the baseline simulation and generate the performance CSV.",
+            "points": 15,
+            "visual_evidence": "Terminal output or file explorer showing the creation of /home/ga/SUMO_Output/baseline_network_performance.csv."
+        },
+        {
+            "id": "rerouter_definition_created",
+            "description": "Create the rerouter XML file closing at least two edges on the Acosta corridor.",
+            "points": 15,
+            "visual_evidence": "A text editor or cat command showing incident_rerouters.add.xml with at least two <closingLaneReroute> or <closingEdgeReroute> tags."
+        },
+        {
+            "id": "incident_config_setup",
+            "description": "Create the incident SUMO configuration file referencing the rerouter.",
+            "points": 10,
+            "visual_evidence": "A text editor showing run_incident.sumocfg with an <additional-files> entry pointing to incident_rerouters.add.xml."
+        },
+        {
+            "id": "incident_simulation_run",
+            "description": "Run the incident simulation and generate the performance CSV.",
+            "points": 20,
+            "visual_evidence": "Terminal output showing sumo or sumo-gui running the incident config and the creation of /home/ga/SUMO_Output/incident_network_performance.csv."
+        },
+        {
+            "id": "metrics_comparison",
+            "description": "Compare baseline and incident metrics (trips, travel time, time loss, delay).",
+            "points": 20,
+            "visual_evidence": "Screenshots of the agent comparing data from both CSV files, likely in a terminal, spreadsheet, or script output."
+        },
+        {
+            "id": "final_report_generation",
+            "description": "Generate the final impact assessment report with all required sections.",
+            "points": 20,
+            "visual_evidence": "A text editor or cat command showing /home/ga/SUMO_Output/incident_assessment_report.txt containing incident location, rerouting strategy, and percentage degradation."
+        }
+    ],
+    "integrity": [
+        {
+            "id": "genuine_sumo_execution",
+            "description": "Verify the agent actually ran the SUMO simulation rather than fabricating results.",
+            "visual_evidence": "Terminal logs showing the 'sumo' command being executed and the simulation step progress (e.g., 'Step #100.00')."
+        },
+        {
+            "id": "file_path_adherence",
+            "description": "Verify the agent used the specific paths requested in the task.",
+            "visual_evidence": "Screenshots showing file paths like /home/ga/SUMO_Scenarios/bologna_acosta/ and /home/ga/SUMO_Output/ in commands or editor headers."
+        },
+        {
+            "id": "no_hardcoded_metrics",
+            "description": "Ensure metrics in the report match the generated CSV data.",
+            "visual_evidence": "The numbers in incident_assessment_report.txt should match the values visible in the generated CSV files."
+        }
+    ],
+    "privileged_info_for_vlm": "The task requires using the 'bologna_acosta' scenario. The agent must close at least 2 edges in incident_rerouters.add.xml. Key output files must be: /home/ga/SUMO_Output/baseline_network_performance.csv, /home/ga/SUMO_Output/incident_network_performance.csv, and /home/ga/SUMO_Output/incident_assessment_report.txt. The report must include: incident location, rerouting strategy, performance comparison, percentage degradation, and recommendations."
+}
