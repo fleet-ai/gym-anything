@@ -17,7 +17,7 @@ from pathlib import Path
 TASKS_FILE = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/eval_tasks.json")
 MAX_STEPS = int(sys.argv[2]) if len(sys.argv) > 2 else 200
 CONCURRENCY = int(sys.argv[3]) if len(sys.argv) > 3 else 8
-TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 1800
+TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 3600
 RESULTS_DIR = Path(os.path.expanduser("~/eval_results"))
 RESULTS_DIR.mkdir(exist_ok=True)
 
@@ -76,6 +76,9 @@ def run_task(task):
     except subprocess.TimeoutExpired:
         result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
                   "score": 0, "passed": False, "error": "timeout", "elapsed": time.time() - start}
+        # Kill orphaned Docker container (subprocess timeout doesn't call env.close())
+        subprocess.run(f"docker ps --filter name=ga_{env_name} -q | xargs -r docker kill",
+                       shell=True, capture_output=True, timeout=30)
     except Exception as e:
         result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
                   "score": 0, "passed": False, "error": str(e)[:200], "elapsed": time.time() - start}
