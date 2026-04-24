@@ -96,7 +96,12 @@ class Gemini3Agent(ClaudeAgent):
             reasoning_effort='low',
             return_full_response=True
         )
-        self.messages.append({'role': 'assistant', 'content': response})
+        # Extract content string for message history (response is a ModelResponse object
+        # when return_full_response=True, which isn't JSON serializable for the next API call)
+        if hasattr(response, 'choices'):
+            self.messages.append({'role': 'assistant', 'content': response.choices[0].message.content or ''})
+        else:
+            self.messages.append({'role': 'assistant', 'content': response})
         try:
             reasoning_content = response.choices[0].message.reasoning_content
         except Exception as e:

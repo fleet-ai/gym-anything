@@ -22,7 +22,8 @@ LOG_DUMPS = "log_dumps_claude"
 def _dump_usage(prefix: str, model: str, usage) -> None:
     try:
         os.makedirs(prefix, exist_ok=True)
-        with open(f"{prefix}/{uuid.uuid4()}_{model}.pkl", "wb") as handle:
+        model_safe = model.replace("/", "_")
+        with open(f"{prefix}/{uuid.uuid4()}_{model_safe}.pkl", "wb") as handle:
             pickle.dump(usage, handle)
     except Exception as exc:
         print(f"Error dumping usage: {exc}")
@@ -110,26 +111,35 @@ def call_gemini_with_retry(
     return_full_response=False,
 ):
     del top_k
+    # If model has a provider prefix (e.g. "openrouter/google/..."), use it as-is.
+    # Otherwise prepend "gemini/" for direct Google API access.
+    is_openrouter = "/" in model
     for attempt in range(5):
         try:
-            response = litellm.completion(
-                model="gemini/" + model,
+            kwargs = dict(
+                model=model if is_openrouter else "gemini/" + model,
                 messages=messages,
                 temperature=temperature,
                 top_p=top_p,
                 max_tokens=max_tokens,
-                reasoning_effort=reasoning_effort,
                 timeout=timeout,
             )
+            # reasoning_effort is not supported by OpenRouter
+            if not is_openrouter:
+                kwargs["reasoning_effort"] = reasoning_effort
+            response = litellm.completion(**kwargs)
             _dump_usage("model_usage_dumps", model, response.usage)
+
+            content = response.choices[0].message.content or ""
+            reasoning_content = getattr(response.choices[0].message, "reasoning_content", None)
+
+            if not content.strip():
+                print("Empty content, retrying")
+                continue
+
             if return_full_response:
                 return response
 
-            reasoning_content = getattr(response.choices[0].message, "reasoning_content", None)
-            content = response.choices[0].message.content
-            if not content or not str(content).strip():
-                print("All tokens taken by reasoning, retrying again")
-                continue
             if reasoning_content:
                 return f"<think>{reasoning_content}</think>\n{content}"
             return content
