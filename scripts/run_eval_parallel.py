@@ -9,7 +9,9 @@ Usage:
     python scripts/generate_eval_tasks.py --validated-envs ~/validated_envs.txt -o ~/eval_tasks.json
 
     # Run eval
-    OPENROUTER_API_KEY=... python scripts/run_eval_parallel.py ~/eval_tasks.json 200 8 1800
+    OPENROUTER_API_KEY=... python scripts/run_eval_parallel.py ~/eval_tasks.json 200 8 3600 [run_id]
+    # run_id defaults to timestamp. Trajectories saved to all_runs/fleet-eval-{run_id}/
+    # Results saved to ~/eval_results/{run_id}/
 """
 import json, subprocess, sys, os, time, re, concurrent.futures
 from pathlib import Path
@@ -18,11 +20,12 @@ TASKS_FILE = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/eval_ta
 MAX_STEPS = int(sys.argv[2]) if len(sys.argv) > 2 else 200
 CONCURRENCY = int(sys.argv[3]) if len(sys.argv) > 3 else 8
 TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 3600
-RESULTS_DIR = Path(os.path.expanduser("~/eval_results"))
-RESULTS_DIR.mkdir(exist_ok=True)
+RUN_ID = sys.argv[5] if len(sys.argv) > 5 else time.strftime("%Y%m%d_%H%M%S")
+RESULTS_DIR = Path(os.path.expanduser(f"~/eval_results/{RUN_ID}"))
+RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 tasks = json.load(open(TASKS_FILE))
-print(f"=== Parallel eval: {len(tasks)} tasks, max_steps={MAX_STEPS}, concurrency={CONCURRENCY}, timeout={TASK_TIMEOUT}s ===", flush=True)
+print(f"=== Parallel eval: {len(tasks)} tasks, max_steps={MAX_STEPS}, concurrency={CONCURRENCY}, timeout={TASK_TIMEOUT}s, run_id={RUN_ID} ===", flush=True)
 
 def run_task(task):
     env_name = task["env_name"]
@@ -43,7 +46,7 @@ def run_task(task):
              "--agent_args", json.dumps({
                  "model": "openrouter/google/gemini-3-flash-preview",
                  "temperature": 1.0,
-                 "exp_name": "fleet-eval",
+                 "exp_name": f"fleet-eval-{RUN_ID}",
                  "task_name": task_id,
              }),
              "--steps", str(MAX_STEPS),
