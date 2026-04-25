@@ -44,7 +44,7 @@ def run_task(task):
              "--env_dir", env_dir, "--task", task_id,
              "--agent", "Gemini3Agent",
              "--agent_args", json.dumps({
-                 "model": "openrouter/google/gemini-3-flash-preview",
+                 "model": os.environ.get("EVAL_MODEL", "gemini-3-flash-preview"),
                  "temperature": 1.0,
                  "exp_name": f"fleet-eval-{RUN_ID}",
                  "task_name": task_id,
