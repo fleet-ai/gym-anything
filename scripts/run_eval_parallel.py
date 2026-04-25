@@ -113,3 +113,17 @@ p = [r for r in all_r if r.get("passed")]
 avg = sum(r.get("score", 0) for r in all_r) / len(all_r) if all_r else 0
 print(f"\n=== FINAL: {len(all_r)} tasks, score>0: {len(s)} ({100*len(s)/len(all_r):.1f}%), full pass: {len(p)}, avg: {avg:.1f}/100 ===", flush=True)
 json.dump(all_r, open(RESULTS_DIR / "all_results.json", "w"), indent=2)
+
+# Upload results and trajectories to S3
+S3_BUCKET = "s3://fleet-internal-datasets/gym-anything/eval-runs"
+s3_dest = f"{S3_BUCKET}/{RUN_ID}"
+print(f"\nUploading to {s3_dest}...", flush=True)
+try:
+    subprocess.run(["aws", "s3", "cp", str(RESULTS_DIR / "all_results.json"), f"{s3_dest}/all_results.json"], check=True, timeout=60)
+    subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), f"{s3_dest}/results/", "--quiet"], check=True, timeout=300)
+    runs_dir = Path(f"all_runs/fleet-eval-{RUN_ID}")
+    if runs_dir.exists():
+        subprocess.run(["aws", "s3", "sync", str(runs_dir), f"{s3_dest}/trajectories/", "--quiet"], check=True, timeout=1800)
+    print(f"Uploaded to {s3_dest}", flush=True)
+except Exception as e:
+    print(f"S3 upload failed: {e}", flush=True)
