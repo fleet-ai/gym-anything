@@ -55,7 +55,11 @@ try:
     _check = _sp.run(['docker', 'image', 'inspect', _local_tag], capture_output=True)
     if _check.returncode == 0:
         env._runner.spec.image = _local_tag
-    env.reset(use_cache=True, cache_level='pre_start')
+    try:
+        env.reset(use_cache=True, cache_level='pre_start')
+    except Exception as _e:
+        print(f'WARN:reset error (continuing): {{_e}}', file=sys.stderr)
+    # Always try to capture screenshot — app may work despite hook errors
     obs = env.capture_observation()
     screen = obs.get('screen', {{}})
     path = screen.get('path')
