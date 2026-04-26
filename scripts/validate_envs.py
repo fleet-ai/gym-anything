@@ -49,7 +49,7 @@ from gym_anything.api import from_config
 
 env = from_config('{env_dir}', task_id='{task_id}')
 try:
-    env.reset(use_cache=True, cache_level='post_start')
+    env.reset(use_cache=True, cache_level='pre_start')
     obs = env.capture_observation()
     screen = obs.get('screen', {{}})
     path = screen.get('path')
