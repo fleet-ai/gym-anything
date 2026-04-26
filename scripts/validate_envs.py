@@ -1,92 +1,36 @@
 #!/usr/bin/env python3
 """Comprehensive environment validator for gym-anything.
 
-Tests ALL built Docker env images on the server: create → reset → check
-screenshot > 15KB → close. Outputs a list of validated envs.
+Uses from_config() (direct Docker) — same code path as the eval harness.
+Previous version used HTTP API which had screenshot inline issues.
 
 Usage:
-    # Test all envs (discovers from Docker images)
-    python scripts/validate_envs.py http://<server-ip>:5000
+    # Test all envs
+    python scripts/validate_envs.py --env-dir benchmarks/cua_world/environments
 
     # Test specific envs
-    python scripts/validate_envs.py http://<server-ip>:5000 --envs stellarium_env libreoffice_calc_env
+    python scripts/validate_envs.py --env-dir benchmarks/cua_world/environments --envs stellarium_env qgis_env
 
     # With custom concurrency
-    python scripts/validate_envs.py http://<server-ip>:5000 --concurrency 10
+    python scripts/validate_envs.py --env-dir benchmarks/cua_world/environments --concurrency 4
 
     # Save validated env list
-    python scripts/validate_envs.py http://<server-ip>:5000 --output validated_envs.txt
+    python scripts/validate_envs.py --env-dir benchmarks/cua_world/environments --output validated_envs.txt
 """
 
 import argparse
-import base64
-import concurrent.futures
 import json
+import os
 import subprocess
 import sys
 import time
-
-import requests
+from pathlib import Path
 
 MIN_SCREENSHOT_BYTES = 15000  # Blank blue desktop ~11KB, real desktop >15KB
 
 
-def discover_envs_from_docker() -> list[str]:
-    """Discover available env images from local Docker."""
-    try:
-        result = subprocess.run(
-            ["docker", "images", "--format", "{{.Repository}}:{{.Tag}}"],
-            capture_output=True, text=True, timeout=30,
-        )
-        envs = []
-        for line in result.stdout.strip().split("\n"):
-            # Match ga/<env_name>:0.1 or gcr.io/.../gym-anything/<env_name>:0.1
-            repo = line.split(":")[0]
-            if repo.startswith("ga/"):
-                envs.append(repo[3:])
-            elif "gym-anything/" in repo:
-                envs.append(repo.split("gym-anything/")[-1])
-        return sorted(set(envs))
-    except Exception as e:
-        print(f"Warning: could not discover envs from Docker: {e}")
-        return []
-
-
-def discover_envs_from_filesystem(prefix: str) -> list[str]:
-    """Discover available envs from the filesystem (run on server)."""
-    try:
-        result = subprocess.run(
-            ["ls", prefix], capture_output=True, text=True, timeout=10,
-        )
-        return sorted([
-            d for d in result.stdout.strip().split("\n")
-            if d.endswith("_env") and d.strip()
-        ])
-    except Exception:
-        return []
-
-
-def find_task_id(prefix: str, env_name: str) -> str | None:
-    """Find the first available task_id for an env."""
-    tasks_dir = f"{prefix}/{env_name}/tasks"
-    try:
-        result = subprocess.run(
-            ["ls", tasks_dir], capture_output=True, text=True, timeout=10,
-        )
-        tasks = [t.strip() for t in result.stdout.strip().split("\n") if t.strip()]
-        return tasks[0] if tasks else None
-    except Exception:
-        return None
-
-
-def validate_env(
-    server_url: str,
-    env_dir: str,
-    task_id: str,
-    env_name: str,
-    timeout: int = 600,
-) -> dict:
-    """Validate a single environment. Returns result dict."""
+def validate_env(env_dir: str, env_name: str, task_id: str, timeout: int = 600) -> dict:
+    """Validate a single env using from_config() — same path as eval."""
     result = {
         "env_name": env_name,
         "task_id": task_id,
@@ -95,130 +39,111 @@ def validate_env(
         "error": None,
         "elapsed_s": 0,
     }
-    env_id = None
     start = time.time()
 
     try:
-        # Create
-        r = requests.post(
-            f"{server_url}/envs/create",
-            json={"env_dir": env_dir, "task_id": task_id},
-            timeout=60,
-        )
-        r.raise_for_status()
-        env_id = r.json().get("env_id")
-        if not env_id:
-            result["error"] = f"no env_id: {r.json()}"
-            return result
+        proc = subprocess.run(
+            ["python", "-c", f"""
+import os, sys
+from gym_anything.api import from_config
 
-        # Reset
-        r = requests.post(
-            f"{server_url}/envs/{env_id}/reset",
-            json={"use_cache": True, "cache_level": "post_start"},
+env = from_config('{env_dir}', task_id='{task_id}')
+try:
+    env.reset(use_cache=True, cache_level='post_start')
+    obs = env.capture_observation()
+    screen = obs.get('screen', {{}})
+    path = screen.get('path')
+    if path and os.path.exists(path):
+        size = os.path.getsize(path)
+        print(f'OK:{{size}}')
+    else:
+        png_b64 = screen.get('png_b64', '')
+        import base64
+        size = len(base64.b64decode(png_b64)) if png_b64 else 0
+        print(f'OK:{{size}}')
+except Exception as e:
+    print(f'FAIL:{{e}}')
+finally:
+    env.close()
+"""],
             timeout=timeout,
+            capture_output=True,
+            text=True,
         )
-        r.raise_for_status()
-        data = r.json()
+        elapsed = time.time() - start
+        result["elapsed_s"] = round(elapsed, 1)
 
-        if data.get("error"):
-            result["error"] = data["error"][:200]
-            return result
+        output = proc.stdout.strip().split("\n")[-1] if proc.stdout.strip() else ""
 
-        # Check screenshot
-        obs = data.get("observation") or {}
-        screen = obs.get("screen") or {}
-        png_b64 = screen.get("png_b64", "")
-        if not png_b64:
-            result["error"] = "no screenshot in response"
-            return result
+        if output.startswith("OK:"):
+            size = int(output.split(":")[1])
+            result["screenshot_bytes"] = size
+            if size > MIN_SCREENSHOT_BYTES:
+                result["passed"] = True
+            else:
+                result["error"] = f"screenshot too small ({size} bytes)"
+        elif output.startswith("FAIL:"):
+            result["error"] = output[5:][:200]
+        else:
+            stderr_tail = proc.stderr.strip().split("\n")[-1][:200] if proc.stderr else "no output"
+            result["error"] = f"unexpected output: {stderr_tail}"
 
-        png_bytes = base64.b64decode(png_b64)
-        result["screenshot_bytes"] = len(png_bytes)
-
-        if len(png_bytes) < MIN_SCREENSHOT_BYTES:
-            result["error"] = f"screenshot too small ({len(png_bytes)} bytes)"
-            return result
-
-        result["passed"] = True
-
-    except requests.exceptions.Timeout:
+    except subprocess.TimeoutExpired:
         result["error"] = f"timeout after {timeout}s"
+        result["elapsed_s"] = timeout
+        # Kill orphaned container
+        subprocess.run(f"docker ps --filter name=ga_{env_name} -q | xargs -r docker kill",
+                       shell=True, capture_output=True, timeout=30)
     except Exception as e:
         result["error"] = str(e)[:200]
-    finally:
         result["elapsed_s"] = round(time.time() - start, 1)
-        if env_id:
-            try:
-                requests.post(f"{server_url}/envs/{env_id}/close", timeout=30)
-            except Exception:
-                pass
 
     return result
 
 
 def main():
     parser = argparse.ArgumentParser(description="Validate all gym-anything environments")
-    parser.add_argument("server_url", help="e.g. http://10.0.0.1:5000")
-    parser.add_argument("--envs", nargs="+", help="Specific env names to test (default: all)")
-    parser.add_argument(
-        "--env-dir-prefix",
-        default="/home/gcpuser/gym-anything/benchmarks/cua_world/environments",
-        help="Env directory prefix on the server",
-    )
-    parser.add_argument("--concurrency", type=int, default=8, help="Parallel validations")
+    parser.add_argument("--env-dir", required=True, help="Path to environments directory")
+    parser.add_argument("--envs", nargs="+", help="Specific env names to test")
+    parser.add_argument("--concurrency", type=int, default=4, help="Parallel validations")
     parser.add_argument("--timeout", type=int, default=600, help="Per-env timeout (seconds)")
     parser.add_argument("--output", "-o", help="Write validated env names to file")
     parser.add_argument("--json-output", help="Write full results as JSON")
     args = parser.parse_args()
 
-    server_url = args.server_url.rstrip("/")
+    env_dir = Path(args.env_dir)
 
-    # Health check
-    print(f"Server: {server_url}")
-    try:
-        r = requests.get(f"{server_url}/health", timeout=10)
-        health = r.json()
-        print(f"Workers: {health.get('healthy_workers', '?')}, Capacity: {health.get('total_capacity', '?')}")
-    except Exception as e:
-        print(f"FAIL: health check failed: {e}")
-        sys.exit(1)
-
-    # Discover envs
     if args.envs:
         env_names = args.envs
     else:
-        print("Discovering envs from filesystem...")
-        env_names = discover_envs_from_filesystem(args.env_dir_prefix)
-        if not env_names:
-            print("Discovering envs from Docker images...")
-            env_names = discover_envs_from_docker()
-        if not env_names:
-            print("FAIL: no envs found. Use --envs to specify manually.")
-            sys.exit(1)
+        env_names = sorted(d.name for d in env_dir.iterdir()
+                          if d.is_dir() and d.name.endswith("_env") and (d / "env.json").exists())
 
-    # Find task_ids
+    # Find first task_id for each env
     env_tasks = []
     for name in env_names:
-        task_id = find_task_id(args.env_dir_prefix, name)
-        if task_id:
-            env_tasks.append((name, task_id))
+        tasks_dir = env_dir / name / "tasks"
+        if not tasks_dir.is_dir():
+            continue
+        tasks = sorted(d.name for d in tasks_dir.iterdir() if d.is_dir())
+        if tasks:
+            env_tasks.append((name, tasks[0]))
         else:
-            print(f"  SKIP {name}: no tasks found")
+            print(f"  SKIP {name}: no tasks")
 
-    print(f"\nValidating {len(env_tasks)} environments (concurrency={args.concurrency})...\n")
+    print(f"Validating {len(env_tasks)} environments (concurrency={args.concurrency})...\n")
 
-    # Run validations
     results = []
     passed = 0
     failed = 0
 
-    def run_one(item):
-        name, task_id = item
-        env_dir = f"{args.env_dir_prefix}/{name}"
-        return validate_env(server_url, env_dir, task_id, name, args.timeout)
-
+    import concurrent.futures
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.concurrency) as pool:
-        futures = {pool.submit(run_one, item): item for item in env_tasks}
+        futures = {}
+        for name, task_id in env_tasks:
+            ed = str(env_dir / name)
+            futures[pool.submit(validate_env, ed, name, task_id, args.timeout)] = name
+
         for future in concurrent.futures.as_completed(futures):
             r = future.result()
             results.append(r)
@@ -230,13 +155,12 @@ def main():
             else:
                 failed += 1
 
-    # Summary
     print(f"\n{'='*60}")
     print(f"Results: {passed} passed, {failed} failed out of {len(results)} tested")
-    print(f"Pass rate: {passed/len(results)*100:.1f}%" if results else "No envs tested")
+    if results:
+        print(f"Pass rate: {100*passed/len(results):.1f}%")
 
-    # Write outputs
-    validated = sorted([r["env_name"] for r in results if r["passed"]])
+    validated = sorted(r["env_name"] for r in results if r["passed"])
 
     if args.output:
         with open(args.output, "w") as f:
