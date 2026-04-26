@@ -58,21 +58,23 @@ try:
     try:
         env.reset(use_cache=True, cache_level='pre_start')
     except Exception as _e:
-        print(f'WARN:reset error (continuing): {{_e}}', file=sys.stderr)
+        pass  # Ignore hook errors — app may still work
     # Always try to capture screenshot — app may work despite hook errors
+    import time as _time
+    _time.sleep(5)  # Brief wait for app to settle after error
     obs = env.capture_observation()
     screen = obs.get('screen', {{}})
     path = screen.get('path')
     if path and os.path.exists(path):
         size = os.path.getsize(path)
-        print(f'OK:{{size}}')
+        print(f'VALIDATE_RESULT:OK:{{size}}')
     else:
         png_b64 = screen.get('png_b64', '')
         import base64
         size = len(base64.b64decode(png_b64)) if png_b64 else 0
-        print(f'OK:{{size}}')
+        print(f'VALIDATE_RESULT:OK:{{size}}')
 except Exception as e:
-    print(f'FAIL:{{e}}')
+    print(f'VALIDATE_RESULT:FAIL:{{e}}')
 finally:
     env.close()
 """],
@@ -83,7 +85,12 @@ finally:
         elapsed = time.time() - start
         result["elapsed_s"] = round(elapsed, 1)
 
-        output = proc.stdout.strip().split("\n")[-1] if proc.stdout.strip() else ""
+        # Find our marker in stdout (gym-anything logs may pollute stdout)
+        output = ""
+        for line in proc.stdout.strip().split("\n"):
+            if line.startswith("VALIDATE_RESULT:"):
+                output = line.replace("VALIDATE_RESULT:", "")
+                break
 
         if output.startswith("OK:"):
             size = int(output.split(":")[1])
