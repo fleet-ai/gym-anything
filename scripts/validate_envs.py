@@ -49,6 +49,12 @@ from gym_anything.api import from_config
 
 env = from_config('{env_dir}', task_id='{task_id}')
 try:
+    # Set the image to the GCR-pulled tag if it exists, bypassing Dockerfile build
+    import subprocess as _sp
+    _local_tag = 'ga/{env_name}:0.1'
+    _check = _sp.run(['docker', 'image', 'inspect', _local_tag], capture_output=True)
+    if _check.returncode == 0:
+        env._runner.spec.image = _local_tag
     env.reset(use_cache=True, cache_level='pre_start')
     obs = env.capture_observation()
     screen = obs.get('screen', {{}})
