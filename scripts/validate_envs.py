@@ -123,7 +123,7 @@ def main():
     parser.add_argument("--env-dir", required=True, help="Path to environments directory")
     parser.add_argument("--envs", nargs="+", help="Specific env names to test")
     parser.add_argument("--concurrency", type=int, default=4, help="Parallel validations")
-    parser.add_argument("--timeout", type=int, default=600, help="Per-env timeout (seconds)")
+    parser.add_argument("--timeout", type=int, default=7200, help="Per-env timeout for first boot (seconds)")
     parser.add_argument("--output", "-o", help="Write validated env names to file")
     parser.add_argument("--json-output", help="Write full results as JSON")
     args = parser.parse_args()

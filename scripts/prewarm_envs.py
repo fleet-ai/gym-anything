@@ -68,7 +68,7 @@ def main():
     parser.add_argument("--validated-envs", required=True, help="File with env names")
     parser.add_argument("--env-dir", default="benchmarks/cua_world/environments")
     parser.add_argument("--concurrency", type=int, default=4)
-    parser.add_argument("--timeout", type=int, default=1800)
+    parser.add_argument("--timeout", type=int, default=7200)
     args = parser.parse_args()
 
     env_names = open(args.validated_envs).read().strip().split("\n")
