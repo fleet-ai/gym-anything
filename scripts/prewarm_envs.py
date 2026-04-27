@@ -67,7 +67,7 @@ def main():
     parser = argparse.ArgumentParser(description="Pre-warm envs by creating checkpoints")
     parser.add_argument("--validated-envs", required=True, help="File with env names")
     parser.add_argument("--env-dir", default="benchmarks/cua_world/environments")
-    parser.add_argument("--concurrency", type=int, default=4)
+    parser.add_argument("--concurrency", type=int, default=8)
     parser.add_argument("--timeout", type=int, default=7200)
     args = parser.parse_args()
 
