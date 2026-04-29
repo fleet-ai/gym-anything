@@ -2,14 +2,10 @@
 """Run paper's eval harness in parallel across tasks.
 
 Uses agents/evaluation/run_single.py with the paper's exact agent harness.
-Parses episode_dir from stdout to find verifier results.
+Retries once on transient failures (KeyError, no summary).
 
 Usage:
-    # Generate eval tasks (4 per validated env)
-    python scripts/generate_eval_tasks.py --validated-envs ~/validated_envs.txt -o ~/eval_tasks.json
-
-    # Run eval
-    OPENROUTER_API_KEY=... python scripts/run_eval_parallel.py ~/eval_tasks.json 200 8 3600 [run_id]
+    GOOGLE_API_KEY=... python scripts/run_eval_parallel.py ~/eval_tasks.json 200 8 3600 [run_id]
     # run_id defaults to timestamp. Trajectories saved to all_runs/fleet-eval-{run_id}/
     # Results saved to ~/eval_results/{run_id}/
 """
@@ -23,20 +19,14 @@ TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 3600
 RUN_ID = sys.argv[5] if len(sys.argv) > 5 else time.strftime("%Y%m%d_%H%M%S")
 RESULTS_DIR = Path(os.path.expanduser(f"~/eval_results/{RUN_ID}"))
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+MAX_RETRIES = 2  # Try each task up to 2 times
 
 tasks = json.load(open(TASKS_FILE))
 print(f"=== Parallel eval: {len(tasks)} tasks, max_steps={MAX_STEPS}, concurrency={CONCURRENCY}, timeout={TASK_TIMEOUT}s, run_id={RUN_ID} ===", flush=True)
 
-def run_task(task):
-    env_name = task["env_name"]
-    task_id = task["task_id"]
-    env_dir = task["env_dir"]
-    task_key = f"{env_name}/{task_id}"
-    result_file = RESULTS_DIR / f"{env_name}__{task_id}.json"
 
-    if result_file.exists():
-        return json.load(open(result_file))
-
+def _run_once(env_dir, env_name, task_id, task_key):
+    """Run a single task attempt. Returns result dict."""
     start = time.time()
     try:
         proc = subprocess.run(
@@ -63,31 +53,62 @@ def run_task(task):
             if os.path.exists(summary_path):
                 summary = json.load(open(summary_path))
                 v = summary.get("verifier", {})
-                result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
-                          "score": v.get("score", 0), "passed": v.get("passed", False),
-                          "steps": summary.get("steps", 0), "elapsed": elapsed,
-                          "episode_dir": episode_dir}
+                return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
+                        "score": v.get("score", 0), "passed": v.get("passed", False),
+                        "steps": summary.get("steps", 0), "elapsed": elapsed,
+                        "episode_dir": episode_dir}
             else:
-                result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
-                          "score": 0, "passed": False, "error": "no summary.json", "elapsed": elapsed}
+                return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
+                        "score": 0, "passed": False, "error": "no summary.json",
+                        "elapsed": elapsed, "retryable": True}
         else:
             err_lines = [l for l in output.split("\n") if "Error" in l or "error" in l]
             err_msg = err_lines[-1][:150] if err_lines else "no episode dir in output"
-            result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
-                      "score": 0, "passed": False, "error": err_msg, "elapsed": elapsed}
+            retryable = "KeyError" in err_msg or "path" in err_msg or "no episode" in err_msg
+            return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
+                    "score": 0, "passed": False, "error": err_msg,
+                    "elapsed": elapsed, "retryable": retryable}
 
     except subprocess.TimeoutExpired:
-        result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
-                  "score": 0, "passed": False, "error": "timeout", "elapsed": time.time() - start}
-        # Kill orphaned Docker container (subprocess timeout doesn't call env.close())
         subprocess.run(f"docker ps --filter name=ga_{env_name} -q | xargs -r docker kill",
                        shell=True, capture_output=True, timeout=30)
+        return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
+                "score": 0, "passed": False, "error": "timeout",
+                "elapsed": time.time() - start, "retryable": False}
     except Exception as e:
-        result = {"task_key": task_key, "env_name": env_name, "task_id": task_id,
-                  "score": 0, "passed": False, "error": str(e)[:200], "elapsed": time.time() - start}
+        return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
+                "score": 0, "passed": False, "error": str(e)[:200],
+                "elapsed": time.time() - start, "retryable": True}
+
+
+def run_task(task):
+    env_name = task["env_name"]
+    task_id = task["task_id"]
+    env_dir = task["env_dir"]
+    task_key = f"{env_name}/{task_id}"
+    result_file = RESULTS_DIR / f"{env_name}__{task_id}.json"
+
+    if result_file.exists():
+        return json.load(open(result_file))
+
+    for attempt in range(MAX_RETRIES):
+        result = _run_once(env_dir, env_name, task_id, task_key)
+
+        # Success or non-retryable failure — done
+        if result.get("score", 0) > 0 or not result.get("retryable", False):
+            break
+
+        # Retryable failure — try again
+        if attempt < MAX_RETRIES - 1:
+            result["_retried"] = True
+
+    # Clean up internal fields
+    result.pop("retryable", None)
+    result.pop("_retried", None)
 
     json.dump(result, open(result_file, "w"), indent=2)
     return result
+
 
 completed = 0
 scored = 0
@@ -114,7 +135,7 @@ avg = sum(r.get("score", 0) for r in all_r) / len(all_r) if all_r else 0
 print(f"\n=== FINAL: {len(all_r)} tasks, score>0: {len(s)} ({100*len(s)/len(all_r):.1f}%), full pass: {len(p)}, avg: {avg:.1f}/100 ===", flush=True)
 json.dump(all_r, open(RESULTS_DIR / "all_results.json", "w"), indent=2)
 
-# Upload results and trajectories to S3
+# Upload to S3
 S3_BUCKET = "s3://fleet-internal-datasets/gym-anything/eval-runs"
 s3_dest = f"{S3_BUCKET}/{RUN_ID}"
 print(f"\nUploading to {s3_dest}...", flush=True)
