@@ -11,7 +11,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--validated-envs", help="File with env names, one per line")
     parser.add_argument("--env-dir", default="benchmarks/cua_world/environments")
-    parser.add_argument("--tasks-per-env", type=int, default=4)
+    parser.add_argument("--tasks-per-env", type=int, default=4, help="Tasks per env, 0 = all tasks")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("-o", "--output", default=os.path.expanduser("~/eval_tasks.json"))
     args = parser.parse_args()
@@ -41,7 +41,10 @@ def main():
                 "task_key": f"{env_name}/{task_name}",
             })
         random.shuffle(env_tasks)
-        tasks.extend(env_tasks[:args.tasks_per_env])
+        if args.tasks_per_env == 0:
+            tasks.extend(env_tasks)  # All tasks
+        else:
+            tasks.extend(env_tasks[:args.tasks_per_env])
 
     json.dump(tasks, open(args.output, "w"), indent=2)
     print(f"{len(tasks)} eval tasks from {len(env_names)} envs → {args.output}")

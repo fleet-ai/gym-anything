@@ -14,7 +14,7 @@ from pathlib import Path
 
 TASKS_FILE = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/eval_tasks.json")
 MAX_STEPS = int(sys.argv[2]) if len(sys.argv) > 2 else 200
-CONCURRENCY = int(sys.argv[3]) if len(sys.argv) > 3 else 8
+CONCURRENCY = int(sys.argv[3]) if len(sys.argv) > 3 else 16
 TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 3600
 RUN_ID = sys.argv[5] if len(sys.argv) > 5 else time.strftime("%Y%m%d_%H%M%S")
 RESULTS_DIR = Path(os.path.expanduser(f"~/eval_results/{RUN_ID}"))
