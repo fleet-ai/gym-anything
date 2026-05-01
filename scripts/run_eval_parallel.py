@@ -70,8 +70,11 @@ def _run_once(env_dir, env_name, task_id, task_key):
                     "elapsed": elapsed, "retryable": retryable}
 
     except subprocess.TimeoutExpired:
-        subprocess.run(f"docker ps --filter name=ga_{env_name} -q | xargs -r docker kill",
-                       shell=True, capture_output=True, timeout=30)
+        try:
+            subprocess.run(f"docker ps --filter name=ga_{env_name} -q | xargs -r docker kill",
+                           shell=True, capture_output=True, timeout=30)
+        except Exception:
+            pass  # Don't let cleanup crash the eval
         return {"task_key": task_key, "env_name": env_name, "task_id": task_id,
                 "score": 0, "passed": False, "error": "timeout",
                 "elapsed": time.time() - start, "retryable": False}
