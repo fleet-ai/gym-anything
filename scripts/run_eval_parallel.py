@@ -19,10 +19,37 @@ TASK_TIMEOUT = int(sys.argv[4]) if len(sys.argv) > 4 else 3600
 RUN_ID = sys.argv[5] if len(sys.argv) > 5 else time.strftime("%Y%m%d_%H%M%S")
 RESULTS_DIR = Path(os.path.expanduser(f"~/eval_results/{RUN_ID}"))
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+S3_RESULTS = f"s3://fleet-internal-datasets/gym-anything/eval-runs/{RUN_ID}/results"
 MAX_RETRIES = 2  # Try each task up to 2 times
+
+# Resume: pull existing results from S3 (in case server was restarted)
+print("Checking S3 for existing results...", flush=True)
+try:
+    subprocess.run(["aws", "s3", "sync", S3_RESULTS, str(RESULTS_DIR), "--quiet"],
+                   timeout=300, capture_output=True)
+    existing = len([f for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"])
+    if existing > 0:
+        print(f"Resumed: {existing} results pulled from S3", flush=True)
+except Exception:
+    pass
 
 tasks = json.load(open(TASKS_FILE))
 print(f"=== Parallel eval: {len(tasks)} tasks, max_steps={MAX_STEPS}, concurrency={CONCURRENCY}, timeout={TASK_TIMEOUT}s, run_id={RUN_ID} ===", flush=True)
+
+
+def _s3_sync_loop():
+    """Background thread: sync results to S3 every 5 minutes."""
+    while True:
+        time.sleep(300)
+        try:
+            subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), S3_RESULTS, "--quiet"],
+                           timeout=120, capture_output=True)
+        except Exception:
+            pass
+
+import threading
+_sync_thread = threading.Thread(target=_s3_sync_loop, daemon=True)
+_sync_thread.start()
 
 
 def _run_once(env_dir, env_name, task_id, task_key):
