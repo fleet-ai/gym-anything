@@ -1,0 +1,26 @@
+{
+    "id": "convert_to_grayscale@1",
+    "version": "1.0",
+    "env_id": "krita_env@0.1",
+    "description": "A publisher needs a grayscale version of a painting for a black-and-white print edition. Open the color image /home/ga/Documents/krita/water_lilies.png in Krita. Convert the image to grayscale using Image > Convert Image Color Space, selecting 'Grayscale' as the color model. Then export the result as a PNG to /home/ga/Documents/exports/water_lilies_grayscale.png.",
+    "difficulty": "medium",
+    "init": {
+        "timeout_sec": 240,
+        "max_steps": 35,
+        "reward_type": "sparse"
+    },
+    "hooks": {
+        "pre_task": "/workspace/tasks/convert_to_grayscale/setup_task.sh"
+    },
+    "metadata": {
+        "source_file": "/home/ga/Documents/krita/water_lilies.png",
+        "expected_output_file": "/home/ga/Documents/exports/water_lilies_grayscale.png",
+        "source_artwork": "Claude Monet - Water Lilies (1906)"
+    },
+    "success": {
+        "mode": "program",
+        "spec": {
+            "program": "verifier.py::verify_convert_to_grayscale"
+        }
+    }
+}

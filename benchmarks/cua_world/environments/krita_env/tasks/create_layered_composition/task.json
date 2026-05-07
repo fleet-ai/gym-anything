@@ -1,0 +1,29 @@
+{
+    "id": "create_layered_composition@1",
+    "version": "1.0",
+    "env_id": "krita_env@0.1",
+    "description": "An illustrator is setting up a new digital painting project with a standard layer structure. Create a new image in Krita with dimensions 1920x1080 pixels (File > New, set width to 1920 and height to 1080). Then create the following layer structure from bottom to top using the Layers panel: (1) 'Background' — the default bottom layer, rename it if needed, (2) 'Sketch' — a new paint layer for rough sketches, (3) 'Lineart' — a new paint layer for clean line work, (4) 'Color' — a new paint layer for base colors, (5) 'Shading' — a new paint layer for shadows and highlights. Save the file as /home/ga/Documents/exports/illustration_project.kra.",
+    "difficulty": "hard",
+    "init": {
+        "timeout_sec": 360,
+        "max_steps": 60,
+        "reward_type": "sparse"
+    },
+    "hooks": {
+        "pre_task": "/workspace/tasks/create_layered_composition/setup_task.sh"
+    },
+    "metadata": {
+        "expected_output_file": "/home/ga/Documents/exports/illustration_project.kra",
+        "expected_width": 1920,
+        "expected_height": 1080,
+        "expected_layers": ["Background", "Sketch", "Lineart", "Color", "Shading"],
+        "expected_layer_count": 5,
+        "expected_color_model": "RGBA"
+    },
+    "success": {
+        "mode": "program",
+        "spec": {
+            "program": "verifier.py::verify_create_layered_composition"
+        }
+    }
+}

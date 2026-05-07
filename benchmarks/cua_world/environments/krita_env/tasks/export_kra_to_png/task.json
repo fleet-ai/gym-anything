@@ -1,0 +1,27 @@
+{
+    "id": "export_kra_to_png@1",
+    "version": "1.0",
+    "env_id": "krita_env@0.1",
+    "description": "A designer needs to share artwork with a client who cannot open Krita files. Open the Krita project file located at /home/ga/Documents/krita/starry_night.kra in Krita, then export it as a PNG image to /home/ga/Documents/exports/starry_night.png. The exported PNG should preserve the original image dimensions.",
+    "difficulty": "easy",
+    "init": {
+        "timeout_sec": 180,
+        "max_steps": 25,
+        "reward_type": "sparse"
+    },
+    "hooks": {
+        "pre_task": "/workspace/tasks/export_kra_to_png/setup_task.sh"
+    },
+    "metadata": {
+        "source_file": "/home/ga/Documents/krita/starry_night.kra",
+        "expected_output_file": "/home/ga/Documents/exports/starry_night.png",
+        "expected_format": "PNG",
+        "source_artwork": "Van Gogh - The Starry Night (1889)"
+    },
+    "success": {
+        "mode": "program",
+        "spec": {
+            "program": "verifier.py::verify_export_kra_to_png"
+        }
+    }
+}

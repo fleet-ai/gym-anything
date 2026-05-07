@@ -1,0 +1,28 @@
+{
+    "id": "resize_image@1",
+    "version": "1.0",
+    "env_id": "krita_env@0.1",
+    "description": "A web designer needs to prepare an image for a website hero banner. Open the image /home/ga/Documents/krita/pillars_of_creation.png in Krita and resize it to exactly 1280x720 pixels using Image > Scale Image to New Size. Save the resized image as /home/ga/Documents/exports/banner_1280x720.png.",
+    "difficulty": "easy",
+    "init": {
+        "timeout_sec": 180,
+        "max_steps": 25,
+        "reward_type": "sparse"
+    },
+    "hooks": {
+        "pre_task": "/workspace/tasks/resize_image/setup_task.sh"
+    },
+    "metadata": {
+        "source_file": "/home/ga/Documents/krita/pillars_of_creation.png",
+        "expected_output_file": "/home/ga/Documents/exports/banner_1280x720.png",
+        "expected_width": 1280,
+        "expected_height": 720,
+        "source_artwork": "NASA Hubble - Pillars of Creation (2014)"
+    },
+    "success": {
+        "mode": "program",
+        "spec": {
+            "program": "verifier.py::verify_resize_image"
+        }
+    }
+}

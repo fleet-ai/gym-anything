@@ -1,0 +1,30 @@
+{
+    "id": "crop_and_export@1",
+    "version": "1.0",
+    "env_id": "krita_env@0.1",
+    "description": "A social media manager needs a cropped version of Hokusai's Great Wave painting for use as a profile banner. Open the image /home/ga/Documents/krita/great_wave.png in Krita. Using the crop tool or Image > Crop to Selection, crop the image to exactly 640 pixels wide and 480 pixels tall, starting from the top-left corner of the image. Export the cropped result as /home/ga/Documents/exports/great_wave_cropped.png.",
+    "difficulty": "medium",
+    "init": {
+        "timeout_sec": 240,
+        "max_steps": 40,
+        "reward_type": "sparse"
+    },
+    "hooks": {
+        "pre_task": "/workspace/tasks/crop_and_export/setup_task.sh"
+    },
+    "metadata": {
+        "source_file": "/home/ga/Documents/krita/great_wave.png",
+        "expected_output_file": "/home/ga/Documents/exports/great_wave_cropped.png",
+        "expected_width": 640,
+        "expected_height": 480,
+        "crop_x": 0,
+        "crop_y": 0,
+        "source_artwork": "Hokusai - The Great Wave off Kanagawa (1831)"
+    },
+    "success": {
+        "mode": "program",
+        "spec": {
+            "program": "verifier.py::verify_crop_and_export"
+        }
+    }
+}
