@@ -22,6 +22,63 @@ RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 S3_RESULTS = f"s3://fleet-internal-datasets/gym-anything/eval-runs/{RUN_ID}/results"
 MAX_RETRIES = 2  # Try each task up to 2 times
 
+# === Pre-flight checks ===
+def _preflight():
+    """Verify everything works before starting a multi-hour eval."""
+    errors = []
+
+    # 1. AWS CLI available
+    try:
+        subprocess.run(["aws", "--version"], capture_output=True, timeout=10, check=True)
+    except Exception:
+        errors.append("aws CLI not installed (pip install awscli)")
+
+    # 2. AWS credentials work
+    if not errors:
+        try:
+            result = subprocess.run(
+                ["aws", "s3", "ls", "s3://fleet-internal-datasets/gym-anything/", "--max-items", "1"],
+                capture_output=True, timeout=30)
+            if result.returncode != 0:
+                errors.append(f"AWS credentials failed: {result.stderr.decode()[:100]}")
+        except Exception as e:
+            errors.append(f"AWS S3 test failed: {e}")
+
+    # 3. Test S3 write
+    if not errors:
+        test_file = RESULTS_DIR / "_preflight_test.json"
+        test_file.write_text('{"test": true}')
+        try:
+            result = subprocess.run(
+                ["aws", "s3", "cp", str(test_file), f"{S3_RESULTS}/_preflight_test.json"],
+                capture_output=True, timeout=30)
+            if result.returncode != 0:
+                errors.append(f"S3 write failed: {result.stderr.decode()[:100]}")
+            else:
+                subprocess.run(["aws", "s3", "rm", f"{S3_RESULTS}/_preflight_test.json"],
+                               capture_output=True, timeout=30)
+        except Exception as e:
+            errors.append(f"S3 write test failed: {e}")
+        finally:
+            test_file.unlink(missing_ok=True)
+
+    # 4. Disk space
+    import shutil
+    total, used, free = shutil.disk_usage("/")
+    free_gb = free // (1024**3)
+    if free_gb < 50:
+        errors.append(f"Disk too low: {free_gb}GB free (need 50GB+)")
+
+    if errors:
+        print("❌ PRE-FLIGHT FAILED:", flush=True)
+        for e in errors:
+            print(f"   - {e}", flush=True)
+        sys.exit(1)
+    else:
+        print(f"✓ Pre-flight passed: aws OK, S3 write OK, disk {free_gb}GB free", flush=True)
+
+_preflight()
+
 # Resume: pull existing results from S3 (in case server was restarted)
 print("Checking S3 for existing results...", flush=True)
 try:
