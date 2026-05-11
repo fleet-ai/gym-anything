@@ -94,15 +94,29 @@ tasks = json.load(open(TASKS_FILE))
 print(f"=== Parallel eval: {len(tasks)} tasks, max_steps={MAX_STEPS}, concurrency={CONCURRENCY}, timeout={TASK_TIMEOUT}s, run_id={RUN_ID} ===", flush=True)
 
 
+_last_sync_count = 0
+
+def _s3_sync():
+    """Sync results to S3. Called by background thread and after every 20 tasks."""
+    global _last_sync_count
+    try:
+        result = subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), S3_RESULTS, "--quiet"],
+                               timeout=120, capture_output=True)
+        current = len([f for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"])
+        if result.returncode != 0:
+            print(f"⚠️ S3 sync failed: {result.stderr.decode()[:100]}", flush=True)
+        elif current > _last_sync_count:
+            print(f"  S3 synced: {current} results", flush=True)
+            _last_sync_count = current
+    except Exception as e:
+        print(f"⚠️ S3 sync error: {e}", flush=True)
+
+
 def _s3_sync_loop():
     """Background thread: sync results to S3 every 5 minutes."""
     while True:
         time.sleep(300)
-        try:
-            subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), S3_RESULTS, "--quiet"],
-                           timeout=120, capture_output=True)
-        except Exception:
-            pass
+        _s3_sync()
 
 import threading
 _sync_thread = threading.Thread(target=_s3_sync_loop, daemon=True)
@@ -214,6 +228,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
         print(f"[{completed}/{len(tasks)}] {result['task_key']}: {status} ({result.get('elapsed',0):.0f}s)", flush=True)
         if completed % 20 == 0:
             print(f"  --- {completed}/{len(tasks)}, scored>0: {scored}, errors: {errors} ---", flush=True)
+            _s3_sync()
 
 all_r = [json.load(open(f)) for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"]
 s = [r for r in all_r if r.get("score", 0) > 0]
