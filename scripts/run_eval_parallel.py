@@ -226,9 +226,15 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
         e = result.get("error", "")
         status = f"score={s}" if not e else f"ERR:{e[:40]}"
         print(f"[{completed}/{len(tasks)}] {result['task_key']}: {status} ({result.get('elapsed',0):.0f}s)", flush=True)
+        # Sync every task result to S3 immediately — zero data loss on server death
+        try:
+            result_file = RESULTS_DIR / f"{result['env_name']}__{result['task_id']}.json"
+            subprocess.run(["aws", "s3", "cp", str(result_file), f"{S3_RESULTS}/{result_file.name}", "--quiet"],
+                           timeout=30, capture_output=True)
+        except Exception:
+            pass
         if completed % 20 == 0:
             print(f"  --- {completed}/{len(tasks)}, scored>0: {scored}, errors: {errors} ---", flush=True)
-            _s3_sync()
 
 all_r = [json.load(open(f)) for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"]
 s = [r for r in all_r if r.get("score", 0) > 0]
