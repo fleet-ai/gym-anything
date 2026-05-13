@@ -37,7 +37,7 @@ def _preflight():
     if not errors:
         try:
             result = subprocess.run(
-                ["aws", "s3", "ls", "s3://fleet-internal-datasets/gym-anything/", "--max-items", "1"],
+                ["aws", "s3", "ls", "s3://fleet-internal-datasets/gym-anything/"],
                 capture_output=True, timeout=30)
             if result.returncode != 0:
                 errors.append(f"AWS credentials failed: {result.stderr.decode()[:100]}")
