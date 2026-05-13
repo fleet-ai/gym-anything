@@ -22,6 +22,10 @@ RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 S3_RESULTS = f"s3://fleet-internal-datasets/gym-anything/eval-runs/{RUN_ID}/results"
 MAX_RETRIES = 2  # Try each task up to 2 times
 
+# Find aws binary — may be in venv or system PATH
+import shutil
+_AWS_BIN = shutil.which("aws") or os.path.expanduser("~/ga-venv/bin/aws") or "aws"
+
 # === Pre-flight checks ===
 def _preflight():
     """Verify everything works before starting a multi-hour eval."""
@@ -29,7 +33,7 @@ def _preflight():
 
     # 1. AWS CLI available
     try:
-        subprocess.run(["aws", "--version"], capture_output=True, timeout=10, check=True)
+        subprocess.run([_AWS_BIN, "--version"], capture_output=True, timeout=10, check=True)
     except Exception:
         errors.append("aws CLI not installed (pip install awscli)")
 
@@ -37,7 +41,7 @@ def _preflight():
     if not errors:
         try:
             result = subprocess.run(
-                ["aws", "s3", "ls", "s3://fleet-internal-datasets/gym-anything/"],
+                [_AWS_BIN, "s3", "ls", "s3://fleet-internal-datasets/gym-anything/"],
                 capture_output=True, timeout=30)
             if result.returncode != 0:
                 errors.append(f"AWS credentials failed: {result.stderr.decode()[:100]}")
@@ -50,12 +54,12 @@ def _preflight():
         test_file.write_text('{"test": true}')
         try:
             result = subprocess.run(
-                ["aws", "s3", "cp", str(test_file), f"{S3_RESULTS}/_preflight_test.json"],
+                [_AWS_BIN, "s3", "cp", str(test_file), f"{S3_RESULTS}/_preflight_test.json"],
                 capture_output=True, timeout=30)
             if result.returncode != 0:
                 errors.append(f"S3 write failed: {result.stderr.decode()[:100]}")
             else:
-                subprocess.run(["aws", "s3", "rm", f"{S3_RESULTS}/_preflight_test.json"],
+                subprocess.run([_AWS_BIN, "s3", "rm", f"{S3_RESULTS}/_preflight_test.json"],
                                capture_output=True, timeout=30)
         except Exception as e:
             errors.append(f"S3 write test failed: {e}")
@@ -82,7 +86,7 @@ _preflight()
 # Resume: pull existing results from S3 (in case server was restarted)
 print("Checking S3 for existing results...", flush=True)
 try:
-    subprocess.run(["aws", "s3", "sync", S3_RESULTS, str(RESULTS_DIR), "--quiet"],
+    subprocess.run([_AWS_BIN, "s3", "sync", S3_RESULTS, str(RESULTS_DIR), "--quiet"],
                    timeout=300, capture_output=True)
     existing = len([f for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"])
     if existing > 0:
@@ -100,7 +104,7 @@ def _s3_sync():
     """Sync results to S3. Called by background thread and after every 20 tasks."""
     global _last_sync_count
     try:
-        result = subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), S3_RESULTS, "--quiet"],
+        result = subprocess.run([_AWS_BIN, "s3", "sync", str(RESULTS_DIR), S3_RESULTS, "--quiet"],
                                timeout=120, capture_output=True)
         current = len([f for f in RESULTS_DIR.glob("*.json") if f.name != "all_results.json"])
         if result.returncode != 0:
@@ -229,7 +233,7 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
         # Sync every task result to S3 immediately — zero data loss on server death
         try:
             result_file = RESULTS_DIR / f"{result['env_name']}__{result['task_id']}.json"
-            subprocess.run(["aws", "s3", "cp", str(result_file), f"{S3_RESULTS}/{result_file.name}", "--quiet"],
+            subprocess.run([_AWS_BIN, "s3", "cp", str(result_file), f"{S3_RESULTS}/{result_file.name}", "--quiet"],
                            timeout=30, capture_output=True)
         except Exception:
             pass
@@ -248,11 +252,11 @@ S3_BUCKET = "s3://fleet-internal-datasets/gym-anything/eval-runs"
 s3_dest = f"{S3_BUCKET}/{RUN_ID}"
 print(f"\nUploading to {s3_dest}...", flush=True)
 try:
-    subprocess.run(["aws", "s3", "cp", str(RESULTS_DIR / "all_results.json"), f"{s3_dest}/all_results.json"], check=True, timeout=60)
-    subprocess.run(["aws", "s3", "sync", str(RESULTS_DIR), f"{s3_dest}/results/", "--quiet"], check=True, timeout=300)
+    subprocess.run([_AWS_BIN, "s3", "cp", str(RESULTS_DIR / "all_results.json"), f"{s3_dest}/all_results.json"], check=True, timeout=60)
+    subprocess.run([_AWS_BIN, "s3", "sync", str(RESULTS_DIR), f"{s3_dest}/results/", "--quiet"], check=True, timeout=300)
     runs_dir = Path(f"all_runs/fleet-eval-{RUN_ID}")
     if runs_dir.exists():
-        subprocess.run(["aws", "s3", "sync", str(runs_dir), f"{s3_dest}/trajectories/", "--quiet"], check=True, timeout=1800)
+        subprocess.run([_AWS_BIN, "s3", "sync", str(runs_dir), f"{s3_dest}/trajectories/", "--quiet"], check=True, timeout=1800)
     print(f"Uploaded to {s3_dest}", flush=True)
 except Exception as e:
     print(f"S3 upload failed: {e}", flush=True)
